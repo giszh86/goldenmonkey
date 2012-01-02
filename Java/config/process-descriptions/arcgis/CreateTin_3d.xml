@@ -1,0 +1,134 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create TIN (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates an empty TIN.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Build</keyword><keyword>Conforming</keyword><keyword>Constrained</keyword><keyword>Create</keyword><keyword>Delaunay</keyword><keyword>Edit</keyword><keyword>Tin</keyword><keyword>Triangulated Irregular Network</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateTin" displayname="Create TIN (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Creates an empty TIN.</para>
+		</summary><alink_name>CreateTin_3d</alink_name><parameters><param sync="true" name="out_tin" displayname="Output TIN" datatype="TIN" direction="Output" expression="out_tin" type="Required"><pythonReference>
+						<para>The output TIN to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The output TIN to be created.</para>
+					</dialogReference></param><param sync="true" name="spatial_reference" displayname="Spatial Reference" datatype="Spatial Reference" direction="Input" expression="spatial_reference" type="Optional"><pythonReference>
+						<para>The spatial reference of the TIN to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The spatial reference of the TIN to be created.</para>
+					</dialogReference></param><param sync="true" name="in_features" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_features" type="Optional"><pythonReference>
+						<para>Add references to one or more feature classes that will be included in the TIN. For each feature class you'll need to set properties that indicate how it's used to define the surface.</para>
+					</pythonReference><dialogReference><para>Add references to one or more feature classes that will be included in the TIN. For each feature class you'll need to set properties that indicate how it's used to define the surface.</para><para>In Feature Class (in_feature_class):  The input feature class name to be used to construct the TIN.</para><para>Height Field (height_field): Theheight_field supplying heights for the features. If z-values are coming from the feature geometry, then the Shape field is listed; otherwise, it will be either the name of a numeric field or, in the case of z-less features, the keyword &lt;None&gt;. Z-less features have no heights and their values are interpolated from the surface before they get added.</para>
+						<para>Surface Feature Type (SF_type): The SF_type defines how the feature geometry gets incorporated into the triangulation for the surface. There are mass points, breaklines, and several polygon types. Breaklines and polygons also have 'hard' and 'soft' qualifiers. These indicate to an interpolator whether the surface crosses over the features smoothly (soft) or with a potentially sharp discontinuity (hard).</para><para>Tag Field (tag_field): The tag_value fill polygons assign integer values, which are used as a simple form of attribution, to triangles. Their boundaries are enforced in the triangulation as breaklines. Triangles inside these polygons are attributed with the tag values. Specify the name of the feature class attribute to use as tag values in the TIN. If tag values are not to be used, specify &lt;none&gt;.</para>
+					</dialogReference></param><param sync="true" name="constrained_delaunay" displayname="Constrained delauney" datatype="Boolean" direction="Input" expression="constrained_delaunay" type="Optional"><pythonReference>
+						<para>A constrained Delaunay triangulation conforms to Delaunay rules everywhere except along breaklines. When using conforming Delaunay triangulation, breaklines are densified by the software, therefore one input breakline segment can result in multiple triangle edges. When using constrained Delaunay triangulation no densication occurs and each breakline segment is added as a single edge.</para>
+						<bulletList><bullet_item>NO_ constrained_delaunay— The triangulation will fully conform to the Delaunay rules. This is the default.</bullet_item><bullet_item> constrained_delaunay—The Delaunay triangulation will be constrained.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> A constrained Delaunay triangulation conforms to Delaunay rules everywhere except along breaklines. When using conforming Delaunay triangulation, breaklines are densified by the software, therefore one input breakline segment can result in multiple triangle edges. When using constrained Delaunay triangulation no densication occurs and each breakline segment is added as a single edge.</para>
+						<bulletList>
+							<bullet_item>Unchecked— The triangulation will fully conform to the Delaunay rules. This is the default.</bullet_item>
+							<bullet_item>Checked— The Delaunay triangulation will be constrained.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Version" label="Version"></environment></environments><usage><bullet_item>
+				<para>This tool instantiates a new, empty TIN and saves it to disk.</para>
+			</bullet_item><bullet_item>
+				<para>When using the Create TIN dialog box, you can browse for a Spatial Reference using the button next to the Spatial Reference input textbox. When the Spatial Reference dialog box is open choose Import to browse for an existing GeoDataset to use as a source or the Select button to pick one of the predefined coordinate systems.</para>
+			</bullet_item><bullet_item>
+				<para>When using the command line, you provide the name of an existing GeoDataset for the spatial reference argument.</para>
+			</bullet_item><bullet_item>
+				<para>TINs used for surface modeling should be constructed using projected coordinate systems. Geographic coordinate systems are not recommended. Functions such as slope, volume, and line-of-sight can produce misleading or incorrect results when xy units are angular (e.g., decimal degrees).</para>
+			</bullet_item><bullet_item>
+				<para>Features can subsequently be added to the empty TIN using the Edit Tin tool.</para>
+			</bullet_item><bullet_item>
+				<para>You can resize the Input Feature Class properties dialog box to increase its width in case the default column width is too small.</para>
+			</bullet_item><bullet_item>
+				<para>This tool is intended primarily for data automation, to be called from scripts and ModelBuilder. For an interactive tool to build TINs consider using the Create TIN From Features command found on the 3D Analyst toolbar.</para>
+			</bullet_item><bullet_item>
+				<para>The maximum allowable size of a TIN varies relative to free, contiguous, memory resources. 10 to 15 million nodes represents the largest size achievable under normal operating conditions with Win32. Regardless, it's strongly recommended to cap the size at a few million for the sake of usability and performance. Anything larger than this is best represented using a terrain dataset.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Create TIN Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Create TIN
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.CreateTin_3d("NewTIN", "Coordinate Systems/Projected Coordinate Systems/State Plane/NAD 1983 (Feet)/NAD 1983 StatePlane California II FIPS 0402 (Feet).prj", "points.shp Shape.Z masspoints", "constrained_delaunay")
+                    </code></scriptExample><scriptExample><title>Create TIN Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Create TIN
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: CreateTin Example
+# Description: The following stand-alone script demonstrates how to create a TIN
+#              from Lidar files in a workspace. A SearchCursor is applied to the 
+#              PointFileInformation tool's output to obtain the smallest average 
+#              point spacing value, which is used as an input for LASToMultipoint
+#              to create the points that are used as inputs for CreateTIN. A copy
+#              of the resulting TIN is input into DelineateTinDataArea to limit 
+#              the TIN's triangulation within the area of the points.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+# Import system modules
+import arcpy
+from arcpy import env
+import math
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/Data/LAS"
+
+try:
+    # Set Local Variables
+    LASInfo = "LASInfo.shp"
+    inFormat = "LAS"
+    fileSuffix = "las"
+    prj = 'Coordinate Systems/Projected Coordinate Systems/UTM/NAD 1983/'+\
+        'NAD 1983 UTM Zone 17N.prj'
+    folderRecursion = False
+    sumClass = False
+    extrude = False
+    decSep = "DECIMAL_POINT"
+    outputFC = "Lidar_Multipoint.shp"
+    class_code = "2" # Identifies all ground returns
+    zfactor = "0.3048" # Convert feet to meters
+    TIN_name = "Elevation"
+    Delaunay = "constrained_delaunay"
+    # Use the ListFiles method to identify all LAS files in the workspace
+    LidarList = arcpy.ListFiles("*.las")
+    if len(LidarList) &gt; 0:
+        # Execute PointFileInformation
+        arcpy.PointFileInformation_3d(LidarList, LASInfo, inFormat, fileSuffix, 
+                                      prj, folderRecursion, extrude, decSep, sumClass)
+        # Create SearchCursor and sort Pt_Spacing field in ascending order
+        LAScursor = arcpy.SearchCursor(LASInfo, "", "", "Pt_Spacing", "Pt_Spacing A")
+        for row in LAScursor:
+            # Gets the value in the Pt_Spacing field
+            ptSpacing = row.getValue("Pt_Spacing")
+            # Stop the for loop from looping for each row
+            break
+        MaxCursor
+        # Execute LASToMultipoint
+        print "Creating multipoint dataset."
+        arcpy.LASToMultipoint_3d(LidarList, outputFC, ptSpacing, class_code, 
+                                 "ANY_RETURNS", "", prj, inFormat, zfactor)
+        # Execute CreateTin
+        print "Creating TIN dataset."
+        arcpy.CreateTin_3d(TIN_name, prj, outputFC + " Shape.Z masspoints", Delaunay)
+        # Execute CopyTin
+        print "Copying TIN."
+        arcpy.CopyTin_3d(TIN_name, TIN_name + "_delineated", "CURRENT")
+        # Execute DelineateTinDataArea
+        MaxEdge = ptSpacing * 4
+        print "Delineating TIN boundary."
+        arcpy.DelineateTinDataArea_3d(TIN_name + "_delineated", MaxEdge, 
+                                      "PERIMETER_ONLY")
+        print "Finished"
+    else:
+        print "There are no LAS files in the " + env.workspace + " directory."    
+        
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

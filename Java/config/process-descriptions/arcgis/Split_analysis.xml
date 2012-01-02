@@ -1,0 +1,99 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Split (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Splitting the Input Features creates a subset of multiple output feature classes.</para>
+			<para>The Split Field's unique values form the names of the output feature classes. These are saved in the target workspace.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Boundary</keyword><keyword>Break</keyword><keyword>Clip</keyword><keyword>Cut</keyword><keyword>Dataset</keyword><keyword>Divide</keyword><keyword>Overlay</keyword><keyword>Partition</keyword><keyword>Portion</keyword><keyword>Separate</keyword><keyword>Subdivide</keyword><keyword>Subset</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Split" displayname="Split (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Splitting the Input Features creates a subset of multiple output feature classes.</para>
+			<para>The Split Field's unique values form the names of the output feature classes. These are saved in the target workspace.</para>
+		</summary><alink_name>Split_analysis</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/Split_analysis_v.gif" alt="Split illustration" /><toolIllust type="illustration" src="Split_analysis_h.gif" alt="Split illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The features to be split.</para>
+					</pythonReference><dialogReference>
+						<para>The features to be split.</para>
+					</dialogReference></param><param sync="true" name="split_features" displayname="Split Features" datatype="Feature Layer" direction="Input" expression="split_features" type="Required"><pythonReference>
+						<para>The features containing a tabular field whose unique values are used to split the Input Features and provide the output feature classes' names.</para>
+					</pythonReference><dialogReference>
+						<para>The features containing a tabular field whose unique values are used to split the Input Features and provide the output feature classes' names.</para>
+					</dialogReference></param><param sync="true" name="split_field" displayname="Split Field" datatype="Field" direction="Input" expression="split_field" type="Required"><pythonReference>
+						<para>The character field used to split the Input Features. This field's values identify the Split Features used to create each output feature class. The Split Field's unique values provide the output feature classes' names.</para>
+					</pythonReference><dialogReference>
+						<para>The character field used to split the Input Features. This field's values identify the Split Features used to create each output feature class. The Split Field's unique values provide the output feature classes' names.</para>
+					</dialogReference></param><param sync="true" name="out_workspace" displayname="Target Workspace" datatype="Workspace ; Feature Dataset" direction="Input" expression="out_workspace" type="Required"><pythonReference>
+						<para>The workspace where the output feature classes are stored.</para>
+					</pythonReference><dialogReference>
+						<para>The workspace where the output feature classes are stored.</para>
+					</dialogReference></param><param sync="true" name="cluster_tolerance" displayname="XY Tolerance" datatype="Linear unit" direction="Input" expression="cluster_tolerance" type="Optional"><pythonReference>
+						<para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both). Set the value to be higher for data that has less coordinate accuracy and lower for datasets with extremely high accuracy.</para>
+					</pythonReference><dialogReference>
+						<para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both). Set the value to be higher for data that has less coordinate accuracy and lower for datasets with extremely high accuracy.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3"></environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Split Features dataset must be polygons.</para>
+			</bullet_item><bullet_item>
+				<para>The Split Field data type must be character. Its unique values form the names of output feature classes.</para>
+			</bullet_item><bullet_item>
+				<para>The split field's unique values must start with a valid character. If the target workspace is a file, personal, or ArcSDE geodatabase, the field's values must begin with a letter. Field values that begin with a number as in "350 degrees" cause an error. Exception: Shapefile names can begin with a number, and a folder target workspace allows field values that begin with a number.</para>
+			</bullet_item><bullet_item>
+				<para>The target workspace must already exist.</para>
+			</bullet_item><bullet_item>
+				<para>The total number of output feature classes equals the number of unique Split Field values and the extent of overlay of the Input Features with the Split Features.</para>
+			</bullet_item><bullet_item>
+				<para>The feature attribute table of each output feature class contains the same fields as the Input Features attribute table.</para>
+			</bullet_item><bullet_item>
+				<para> features are split and saved in the output features based on the Split Features polygon in which the lower left starting point of the annotation string falls.</para>
+			</bullet_item><bullet_item>
+				<para>Attribute values from the input feature class(es) will be copied to the output feature class.  However, if the input is a layer(s) created by the  tool and a field's "Use Ratio Policy" is checked, then a ratio of the input attribute value is calculated for the output attribute value.    When "Use Ratio Policy" is enabled, whenever a feature in an overlay operation is split, the attributes of the resulting features are a ratio of the attribute value of the input feature. The output value  is based on the ratio in which the input feature  geometry was divided. For example, If the input geometry was divided equally, each new feature's attribute value is assigned one-half of the value of the input feature's attribute value. "Use Ratio Policy" only applies to numeric field types. </para><para>Geoprocessing tools do not honor geodatabase feature class or table field split policies.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will use a tiling process to handle very large datasets for better performance and scalability. For more details, see .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Split Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Split tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "c:/data"
+arcpy.Split_analysis("Habitat_Analysis.gdb/vegtype", "climate.shp", "Zone", "C:/output/Output.gdb", "1 Meters")
+                    </code></scriptExample><scriptExample><title>Split Example (Stand-alone script)</title>
+					<para>Split vegetation layer into separate feature classes for each climate zone.</para>
+				<code xml:space="preserve"># Name: Split.py
+# Description: Split vegetation layer into separate feature classes for each climate zone
+# Author: ESRI
+
+# import system modules 
+import arcpy 
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Split vegetation layer by climate zones, write to Output.gdb
+veg = "Habitat_Analysis.gdb/vegtype"
+splitFeatures = "climate.shp"
+splitField = "Zone"
+outWorkspace = "C:/output/Output.gdb"
+clusterTol = "1 Meters"
+arcpy.Split_analysis(veg, splitFeatures, splitField, outWorkspace, clusterTol)
+                    </code></scriptExample></scriptExamples></tool></metadata>

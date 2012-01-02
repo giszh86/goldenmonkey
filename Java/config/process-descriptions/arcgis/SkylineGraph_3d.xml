@@ -1,0 +1,90 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Skyline Graph  (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates sky visibility, and optionally generates a table and a polar graph. The table and graph represent the horizontal and vertical angles going from the observer point to each of the vertices on the skyline. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Analysis</keyword><keyword>3D Features</keyword><keyword>3D Geometry</keyword><keyword>Graph</keyword><keyword>Skyline</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" SkylineGraph" displayname=" Skyline Graph  (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Calculates sky visibility, and optionally generates a table and a polar graph. The table and graph represent the horizontal and vertical angles going from the observer point to each of the vertices on the skyline. </para>
+		</summary><alink_name> SkylineGraph_3d</alink_name><parameters><param sync="true" name="in_observer_point_features" displayname="Input Observer Point Features" datatype="Features" direction="Input" expression="in_observer_point_features" type="Required"><pythonReference>
+						<para> The feature class containing the observer point. </para>
+					</pythonReference><dialogReference>
+						<para> The feature class containing the observer point. </para>
+					</dialogReference></param><param sync="true" name="in_line_features" displayname="Input Line Features" datatype="Features" direction="Input" expression="in_line_features" type="Required"><pythonReference>
+						<para>The line feature class representing the skyline. </para>
+					</pythonReference><dialogReference>
+						<para>The line feature class representing the skyline. </para>
+					</dialogReference></param><param sync="true" name="base_visibility_angle" displayname="Base Visibility Angle" datatype="Double" direction="Input" expression="base_visibility_angle" type="Optional"><pythonReference>
+						<para>The vertical angle which is used as the baseline for calculating percentage of visible sky; 0 is the horizon, 90 is straight up; -90 is straight down. The default is 0.</para>
+					</pythonReference><dialogReference>
+						<para>The vertical angle which is used as the baseline for calculating percentage of visible sky; 0 is the horizon, 90 is straight up; -90 is straight down. The default is 0.</para>
+					</dialogReference></param><param sync="true" name="additional_fields" displayname="Additional Fields" datatype="Boolean" direction="Output" expression="additional_fields" type="Optional"><pythonReference>
+						<para>Determines whether to output additional fields to the table, rather than just the two angle values.</para>
+						<bulletList><bullet_item>NO_ ADDITIONAL_FIELDS—The additional fields will not be output. This is the default.</bullet_item><bullet_item> ADDITIONAL_FIELDS—The additional fields will be output.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Determines whether to output additional fields to the table, rather than just the two angle values.</para>
+						<bulletList>
+							<bullet_item>Unchecked—The additional fields will not be output. This is the default.</bullet_item>
+							<bullet_item>Checked—The additional fields will be output.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_angles_table" displayname="Output Angles Table" datatype="String" direction="Output" expression="out_angles_table" type="Optional"><pythonReference>
+						<para>The table to be created for outputting the angles, and so on. The default is blank, meaning no table. </para>
+					</pythonReference><dialogReference>
+						<para>The table to be created for outputting the angles, and so on. The default is blank, meaning no table. </para>
+					</dialogReference></param><param sync="true" name="out_graph" displayname="Output Graph Name" datatype="Boolean" direction="Output" expression="out_graph" type="Optional"><pythonReference>
+						<para>The name for the desired graph. A table has to be generated in order for the graph to be generated. The graph will be displayed and can be saved and/or edited. The default is blank, meaning no graph.</para>
+					</pythonReference><dialogReference>
+						<para>The name for the desired graph. A table has to be generated in order for the graph to be generated. The graph will be displayed and can be saved and/or edited. The default is blank, meaning no graph.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>An observer point and a skyline (3D line) are required as input. 
+</bullet_item><bullet_item>The azimuth and vertical angle from the observer point to each vertex is calculated.
+</bullet_item><bullet_item>The tool always returns the ratio of visible sky (between 0 and 1; e.g., 0.8 if the sky is 80 percent visible).</bullet_item><bullet_item>The tool can optionally output a table of angles. If the table is output, then a polar graph can also optionally be output.
+
+</bullet_item><bullet_item>The tool always displays in the Results window (or in the Results information, if the window is not displayed) the percentage of visible sky, along with the minimum and maximum vertical angles.
+</bullet_item><bullet_item>If a table is output, it will contain rows of two or more double-precision numbers. Each row contains at least an arithmetic horizontal angle and a zenith angle, both of which are in degrees.
+</bullet_item><bullet_item>If  Additional Fields   is selected, then additional columns will be generated, including information such as the source of the edge which follows the vertex in the skyline (FEATURE_ID), the distance from the observer point to the vertex, and the coordinates of the vertex. (The source might be the FID of the feature which participates in the skyline or a code to indicate that the skyline is on the surface.) </bullet_item><bullet_item><para>The fields which will always appear in the table are:</para>
+				<bulletList><bullet_item>HORIZ_ANG: The horizontal angle.</bullet_item><bullet_item>ZENITH_ANG: The zenith angle.</bullet_item></bulletList>
+			</bullet_item><bullet_item><para>The additional fields are:</para><bulletList><bullet_item>VERTEX_X: The X coordinate of the vertex.</bullet_item><bullet_item>VERTEX_Y: The Y coordinate of the vertex.</bullet_item><bullet_item>VERTEX_Z: The Z coordinate of the vertex.</bullet_item><bullet_item>DIST_2D: The horizontal distance from the observer to the
+vertex.</bullet_item><bullet_item>DIST_3D: The slope distance from the observer to the vertex.</bullet_item></bulletList>
+			</bullet_item><bullet_item><para> The additional fields are not necessary for generating the graph.</para></bullet_item><bullet_item><para>The arithmetic horizontal angle is equal to 90 minus the azimuth, and the zenith angle is 90 minus the vertical angle. (An arithmetic horizontal angle of 0 is due east, and 90 is due north; a zenith angle of 90 is horizontal, and 0 is straight up.)</para></bullet_item><bullet_item>The optional graph is a polar graph, which appears as if the skyline (3D polyline) were projected onto the surface of a sphere, and the observer of the graph were looking down from high above the center of the sphere (the center of the sphere is at the observer point).</bullet_item><bullet_item>The polar graph is linear as you go out from its center, meaning that the ring/circle representing the equator has twice the radius of the ring representing an angle of elevation of 45 degrees, assuming that the center of the graph represents an angle of elevation of 90 degrees (zenith angle of zero).</bullet_item><bullet_item>The percentage of visible sky is always listed in the results. This value is equal to the area above the skyline, divided by the area above the base visible angle (one of the parameters, with a default of zero, meaning at the same elevation as the observer), and is calculated only within the azimuth range of the skyline.</bullet_item></usage><scriptExamples><scriptExample><title>Skyline Graph Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Skyline Graph
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.SkylineGraph_3d("observers.shp", "skyline_outline.shp", 0, "ADDITIONAL_FIELDS", "table.dbf")
+                    </code></scriptExample><scriptExample><title>Skyline Graph Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Skyline Graph
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: Skyline Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              Skyline tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+inPts = "observers.shp"
+inLines = "skyline_outline.shp"
+baseVisibility = 25
+# Ensure output table has unique name
+outTable = arcpy.CreateUniqueName("angles_table.dbf")
+
+#Execute SkylineGraph
+arcpy.SkylineGraph_3d(inPts, inLines, 0, "ADDITIONAL_FIELDS", outTable)
+                    </code></scriptExample></scriptExamples></tool></metadata>

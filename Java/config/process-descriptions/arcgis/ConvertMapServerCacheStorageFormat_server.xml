@@ -1,0 +1,92 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Convert Map Server Cache Storage Format (Server)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Converts the storage of a map service cache between the exploded (pre-10.0) format and the compact format. The tool converts the format "in place", meaning it does not make a copy of the existing format. Instead, it creates the new format cache in the same cache folder and deletes the old format.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ConvertMapServerCacheStorageFormat" displayname=" Convert Map Server Cache Storage Format (Server)" toolboxalias="Server" softwarerestriction="none"><summary>
+			<para> Converts the storage of a map service cache between the exploded (pre-10.0) format and the compact format. The tool converts the format "in place", meaning it does not make a copy of the existing format. Instead, it creates the new format cache in the same cache folder and deletes the old format.</para>
+		</summary><alink_name>ConvertMapServerCacheStorageFormat_Server</alink_name><parameters><param sync="true" name="server_name" displayname="Host" datatype="String" direction="Input" expression="server_name" type="Required"><pythonReference>
+						<para> The ArcGIS Server machine  hosting the service whose cache format will be changed.</para>
+					</pythonReference><dialogReference>
+						<para> The ArcGIS Server machine  hosting the service whose cache format will be changed.</para>
+					</dialogReference></param><param sync="true" name="object_name" displayname="Map Server" datatype="String" direction="Input" expression="object_name" type="Required"><pythonReference>
+						<para> The map service whose cache format will be changed.</para>
+						<para>The new cache format replaces the old cache format. Make a backup of your cache if you wish to go back to your old format.</para>
+					</pythonReference><dialogReference>
+						<para> The map service whose cache format will be changed.</para>
+						<para>The new cache format replaces the old cache format. Make a backup of your cache if you wish to go back to your old format.</para>
+					</dialogReference></param><param sync="true" name="data_frame" displayname="Data Frame" datatype="String" direction="Input" expression="data_frame" type="Required"><pythonReference>
+						<para> The source data frame for the map service.</para>
+					</pythonReference><dialogReference>
+						<para> The source data frame for the map service.</para>
+					</dialogReference></param><param sync="true" name="storage_format_type" displayname="Storage Format Type" datatype="String" direction="Input" expression="storage_format_type" type="Optional"><pythonReference>
+						<para> The storage format to which the new cache will be converted. The tool user interface detects your current cache format and lists the other format as the only option for this parameter. The formats are EXPLODED and COMPACT.</para>
+					</pythonReference><dialogReference>
+						<para> The storage format to which the new cache will be converted. The tool user interface detects your current cache format and lists the other format as the only option for this parameter. The formats are EXPLODED and COMPACT.</para>
+					</dialogReference></param><param sync="true" name="thread_count" displayname="Number of MapServer Instances" datatype="Long" direction="Input" expression="thread_count" type="Optional"><pythonReference>
+						<para> Number of map service instances to use while converting the cache. By default the maximum allowable number of instances will be used (default for an ArcGIS Server service is 2) . If you have more server power, you can raise the maximum allowable number of instances (accessible from the Service Properties dialog box in ArcCatalog, the Catalog window, or Manager), then raise this parameter when you run the tool.</para>
+					</pythonReference><dialogReference>
+						<para> Number of map service instances to use while converting the cache. By default the maximum allowable number of instances will be used (default for an ArcGIS Server service is 2) . If you have more server power, you can raise the maximum allowable number of instances (accessible from the Service Properties dialog box in ArcCatalog, the Catalog window, or Manager), then raise this parameter when you run the tool.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>
+To use this tool, specify the map service whose cache you want to convert. The tool detects the  current storage format and uses that information to automatically set the target format to the opposite format. You can choose how many service instances to dedicate to cache conversion.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><para>This example uses ConvertMapServerCacheStorageFormat to convert an exploded cache to a compact cache.</para>
+				<code xml:space="preserve"># ConvertMapServerCacheStorageFormat example (stand-alone script)
+
+# Name: ConvertMapServerCacheStorageFormat.py
+# Description: The following stand-alone script demonstrates how to convert map
+#               server cache storage format to the alteranate storage format
+# Requirements: os, sys, time, traceback modules
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default value.
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, string, datetime, traceback
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of variables for mapservice properties
+server = "MyServer"
+service = "Rainfall"
+dataFrame = ""
+threadCount = "2"
+
+currentTime = datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+# print results of the script to a report
+report = open(file,'w')
+
+# One can leave the variable for storage format marked "COMPACT" to "" (default)
+
+try:
+    starttime = time.clock()
+    result = arcpy.ConvertMapServerCacheStorageFormat_server (server, service, dataFrame,
+                                                     "COMPACT" , threadCount)
+    finishtime = time.clock()
+    elapsedtime = finishtime - starttime
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+    
+    print "Converted Map Server Cache Storage format for " + service + " in "
+    + str(elapsedtime) + " sec \n on" + arg2 
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 1 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+report.close()
+    
+print "Converted Map Server Cache Storage format "
+
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

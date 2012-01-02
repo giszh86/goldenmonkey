@@ -1,0 +1,97 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Line Coverage To Region (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts arcs to preliminary regions in a new or existing coverage or appends preliminary regions to an existing region subclass.</para>
+			<para>Arcs are grouped into preliminary regions based on the unique value of the Line item and must form closed loops. The unique values are saved in the output subclass Region item.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Composite Features</keyword><keyword>Data Management Tools</keyword><keyword>Line Coverage To Region</keyword><keyword>Region</keyword><keyword>Regionclass_Arc</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RegionClass" displayname="Line Coverage To Region (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Converts arcs to preliminary regions in a new or existing coverage or appends preliminary regions to an existing region subclass.</para>
+			<para>Arcs are grouped into preliminary regions based on the unique value of the Line item and must form closed loops. The unique values are saved in the output subclass Region item.</para>
+			
+		</summary><alink_name>RegionClass_arc</alink_name><toolIllust type="illustration" src="RegionClass_arc_h.gif" alt="Line to Region illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage containing the arcs from which the preliminary regions are created.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage containing the arcs from which the preliminary regions are created.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Optional"><pythonReference>
+						<para>The coverage that will contain the preliminary regions. If the output coverage is not specified, the preliminary regions are created in the input coverage.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage that will contain the preliminary regions. If the output coverage is not specified, the preliminary regions are created in the input coverage.</para>
+					</dialogReference></param><param sync="true" name="out_subclass" displayname="Output Subclass" datatype="String" direction="Input" expression="out_subclass" type="Required"><pythonReference>
+						<para>The name of the region subclass to be created or appended.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the region subclass to be created or appended.</para>
+					</dialogReference></param><param sync="true" name="in_region_item" displayname="Input Region Item" datatype="ArcInfo Item" direction="Input" expression="in_region_item" type="Optional"><pythonReference>
+						<para>Item in the AAT of the input coverage whose values are used to group arcs into preliminary regions. The item is appended to the region PATsubclass. If not specified, each group of arcs becomes a preliminary region.</para>
+					</pythonReference><dialogReference>
+						<para>Item in the AAT of the input coverage whose values are used to group arcs into preliminary regions. The item is appended to the region PATsubclass. If not specified, each group of arcs becomes a preliminary region.</para>
+					</dialogReference></param><param sync="true" name="out_region_item" displayname="Output Region Item" datatype="String" direction="Input" expression="out_region_item" type="Optional"><pythonReference>
+						<para>Output name for the input region Item to be used in the region PATsubclass instead of the Input Region Item name.</para>
+					</pythonReference><dialogReference>
+						<para>Output name for the input region Item to be used in the region PATsubclass instead of the Input Region Item name.</para>
+					</dialogReference></param><param sync="true" name="selection_file" displayname="Selection File" datatype="File" direction="Input" expression="selection_file" type="Optional"><pythonReference>
+						<para>The name of a selection file that can be used to specify a subset of the arcs to be grouped into preliminary regions.</para>
+					</pythonReference><dialogReference>
+						<para>The name of a selection file that can be used to specify a subset of the arcs to be grouped into preliminary regions.</para>
+					</dialogReference></param><param sync="true" name="method" displayname="Create Regions From" datatype="String" direction="Input" expression="method" type="Optional"><pythonReference>
+						<para>Determines whether regions will be created from multiple rings of arcs or single rings of arcs.</para>
+						<bulletList><bullet_item>MULTIRING—Creates regions from multiple rings of arcs whose values for the input region item are identical. </bullet_item><bullet_item>SINGLERING—Each ring of arcs becomes a region. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines whether regions will be created from multiple rings of arcs or single rings of arcs.</para>
+						<bulletList><bullet_item>MULTIRING—Creates regions from multiple rings of arcs whose values for the input region item are identical. </bullet_item><bullet_item>SINGLERING—Each ring of arcs becomes a region. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Input Coverage must have an AAT to specify the Input Region Item.</para>
+			</bullet_item><bullet_item>
+				<para>To create fully built regions from the preliminary regions, use  (or ) with the POLY option on the Output Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>The arcs in each group, which are determined by the unique value of the Input Region Item, must form closed loops. When the Input Region Item is not specified, each arc in the Input Coverage becomes a preliminary region and should form a closed loop.</para>
+			</bullet_item><bullet_item>
+				<para>Depending on the Input Region Item, arcs may be reused in any grouping with repeated use of this tool. In this way, duplicate or overlapping preliminary regions may be appended to the same subclass or to different subclasses.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Region Item may be the same as the Input Region Item.</para>
+			</bullet_item><bullet_item>
+				<para>If the selection file has no arcs selected, the command will consider all arcs as selected. If the selection file has everything selected, everything is also selected for Line Coverage To Region.</para>
+			</bullet_item><bullet_item>
+				<para>If a selection file is not specified, all arcs are selected and available for grouping into regions. However, arcs in the Input Coverage that are already part of one or more fully structured regions are not available for appending to the subclass since they may not form closed rings when grouped.</para>
+			</bullet_item><bullet_item>
+				<para>If the Output Region Item already exists in the PATsubclass, the specified Output Region Item must have the same item definition as the existing one.</para>
+			</bullet_item><bullet_item>
+				<para>Region subclass names may be from 1 to 13 characters and cannot start with a numeric character.</para>
+			</bullet_item><bullet_item>
+				<para>When preliminary regions are appended to a subclass, the polygon topology is removed from the Output Coverage (or the Input Coverage) because it needs to be rebuilt.</para>
+			</bullet_item><bullet_item>
+				
+				<para>This tool does not compute the area of the preliminary regions but sets the area values in the PATsubclass to zero and computes the perimeter.  with the POLY option will calculate the area values.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RegionClass example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to create a region coverage from a line coverage.
+</para>
+				<code xml:space="preserve"># Name: RegionClass_Example.py
+# Description: Creates regions in a line coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "tong_azone"
+outSubclass = "districts"
+method = "SINGLERING"
+
+# Execute RegionClass
+arcpy.RegionClass_arc(inCover, "", outSubclass, "", "", "", method)
+arcpy.Build_arc(inCover, "POLY")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

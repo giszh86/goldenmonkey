@@ -1,0 +1,125 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">TIN Line (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>The tool writes the hard and soft breaklines from a TIN into a new 3D polyline feature class.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Convert</keyword><keyword>Polyline</keyword><keyword>Tin</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TINLine" displayname="TIN Line (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>The tool writes the hard and soft breaklines from a TIN into a new 3D polyline feature class.</para>
+			
+		</summary><alink_name>TINLine_3d</alink_name><toolIllust type="illustration" src="TINLine_3d_h.gif" alt="TinLine illustration" /><parameters><param sync="true" name="in_tin" displayname="Input TIN" datatype="TIN Layer" direction="Input" expression="in_tin" type="Required"><pythonReference>
+						<para>The input TIN.</para>
+					</pythonReference><dialogReference>
+						<para>The input TIN.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class.</para>
+					</dialogReference></param><param sync="true" name="code_field" displayname="Code Field" datatype="String" direction="Input" expression="code_field" type="Optional"><pythonReference>
+						<para>The name of the field added to the output feature class that will contain the breakline type codes. The default is Code.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the field added to the output feature class containing the breakline type. The default is Code.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input TIN must have some breaklines for this tool to produce output line features.</para>
+			</bullet_item><bullet_item>
+				<para>If you want to convert TIN edges into line features, regardless of whether they belong to breaklines, use the .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TIN Line Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the TIN Line
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.TinLine_3d("tin", "tin_line.shp")
+
+                    </code></scriptExample><scriptExample><title>TIN Line Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the TIN Line
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: TinLine Example
+# Description: The following stand-alone script demonstrates how to create a
+#              terrain dataset from a TIN. The TinDomain, TinLine, and TinNode 
+#              tools are used to extract the features from the TIN, and the 
+#              CreateTerrain, AddTerrainPyramidLevel, AddFeatureClassToTerrain, 
+#              and BuildTerrain tools are used to construct the terrain. This 
+#              process is helpful in situations where the data used in
+#              making the TIN is no longer available.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Set Local Variables
+    sourceTIN = 'elevation'
+    targetGDB = 'sample.gdb/data_from_TIN' # workspace that will be created
+    # os.sep is used to denote the separator (e.g. '/')
+    # The clip polygon that will be extracted from the TIN
+    TIN_domain = targetGDB + os.sep + 'boundary'
+    # The elevation points that will be extracted from the TIN
+    TIN_nodes = targetGDB + os.sep + 'mass_points'
+    # The breaklines that will be extracted from the TIN
+    TIN_lines = newFGDB + os.sep + newFD + os.sep + 'breaklines'
+    # Name of the terrain that will be created
+    terrain = 'terrain_from_tin'
+    # Pyramid levels for the terrain
+    pyramids = '0 1000; 1 5000; 2.5 10000; 5 25000; 10 50000' 
+    # Properties for the terrain surfaces
+    PolyParams = TIN_domain + \
+               ' Shape softclip 1 0 10 true false boundary_embed &lt;None&gt; false' 
+    PtParams = TIN_nodes + \
+             ' Shape masspoints 2 0 10 true false points_embed &lt;None&gt; false' 
+    LineParams = TIN_lines + \
+               ' Shape softline 3 0 2.5 false false lines_embed &lt;None&gt; false'    
+    # Execute CreateFileGDB
+    arcpy.CreateFileGDB_management('', targetGDB.split("/")[0])
+    # Execute CreateFeatureDataset
+    arcpy.CreateFeatureDataset_management(targetGDB.split("/")[0], 
+                                          targetGDB.split("/")[1], sourceTIN)
+    # Execute TinDomain
+    arcpy.TinDomain_3d(sourceTIN, TIN_domain, 'POLYGON')
+    # Execute TinLine
+    arcpy.TinLine_3d(sourceTIN, TIN_edges, 'Code')
+    # Execute TinNode
+    arcpy.TinNode_3d(sourceTIN, TIN_nodes)
+    # Execute CreateTerrain
+    arcpy.CreateTerrain_3d(targetGDB, terrain, 10, 50000, '', 'WINDOWSIZE', 
+                           'ZMIN', 'NONE', 1)
+    # Execute AddTerrainPyramidLevel
+    arcpy.AddTerrainPyramidLevel_3d(targetGDB + os.sep + terrain,'', pyramids)
+    # Execute AddFeatureClassToTerrain
+    arcpy.AddFeatureClassToTerrain_3d(targetGDB + os.sep + terrain, PolyParams +\
+                                      ';' + PtParams + ';' + LineParams) 
+    # Execute BuildTerrain
+    arcpy.BuildTerrain_3d(newFGDB + os.sep + newFD + os.sep + terrain, 
+                          'NO_UPDATE_EXTENT')
+    
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

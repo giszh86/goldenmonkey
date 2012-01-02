@@ -1,0 +1,86 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Extract Values To Table (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Extracts cell values from a set of rasters to a table, based on a point or polygon feature class. </para>
+			<para>
+				
+				</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExtractValuesToTable" displayname="Extract Values To Table (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Extracts cell values from a set of rasters to a table, based on a point or polygon feature class. </para>
+			<para>
+				
+				</para>
+		</summary><alink_name>ExtractValuesToTable_ga</alink_name><parameters><param sync="true" name="in_features" displayname="Input feature class" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The points or polygon features to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The points or polygon features to be created.</para>
+					</dialogReference></param><param sync="true" name="in_rasters" displayname="Input rasters" datatype="Raster Layer" direction="Input" expression="[in_raster,...]" type="Required"><pythonReference>
+						<para>The  rasters must all have the same extent, coordinate system, and cell size.</para>
+					</pythonReference><dialogReference>
+						<para>The  rasters must all have the same extent, coordinate system, and cell size.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>The output table contains a record for each point and each raster that has data. If polygon features are input, they are converted to points which coincide with the raster cell centers.</para>
+					</pythonReference><dialogReference>
+						<para>The output table contains a record for each point and each raster that has data. If polygon features are input, they are converted to points which coincide with the raster cell centers.</para>
+					</dialogReference></param><param sync="true" name="out_raster_names_table" displayname="Output raster names table" datatype="Table" direction="Output" expression="out_raster_names_table" type="Optional"><pythonReference>
+						<para>Saves the names of the Input rasters to disc.</para>
+					</pythonReference><dialogReference>
+						<para>Saves the names of the Input rasters to disc.</para>
+					</dialogReference></param><param sync="true" name="add_warning_field" displayname="Add warnings to output table" datatype="String" direction="Input" expression="add_warning_field" type="Optional"><pythonReference>
+						<para>Records if input features are partially or completely covered by the Input rasters.</para>
+						<bulletList><bullet_item>TRUE— Warning field is added to the output table and populated with a "P" when a feature is partially covered by raster values. </bullet_item><bullet_item>FALSE— Warning field is not added to the output table. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Records if input features are partially or completely covered by the Input rasters.</para>
+						<bulletList><bullet_item>TRUE— Warning field is added to the output table and populated with a "P" when a feature is partially covered by raster values. </bullet_item><bullet_item>FALSE— Warning field is not added to the output table. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item><para>This tool is primarily designed to analyze the output from .</para></bullet_item><bullet_item>
+				<para>All the rasters must have the same spatial reference and cell size.</para>
+			</bullet_item><bullet_item><para> If a point feature class is used, the output table has a record for each point and each raster that has data. Polygonal data will be treated as point data, the cell center of the input rasters will determine the number of points and will also be used to decide whether the "cell" is contained within the polygon or not.</para></bullet_item><bullet_item>
+				<para>Values outside the raster's extent will be ignored.</para>
+			</bullet_item><bullet_item>
+				<para>Multipart feature classes are not supported.</para>
+			</bullet_item><bullet_item>
+				<para>In the case of coincident points, the last one encountered will be used and the rest will be ignored. In the same vane, if overlapping polygons are encountered only one of the intersected features will be processed.</para>
+			</bullet_item><bullet_item><para>The  tool can also be used, however, the output table needs to be transposed if the values are to be graphed.</para></bullet_item></usage><scriptExamples><scriptExample><title>ExtractValuesToTable interactive window example</title>
+					<para>Extract the cell values from a raster, based on a point feature class, to a table.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/gapyexamples/data"
+arcpy.ExtractValuesToTable_ga("C:/gapyexamples/data/ca_ozone_pts.shp",
+                            "C:/gapyexamples/data/inraster", "C:/gapyexamples/output/outEVFR.dbf",
+                            "", "")
+
+                    </code></scriptExample><scriptExample><title>ExtractValuesToTable script example</title>
+					<para>Extract the cell values from a raster, based on a point feature class, to a table.</para>
+				<code xml:space="preserve"># Name: ExtractValuesToTable_Example_02.py
+# Description: Extract the cell values from a raster, based on a point feature class,
+#              to a table
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inPoints = "C:/gapyexamples/data/ca_ozone_pts.shp"
+raster = "C:/gapyexamples/data/inraster"
+outTable = "C:/gapyexamples/output/outEVFR.dbf"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute ExtractValuesToTable
+arcpy.ExtractValuesToTable_ga(inPoints, raster, outTable, "", "")
+
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

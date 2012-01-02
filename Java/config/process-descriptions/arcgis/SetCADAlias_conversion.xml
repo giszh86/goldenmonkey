@@ -1,0 +1,53 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Set CAD Alias (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Renames one or more existing field name aliases by matching columns from the input table with a list of CAD-specific fields with the appropriate name recognized by the Export To CAD tool.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here. This functionality can be accomplished using Add_Field and making simple field calculations. </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SetCADAlias" displayname="Set CAD Alias (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Renames one or more existing field name aliases by matching columns from the input table with a list of CAD-specific fields with the appropriate name recognized by the Export To CAD tool.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here. This functionality can be accomplished using Add_Field and making simple field calculations. </para>
+			
+		</summary><alink_name>SetCADAlias_conversion</alink_name><parameters><param sync="true" name="input_table" displayname="Input Table" datatype="Table View" direction="Input" expression="input_table" type="Required"><pythonReference>
+						<para>The feature class, feature layer, table, or table view to which you would like to assign CAD-specific field name aliases.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class, feature layer, table, or table view to which you would like to assign CAD-specific field name aliases.</para>
+					</dialogReference></param><param sync="true" name="field_info" displayname="Field Info" datatype="Field Info" direction="Input" expression="field_info" type="Required"><pythonReference>
+						<para>Field info relating a list of aliases matched to the list of existing fields in the input table.</para>
+					</pythonReference><dialogReference>
+						<para>Field info relating a list of aliases matched to the list of existing fields in the input table.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The CAD-specific fields in the matching list have the appropriate name and type recognized by the Export To CAD tool. Typically, values already exist in these fields to derive the various CAD entity properties of CAD objects created by the Export To CAD tool.</para>
+			</bullet_item><bullet_item>
+				<para>If a feature class intended for export already contains values useful for driving CAD properties, such as layer name, but the fields have different names, assigning a CAD field alias on that table using the Assign CAD Alias tool is an efficient way to have the Export To CAD tool recognize those values as CAD properties.</para>
+			</bullet_item><bullet_item>
+				<para>To permanently set CAD-specific aliases on an input feature class, use the Set CAD Alias tool, since it has a predefined alias list. To create a temporary alias for a feature layer, use the Make Feature Layer tool in ModelBuilder, which gives you the flexibility to change the alias of the field name for the feature layer.</para>
+			</bullet_item><bullet_item>
+				<para>Using the Add CAD fields tool to build a lookup table is perhaps a better way to create a repeatable system of exporting feature data to CAD files according to some established drawing standard.</para>
+			</bullet_item><bullet_item>
+				<para>These CAD-specific fields are used to specify the various CAD graphic properties and other forms of CAD attribution. A similar tool, Add CAD Fields, is used to add fields to a table for the same export purpose. Assigning a Field Alias differs from Add CAD Fields in that existing fields that may already contain valid values to describe CAD properties in Export To CAD are renamed with an alias rather than adding a field and calculating values.</para>
+			</bullet_item><bullet_item>
+				<para>Shapefiles are not a valid input to this function, since they cannot maintain aliases for fields. If you need to use a shapefile as input, convert the shapefile to a layer file. Layer files or feature classes from a personal geodatabase or SDE geodatabase are valid inputs to this tool.</para>
+			</bullet_item><bullet_item>
+				<para>This tool overwrites the input, so be sure to make a backup of the original data.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><code xml:space="preserve">
+# Name: SetCadAlias.py
+# Description: create aliases
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "c:/Workspace/network.mdb"
+
+arcpy.toolbox = "conversion"
+arcpy.setcadalias  ("primary_roads", "area area; name layer")
+                    </code></scriptExample></scriptExamples></tool></metadata>

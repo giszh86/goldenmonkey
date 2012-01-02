@@ -1,0 +1,127 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Particle Track (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the path of a particle through a velocity field, returning an ASCII file of particle tracking data and, optionally, a coverage of track information.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Advection</keyword><keyword>Borehole</keyword><keyword>Capture Zone</keyword><keyword>Contaminant</keyword><keyword>Contamination</keyword><keyword>Dispersion</keyword><keyword>Flow Field</keyword><keyword>Path</keyword><keyword>Pollutant</keyword><keyword>Subsurface</keyword><keyword>Velocity Field</keyword><keyword>Water</keyword><keyword>Well</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ParticleTrack" displayname="Particle Track (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates the path of a particle through a velocity field, returning an ASCII file of particle tracking data and, optionally, a coverage of track information.</para>
+			
+		</summary><alink_name>ParticleTrack_sa</alink_name><parameters><param sync="true" name="in_direction_raster" displayname="Input direction raster" datatype="Raster Layer" direction="Input" expression="in_direction_raster" type="Required"><pythonReference>
+						<para>An input raster where each cell value represents the direction of the seepage velocity vector (average linear velocity) at the center of the cell.</para>
+						<para>Directions are expressed in compass coordinates, in degrees clockwise from north. This can be created by the Darcy Flow tool.</para>
+						<para>Direction values must be floating point.</para>
+					</pythonReference><dialogReference>
+						<para>An input raster where each cell value represents the direction of the seepage velocity vector (average linear velocity) at the center of the cell.</para>
+						<para>Directions are expressed in compass coordinates, in degrees clockwise from north. This can be created by the Darcy Flow tool.</para>
+						<para>Direction values must be floating point.</para>
+					</dialogReference></param><param sync="true" name="in_magnitude_raster" displayname="Input magnitude raster" datatype="Raster Layer" direction="Input" expression="in_magnitude_raster" type="Required"><pythonReference>
+						<para>An input raster where each cell value represents the magnitude of the seepage velocity vector (average linear velocity) at the center of the cell.</para>
+						<para>Units are length/time. This can be created by the Darcy Flow tool.</para>
+					</pythonReference><dialogReference>
+						<para>An input raster where each cell value represents the magnitude of the seepage velocity vector (average linear velocity) at the center of the cell.</para>
+						<para>Units are length/time. This can be created by the Darcy Flow tool.</para>
+					</dialogReference></param><param sync="true" name="source_point" displayname="Source point" datatype="Point" direction="Input" expression="source_point" type="Required"><pythonReference>
+						<para>The location of the source point from which to begin the particle tracking.</para>
+						<para>This is entered as numbers identifying the x,y coordinates of the position in map units.</para>
+					</pythonReference><dialogReference>
+						<para>The location of the source point from which to begin the particle tracking.</para>
+						<para>This is entered as numbers identifying the x,y coordinates of the position in map units.</para>
+					</dialogReference></param><param sync="true" name="out_track_file" displayname="Output particle track file" datatype="File" direction="Output" expression="out_track_file" type="Required"><pythonReference>
+						<para>The output ASCII text file that contains the particle tracking data.</para>
+					</pythonReference><dialogReference>
+						<para>The output ASCII text file that contains the particle tracking data.</para>
+					</dialogReference></param><param sync="true" name="step_length" displayname="Step length" datatype="Double" direction="Input" expression="step_length" type="Optional"><pythonReference>
+						<para>The step length to be used for calculating the particle track.</para>
+						<para>The default is one-half the cell size. Units are length.</para>
+					</pythonReference><dialogReference>
+						<para>The step length to be used for calculating the particle track.</para>
+						<para>The default is one-half the cell size. Units are length.</para>
+					</dialogReference></param><param sync="true" name="tracking_time" displayname="Tracking time" datatype="Double" direction="Input" expression="tracking_time" type="Optional"><pythonReference>
+						<para>Maximum elapsed time for particle tracking.</para>
+						<para>The algorithm will follow the track until either this time is met or the particle migrates off the raster or into a depression.</para>
+						<para>The default value is infinity. Units are time.</para>
+					</pythonReference><dialogReference>
+						<para>Maximum elapsed time for particle tracking.</para>
+						<para>The algorithm will follow the track until either this time is met or the particle migrates off the raster or into a depression.</para>
+						<para>The default value is infinity. Units are time.</para>
+					</dialogReference></param><param sync="true" name="out_track_polyline_features" displayname="Output track polyline features" datatype="Feature Class" direction="Output" expression="out_track_polyline_features" type="Optional"><pythonReference>
+						<para>The optional output line feature class containing the particle track.</para>
+						<para>This feature class contains a series of arcs with attributes for position, local velocity direction and magnitude, and cumulative length and time of travel along the path.</para>
+					</pythonReference><dialogReference>
+						<para>The optional output line feature class containing the particle track.</para>
+						<para>This feature class contains a series of arcs with attributes for position, local velocity direction and magnitude, and cumulative length and time of travel along the path.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input direction and magnitude rasters should be from the same run of the Darcy Flow tool.</para>
+			</bullet_item><bullet_item>
+				<para>The path file generated by this tool is an ASCII text file containing information about position, local velocity direction and magnitude, and cumulative length and time of travel along the path. This file is used for input by Porous Puff. The format of this file is as follows:</para>
+				time         x            y            length       flow dir     flow mag
+0.000000000  0.000000000  482.8400000  0.000000000  90.00000000  0.04418909563
+113.1648712  4.999804443  482.7957786  5.000000000  91.01366126  0.04418332249
+226.2741353  9.998043277  482.6630814  10.00000000  92.02765240  0.04420504404
+339.3574334  14.99315255  482.4419855  15.00000000  93.04094157  0.04421519432
+452.3447720  19.98356700  482.1325285  20.00000000  94.05521317  0.04425274599
+565.2657591  24.96772671  481.7348453  25.00000000  95.06807622  0.04427874865
+678.0514031  29.94406931  481.2490323  30.00000000  96.08254679  0.04433188322
+790.7309576  34.91104149  480.6752838  35.00000000  97.09488082  0.04437362239
+			</bullet_item><bullet_item>
+				<para>No particular system of units is specified by Particle Track. It is important that all data be in a consistent set of units, using the same unit for time (seconds, days, years) and length (feet, meters).</para>
+			</bullet_item><bullet_item>
+				<para>The source location must be within the boundary of the input rasters and cannot be in an area of NoData.</para>
+			</bullet_item><bullet_item>
+				<para>The track file will end if the track reaches outside the study area and has not met the specified maximum tracking time.</para>
+			</bullet_item><bullet_item>
+				<para>If the particle being tracked has reached the edge of the study area at the indicated time and the predictor point is outside the study area, the track file will end.</para>
+			</bullet_item><bullet_item>
+				<para>If the particle being tracked migrates into a depression at the indicated time, the track file will end. A depression can be created by a discharge well or other sink.</para>
+			</bullet_item><bullet_item>
+				<para>The two outputs from this tool are:<bullet_item>A particle track ASCII file using the name specified as output particle track file</bullet_item><bullet_item>An optional polyline feature class</bullet_item></para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ParticleTrack example 1 (Python window)</title>
+					<para>This example executes the tool on the required inputs and outputs an ASCII file of particle tracking data and a shapefile featureclass of the particle track.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+ParticleTrack("gwdir", "gwmag", arcpy.Point(-200,-200), 
+              "C:/sapyexamples/output/trackfile.txt",10, 100000, 
+              "C:/sapyexamples/output/trackpolyline.shp")
+                    </code></scriptExample><scriptExample><title>ParticleTrack example 2 (stand-alone script)</title>
+					<para>This example executes the tool on the required inputs and outputs an ASCII file of particle tracking data and a shapefile featureclass of the particle track.</para>
+				<code xml:space="preserve"># Name: ParticleTrack_Ex_02.py
+# Description: Calculates the path of a particle through a velocity field.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inDirectionRaster = "gwdir"
+inMagnitudeRaster = "gwmag"
+sourcePoint = arcpy.Point(-200, -200)
+outTrackFile = "C:/sapyexamples/output/trackfile.txt"
+stepLength = 10
+trackingTime = 10000000
+outTrackPolylineFeatures = "C:/sapyexamples/output/trackpolyline.shp"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ParticleTrack
+ParticleTrack(inDirectionRaster, inMagnitudeRaster, sourcePoint, outTrackFile,
+              stepLength, trackingTime, outTrackPolylineFeatures)
+                    </code></scriptExample></scriptExamples></tool></metadata>

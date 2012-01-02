@@ -1,0 +1,92 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">File Compare (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Compares two files and returns the comparison results. File Compare can report differences between two ASCII files or two binary files.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Ascii</keyword><keyword>Base</keyword><keyword>Binary</keyword><keyword>Difference</keyword><keyword>Different</keyword><keyword>Find</keyword><keyword>Identical</keyword><keyword>Mask</keyword><keyword>Properties</keyword><keyword>Search</keyword><keyword>Similar</keyword><keyword>Test</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FileCompare" displayname="File Compare (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Compares two files and returns the comparison results. File Compare can report differences between two ASCII files or two binary files.</para>
+		</summary><alink_name>FileCompare_management</alink_name><parameters><param sync="true" name="in_base_file" displayname="Input Base File" datatype="File" direction="Input" expression="in_base_file" type="Required"><pythonReference>
+						<para>The Input Base File is compared with the Input Test File. The Input Base File refers to afile that you have declared valid. This base file has the correct content and information.</para>
+					</pythonReference><dialogReference>
+						<para>The Input Base File is compared with the Input Test File. The Input Base File refers to afile that you have declared valid. This base file has the correct content and information.</para>
+					</dialogReference></param><param sync="true" name="in_test_file" displayname="Input Test File" datatype="File" direction="Input" expression="in_test_file" type="Required"><pythonReference>
+						<para>The Input Test File is compared against the Input Base File. The Input Test File refers to afile that you have made changes to by editing or compiling new information.</para>
+					</pythonReference><dialogReference>
+						<para>The Input Test File is compared against the Input Base File. The Input Test File refers to afile that you have made changes to by editing or compiling new information.</para>
+					</dialogReference></param><param sync="true" name="file_type" displayname="File Type" datatype="String" direction="Input" expression="file_type" type="Optional"><pythonReference>
+						<para>The type of files being compared. </para>
+						<bulletList><bullet_item>ASCII —Compare using ASCII characters. This is the default.</bullet_item><bullet_item>BINARY —Perform a binary compare.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of files being compared. </para>
+						<bulletList><bullet_item>ASCII —Compare using ASCII characters. This is the default.</bullet_item><bullet_item>BINARY —Perform a binary compare.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="continue_compare" displayname="Continue Comparison" datatype="Boolean" direction="Input" expression="continue_compare" type="Optional"><pythonReference>
+						<para>Indicates whether to compare all properties after encountering the first mismatch.</para>
+						<bulletList><bullet_item>NO_CONTINUE_COMPARE—Stops after encountering the first mismatch. This is the default. </bullet_item><bullet_item>CONTINUE_COMPARE—Compares other properties after encountering the first mismatch. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether to compare all properties after encountering the first mismatch.<bulletList>
+								<bullet_item>Unchecked—Stops after encountering the first mismatch. This is the default.</bullet_item>
+								<bullet_item>Checked—Compares other properties after encountering the first mismatch. </bullet_item>
+							</bulletList></para>
+					</dialogReference></param><param sync="true" name="out_compare_file" displayname="Output Compare File" datatype="File" direction="Output" expression="out_compare_file" type="Optional"><pythonReference>
+						<para>This file will contain all similarities and differences between the Input Base File and the Input Test File. This file is a comma-delimited text file which can be viewed and used as a table in ArcGIS.</para>
+					</pythonReference><dialogReference>
+						<para>This file will contain all similarities and differences between the Input Base File and the Input Test File. This file is a comma-delimited text file which can be viewed and used as a table in ArcGIS.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>The tool returns messages showing the comparison result. By default, the tool will stop executing after encountering the first miscompare. To report all differences, set the continue compare option to true.</para>
+			</bullet_item><bullet_item>
+				<para>This tool supports masking out of characters, words, and lines of text in an ASCII file. For example, files may be identical except they may contain text representing date and time of creation. Thus, the files would miscompare. In addition, small variations occur in the way that each platform stores or manipulates numbers. This leads to differences in numeric precision among platforms. The SunOS platform may report a value of 415.999999999, while the Windows XP platform reports 416.000000000. To handle false character comparisons, File Compare provides several masking capabilities. Before comparing new text files with existing base files, edit the base files to include these special masking symbols.</para>
+				<bulletList>
+					<bullet_item>"#"—The simplest masking symbol is the "#" symbol. Wherever a # appears in the input base file, the corresponding character in the input test file will be ignored.
+							Base: Y delta = 9048.6#
+Test: Y delta = 9048.61
+						</bullet_item>
+					<bullet_item>"??"—Another masking tool is the "??" symbol combination. To mask out an entire "word", add "??" at the beginning of it.
+							Base: Processing ??ESRI1/ARCIGDS/TESTRUN/CONV/ARCIGDS/CPXSHAPE.DGN
+Test: Processing ESRI2/ARCIGDS/TESTRUN/CONV/ARCIGDS/CPXSHAPE2.DGN
+						</bullet_item>
+					<bullet_item>"?!"—A single token may have a '.' (period) imbedded in it. An obvious example of this would be the name of a file with an extension—streetnames.dbf. There could be instances where you would want part of the name, either before or after the '.', to be ignored in the comparison of the token.
+							Base: Master table is: streetnames?!.dbf
+Test: Master table is: streetnames
+						</bullet_item>
+					<bullet_item>"???"—This allows you to mask the entire line following it.
+							Base: ???       8       4       1       0      14      10
+Test:        12      8      2       1      16     12
+						</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>ASCII is the default file type. If entering BINARY files, change the file type to BINARY.</para>
+			</bullet_item><bullet_item>
+				<para>When ASCII files miscompare, it will report differences, such as the total number of characters are different and report the differences for each line.</para>
+			</bullet_item><bullet_item>
+				<para>When BINARY files miscompare, it will report that the file sizes are different and report the differences for each byte.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Compare File will contain all similarities and differences between the Input Base File and the Input Test File. This file is a comma-delimited text file which can be viewed and used as a table in ArcGIS.</para>
+			</bullet_item><bullet_item>
+				<para>The comparison tools  will be 'true' when no differences are found and 'false' when differences are detected.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FileCompare example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the FileCompare function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.FileCompare_management(r'C:/Workspace/well_xycoordinates.txt', r'C:/Workspace/new_well_coordinates.txt', 'ASCII', 'CONTINUE_COMPARE', r'C:/Workspace/well_file_compare.txt' )
+                    </code></scriptExample><scriptExample><title>FileCompare tool example (Stand-alone script)</title>
+					<para>Example of how to use the FileCompare tool in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: FileCompare.py
+# Description: Compare two text files and return comparison result.
+# Author: ESRI
+
+# import system modules 
+import arcpy
+
+try:
+    # Set local variables
+    base_file= "C:/Workspace/well_xycoordinates.txt"
+    test_file= "C:/Workspace/new_well_coordinates.txt"
+    file_type = "ASCII"
+    continue_compare = "CONTINUE_COMPARE"
+    compare_file = "C:/Workspace/well_file_compare.txt"
+ 
+    # Process: FeatureCompare
+    compare_result = arcpy.FileCompare_management(base_file, test_features, file_type, continue_compare, compare_file)
+    print compare_result
+    print arcpy.GetMessages()
+ 
+except:
+    # Print error message if an error occurs
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

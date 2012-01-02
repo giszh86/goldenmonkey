@@ -1,0 +1,68 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?> 
+<!--
+  domain(type)={"FFD","WPS","GPW"}
+--> 
+<process type="FFD"
+         stepByStep="false"         
+         >
+	
+	<head>
+		<Identifier>getModel</Identifier>
+		<Title>模型</Title>
+		<Abstract>获取给定名称的模型的描述</Abstract>
+		<!--
+		<input></input>
+		-->
+		<DataInputs>		
+			<Input>
+				<Identifier>Name</Identifier>
+				<Title>模型名称</Title>
+				<Abstract>给定的模型名称</Abstract>
+				<DataType>string</DataType>
+				<Option>false</Option>
+				<Reference id="3" name="Name" />
+			</Input>
+		</DataInputs>
+		<ProcessOutputs>	
+			<Output>
+				<Identifier>Model</Identifier>
+				<Title>模型描述</Title>
+				<Abstract>给定名称模型的描述</Abstract>
+				<DataType>string</DataType>
+			</Output>		
+	    </ProcessOutputs>	 
+	</head>
+	
+	
+
+  <flow>   
+    <start id="1" />    
+    <operation name="ProcessGetBaseDirectory" id="2">
+      <inputs>       
+      </inputs>
+      <output>      
+      </output>            
+    </operation>
+    <operation name="ProcessModelDescription" id="3">
+      <inputs>  
+		<input name="Name" type="String" variable="ref:Name" />	  
+      </inputs>
+      <output>        
+      </output>
+    </operation>  
+    <end id="4" />
+
+    <links>
+      <link from="1" to="2" />
+      <link from="2" to="3" >
+	   <assign>
+            <from>BaseDir</from>
+            <to>BaseDir</to>
+        </assign>
+	  </link>
+      <link from="3" to="4" />     
+    </links>
+	
+	<reply name="Model" kind="Model" operation="ProcessModelDescription" id="3" variable="Model"/> 
+  </flow>
+</process>

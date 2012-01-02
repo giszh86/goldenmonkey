@@ -1,0 +1,155 @@
+<metadata>
+<Esri>
+<MetaID SYNC="true"></MetaID>
+<CreaDate SYNC="true"></CreaDate>
+<CreaTime SYNC="true"></CreaTime>
+<SyncOnce SYNC="true">TRUE</SyncOnce>
+<ModDate SYNC="true"></ModDate>
+<ModTime SYNC="true"></ModTime>
+</Esri>
+<dataIdInfo>
+<idCitation>
+<resTitle sync="true">Quick Import (Data Interoperability)</resTitle>
+<citRespParty>
+<rpIndName />
+<rpOrgName>ESRI, Inc.</rpOrgName>
+<rpPosName />
+<rpCntInfo>
+<cntAddress>
+<delPoint>380 New York Street</delPoint>
+<city>Redlands</city>
+<adminArea>California</adminArea>
+<postCode>92373 - 8100</postCode>
+<eMailAdd>info@esri.com</eMailAdd>
+<country>United States</country>
+</cntAddress>
+<cntPhone>
+<voiceNum>909-793-2853</voiceNum>
+<faxNum>909-793-5953</faxNum>
+</cntPhone>
+</rpCntInfo>
+<role>
+<RoleCd>010</RoleCd>
+</role>
+</citRespParty>
+</idCitation>
+<idAbs>
+<para>Converts data in any format supported by the ArcGIS Data Interoperability extension into feature classes.</para><para>The output is stored in an interim staging geodatabase. The geodatabase can then be used or further post-processing can be performed.</para><para>
+</para><para>
+</para>
+</idAbs>
+<descKeys KeyTypCd="005">
+<keyTyp>
+<keyTyp>005</keyTyp>
+</keyTyp>
+<keyword>data interoperability; FME; data conversion; data type; data format; quick import; export; export data; feature class; feature layer; layer</keyword>
+</descKeys>
+</dataIdInfo>
+<distInfo>
+<distributor>
+<distorFormat>
+<formatName sync="true">ArcToolBox Tool</formatName>
+</distorFormat>
+<distorTran>
+<onLineSrc>
+<linkage />
+<protocol />
+<onFunct>
+<onFunctCd />
+</onFunct>
+</onLineSrc>
+</distorTran>
+</distributor>
+</distInfo>
+<metainfo>
+<metd Sync="TRUE"></metd>
+</metainfo>
+<mdDateSt Sync="TRUE"></mdDateSt>
+<tool name="QuickImport" displayname="Quick Import (Data Interoperability)" toolboxalias="di" softwarerestriction="none">
+<summary>
+<para>Converts data in any format supported by the ArcGIS Data Interoperability extension into feature classes.</para><para>The output is stored in an interim staging geodatabase. The geodatabase can then be used or further post-processing can be performed.</para><para>
+</para><para>
+</para>
+<para>
+</para><para>
+</para><para>
+</para>
+</summary>
+<alink_name>QuickImport_di</alink_name>
+<rt_list>
+<rt title="An overview of the Data Interoperability toolbox" folderName="data_interoperability_toolbox" _edn="" _hlp="An%20overview%20of%20the%20Data%20Interoperability%20toolbox">an_overview_of_the_data_interoperability_toolbox</rt>
+<rt title="Quick Export (Data Interoperability)" folderName="data_interoperability_tools" _edn="" _hlp="Quick%20Export%20%28Data%20Interoperability%29">quick_export_data_interoperability_</rt>
+</rt_list>
+<toolIllust />
+<parameters>
+<param sync="true" name="Input" displayname="Input Dataset" type="Required" direction="Input" Datatype="Interop Source Dataset" expression="&lt;Input&gt;">
+<commandReference>
+<para>The data to be imported. The command syntax can take multiple forms:</para><para>
+<bulletList>
+<bullet_item>If the source data is a file with a well-known file extension, it can be given as-is. For instance: "c:\data\roads.mif" </bullet_item>
+<para />
+<bullet_item>If the source data is not a file, or the file has an unknown extension, the format can be given as part of the argument, seperated by a comma. For instance: "MIF,c:\data\roads.mif". The names for supported formats can be found in the Formats Gallery, by opening this tool in dialog mode and clicking the browse button. </bullet_item>
+<para />
+<bullet_item>Wildcards can be used to read in large datasets. For instance: "MIF,c:\data\roads*.*" </bullet_item>
+<para />
+<bulletList>
+<bullet_item>The * character matches any series of characters for all files in the current directory. For instance, c:\data\roads*.mif will match c:\data\roads.mif, c:\data\roads5.mif, and c:\data\roads-updated.mif. </bullet_item>
+<para />
+<bullet_item>The ** characters match any subdirectories, recursively. For instance, c:\data\**\*.mif will match c:\data\roads.mif, c:\data\canada\rivers.mif, and c:\data\canada\alberta\edmonton.mif. </bullet_item>
+</bulletList>
+<para />
+<bullet_item>Additional format-specific parameters can be added after the dataset, separated by a comma. However, the syntax can be complex, so if this is required it is easiest to run the tool in its dialog box in ArcToolbox and copy the command syntax from the results window. </bullet_item>
+</bulletList>
+</para><para>
+</para><para>
+</para>
+</commandReference>
+<dialogReference>
+<para>The data to be imported.</para><para>
+</para>
+</dialogReference>
+</param>
+<param sync="true" name="Output" displayname="Output Staging Geodatabase" type="Required" direction="Output" Datatype="Workspace" expression="&lt;Output&gt;">
+<commandReference>
+<para>The output staging personal geodatabase.</para><para>
+</para>
+</commandReference>
+<dialogReference>
+<para>The output staging personal geodatabase.</para><para>
+</para>
+</dialogReference>
+</param>
+</parameters>
+<usage>
+<bullet_item><para>This tool is used to either bring data into the ArcGIS environment, or as the beginning point in a model or script where data from outside ArcGIS will be processed. </para></bullet_item>
+<bullet_item><para>The feature classes generated depend on the input data. For instance, if you import two MapInfo MIF/MID files, two features classes will be created. </para></bullet_item>
+<bullet_item><para>This tool creates a new personal geodatabase, and will not append to an existing one. </para></bullet_item>
+<bullet_item><para>The feature classes generated from the imported data can be accessed using the Select Data tool on the output staging personal geodatabase. </para></bullet_item>
+<bullet_item><para>As data is imported, no changes to the data model are made. To transform the data model during import, a Custom Data Import Tool should be created and used. </para></bullet_item>
+<bullet_item><para>Individual feature classes from the staging geodatabase can be operated on using the Select Data tool.</para></bullet_item>
+<bullet_item><para>Bezier curves are not maintained when using Quick Import.</para></bullet_item>
+<bullet_item><para>No environment settings affect this tool.</para></bullet_item>
+</usage>
+<commandExample>
+<code>QuickImport c:\Data\roads.tab c:\out\roads.mdb<para />
+</code>
+<code>QuickImport MIF,c:\Data\*.* c:\out\alldata.mdb<para />
+</code>
+</commandExample>
+<scriptExample>
+<code>
+<italics># Import system modules<para />
+</italics>import sys, string, os, arcgisscripting<para />
+<para />
+<italics># Create the Geoprocessor object<para />
+</italics>gp = arcgisscripting.create()<para />
+<para />
+<italics># Local variables...<para />
+</italics>mif_table= "C:/Data/roads.tab"<para />output_gdb = "C:/workspace/mif_output.gdb"<para />
+<para />
+<italics># Process: Quick Import...<para />
+</italics>gp.QuickImport(mif_table, output_gdb)<para />
+</code>
+</scriptExample>
+</tool>
+</metadata>

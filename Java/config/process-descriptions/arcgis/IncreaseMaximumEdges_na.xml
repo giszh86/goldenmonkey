@@ -1,0 +1,50 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Increase Maximum Edges (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Increases the maximum number of edges per turn in a turn feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Analysis</keyword><keyword>Edges</keyword><keyword>Layer</keyword><keyword>Maximum Edges</keyword><keyword>Network</keyword><keyword>Network Analyst</keyword><keyword>Network Analyst Layer</keyword><keyword>Turn</keyword><keyword>Turn Feature Class</keyword><keyword>Turn Features</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="IncreaseMaximumEdges" displayname="Increase Maximum Edges (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Increases the maximum number of edges per turn in a turn feature class.</para>
+		</summary><alink_name>IncreaseMaximumEdges_na</alink_name><parameters><param sync="true" name="in_turn_features" displayname="Input Turn Feature Class" datatype="Feature Layer" direction="Input" expression="in_turn_features" type="Required"><pythonReference>
+						<para>The turn feature class that is having its maximum number of edges raised.</para>
+					</pythonReference><dialogReference>
+						<para>The turn feature class that is having its maximum number of edges raised.</para>
+					</dialogReference></param><param sync="true" name="maximum_edges" displayname="Maximum Edges" datatype="Long" direction="Input" expression="maximum_edges" type="Required"><pythonReference>
+						<para>The new maximum number of edges in the input turn feature class. The value must be at least one higher than the existing maximum number of edges and cannot be greater than 20.</para>
+					</pythonReference><dialogReference>
+						<para>The new maximum number of edges in the input turn feature class. The value must be at least one higher than the existing maximum number of edges and cannot be greater than 20.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Once the maximum number of edges is increased, it cannot be decreased later. So only increase by the needed amount.</para>
+			</bullet_item><bullet_item>
+				<para>Increasing the number of edges by one adds three additional fields to the turn feature class. Take care not to exceed the maximum number of fields allowed by the database being used. For example, a personal geodatabase is limited to 255 fields.</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>IncreaseMaximumEdges example 1 (Python window)</title>
+					<para>Execute the tool using all parameters </para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.IncreaseMaximumEdges_na("Transportation/RestrictedTurns",8)
+
+                    </code></scriptExample><scriptExample><title>IncreaseMaximumEdges example 2 (stand-alone Python script)</title><para>The following Python script demonstrates how to use the IncreaseMaximumEdges tool in a stand-alone script.</para><code xml:space="preserve"># Name: IncreaseMaximumEdges_ex02.py
+# Description: Increase maximum edges for turn features from 2 to 5.
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+
+#Check out the Network Analyst extension license
+arcpy.CheckOutExtension("Network")
+
+#Set environment settings
+env.workspace = "C:/data/SanFrancisco.gdb/Transportation"
+
+#Set local variables
+inTurnFeatures = "RestrictedTurns"
+maxEdges = 5
+
+#Increase the edges for turn features
+arcpy.IncreaseMaximumEdges_na(inTurnFeatures, maxEdges)
+
+print "Script completed successfully."
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Export Metadata  (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Updates metadata to contain the most current properties of the ArcGIS item before processing the metadata and finally exporting it to an XML file that conforms to a standard metadata format. </para>
+			<para>Initial processing is performed to produce the best results when exporting information to a standard metadata format. Afterwards, the metadata is exported using the ESRI Metadata Translator. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>19139</keyword><keyword>Change</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>Format</keyword><keyword>Import</keyword><keyword>Iso</keyword><keyword>Make</keyword><keyword>Save</keyword><keyword>Standard</keyword><keyword>Style</keyword><keyword>Transfer</keyword><keyword>Translate</keyword><keyword>Turn</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" ExportMetadata " displayname="Export Metadata  (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Updates metadata to contain the most current properties of the ArcGIS item before processing the metadata and finally exporting it to an XML file that conforms to a standard metadata format. </para>
+			<para>Initial processing is performed to produce the best results when exporting information to a standard metadata format. Afterwards, the metadata is exported using the ESRI Metadata Translator. </para>
+		</summary><alink_name> ExportMetadata _conversion</alink_name><parameters><param sync="true" name="Source_Metadata" displayname="Source Metadata" datatype="Data Element; Layer" direction="Input" expression="Source_Metadata" type="Required"><pythonReference>
+						<para>The item whose metadata will be converted, or a stand-alone XML file that will be converted.</para>
+					</pythonReference><dialogReference>
+						<para>The item whose metadata will be converted, or a stand-alone XML file that will be converted.</para>
+					</dialogReference></param><param sync="true" name="Translator" displayname="Translation" datatype="File" direction="Input" expression="Translator" type="Required"><pythonReference>
+						<para>An XML file that defines the conversion that will be performed. </para>
+						<para>The translator files provided with ArcGIS Desktop can be found in the &lt;ArcGIS Install Location&gt;\Metadata\Translator folder. The following conversions are supported:</para>
+						<bulletList>
+							<bullet_item>ArcGIS to ISO 19139 (ESRI_ISO2ISO19139.xml)</bullet_item>
+							<bullet_item>FGDC to ArcGIS (FGDC2ESRI_ISO.xml)</bullet_item>
+							<bullet_item>FGDC to ISO 19139 (FGDC2ISO19139.xml)</bullet_item>
+							<bullet_item>ISO 19139 to ArcGIS (ISO19139_2ESRI_ISO.xml)</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>An XML file that defines the conversion that will be performed. </para>
+						<para>The translator files provided with ArcGIS Desktop can be found in the &lt;ArcGIS Install Location&gt;\Metadata\Translator folder. The following conversions are supported:</para>
+						<bulletList>
+							<bullet_item>ArcGIS to ISO 19139 (ESRI_ISO2ISO19139.xml)</bullet_item>
+							<bullet_item>FGDC to ArcGIS (FGDC2ESRI_ISO.xml)</bullet_item>
+							<bullet_item>FGDC to ISO 19139 (FGDC2ISO19139.xml)</bullet_item>
+							<bullet_item>ISO 19139 to ArcGIS (ISO19139_2ESRI_ISO.xml)</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="Output_File" displayname="Output File" datatype="File" direction="Output" expression="Output_File" type="Optional"><pythonReference>
+						<para>A stand-alone XML file that will be created containing the converted metadata.</para>
+					</pythonReference><dialogReference>
+						<para>A stand-alone XML file that will be created containing the converted metadata.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para>The output files produced by this tool can't be stored in a geodatabase. If the  environment is set to a geodatabase the output files will be stored in a different location, as described below.</para>
+				<bulletList>
+					<bullet_item>If the  set to a file or personal geodatabase the output files will be stored in the folder in which the geodatabase is stored.</bullet_item>
+					<bullet_item>If the  is set to an enterprise or workgroup geodatabase the output files will be stored in the location defined by the system TEMP environment variable. </bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>The Source Metadata parameter has a complex data type. If you use this tool in a model, create a variable for the Source Metadata parameter in ModelBuilder by right-clicking the tool, pointing to Make VariableFrom ParameterSource Metadata.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Export ArcGIS metadata</title>
+					<para>Updates and exports ArcGIS metadata to an XML file that is formatted correctly for the ISO 19139 metadata standard.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+#set local variables
+dir = arcpy.GetInstallInfo("desktop")["InstallDir"]
+translator = dir + "Metadata/Translator/ESRI_ISO2ISO19139.xml"
+arcpy.ExportMetadata_conversion ("data.gdb/roads", translator, 
+    "roads_19139.xml")
+                    </code></scriptExample></scriptExamples></tool></metadata>

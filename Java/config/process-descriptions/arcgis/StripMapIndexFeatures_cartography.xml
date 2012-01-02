@@ -1,0 +1,206 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Strip Map Index Features (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Creates a series of rectangular polygons, or index features, that follow a single linear feature or a group of linear features. These index features can be used with Data Driven Pages to define pages within a strip map, or set of maps that follow a linear feature. The resulting index features contain attributes that can be used to rotate and orient the map on the page and determine which index features, or pages, are next to the current page (to the left and right or to the top and bottom).</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Atlas</keyword><keyword>Cartography</keyword><keyword>Coordinate System</keyword><keyword>Data Driven Pages</keyword><keyword>Graticule</keyword><keyword>Grid</keyword><keyword>Index</keyword><keyword>Index Layer</keyword><keyword>Layout</keyword><keyword>Map Book</keyword><keyword>Mapbook</keyword><keyword>Multi-Page Layout</keyword><keyword>Multiple Page</keyword><keyword>Stripmap</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" StripMapIndexFeatures " displayname=" Strip Map Index Features (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para> Creates a series of rectangular polygons, or index features, that follow a single linear feature or a group of linear features. These index features can be used with Data Driven Pages to define pages within a strip map, or set of maps that follow a linear feature. The resulting index features contain attributes that can be used to rotate and orient the map on the page and determine which index features, or pages, are next to the current page (to the left and right or to the top and bottom).</para>
+		</summary><alink_name> StripMapIndexFeatures _cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Line Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para> Input polyline or polylines defining the path of the strip map index features. </para>
+					</pythonReference><dialogReference>
+						<para> Input polyline or polylines defining the path of the strip map index features. </para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Input" expression="out_feature_class" type="Required"><pythonReference>
+						<para> Resulting feature class of polygon index features. </para>
+					</pythonReference><dialogReference>
+						<para> Resulting feature class of polygon index features. </para>
+					</dialogReference></param><param sync="true" name="use_page_unit" displayname="Use Page Unit and Scale" datatype="Boolean" direction="Input" expression="use_page_unit" type="Optional"><pythonReference>
+						<para>Indicates whether index feature size input is in page space. The default value is NO_USEPAGEUNIT.</para>
+						<bulletList><bullet_item>USEPAGEUNIT—Index polygon height and width are calculated in page space.</bullet_item><bullet_item>NO_USEPAGEUNIT—Index polygon height and width are calculated in map space.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Indicates whether index feature size input is in page space. The default is unchecked. Page units will not be used.</para>
+						<bulletList>
+							<bullet_item>Checked—Index polygon height and width are calculated in page space.</bullet_item>
+							<bullet_item>Unchecked—Index polygon height and width are calculated in map space.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="scale" displayname="Map Scale" datatype="Long" direction="Input" expression="scale" type="Optional"><pythonReference>
+						<para> Map scale must be specified if index feature lengths (along the line and perpendicular to the line) are to be calculated in page space. If ArcMap is open the default value will be the scale of the active data frame. If ArcMap is not open the default will be 1.</para>
+					</pythonReference><dialogReference>
+						<para> Map scale must be specified if index feature lengths (along the line and perpendicular to the line) are to be calculated in page space. If ArcMap is open the default value will be the scale of the active data frame. If ArcMap is not open the default will be 1.</para>
+					</dialogReference></param><param sync="true" name="length_along_line" displayname="Length Along the Line" datatype="Linear unit" direction="Input" expression="length_along_line" type="Optional"><pythonReference>
+						<para> Length of the polygon index feature along the input line feature specifed in either map or page units. The default value is determined by the spatial reference of the input line feature or features. This value will be 1/100 of the input feature class extent along the X axis.</para>
+					</pythonReference><dialogReference>
+						<para> Length of the polygon index feature along the input line feature specifed in either map or page units. The default value is determined by the spatial reference of the input line feature or features. This value will be 1/100 of the input feature class extent along the X axis.</para>
+					</dialogReference></param><param sync="true" name="length_perpendicular_to_line" displayname="Length Perpendicular to the Line" datatype="Linear unit" direction="Input" expression="length_perpendicular_to_line" type="Optional"><pythonReference>
+						<para> Length of the polygon index feature perpendicular to the input line feature specifed in either map or page units. The default value is determined by the spatial reference of the input line feature or features. This value will be 1/2 the number used for the length along the line.</para>
+					</pythonReference><dialogReference>
+						<para> Length of the polygon index feature perpendicular to the input line feature specifed in either map or page units. The default value is determined by the spatial reference of the input line feature or features. This value will be 1/2 the number used for the length along the line.</para>
+					</dialogReference></param><param sync="true" name="page_orientation" displayname="Page Orientation" datatype="String" direction="Input" expression="page_orientation" type="Optional"><pythonReference>
+						<para> Used to determine the orientation of the input line features on the layout page. The default is HORIZONTAL.</para>
+						<bulletList><bullet_item>VERTICAL—The direction of the strip map series on the page is top to bottom.</bullet_item><bullet_item>HORIZONTAL—The direction of the strip map series on the page is left to right.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Used to determine the orientation of the input line features on the layout page. The default is HORIZONTAL.</para>
+						<bulletList><bullet_item>VERTICAL—The direction of the strip map series on the page is top to bottom.</bullet_item><bullet_item>HORIZONTAL—The direction of the strip map series on the page is left to right.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="overlap_percentage" displayname="Percentage of Overlap" datatype="Double" direction="Input" expression="overlap_percentage" type="Optional"><pythonReference>
+						<para> The approximate percentage of geographic overlap between an individual map page and its adjoining pages in the series. The default is 10.</para>
+					</pythonReference><dialogReference>
+						<para> The approximate percentage of geographic overlap between an individual map page and its adjoining pages in the series. The default is 10.</para>
+					</dialogReference></param><param sync="true" name="starting_page_number" displayname="Starting Page Number" datatype="Long" direction="Input" expression="starting_page_number" type="Optional"><pythonReference>
+						<para>Each grid index feature is assigned a sequential page number starting with a specified starting page number. The default value is 1.</para>
+					</pythonReference><dialogReference>
+						<para>Each grid index feature is assigned a sequential page number starting with a specified starting page number. The default value is 1.</para>
+					</dialogReference></param><param sync="true" name="direction_type" displayname="Strip Map Direction" datatype="String" direction="Input" expression="direction_type" type="Optional"><pythonReference>
+						<para> Index features are created in a sequential order and require a starting point. Setting the direction type for the strip map provides a starting point. The default is WE_NS. This means that the starting point for the strip map is either at the western end of the line feature if the line feature's directional trend is West to East/East to West or, if the directional trend is North to South/South to North, the starting point would be the northern most point of the line feature. The direction type is also applied to secondary line features.</para>
+						<bulletList><bullet_item>WE_NS—West to East and North to South.</bullet_item><bullet_item>WE_SN— West to East and South to North.</bullet_item><bullet_item>EW_NS— East to West and North to South.</bullet_item><bullet_item>EW_SN— East to West and South to North.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Index features are created in a sequential order and require a starting point. Setting the direction type for the strip map provides a starting point. The default is WE_NS. This means that the starting point for the strip map is either at the western end of the line feature if the line feature's directional trend is West to East/East to West or, if the directional trend is North to South/South to North, the starting point would be the northern most point of the line feature. The direction type is also applied to secondary line features.</para>
+						<bulletList><bullet_item>WE_NS—West to East and North to South.</bullet_item><bullet_item>WE_SN— West to East and South to North.</bullet_item><bullet_item>EW_NS— East to West and North to South.</bullet_item><bullet_item>EW_SN— East to West and South to North.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>Line features are the only valid input.</para>
+			</bullet_item><bullet_item>
+				<para> When you select Use Page Unit and Scale Map, Map Scale becomes a required parameter. If ArcMap is open the map scale of the active data frame will be used; otherwise, the default value is 1. If you are specifying the size of index features in map space and Use Page Unit and Scale is not selected Map Scale is not needed.</para>
+			</bullet_item><bullet_item>
+				<para>Resulting index features are created with a number of attributes. These attributes include: PageNumber, GroupId, SeqId, PrevPage, NextPage, LeftPage, RightPage, TopPage, BottomPage and Angle.<bulletList>
+						<bullet_item>Angle is a numeric value expressing the rotation angle needed by the map (data frame) to align the edges of the index feature with the edges of a layout page. In order to keep within cartographic conventions, these angles are calculated to keep North oriented toward the top of the page as much as possible. Angles are calculated against the default orientation of a map where 0 degrees is due North, 90 degrees is due East, 180 degrees is due South and -90 degrees is due West.</bullet_item>
+						<bullet_item>PageNumber is an incremental number assigned to each index feature.</bullet_item>
+						<bullet_item>GroupId is an integer assigned to all the index features in a connecting chain or group of line features. Strip Map Index Features results can include multiple groups. Usually, a single group will originate from a connected set of line features or from a single line with multiple, unconnected parts. Index features created from Individual, unconnected line features will be assigned to separate groups. GroupId values are unique and are derived from the OID of the first line feature in the given chain.</bullet_item>
+						<bullet_item>SeqId is an incremental number assigned to each index feature based on the creation order for the feature within each group.</bullet_item>
+						<bullet_item>PrevPage is the PageNumber value for the previously created index feature. This field is used in analyzing the creation order of index features. Do not use this field to run dynamic text for a Data Driven Page. Use LeftPage, RightPage, TopPage and BottomPage fields for dynamic text.</bullet_item>
+						<bullet_item>NextPage is the PageNumber value for the next index feature created. This field is used in analyzing the creation order of index features. Do not use this field to run dynamic text for a Data Driven Page. Use LeftPage, RightPage, TopPage, and BottomPage fields for dynamic text.</bullet_item>
+						<bullet_item>LeftPage, RightPage, TopPage, and BottomPage are useful when incorporating the results into Data Driven Pages. LeftPage is the PageNumber value of the index feature that appears to the left of the current index feature after the rotation has been applied. RightPage is the PageNmuber of the index feature to the right. TopPage and BottomPage are the values for the index features to the top and bottom, respectively. </bullet_item>
+					</bulletList></para>
+			</bullet_item><bullet_item>
+				<para> When Use Page Unit and Scale is selected the units for Length Along the Line and Length Perpendicular to the Line automatically changes to the page units set in the active map document (if ArcMap is open) or to inches if you are using the tool outside of an ArcMap session. For best results these units should be specified in page units such as inches or centimeters. If Use Page Units and Scale is not selected, units should be specified in map units such as meters, feet, kilometers, miles, or decimal degrees.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>StripMapIndexFeatures tool Example #1 (Python Window)</title>
+					<para>Creates strip map index features based on the input line features with index feature dimensions specified for a layout page.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.env.workspace = "C:\data\ProjectData.gdb"
+arcpy.StripMapIndexFeatures_cartography ("lines", "indexFeatures",
+                                         USEPAGEUNIT, "500000",
+                                         "7 inches", "5 inches")
+                    </code></scriptExample><scriptExample><title>StripMapIndexFeatures tool Example #1 (stand-alone Python script)</title>
+					<para>Creates strip map index features based on the input line features with index feature dimensions specified for a layout page.</para>
+				<code xml:space="preserve"># stripmapindexfeatures_example1.py
+# Description: Creates a series of strip map index features based on inputed
+# line features with index feature dimensions specified for a layout page.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+arcpy.env.workspace = r"C:\data\ProjectData.gdb"
+
+# Set local variables
+inFeatures = "line"
+outFeatureClass = "indexFeatures"
+usePageUnit = "USEPAGEUNIT"
+scale = "500000"
+lenA = "7 Inches"
+lenP = "5 Inches"
+
+# Execute StripMapIndexFeatures
+arcpy.StripMapIndexFeatures_cartography (inFeatures, outFeatureClass,
+                                         usePageUnit, scale, lenA, lenP)
+                    </code></scriptExample><scriptExample><title>StripMapIndexFeatures tool Example #2 (Python Window)</title>
+					<para>Creates strip map index features based on the input line features with index feature dimensions specified in map units with an overlap of 0.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.env.workspace = "C:\data\ProjectData.gdb"
+arcpy.StripMapIndexFeatures_cartography ("lines", "indexFeatures", "",
+                                         "", "10 kilometers", "5 kilometers")
+                    </code></scriptExample><scriptExample><title>StripMapIndexFeatures tool Example #2 (stand-alone Python script)</title>
+					<para>Creates strip map index features based on the input line features with index feature dimensions specified in map units with an overlap of 0.</para>
+				<code xml:space="preserve"># stripmapindexfeatures_example2.py
+# Description: Creates a series of strip map index features based on inputed
+# line features with index feature dimensions specified in map units with an
+# overlap set at 0.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+arcpy.env.workspace = r"C:\data\ProjectData.gdb"
+
+# Set local variables
+inFeatures = "line"
+outFeatureClass = "indexFeatures"
+lenA = "10 Kilometers"
+lenP = "5 Kilometers"
+
+# Execute StripMapIndexFeatures
+arcpy.StripMapIndexFeatures_cartography (inFeatures, outFeatureClass, "",
+                                         "", lenA, lenP)
+                    </code></scriptExample><scriptExample><title>StripMapIndexFeatures tool Example #3 (Python Window)</title>
+					<para>Creates strip map index features based on the input line features with index feature dimensions specified for a layout page and the page orientation set as vertical.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.env.workspace = "C:\data\ProjectData.gdb"
+arcpy.StripMapIndexFeatures_cartography ("lines", "indexFeatures",
+                                         USEPAGEUNIT, "500000", "5 inches",
+                                         "7 inches", VERTICAL)
+                    </code></scriptExample><scriptExample><title>StripMapIndexFeatures tool Example #3 (stand-alone Python script)</title>
+					<para>Creates strip map index features based on the input line features with index feature dimensions specified for a layout page and the page orientation set as vertical.</para>
+				<code xml:space="preserve"># stripmapindexfeatures_example3.py
+# Description: Creates a series of strip map index features based on inputed
+# line features with index feature dimensions specified for a layout and
+# the page orientation set as vertical.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+arcpy.env.workspace = r"C:\data\ProjectData.gdb"
+
+# Set local variables
+inFeatures = "line"
+outFeatureClass = "indexFeatures"
+usePageUnit = "USEPAGEUNIT"
+scale = "500000"
+lenA = "7 Inches"
+lenP = "5 Inches"
+pageOrientation = "VERTICAL"
+
+# Execute StripMapIndexFeatures
+arcpy.StripMapIndexFeatures_cartography (inFeatures, outFeatureClass,
+                                         usePageUnit, scale, lenA, lenP,
+                                         pageOrientation)
+                    </code></scriptExample><scriptExample><title>StripMapIndexFeatures tool Example #4 (Python Window)</title>
+					<para>Creates strip map index features based on the input line features with specifications for feature dimensions in map units, starting page number, and strip map direction.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.env.workspace = "C:\data\ProjectData.gdb"
+arcpy.StripMapIndexFeatures_cartography ("lines", "indexFeatures", "", "",
+                                         "10 kilometers", "5 kilometers",
+                                         "", "", "5", "EW_SN")
+                    </code></scriptExample><scriptExample><title>StripMapIndexFeatures tool Example #4 (stand-alone Python script)</title>
+					<para>Creates strip map index features based on the input line features with specifications for feature dimensions in map units, starting page number, and strip map direction.</para>
+				<code xml:space="preserve"># stripmapindexfeatures_example4.py
+# Description: Creates a series of strip map index features based on inputed
+# line features with index feature dimensions specified in map units, the
+# starting page number is 5 and the strip map direction is
+# East-West/South-North.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+arcpy.env.workspace = r"C:\data\ProjectData.gdb"
+
+# Set local variables
+inFeatures = "line"
+outFeatureClass = "indexFeatures"
+lenA = "10 Kilometers"
+lenP = "5 Kilometers"
+startingPageNum = "5"
+directionType = "EW_SN"
+
+# Execute StripMapIndexFeatures
+arcpy.StripMapIndexFeatures_cartography (inFeatures, outFeatureClass, "", "",
+                                         lenA, lenP, "", "", startingPageNum,
+                                         directionType)
+                    </code></scriptExample></scriptExamples></tool></metadata>

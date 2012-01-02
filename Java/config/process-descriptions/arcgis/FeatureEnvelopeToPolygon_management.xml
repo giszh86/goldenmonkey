@@ -1,0 +1,89 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Feature Envelope To Polygon (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a feature class containing polygons, each of which represents the envelope of an input feature.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Bounding</keyword><keyword>Box</keyword><keyword>Cover</keyword><keyword>Extent</keyword><keyword>Geometry</keyword><keyword>Index</keyword><keyword>Maximum</keyword><keyword>Minimum</keyword><keyword>Rectangle</keyword><keyword>Transform</keyword><keyword>Vector</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FeatureEnvelopeToPolygon" displayname="Feature Envelope To Polygon (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a feature class containing polygons, each of which represents the envelope of an input feature.</para>
+		</summary><alink_name>FeatureEnvelopeToPolygon_management</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/FeatureEnvelopeToPolygon_management_v.png" alt="Feature Envelope To Polygon illustration" /><toolIllust type="illustration" src="FeatureEnvelopeToPolygon_management_h.png" alt="Feature Envelope To Polygon illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para> The input features that can be multipoint, line, polygon, or annotation.</para>
+						</pythonReference><dialogReference>
+						<para> The input features that can be multipoint, line, polygon, or annotation.</para>
+						</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para> The output polygon feature class.</para>
+					</pythonReference><dialogReference>
+						<para> The output polygon feature class.</para>
+					</dialogReference></param><param sync="true" name="single_envelope" displayname="Create multipart features" datatype="Boolean" direction="Input" expression="single_envelope" type="Optional"><pythonReference>
+						<para> Specifies whether to use one envelope for each entire multipart feature or one envelope per part of a multipart feature. This parameter will affect the results of multipart input features only.</para>
+						<bulletList><bullet_item>SINGLEPART—Uses one envelope containing an entire multipart feature; therefore, the resulting polygon will be singlepart. This is the default.</bullet_item><bullet_item>MULTIPART— Uses one envelope for each part of a multipart feature; the resulting polygon of the multipart feature will remain multipart.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Specifies whether to use one envelope for each entire multipart feature or one envelope per part of a multipart feature. This parameter will affect the results of multipart input features only.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Uses one envelope containing an entire multipart feature; therefore, the resulting polygon will be singlepart. This is the default.</bullet_item>
+							<bullet_item>Checked—Uses one envelope for each part of a multipart feature; the resulting polygon of the multipart feature will remain multipart.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para> The attributes of the input features will be maintained in the output feature class. A new field, ORIG_FID, will be added to the output feature class and set to the input feature IDs. </para>
+			</bullet_item><bullet_item>
+				<para>Since the envelope of a perfectly horizontal line (parallel to the x-axis) has a zero height and the envelope of a perfectly vertical line (parallel to the y-axis) has a zero width, the resulting polygon from either line would have a zero area; such invalid polygons will be omitted in the output. The same applies to a part in a multipart line feature.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FeatureEnvelopeToPolygon Example 1 (Python window)</title>
+					<para>The following Python window script demonstrates how to use the FeatureEnvelopeToPolygon function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.FeatureEnvelopeToPolygon_management("urban_analysis.gdb/parks",
+                                          "c:/output/output.gdb/parks_extent",
+                                          "SINGLEPART")
+                    </code></scriptExample><scriptExample><title>FeatureEnvelopeToPolygon Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script is a simple example of how to apply the FeatureEnvelopeToPolygon function in a scripting environment.</para>
+				<code xml:space="preserve"># Name: FeatureEnvelopeToPolygon_Example2.py
+# Description: Use FeatureEnvelopeToPolygon function to find 
+#              the general extent of features.
+# Author: ESRI
+
+# import system modules 
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data/urban_analysis.gdb"
+
+# Set local variables
+inFeatures = "houses"
+outFeatureClass = "c:/output/output.gdb/houses_extent"
+
+# Execute FeatureEnvelopeToPolygon
+arcpy.FeatureEnvelopeToPolygon_management(inFeatures, outFeatureClass, 
+                                          "SINGLEPART")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,118 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Unsplit Line (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Merges lines that have coincident endpoints and, optionally, common attribute values.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attach</keyword><keyword>Combine</keyword><keyword>Connect</keyword><keyword>Dissolve</keyword><keyword>Geometry</keyword><keyword>Join</keyword><keyword>Merge</keyword><keyword>Transform</keyword><keyword>Vector</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="UnsplitLine" displayname="Unsplit Line (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Merges lines that have coincident endpoints and, optionally, common attribute values.</para>
+		</summary><alink_name>UnsplitLine_management</alink_name><toolIllust type="illustration" src="UnsplitLine_management_h.png" alt="UnsplitLine illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The line features to be aggregrated.</para>
+					</pythonReference><dialogReference>
+						<para>The line features to be aggregrated.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The feature class to be created that will contain the aggregated features.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class to be created that will contain the aggregated features.</para>
+					</dialogReference></param><param sync="true" name="dissolve_field" displayname="Dissolve_Field(s)" datatype="Field" direction="Input" expression="[dissolve_field,...]" type="Optional"><pythonReference><para>The field or fields on which to aggregate features.</para>
+						<para>The Add Field button, which is used only in ModelBuilder, allows you to add expected fields so you can complete the dialog and continue to build your model.</para></pythonReference><dialogReference><para>The field or fields on which to aggregate features.</para>
+						<para>The Add Field button, which is used only in ModelBuilder, allows you to add expected fields so you can complete the dialog and continue to build your model.</para></dialogReference></param><param sync="true" name="statistics_fields" displayname="Statistics Field(s)" datatype="Value Table" direction="Input" expression="[[field, {statistic_type}],...]" type="Optional"><pythonReference>
+						<para>The fields and  statistics with which to summarize attributes. Text attribute fields may be summarized using the statistics FIRST or LAST. Numeric attribute fields may be summarized using any statistic. Nulls are excluded from all statistical calculations.</para>
+						<bulletList>
+							<bullet_item>FIRST—Finds the first record in the Input Features and uses its specified field value.</bullet_item>
+							<bullet_item>LAST—Finds the last record in the Input Features and uses its specified field value.</bullet_item>
+							<bullet_item>SUM—Adds the total value for the specified field.</bullet_item>
+							<bullet_item>MEAN—Calculates the average for the specified field.</bullet_item>
+							<bullet_item>MIN—Finds the smallest value for all records of the specified field.</bullet_item>
+							<bullet_item>MAX—Finds the largest value for all records of the specified field.</bullet_item>
+							<bullet_item>RANGE—Finds the range of values (MAX–MIN) for the specified field.</bullet_item>
+							<bullet_item>STD—Finds the standard deviation on values in the specified field.</bullet_item>
+							<bullet_item>COUNT—Finds the number of values included in statistical calculations. This counts each value except null values. To determine the number of null values in a field, use the COUNT statistic on the field in question, and a COUNT statistic on a different field which does not contain nulls (for example, the OID if present), then subtract the two values.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>The fields and  statistics with which to summarize attributes. Text attribute fields may be summarized using the statistics FIRST or LAST. Numeric attribute fields may be summarized using any statistic. Nulls are excluded from all statistical calculations.</para>
+						<bulletList>
+							<bullet_item>FIRST—Finds the first record in the Input Features and uses its specified field value.</bullet_item>
+							<bullet_item>LAST—Finds the last record in the Input Features and uses its specified field value.</bullet_item>
+							<bullet_item>SUM—Adds the total value for the specified field.</bullet_item>
+							<bullet_item>MEAN—Calculates the average for the specified field.</bullet_item>
+							<bullet_item>MIN—Finds the smallest value for all records of the specified field.</bullet_item>
+							<bullet_item>MAX—Finds the largest value for all records of the specified field.</bullet_item>
+							<bullet_item>RANGE—Finds the range of values (MAX–MIN) for the specified field.</bullet_item>
+							<bullet_item>STD—Finds the standard deviation on values in the specified field.</bullet_item>
+							<bullet_item>COUNT—Finds the number of values included in statistical calculations. This counts each value except null values. To determine the number of null values in a field, use the COUNT statistic on the field in question, and a COUNT statistic on a different field which does not contain nulls (for example, the OID if present), then subtract the two values.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment><environment name="Qualified_field_names" label="Qualified field names">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The attributes of the features which become aggregated by this tool can be summarized or described using a variety of statistic types. The statistic type used to summarize attributes is added to the output feature class as a single field with the following naming standard of statistic type + underscore + input field name. For example, if the input has a field named POP that is summarized, using the SUM statistics type will result in a field named SUM_POP in the output feature class.</para>
+			</bullet_item><bullet_item>
+				<para>The availability of physical memory may limit the amount (and complexity) of input features that can be processed and dissolved into a single output feature. This limitation could cause an error to occur, as the dissolve process may require more memory than is available. To prevent this, input features may be cut and processed using an adaptive tiling algorithm. To determine the features that have been tiled, run the FREQUENCY tool on the result of this tool, specifying the same field(s) used in the dissolve process for the Frequency Field(s) parameter. Any record with a frequency value of 2 has been tiled. Tile boundaries are preserved in the output features to prevent the creation of features that are too large to be used by ArcGIS. These can be evaluated and removed using either a second dissolve operation or using the merge edit task in ArcMap (1. start editing; 2. select the two features; 3. click Editor\Merge...)</para>
+			</bullet_item><bullet_item>
+				<para>Null values are excluded from all statistical calculations. For example, the AVERAGE of 10, 5, and NULL is 7.5 ((10+5)/2). The COUNT tool returns the number of values included in the statistical calculation, which in this case is 2.</para>
+			</bullet_item><bullet_item>
+				<para>The Dissolve Field(s) parameter's Add Field button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run, or its derived data does not exist, the Dissolve Field(s) parameter may not be populated with field names. The Add Field button allows you to add expected fields so you can complete the tool's dialog and continue to build your model.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>UnsplitLine example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the UnsplitLine tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/Portland.gdb/Streets"
+arcpy.UnsplitLine_management("streets", "C:/output/output.gdb/streets_unsplit",
+                             ["STREETNAME", "PREFIX"])
+
+                    </code></scriptExample><scriptExample><title>UnsplitLine example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the UnsplitLine tool.</para>
+				<code xml:space="preserve"># Name: UnsplitLine_Example2.py
+# Description: Unsplit line features based on common attributes
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data/Portland.gdb/Streets"
+ 
+# Set local variables
+inFeatures = "streets"
+outFeatureClass = "C:/output/output.gdb/streets_unsplit"
+dissolveFields = ["STREETNAME", "PREFIX"]
+ 
+# Execute UnsplitLine using STREETNAME and PREFIX as Dissolve Fields
+arcpy.UnsplitLine_management(inFeatures, outFeatureClass, dissolveFields)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

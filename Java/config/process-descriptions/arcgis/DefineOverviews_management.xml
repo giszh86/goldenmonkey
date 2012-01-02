@@ -1,0 +1,129 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Define Overviews  (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Defines the tiling schema and properties of the preprocessed raster datasets that will cover part or all of a mosaic dataset at varying resolutions. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Amd</keyword><keyword>Aoi</keyword><keyword>Area Of Interest</keyword><keyword>Boundary</keyword><keyword>Calculate Cell Size</keyword><keyword>Collection</keyword><keyword>Mosaic Dataset</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" DefineOverviews " displayname=" Define Overviews  (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Defines the tiling schema and properties of the preprocessed raster datasets that will cover part or all of a mosaic dataset at varying resolutions. </para>
+		</summary><alink_name> DefineOverviews _management</alink_name><parameters><param sync="true" name="in_mosaic_dataset" displayname="Mosaic Dataset" datatype="Mosaic Layer" direction="Input" expression="in_mosaic_dataset" type="Required"><pythonReference>
+						<para> The path and name of the mosaic dataset.</para>
+					</pythonReference><dialogReference>
+						<para> The path and name of the mosaic dataset.</para>
+					</dialogReference></param><param sync="true" name="overview_image_folder" displayname="Output Location" datatype="Workspace" direction="Input" expression="overview_image_folder" type="Optional"><pythonReference>
+						<para> The folder or geodatabase where the overviews will be stored. </para>
+						<para>Overviews  that are stored and managed within personal and file geodatabases have the default overview folder location in the same workspace as the residing geodatabase. </para><para>For ArcSDE geodatabases, the overview location must be the ArcSDE database itself.</para>
+					</pythonReference><dialogReference>
+						<para> The folder or geodatabase where the overviews will be stored. </para>
+						<para>Overviews  that are stored and managed within personal and file geodatabases have the default overview folder location in the same workspace as the residing geodatabase. </para><para>For ArcSDE geodatabases, the overview location must be the ArcSDE database itself.</para>
+					</dialogReference></param><param sync="true" name="in_template_dataset" displayname="Extent From Dataset" datatype="Raster Layer; Feature Layer" direction="Input" expression="in_template_dataset" type="Optional"><pythonReference>
+						<para>
+A raster dataset or polygon feature class used to define the extent or shape of the overview. 
+</para><para>The extent of the raster dataset will be used when using a raster dataset. The shape of the polygon will be used when using a feature class.</para>
+					</pythonReference><dialogReference>
+						<para>
+A raster dataset or polygon feature class used to define the extent or shape of the overview. 
+</para><para>The extent of the raster dataset will be used when using a raster dataset. The shape of the polygon will be used when using a feature class.</para>
+					</dialogReference></param><param sync="true" name="extent" displayname="Extent" datatype="Extent" direction="Input" expression="extent" type="Optional"><pythonReference>
+						<para> Four coordinates defining the extent of the overview that will be generated.</para>
+						<para> This is specified as space delimited in the following order: X-minimum X-maximum Y-minimum Y-maximum. </para>
+						<para>The mosaic dataset boundary will be used to determine the extent of the overviews if an extent is not defined.</para>
+					</pythonReference><dialogReference>
+						<para> Four coordinates defining the extent of the overview that will be generated.</para>
+						<para>The mosaic dataset boundary will be used to determine the extent of the overviews if an extent is not defined.</para>
+						<para>The Clear button will reset the extent back to the extent of the raster catalog.</para>
+					</dialogReference></param><param sync="true" name="pixel_size" displayname="Pixel Size" datatype="Double" direction="Input" expression="pixel_size" type="Optional"><pythonReference>
+						<para>Base pixel size used to generate the overviews. The default is determined by the software.</para>
+					</pythonReference><dialogReference>
+						<para>Base pixel size used to generate the overviews. The default is determined by the software.</para>
+					</dialogReference></param><param sync="true" name="number_of_levels" displayname="Number Of Levels" datatype="Long" direction="Input" expression="number_of_levels" type="Optional"><pythonReference>
+						<para>The number of overview levels that will be generated. </para><para>For a number greater than 0, it will be the number of overview levels generated. For example, 3 will generate three levels of overviews. If the value is left blank or -1, then overviews will only be generated up to a maximum of 1500 rows or columns.</para>
+					</pythonReference><dialogReference>
+						<para>The number of overview levels that will be generated. </para><para>For a number greater than 0, it will be the number of overview levels generated. For example, 3 will generate three levels of overviews. If the value is left blank or -1, then overviews will only be generated up to a maximum of 1500 rows or columns.</para>
+					</dialogReference></param><param sync="true" name="tile_rows" displayname="Number Of Rows" datatype="Long" direction="Input" expression="tile_rows" type="Optional"><pythonReference>
+						<para>Optimum number of rows in the overview. </para>
+						<para>The larger the value, the bigger the file, and the more likely it will need to be regenerated if any lower image changes. </para>
+						<para>This number can affect the number of overview images created. If it's a large number, then fewer overviews will be generated. If it's a small number, then more files are generated.</para>
+					</pythonReference><dialogReference>
+						<para>Optimum number of rows in the overview. </para>
+						<para>The larger the value, the bigger the file, and the more likely it will need to be regenerated if any lower image changes. </para>
+						<para>This number can affect the number of overview images created. If it's a large number, then fewer overviews will be generated. If it's a small number, then more files are generated.</para>
+					</dialogReference></param><param sync="true" name="tile_cols" displayname="Number Of Columns" datatype="Long" direction="Input" expression="tile_cols" type="Optional"><pythonReference>
+						<para>Optimum number of columns in the overview. </para>
+						<para>The larger the value, the bigger the file, and the more likely it will need to be regenerated if any lower image changes. </para>
+						<para>This number can affect the number of overview images created. If it's a large number, then fewer overviews will be generated. If it's a small number, then more files are generated.</para>
+					</pythonReference><dialogReference>
+						<para>Optimum number of columns in the overview. </para>
+						<para>The larger the value, the bigger the file, and the more likely it will need to be regenerated if any lower image changes. </para>
+						<para>This number can affect the number of overview images created. If it's a large number, then fewer overviews will be generated. If it's a small number, then more files are generated.</para>
+					</dialogReference></param><param sync="true" name="overview_factor" displayname="Overview Sampling Factor" datatype="Long" direction="Input" expression="overview_factor" type="Optional"><pythonReference>
+						<para>The ratio used to determine the size of the next overview. For example, if the cell size of the first level is x, and the overview factor is 3, then the next overview pixel size will be 3x.</para>
+					</pythonReference><dialogReference>
+						<para>The ratio used to determine the size of the next overview. For example, if the cell size of the first level is x, and the overview factor is 3, then the next overview pixel size will be 3x.</para>
+					</dialogReference></param><param sync="true" name="force_overview_tiles" displayname="Force Overview Tiles" datatype="Boolean" direction="Input" expression="force_overview_tiles" type="Optional"><pythonReference>
+						<para> Affects the levels at which overviews will be generated. </para>
+						<bulletList><bullet_item>NO_FORCE_OVERVIEW_TILES—Overviews will only be created at levels above the primary raster pyramids levels. This is the default.</bullet_item><bullet_item>FORCE_OVERVIEW_TILES— Overviews will be created at all levels, even though the primary rasters have pyramids. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Affects the levels at which overviews will be generated. </para>
+						<bulletList>
+							<bullet_item>Unchecked—Overviews will only be created at levels above the primary raster pyramid levels. This is the default.</bullet_item>
+							<bullet_item>Checked—Overviews will be created at all levels, even though the primary rasters have pyramids. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="resampling_method" displayname="Resampling Method" datatype="String" direction="Input" expression="resampling_method" type="Optional"><pythonReference>
+						<para> The resampling algorithm used when creating the overviews. </para>
+						<bulletList><bullet_item>NEAREST—Nearest neighbor assignment. </bullet_item><bullet_item>BILINEAR—Bilinear interpolation. This is the default. </bullet_item><bullet_item>CUBIC—Cubic convolution. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> The resampling algorithm used when creating the overviews. </para>
+						<bulletList><bullet_item>NEAREST—Nearest neighbor assignment. </bullet_item><bullet_item>BILINEAR—Bilinear interpolation. This is the default. </bullet_item><bullet_item>CUBIC—Cubic convolution. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="compression_method" displayname="Compression Method" datatype="String" direction="Input" expression="compression_method" type="Optional"><pythonReference>
+						<para>This defines the type of data compression that will be used to store the overview images.</para>
+						<bulletList><bullet_item>JPEG—A lossy compression. This is the default.</bullet_item><bullet_item>None—No data compression.</bullet_item><bullet_item>LZW—A lossless compression.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>This defines the type of data compression that will be used to store the overview images.</para>
+						<bulletList><bullet_item>JPEG—A lossy compression. This is the default.</bullet_item><bullet_item>None—No data compression.</bullet_item><bullet_item>LZW—A lossless compression.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="compression_quality" displayname="Compression Quality" datatype="Long" direction="Input" expression="compression_quality" type="Optional"><pythonReference>
+						<para> Quality of the compression used with the JPEG compression method. The compression quality can range from 1 to 100. A higher number means better image quality but less compression. </para>
+					</pythonReference><dialogReference>
+						<para> Quality of the compression used with the JPEG compression method. The compression quality can range from 1 to 100. A higher number means better image quality but less compression. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent">
+						
+					</environment></environments><usage><bullet_item>
+				<para> This tool is used when there are specific parameters you need to set to generate your overviews, such as <bulletList><bullet_item>Defining the location to write the files</bullet_item><bullet_item>Defining an extent that varies from the boundary</bullet_item><bullet_item>Defining the properties of the overview images, such as the resampling or compression methods</bullet_item><bullet_item>Defining the overview sampling factor</bullet_item></bulletList>Otherwise, you can check the option to build the overviews when you add your raster data to a mosaic dataset and the defaults will be used. </para>
+			</bullet_item><bullet_item>
+				<para>Use the  to generate the overviews after they've been defined with this tool.</para>
+			</bullet_item><bullet_item><para>You can  use a polygon feature class to define the shape of the overview. An overview image will be created for every polygon in the feature class. Ideally, your feature class will be used to create one overview image. If you do not wish to use all the polygons in the feature class you can make a selection on the layer in the table of contents or use a tool such as Make Feature Layer to create a temporary layer representing only the desired polygons.</para></bullet_item><bullet_item><para>The default tile size is 128 by 128. The tile size can be changed in the in the Environment Settings.</para></bullet_item><bullet_item><para>This tool can take a long time to run if the boundary contains a large number of vertices.</para></bullet_item></usage><scriptExamples><scriptExample><title>DefineOverviews example 1 (Python window)</title>
+					<para>This is a Python sample for DefineOverviews.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.DefineOverviews_management("c:/workspace/fgdb.gdb/md01", "c:/temp",\
+                                 "#", "#", "30", "6", "4000", "4000", "2", \
+                                 "CUBIC", "JPEG", "50")
+
+                    </code></scriptExample><scriptExample><title>DefineOverviews example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for DefineOverviews.</para>
+				<code xml:space="preserve">##===========================
+##Define Overviews
+##Usage: DefineOverviews_management in_mosaic_dataset {overview_image_folder}
+##                                  {in_template_dataset} {extent} {pixel_size}
+##                                  {number_of_levels} {tile_rows} {tile_cols}
+##                                  {overview_factor} {NO_FORCE_OVERVIEW_TILES
+##                                  | FORCE_OVERVIEW_TILES} {BILINEAR | NEAREST
+##                                  | CUBIC}, {JPEG | None | LZW} {compression_quality}
+
+try:
+    import arcpy
+    arcpy.env.workspace = "C:/Workspace"
+    # Define Overviews to the default location
+    # Define Overviews for all levels - ignore the primary Raster pyramid
+    # Define Overviews compression and resampling method
+    arcpy.DefineOverviews_management("DefineOVR.gdb/md", "#", "#", "#", "#", "#",\
+                                     "#", "#", "#", "FORCE_OVERVIEW_TILES",\
+                                     "BILINEAR", "JPEG", "50")
+                                  
+    
+    # Define Overviews to the same File Geodatabase
+    # Define Overview starting cell size, number of levels, maximum size and factor 
+    arcpy.DefineOverviews_management("DefineOVR.gdb/md", "DefineOVR.gdb", "#", \
+                                     "#", "3", "6", "4000", "4000", "2", "#",\
+                                     "CUBIC", "None", "#")
+    
+except:
+    print "Define Overviews example failed."
+    print arcpy.GetMessages()
+    
+                    </code></scriptExample></scriptExamples></tool></metadata>

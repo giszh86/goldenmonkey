@@ -1,0 +1,119 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Raster Catalog (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates an empty raster catalog in a geodatabase.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Blank</keyword><keyword>Collection</keyword><keyword>Contain</keyword><keyword>Empty</keyword><keyword>Footprint</keyword><keyword>Gdb</keyword><keyword>Geodatabase</keyword><keyword>Image Catalog</keyword><keyword>Manage</keyword><keyword>New</keyword><keyword>Overlap</keyword><keyword>Unmanage</keyword><keyword>Wire Frame</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateRasterCatalog" displayname="Create Raster Catalog (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates an empty raster catalog in a geodatabase.</para>
+		</summary><alink_name>CreateRasterCatalog_management</alink_name><parameters><param sync="true" name="out_path" displayname="Output Location" datatype="Workspace" direction="Input" expression="out_path" type="Required"><pythonReference>
+						<para>The geodatabase to contain the raster catalog. This can be any type of geodatabase: personal, file, or ArcSDE.</para>
+					</pythonReference><dialogReference>
+						<para>The geodatabase to contain the raster catalog. This can be any type of geodatabase: personal, file, or ArcSDE.</para>
+					</dialogReference></param><param sync="true" name="out_name" displayname="Raster Catalog Name" datatype="String" direction="Input" expression="out_name" type="Required"><pythonReference>
+						<para>The name of the raster catalog to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the raster catalog to be created.</para>
+					</dialogReference></param><param sync="true" name="raster_spatial_reference" displayname="Coordinate system for the raster column" datatype="Coordinate System" direction="Input" expression="raster_spatial_reference" type="Optional"><pythonReference>
+						<para>The coordinate system for the raster column in the raster catalog.</para>
+						<para>The spatial reference of the raster column is used during data loading as</para>
+						<bulletList>
+							<bullet_item>A default spatial reference for those raster datasets that have an unknown spatial reference</bullet_item>
+							<bullet_item>A target spatial reference if you choose to project your raster datasets that have different spatial references from the raster column</bullet_item>
+						</bulletList>
+						<para>The default value is the coordinate system set in the environment settings.</para>
+					</pythonReference><dialogReference>
+						<para>The coordinate system for the raster column in the raster catalog.</para>
+						<para>The spatial reference of the raster column is used during data loading as</para>
+						<bulletList>
+							<bullet_item>A default spatial reference for those raster datasets that have an unknown spatial reference</bullet_item>
+							<bullet_item>A target spatial reference if you choose to project your raster datasets that have different spatial references from the raster column</bullet_item>
+						</bulletList>
+						<para>The default value is the coordinate system set in the environment settings.</para>
+					</dialogReference></param><param sync="true" name="spatial_reference" displayname="Coordinate system for the geometry column" datatype="Spatial Reference" direction="Input" expression="spatial_reference" type="Optional"><pythonReference>
+						<para>The coordinate system for the geometry column.</para>
+						<para>The spatial reference for the geometry column defines the spatial reference of the footprints of the raster datasets.</para>
+						<para>The default value is the coordinate system set in the environment settings.</para>
+					</pythonReference><dialogReference>
+						<para>The coordinate system for the geometry column.</para>
+						<para>The spatial reference for the geometry column defines the spatial reference of the footprints of the raster datasets.</para>
+						<para>The default value is the coordinate system set in the environment settings.</para>
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="Configuration Keyword" datatype="String" direction="Input" expression="config_keyword" type="Optional"><pythonReference>
+						<para>Specifies the storage parameters (configuration) for a file geodatabase and an ArcSDE geodatabase. Personal geodatabases do not use configuration keywords.</para>
+						<para>ArcSDE configuration keywords are set up by your database administrator.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the storage parameters (configuration) for a file geodatabase and an ArcSDE geodatabase. Personal geodatabases do not use configuration keywords.</para>
+						<para>ArcSDE configuration keywords are set up by your database administrator.</para>
+					</dialogReference></param><param sync="true" name="spatial_grid_1" displayname="Output Spatial Grid 1" datatype="Double" direction="Input" expression="spatial_grid_1" type="Optional"><pythonReference>
+						<para>The Output Spatial Grid 1, 2, and 3 parameters are used to compute a spatial index and only apply to   file geodatabases and  ArcSDE geodatabases. If you are unfamiliar with setting grid sizes, leave these options as 0,0,0 and ArcGIS will compute optimal sizes for you.</para><para>If you use the default spatial grid index (of zero), it is recommended that you load data using the Workspace To Raster Catalog tool. If the Workspace To Raster Catalog tool is used to load raster datasets, the spatial grid size will be automatically calculated. If another tool is used to load raster datasets into a raster catalog, the Calculate Default Spatial Grid Index (Data Management) tool needs to be used after the loading is completed.</para>
+						<para>  For more information about this parameter, refer to the Add Spatial Index tool documentation.</para></pythonReference><dialogReference>
+						<para>The Output Spatial Grid 1, 2, and 3 parameters are used to compute a spatial index and only apply to   file geodatabases and  ArcSDE geodatabases. If you are unfamiliar with setting grid sizes, leave these options as 0,0,0 and ArcGIS will compute optimal sizes for you.</para><para>If you use the default spatial grid index (of zero), it is recommended that you load data using the Workspace To Raster Catalog tool. If the Workspace To Raster Catalog tool is used to load raster datasets, the spatial grid size will be automatically calculated. If another tool is used to load raster datasets into a raster catalog, the Calculate Default Spatial Grid Index (Data Management) tool needs to be used after the loading is completed.</para>
+						<para>  For more information about this parameter, refer to the Add Spatial Index tool documentation.</para></dialogReference></param><param sync="true" name="spatial_grid_2" displayname="Output Spatial Grid 2" datatype="Double" direction="Input" expression="spatial_grid_2" type="Optional"><pythonReference>
+						<para>
+Cell size of the second spatial grid.  Leave the size at 0 if you only want one grid.  Otherwise, set the size to at least three times larger than Spatial Grid 1.
+</para></pythonReference><dialogReference>
+						<para>
+Cell size of the second spatial grid.  Leave the size at 0 if you only want one grid.  Otherwise, set the size to at least three times larger than Spatial Grid 1.
+</para></dialogReference></param><param sync="true" name="spatial_grid_3" displayname="Output Spatial Grid 3" datatype="Double" direction="Input" expression="spatial_grid_3" type="Optional"><pythonReference>
+						<para>
+Cell size of the third spatial grid.  Leave the size at 0 if you only want two grids.  Otherwise, set to at least three times larger than Spatial
+							Grid 2.
+
+</para></pythonReference><dialogReference>
+						<para>
+Cell size of the third spatial grid.  Leave the size at 0 if you only want two grids.  Otherwise, set to at least three times larger than Spatial
+							Grid 2.
+
+</para></dialogReference></param><param sync="true" name="raster_management_type" displayname="Raster Management Type" datatype="String" direction="Input" expression="raster_management_type" type="Optional"><pythonReference>
+						<para>Raster datasets within raster catalogs can be managed in two ways: managed or unmanaged (by the geodatabase).</para>
+						<bulletList><bullet_item>MANAGED—With a managed raster catalog, the raster datasets inside the raster catalog will be physically stored within the geodatabase. When a row (or raster) is deleted from the catalog, it is deleted from the geodatabase</bullet_item><bullet_item>UNMANAGED—With an unmanaged raster catalog, the raster catalog only contains links or pointers connecting a row to a raster dataset stored outside the geodatabase. All raster datasets loaded into an unmanaged raster catalog must be a file on disk. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Raster datasets within raster catalogs can be managed in two ways: managed or unmanaged (by the geodatabase).</para>
+						<bulletList><bullet_item>MANAGED—With a managed raster catalog, the raster datasets inside the raster catalog will be physically stored within the geodatabase. When a row (or raster) is deleted from the catalog, it is deleted from the geodatabase</bullet_item><bullet_item>UNMANAGED—With an unmanaged raster catalog, the raster catalog only contains links or pointers connecting a row to a raster dataset stored outside the geodatabase. All raster datasets loaded into an unmanaged raster catalog must be a file on disk. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="template_raster_catalog" displayname="Template Raster Catalog" datatype="Raster Catalog Layer" direction="Input" expression="template_raster_catalog" type="Optional"><pythonReference>
+						<para>If you want to base your new raster catalog on a template, you can specify a template raster catalog. The new raster catalog will then have the same fields as the template raster catalog.</para>
+					</pythonReference><dialogReference>
+						<para>If you want to base your new raster catalog on a template, you can specify a template raster catalog. The new raster catalog will then have the same fields as the template raster catalog.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">This environment, if set, is used for the parameters Coordinate System for the raster column and Coordinate System for the geometry column.</environment><environment name="Output_Config_Keyword" label="Output Config Keyword"></environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3"></environment></environments><usage><bullet_item>
+				<para>Once the raster catalog is created, raster datasets can be loaded into it.</para>
+			</bullet_item><bullet_item>
+				<para>Raster catalogs can be created in any type of geodatabase: personal, file, or ArcSDE.</para>
+			</bullet_item><bullet_item>
+				<para>Once a raster catalog is created, raster datasets can be loaded into it by right-clicking the raster catalog and selecting Load Data. Raster datasets can also be loaded into a raster catalog using the .</para>
+			</bullet_item><bullet_item>
+				<para>Raster catalogs can be managed or unmanaged by the geodatabase. When the raster catalog is managed by the geodatabase means then the raster datasets inside the raster catalog will be physically stored within the geodatabase. When a row or raster is deleted from the catalog, it is deleted from the geodatabase. When the raster catalog is unmanaged, the raster catalog only contains links or pointers connecting a raster catalog row to a raster dataset stored outside the geodatabase. These raster datasets are stored outside the geodatabase. All raster datasets loaded into an unmanaged raster catalog must be a file on disk. Geodatabase raster datasets can only be loaded into raster catalogs that are managed. Raster Catalogs stored in an ArcSDE geodatabase are always managed.</para>
+			</bullet_item><bullet_item>
+				<para>If the default value of zero is used for the spatial grid index, it is recommended that you load data in the raster catalog using the  tool. If the  tool is used to load raster datasets, the spatial grid size will be automatically calculated. If another tool is used to load raster datasets into a raster catalog, the  tool needs to be used after the loading is completed.</para>
+				
+			</bullet_item><bullet_item>
+				<para>When creating a raster catalog in an ArcSDE geodatabase, the raster dataset name cannot have spaces. Use underscores to separate words in raster dataset names.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateRasterCatalog example 1 (Python window)</title>
+					<para>This is a Python sample for the CreateRasterCatalog tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.CreateRasterCatalog_management("c:/data/CreateRC.gdb", "fgdb_unman",\
+                                     "Albers_Conical.prj", "Albers_Conical.prj",\
+                                     "MAX_FILE_SIZE_4GB", "1000", "3000", "9000",\
+                                     "UNMANAGED", "")
+
+
+                    </code></scriptExample><scriptExample><title>CreateRasterCatalog example 2 (stand-alone window)</title>
+					<para>This is a Python script sample for the CreateRasterCatalog tool.</para>
+				<code xml:space="preserve">##========================    
+##Create Raster Catalog
+##Usage: CreateRasterCatalog_management out_path out_name {raster_spatial_reference} {spatial_reference} {config_keyword} 
+##                                      {spatial_grid_1} {spatial_grid_2} {spatial_grid_3} {MANAGED | UNMANAGED}  
+##                                      {template_raster_catalog;template_raster_catalog...}
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:\PrjWorkspace\"
+    ##Create PGDB Unmanaged Raster Catalog
+    arcpy.CreateRasterCatalog_management("CreateRC.mdb", "Unmanaged", "Albers_Conical.prj", "Albers_Conical.prj", "", "12000", "", "", "UNMANAGED", "")
+    ##Create FGDB Unmanaged Raster Catalog
+    arcpy.CreateRasterCatalog_management("CreateRC.gdb", "Unmanaged", "Albers_Conical.prj", "Albers_Conical.prj", "MAX_FILE_SIZE_4GB", \
+                                            "1000", "3000", "9000", "UNMANAGED", "")
+    ##Create SDE Managed Raster Catalog with FGDB template
+    arcpy.CreateRasterCatalog_management("SDE94.sde", "Managed", "Albers_Conical.prj", "Albers_Conical.prj", "DEFAULTS","2000", "6000", \
+                                            "18000", "MANAGED", "CreateRC.mdb\\Unmanaged;CreateRC.gdb\\Unmanaged")
+except:
+    print "Create Raster Catalog example failed."
+    print arcpy.GetMessages()
+ 
+                    </code></scriptExample></scriptExamples></tool></metadata>

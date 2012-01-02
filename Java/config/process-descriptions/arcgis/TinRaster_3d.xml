@@ -1,0 +1,105 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">TIN To Raster (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool converts a TIN to a raster.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Convert</keyword><keyword>Convert</keyword><keyword>Raster</keyword><keyword>Tin</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TINRaster" displayname="TIN To Raster (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool converts a TIN to a raster.</para>
+			
+		</summary><alink_name>TINRaster_3d</alink_name><toolIllust type="illustration" src="TINRaster_3d_h.gif" alt="Create Raster From TIN illustration" /><parameters><param sync="true" name="in_tin" displayname="Input TIN" datatype="TIN Layer" direction="Input" expression="in_tin" type="Required"><pythonReference>
+						<para>The TIN to be converted.</para>
+					</pythonReference><dialogReference>
+						<para>The TIN to be converted.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output Raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Required"><pythonReference>
+						<para>The output raster.</para>
+					</pythonReference><dialogReference>
+						<para>The output raster.</para>
+					</dialogReference></param><param sync="true" name="data_type" displayname="Output Data Type" datatype="String" direction="Input" expression="data_type" type="Optional"><pythonReference>
+						<para>Choose whether the output raster will be floating point or integer. By default, the output raster is floating point.</para>
+						<bulletList><bullet_item>FLOAT—The output raster is created with floating point cell values. </bullet_item><bullet_item>INT—The output raster is created using integer cell values. This option will round the output z-values to the nearest whole number and write an integer to each raster cell value. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose whether the output raster will be floating point or integer. By default, the output raster is floating point.</para>
+						<bulletList><bullet_item>FLOAT—The output raster is created with floating point cell values. </bullet_item><bullet_item>INT—The output raster is created using integer cell values. This option will round the output z-values to the nearest whole number and write an integer to each raster cell value. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="method" displayname="Interpolation method" datatype="String" direction="Input" expression="method" type="Optional"><pythonReference>
+						<para>Choose an interpolation method. By default, cell values are calculated using the LINEAR method.</para>
+						<bulletList><bullet_item>LINEAR—Calculates cell values by using linear interpolation of the TIN triangles</bullet_item><bullet_item>NATURAL_NEIGHBORS—Calculates cell values by using natural neighbors interpolation of TIN triangles</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose an interpolation method. By default, cell values are calculated using the LINEAR method.</para>
+						<bulletList><bullet_item>LINEAR—Calculates cell values by using linear interpolation of the TIN triangles</bullet_item><bullet_item>NATURAL_NEIGHBORS—Calculates cell values by using natural neighbors interpolation of TIN triangles</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="sample_distance" displayname="Sampling Distance" datatype="String" direction="Input" expression="sample_distance" type="Optional"><pythonReference>
+						<para>Choose the sampling distance.</para>
+						<bulletList><bullet_item>OBSERVATIONS—The number of cells on the longest dimension of the output raster; will affect the cell size</bullet_item><bullet_item>CELLSIZE—The cell size of the output raster; will affect the number of observations</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose the sampling distance.</para>
+						<bulletList><bullet_item>OBSERVATIONS—The number of cells on the longest dimension of the output raster; will affect the cell size</bullet_item><bullet_item>CELLSIZE—The cell size of the output raster; will affect the number of observations</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>The factor by which the heights of the resultant raster will be multiplied from those of the input TIN; used to convert z-units to x and y-units.</para>
+					</pythonReference><dialogReference>
+						<para>The factor by which the heights of the resultant raster will be multiplied from those of the input TIN; used to convert z-units to x and y-units.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Cell_size" label="Cell size"></environment></environments><usage><bullet_item>
+				<para>TIN To Raster interpolates cell z-values from the input TIN at the specified resolution or sampling interval to produce the output raster.</para>
+			</bullet_item><bullet_item>
+				<para>Because interpolation of the input TIN surface occurs at regular intervals, some loss of information in the output raster should be expected. How well the raster represents the TIN is dependent on the resolution of the raster and the degree and interval of TIN surface variation. Generally, as the resolution is increased, the output raster more closely represents the TIN surface. Because the raster is a cell structure, it cannot maintain the hard and soft breakline edges that may be present in the TIN.</para>
+			</bullet_item><bullet_item>
+				<para>You can accept the TIN's XMIN, YMIN as the default origin and the XMAX, YMAX as the upper right corner of the extent to generate a raster covering the full extent of the TIN. Alternatively, you can specify the output raster's origin, extent, and resolution or cell spacing to create a raster covering only a portion of the TIN.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Data Type determines the data type of the output raster. Floating point preserves the accuracy of z-values, possibly at the expense of disk storage space. On average, integer grids require less storage space than floating-point grids when dealing with terrain data. If the accuracy requirements of your z-values are such that they can be represented by integer data, consider using the INT option.</para>
+			</bullet_item><bullet_item>
+				<para>The output raster may be file based or created as a raster dataset in a geodatabase. Supported file-based formats include ESRI Grid, ERDAS IMAGINE, and TIFF. The format is determined based on the output name. If the output path references a geodatabase, a geodatabase raster will be created. If the output resides in a normal file folder and does not include a file extension, an ESRI Grid will be produced. Use of the extensions .img and .tif will produce IMAGINE or TIFF files.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TIN To Raster Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the TIN To Raster
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.TinRaster_3d("tin", "raster.img", "INT", "LINEAR", "OBSERVATIONS 250", 1)
+                    </code></scriptExample><scriptExample><title>TIN To Raster Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the TIN To Raster
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: TinRaster Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              TinRaster tool to create rasters from each TIN in the target
+#              workspace.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data" # the target workspace
+
+try:
+    # Set Local Variables
+    dataType = "INT"
+    method = "NATURAL_NEIGHBORS"
+    sampling = "CELLSIZE 10"
+    zfactor = "1"
+    # Create list of TINs
+    TINList = arcpy.ListDatasets("*", "Tin")
+    # Verify the presence of TINs in the list
+    if len(TINList) &gt; 0:
+        # Iterate through the list of TINs
+        for dataset in TINList:
+            # Define the name of the output file
+            outRaster = dataset + "_natural.img"
+            # Execute TinRaster
+            arcpy.TinRaster_3d(dataset, outRaster, dataType, method, sampling, zfactor)
+        print "Finished."
+    else:
+        print "There are no TIN(s) in the " + env.workspace + " directory."
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

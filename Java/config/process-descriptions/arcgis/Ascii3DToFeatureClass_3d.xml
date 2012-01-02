@@ -1,0 +1,120 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">ASCII 3D To Feature Class (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Imports 3D features from one or more ASCII files into a new output feature class. This tool imports XYZ or XYZI or GENERATE file formats.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Feature Class</keyword><keyword>3D Files</keyword><keyword>Blobs</keyword><keyword>Convert</keyword><keyword>Generate</keyword><keyword>Lidar</keyword><keyword>Multipoint</keyword><keyword>Point Feature Class</keyword><keyword>Xyz</keyword><keyword>Xyzi</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Ascii3DToFeatureClass" displayname="ASCII 3D To Feature Class (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Imports 3D features from one or more ASCII files into a new output feature class. This tool imports XYZ or XYZI or GENERATE file formats.</para>
+			
+		</summary><alink_name>Ascii3DToFeatureClass_3d</alink_name><parameters><param sync="true" name="input" displayname="Input" datatype="File; Folder" direction="Input" expression="input" type="Required"><pythonReference>
+						<para>One or more input files or folders with data in ASCII XYZ or XYZI (with lidar intensity) or 3-D GENERATE format. If a folder is specified all the files inside the folder named with the same extension as the file suffix parameter will be used. If multiple files are involved they need to be in the same format.</para>
+					</pythonReference><dialogReference>
+						<para>One or more input files or folders with data in ASCII XYZ or XYZI (with lidar intensity) or 3-D GENERATE format. If a folder is specified all the files inside the folder named with the same extension as the file suffix parameter will be used. If multiple files are involved they need to be in the same format.</para>
+					</dialogReference></param><param sync="true" name="in_file_type" displayname="Input File Format" datatype="String" direction="Input" expression="in_file_type" type="Required"><pythonReference>
+						<para>The format of the input file(s).</para>
+					</pythonReference><dialogReference>
+						<para>The format of the input file(s). The format can be set to XYZ or XYZI or GENERATE. Open up the help for this tool and select the Learn More link for the details on these formats.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class.</para>
+					</dialogReference></param><param sync="true" name="out_geometry_type" displayname="Output Feature Class Type" datatype="String" direction="Output" expression="out_geometry_type" type="Required"><pythonReference>
+						<para>The geometry type of the output feature class.</para>
+						<para>The output feature class type may be set to POINT | MULTIPOINT | POLYLINE | POLYGON. When points are input the only valid types are POINT or MULTIPOINT. Multipoints are recommended when you don’t intend to add any attribution on a per point basis and especially when many thousands or millions of points are involved. When the input represents polylines the output type must be set to POLYLINE. When the input represents polygons the output type may be set to POLYGON, or POLYLINE.</para>
+					</pythonReference><dialogReference>
+						<para>The geometry type of the output feature class.</para>
+						<para>The output feature class type may be set to POINT | MULTIPOINT | POLYLINE | POLYGON. When points are input the only valid types are POINT or MULTIPOINT. Multipoints are recommended when you don’t intend to add any attribution on a per point basis and especially when many thousands or millions of points are involved. When the input represents polylines the output type must be set to POLYLINE. When the input represents polygons the output type may be set to POLYGON, or POLYLINE.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>The Z Factor is a multiplier applied to the input z values to convert between units such as feet to meters and to convert between signs (e.g. positive depths into negative heights relative to sea level). Use a negative factor to reverse signs. The default is 1.0, or no change.</para>
+					</pythonReference><dialogReference>
+						<para>The Z Factor is a multiplier applied to the input z values to convert between units such as feet to meters and to convert between signs (e.g. positive depths into negative heights relative to sea level). Use a negative factor to reverse signs. The default is 1.0, or no change.</para>
+					</dialogReference></param><param sync="true" name="input_coordinate_system" displayname="Input Coordinate System" datatype="Coordinate System" direction="Input" expression="input_coordinate_system" type="Optional"><pythonReference>
+						<para>The coordinate system of the input data.</para>
+					</pythonReference><dialogReference>
+						<para>The coordinate system of the input data. The default is an Unknown Coordinate System. If specified, the output may or may not be projected into a different coordinate system. This depends the whether the geoprocessing environment has a coordinate system defined for the location of the target feature class.</para>
+					</dialogReference></param><param sync="true" name="average_point_spacing" displayname="Average Point Spacing" datatype="Double" direction="Input" expression="average_point_spacing" type="Required"><pythonReference>
+						<para>The average planimetric distance between points of the input. This parameter is only used when the output geometry type is set to MULTIPOINT. Its used as a means to bin, or group, the points together. Specify the spacing in the horizontal units of the target feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The average planimetric distance between points of the input. This parameter is only used when the &lt;out_geometry_type&gt; is set to MULTIPOINT. This value is used, in conjunction with {max_points_per_shape}, to construct a virtual tile system used to group the points. The tile system's origin is based on the domain of the target feature class. Specify the spacing in the horizontal units of the target feature class.</para>
+					</dialogReference></param><param sync="true" name="file_suffix" displayname="File Suffix" datatype="String" direction="Input" expression="file_suffix" type="Optional"><pythonReference>
+						<para>The suffix of the files to import when a folder is specified on input.</para>
+					</pythonReference><dialogReference>
+						<para>The suffix of the files to import when a folder is specified on input.</para>
+					</dialogReference></param><param sync="true" name="decimal_separator" displayname="Decimal Separator" datatype="String" direction="Input" expression="decimal_separator" type="Optional"><pythonReference>
+						<para>The character used to represent a decimal for floating point numbers in the input file(s). The default is decimal point.  </para>
+					</pythonReference><dialogReference>
+						<para>The character used to represent a decimal for floating point numbers in the input file(s). The default is decimal point.  </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>When multiple files are input they should all be in the same format, either XYZ, XYZI, or GENERATE, and be of the same geometry type.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ASCII 3D To Feature Class Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the ASCII 3D To Feature Class
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.Ascii3DToFeatureClass_3d("masspnts.txt", "GENERATE", "masspnts.shp", "POINT", 1, "Coordinate Systems/Projected Coordinate Systems/State Plane/NAD 1983 (Feet)/NAD 1983 StatePlane Massachusetts Mainland FIPS 2001 (Feet).prj")
+                    </code></scriptExample><scriptExample><title>ASCII 3D To Feature Class Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the ASCII 3D To Feature Class
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: ASCII3D_to_Feature_Class Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              ASCII3D_to_Feature_Class tool to create a point feature class
+#              from a set of text files in the specified workspace.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules`
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Set Local Variables
+    inFormat = "GENERATE"
+    # Name of the output file
+    outFC = "Pts_from_ASCII.shp"
+    # Geometry of the output feature class
+    outType = "POINT"
+    zFactor = 1
+    # Coordinate system of the output feature class
+    CS = "Coordinate Systems/Geographic Coordinate Systems/World/WGS 1984.prj"
+    # Specifies the filter applied to identify the appropriate inputs in the workspace
+    fileSuffix = "ascii.txt" 
+    decSep = "DECIMAL_POINT" # Specifies the decimal delimeter
+    # Create list of ASCII files
+    txtList = arcpy.ListFiles("*" + fileSuffix)
+    # Verify the presence of TINs in the list
+    if len(txtList) &gt; 0:
+        # Execute ASCII3D_to_Feature_Class
+        arcpy.ASCII3DToFeatureClass_3d(txtList, inFormat, outFC, outType, zFactor, CS, fileSuffix, decSep)
+        print "Finished."
+    else:
+        print "There are no text files that match the suffix in the " + env.workspace + " directory."
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

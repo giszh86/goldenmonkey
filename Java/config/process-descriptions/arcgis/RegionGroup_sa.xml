@@ -1,0 +1,114 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Region Group (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>For each cell in the output, the identity of the connected region to which that cell belongs is recorded. A unique number is assigned to each region.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Clean</keyword><keyword>Connected</keyword><keyword>Contiguous</keyword><keyword>Generalize</keyword><keyword>Image Processing</keyword><keyword>Region</keyword><keyword>Simplify</keyword><keyword>Zone</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RegionGroup" displayname="Region Group (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>For each cell in the output, the identity of the connected region to which that cell belongs is recorded. A unique number is assigned to each region.</para>
+			</summary><alink_name>RegionGroup_sa</alink_name><toolIllust type="illustration" src="RegionGroup_sa_h.png" alt="Region Group illustration" /><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster whose unique connected regions will be identified.</para>
+						<para>It must be of integer type.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster whose unique connected regions will be identified.</para>
+						<para>It must be of integer type.</para>
+					</dialogReference></param><param sync="true" name="number_neighbors" displayname="Number of neighbors to use" datatype="String" direction="Input" expression="number_neighbors" type="Optional"><pythonReference>
+						<para>The number of neighboring cells to use in evaluating connectivity between cells.</para>
+						<bulletList><bullet_item>FOUR — Defines connectivity between cells of the same value only if the cells are directly to the left, right, above, or below each of the four nearest neighbors. If two cells with the same value are diagonal from one another, they are not considered connected.</bullet_item><bullet_item>EIGHT — Defines connectivity between cells of the same value if they are within the immediate eight-cell neighborhood (eight nearest neighbors) of each other. This includes to the right, left, above, or diagonal to each other.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The number of neighboring cells to use in evaluating connectivity between cells.</para>
+						<bulletList><bullet_item>FOUR — Defines connectivity between cells of the same value only if the cells are directly to the left, right, above, or below each of the four nearest neighbors. If two cells with the same value are diagonal from one another, they are not considered connected.</bullet_item><bullet_item>EIGHT — Defines connectivity between cells of the same value if they are within the immediate eight-cell neighborhood (eight nearest neighbors) of each other. This includes to the right, left, above, or diagonal to each other.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="zone_connectivity" displayname="Zone grouping method" datatype="String" direction="Input" expression="zone_connectivity" type="Optional"><pythonReference>
+						<para>Defines which cell values should be considered when testing for connectivity.</para>
+						<bulletList><bullet_item>WITHIN — Tests connectivity between input values that are the same within the same zone.The only cells that can be grouped are cells from the same zone (value) that meet the spatial requirements of connectivity specified by the FOUR and EIGHT keywords.</bullet_item><bullet_item>CROSS — Tests connectivity by the spatial requirements specified by the keywords FOUR or EIGHT between cells with any values, except for the value identified to be excluded.When CROSS is used, a value for the {excluded_value} argument must be input.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Defines which cell values should be considered when testing for connectivity.</para>
+						<bulletList><bullet_item>WITHIN — Tests connectivity between input values that are the same within the same zone.The only cells that can be grouped are cells from the same zone (value) that meet the spatial requirements of connectivity specified by the FOUR and EIGHT keywords.</bullet_item><bullet_item>CROSS — Tests connectivity by the spatial requirements specified by the keywords FOUR or EIGHT between cells with any values, except for the value identified to be excluded.When CROSS is used, a value for the Excluded value argument must be input.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="add_link" displayname="Add link field to output" datatype="Boolean" direction="Input" expression="add_link" type="Optional"><pythonReference>
+						<para>Specifies whether a link field is added to the table of the output.</para>
+						<bulletList><bullet_item>ADD_LINK — An ADD_LINK item will be added to the table of the output raster. This item stores the original values for each newly created zone, from disconnected regions, from the input raster before they are regrouped. This is the default.</bullet_item><bullet_item>NO_LINK — The attribute table for the output raster will only contain the Value and Count items.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether a link field is added to the table of the output.</para>
+						<bulletList>
+							<bullet_item>Checked—An ADD_LINK item will be added to the table of the output raster. This item stores the original values for each newly created zone, from disconnected regions, from the input raster before they are regrouped. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The attribute table for the output raster will only contain the Value and Count items.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="excluded_value" displayname="Excluded value" datatype="Long" direction="Input" expression="excluded_value" type="Optional"><pythonReference>
+						<para>Identifies a value such that if a cell location contains the value, no spatial connectivity will be evaluated regardless how the number of neighbors is specified (FOUR or EIGHT).</para>
+						<para>Cells with the excluded value will be treated as NoData and are eliminated from calculations. Cell locations that contain the excluded value will receive 0 on the output raster.</para><para>The excluded value is similar to the concept of a background value, or setting a mask in the environment for  a single run of the tool. A value must be specified for this parameter if the CROSS keyword is specified.</para>
+					</pythonReference><dialogReference>
+						<para>Identifies a value such that if a cell location contains the value, no spatial connectivity will be evaluated regardless how the number of neighbors is specified (FOUR or EIGHT).</para>
+						<para>Cells with the excluded value will be treated as NoData and are eliminated from calculations. Cell locations that contain the excluded value will receive 0 on the output raster.</para><para>The excluded value is similar to the concept of a background value, or setting a mask in the environment for  a single run of the tool. A value must be specified for this parameter if the CROSS keyword is specified.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output region group raster.</para>
+							<para>The output raster is always of integer type.</para></pythonReference><dialogReference>
+							<para>The output region group raster.</para>
+							<para>The output raster is always of integer type.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The first region scanned  receives the value one, the second two, and so forth, until all regions are assigned a value. The scan moves from left to right, top to bottom. The values assigned to the output zones are based on when they are encountered in the scanning process.</para>
+			</bullet_item><bullet_item>
+				<para>By default, the Add Link option is True. This will create an item called LINK in the attribute table of the output raster, which retains the original value for each cell from the input raster.</para>
+			</bullet_item><bullet_item>
+				<para>The LINK field allows you to trace the parentage of each of the newly created regions for queries or analysis.</para><para>For example, the attribute table for the output raster shown in the illustration above is:</para>
+				
+					
+					
+					</bullet_item><bullet_item>
+				<para>Setting the Add Link option to False will significantly speed up processing. This is helpful when the original value of each region is no longer needed.</para>
+			</bullet_item><bullet_item>
+				<para>If a  has been set in the evironment, those cells that have been masked will receive NoData on the output raster. With a mask, the spatial configuration and the number of regions may be altered on the output raster. If a region was continuous and the imposition of a mask breaks the continuity, the region will be divided into two regions with different values or grouping identifiers on the output raster.</para>
+				<para>The mask cannot only create additional regions by dividing a region into two or more separate regions, it can also reduce the number of regions on the output. If a mask totally covers or eliminates a potential region of connected cells, these cells will not be considered as a new zone on the output; they will receive NoData values.</para>
+			</bullet_item><bullet_item>
+				<para>Region Group is especially useful when the analysis is on regions and not on zones. Since the input zone value is maintained, the original zonal class can also be used in the analysis.</para>
+			</bullet_item><bullet_item>
+				<para>Cell locations that contain the excluded value receive zero on the output so that these zones are not confused with existing NoData cell locations. Since the Region Group begins numbering with the value 1, the cells that are excluded from the regroup are considered background. These background cells can be reclassed or manipulated as any other value. The locations containing excluded values can easily be converted to NoData using the  tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RegionGroup example 1 (Python window)</title>
+					<para>This example assigns a unique number to each region of the input raster using eight-way connectivity.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outRgnGrp = RegionGroup("land", "EIGHT", "", "", 5)
+outRgnGrp.save("c:/sapyexamples/output/reggrp_ex5")
+
+                    </code></scriptExample><scriptExample><title>RegionGroup example 2 (stand-alone script)</title>
+					<para>This example assigns a unique number to each region of the input raster using eight-way connectivity with an excluded value.</para>
+				<code xml:space="preserve"># Name: RegionGroup_Ex_02.py
+# Description: Records, for each cell in the output, the
+#              identity of the connected region to which 
+#              it belongs within the Analysis window. A 
+#              unique number is assigned to each region.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "land"
+valToIgnore = 5
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute RegionGroup
+outRegionGrp = RegionGroup(inRaster, "EIGHT", "CROSS", 
+                           "NO_LINK", valToIgnore)
+
+# Save the output 
+outRegionGrp.save("C:/sapyexamples/output/reggrpout")
+                    </code></scriptExample></scriptExamples></tool></metadata>

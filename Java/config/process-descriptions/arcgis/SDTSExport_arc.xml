@@ -1,0 +1,76 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Export To SDTS (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a Spatial Data Transfer Standard (SDTS). Topological Vector Profile (TVP). or Point Profile Transfer from an ArcGIS coverage or grid.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Ccf</keyword><keyword>Conversion Control File</keyword><keyword>Conversion Tools</keyword><keyword>Coverage Tools</keyword><keyword>Data Dictionary</keyword><keyword>File Prefix</keyword><keyword>Point Profile</keyword><keyword>Ppv</keyword><keyword>To Coverage</keyword><keyword>Topological Vector</keyword><keyword>Tvp</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SDTSExport" displayname="Export To SDTS (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Creates a Spatial Data Transfer Standard (SDTS). Topological Vector Profile (TVP). or Point Profile Transfer from an ArcGIS coverage or grid.</para>
+		</summary><alink_name>SDTSExport_arc</alink_name><parameters><param sync="true" name="SDTS_type" displayname="SDTS Format Type" datatype="String" direction="Input" expression="SDTS_type" type="Required"><pythonReference>
+						<para>The type of SDTS profile that will be created:</para>
+						<bulletList><bullet_item>TVP—Topological Vector Profile, designed specifically for planar vector data with coverage topology. </bullet_item><bullet_item>POINT—Point profile, designed for high-precision point datasets. </bullet_item><bullet_item>RASTER—Raster profile. Grids and lattices are supported. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of SDTS profile that will be created:</para>
+						<bulletList><bullet_item>TVP—Topological Vector Profile, designed specifically for planar vector data with coverage topology. </bullet_item><bullet_item>POINT—Point profile, designed for high-precision point datasets. </bullet_item><bullet_item>RASTER—Raster profile. Grids and lattices are supported. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="in_dataset" displayname="Input Coverage or Grid" datatype="Coverage;Raster Dataset" direction="Input" expression="in_dataset" type="Required"><pythonReference>
+						<para>The input coverage or grid.</para>
+					</pythonReference><dialogReference>
+						<para>The input coverage or grid.</para>
+					</dialogReference></param><param sync="true" name="out_transfer_prefix" displayname="Output SDTS Transfer File Prefix" datatype="String" direction="Output" expression="out_transfer_prefix" type="Required"><pythonReference>
+						<para>A four-character prefix used to name each file in the transfer. The prefix may include a pathname to a directory. By default, the files in the transfer will be written to the current workspace.</para>
+					</pythonReference><dialogReference>
+						<para>A four-character prefix used to name each file in the transfer. The prefix may include a pathname to a directory. By default, the files in the transfer will be written to the current workspace.</para>
+					</dialogReference></param><param sync="true" name="in_point_cover" displayname="Point Coverage" datatype="Coverage" direction="Input" expression="in_point_cover" type="Optional"><pythonReference>
+						<para>The name of the Point Coverage to be converted when the transfer type is TVP. This option will be ignored if the transfer type is set to POINT.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the Point Coverage to be converted when the transfer type is TVP. This option will be ignored if the transfer type is set to POINT.</para>
+					</dialogReference></param><param sync="true" name="out_DD_transfer" displayname="Output Data Dictionary Prefix" datatype="String" direction="Output" expression="out_DD_transfer" type="Optional"><pythonReference>
+						<para>A four-character prefix for the Master Data Dictionary. A directory named MASTERDD will be created at the same directory level as the Out Transfer directory. This option is used for creating a single master data dictionary for coverages or grids that share a common data dictionary.</para>
+					</pythonReference><dialogReference>
+						<para>A four-character prefix for the Master Data Dictionary. A directory named MASTERDD will be created at the same directory level as the Out Transfer directory. This option is used for creating a single master data dictionary for coverages or grids that share a common data dictionary.</para>
+					</dialogReference></param><param sync="true" name="Conv_Ctrl_File" displayname="Conversion Control File" datatype="File" direction="Input" expression="Conv_Ctrl_File" type="Optional"><pythonReference>
+						<para>A file that can be used to add information during translation. The name of this file is defined by the user.</para>
+					</pythonReference><dialogReference>
+						<para>A file that can be used to add information during translation. The name of this file is defined by the user.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>SDTS is a large standard composed of smaller, more limited subsets that are Federally approved as part of the SDTS FIPS 173 standard. These subsets are called profiles. The Topological Vector Profile (designed specifically for planar vector data with topology), Raster, and Point profiles are the only profiles supported by SDTSEXPORT.</para>
+			</bullet_item><bullet_item>
+				<para>The following conditions must be met when creating a TVP transfer:<bulletList>
+						<bullet_item>The coverage must have polygon topology.</bullet_item>
+						<bullet_item>The coverage cannot have a mask file, only  coverages will export.</bullet_item>
+						<bullet_item>The coverage must have a projection defined or it will not be exported.</bullet_item>
+					</bulletList></para>
+			</bullet_item><bullet_item>
+				<para>Annotation will be ignored when creating a TVP transfer.</para>
+			</bullet_item><bullet_item></bullet_item></usage><scriptExamples><scriptExample><title>SDTSExport example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to export a polygon coverage to SDTS format.</para>
+				<code xml:space="preserve"># Name: SDTSExport_Example.py
+# Description: Exports a polygon coverage to SDTS format
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+SDTSType = "TVP"
+inDataset = "stand"
+outTransferPrefix = "C:/output/jrdl"
+convCtrlFile = "pvalues.ccf"
+
+# Execute SDTSExport
+arcpy.SDTSExport_arc(SDTSType, inDataset, outTransferPrefix, "", "", 
+                     convCtrlFile)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

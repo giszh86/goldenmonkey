@@ -1,0 +1,59 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Raster To Point (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a raster dataset to point features.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>Import</keyword><keyword>Vectorize</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RasterToPoint" displayname="Raster To Point (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts a raster dataset to point features.</para>
+		</summary><alink_name>RasterToPoint_conversion</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset.</para><para>The raster can be integer or floating-point type.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster dataset.</para><para>The raster can be integer or floating-point type.</para>
+					</dialogReference></param><param sync="true" name="out_point_features" displayname="Output point features" datatype="Feature Class" direction="Output" expression="out_point_features" type="Required"><pythonReference>
+						<para>The output feature class that will contain the converted points.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class that will contain the converted points.</para>
+					</dialogReference></param><param sync="true" name="raster_field" displayname="Field" datatype="Field" direction="Input" expression="raster_field" type="Optional"><pythonReference>
+						<para>The field to assign values from the cells in the input raster to the points in the output dataset.</para>
+						<para>It can be an integer, floating point, or string field.</para>
+					</pythonReference><dialogReference>
+						<para>The field to assign values from the cells in the input raster to the points in the output dataset.</para>
+						<para>It can be an integer, floating point, or string field.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>For each cell of the input raster dataset, a point will be created in the output feature class. The points will be positioned at the centers of cells that they represent. The NoData cells will not be transformed into points.</para>
+			</bullet_item><bullet_item>
+				<para>The input raster can have any cell size and may be any valid raster dataset.</para>
+			</bullet_item><bullet_item>
+				<para>The Field parameter allows you to choose which attribute field of the input raster dataset will become an attribute in the output feature class. If a field is not specified, the cell values of the input raster (the VALUE field) will become a column with the heading Grid_code in the attribute table of the output feature class.</para></bullet_item></usage><scriptExamples><scriptExample><title>RasterToPoint example (Python window)</title>
+					<para>Converts a raster dataset to point features.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.RasterToPoint_conversion("source.img", "c:/output/source.shp", "VALUE")
+                    </code></scriptExample><scriptExample><title>RasterToPoint example (stand-alone script)</title>
+					<para>Converts a raster dataset to point features.</para>
+				<code xml:space="preserve"># Name: RasterToPoint_Ex_02.py
+# Description: Converts a raster dataset to point features.
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inRaster = "source.img"
+outPoint = "c:/output/source.shp"
+field = "VALUE"
+
+# Execute RasterToPoint
+arcpy.RasterToPoint_conversion(inRaster, outPoint, field)
+                    </code></scriptExample></scriptExamples></tool></metadata>

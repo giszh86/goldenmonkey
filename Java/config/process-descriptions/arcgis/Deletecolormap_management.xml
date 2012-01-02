@@ -1,0 +1,33 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Delete Colormap (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Removes the color map associated with a raster dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Clear</keyword><keyword>Indexed Color</keyword><keyword>Look Up Table</keyword><keyword>Lut</keyword><keyword>Properties</keyword><keyword>Pseudo Color</keyword><keyword>Remove</keyword><keyword>Symbology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DeleteColormap" displayname="Delete Colormap (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Removes the color map associated with a raster dataset.</para>
+		</summary><alink_name>DeleteColormap_management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster Dataset" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The raster dataset containing the color map to remove.</para>
+					</pythonReference><dialogReference>
+						<para>The raster dataset containing the color map to remove.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool will not work when the color map is internally stored in the attribute table of an IMG or TIFF dataset. If the attribute table contains the fields "Red", "Green", and "Blue", that means this tool cannot be used.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DeleteColormap Example (Python Window)</title>
+					<para>This is a Python sample for the DeleteColormap tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.DeleteColormap_management("c:/data/delcolormap.tif")
+                    </code></scriptExample><scriptExample><title>DeleteColormap Example 2 (Stand-alone script)</title>
+					<para>This is a Python script sample for the DeleteColormap tool.</para>
+				<code xml:space="preserve">##====================================
+##Delete Colormap
+##Usage: CalculateStatistics_management in_raster
+    
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:/Workspace"
+    
+    ##Delete the colormap of single band image if exist
+    arcpy.DeleteColormap_management("nocolormap.img")
+
+except:
+    print "Delete Colormap example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

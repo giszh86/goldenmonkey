@@ -1,0 +1,116 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Skyline Barrier (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Generates a multipatch feature class representing a skyline barrier or shadow volume. The barrier is in a sense a surface, and looks similar to a triangle fan formed by drawing a line from the observer point to the first vertex of the skyline, then sweeping the line through all of the vertices of the skyline. A skirt and base can optionally be added to form a closed multipatch, giving the appearance of a solid.
+  It is possible to create this closed multipatch so that it can serve as a shadow volume.   If the input is a silhouette (a multipatch feature class) rather than a skyline (a polyline feature class), then the multipatch is extruded into a shadow volume.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Analysis</keyword><keyword>3D Features</keyword><keyword>3D Geometry</keyword><keyword>Line Of Sight</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" Skylinebarrier " displayname="Skyline Barrier (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Generates a multipatch feature class representing a skyline barrier or shadow volume. The barrier is in a sense a surface, and looks similar to a triangle fan formed by drawing a line from the observer point to the first vertex of the skyline, then sweeping the line through all of the vertices of the skyline. A skirt and base can optionally be added to form a closed multipatch, giving the appearance of a solid.
+  It is possible to create this closed multipatch so that it can serve as a shadow volume.   If the input is a silhouette (a multipatch feature class) rather than a skyline (a polyline feature class), then the multipatch is extruded into a shadow volume.</para>
+		</summary><alink_name> Skylinebarrier _3d</alink_name><parameters><param sync="true" name="in_observer_point_features" displayname="Input Observer Point Features" datatype="Feature Layer" direction="Input" expression="in_observer_point_features" type="Required"><pythonReference>
+						<para> The point feature class containing the observer point(s). </para>
+					</pythonReference><dialogReference>
+						<para> The point feature class containing the observer point(s). </para>
+					</dialogReference></param><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para> The input line feature class which represents the skyline(s) or the input multipatch feature class which represents the silhouette(s).</para>
+					</pythonReference><dialogReference>
+						<para> The input line feature class which represents the skyline(s) or the input multipatch feature class which represents the silhouette(s).</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Input" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class into which the skyline barrier or shadow volume is placed. </para>
+					</pythonReference><dialogReference>
+						<para>The output feature class into which the skyline barrier or shadow volume is placed. </para>
+					</dialogReference></param><param sync="true" name="min_radius_value_or_field" displayname="Minimum Radius" datatype="Linear Unit; Field" direction="Input" expression="min_radius_value_or_field" type="Optional"><pythonReference>
+						<para>The minimum radius to which triangle edges should be extended from the observer point. The default is 0, meaning no minimum.</para>
+					</pythonReference><dialogReference>
+						<para>The minimum radius to which triangle edges should be extended from the observer point. The default is 0, meaning no minimum.</para>
+					</dialogReference></param><param sync="true" name="max_radius_value_or_field" displayname="Maximum Radius" datatype="Linear Unit; Field" direction="Input" expression="max_radius_value_or_field" type="Optional"><pythonReference>
+						<para>The maximum radius to which triangle edges should be extended from the observer point. The default is 0, meaning no maximum.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum radius to which triangle edges should be extended from the observer point. The default is 0, meaning no maximum.</para>
+					</dialogReference></param><param sync="true" name="closed" displayname="Closed" datatype="Boolean" direction="Input" expression="closed" type="Optional"><pythonReference>
+						<para>Whether to close the skyline barrier with a skirt and a base, so that the resulting multipatch will appear to be a solid.</para>
+						<bulletList><bullet_item>NO_CLOSED—No skirt or base is added to the multipatch; just the multipatch representing the surface going from the observer to the skyline is represented. This is the default.</bullet_item><bullet_item>CLOSED— A skirt and a base are added to the multipatch so as to form what appears to be a closed solid.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Whether to close the skyline barrier with a skirt and a base, so that the resulting multipatch will appear to be a solid.</para>
+						<bulletList>
+							<bullet_item>Unchecked—No skirt or base is added to the multipatch; just the multipatch representing the surface going from the observer to the skyline is represented. This is the default.</bullet_item>
+							<bullet_item>Checked—  A skirt and a base are added to the multipatch so as to form what appears to be a closed solid.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="base_elevation" displayname="Base Elevation" datatype="Linear Unit; Field" direction="Input" expression="base_elevation" type="Optional"><pythonReference>
+						<para>
+The elevation of the base of the closed multipatch; ignored if the barrier is not to be closed.   The default is 0.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The elevation of the base of the closed multipatch; ignored if the barrier is not to be closed.   The default is 0.
+</para>
+					</dialogReference></param><param sync="true" name="project_to_plane" displayname="Project to Plane" datatype="Boolean" direction="Input" expression="project_to_plane" type="Optional"><pythonReference>
+						<para>Whether the front (nearer to the observer) and back (farther from the observer) ends of the barrier should each be projected onto a vertical plane. This is typically checked (turned on) in order to create a shadow volume.</para>
+						<bulletList><bullet_item> NO_PROJECT_TO_PLANE—The barrier will extend from the observer point to the skyline (or nearer or farther if non-zero values are provided for minimum and maximum radius). This is the default.</bullet_item><bullet_item> PROJECT_TO_PLANE—  The barrier will extend from a vertical plane to a vertical plane.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Whether the front (nearer to the observer) and back (farther from the observer) ends of the barrier should each be projected onto a vertical plane. This is typically checked (turned on) in order to create a shadow volume.</para>
+						<bulletList>
+							<bullet_item>Unchecked— The barrier will extend from the observer point to the skyline (or nearer or farther if non-zero values are provided for minimum and maximum radius). This is the default. </bullet_item>
+							<bullet_item>Checked— The barrier will extend from a vertical plane to a vertical plane.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item><para>Use the Skyline tool first to generate a skyline or silhouette.</para></bullet_item><bullet_item><para> The Skyline Barrier  tool can be used to generate shadow volumes, as well as to perform other related tasks.</para></bullet_item><bullet_item><para>The Skyline Barrier tool can extrude silhouettes in order to produce shadow volumes. See more information in .</para></bullet_item><bullet_item>
+				<para>If the default value of 0 is specified for the Minimum Radius or Maximum Radius, then there is no minimum or maximum used in the analysis. </para>
+			</bullet_item><bullet_item>
+				<para>If a positive value is entered for the minimum radius, then each triangle edge emanating from the observer point will be at least that long.</para>
+			</bullet_item><bullet_item><para>If a positive value is entered for the maximum radius, then each triangle edge emanating from the observer point will not exceed that length.</para></bullet_item><bullet_item><para>Could be used to determine whether features (such as multipatches representing buildings) "violate" the barrier by protruding up through it, or whether a proposed building would alter the skyline.</para></bullet_item><bullet_item><para> If you choose to create a closed multipatch, then a skirt will be dropped down along the skyline to the base elevation specified in the Base Elevation parameter, and a horizontal surface (a ring) will be created to form the bottom of the closed geometry. If the Is Closed 3D tool is run on it, the multipatch will be marked as being closed.</para></bullet_item><bullet_item><para>If the specified base elevation is greater than the highest vertex in the skyline barrier, then the "base" will actually be a ceiling.</para></bullet_item><bullet_item><para>The new multipatch feature class will have the following
+fields:</para>
+				<bulletList><bullet_item>OID: The FID of the multipatch.</bullet_item><bullet_item>Shape: The multipatch shape.</bullet_item><bullet_item>OBSV_PT_ID: The FID of the observer point used to create the
+skyline which in turn was used to create this skyline barrier
+multipatch.</bullet_item><bullet_item>ORIGFTR_ID: The FID of the original feature, such as a building,
+represented by the skyline segment or silhouette which was used to
+create this shadow volume.
+
+</bullet_item><bullet_item>SILHOUE_ID: The FID of the multipatch feature (silhouette)
+used to create this shadow volume (for silhouettes only).</bullet_item></bulletList></bullet_item></usage><scriptExamples><scriptExample><title>Skyline Barrier Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Skyline Barrier
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.SkylineBarrier_3d("observers.shp", "skyline_outline.shp", "barrier_output.shp")
+                    </code></scriptExample><scriptExample><title>Skyline Barrier Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Skyline Barrier
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: SkylineBarrier Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              SkylineBarrier tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+inPts = "observers.shp"
+inLine = "skyline.shp"
+outFC = "output_barriers.shp"
+minRadius = "0 METERS"
+maxRadius = "200 METERS"
+
+#Execute SkylineBarrier
+arcpy.SkylineBarrier_3d(inPts, inLine, outFC, minRadius, maxRadius, "CLOSED")
+
+del inPts, inLine, outFC, minRadius, maxRadius
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,102 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Build (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates or updates feature attribute tables and polygon topology. Build is also used to synchronize polygon User-IDs with label point User-IDs.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Build</keyword><keyword>Coverage</keyword><keyword>Data Management</keyword><keyword>Topology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Build" displayname="Build (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Creates or updates feature attribute tables and polygon topology. Build is also used to synchronize polygon User-IDs with label point User-IDs.</para>
+			
+		</summary><alink_name>Build_arc</alink_name><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage to be built.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage to be built.</para>
+					</dialogReference></param><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Required"><pythonReference>
+						<para>The feature class to be built.</para>
+						<bulletList><bullet_item>POINT—Creates a PAT for label points. This is the default option. </bullet_item><bullet_item>LINE—Creates an AAT for arcs. </bullet_item><bullet_item>POLY—Creates a PAT and defines polygon topology. </bullet_item><bullet_item>NODE—Creates an NAT for nodes. </bullet_item><bullet_item>ANNO—Creates a TAT for the Annotation Subclass. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The feature class to be built.</para>
+						<bulletList><bullet_item>POINT—Creates a PAT for label points. This is the default option. </bullet_item><bullet_item>LINE—Creates an AAT for arcs. </bullet_item><bullet_item>POLY—Creates a PAT and defines polygon topology. </bullet_item><bullet_item>NODE—Creates an NAT for nodes. </bullet_item><bullet_item>ANNO—Creates a TAT for the Annotation Subclass. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="anno_subclass" displayname="Annotation Subclass" datatype="String" direction="Input" expression="anno_subclass" type="Optional"><pythonReference>
+						<para>The name of the Annotation Subclass to be built.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the Annotation Subclass to be built.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Build and  are similar commands as they are both used to define coverage topology. The basic difference is that Clean can detect and create intersections but Build cannot. However, since Build does not use a fuzzy tolerance, the coordinates will not be adjusted while topology is being built.</para>
+			</bullet_item><bullet_item>
+				<para>If a coverage feature attribute table exists, the additional items in the feature attribute table will be updated using the old internal number of each of the features specified as the relate item.</para>
+			</bullet_item><bullet_item>
+				<para>User-defined items in existing feature attribute tables are always maintained.</para>
+			</bullet_item><bullet_item>
+				<para>Build uses the  routine whenever the NAT is updated. However, unlike a regular Renumber Nodes operation, the coincident nodes are not dissolved; they are preserved. Nodes are renumbered to provide a continuous sequence of node numbers beginning with one.</para>
+			</bullet_item><bullet_item>
+				<para>If an NAT exists, it will be updated when a build with the POLY or NODE option is used.</para>
+			</bullet_item><bullet_item>
+				<para>Links are not maintained after Build has been executed.</para>
+			</bullet_item><bullet_item>
+				<para>When using Build with the POLY option, polygons must have label points to retain their attributes. If there are no attributes, label points are not required to generate a PAT. Polygons containing no label points will be assigned a User-ID of zero.</para>
+				<para>Build does not create polygon labels.</para>
+			</bullet_item><bullet_item>
+				<para>If you want to assign specific User-IDs, place only one label point in each polygon before running Build. If a polygon contains more than one label point, one is chosen arbitrarily to assign the User-ID.</para>
+			</bullet_item><bullet_item>
+				<para>If you want the User-IDs to be automatically assigned, use the  tool, then add polygon attributes.</para>
+			</bullet_item><bullet_item>
+				<para>Do not Build a point coverage with the POLY (default) option. User-defined point attributes may be lost.</para>
+			</bullet_item><bullet_item>
+				<para>Do not Build a polygon coverage with the POINT option. User-defined polygon attributes may be lost.</para>
+			</bullet_item><bullet_item>
+				<para>Build with the POLY option creates one additional polygon called the background polygon. It is always given polygon internal number 1, and its area is the total sum of the areas of all other polygons in the coverage. It is shown as a negative AREA in the PAT.</para>
+			</bullet_item><bullet_item>
+				<para>Build with the POLY option maintains and updates the SEC and RAT files of any existing route system in the coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Once the annotation attribute table (TAT) is created, it never needs to be updated with Build. The TAT created by using Build allows you to store attributes and set up relates to other features.</para>
+			</bullet_item><bullet_item>
+				<para>Polygon Build will update the SEC with correct ARCLINK# values.</para>
+			</bullet_item><bullet_item>
+				<para>Internal FNODE# and TNODE# are assigned to each node after a line coverage is built using NODE. The arc end points are sorted by their y coordinates from top to bottom, and equal y by x scanning from left to right. The internal node IDs are assigned in that order.</para>
+			</bullet_item><bullet_item>
+				<para>Several coverage tools generate connecting arcs having the same Arc-ID, separated by node numbers that are equal to zero (for example, ). When Build is run, it will unsplit these arcs, converting the nodes to vertices. If you want to maintain these arcs as separate arcs, run  before performing Build.</para>
+			</bullet_item><bullet_item>
+				<para>Build requires free disk space several times the size of your Input Coverage to create temporary scratch files. These scratch files are created in your current workspace by default. You may override the default and have the scratch files created in another directory by setting the ARCTMPDIR variable. You must have write access to this directory.</para>
+			</bullet_item><bullet_item>
+				<para>Build cannot be executed on a region coverage that contains unclosed regions.</para>
+			</bullet_item><bullet_item>
+				<para>Build will stop execution upon detecting the first unclosed region.</para>
+			</bullet_item><bullet_item>
+				<para>When creating regions from a line coverage, each arc must form a closed loop that defines a region. Build with the LINE option must be issued before region topology is created with the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>Build with the POLY option adds topology to preliminary regions by creating a .PAT and .PATsubclass. The region subclass must be created first with a previously executed tool (for example, ).</para>
+			</bullet_item><bullet_item>
+				<para>You may add new arcs that define a region (also closed loops) to a coverage that already has a region subclass. A previously executed tool (for example, Line Coverage To Region) must be used to group the new arcs to form the new subclass for regions. The IDs of the new arcs must be numbered greater than any of the existing arcs. Build them with a new subclass name and new arcs will create a new region subclass.</para>
+			</bullet_item><bullet_item>
+				<para>Build should not be executed on a coverage if it contains coordinate errors. Errors that could cause problems for Build with the POLY option include intersecting arcs (where no node is defined at the intersection), unclosed polygons, or unmatched nodes and polygon slivers.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Build example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to build line topology for a road coverage. </para>
+				<code xml:space="preserve"># Name: Build_Example.py
+# Description: Builds line topology for a road coverage.
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "road"
+featureType = "LINE"
+
+# Execute Build
+arcpy.Build_arc(inCover, featureType)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,208 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Import Coverage Annotation (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a collection of coverage annotation features to geodatabase annotation. You can convert each level to individual annotation classes or merge them into a single class. Also, if you choose map layers as input, the level and font overrides will be honored.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Convert</keyword><keyword>Copy</keyword><keyword>Export</keyword><keyword>Feature Class</keyword><keyword>File</keyword><keyword>Format</keyword><keyword>Gdb</keyword><keyword>Import</keyword><keyword>Label</keyword><keyword>Link</keyword><keyword>Load</keyword><keyword>Make</keyword><keyword>Personal</keyword><keyword>Sde</keyword><keyword>String</keyword><keyword>Text</keyword><keyword>Turn</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ImportCoverageAnnotation" displayname="Import Coverage Annotation (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts a collection of coverage annotation features to geodatabase annotation. You can convert each level to individual annotation classes or merge them into a single class. Also, if you choose map layers as input, the level and font overrides will be honored.</para>
+		</summary><alink_name>ImportCoverageAnnotation_conversion</alink_name><parameters><param sync="true" name="input_features" displayname="Input features" datatype="Feature Layer" direction="Input" expression="[input_features,...]" type="Required"><pythonReference>
+						<para>The coverage annotation features that you want to convert to geodatabase annotation. If you choose a coverage annotation layer in ArcMap, the following properties of that layer will be honored during the conversion:</para>
+						<bulletList>
+							<bullet_item>Visible drawing levels. Only those levels that are turned on for drawing will be converted.</bullet_item>
+							<bullet_item>Substitution of font and color properties for the text symbol.</bullet_item>
+							<bullet_item>Selection. Only the selected features will be converted.</bullet_item>
+							<bullet_item>Definition query. Only visible features that match the definition query will be converted.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>The coverage annotation features that you want to convert to geodatabase annotation. If you choose a coverage annotation layer in ArcMap, the following properties of that layer will be honored during the conversion:</para>
+						<bulletList>
+							<bullet_item>Visible drawing levels. Only those levels that are turned on for drawing will be converted.</bullet_item>
+							<bullet_item>Substitution of font and color properties for the text symbol.</bullet_item>
+							<bullet_item>Selection. Only the selected features will be converted.</bullet_item>
+							<bullet_item>Definition query. Only visible features that match the definition query will be converted.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="output_featureclass" displayname="Output feature class" datatype="Feature Class" direction="Output" expression="output_featureclass" type="Required"><pythonReference>
+						<para>Browse into an existing geodatabase and type in the name of the new annotation feature class to create.</para>
+					</pythonReference><dialogReference>
+						<para>Browse into an existing geodatabase and type in the name of the new annotation feature class to create.</para>
+					</dialogReference></param><param sync="true" name="reference_scale" displayname="Reference scale" datatype="Double" direction="Input" expression="reference_scale" type="Required"><pythonReference>
+						<para>Enter the scale to use as a reference for the annotation. This sets the scale to which all symbol and text sizes in the annotation will be based.</para>
+					</pythonReference><dialogReference>
+						<para>Enter the scale to use as a reference for the annotation. This sets the scale to which all symbol and text sizes in the annotation will be based.</para>
+					</dialogReference></param><param sync="true" name="use_levels" displayname="Create annotation classes from levels" datatype="Boolean" direction="Input" expression="use_levels" type="Optional"><pythonReference>
+						
+							<para>This parameter is only available with ArcEditor and ArcInfo licenses.</para>
+						
+						<para>Specify whether all coverage annotation drawing levels will be converted to annotation classes within the feature class.</para>
+						<bulletList><bullet_item>CLASSES_FROM_LEVELS—Each coverage annotation drawing level will be converted to an annotation class, within the Output Feature Class. This is the default. </bullet_item><bullet_item>ONE_CLASS_ONLY—All coverage annotation drawing levels will be converted to a single annotation class within the Output Feature Class. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						
+							<para>This parameter is only available with ArcEditor and ArcInfo licenses.</para>
+						
+						<para>Specify whether all coverage annotation drawing levels will be converted to annotation classes within the feature class.<bulletList>
+								<bullet_item>Checked—Each coverage annotation drawing level will be converted to an annotation class, within the Output Feature Class. This is the default.</bullet_item>
+								<bullet_item>Unchecked—All coverage annotation drawing levels will be converted to a single annotation class within the Output Feature Class. </bullet_item>
+							</bulletList></para>
+					</dialogReference></param><param sync="true" name="match_symbols_from_first_input" displayname="Match symbols from first input" datatype="Boolean" direction="Input" expression="match_symbols_from_first_input" type="Optional"><pythonReference>
+						<para>If you are converting coverage annotation from more than one coverage or annotation subclass and need to substitute the font properties for a symbol and apply them to all the input features, you can use this option.</para>
+						<bulletList><bullet_item>MATCH_FIRST_INPUT—Match the symbols from the first input layer and have them apply to all layers. </bullet_item><bullet_item>NO_MATCH—Each drawing file retains its own font properties. This is the default. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>If you are converting coverage annotation from more than one coverage or annotation subclass and need to substitute the font properties for a symbol and apply them to all the input features, you can use this option.<bulletList>
+								<bullet_item>Unchecked—Each drawing file retains its own font properties. This is the default. </bullet_item>
+								<bullet_item>Checked—Match the symbols from the first input layer and have them apply to all layers.</bullet_item>
+							</bulletList></para>
+					</dialogReference></param><param sync="true" name="require_symbol_from_table" displayname="Require symbols to be selected from the symbol table" datatype="Boolean" direction="Input" expression="require_symbol_from_table" type="Optional"><pythonReference>
+						<para>Specify whether the output annotation features must reference a symbol stored in the symbol collection for the feature class.</para>
+						<bulletList><bullet_item>NO_SYMBOL_REQUIRED—Any type of annotation (including graphics) may be stored in the annotation feature class. This is the default. </bullet_item><bullet_item>REQUIRE_SYMBOL—The annotation must reference one of the predefined symbols in the collection; the symbol cannot be stored inline. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specify whether the output annotation features must reference a symbol stored in the symbol collection for the feature class.<bulletList>
+								<bullet_item>Unchecked—Any type of annotation (including graphics) may be stored in the annotation feature class. This is the default. </bullet_item>
+								<bullet_item>Checked—The annotation must reference one of the predefined symbols in the collection; the symbol cannot be stored inline.</bullet_item>
+							</bulletList></para>
+					</dialogReference></param><param sync="true" name="feature_linked" displayname="Feature-linked" datatype="Boolean" direction="Input" expression="feature_linked" type="Optional"><pythonReference>
+						
+							<para>This parameter is only available with ArcEditor and ArcInfo licenses.</para>
+						
+						<para>Choose whether the output annotation feature class will be linked to the features in another feature class. </para>
+						<bulletList><bullet_item>FEATURE_LINKED—The output annotation feature class will be linked to the features in another feature class. </bullet_item><bullet_item>STANDARD—The output annotation feature class will not be linked to the features in another feature class. This is the default. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						
+							<para>This parameter is only available with ArcEditor and ArcInfo licenses.</para>
+						
+						<para>Choose whether the output annotation feature class will be linked to the features in another feature class. <bulletList>
+								<bullet_item>Unchecked—The output annotation feature class will not be linked to the features in another feature class. This is the default. </bullet_item>
+								<bullet_item>Checked—The output annotation feature class will be linked to the features in another feature class. </bullet_item>
+							</bulletList></para>
+					</dialogReference></param><param sync="true" name="linked_feature_class" displayname="Linked feature class" datatype="Feature Layer" direction="Input" expression="linked_feature_class" type="Optional"><pythonReference>
+						
+							<para>This parameter is only available with ArcEditor and ArcInfo licenses.</para>
+						
+						<para>The feature class to which you are linking annotation features. This option is only available if you choose FEATURE_LINKED for the previous parameter.</para>
+					</pythonReference><dialogReference>
+						
+							<para>This parameter is only available with ArcEditor and ArcInfo licenses.</para>
+						
+						<para>The feature class to which you are linking annotation features. This option is only available if you check the previous parameter.</para>
+					</dialogReference></param><param sync="true" name="create_annotation_when_feature_added" displayname="Create annotation when new features are added (Feature-linked only)" datatype="Boolean" direction="Input" expression="create_annotation_when_feature_added" type="Optional"><pythonReference>
+						
+							<para>This parameter is only available with ArcEditor and ArcInfo licenses.</para>
+						
+						<para>Specify whether new annotation will be generated when you add new features to the feature class to which this annotation feature class is linked.</para>
+						<para>This option is only available if you choose FEATURE_LINKED for the Feature-linked parameter and specify a Linked Feature Class.</para>
+						<bulletList><bullet_item>AUTO_CREATE—When editing in ArcMap, a new piece of annotation will be automatically generated when you add new features to the feature class to which this annotation feature class is linked. This is the default. </bullet_item><bullet_item>NO_AUTO_CREATE—When editing in ArcMap, a new piece of annotation will not be automatically generated when you add new features to the feature class to which this annotation feature class is linked. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						
+							<para>This parameter is only available with ArcEditor and ArcInfo licenses.</para>
+						
+						<para>Specify whether new annotation will be generated when you add new features to the feature class to which this annotation feature class is linked.</para>
+						<para>This option is only available if you check the Feature-linked parameter and specify a Linked Feature Class.<bulletList>
+								<bullet_item>Checked—When editing in ArcMap, a new piece of annotation will be automatically generated when you add new features to the feature class to which this annotation feature class is linked. This is the default. </bullet_item>
+								<bullet_item>Unchecked— When editing in ArcMap, a new piece of annotation will not be automatically generated when you add new features to the feature class to which this annotation feature class is linked. </bullet_item>
+							</bulletList></para>
+					</dialogReference></param><param sync="true" name="update_annotation_when_feature_modified" displayname="Update annotation when the shape of the linked feature is modified (Feature-linked only)" datatype="Boolean" direction="Input" expression="update_annotation_when_feature_modified" type="Optional"><pythonReference>
+						
+							<para>This parameter is only available with ArcEditor and ArcInfo licenses.</para>
+						
+						<para>Specify whether the ArcMap Editor will automatically update the placement of annotation when you edit features in the feature class to which this annotation feature class is linked.</para>
+						<para>This option is only available if you choose FEATURE_LINKED for the Feature-linked parameter and specify a Linked Feature Class.</para>
+						<bulletList><bullet_item>AUTO_UPDATE—The annotation will be repositioned according to the modified feature shape. This is the default. </bullet_item><bullet_item>NO_AUTO_UPDATE—The annotation will remain in its original position. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						
+							<para>This parameter is only available with ArcEditor and ArcInfo licenses.</para>
+						
+						<para>Specify whether the ArcMap Editor will automatically update the placement of annotation when you edit features in the feature class to which this annotation feature class is linked.</para>
+						<para>This option is only available if you check the Feature-linked parameter and specify a Linked Feature Class.<bulletList>
+								<bullet_item>Checked—The annotation will be repositioned according to the modified feature shape. This is the default. </bullet_item>
+								<bullet_item>Unchecked—The annotation will remain in its original position. </bullet_item>
+							</bulletList></para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Geograpic_transformations" label="Geograpic transformations"></environment><environment name="Auto_commit" label="Auto commit"></environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The conversion requires an  so it may not be opened by another application. Output written to ArcSDE geodatabases will not be versioned.</para><para></para>
+			</bullet_item><bullet_item>
+				<para>You can link annotation features to features in a point, line, or polygon feature class. If converting annotation to ArcSDE, the link feature class must not be registered as versioned.</para>
+			</bullet_item><bullet_item>
+				<para>You can convert each coverage annotation level to individual annotation classes or merge them into a single class.</para>
+			</bullet_item><bullet_item>
+				<para>If you select coverage annotation features and/or use a definition query, only those features that are selected and visible will be converted.</para>
+			</bullet_item><bullet_item>
+				<para>You can create a selection set of coverage features and create a new layer from the selection. If you use that new layer as input to the conversion, only those features in the layer will be converted.</para>
+			</bullet_item><bullet_item>
+				<para>If you override the font symbol or color for coverage annotation features, those settings will be honored during the conversion. If you want to convert more than one annotation feature class using the symbol overrides that you applied to one layer, make sure that layer is the first input, and check the option to Match symbols from first input.</para>
+			</bullet_item><bullet_item>
+				<para>Choose a reference scale that is roughly equal to the scale at which the annotation will normally be displayed. You can think of the reference scale as "freezing" the symbol and text sizes to a particular map scale. When viewing the map, the symbol and text sizes change depending on the viewing scale. Symbols and text will appear larger as you zoom in (the current map scale is larger than the reference scale) and smaller when you zoom out (the current map scale is smaller than the reference scale).</para>
+				
+			</bullet_item><bullet_item>
+				<para>Annotation that is feature-linked is associated with a specific feature in another feature class in the geodatabase. If checked, when you create the output annotation feature class, a relationship class will be automatically generated as well. This relationship class defines the relationship between the annotation and the features and enables you to define and customize this relationship. It will not establish the links between features and annotation. That will have to be done within the ArcMap Editor.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ImportCoverageAnnotation Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the ImportCoverageAnnotation tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data"
+arcpy.ImportCoverageAnnotation_conversion("roads/annotation", "Ontario.gdb/roads_anno", 10000, "CLASSES_FROM_LEVELS", "NO_MATCH", "NO_SYMBOL_REQUIRED", "STANDARD", "", "AUTO_CREATE", "AUTO_UPDATE")
+
+                    </code></scriptExample><scriptExample><title>ImportCoverageAnnotation Example (stand-alone Python script)</title>
+					<para>The following stand-alone script demonstrates how to use the ImportCoverageAnnotation tool.</para>
+				<code xml:space="preserve"># Name: ImportCoverageAnnotation_Example.py
+# Description: Create a geodatabase and import coverage annotation into it using the
+# ImportCoverageAnnotation tool. 
+# Author: ESRI
+
+# import system modules 
+import arcpy, os
+from arcpy import env
+
+# Set environment settings - user specified
+
+# User input coverage workspace - eg. C:/data
+env.workspace = raw_input('Coverage workspace: ')
+# User input Coverage name - eg. Roads
+covName = raw_input('Coverage Name: ')
+
+
+# Create file geodatabase based on coverage
+fgdb = env.workspace + os.sep + covName + ".gdb"
+arcpy.CreateFileGDB_management(os.path.dirname(fgdb), os.path.basename(fgdb))
+
+# Set workspace to coverage
+env.workspace = env.workspace + os.sep + covName
+
+# Get all coverage annotation subclasses
+covAnnos = arcpy.ListFeatureClasses("", "Annotation")
+
+# Import each annotation subclass
+for covAnno in covAnnos:
+    print "Importing Coverage annotation..."
+    # Set variables
+    outFeatureClass = fgdb + os.sep + covAnno.replace(".", "")
+    refScale = 10000
+    useLevels = "CLASSES_FROM_LEVELS"
+    matchSymbols = "NO_MATCH"
+    requireSymbol = "NO_SYMBOL_REQUIRED"
+    featLinked = "STANDARD"
+    linkedFeatClass = ""
+    autoCreate = "AUTO_CREATE"
+    autoUpdate = "AUTO_UPDATE"
+
+    try:
+        # Process: Import the coverage annotation
+        arcpy.ImportCoverageAnnotation_conversion(covAnno, outFeatureClass, refScale, useLevels,
+                                                  matchSymbols, requireSymbol, featLinked,
+                                                  linkedFeatClass, autoCreate, autoUpdate) 
+        
+    except:
+        # If an error occurred while running a tool print the messages
+        print arcpy.GetMessages()
+
+    
+print "Import complete"
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

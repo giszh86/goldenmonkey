@@ -1,0 +1,54 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate Areas (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates area values for each feature in a polygon feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Compute</keyword><keyword>Size</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateAreas" displayname="Calculate Areas (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Calculates area values for each feature in a polygon feature class.</para>
+		</summary><alink_name>CalculateAreas_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/CalculateAreas_stats_v.png" alt="Calculate Areas illustration" /><toolIllust type="illustration" src="CalculateAreas_stats_h.png" alt="Calculate Areas illustration" /><parameters><param sync="true" name="Input_Feature_Class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="Input_Feature_Class" type="Required"><pythonReference>
+						<para> The input polygon feature class.</para>
+					</pythonReference><dialogReference>
+						<para> The input polygon feature class.</para>
+					</dialogReference></param><param sync="true" name="Output_Feature_Class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="Output_Feature_Class" type="Required"><pythonReference>
+						<para> The output feature class. This feature class is a copy of the input feature class with field F_AREA added (or updated). The F_AREA field contains the polygon area.</para>
+					</pythonReference><dialogReference>
+						<para> The output feature class. This feature class is a copy of the input feature class with field F_AREA added (or updated). The F_AREA field contains the polygon area.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_coordinate_system" label="Output coordinate system">Feature geometry is projected to the Output Coordinate System prior to analysis.</environment><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Qualified_field_names" label="Qualified field names"></environment><environment name="Output_has_M_values" label="Output has M values"></environment><environment name="Output_has_Z_values" label="Output has Z values"></environment><environment name="Default_output_Z_value" label="Default output Z value"></environment></environments><usage><bullet_item>
+				<para>The <bold>F_AREA</bold> field created in the Output Feature Class will be populated with values for the area of each polygon feature in square units of the .</para>
+			</bullet_item><bullet_item><para>There are alternative methods for creating an Area field for polygon features including:  and the .</para></bullet_item><bullet_item><para>The Output Feature Class is a copy of the Input Feature Class with the additional (or updated) <bold>F_AREA </bold>field containing polygon areas.</para></bullet_item><bullet_item>
+				<para>This tool is useful for determining a weight for . </para>
+			</bullet_item><bullet_item>
+				<para>This tool can be used to calculate an Area value for a study area polygon. The  tool, for example, has an Area parameter.</para>
+			</bullet_item><bullet_item>
+				
+					<para>The F_AREA field is created in the Output Feature Class to store calculated Area values. If a field of this name already exists in the Input Feature Class, it will be overwritten in the Output Feature Class.</para>
+				
+			</bullet_item><bullet_item>
+				
+					<para>When using shapefiles, keep in mind that they cannot store null values. Tools or other procedures that create shapefiles from non-shapefile inputs may store or interpret null values as zero. This can lead to unexpected results.  See also .</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>CalculateAreas Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the CalculateAreas tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "c:/data"
+arcpy.CalculateAreas_stats("tracts.shp", "tracts_with_area_field.shp")
+                    </code></scriptExample><scriptExample><title>CalculateAreas Example (stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the CalculateAreas tool.</para>
+				<code xml:space="preserve"># Calculate AREA values
+ 
+# Import system modules
+import arcpy
+ 
+# Local variables...
+workspace = "C:/data"
+input = "tracts.shp"
+calculate_output = "tracts_with_area_field.shp"
+ 
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.env.workspace = workspace
+ 
+    # Process: Calculate Areas...
+    arcpy.CalculateAreas_stats(input, calculate_output)
+ 
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

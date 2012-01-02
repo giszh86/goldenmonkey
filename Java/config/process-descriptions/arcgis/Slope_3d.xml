@@ -1,0 +1,84 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Slope (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Identifies the slope (gradient, or rate of maximum change in z-value) from each cell of a raster surface.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Angle</keyword><keyword>Dem</keyword><keyword>Digital Elevation Model</keyword><keyword>Elevation</keyword><keyword>Gradient</keyword><keyword>Maximum Rate Of Change</keyword><keyword>Percent</keyword><keyword>Releief</keyword><keyword>Steepness</keyword><keyword>Z-Factor</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Slope" displayname="Slope (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Identifies the slope (gradient, or rate of maximum change in z-value) from each cell of a raster surface.</para>
+			
+		</summary><alink_name>Slope_3d</alink_name><toolIllust type="illustration" src="Slope_3d_h.gif" alt="Slope illustration" /><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input surface raster.</para></pythonReference><dialogReference>
+						<para>The input surface raster.</para></dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Required"><pythonReference>
+						<para>The output slope raster.</para>
+					</pythonReference><dialogReference>
+						<para>The output slope raster.</para>
+					</dialogReference></param><param sync="true" name="output_measurement" displayname="Output measurement" datatype="String" direction="Input" expression="output_measurement" type="Optional"><pythonReference>
+						<para>Determines the measurement units (degrees or percentages) of the output slope data.</para>
+						<bulletList><bullet_item>DEGREE — The inclination of slope will be calculated in degrees.</bullet_item><bullet_item>PERCENT_RISE — Keyword to output the percent rise, also referred to as the percent slope.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines the measurement units (degrees or percentages) of the output slope data.</para>
+						<bulletList><bullet_item>DEGREE — The inclination of slope will be calculated in degrees.</bullet_item><bullet_item>PERCENT_RISE — Keyword to output the percent rise, also referred to as the percent slope.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>Number of ground x,y units in one surface z unit.</para>
+						<para>The z-factor adjusts the units of measure for the z units when they are different from the x,y units of the input surface. The z-values of the input surface are multiplied by the z-factor when calculating the final output surface.</para>
+						<para>If the x,y units and z units are in the same units of measure, the z-factor is 1. This is the default.</para>
+						<para>If the x,y units and z units are in different units of measure, the z-factor must be set to the appropriate factor, or the results will be incorrect. For example, if your z units are feet and your x,y units are meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</pythonReference><dialogReference>
+						<para>Number of ground x,y units in one surface z unit.</para>
+						<para>The z-factor adjusts the units of measure for the z units when they are different from the x,y units of the input surface. The z-values of the input surface are multiplied by the z-factor when calculating the final output surface.</para>
+						<para>If the x,y units and z units are in the same units of measure, the z-factor is 1. This is the default.</para>
+						<para>If the x,y units and z units are in different units of measure, the z-factor must be set to the appropriate factor, or the results will be incorrect. For example, if your z units are feet and your x,y units are meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Slope is the rate of maximum change in z-value from each cell.</para>
+			</bullet_item><bullet_item>
+				<para>The use of a z-factor is essential for correct slope calculations when the surface z units are expressed in units different from the ground x,y units.</para>
+			</bullet_item><bullet_item>
+				<para>The range of slope values in degrees is 0 to 90. For percent rise, the range is 0 for near infinity. A flat surface is 0 percent, a 45 degree surface is 100 percent, and as the surface becomes more vertical, the percent rise becomes increasingly larger.</para>
+			</bullet_item><bullet_item>
+				<para>If the center cell in the immediate neighborhood (3 x 3 window) is NoData, the output is NoData.</para>
+			</bullet_item><bullet_item>
+				<para>If any neighborhood cells are NoData, they are assigned the value of the center cell; then the slope is computed.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Slope example 1 (Python window)</title>
+					<para>This example determines the slope values of the input surface raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.Slope_3d("elevation", "C:/output/outslope01", "DEGREE", 0.3043)
+                    </code></scriptExample><scriptExample><title>Slope example 2 (stand-alone script)</title>
+					<para>This example determines the slope values of the input surface raster.</para>
+				<code xml:space="preserve"># Name: Slope_3d_Ex_02.py
+# Description: Identifies the rate of maximum change in z-value from each cell.
+# Requirements: 3D Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inRaster = "elevation"
+outRaster = "C:/output/outslope02"
+outMeasurement = "DEGREE"
+zFactor = 0.3043
+
+# Check out the ArcGIS 3D Analyst extension license
+arcpy.CheckOutExtension("3D")
+
+# Execute Slope
+arcpy.Slope_3d(inRaster, outRaster, outMeasurement, zFactor)
+                    </code></scriptExample></scriptExamples></tool></metadata>

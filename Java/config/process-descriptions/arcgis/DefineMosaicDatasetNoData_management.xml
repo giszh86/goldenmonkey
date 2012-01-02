@@ -1,0 +1,67 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Define Mosaic Dataset NoData (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Allows you to specify one or more NoData values for a mosaic dataset. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Get Rid Of Border</keyword><keyword>Make Pixel Invisible</keyword><keyword>Remove Collar</keyword><keyword>Set Nodata</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" DefineMosaicDatasetNoData " displayname=" Define Mosaic Dataset NoData (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Allows you to specify one or more NoData values for a mosaic dataset. </para>
+		</summary><alink_name> DefineMosaicDatasetNoData _management</alink_name><parameters><param sync="true" name="in_mosaic_dataset" displayname="Mosaic Dataset" datatype="Mosaic Layer" direction="Input" expression="in_mosaic_dataset" type="Required"><pythonReference>
+						<para> Path and name of the mosaic dataset.</para>
+					</pythonReference><dialogReference>
+						<para> Path and name of the mosaic dataset.</para>
+					</dialogReference></param><param sync="true" name="num_bands" displayname="Number Of Bands" datatype="Long" direction="Input" expression="num_bands" type="Required"><pythonReference>
+						<para> Defines the number of bands in the mosaic dataset.</para><para>This value will be populated automatically, based on the mosaic dataset that is added, but you can override it. </para>
+					</pythonReference><dialogReference>
+						<para> Defines the number of bands in the mosaic dataset.</para><para>This value will be populated automatically, based on the mosaic dataset that is added, but you can override it. </para>
+					</dialogReference></param><param sync="true" name="bands_for_nodata_value" displayname="Bands for NoData Value" datatype="Value Table" direction="Input" expression="[band {value},...]" type="Optional"><pythonReference>
+						<para> Define a single value for each or all bands. Each band can have a unique NoData value defined, or the same value can be specified for all bands.</para>
+						<para>The Mask function inserted by this tool, is inserted before the Composite Bands function in the function chain. Therefore if the function chain for each raster within the mosaic dataset contains the Composite Bands function, or if your raster data was added with a raster type that adds the Composite Bands function to each raster’s function chain, then any value you specify will apply to all bands.</para></pythonReference><dialogReference>
+						<para> Define a single value for each or all bands. Each band can have a unique NoData value defined, or the same value can be specified for all bands.</para>
+						<para>Choose the band from the NoData drop-down arrow and click the Add button to add this to the table. Then enter a value.</para>
+						<para>The Mask function inserted by this tool, is inserted before the Composite Bands function in the function chain. Therefore if the function chain for each raster within the mosaic dataset contains the Composite Bands function, or if your raster data was added with a raster type that adds the Composite Bands function to each raster’s function chain, then any value you specify will apply to all bands.</para></dialogReference></param><param sync="true" name="bands_for_valid_data_range" displayname="Bands for Valid Data Range" datatype="Value Table" direction="Input" expression="[band {minimum value} {maximum value},...]" type="Optional"><pythonReference>
+						<para> The band number and the minimum and maximum pixel value of valid data. The NoData values will be those values outside the range. For example, for an 8-bit image, if you specify band1=10–200, then values 0–9 and 201–255 will be defined as NoData.</para>
+						<para>The Mask function inserted by this tool, is inserted before the Composite Bands function in the function chain. Therefore if the function chain for each raster within the mosaic dataset contains the Composite Bands function, or if your raster data was added with a raster type that adds the Composite Bands function to each raster’s function chain, then any value you specify will apply to all bands.</para></pythonReference><dialogReference>
+						<para> The band number and the minimum and maximum pixel value of valid data. The NoData values will be those values outside the range. For example, for an 8-bit image, if you specify band1=10–200, then values 0–9 and 201–255 will be defined as NoData.</para>
+						<para>Choose the band from the Included Range drop-down arrow and click the Add button to add this to the table. Then enter the minimum and maximum values.</para>
+						<para>The Mask function inserted by this tool, is inserted before the Composite Bands function in the function chain. Therefore if the function chain for each raster within the mosaic dataset contains the Composite Bands function, or if your raster data was added with a raster type that adds the Composite Bands function to each raster’s function chain, then any value you specify will apply to all bands.</para></dialogReference></param><param sync="true" name="where_clause" displayname="Query Definition" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para> Using SQL you can define a query or use the Query Builder to build a query. </para>
+					</pythonReference><dialogReference>
+						<para> Using SQL you can define a query or use the Query Builder to build a query. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent">
+						
+					</environment></environments><usage><bullet_item>
+				<para> NoData can be used to define pixel values that surround an image; however, the mosaic dataset can be made more efficient if the footprints are recomputed to remove these boundary areas. To recompute the footprints you can edit them manually or use the . </para>
+			</bullet_item><bullet_item><para>This tool inserts the Mask function within the function chain for each raster item within a mosaic dataset.</para></bullet_item><bullet_item><para>The Mask function inserted by this tool, is inserted before the Composite Bands function in the function chain. Therefore if the function chain for each raster within the mosaic dataset contains the Composite Bands function, or if your raster data was added with a raster type that adds the Composite Bands function to each raster’s function chain, then any value you specify will apply to all bands.</para></bullet_item></usage><scriptExamples><scriptExample><title>DefineMosaicDatasetNoData example 1 (Python window)</title>
+					<para>This is a Python sample for DefineMosaicDatasetNoData.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.DefineMosaicDatasetNoData_management("c:/workspace/fgdb.gdb/NoData", \ 
+                                           "OBJECTID=2", "3", \
+                                           "ALL_BANDS 0 9", #")
+                    </code></scriptExample><scriptExample><title>DefineMosaicDatasetNoData example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for DefineMosaicDatasetNoData.</para>
+				<code xml:space="preserve">##===========================
+##Define Mosaic Dataset Nodata
+##Usage: DefineMosaicDatasetNodata_management in_mosaic_dataset num_bands
+##                               {Band {Value};Band {Value}...} {Band {Minimum
+##                               Value} {Maximum Value};Band {Minimum Value}
+##                               {Maximum Value}...} {where_clause}
+
+try:
+    import arcpy
+    arcpy.env.workspace = "C:/Workspace"
+    # Specify multiple Nodata values for all bands in one Catalog item
+    arcpy.DefineMosaicDatasetNoData_management("Nodata.gdb/md", "3", "ALL_BANDS 0 9",\
+                                               "#", "OBJECTID=2")
+                                  
+    # Specify Nodata values for each individual band                            
+    arcpy.DefineMosaicDatasetNodata_management("Nodata.gdb/md", "3",\
+                                               "BAND_1 0;BAND_2 10;BAND_3 255", "#",\
+                                               "#")
+    
+    # Specify valid value range for each band
+    arcpy.DefineMosaicDatasetNodata_management("Nodata.gdb/md", "3", "", \
+                                               "BAND_1 0 255;BAND_2 10 100;BAND_3 1 200",\
+                                               "#")
+    
+    
+except:
+    print "Define Mosaic Dataset Nodata example failed."
+    print arcpy.GetMessages() 
+                    </code></scriptExample></scriptExamples></tool></metadata>

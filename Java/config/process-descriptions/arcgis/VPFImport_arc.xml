@@ -1,0 +1,77 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Import From VPF (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a VPF table to an INFO table, or converts either an untiled VPF coverage or VPF tile to an ARC/INFO coverage.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Ccf</keyword><keyword>Conversion Control File</keyword><keyword>Conversion Tools</keyword><keyword>Coverage Tools</keyword><keyword>Nonstandard Vpf Tables</keyword><keyword>Tile</keyword><keyword>To Coverage</keyword><keyword>Vpf</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="VPFImport" displayname="Import From VPF (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Converts a VPF table to an INFO table, or converts either an untiled VPF coverage or VPF tile to an ARC/INFO coverage.</para>
+		</summary><alink_name>VPFImport_arc</alink_name><parameters><param sync="true" name="input_vpf" displayname="Input VPF Coverage or Table" datatype="File ; Coverage;Table" direction="Input" expression="input_vpf" type="Required"><pythonReference>
+						<para>The name of the VPF table, untiled coverage, or tile to be converted. The full pathname must be specified.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the VPF table, untiled coverage, or tile to be converted. The full pathname must be specified.</para>
+					</dialogReference></param><param sync="true" name="output" displayname="Output Coverage or Table" datatype="Coverage; Table" direction="Output" expression="output" type="Required"><pythonReference>
+						<para>The output table or coverage to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The output table or coverage to be created.</para>
+					</dialogReference></param><param sync="true" name="tile_name" displayname="Tile Name" datatype="String" direction="Input" expression="tile_name" type="Optional"><pythonReference>
+						<para>The input VPF tile, if one exists.</para>
+					</pythonReference><dialogReference>
+						<para>The input VPF tile, if one exists.</para>
+					</dialogReference></param><param sync="true" name="control_file" displayname="Conversion Control File" datatype="File" direction="Input" expression="control_file" type="Optional"><pythonReference>
+						<para>A file that can be used to ignore specific VPF feature classes or three-dimensional coordinates during translation. The name of this file is defined by the user.</para>
+					</pythonReference><dialogReference>
+						<para>A file that can be used to ignore specific VPF feature classes or three-dimensional coordinates during translation. The name of this file is defined by the user.</para>
+					</dialogReference></param><param sync="true" name="standard_vpf" displayname="Nonstandard VPF tables will be converted" datatype="Boolean" direction="Input" expression="standard_vpf" type="Optional"><pythonReference>
+						<para>Specifies whether nonstandard VPF tables will be converted.</para>
+						<bulletList><bullet_item>NO_EXTRA—This option prevents VPFImport from importing extra tables created using VPFExport. This is the default. </bullet_item><bullet_item>EXTRA—This option only needs to be used if the data being translated into ARC/INFO was converted to VPF using VPFExport. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether nonstandard VPF tables will be converted.</para>
+						<bulletList>
+							<bullet_item>Checked—This option prevents Import From VPF from importing extra tables created using Export To VPF. This is the default.</bullet_item>
+							<bullet_item>Unchecked—This option only needs to be used if the data being translated into ARC/INFO was converted to VPF using Export To VPF. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Full VPF pathnames must be specified with the Input VPF Coverage or Table.</para>
+			</bullet_item><bullet_item>
+				<para>Pathnames are specified as vpfDatabase\vpfLibrary\vpfCoverage or vpfDatabase\vpfLibrary\vpfCoverage\vpfTile when using the Coverage option.</para>
+			</bullet_item><bullet_item>
+				<para>Pathnames are specified as vpfDatabase\vpfLibrary\vpfTable when using the Table option.</para>
+			</bullet_item><bullet_item>
+				<para>If the VPF coverage was created using the Export To VPF tool with the option to convert all tables selected, then the Output Coverage will be identical to the Input VPF Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>VPF coverages with multiple linear feature classes will be translated into coverages with route subclasses. Multiple area feature classes will be converted to region subclasses. Text, connected node, and point feature classes will be translated into INFO tables that can be related to the appropriate coverage Feature Attribute Tables. Complex feature classes will also be converted to INFO tables.</para>
+			</bullet_item><bullet_item>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>VPFImport example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to import a coverage from VPF format.
+</para>
+				<code xml:space="preserve"># Name: VPFImport_Example.py
+# Description: Import coverages from a VPF tile
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inputVpf = "vpfLibrary/lib_000:hydro"
+output = "C:/output/coast1"
+tileName = "E/J/B/D"
+standardVpf = "NO_EXTRA"
+
+# Execute VPFImport
+arcpy.VPFImport_arc(inputVpf, output, tileName, "", standardVpf)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,107 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> CAD To Geodatabase (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Reads a CAD dataset and creates feature classes of the drawing. The feature classes are written to a geodatabase feature dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Annotation</keyword><keyword>Append</keyword><keyword>Autocad</keyword><keyword>Cad</keyword><keyword>Change</keyword><keyword>Convert</keyword><keyword>Copy</keyword><keyword>Dgn</keyword><keyword>Dwg</keyword><keyword>Dxf</keyword><keyword>Export</keyword><keyword>Feature Class</keyword><keyword>File</keyword><keyword>Format</keyword><keyword>Gdb</keyword><keyword>Import</keyword><keyword>Import Cad Annotation</keyword><keyword>Import From Cad</keyword><keyword>Load</keyword><keyword>Make</keyword><keyword>Mapping Specification For Dwg</keyword><keyword>Microstation</keyword><keyword>Msd</keyword><keyword>Personal</keyword><keyword>Sde</keyword><keyword>Sde</keyword><keyword>Shp</keyword><keyword>Translate</keyword><keyword>Turn</keyword><keyword>World File</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CADtoGeodatabase" displayname=" CAD To Geodatabase (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Reads a CAD dataset and creates feature classes of the drawing. The feature classes are written to a geodatabase feature dataset.</para>
+		</summary><alink_name>CADtoGeodatabase_conversion</alink_name><parameters><param sync="true" name="input_cad_datasets" displayname="CAD Drawing Dataset" datatype="Input CAD Dataset" direction="Input" expression="[input_cad_dataset,...]" type="Required"><pythonReference>
+						<para> The collection of CAD files to convert to geodatabase features. </para>
+					</pythonReference><dialogReference>
+						<para> The collection of CAD files to convert to geodatabase features. </para>
+					</dialogReference></param><param sync="true" name="out_gdb_path" displayname="Output Geodatabase" datatype="Workspace" direction="Input" expression="out_gdb_path" type="Required"><pythonReference>
+						<para> The ArcSDE, file, or personal geodatabase where the Output Feature Dataset will be created. The target geodatabase must already exist. </para>
+					</pythonReference><dialogReference>
+						<para> The ArcSDE, file, or personal geodatabase where the Output Feature Dataset will be created. The target geodatabase must already exist. </para>
+					</dialogReference></param><param sync="true" name="out_dataset_name" displayname="Dataset" datatype="String" direction="Input" expression="out_dataset_name" type="Required"><pythonReference>
+						<para> The name of the feature dataset to be created.</para>
+					</pythonReference><dialogReference>
+						<para> The name of the feature dataset to be created.</para>
+					</dialogReference></param><param sync="true" name="reference_scale" displayname="Reference scale" datatype="Double" direction="Input" expression="reference_scale" type="Required"><pythonReference>
+						<para> Enter the scale to use as a reference for the annotation. This sets the scale to which all symbol and text sizes in the annotation will be made relative. </para>
+					</pythonReference><dialogReference>
+						<para> Enter the scale to use as a reference for the annotation. This sets the scale to which all symbol and text sizes in the annotation will be made relative. </para>
+					</dialogReference></param><param sync="true" name="spatial_reference" displayname="Spatial Reference" datatype="Coordinate system" direction="Input" expression="spatial_reference" type="Optional"><pythonReference>
+						<para>The spatial reference of the output feature dataset. If you wish to control other aspects of the spatial reference (i.e., the xy, z, m domains, resolutions, tolerances), use the relevant environments.</para>
+					</pythonReference><dialogReference>
+						<para>The spatial reference of the output feature dataset. If you wish to control other aspects of the spatial reference (i.e., the xy, z, m domains, resolutions, tolerances), use the relevant environments.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Geograpic_transformations" label="Geograpic transformations">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool creates a new feature dataset in an existing geodatabase. When run from ArcMap the results are added as a group layer.</para>
+			</bullet_item><bullet_item>
+				<para>This tool creates feature class annotation from CAD text.</para>
+			</bullet_item><bullet_item>
+				<para> The input features must be a CAD file. The CAD file will contain all the available homogenous geometries. </para>
+			</bullet_item><bullet_item>
+				<para>The input parameter will accept CAD data from multiple formats (DWG, DXF, and DGN) in one operation.</para>
+			</bullet_item><bullet_item>
+				<para>If a DWG is used as input it may contain additional CAD-defined feature classes that conform to the ESRI specification document <italics>Mapping Specification for CAD</italics>. These are subsets of the original homogenous geometries with entity-linked attributes that also import to the geodatabase as feature attributes.</para>
+			</bullet_item><bullet_item>
+				<para>Feature class names must be unique for the entire geodatabase or the tool will fail.</para>
+			</bullet_item><bullet_item>
+				<para>All inputs are combined into a single output CAD dataset which will contain the standard point, line, polygon, annotation  feature classes in addition to any CAD-defined feature classes that may exist.</para>
+			</bullet_item><bullet_item>
+				<para>This tool only outputs a dataset to any geodatabase along with ArcSDE instances.</para>
+			</bullet_item><bullet_item>
+				<para>If a projection file exists for the input CAD file, it will automatically populate the spatial reference parameter with the projection information. If multiple CAD files are used as inputs, the spatial reference will be taken from the first CAD file with valid projection information.</para>
+			</bullet_item><bullet_item>
+				<para>If a universal projection (esri_cad.prj) file exists in the directory, the projection information will be taken from the universal projection file if a coordinate system is not defined for the first CAD file.</para>
+			</bullet_item><bullet_item><para>If a world file exists for the input CAD file, it will automatically perform the transformation.</para></bullet_item><bullet_item><para>If a universal world (esri_cad.wld) file exists in the directory, the transformation will be applied to each CAD dataset in the list that does not have a companion world file.</para></bullet_item><bullet_item>
+				<para>If a DGN file has multiple models, be sure the first model has the largest domain. This tool calculates the domain for the entire DGN file from the first model. If this is not the case, be sure to expand the domain in your first model to be large enough so all will fit.</para>
+			</bullet_item><bullet_item>
+				<para>Choose a reference scale that is roughly equal to the scale at which the annotation will normally be displayed.</para>
+			</bullet_item><bullet_item>
+				<para>Should you only require a single feature class from the CAD feature classes, then use a geoprocessing tool, such as . </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><code xml:space="preserve"># Name: CadtoGeodatabase.py
+# Description: Create a feature dataset
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/data"
+
+# Set local variables
+input_cad_dataset = "C:/data/City.DWG"
+out_gdb_path = "C:/data/HabitatAnalysis.gdb" 
+out_dataset_name = "analysisresults"
+reference_scale = "1000"
+spatial_reference = "NAD_1983_StatePlane_California_VI_FIPS_0406_Feet"
+
+# Create a FileGDB for the fds
+arcpy.CreateFileGDB_management("C:/data", "HabitatAnalysis.gdb")
+
+# Execute CreateFeaturedataset 
+arcpy.CadToGeodatabase_conversion (input_cad_dataset, out_gdb_path, out_dataset_name, reference_scale)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

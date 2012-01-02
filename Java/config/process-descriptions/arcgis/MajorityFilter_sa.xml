@@ -1,0 +1,86 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Majority Filter (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Replaces cells in a raster based on the majority of their contiguous neighboring cells.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Clean</keyword><keyword>Contiguous</keyword><keyword>Filter</keyword><keyword>Generalize</keyword><keyword>Heterogeneous</keyword><keyword>Image Processing</keyword><keyword>Kernel</keyword><keyword>Salt And Pepper</keyword><keyword>Simplify</keyword><keyword>Smooth</keyword><keyword>Speckle</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MajorityFilter" displayname="Majority Filter (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Replaces cells in a raster based on the majority of their contiguous neighboring cells.</para>
+			</summary><alink_name>MajorityFilter_sa</alink_name><toolIllust type="illustration" src="MajorityFilter_sa_h.png" alt="Majority Filter illustration" /><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster to be filtered based on the the majority of contiguous neighboring cells.</para>
+						<para>It must be of integer type.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster to be filtered based on the the majority of contiguous neighboring cells.</para>
+						<para>It must be of integer type.</para>
+					</dialogReference></param><param sync="true" name="number_neighbors" displayname="Number of neighbors to use" datatype="String" direction="Input" expression="number_neighbors" type="Optional"><pythonReference>
+						<para>Determines the number of neighboring cells to use in the kernel of the filter.</para>
+						<bulletList><bullet_item>FOUR — The kernel of the filter will be the four direct (orthogonal) neighbors to the present cell. This is the default.</bullet_item><bullet_item>EIGHT — The kernel of the filter will be the eight nearest neighbors (a 3-by-3 window) to the present cell.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines the number of neighboring cells to use in the kernel of the filter.</para>
+						<bulletList><bullet_item>FOUR — The kernel of the filter will be the four direct (orthogonal) neighbors to the present cell. This is the default.</bullet_item><bullet_item>EIGHT — The kernel of the filter will be the eight nearest neighbors (a 3-by-3 window) to the present cell.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="majority_definition" displayname="Replacement threshold" datatype="String" direction="Input" expression="majority_definition" type="Optional"><pythonReference>
+						<para>Specifies the number of contiguous (spatially connected) cells that must be of the same value before a replacement will occur.</para>
+						<bulletList><bullet_item>MAJORITY — A majority of cells must have the same value and be contiguous. Three out of four or five out of eight connected cells must have the same value.</bullet_item><bullet_item>HALF — Half of the cells must have the same value and be contiguous. Two out of four or four out of eight connected cells must have the same value. Using the HALF option will have a more smoothing effect.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the number of contiguous (spatially connected) cells that must be of the same value before a replacement will occur.</para>
+						<bulletList><bullet_item>MAJORITY — A majority of cells must have the same value and be contiguous. Three out of four or five out of eight connected cells must have the same value.</bullet_item><bullet_item>HALF — Half of the cells must have the same value and be contiguous. Two out of four or four out of eight connected cells must have the same value. Using the HALF option will have a more smoothing effect.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output filtered raster.</para>
+						</pythonReference><dialogReference>
+							<para>The output filtered raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para>The Majority Filter tool must satisfy two criteria before a replacement can occur: the number of neighboring cells of a similar value must be large enough (either by being the majority of, or half of, all the cells), and those cells must be contiguous about the center of the filter kernel. The second criteria concerning the spatial connectivity of the cells minimizes the corruption of cellular spatial patterns.</para></bullet_item><bullet_item>
+				<para>The use of FOUR for the number of neighbors will retain the corners of rectangular regions. The use of EIGHT will smooth the corners of rectangular regions.</para>
+			</bullet_item><bullet_item>
+				<para>Contiguous is defined as sharing an edge for a kernel of EIGHT and sharing a corner for a kernel of FOUR.</para>
+			</bullet_item><bullet_item>
+				<para>If the replacement threshold HALF is specified and two values occur as equal halves, a replacement will not occur if the value of the processing cell is the same as one of the halves. HALF allows more extensive filtering than MAJORITY.</para>
+			</bullet_item><bullet_item>
+				<para>While the contiguity criterion is the same for edge and corner raster cells, they obey different MAJORITY and HALF rules. Using a kernel of FOUR, an edge or corner cell always requires two matching neighbors before replacement will occur. With a kernel of EIGHT, a corner cell must have all neighbors of the same value before it is changed, while an edge cell requires three contiguous neighbors, including one along the edge, before any change will occur.</para>
+			</bullet_item><bullet_item>
+				<para>The output raster will be stabilized (will no longer change) after a few runs of Majority Filter.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MajorityFilter example 1 (Python window)</title>
+					<para>This example filters the input raster using all eight neighbors, with the greater smoothing effect by requiring half of them to have the same value for replacement.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outMajFilt = MajorityFilter("land", "EIGHT", "HALF")
+outMajFilt.save("c:/sapyexamples/output/outmajfilt")
+                    </code></scriptExample><scriptExample><title>MajorityFilter example 2 (stand-alone script)</title>
+					<para>This example filters the input raster using all eight neighbors, with the greater smoothing effect by requiring half of them to have the same value for replacement.</para>
+				<code xml:space="preserve"># Name: MajorityFilter_Ex_02.py
+# Description: Replaces cells in a raster based on the 
+#              majority of their contiguous neighboring cells.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "land"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute MajorityFilter
+outMajFilt = MajorityFilter(inRaster, "EIGHT", "HALF")
+
+# Save the output 
+outMajFilt.save("c:/sapyexamples/output/majfilter")
+                    </code></scriptExample></scriptExamples></tool></metadata>

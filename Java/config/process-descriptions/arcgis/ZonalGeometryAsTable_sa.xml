@@ -1,0 +1,82 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Zonal Geometry As Table (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates for each zone in a dataset the geometry measures (area, perimeter, thickness, and the characteristics of ellipse) and reports the results as a table.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Shape</keyword><keyword>Zonal Area</keyword><keyword>Zonal Centroid</keyword><keyword>Zonal Perimeter</keyword><keyword>Zonal Thickness</keyword><keyword>Zone</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ZonalGeometryAsTable" displayname="Zonal Geometry As Table (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates for each zone in a dataset the geometry measures (area, perimeter, thickness, and the characteristics of ellipse) and reports the results as a table.</para>
+			
+		</summary><alink_name>ZonalGeometryAsTable_sa</alink_name><toolIllust type="illustration" src="ZonalGeometryAsTable_sa_h.gif" alt="Zonal Geometry As Table illustration" /><parameters><param sync="true" name="in_zone_data" displayname="Input raster or feature zone data" datatype="Raster Layer | Feature Layer" direction="Input" expression="in_zone_data" type="Required"><pythonReference>
+						<para>Dataset that defines the zones.</para>
+						<para>The zones can be defined by an integer raster or a feature layer.</para>
+					</pythonReference><dialogReference>
+						<para>Dataset that defines the zones.</para>
+						<para>The zones can be defined by an integer raster or a feature layer.</para>
+					</dialogReference></param><param sync="true" name="zone_field" displayname="Zone field" datatype="Field" direction="Input" expression="zone_field" type="Required"><pythonReference><para>
+Field that holds the values that define each zone.</para>
+						<para>It must be an integer field of the zone dataset.</para></pythonReference><dialogReference><para>
+Field that holds the values that define each zone.</para>
+						<para>It must be an integer field of the zone dataset.</para></dialogReference></param><param sync="true" name="out_table" displayname="Output table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>Output table that will contain the summary of the values in each zone.</para>
+					</pythonReference><dialogReference>
+						<para>Output table that will contain the summary of the values in each zone.</para>
+					</dialogReference></param><param sync="true" name="processing_cell_size" displayname="Processing cell size" datatype="Analysis cell size" direction="Input" expression="processing_cell_size" type="Optional"><pythonReference><para>The processing cell size for the zonal  operation.</para><para>This is the value in the environment if specifically set.  If the environment is not set, the default for the cell size is determined by the type of the zone data as follows:<bulletList><bullet_item>If the zone dataset is a raster, the cell size is the same as the zone raster.</bullet_item><bullet_item>  If zone dataset is feature, the cell size is the shorter of the width or height of the extent of zone feature dataset in the output spatial reference, divided by 250.</bullet_item></bulletList></para>
+					</pythonReference><dialogReference><para>The processing cell size for the zonal  operation.</para><para>This is the value in the environment if specifically set.  If the environment is not set, the default for the cell size is determined by the type of the zone data as follows:<bulletList><bullet_item>If the zone dataset is a raster, the cell size is the same as the zone raster.</bullet_item><bullet_item>  If zone dataset is feature, the cell size is the shorter of the width or height of the extent of zone feature dataset in the output spatial reference, divided by 250.</bullet_item></bulletList></para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>A zone is defined as all areas in the input that have the same value.  The areas do not have to be contiguous.  Both raster and feature datasets can be used for the zone input.</para></bullet_item><bullet_item>
+				<para>If the input zone data is a feature dataset, a cell size must be set in either the dialog box or the environment.</para>
+			</bullet_item><bullet_item>
+				<para>The calculations for each zone are recorded in the output table.</para>
+			</bullet_item><bullet_item>
+				<para>In the output table, the value field always precedes the fields containing the zonal output calculations. The value field contains the values of the zones defined by the zone dataset.</para>
+			</bullet_item><bullet_item>
+				<para>The values for the zonal calculations will be floating point.</para>
+			</bullet_item><bullet_item>
+				<para>Other than the ORIENTATION item, all the results in the output table are presented in map units. The ORIENTATION item values are in degrees, with a possible range of 0 to 180. The ORIENTATION is defined as an angle between the x-axis and the major axis of the ellipse. The values of the orientation angle increase counterclockwise, starting at 0 in the east (horizontal, to the right) and going through 90 when the major axis is vertical.</para>
+			</bullet_item><bullet_item><para>If a particular zone consists of only one cell or if the zone is a single square block of cells, the orientation of the ellipse (in this case a circle) is set to 90 degrees.</para></bullet_item></usage><scriptExamples><scriptExample><title>ZonalGeometryAsTable example 1 (Python window)</title><para>This example determines the geometry measures for each zone defined by the input polygon shape file.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outZonalGeometryAsTable = ZonalGeometryAsTable("zones.shp", "Classes", "zonalgeomout", 0.2)
+                    </code></scriptExample><scriptExample><title>ZonalGeometryAsTable example 2 (stand-alone script)</title>
+					<para>This example determines the geometry measures for each zone defined by the input polygon shape file.</para>
+				<code xml:space="preserve"># Name: ZonalGeometryAsTable_Ex_02.py
+# Description:Calculates for each zone in a dataset the specified geometry 
+#   measure (area, perimeter,  thickness, or the characteristics 
+#   of ellipse) and reports the results as a table.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inZoneData = "zones.shp"
+zoneField = "Classes"
+outTable = "zonalgeomout02.dbf"
+processingCellSize = 0.2
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ZonalGeometryAsTable
+outZonalGeometryAsTable = ZonalGeometryAsTable(inZoneData, zoneField, "AREA", cellSize)
+                    </code></scriptExample></scriptExamples></tool></metadata>

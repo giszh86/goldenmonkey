@@ -1,0 +1,68 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Raster to Float (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a raster dataset to a file of binary floating-point values representing raster data.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Binary</keyword><keyword>Change</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>Flt</keyword><keyword>Hdr</keyword><keyword>Import</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RasterToFloat" displayname="Raster to Float (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts a raster dataset to a file of binary floating-point values representing raster data.</para>
+		</summary><alink_name>RasterToFloat_conversion</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset.</para><para>The raster can be integer or floating-point type.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster dataset.</para><para>The raster can be integer or floating-point type.</para>
+					</dialogReference></param><param sync="true" name="out_float_file" displayname="Output floating point raster file" datatype="File" direction="Output" expression="out_float_file" type="Required"><pythonReference>
+						<para>The output floating-point raster file.</para><para>The file name must have a .flt extension.</para>
+					</pythonReference><dialogReference>
+						<para>The output floating-point raster file.</para><para>The file name must have a .flt extension.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input can be any valid raster dataset.</para>
+			</bullet_item><bullet_item>
+				<para>Two outputs are created: an IEEE floating-point format 32-bit signed binary file with a .flt extension and an ASCII header file with a .hdr extension. Both will use the same output floating-point raster file name.</para>
+			</bullet_item><bullet_item>
+				<para>The ASCII file consists of header information containing a set of keywords.</para><para>The format of the file in general  is:</para>
+				    NCOLS xxx
+    NROWS xxx
+    XLLCORNER xxx
+    YLLCORNER xxx
+    CELLSIZE xxx
+    NODATA_VALUE xxx
+    BYTEORDER &lt;MSBFIRST | LSBFIRST&gt;<para>The definitions of the keywords are as follows:</para><bulletList><bullet_item><para>NCOLS and NROWS are the number of columns and rows in the raster defined by the binary file.</para></bullet_item><bullet_item><para>XLLCORNER and XLLCORNER are the coordinates of the lower left corner of the lower left cell.</para><para>The use of XLLCENTER and YLLCENTER is not supported by Raster to Float.</para></bullet_item><bullet_item><para>CELLSIZE is the cell size of the raster.</para></bullet_item><bullet_item><para>NODATA_VALUE is the value that is to represent NoData cells.</para></bullet_item><bullet_item><para>BYTEORDER represents how multibyte binary numbers are stored on the system on which the binary file was generated. On Intel-based systems, the byte order is LSBFIRST (also known as Big Endian). On most other architectures (all UNIX systems  except Alpha, and older Macintosh  with Motorola CPUs), the byte order is MSBFIRST (also known as Little Endian).</para></bullet_item></bulletList>
+			</bullet_item><bullet_item>
+				<para>The NODATA_VALUE is the value in the output file assigned to those cells in the input raster that contain NoData. This value is normally reserved for those cells whose true value is unknown.</para>
+			</bullet_item><bullet_item>
+				<para>By default, NoData values on the input raster will have a value of -9999 in the output float file. If you want to use another value to represent NoData, a procedure similar to the following can be applied:<bullet_item>Run the Spatial Analyst IsNull tool on the original raster. The output will be a raster of binary values, where 1 corresponds to NoData on the original raster and 0 is any other value.</bullet_item><bullet_item>Run the Spatial Analyst Con tool, specifying the IsNull result as the Input Conditional Raster, the new value to assign NoData values to as the Input True value, the original raster as the Input False raster, and a condition Expression of "value = 1".</bullet_item><bullet_item>Convert the Con output raster to a floating-point binary file with Raster To Float</bullet_item><bullet_item>Change the value of NODATA_VALUE in the ASCII header file to the value that NoData was converted to.</bullet_item></para>
+			</bullet_item><bullet_item>
+				<para>This tool only writes the origin as the lower left corner of the lower left cell. The Float to Raster tool also supports the origin as the center of the lower left cell.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RasterToFloat example (Python window)</title><para>Converts a raster dataset to a file of binary floating-point values representing raster data.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+inRaster = "elevation"
+outFloat = "c:/output/elevation.flt"
+arcpy.RasterToFloat_conversion("elevation", "c:/output/elevation.flt")
+                    </code></scriptExample><scriptExample><title>RasterToFloat example (stand-alone script)</title>
+					<para>Converts a raster dataset to a file of binary floating-point values representing raster data.</para>
+				<code xml:space="preserve"># Name: RasterToFloat_Ex_02.py
+# Description: Converts a raster dataset to a file of binary floating-point
+#     values representing raster data.
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inRaster = "elevation"
+outFloat = "c:/output/elevation.flt"
+
+# Execute RasterToFloat
+arcpy.RasterToFloat_conversion(inRaster, outFloat)
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Workspace To New Raster Catalog (Samples)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a new raster catalog and loads all the raster datasets in the input workspace, or geodatabase, to the raster catalog. The spatial reference of both the raster column and the geometry column are taken from the first raster dataset in the input workspace. The x,y domain of the geometry column is calculated with the union extents of all the raster dataset inputs. There must be a spatial reference attached to the raster datasets for the tool to run.</para>
+			This tool has been deprecated. For more information, see  An overview of the Samples toolbox.</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Dataset</keyword><keyword>Raster</keyword><keyword>Raster Catalog</keyword><keyword>Workspace</keyword><keyword>Workspace To Raster Catalog</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="WorkspaceToNewRasterCatalog" displayname="Workspace To New Raster Catalog (Samples)" toolboxalias="samples" softwarerestriction="none"><summary>
+			<para>Creates a new raster catalog and loads all the raster datasets in the input workspace, or geodatabase, to the raster catalog. The spatial reference of both the raster column and the geometry column are taken from the first raster dataset in the input workspace. The x,y domain of the geometry column is calculated with the union extents of all the raster dataset inputs. There must be a spatial reference attached to the raster datasets for the tool to run.</para>
+			This tool has been deprecated. For more information, see  An overview of the Samples toolbox.</summary><alink_name>WorkspaceToNewRasterCatalog_samples</alink_name><parameters><param sync="true" name="input_workspace" displayname="Input Workspace" datatype="Folder | Workspace" direction="Input" expression="input_workspace" type="Required"><pythonReference>
+						<para>The input workspace can be a directory, a personal geodatabase, file geodatabase, or an ArcSDE geodatabase.</para>
+					</pythonReference><dialogReference>
+						<para>The input workspace can be a directory, a personal geodatabase, file geodatabase, or an ArcSDE geodatabase.</para>
+					</dialogReference></param><param sync="true" name="output_location" displayname="Output Location" datatype="Folder | Workspace" direction="Output" expression="output_location" type="Required"><pythonReference>
+						<para>The output location is the geodatabase where the new raster catalog will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The output location is the geodatabase where the new raster catalog will be created.</para>
+					</dialogReference></param><param sync="true" name="raster_catalog_name" displayname="Raster Catalog Name" datatype="String" direction="Output" expression="raster_catalog_name" type="Required"><pythonReference>
+						<para>The name of the raster catalog to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the raster catalog to be created.</para>
+					</dialogReference></param><param sync="true" name="configuration_keyword" displayname="Configuration Keyword" datatype="String" direction="Input" expression="configuration_keyword" type="Optional"><pythonReference>
+						<para>Specifies the storage parameters (configuration) for a file geodatabase and an ArcSDE geodatabase. Personal geodatabases do not use configuration keywords.</para>
+						<para>ArcSDE configuration keywords are set up by your database administrator.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the storage parameters (configuration) for a file geodatabase and an ArcSDE geodatabase. Personal geodatabases do not use configuration keywords.</para>
+						<para>ArcSDE configuration keywords are set up by your database administrator.</para>
+					</dialogReference></param><param sync="true" name="management_type" displayname="Management Type" datatype="String" direction="Input" expression="management_type" type="Optional"><pythonReference>
+						<para>Raster datasets within raster catalogs can be managed in two ways: managed or unmanaged (by the geodatabase).</para>
+						<bulletList><bullet_item>MANAGED—With a managed raster catalog, the raster datasets inside the raster catalog will be physically stored within the geodatabase. When a row (or raster) is deleted from the catalog, it is deleted from the geodatabase</bullet_item><bullet_item>UNMANAGED—With an unmanaged raster catalog, the raster catalog only contains links or pointers connecting a row to a raster dataset stored outside the geodatabase. All raster datasets loaded into an unmanaged raster catalog must be a file on disk. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Raster datasets within raster catalogs can be managed in two ways: managed or unmanaged (by the geodatabase).</para>
+						<bulletList><bullet_item>MANAGED—With a managed raster catalog, the raster datasets inside the raster catalog will be physically stored within the geodatabase. When a row (or raster) is deleted from the catalog, it is deleted from the geodatabase</bullet_item><bullet_item>UNMANAGED—With an unmanaged raster catalog, the raster catalog only contains links or pointers connecting a row to a raster dataset stored outside the geodatabase. All raster datasets loaded into an unmanaged raster catalog must be a file on disk. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>The input workspace, or geodatabase, should contain all the raster datasets you put into the raster catalog.</para>
+			</bullet_item><bullet_item>
+				<para>There must be a spatial reference attached to the raster datasets for the tool to run.</para>
+			</bullet_item><bullet_item>
+				<para>Raster datasets within raster catalogs in a geodatabase can be handled in two ways: managed or unmanaged by the geodatabase. Having the raster catalog managed by the geodatabase means that the raster datasets will be stored within the geodatabase. When a row is deleted from the catalog, it is deleted from the geodatabase. When your raster catalog is unmanaged, there will only be a pointer connecting the raster catalog row to the raster dataset. All raster datasets loaded into an unmanaged raster catalog must be a file on disk. Geodatabase raster datasets can only be loaded into raster catalogs that are managed.</para>
+			</bullet_item><bullet_item>
+				<para>When creating a raster catalog in an ArcSDE geodatabase, the new raster catalog name cannot contain spaces; you can use underscores to separate words.</para>
+			</bullet_item><bullet_item>
+				<para>This sample tool was created using Python. The code can be viewed and edited, to help you write your own scripts.</para>
+			</bullet_item><bullet_item>
+				<para>The Raster Analysis Environment Settings are not valid for this tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><code xml:space="preserve">import arcgisscripting
+gp = arcgisscripting.create()
+ 
+gp.WorkspaceToNewRasterCatalog_samples("D:\\temp\\tempws", "Database Connections\\raster.sde", "wrksp_to_new_rc", "#", "Managed")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,90 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Lookup (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a new raster by looking up values found in another field in the table of the input raster.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Common Scale</keyword><keyword>Field</keyword><keyword>Group</keyword><keyword>Raster Field</keyword><keyword>Reclassification</keyword><keyword>Reclassify</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Lookup" displayname="Lookup (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Creates a new raster by looking up values found in another field in the table of the input raster.</para>
+		</summary><alink_name>Lookup_sa</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster that contains a field from which to create a new raster.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster that contains a field from which to create a new raster.</para>
+					</dialogReference></param><param sync="true" name="lookup_field" displayname="Lookup field" datatype="Field" direction="Input" expression="lookup_field" type="Required"><pythonReference>
+						<para>Field containing the values for the new raster.</para>
+					</pythonReference><dialogReference>
+						<para>Field containing the values for the new raster.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output reclassified raster.</para><para>The output will always be of integer type.</para></pythonReference><dialogReference>
+							<para>The output reclassified raster.</para><para>The output will always be of integer type.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If the lookup field is a numeric type, the values of that field will be written to the output raster attribute table as Value. Other items in the input raster attribute table will not be transferred to the output raster attribute table.</para>
+				<para>For example, an attribute table of input raster with numeric field Attr1:</para>
+				    Value   Count   Attr1
+    1       294     1
+    2       345     8
+    3       654     3
+				<para>Output attribute table from Lookup on Attr1 field:</para>
+				    Value   Count
+    1       294
+    3       654
+    8       345
+			</bullet_item><bullet_item>
+				<para>If the lookup field is a character type, the lookup field will appear in the output raster attribute table, and the value field will be the same as for input raster. Any other items in the input raster's attribute table will not be transferred to the output raster's attribute table.</para>
+				<para>For example, an attribute table of input raster with character field Text1:</para>
+				    Value   Count   Attr1   Text1
+    1        294    1       A
+    2       6218    8       B
+    3         28    3
+    4       3603    9       3
+				<para>Output attribute table from Lookup on Text1 field:</para>
+				    Value   Count   Text1
+    1        294    A
+    2       6218    B
+    3         28    
+    4       3603    3
+			</bullet_item></usage><scriptExamples><scriptExample><title>Lookup example 1 (Python window)</title>
+					<para>This example creates a new raster determined by the specified field of the input raster.</para><code xml:space="preserve">import arcpy
+from arcpy import env  
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outRaster = Lookup("mycity","land_code")
+outRaster.save("C:/sapyexamples/output/mylandcode.img")
+                    </code></scriptExample><scriptExample><title>Lookup example 2 (stand-alone script)</title>
+					<para>This example creates a new raster determined by the specified field of the input raster.</para>
+				<code xml:space="preserve"># Name: lookup_example02.py
+# Description: Creates a new raster by looking up values found in another 
+#              field in the table of the input raster.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "mycity"
+lookupField = "land_code"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Lookup
+outRaster = Lookup(inRaster, lookupField)
+
+# Save the output 
+outRaster.save("C:/sapyexamples/output/mylandcode")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Flip Line (Editing)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Reverses the from-to direction of line features.</para>
+			<para>You can view the orientation of line features by symbolizing line features with arrowheads. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Direction</keyword><keyword>End</keyword><keyword>Exist</keyword><keyword>First</keyword><keyword>Flip</keyword><keyword>Input</keyword><keyword>Last</keyword><keyword>Modify</keyword><keyword>Reverse</keyword><keyword>Start</keyword><keyword>Switch</keyword><keyword>Update</keyword><keyword>Vertex</keyword><keyword>Vertices</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FlipLine" displayname="Flip Line (Editing)" toolboxalias="edit" softwarerestriction="none"><summary>
+			<para>Reverses the from-to direction of line features.</para>
+			<para>You can view the orientation of line features by symbolizing line features with arrowheads. </para>
+		</summary><alink_name>FlipLine_edit</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature class or layer. This must be Polyline.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class or layer. This must be Polyline.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment></environments><usage><bullet_item>
+				
+					<para>This tool modifies the input data. See  for more information and strategies to avoid undesired data changes.</para>
+				
+			</bullet_item><bullet_item>
+				<para>Direction-dependent attributes, such as address ranges, are not flipped----only the geometry is flipped. For example, suppose a line feature has an LF-ADD attribute ('left from address') of 100 and an LT-ADD ('left-to address') of 198. These values will not change if the line is flipped. </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FlipLine Example(stand-alone script)</title>
+					<para>This example shows how to use Python stand-alone script to do in-place editing.</para>
+				<code xml:space="preserve">
+# Name: Flipline_Example.py
+# Description: Flip line features
+# Requirements: 
+# Author: ESRI
+
+import arcpy
+from arcpy import env
+env.workspace="C:/data"
+inFeatures="harvestable.shp"
+try:
+    arcpy.FlipLine_edit(inFeatures)
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample><scriptExample><title>FlipLine Example (Python interactive window)</title>
+					<para>Shows, within a Python interactive window, how to use Python command to flip line.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace="C:/data"
+arcpy.FlipLine_edit("harvestable.shp")
+                    </code></scriptExample></scriptExamples></tool></metadata>

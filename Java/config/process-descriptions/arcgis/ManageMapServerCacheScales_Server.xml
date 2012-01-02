@@ -1,0 +1,80 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Manage Map Server Cache Scales (Server)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Updates the scale levels in an existing cached map service. Use this tool to add new scales or delete existing scales from a map cache.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ManageMapServerCacheScales" displayname="Manage Map Server Cache Scales (Server)" toolboxalias="Server" softwarerestriction="none"><summary>
+			<para>Updates the scale levels in an existing cached map service. Use this tool to add new scales or delete existing scales from a map cache.</para>
+		</summary><alink_name>ManageMapServerCacheScales_Server</alink_name><parameters><param sync="true" name="server_name" displayname="Host" datatype="String" direction="Input" expression="server_name" type="Required"><pythonReference>
+						<para>The ArcGIS Server machine hosting the service from which you want to remove cache scales.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcGIS Server machine hosting the service from which you want to remove cache scales.</para>
+					</dialogReference></param><param sync="true" name="object_name" displayname="Map Server" datatype="String" direction="Input" expression="object_name" type="Required"><pythonReference>
+						<para>The name of the map service from which you want to remove cache scales.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the map service from which you want to remove cache scales.</para>
+					</dialogReference></param><param sync="true" name="levels" displayname="Scales" datatype="Value Table" direction="Input" expression="[levels,...]" type="Required"><pythonReference>
+						<para>The scale values to be included in the updated tiling scheme.</para>
+						<para>You must specify existing scale values if you want to keep them. Any existing scale levels you do not specify in this tool will be permanently deleted. For example, if you have four existing scales and you wish to add two scales, make sure your final list has a total of six scales.</para></pythonReference><dialogReference>
+						<para>The scale values to be included in the updated tiling scheme.</para>
+						<para>You must specify existing scale values if you want to keep them. Any existing scale levels you do not specify in this tool will be permanently deleted. For example, if you have four existing scales and you wish to add two scales, make sure your final list has a total of six scales.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>If you remove scales from an existing cache, it will permanently delete all existing cached tiles within that level of detail.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><para>This example modifies a map cache tiling scheme to contain four scales.</para><code xml:space="preserve"># ManageMapServerCacheScales example (stand-alone script)
+
+# Name: ManageMapServerCacheScales.py
+# Description: The following stand-alone script demonstrates how to add/delete
+#               MapServer cache scales for a map service with an existing schema
+#               
+# Requirements: os, sys, time &amp; traceback modules
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default value.
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, datetime, traceback, string
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of input variables for map service properties
+server = "MyServer"
+service = "Rainfall"
+scaleValues = "250000;125000;64000;5250"
+
+currentTime= datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+
+# print results of the script to a report
+report = open(file,'w')
+
+
+try:
+    starttime = time.clock()
+    result = arcpy.ManageMapServerCacheScales_server(server, service ,
+                                            scaleValues)
+    finishtime = time.clock()
+    elapsedtime = finishtime - starttime
+
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+    
+    print "Updated the number of cache scales successfully for " + service
+    + " in " + str(elapsedtime) + " sec \n on " + arg2
+
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 1 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+report.close()
+    
+print "Updated Map server Cache scales "
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

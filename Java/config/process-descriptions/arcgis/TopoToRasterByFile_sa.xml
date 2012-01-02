@@ -1,0 +1,344 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Topo to Raster by File (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Interpolates a hydrologically correct raster surface from point, line, and polygon data using parameters specified in a file.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Anudem</keyword><keyword>Dem</keyword><keyword>Estimate</keyword><keyword>Hydro</keyword><keyword>Interpolate</keyword><keyword>Interpolation</keyword><keyword>Interpolator</keyword><keyword>Predict</keyword><keyword>Spline</keyword><keyword>Surface</keyword><keyword>Thin Plate</keyword><keyword>Topographic</keyword><keyword>Topogrid</keyword><keyword>Topotoraster</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TopoToRasterByFile" displayname="Topo to Raster by File (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Interpolates a hydrologically correct raster surface from point, line, and polygon data using parameters specified in a file.</para>
+			
+		</summary><alink_name>TopoToRasterByFile_sa</alink_name><parameters><param sync="true" name="in_parameter_file" displayname="Input parameter file" datatype="File" direction="Input" expression="in_parameter_file" type="Required"><pythonReference>
+						<para>The input ASCII text file containing the inputs and parameters to use for the interpolation.</para>
+						<para>The file is typically created from a previous run of Topo to Raster with the optional output parameter file specified.</para>
+						<para>In order to test the outcome of changing the parameters, it is easier to make edits to this file and rerun the interpolation than to correctly issue the Topo to Raster tool each time.</para>
+					</pythonReference><dialogReference>
+						<para>The input ASCII text file containing the inputs and parameters to use for the interpolation.</para>
+						<para>The file is typically created from a previous run of Topo to Raster with the optional output parameter file specified.</para>
+						<para>In order to test the outcome of changing the parameters, it is easier to make edits to this file and rerun the interpolation than to correctly issue the Topo to Raster tool each time.</para>
+					</dialogReference></param><param sync="true" name="out_stream_features" displayname="Output stream polyline features" datatype="Feature Class" direction="Output" expression="out_stream_features" type="Optional"><pythonReference>
+						<para>Output feature class of stream polyline features.</para>
+					</pythonReference><dialogReference>
+						<para>Output feature class of stream polyline features.</para>
+					</dialogReference></param><param sync="true" name="out_sink_features" displayname="Output remaining sink point features" datatype="Feature Class" direction="Output" expression="out_sink_features" type="Optional"><pythonReference>
+						<para>Output feature class of remaining sink point features.</para>
+					</pythonReference><dialogReference>
+						<para>Output feature class of remaining sink point features.</para>
+					</dialogReference></param><param sync="true" name="out_surface_raster" displayname="Output surface raster" datatype="Raster" direction="Output" expression="out_surface_raster" type="Required"><pythonReference>
+							<para>The output interpolated surface raster.</para>
+						</pythonReference><dialogReference>
+							<para>The output interpolated surface raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The parameter file is structured with the input datasets listed first, followed by the various parameter settings, then the output options.</para>
+				<para>The input data identifies the input datasets and, where applicable, fields. There are six types of input: Contours, Points, Sinks, Streams, Lakes, and Boundaries. You can use as many inputs as you want, within reason. The order in which the inputs are entered does not have any bearing on the outcome. &lt;Path&gt; indicates a path to a dataset, &lt;Item&gt; indicates a field name, and &lt;#&gt; indicates a value to be entered.</para><para>The following table lists all of the parameters, the definition of each, and their syntax.</para>
+				
+					
+						
+						
+						
+						
+							
+								
+									<para>Parameter</para>
+								
+								
+									<para>Definition</para>
+								
+								
+									<para>Syntax</para>
+								
+							
+						
+						
+							
+								
+									<para>Contours</para>
+								
+								
+									<para>Contour line dataset with item containing height values.</para>
+								
+								
+									Contour &lt;Path&gt; &lt;Item&gt;
+								
+							
+							
+								
+									<para>Points</para>
+								
+								
+									<para>Point dataset with item containing height values.</para>
+								
+								
+									Point &lt;Path&gt; &lt;Item&gt;
+								
+							
+							
+								
+									<para>Sinks</para>
+								
+								
+									<para>Point dataset containing sink locations. If the dataset has elevation values for the sinks, specify that field name as the &lt;Item&gt;. If only the locations of the sinks are to be used, use NONE for &lt;Item&gt;.</para>
+								
+								
+									Sink &lt;Path&gt; &lt;Item&gt;
+								
+							
+							
+								
+									<para>Streams</para>
+								
+								
+									<para>Stream line dataset. Height values are not necessary.</para>
+								
+								
+									Stream &lt;Path&gt;
+								
+							
+							
+								
+									<para>Lakes</para>
+								
+								
+									<para>Lake polygon dataset. Height values are not necessary.</para>
+								
+								
+									Lake &lt;Path&gt;
+								
+							
+							
+								
+									<para>Boundary</para>
+								
+								
+									<para>Boundary polygon dataset. Height values are not necessary.</para>
+								
+								
+									Boundary &lt;Path&gt;
+								
+							
+							
+								
+									<para>Enforce</para>
+								
+								
+									<para>Controls whether drainage enforcement is applied.</para>
+								
+								
+									ENFORCE &lt;ON | OFF | ON_WITH_SINK&gt;
+								
+							
+							
+								
+									<para>Datatype</para>
+								
+								
+									<para>Primary type of input data.</para>
+								
+								
+									DATATYPE &lt;CONTOUR | SPOT&gt;
+								
+							
+							
+								
+									<para>Iterations</para>
+								
+								
+									<para>The maximum number of iterations the algorithm performs.</para>
+								
+								
+									ITERATIONS &lt;#&gt;
+								
+							
+							
+								
+									<para>Roughness Penalty</para>
+								
+								
+									<para>The measure of surface roughness.</para>
+								
+								
+									ROUGHNESS_PENALTY &lt;#&gt;
+								
+							
+							
+								
+									<para>Discretization Error Factor</para>
+								
+								
+									<para>The amount to adjust the data smoothing of the input data into a raster.</para>
+								
+								
+									DISCRETE_ERROR_FACTOR &lt;#&gt;
+								
+							
+							
+								
+									<para>Vertical Standard Error</para>
+								
+								
+									<para>The amount of random error in the z-values of the input data.</para>
+								
+								
+									VERTICAL_STANDARD_ERROR &lt;#&gt;
+								
+							
+							
+								
+									<para>Tolerances</para>
+								
+								
+									<para>The first reflects the accuracy of elevation data in relation to surface drainage, and the other prevents drainage clearance through unrealistically high barriers.</para>
+								
+								
+									TOLERANCES &lt;#&gt; &lt;#&gt;
+								
+							
+							
+								
+									<para>Z-Limits</para>
+								
+								
+									<para>Lower and upper height limits.</para>
+								
+								
+									ZLIMITS &lt;#&gt; &lt;#&gt;
+								
+							
+							
+								
+									<para>Extent</para>
+								
+								
+									<para>Minimum x, minimum y, maximum x, and maximum y coordinate limits.</para>
+								
+								
+									EXTENT &lt;#&gt; &lt;#&gt; &lt;#&gt; &lt;#&gt;
+								
+							
+							
+								
+									<para>Cell Size</para>
+								
+								
+									<para>The resolution of the final output raster.</para>
+								
+								
+									CELL_SIZE &lt;#&gt;
+								
+							
+							
+								
+									<para>Margin</para>
+								
+								
+									<para>Distance in cells to interpolate beyond the specified output extent and boundary.</para>
+								
+								
+									MARGIN &lt;#&gt;
+								
+							
+							
+								
+									<para>Output Stream Features</para>
+								
+								
+									<para>Only use if Output stream polyline features is set in the Topo to Raster by File dialog box.</para>
+								
+								
+									OUT_STREAM
+								
+							
+							
+								
+									<para>Output Sink Features</para>
+								
+								
+									<para>Only use if Output remaining sink point features is set in the Topo to Raster by File dialog box.</para>
+								
+								
+									OUT_SINK
+								
+							
+							
+								
+									<para>Output Diagnostics File</para>
+								
+								
+									<para>The location and name of the diagnostics file.</para>
+								
+								
+									OUT_DIAGNOSTICS &lt;Path&gt;
+								
+							
+						
+					
+				
+			</bullet_item><bullet_item>
+				<para>Do not specify pathnames for the optional output feature datasets in the parameter file. Use the Output stream polyline features and Output remaining sink point features in the tool dialog box to identify these outputs.</para>
+			</bullet_item><bullet_item>
+				<para>The contents of an example parameter file are:     Contour D:\data\contours2\arc HEIGHT
+     Point D:\data\points2\point SPOTS
+     Sink D:\data\sinks_200.shp 
+     Stream D:\data\streams\arc 
+     Lake D:\data\lakes\polygon 
+     Boundary D:\data\clipcov\polygon 
+     ENFORCE ON
+     DATATYPE CONTOUR
+     ITERATIONS 40
+     ROUGHNESS_PENALTY 0.00000000000
+     DISCRETE_ERROR_FACTOR 1.00000000000
+     VERTICAL_STANDARD_ERROR 0.00000000000
+     TOLERANCES 2.50000000000 100.00000000000
+     ZLIMITS -2000.00000000000 13000.00000000000
+     EXTENT -810480.62500000000 8321785.00000000000 810480.62500000000 10140379.00000000000
+     CELL_SIZE 1800.00000000000
+     MARGIN 20
+     OUT_STREAM
+     OUT_SINK
+     OUT_DIAGNOSTICS D:\data\ttr_diag.txt</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TopoToRasterByFile example 1 (Python window)</title>
+					<para>This example creates a hydrologically correct TIFF surface raster from a parameter file defining the input point, line, and polygon data.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env  
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outTTRByFile = TopoToRasterByFile("topotorasterbyfile.txt", 
+                   "C:/sapyexamples/output/out_streams.shp")
+outTTRByFile.save("C:/sapyexamples/output/ttrbyfout.tif")
+                    </code></scriptExample><scriptExample><title>TopoToRasterByFile example 2 (stand-alone script)</title>
+					<para>This example creates a hydrologically correct GRID surface raster from a parameter file defining the input point, line, and polygon data.</para>
+				<code xml:space="preserve"># Name: TopoToRasterByFile_Ex_02.py
+# Description: Interpolates a hydrologically correct 
+#    surface from point, line, and polygon data using
+#    parameters specified in a file.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inParameterFile = "topotorasterbyfile.txt"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute TopoToRasterByFile
+outTTRByFile = TopoToRasterByFile(inParameterFile)
+
+# Save the output 
+outTTRByFile.save("C:/sapyexamples/output/ttrbyfout02")
+                    </code></scriptExample></scriptExamples></tool></metadata>

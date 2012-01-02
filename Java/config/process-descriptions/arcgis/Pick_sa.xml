@@ -1,0 +1,77 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Pick (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>The value from a position raster is used to determine from which raster in a list of input rasters the output cell value will be obtained.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Condition</keyword><keyword>Evaluate</keyword><keyword>List</keyword><keyword>Logical</keyword><keyword>Order</keyword><keyword>Position</keyword><keyword>Test</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Pick" displayname="Pick (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>The value from a position raster is used to determine from which raster in a list of input rasters the output cell value will be obtained.</para>
+		</summary><alink_name>Pick_sa</alink_name><toolIllust type="illustration" src="Pick_sa_h.png" alt="Pick illustration" /><parameters><param sync="true" name="in_position_raster" displayname="Input position raster" datatype="Raster Layer" direction="Input" expression="in_position_raster" type="Required"><pythonReference>
+						<para>Input raster defining the position of the raster to use for the output value.</para><para>The input must be a positive integer raster.</para>
+					</pythonReference><dialogReference>
+						<para>Input raster defining the position of the raster to use for the output value.</para><para>The input must be a positive integer raster.</para>
+					</dialogReference></param><param sync="true" name="in_rasters_or_constants" displayname="Input rasters or constant values" datatype="Raster Layer | Constant" direction="Input" expression="[in_raster_or_constant,...]" type="Required"><pythonReference>
+						<para>The list of inputs from which the output value will be selected.</para><para>The inputs can be integer or float rasters.  A number can also be used as an input.</para>
+					</pythonReference><dialogReference>
+						<para>The list of inputs from which the output value will be selected.</para><para>The inputs can be integer or float rasters.  A number can also be used as an input.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference><para>The output raster.</para>
+						</pythonReference><dialogReference><para>The output raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The value of each cell of the position raster determines which input will be used to obtain the output raster value. For example, if a cell in the  position raster has a value of 1, the value from the first input in the raster list will be used for the output cell value.  If the position input has a value of 2, the output value will come from the second input in the raster list, and so on.</para>
+			</bullet_item><bullet_item>
+				<para>The order of the input list is relevant for this tool. If the order of rasters changes, the results will change.</para>
+			</bullet_item><bullet_item>
+				<para>If a cell value in the position raster is zero or negative, the result will be NoData. If the position value is larger than the number of rasters in the list, the result will be NoData.</para>
+			</bullet_item><bullet_item>
+				<para>Any cell with a NoData value on the position raster will receive NoData on the output raster.</para>
+			</bullet_item><bullet_item>
+				<para>If any of the rasters in the input list is floating point, the output raster will be floating point. If they are all integer, the output raster will be integer.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Pick example 1 (Python window)</title>
+					<para>This example assigns the output value based on the order of several input rasters.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outPick = Pick("cost", ["degs", "negs", "fourgrd"])
+outPick.save("C:/sapyexamples/output/outpick.tif")
+                    </code></scriptExample><scriptExample><title>Pick example 2 (stand-alone script)</title>
+					<para>This example assigns the output value based on the order of several input rasters.</para>
+				<code xml:space="preserve"># Name: Pick_Ex_02.py
+# Description: Assigns output values using one of a list of rasters
+#              determined by the value of an input raster.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inPositionRas = "cost"
+inRas01 = "degs"
+inRas02 = "negs"
+inRas03 = "fourgrd"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Pick
+outPick = Pick(inPositionRaster, [inRas01, inRas02, inRas03])
+
+# Save the output 
+outPick.save("C:/sapyexamples/output/outpick")
+                    </code></scriptExample></scriptExamples></tool></metadata>

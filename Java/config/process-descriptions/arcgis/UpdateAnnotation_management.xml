@@ -1,0 +1,61 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Update Annotation Feature Class (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Updates the input annotation feature class with text attribute fields and optionally populates the value of each new field for every feature in the feature class.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Label</keyword><keyword>Populate</keyword><keyword>Text</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="UpdateAnnotation" displayname="Update Annotation Feature Class (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Updates the input annotation feature class with text attribute fields and optionally populates the value of each new field for every feature in the feature class.</para>
+			
+		</summary><alink_name>UpdateAnnotation_management</alink_name><parameters><param sync="true" name="in_features" displayname="Input features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>Input annotation feature class to which new fields will be added.</para>
+					</pythonReference><dialogReference>
+						<para>Input annotation feature class to which new fields will be added.</para>
+					</dialogReference></param><param sync="true" name="update_values" displayname="Update Feature Values" datatype="Boolean" direction="Input" expression="update_values" type="Required"><pythonReference>
+						<para>Populates the value of each new field for every feature in the feature class.</para>
+						<bulletList><bullet_item>POPULATE—Populates the value of each new field for every feature in the feature class.</bullet_item><bullet_item>DO_NOT_POPULATE—Do not populate a value for the fields.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Populates the value of each new field for every feature in the feature class.</para>
+						<bulletList>
+							<bullet_item>Checked—Populates the value of each new field for every feature in the feature class. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Do not populate a value for the fields.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para>This tool can be run on a versioned feature class if the option to populate attribute fields is unchecked. The schema of the feature class will be updated in this case, but the new annotation fields will not be populated. Attribute values for a feature will remain blank until the feature is edited.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will update the schema of the feature class and, optionally, each annotation feature within the feature class. The schema update will add fields to the feature class (bold, italic, text, and so on) and also ensure that there is a symbol within the symbol collection. Without a symbol in the symbol collection, you can't use the improvements for constructing annotation features.</para>
+			</bullet_item><bullet_item>
+				<para>Populating the attributes fields is an intensive operation that requires every feature to be updated. Turning off this option will add the fields, but not populate them. If the fields are not populated on update, they will remain blank until the feature is edited.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>UpdateAnnotation Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the UpdateAnnotation tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data/Ontario.mdb"
+arcpy.UpdateAnnotation_management("ProvParks_anno", "POPULATE")
+
+                    </code></scriptExample><scriptExample><title>UpdateAnnotation Example (Stand-alone python script)</title>
+					<para>The following stand-alone script demonstrates how to use the UpdateAnnotation tool.</para>
+				<code xml:space="preserve"># Name: UpdateAnnotation_Example.py
+# Description: Use UpdateAnnotation to update ArcGIS 8.3 annotation feature classes
+# to ArcGIS 9.0
+# Author: ESRI
+
+# import system modules 
+import arcpy, os
+from arcpy import env
+
+# Set environment settings
+# User input geodatabase location - eg. C:/data/anno83.mdb
+env.workspace = raw_input('Annotation data location: ')
+
+# Create list of annotation feature classes within the geodatabase
+fcList = arcpy.ListFeatureClasses("", "ANNOTATION")
+
+# Loop through the feature classes and update
+for fc in fcList:
+    try:
+        # Process: Update the annotation feature classes
+        print "Updating " + fc + "..."
+        arcpy.UpdateAnnotation_management(fc, "POPULATE")
+    except:
+        # If an error occurred while running a tool print the messages
+        print arcpy.GetMessages()
+
+print "Update of annotation feature classes in " + env.workspace + " complete"
+                    </code></scriptExample></scriptExamples></tool></metadata>

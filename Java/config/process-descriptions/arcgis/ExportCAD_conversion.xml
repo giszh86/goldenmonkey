@@ -1,0 +1,98 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Export To CAD (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates one or more CAD drawings based on the values contained in one or more input feature classes or feature layers and supporting tables.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Annotation</keyword><keyword>Arcdxf</keyword><keyword>Autocad</keyword><keyword>Autodesk</keyword><keyword>Bentley</keyword><keyword>Blocks</keyword><keyword>Cad</keyword><keyword>Cells</keyword><keyword>Change</keyword><keyword>Computer Aided Design</keyword><keyword>Convert</keyword><keyword>Dgn</keyword><keyword>Drawing</keyword><keyword>Dwg</keyword><keyword>Dwt</keyword><keyword>Dxf</keyword><keyword>Export</keyword><keyword>File</keyword><keyword>Format</keyword><keyword>Gdb</keyword><keyword>Geodatabase</keyword><keyword>Import</keyword><keyword>Make</keyword><keyword>Mapping Specification For Dwg</keyword><keyword>Microstation</keyword><keyword>Msd</keyword><keyword>Personal</keyword><keyword>Properties</keyword><keyword>Seed</keyword><keyword>Semantic</keyword><keyword>Template</keyword><keyword>Translation</keyword><keyword>Turn</keyword><keyword>Xrecords</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExportCAD" displayname="Export To CAD (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Creates one or more CAD drawings based on the values contained in one or more input feature classes or feature layers and supporting tables.</para>
+		</summary><alink_name>ExportCAD_conversion</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature layer" direction="Input" expression="[in_features,...]" type="Required"><pythonReference>
+						<para>A collection of feature classes and/or feature layers whose geometry will be exported to one or more CAD files.</para>
+					</pythonReference><dialogReference>
+						<para>A collection of feature classes and/or feature layers whose geometry will be exported to one or more CAD files.</para>
+					</dialogReference></param><param sync="true" name="Output_Type" displayname="Output Type" datatype="String" direction="Input" expression="Output_Type" type="Required"><pythonReference>
+						<para>The CAD platform and file version of the output files. This value overrides any output_type values contained in the keyname column or alias column CADFile_type. Types include DGN-V8, DWG-R14, DWG-R2000, DWG-R2004, DWG-R2005, DWG-R2006, DWG-R2007, DWG-R2010, DXF-R14, DXF-R2000, DXF-R2004, DXF-R2005, DXF-R2006,  DXF-R2007, and DXF-R2010.</para>
+					</pythonReference><dialogReference>
+						<para>The CAD platform and file version of the output files. This value overrides any output_type values contained in the keyname column or alias column CADFile_type. Types include DGN-V8, DWG-R14, DWG-R2000, DWG-R2004, DWG-R2005, DWG-R2006, DWG-R2007, DWG-R2010, DXF-R14, DXF-R2000, DXF-R2004, DXF-R2005, DXF-R2006,  DXF-R2007, and DXF-R2010.</para>
+					</dialogReference></param><param sync="true" name="Output_File" displayname="Output File" datatype="CAD drawing dataset" direction="Output" expression="Output_File" type="Required"><pythonReference>
+						<para>The path of the desired output CAD drawing file. This name overrides any drawing name information included in the input features columns or alias columns named DrawingPathName.</para>
+					</pythonReference><dialogReference>
+						<para>The path of the desired output CAD drawing file. This name overrides any drawing name information included in the input features columns or alias columns named DrawingPathName.</para>
+					</dialogReference></param><param sync="true" name="Ignore_FileNames" displayname="Ignore Paths in Tables" datatype="Boolean" direction="Input" expression="Ignore_FileNames" type="Optional"><pythonReference>
+						<para>Allows the function to ignore or use the paths in the DrawingPathName. This allows the function to output CAD entities to specific drawings or ignore this and add to one CAD file.</para>
+						<bulletList><bullet_item>IGNORE_FILENAMES_IN_TABLES—Ignores the paths in the document entity fields and allows the output of all entities to a single CAD file. </bullet_item><bullet_item>USE_FILENAMES_IN_TABLES—Allows the paths in the document entity fields to be used and have each entity's path used so that each CAD part will be written to a separate file. This is the default. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Allows the function to ignore or use the paths in the DrawingPathName. This allows the function to output CAD entities to specific drawings or ignore this and add to one CAD file.</para>
+						<bulletList>
+							<bullet_item>Checked—Ignores the paths in the document entity fields and allows the output of all entities to a single CAD file. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Allows the paths in the document entity fields to be used and have each entity's path used so that each CAD part will be written to a separate file.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="Append_To_Existing" displayname="Append to Existing Files" datatype="Boolean" direction="Input" expression="Append_To_Existing" type="Optional"><pythonReference>
+						<para>Allows the output to append to an existing CAD file. This lets you add information to a CAD file on disk.</para>
+						<bulletList><bullet_item>APPEND_TO_EXISTING_FILES—Allow the output file content to be added to an existing output CAD file. The existing CAD file content will not be lost. </bullet_item><bullet_item>OVERWRITE_EXISTING_FILES—The output file content will overwrite the existing CAD file content. This is the default. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Allows the output to append to an existing CAD file. This lets you add information to a CAD file on disk.</para>
+						<bulletList>
+							<bullet_item>Checked—Allows the output file content to be added to an existing output CAD file. The existing CAD file content will not be lost.</bullet_item>
+							<bullet_item>Unchecked—The output file content will overwrite the existing CAD file content. This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="Seed_File" displayname="Seed File" datatype="CAD drawing dataset" direction="Input" expression="Seed_File" type="Optional"><pythonReference>
+						<para>An existing CAD drawing whose contents and document and layer properties will be used for all new output CAD files. If appending to existing CAD files, the seed drawing is ignored.</para>
+					</pythonReference><dialogReference>
+						<para>An existing CAD drawing whose contents and document and layer properties will be used for all new output CAD files. If appending to existing CAD files, the seed drawing is ignored.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>All input feature classes and/or feature layers and shapefiles are valid inputs to this tool.</para>
+			</bullet_item><bullet_item>
+				<para>This tool creates DWG, DXF, or DGN CAD files.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will not export coverage annotation to any CAD format.</para>
+			</bullet_item><bullet_item>
+				<para>By default, CAD entities are generated using the default entity properties of the target CAD file format unless otherwise specified using seed files and/or key named fields.</para>
+			</bullet_item><bullet_item>
+				<para>Seed files and key named fields can be used to control layers, CAD entity properties, and cell or block definitions in the destination CAD file(s).</para>
+			</bullet_item><bullet_item>
+				<para>The  tool can be used to add the key named fields recognized by  to specify CAD entity properties. Alternatively,  can be used to add only the field(s) needed for a specific task.</para>
+			</bullet_item><bullet_item>
+				<para>The RefName field in the input feature class specifies which seed file block or cell names to use. Further, attribute tag elements defined within the block or cell will be populated with attribute information if their tag names match a field name or field alias.</para>
+			</bullet_item><bullet_item>
+				<para>The DocPath field in the input feature class is used to direct the output to one or more CAD drawing files. Export To CAD will ignore this field unless the parameter Ignore Paths in Tables is unchecked in the tool dialog box or command line function.</para>
+			</bullet_item><bullet_item>
+				<para>The LTScale field is used to adjust the line weight in DGN files.</para>
+			</bullet_item><bullet_item>
+				<para>The LineWt field is used to adjust the line weight in DWG files.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will export annotation feature classes to CAD files as text. Conversely, the  tool supports the creation of annotation feature classes.</para>
+			</bullet_item><bullet_item>
+				<para>Output To DWG/DXF also exports the coordinate system, a feature class schema that defines the CAD feature classes, and the attribute information. This information is embedded in the DWG and organized by feature class name or values of the layer field in the input feature class (for example, highways, hydrants, or flooded areas). Subsequently, ArcGIS will read this embedded information and enable the ArcGIS user to process this read-only CAD information similarly to standard CAD feature classes. Reference the ESRI Mapping Specification for DWG (MSD) for in-depth information regarding this encoding format.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><code xml:space="preserve">
+# Name: ExportToCAD.py
+# Description: Create an AutoCAD DWG
+# Author: ESRI
+# 10/1/2009
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/data"
+
+# Set local variables
+in_features = "C:/data/EditorTutorial.gdb/StudyArea/Buildings"
+output_type = "DWG_R2007"
+output_file = "c:/data/Buildings.dwg"
+
+try:
+
+    # Process: Export to CAD
+    arcpy.ExportCAD_conversion(in_features, output_type, output_file, "USE_FILENAMES_IN_TABLES", "OVERWRITE_EXISTING_FILES", "")
+
+except:
+
+    # If an error occurs while running a tool print the message
+    print arcpy.GetMessages()
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,100 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Flow Direction (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a raster of flow direction from each cell to its steepest downslope neighbor.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Bearing</keyword><keyword>Catchment</keyword><keyword>Direction</keyword><keyword>Downstream</keyword><keyword>Flow</keyword><keyword>Heading</keyword><keyword>Runoff</keyword><keyword>Surface Water</keyword><keyword>Upstream</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FlowDirection" displayname="Flow Direction (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Creates a raster of flow direction from each cell to its steepest downslope neighbor.</para>
+			
+		</summary><alink_name>FlowDirection_sa</alink_name><toolIllust type="illustration" src="FlowDirection_sa_h.png" alt="Flow Direction illustration" /><parameters><param sync="true" name="in_surface_raster" displayname="Input surface raster" datatype="Raster Layer" direction="Input" expression="in_surface_raster" type="Required"><pythonReference>
+						<para>The input raster representing a continuous surface.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster representing a continuous surface.</para>
+					</dialogReference></param><param sync="true" name="force_flow" displayname="Force all edge cells to flow outward" datatype="Boolean" direction="Input" expression="force_flow" type="Optional"><pythonReference>
+						<para>Specifies if edge cells will always flow outward or follow normal flow rules.</para>
+						<bulletList><bullet_item>NORMAL — If the maximum drop on the inside of an edge cell is greater than zero, the flow direction will be determined as usual; otherwise, the flow direction will be toward the edge. Cells that should flow from the edge of the surface raster inward will do so. This is the default.</bullet_item><bullet_item>FORCE — All cells at the edge of the surface raster will flow outward from the surface raster.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies if edge cells will always flow outward or follow normal flow rules.</para>
+						<bulletList>
+							<bullet_item>UnChecked—If the maximum drop on the inside of an edge cell is greater than zero, the flow direction will be determined as usual; otherwise, the flow direction will be toward the edge. Cells that should flow from the edge of the surface raster inward will do so. This is the default.</bullet_item>
+							<bullet_item>Checked—All cells at the edge of the surface raster will flow outward from the surface raster.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_drop_raster" displayname="Output drop raster" datatype="Raster Dataset" direction="Output" expression="out_drop_raster" type="Optional"><pythonReference>
+						<para>An optional output drop raster.</para>
+						<para>The drop raster shows the ratio of the maximum change in elevation from each cell along the direction of flow to the path length between centers of cells, expressed in percentages.</para>
+					</pythonReference><dialogReference>
+						<para>An optional output drop raster.</para>
+						<para>The drop raster shows the ratio of the maximum change in elevation from each cell along the direction of flow to the path length between centers of cells, expressed in percentages.</para>
+					</dialogReference></param><param sync="true" name="out_flow_direction_raster" displayname="Output flow direction raster" datatype="Raster" direction="Output" expression="out_flow_direction_raster" type="Required"><pythonReference>
+							<para>The output raster that shows the flow direction from each cell to its steepest downslope neighbor.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster that shows the flow direction from each cell to its steepest downslope neighbor.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The output of the Flow Direction tool is an integer raster whose values range from 1 to 255. The values for each direction from the center are:</para>
+				
+					
+					
+				
+				<para>For example, if the direction of steepest drop was to the left of the current processing cell, its flow direction would be coded as 16.</para>
+			</bullet_item><bullet_item>
+				<para>If a cell is lower than its eight neighbors, that cell is given the value of its lowest neighbor, and flow is defined toward this cell. If multiple neighbors have the lowest value, the cell is still given this value, but flow is defined with one of the two methods explained below. This is used to filter out one-cell sinks, which are considered noise.</para>
+			</bullet_item><bullet_item>
+				<para>If a cell has the same change in z-value in multiple directions and that cell is part of a sink, the flow direction is referred to as undefined. In such cases, the value for that cell in the output flow direction raster will be the sum of those directions. For example, if the change in z-value is the same both to the right (flow direction = 1) and down (flow direction = 4), the flow direction for that cell is 1 + 4 = 5. Cells with undefined flow direction can be flagged as sinks using the Sink tool.</para>
+			</bullet_item><bullet_item>
+				<para>If a cell has the same change in z-value in multiple directions and is not part of a sink, the flow direction is assigned with a lookup table defining the most likely direction. See Greenlee (1987).</para>
+			</bullet_item><bullet_item>
+				<para>The output drop raster is calculated as the difference in z-value divided by the path length between the cell centers, expressed in percentages. For adjacent cells, this is analogous to the percent slope between cells. Across a flat area, the distance becomes the distance to the nearest cell of lower elevation. The result is a map of percent rise in the path of steepest descent from each cell.</para>
+				<para>When calculating the drop raster in flat areas, the distance to diagonally adjacent cells (1.414 * cell size) is approximated by 1.5 * cell size to increase the processing speed by using integer calculations.</para>
+			</bullet_item><bullet_item>
+				<para>When using the NORMAL option, a cell at the edge of the surface raster will flow toward the inner cell with the steepest drop in z-value. If the drop is less than or equal to zero, the cell will flow out of the surface raster.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FlowDirection example 1 (Python window)</title>
+					<para>This example creates a flow direction raster from an input GRID elevation surface raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outFlowDirection = FlowDirection("elevation", "NORMAL")
+outFlowDirection.save("C:/sapyexamples/output/outflowdir01")
+
+                    </code></scriptExample><scriptExample><title>FlowDirection example 2 (stand-alone script)</title>
+					<para>This example creates a flow direction raster from an input GRID elevation surface raster.</para>
+				<code xml:space="preserve"># Name: FlowDirection_Example.py
+# Description: Creates a raster of flow direction from each cell to its
+#    steepest downslope neighbor.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inSurfaceRaster = "elevation"
+outDropRaster = "C:/sapyexamples/output/dropraster"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute FlowDirection
+outFlowDirection = FlowDirection(inSurfaceRaster, "FORCE", outDropRaster)
+
+# Save the output 
+outFlowDirection.save("C:/sapyexamples/output/outflowdir02")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

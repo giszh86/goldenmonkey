@@ -1,0 +1,89 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Export Data Change Message (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates an output delta file containing updates from an input replica.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>1 Way</keyword><keyword>2 Way</keyword><keyword>Centralize</keyword><keyword>Check</keyword><keyword>Child</keyword><keyword>Contractor</keyword><keyword>Database</keyword><keyword>Delta</keyword><keyword>Difference</keyword><keyword>Disconnect</keyword><keyword>Edit</keyword><keyword>Gdb</keyword><keyword>Geodata</keyword><keyword>In</keyword><keyword>Mobile</keyword><keyword>One</keyword><keyword>Out</keyword><keyword>Parent</keyword><keyword>Production</keyword><keyword>Publication</keyword><keyword>Replica</keyword><keyword>Replicate</keyword><keyword>Replication</keyword><keyword>Sde</keyword><keyword>Send</keyword><keyword>Service</keyword><keyword>Synchronize</keyword><keyword>Two</keyword><keyword>Update</keyword><keyword>Way</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExportDataChangeMessage" displayname="Export Data Change Message (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates an output delta file containing updates from an input replica.</para>
+		</summary><alink_name>ExportDataChangeMessage_management</alink_name><parameters><param sync="true" name="in_geodatabase" displayname="Export from Replica Geodatabase" datatype="Workspace ;GeoDataServer" direction="Input" expression="in_geodatabase" type="Required"><pythonReference>
+						<para>Specifies the replica geodatabase from which to export the data change message. The geodatabase may be local or remote.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the replica geodatabase from which to export the data change message. The geodatabase may be local or remote.</para>
+					</dialogReference></param><param sync="true" name="out_data_changes_file" displayname="Output Data Changes File" datatype="File" direction="Output" expression="out_data_changes_file" type="Required"><pythonReference>
+						<para>Specifies the delta file to export to.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the delta file to export to.</para>
+					</dialogReference></param><param sync="true" name="in_replica" displayname="Replica" datatype="String" direction="Input" expression="in_replica" type="Required"><pythonReference>
+						<para>The replica containing updates to be exported.</para>
+					</pythonReference><dialogReference>
+						<para>The replica containing updates to be exported.</para>
+					</dialogReference></param><param sync="true" name="switch_to_receiver" displayname="Switch to Receiver once the message has been exported" datatype="Boolean" direction="Input" expression="switch_to_receiver" type="Required"><pythonReference>
+						<para>Indicates whether to change the role of the replica to that of a receiver. The receiver may not send replica updates until updates from the relative replica sender arrive.</para>
+						<bulletList><bullet_item>DO_NOT_SWITCH—Do not switch replica role. This is the default.</bullet_item><bullet_item>SWITCH—Switch replica role from sender to receiver.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether to change the role of the replica to that of a receiver. The receiver may not send replica updates until updates from the relative replica sender arrive.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Do not switch replica role. This is the default.</bullet_item>
+							<bullet_item>Checked—Switch replica role from sender to a receiver.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="include_unacknowledged_changes" displayname="Include unacknowledged data changes" datatype="Boolean" direction="Input" expression="include_unacknowledged_changes" type="Required"><pythonReference>
+						<para>Indicates whether to include data changes that have been previously exported for which no acknowledgement message has been received.</para>
+						<bulletList><bullet_item>NO_UNACKNOWLEDGED—Do not include data changes that have previously been sent.</bullet_item><bullet_item>UNACKNOWLEDGED—Include all of the data changes that have been previously exported for which no acknowledgement message has been sent. This is the default.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether to include data changes that have been previously exported for which no acknowledgement message has been received.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Do not include data changes that have previously been sent.</bullet_item>
+							<bullet_item>Checked—Include all of the data changes that have been previously exported for which no acknowledgement message has been sent. This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="include_new_changes" displayname="Include new data changes since last export" datatype="Boolean" direction="Input" expression="include_new_changes" type="Required"><pythonReference>
+						<para>Indicates whether to include all data changes created since the last exported data change message.</para>
+						<bulletList><bullet_item>NO_NEW_CHANGES—Do not include data changes created since the last exported data change message.</bullet_item><bullet_item>NEW_CHANGES—Include data changes created since the last exported data change message. This is the default.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether to include all data changes created since the last exported data change message.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Do not include data changes created since the last exported data change message.</bullet_item>
+							<bullet_item>Checked—Include data changes created since the last exported data change message. This is the default.</bullet_item>
+						</bulletList>
+					
+						<para>Indicates whether to include all data changes created since the last exported data change message.</para>
+						<bulletList><bullet_item>NO_NEW_CHANGES—Do not include data changes created since the last exported data change message.</bullet_item><bullet_item>NEW_CHANGES—Include data changes created since the last exported data change message. This is the default.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The geodatabase may be a local geodatabase or a geodata service.</para>
+			</bullet_item><bullet_item>
+				<para>The output delta file can be a delta file geodatabase (.gdb), delta personal geodatabase (.mdb) or a delta XML file (.xml). When specifying the output delta file, you must include the appropriate suffix (.gdb, .mdb or .xml) </para>
+			</bullet_item><bullet_item>
+				<para>This tool is used when synchronizing replica while disconnected. This is done by first running the  tool which creates a delta file with changes to synchronize. The delta file is then copied to the relative replica and imported using the  tool. If a delta file gets lost and you want to resend, you can use the  tool to regenerate the delta file. After the changes are imported, the relative replica can export an acknowledgement file using the  tool. The acknowledgment file is copied to the replica and imported using the  tool. If an acknowledgement is not received, the next time changes are sent they will include the new changes plus the previously sent changes. </para>
+			</bullet_item><bullet_item>
+				<para>To synchronize replicas in a connected mode see the  tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ExportDataChangeMessage Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the ExportDataChangeMessage function in the Python window. </para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace = "C:/Data"
+arcpy.ExportDataChangeMessage_management("MySDEdata.sde", "Changes.gdb", "MyReplica1", "SWITCH", "TRUE", "TRUE")
+                    </code></scriptExample><scriptExample><title>ExportDataChangeMessage Example 2 (stand-alone Python script)</title>
+					<para>The following Python script demonstrates how to use the ExportDataChangeMessage function in a stand-alone script. </para>
+				<code xml:space="preserve"># Name: ExportDataChangesMessage_Example2.py
+# Description: Exports a data change message to a delta file geodatabase (.gdb)
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data"
+
+# Set local variables
+in_geodatabase = "MySDEdata.sde"
+out_dataChanges = "Changes.gdb"
+replica_name = "MyReplica1"
+switch_directions = "SWITCH"
+acknowledge = "TRUE"
+new_changes = "TRUE"
+
+# Execute ExportDataChangeMessage
+arcpy.ExportDataChangeMessage_management(in_geodatabase, out_dataChanges, replica_name, switch_directions, acknowledge, new_changes)
+                    </code></scriptExample></scriptExamples></tool></metadata>

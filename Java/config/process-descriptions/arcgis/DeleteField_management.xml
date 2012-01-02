@@ -1,0 +1,104 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Delete Field (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool deletes one or more fields from a table, feature class, feature layer, or raster dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Clear</keyword><keyword>Column</keyword><keyword>Drop</keyword><keyword>Erase</keyword><keyword>Feature</keyword><keyword>Item</keyword><keyword>Multiple</keyword><keyword>Remove</keyword><keyword>Table</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DeleteField" displayname="Delete Field (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>This tool deletes one or more fields from a table, feature class, feature layer, or raster dataset.</para>
+		</summary><alink_name>DeleteField_management</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View; Raster Layer" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The table containing the fields to be deleted. The existing input table will be modified.</para>
+					</pythonReference><dialogReference>
+						<para>The table containing the fields to be deleted. The existing input table will be modified.</para>
+					</dialogReference></param><param sync="true" name="drop_field" displayname="Drop Field" datatype="Field" direction="Input" expression="[drop_field,...]" type="Required"><pythonReference><para>The fields to be dropped from the input table. Only nonrequired fields may be deleted.</para></pythonReference><dialogReference>
+						<para>The fields to be dropped from the input table. Only nonrequired fields may be deleted.</para>
+						<para>The Add Field button, which is used only in ModelBuilder, allows you to add expected fields so that you can complete the dialog box and continue to build your model.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool can be used with any table; ArcSDE, file, or personal geodatabase feature class; coverage; raster dataset; or shapefile.</para>
+			</bullet_item><bullet_item>
+				<para>Fields cannot be deleted from nonnative, read-only data formats in ArcGIS, such as VPF and CAD datasets.</para>
+			</bullet_item><bullet_item>
+				<para>The Drop Field parameter Add Field button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run or its derived data does not exist, the Drop Field parameter may not be populated with field names. The Add Field button allows you to add expected fields so you can complete the Delete Field dialog box and continue to build your model.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DeleteField example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the DeleteField tool in immediate mode:</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.CopyFeatures_management("majorrds.shp", "C:/output/majorrds_copy.shp")
+arcpy.DeleteField_management("C:/output/majorrds_copy.shp", 
+                             ["STREET_NAM", "LABEL", "CLASS"])
+                    </code></scriptExample><scriptExample><title>DeleteField example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the DeleteField tool:</para>
+				<code xml:space="preserve"># Name: DeleteField_Example2.py
+# Description: Delete several fields from a feature class
+# Author: ESRI
+  
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data"
+ 
+# Set local variables
+inFeatures = "accident.dbf"
+outFeatureClass = "C:/output/new_accident.dbf"
+dropFields = ["STREET_NAM", "LABEL", "CLASS"]
+ 
+# Execute CopyFeatures to make a new copy of the feature class
+#  Use CopyRows if you have a table
+arcpy.CopyFeatures_management(inFeatures, outFeatureClass)
+ 
+# Execute DeleteField
+arcpy.DeleteField_management(outFeatureClass, dropFields)
+
+                    </code></scriptExample><scriptExample><title>DeleteField example 3 (stand-alone script)</title>
+					<para>Use DeleteField to clear all unnecessary fields from a feature class or table.</para>
+				<code xml:space="preserve"># Name: DeleteFields_clearfields.py
+# Description: Delete unrequired fields from a feature class or tble.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+try: 
+    # Get user-supplied input and output arguments
+    inTable = arcpy.GetParameterAsText(0)
+    updatedTable = arcpy.GetParameterAsText(1)
+ 
+    # Describe the input (need to test the dataset and data types)
+    desc = arcpy.Describe(updatedTable)
+ 
+    # Make a copy of the input (so we can mantain the original as is)
+    if desc.datasetType == "FeatureClass":
+        arcpy.CopyFeatures_management(inTable, updatedTable)
+    else:
+        arcpy.CopyRows_management(inTable, updatedTable)
+ 
+    # Use ListFields to get a list of field objects
+    fieldObjList = arcpy.ListFields(updatedTable)
+ 
+    # Create an empty list that will be populated with field names        
+    fieldNameList = []
+ 
+    # For each field in the object list, add the field name to the
+    #  name list.  If the field is required, exclude it, to prevent errors
+    for field in fieldObjList:
+        if not field.required:
+            fieldNameList.append(field.name)
+ 
+    # dBASE tables require a field other than an OID and Shape.  If this is
+    #  the case, retain an extra field (the first one in the original list)
+    if desc.dataType in ["ShapeFile", "DbaseTable"]:
+        fieldNameList = fieldNameList[1:]
+ 
+    # Execute DeleteField to delete all fields in the field list. 
+    arcpy.DeleteField_management(updatedTable, fieldNameList)
+          
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

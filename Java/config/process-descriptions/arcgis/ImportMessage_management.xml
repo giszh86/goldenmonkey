@@ -1,0 +1,101 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Import Message (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Imports changes from a delta file into a replica geodatabase, or imports an acknowledgment message into a replica geodatabase. </para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>1 Way</keyword><keyword>2 Way</keyword><keyword>Acknowledge</keyword><keyword>Bring In</keyword><keyword>Centralize</keyword><keyword>Check</keyword><keyword>Child</keyword><keyword>Contractor</keyword><keyword>Database</keyword><keyword>Delta</keyword><keyword>Difference</keyword><keyword>Disconnect</keyword><keyword>Edit</keyword><keyword>Gdb</keyword><keyword>Geodata</keyword><keyword>In</keyword><keyword>Incorperate</keyword><keyword>Integrate</keyword><keyword>Mobile</keyword><keyword>One</keyword><keyword>Out</keyword><keyword>Parent</keyword><keyword>Production</keyword><keyword>Publication</keyword><keyword>Replica</keyword><keyword>Replicate</keyword><keyword>Replication</keyword><keyword>Sde</keyword><keyword>Service</keyword><keyword>Synchronize</keyword><keyword>Two</keyword><keyword>Update</keyword><keyword>Way</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ImportMessage" displayname="Import Message (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Imports changes from a delta file into a replica geodatabase, or imports an acknowledgment message into a replica geodatabase. </para>
+			</summary><alink_name>ImportMessage_management</alink_name><parameters><param sync="true" name="in_geodatabase" displayname="Import to Replica Geodatabase" datatype="Workspace ; GeoDataServer" direction="Input" expression="in_geodatabase" type="Required"><pythonReference>
+						<para>Specifies the replica geodatabase to receive the imported message. The geodatabase may be local or remote.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the replica geodatabase to receive the imported message. The geodatabase may be local or remote.</para>
+					</dialogReference></param><param sync="true" name="source_delta_file" displayname="Import from Delta File" datatype="Workspace ; File" direction="Input" expression="source_delta_file" type="Required"><pythonReference>
+						<para>Specifies the file from which the message will be imported.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the file from which the message will be imported.</para>
+					</dialogReference></param><param sync="true" name="out_acknowledgement_file" displayname="Output Acknowledgement File" datatype="File" direction="Output" expression="out_acknowledgement_file" type="Optional"><pythonReference>
+						<para>When importing data changes, this allows you to optionally export a message to acknowledge the import of a data change message. This option is ignored for anything other than a data change message.</para>
+					</pythonReference><dialogReference>
+						<para>When importing data changes, this allows you to optionally export a message to acknowledge the import of a data change message. This option is ignored for anything other than a data change message.</para>
+					</dialogReference></param><param sync="true" name="conflict_policy" displayname="Conflict Resolution Policy" datatype="String" direction="Input" expression="conflict_policy" type="Optional"><pythonReference>
+						<para>Specifies how conflicts are resolved when they are encountered while importing a data change message.</para>
+						<bulletList><bullet_item>MANUAL—Manually resolve conflicts in the versioning reconcile environment. </bullet_item><bullet_item>IN_FAVOR_OF_DATABASE—Conflicts automatically resolve in favor of the database receiving the changes. </bullet_item><bullet_item>IN_FAVOR_OF_IMPORTED_CHANGES—Conflicts automatically resolve in favor of the imported changes. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how conflicts are resolved when they are encountered while importing a data change message.</para>
+						<bulletList><bullet_item>MANUAL—Manually resolve conflicts in the versioning reconcile environment. </bullet_item><bullet_item>IN_FAVOR_OF_DATABASE—Conflicts automatically resolve in favor of the database receiving the changes. </bullet_item><bullet_item>IN_FAVOR_OF_IMPORTED_CHANGES—Conflicts automatically resolve in favor of the imported changes. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="conflict_definition" displayname="Conflict Definition" datatype="String" direction="Input" expression="conflict_definition" type="Optional"><pythonReference>
+						<para>Specifies how you would like to define conflicts: </para>
+						<bulletList><bullet_item>BY_OBJECT—Detects conflicts by row.</bullet_item><bullet_item>BY_ATTRIBUTE—Detects conflicts by column.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>Specifies how you would like to define conflicts: </para>
+						<bulletList><bullet_item>BY_OBJECT—Detects conflicts by row.</bullet_item><bullet_item>BY_ATTRIBUTE—Detects conflicts by column.</bullet_item></bulletList></dialogReference></param><param sync="true" name="reconcile_with_parent_version" displayname="Reconcile with the Parent Version (Check-out replicas)" datatype="Boolean" direction="Input" expression="reconcile_with_parent_version" type="Optional"><pythonReference>
+						<para>Indicates whether to automatically reconcile once data changes are sent to the parent replica if there are no conflicts present. This option is only available for check-out/check-in replicas.</para>
+						<bulletList><bullet_item>DO_NOT_RECONCILE—Do not reconcile. This is the default.</bullet_item><bullet_item>RECONCILE—Reconcile.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether to automatically reconcile once data changes are sent to the parent replica if there are no conflicts present. This option is only available for check-out/check-in replicas.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Do not reconcile. This is the default.</bullet_item>
+							<bullet_item>Checked—Reconcile.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is used when synchronizing replica while disconnected. This is done by first running the  tool which creates a delta file with changes to synchronize. The delta file is then copied to the relative replica and imported using the  tool. If a delta file gets lost and you want to resend, you can use the  tool to regenerate the delta file. After the changes are imported, the relative replica can export an acknowledgement file using the  tool. The acknowledgment file is copied to the replica and imported using the  tool. If an acknowledgement is not received, the next time changes are sent they will include the new changes plus the previously sent changes. </para>
+			</bullet_item><bullet_item>
+				<para>The geodatabase may be a local geodatabase or a geodata service.</para>
+			</bullet_item><bullet_item>
+				<para>Accepts either acknowledgment messages or data change messages. Acknowledgment files are  XML (.xml). Data change messages can be delta file geodabase (.gdb), delta personal geodatabase (.mdb) or delta XML files (.xml).</para>
+			</bullet_item><bullet_item>
+				<para>After importing a data change message, you have the option to immediately export an acknowledgment message. The output acknowledgment file must be XML.</para>
+			</bullet_item><bullet_item>
+				<para>To synchronize replicas in a connected mode see the  tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ImportMesage Example (Python Window)</title>
+					<para>The following example demonstrates how to use the ImportMessage funcion in a Python window.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace = "C:/Data"
+arcpy.ImportMessage_management("MySDEdata.sde", "DataChanges.gdb", "acknowledgement.xml", "IN_FAVOR_OF_IMPORTED_CHANGES", "BY_OBJECT")
+                    </code></scriptExample><scriptExample><title>ImportMesage Example 2 (stand-alone Python script)</title>
+					<para>The following demonstrates how to use the ImportMessage function to import a data changes file in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name: ImportMessage_Example2.py
+# Description: Imports a data change message (from a delta gdb) into a replica workspace.   
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data"
+
+# Set local variables
+replica_workspace = "MySDEdata.sde"
+in_message = "DataChanges.gdb" # data changes file (delta gdb)
+output_acknowledgement = "acknowledgement.xml" # optional
+conflict_policy = "IN_FAVOR_OF_IMPORTED_CHANGES"
+conflict_detection = "BY_OBJECT"
+reconcile = "" # Only applicable for checkout replicas
+
+# Execute Import Message
+arcpy.ImportMessage_management(replica_workspace, in_message, output_acknowledgement, conflict_policy, conflict_detection, reconcile)
+                    </code></scriptExample><scriptExample><title>ImportMesage Example 3 (stand-alone Python script)</title>
+					<para>The following demonstrates how to use the ImportMessage function to import a data changes file in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name: ImportMessage_Example3.py
+# Description: Imports an acknowledgement message into a replica workspace.  
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data"
+
+# Set local variables
+replica_workspace = "MySDEdata.sde"
+in_message = "acknowledgement.xml" # Acknowledgement file 
+output_acknowledgement = "" 	# not applicable when importing an acknowledgement file
+conflict_policy = ""        	# not applicable when importing an acknowledgement file 
+conflict_detection = ""     	# not applicable when importing an acknowledgement file
+reconcile = ""              	# not applicable when importing an acknowledgement file
+
+# Execute Import Message
+arcpy.ImportMessage_management(replica_workspace, dc_Message, output_acknowledgement, conflict_policy, conflict_detection, reconcile)
+                    </code></scriptExample></scriptExamples></tool></metadata>

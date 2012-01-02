@@ -1,0 +1,111 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">
+Table To Ellipse
+ (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>
+Converts a table (text file, CSV file, Excel file, dBASE table, or geodatabase table) containing coordinate and other required fields to a feature class. The output features are elliptical polygons. A single ellipse is generated from each row in the table. The features created are defined by a starting point, semi-major and semi-minor axis lengths, and rotation.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Center Point</keyword><keyword>Elliptical</keyword><keyword>Geodesy</keyword><keyword>Geometry</keyword><keyword>Major Axis</keyword><keyword>Minor Axis</keyword><keyword>Origin</keyword><keyword>True Earth</keyword><keyword>Vector</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="&#xA;TableToEllipse" displayname="&#xA;Table To Ellipse&#xA; (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>
+Converts a table (text file, CSV file, Excel file, dBASE table, or geodatabase table) containing coordinate and other required fields to a feature class. The output features are elliptical polygons. A single ellipse is generated from each row in the table. The features created are defined by a starting point, semi-major and semi-minor axis lengths, and rotation.</para></summary><alink_name>
+TableToEllipse_management</alink_name><toolIllust type="illustration" src="TableToEllipse_management_h.png" alt="&#xA;Table To Ellipse overview graphic&#xA;" /><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table" direction="Input" expression="in_table" type="Required"><pythonReference><para>The input table from which to generate ellipse features.</para></pythonReference><dialogReference><para>The input table from which to generate ellipse features.</para></dialogReference></param><param sync="true" name="out_featureclass" displayname="Output feature class" datatype="Feature Class" direction="Input" expression="out_featureclass" type="Required"><pythonReference>
+						<para>
+The output feature class that will contain the ellipse features.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The output feature class that will contain the ellipse features.
+</para>
+					</dialogReference></param><param sync="true" name="x_field" displayname="X Field" datatype="Field" direction="Input" expression="x_field" type="Required"><pythonReference>
+						<para>
+The input table field containing the X (longitude) center point coordinate.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The input table field containing the X (longitude) center point coordinate.
+</para>
+					</dialogReference></param><param sync="true" name="y_field" displayname="Y Field" datatype="Field" direction="Input" expression="y_field" type="Required"><pythonReference>
+						<para>
+The input table field containing the Y (latitude) center point coordinate.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The input table field containing the Y (latitude) center point coordinate.
+</para>
+					</dialogReference></param><param sync="true" name="major_field" displayname="Major Field" datatype="Field" direction="Input" expression="major_field" type="Required"><pythonReference>
+						<para>
+Field name containing (semi) major axis length values of the ellipses.</para>
+					</pythonReference><dialogReference>
+						<para>
+Field name containing (semi) major axis length values of the ellipses.</para>
+					</dialogReference></param><param sync="true" name="minor_field" displayname="Minor Field" datatype="Field" direction="Input" expression="minor_field" type="Required"><pythonReference>
+						<para>
+Field name containing (semi) minor axis length values of the ellipses.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Field name containing (semi) minor axis length values of the ellipses.
+</para>
+					</dialogReference></param><param sync="true" name="distance_units" displayname="Distance Units" datatype="String" direction="Input" expression="distance_units" type="Required"><pythonReference>
+						<para>
+The units of measure of the major and minor axes. METERS is the default.</para>
+						<bulletList><bullet_item>METERS—Distance measure in meters.</bullet_item><bullet_item>KILOMETERS—Distance measure in kilometers.</bullet_item><bullet_item>MILES—Distance measure in miles.</bullet_item><bullet_item>NAUTICAL_MILES—Distance measure in nautical miles.</bullet_item><bullet_item>FEET—Distance measure in International feet.</bullet_item><bullet_item>US_SURVEY_FEET—Distance measure in US Survey feet.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>
+The units of measure of the major and minor axes. METERS is the default.</para>
+						<bulletList><bullet_item>METERS—Distance measure in meters.</bullet_item><bullet_item>KILOMETERS—Distance measure in kilometers.</bullet_item><bullet_item>MILES—Distance measure in miles.</bullet_item><bullet_item>NAUTICAL_MILES—Distance measure in nautical miles.</bullet_item><bullet_item>FEET—Distance measure in International feet.</bullet_item><bullet_item>US_SURVEY_FEET—Distance measure in US Survey feet.</bullet_item></bulletList></dialogReference></param><param sync="true" name="azimuth_field" displayname="Azimuth Field" datatype="Field" direction="Input" expression="azimuth_field" type="Optional"><pythonReference>
+						<para>
+Field name containing Azimuth (rotation) values for the ellipse.
+</para><para>Azimuth values are geographic rotation  and measured from North (zero degrees) with positive clockwise rotation.</para>
+					</pythonReference><dialogReference>
+						<para>
+Field name containing Azimuth (rotation) values for the ellipse.
+</para><para>Azimuth values are geographic rotation  and measured from North (zero degrees) with positive clockwise rotation.</para>
+					</dialogReference></param><param sync="true" name="azimuth_units" displayname="Azimuth Units" datatype="String" direction="Input" expression="azimuth_units" type="Optional"><pythonReference>
+						<para>
+The measurement units of the values in the Azimuth Field.
+DEGREES is the default.</para><bulletList><bullet_item>DEGREES—Direction measure in decimal degrees.</bullet_item><bullet_item>MILS—Direction measure in mils.</bullet_item><bullet_item>RADS—Direction measure in radians.</bullet_item><bullet_item>GRADS—Direction measure in gradians.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>
+The measurement units of the values in the Azimuth Field.
+DEGREES is the default.</para><bulletList><bullet_item>DEGREES—Direction measure in decimal degrees.</bullet_item><bullet_item>MILS—Direction measure in mils.</bullet_item><bullet_item>RADS—Direction measure in radians.</bullet_item><bullet_item>GRADS—Direction measure in gradians.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="id_field" displayname="ID" datatype="Field" direction="Input" expression="id_field" type="Optional"><pythonReference>
+						<para>
+ID field from the input table. This may be used to join the output features back to the input table.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+ID field from the input table. This may be used to join the output features back to the input table.
+</para>
+					</dialogReference></param><param sync="true" name="spatial_reference" displayname="Spatial Reference" datatype="Spatial Reference" direction="Input" expression="spatial_reference" type="Optional"><pythonReference>
+						<para>
+The spatial reference of the input coordinates in the X Field and Y Field. This will become the spatial refrence of the output feature class. The default is GCS_WGS_1984.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The spatial reference of the input coordinates in the X Field and Y Field. This will become the spatial refrence of the output feature class. The default is GCS_WGS_1984.
+</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>
+Input text files and CSV files must follow the file structure specified in  .
+</para>
+			</bullet_item><bullet_item><para>The default spatial reference is GCS_WGS_1984.</para></bullet_item><bullet_item><para>The following fields are required in the input table, as they are used to generate the ellipse geometries:<bulletList>
+						<bullet_item>X Field</bullet_item><bullet_item>Y Field</bullet_item>
+						<bullet_item>Major Axis Field</bullet_item>
+						<bullet_item>Minor Axis Field</bullet_item><bullet_item>Distance Units</bullet_item>
+					</bulletList></para>
+			</bullet_item><bullet_item><para>The Azimuth (rotation) field is optional.</para></bullet_item></usage><scriptExamples><scriptExample><title>TableToEllipse example (stand-alone script)</title>
+					<para>Creates polyline ellipse features from a table.</para>
+				<code xml:space="preserve">
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set local variables
+input_table = r"c:\workspace\SGS\eltop.gdb\elret"
+output_ellipse = r"c:\workspace\SGS\eltop.gdb\Eplyln_001"
+
+#Table To Ellipse
+arcpy.TableToEllipse_management(input_table, output_ellipse,"lond",
+																															"latd","mjerr","mnerr","KILOMETERS",
+																															"orient", "DEGREES", "LinkID")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,74 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Table Select (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Selects table records matching a Structured Query Language (SQL) expression and writes them to an output table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Choose</keyword><keyword>Derive</keyword><keyword>Expression</keyword><keyword>Partition</keyword><keyword>Pick Out</keyword><keyword>Portion</keyword><keyword>Query</keyword><keyword>Set</keyword><keyword>Sql</keyword><keyword>Subset</keyword><keyword>Type</keyword><keyword>Where Clause</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TableSelect" displayname="Table Select (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Selects table records matching a Structured Query Language (SQL) expression and writes them to an output table.</para>
+		</summary><alink_name>TableSelect_analysis</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View;Raster Layer" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The table whose records matching the specified expression will be written to the output table.</para>
+					</pythonReference><dialogReference>
+						<para>The table whose records matching the specified expression will be written to the output table.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>The output table containing records from the input table that match the specified expression.</para>
+					</pythonReference><dialogReference>
+						<para>The output table containing records from the input table that match the specified expression.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Expression" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>An SQL expression used to select a subset of features. The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para>
+						<para>
+							"MY_FIELD"
+						</para>
+						<para> If you're querying personal geodatabases, enclose fields in square brackets: </para>
+						<para>
+							[MY_FIELD]
+						</para>
+						<para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para>
+						<para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</pythonReference><dialogReference>
+						<para>An SQL expression used to select a subset of features. The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para>
+						<para>
+							"MY_FIELD"
+						</para>
+						<para> If you're querying personal geodatabases, enclose fields in square brackets: </para>
+						<para>
+							[MY_FIELD]
+						</para>
+						<para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para>
+						<para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_Config_Keyword" label="Output Config Keyword"></environment></environments><usage><bullet_item>
+				<para>The input can be an INFO, dBASE, or geodatabase table, a feature class, table view, or VPF dataset.</para>
+			</bullet_item><bullet_item>
+				<para> In the tool dialog, a selection expression can be built with the Query Builder. In scripting, the expression must be manually entered.</para>
+			</bullet_item><bullet_item>
+				
+			</bullet_item><bullet_item>
+				<para>  If a table view is used for Input Table and no expression is entered, only the selected records are written to the output table. If a table view is used for input
+table and an expression is entered, the expression is only executed
+against the selected records, and the expression-based subset of
+the selected set is written to the output table.</para>
+			</bullet_item><bullet_item><para>If you want to create a table from the table view's selected set of records, use the  (management) tool.</para></bullet_item></usage><scriptExamples><scriptExample><title>Table Select Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Table Select function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/data"
+arcpy.TableSelect_analysis("majorrds.shp", "C:/output/majorrdsCl4.shp", '"CLASS" = '4'')
+                    </code></scriptExample><scriptExample><title>Table Select Example 2 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the Table Select function in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: TableSelect_Example2.py
+# Description: Selct class4 roads from the major roads gnatcatcher habitat study area
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/data"
+
+# Set local variables
+in_features = "majorrds.shp"
+out_feature_class = "C:/output/majorrdsCl4.shp"
+where_clause = '"CLASS" = '4''
+
+# Execute TableSelect
+arcpy.TableSelect_analysis(in_features, out_feature_class, where_clause)
+                    </code></scriptExample></scriptExamples></tool></metadata>

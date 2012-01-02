@@ -1,0 +1,71 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Hot Spot Analysis with Rendering (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the Getis-Ord Gi* statistic for hot spot analysis and then applies a cold-to-hot type of rendering to the output z-scores.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="HotSpotsRendered" displayname="Hot Spot Analysis with Rendering (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Calculates the Getis-Ord Gi* statistic for hot spot analysis and then applies a cold-to-hot type of rendering to the output z-scores.</para>
+		</summary><alink_name>HotSpotsRendered_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/HotSpotsRendered_stats_v.png" alt="Hot Spot Analysis illustration" /><toolIllust type="illustration" src="HotSpotsRendered_stats_h.png" alt="Hot Spot Analysis illustration" /><parameters><param sync="true" name="Input_Feature_Class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="Input_Feature_Class" type="Required"><pythonReference>
+						<para>The feature class for which hot spot analysis will be performed.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class for which hot spot analysis will be performed.</para>
+					</dialogReference></param><param sync="true" name="Input_Field" displayname="Input Field" datatype="Field" direction="Input" expression="Input_Field" type="Required"><pythonReference>
+						<para>The numeric field (number of victims, jobs, incident severity, and so on) to be evaluated.</para>
+					</pythonReference><dialogReference>
+						<para>The numeric field (number of victims, jobs, incident severity, and so on) to be evaluated.</para>
+					</dialogReference></param><param sync="true" name="Output_Layer_File" displayname="Output Layer File" datatype="Layer File" direction="Output" expression="Output_Layer_File" type="Required"><pythonReference>
+						<para>The layer file to store the cold-to-hot rendering information. You must include the .lyr extension as part of the file name.</para>
+					</pythonReference><dialogReference>
+						<para>The layer file to store the cold-to-hot rendering information. You must include the .lyr extension as part of the file name.</para>
+					</dialogReference></param><param sync="true" name="Output_Feature_Class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="Output_Feature_Class" type="Required"><pythonReference>
+						<para>The output feature class to receive the results fields.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class to receive the results fields.</para>
+					</dialogReference></param><param sync="true" name="Distance_Band_or_Threshold_Distance" displayname="Distance Band or Threshold Distance" datatype="Double" direction="Input" expression="Distance_Band_or_Threshold_Distance" type="Required"><pythonReference>
+						<para>Specifies a distance cutoff value. Features outside the specified Distance Band or Threshold Distance are ignored in the hot spot analysis. The value entered for this parameter should be in the units of the Input Feature Class' coordinate system. There is one exception: if the Output Coordinate System environment variable is set, the value entered for this parameter should be in the units of the coordinate system set in that environment. When this field is left blank, a default distance value will be computed and applied.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies a distance cutoff value. Features outside the specified Distance Band or Threshold Distance are ignored in the hot spot analysis. The value entered for this parameter should be in the units of the Input Feature Class' coordinate system. There is one exception: if the Output Coordinate System environment variable is set, the value entered for this parameter should be in the units of the coordinate system set in that environment. When this field is left blank, a default distance value will be computed and applied.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_coordinate_system" label="Output coordinate system">Feature geometry is projected to the Output Coordinate System prior to analysis, so values entered for the Distance Band or Threshold Distance parameter should match those specified in the Output Coordinate System. All mathematical computations are based on the Output Coordinate System spatial reference.</environment><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Qualified_field_names" label="Qualified field names"></environment><environment name="Output_has_M_values" label="Output has M values"></environment><environment name="Output_has_Z_values" label="Output has Z values"></environment><environment name="Default_output_Z_value" label="Default output Z value"></environment></environments><usage><bullet_item>
+				<para>The Gi* rendered model combines the   and  tools.</para>
+			</bullet_item><bullet_item><para>Beginning with the ArcGIS 9.3 release, output from the  tool is automatically added to the TOC with default hot/cold rendering applied to the z-score field.</para></bullet_item></usage><scriptExamples><scriptExample><title>HotSpotAnalysisWithRendering Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the HotSpotAnalysisWithRendering tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data"
+arcpy.HotSpotsRendered_stats("911Count.shp", "ICOUNT", "911HotSpots_Rendered.lyr", "911HotSpots.shp")
+                    </code></scriptExample><scriptExample><title>HotSpotAnalysisWithRendering Example (Stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the HotSpotAnalysisWithRendering tool.</para>
+				<code xml:space="preserve">
+# Analyze the spatial distribution of 911 calls in a metropolitan area
+# using the Hot-Spot Analysis with Rendering Tool (Local Gi*)
+
+# Import system modules
+import arcpy
+
+# Set geoprocessor object property to overwrite existing output, by default
+arcpy.gp.overwriteOutput = True
+
+# Local variables...
+workspace = "C:/Data"
+
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.env.workspace = workspace
+
+    # Copy the input feature class and integrate the points to snap
+    # together at 500 feet
+    # Process: Copy Features and Integrate
+    cf = arcpy.CopyFeatures_management("911Calls.shp", "911Copied.shp",
+                         "#", 0, 0, 0)
+
+    integrate = arcpy.Integrate_management("911Copied.shp #", "500 Feet")
+
+    # Use Collect Events to count the number of calls at each location
+    # Process: Collect Events
+    ce = arcpy.CollectEvents_stats("911Copied.shp", "911Count.shp", "Count", "#")
+
+    # Hot Spot Analysis of 911 Calls
+    # Process: Hot Spot Analysis (Getis-Ord Gi*)
+    hs = arcpy.HotSpotsRendered_stats("911Count.shp", "ICOUNT", "911HotSpots_rendered.lyr","911HotSpots.shp")
+
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

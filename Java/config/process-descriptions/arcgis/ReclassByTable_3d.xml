@@ -1,0 +1,109 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Reclass by Table (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Reclassifies or changes the values of the input cells of a raster using a remap table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Common Scale</keyword><keyword>Group</keyword><keyword>Reclass</keyword><keyword>Reclassification</keyword><keyword>Reclassify</keyword><keyword>Remap</keyword><keyword>Replace</keyword><keyword>Replace Values</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ReclassByTable" displayname="Reclass by Table (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Reclassifies or changes the values of the input cells of a raster using a remap table.</para>
+		</summary><alink_name>ReclassByTable_3d</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster to be reclassified.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster to be reclassified.</para>
+					</dialogReference></param><param sync="true" name="in_remap_table" displayname="Input remap table" datatype="Table View" direction="Input" expression="in_remap_table" type="Required"><pythonReference>
+						<para>Table holding fields defining value ranges to be reclassified and the values they will become.</para>
+					</pythonReference><dialogReference>
+						<para>Table holding fields defining value ranges to be reclassified and the values they will become.</para>
+					</dialogReference></param><param sync="true" name="from_value_field" displayname="From value field" datatype="Field" direction="Input" expression="from_value_field" type="Required"><pythonReference>
+						<para>Field holding the beginning value for each value range to be reclassified.</para>
+						<para>This is a numeric field of the input remap table.</para>
+					</pythonReference><dialogReference>
+						<para>Field holding the beginning value for each value range to be reclassified.</para>
+						<para>This is a numeric field of the input remap table.</para>
+					</dialogReference></param><param sync="true" name="to_value_field" displayname="To value field" datatype="Field" direction="Input" expression="to_value_field" type="Required"><pythonReference>
+						<para>Field holding the ending value for each value range to be reclassified.</para>
+						<para>This is a numeric field of the input remap table.</para>
+					</pythonReference><dialogReference>
+						<para>Field holding the ending value for each value range to be reclassified.</para>
+						<para>This is a numeric field of the input remap table.</para>
+					</dialogReference></param><param sync="true" name="output_value_field" displayname="Output value field" datatype="Field" direction="Input" expression="output_value_field" type="Required"><pythonReference>
+						<para>Field holding the integer values to which each range should be changed.</para>
+						<para>This is an integer field of the input remap table.</para>
+					</pythonReference><dialogReference>
+						<para>Field holding the integer values to which each range should be changed.</para>
+						<para>This is an integer field of the input remap table.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Required"><pythonReference>
+						<para>The output reclassified raster.</para><para>The output will always be of integer type.</para>
+					</pythonReference><dialogReference>
+						<para>The output reclassified raster.</para><para>The output will always be of integer type.</para>
+					</dialogReference></param><param sync="true" name="missing_values" displayname="Change missing values to NoData" datatype="Boolean" direction="Input" expression="missing_values" type="Optional"><pythonReference>
+						<para>Denotes whether missing values in the reclass table retain their value or get mapped to NoData.</para>
+						<bulletList><bullet_item>DATA —Signifies that if any cell location on the input raster contains a value not present or reclassed in a remap table, the value should remain intact and be written for that location to the output raster. This is the default.</bullet_item><bullet_item>NODATA — Signifies that if any cell location on the input raster contains a value not present or reclassed in a remap table, the value will be reclassed to NoData for that location on the output raster.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Denotes whether missing values in the reclass table retain their value or get mapped to NoData.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Signifies that if any cell location on the input raster contains a value not present or reclassed in a remap table, the value should remain intact and be written for that location to the output raster. This is the default.</bullet_item>
+							<bullet_item>Checked—Signifies that if any cell location on the input raster contains a value not present or reclassed in a remap table, the value will be reclassed to NoData for that location on the output raster.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input raster must have valid statistics. If the statistics do
+not exist, they can be created using the  tool in the Data Management Tools toolbox.</para>
+			</bullet_item><bullet_item>
+				<para>The From value field, To value field, and Output value field are the field names in the table that define the remapping.</para>
+			</bullet_item><bullet_item>
+				<para>To reclassify individual values, use a simple remap table of two items. The first item identifies the value to reclassify, and the other item identifies the value to assign to it. Set the 'to value field' the same as the 'from value field'. The value to assign to the output is 'output value field'.</para>
+			</bullet_item><bullet_item>
+				<para>To reclassify ranges of values, the remap table must have items defining the start and end of each range, along with the value to assign the range. The item defining the start of the range is the From value field, and the value defining the end of the range is the To value field. The value to assign to the output is Output value field.</para>
+			</bullet_item><bullet_item>
+				<para>The remap table can be an INFO table, a .dbf file, an Access table, or a text file.</para>
+			</bullet_item><bullet_item>
+				<para>The values in the from and to fields can be any numerical item. The assignment values in the output field must be integers.</para>
+			</bullet_item><bullet_item>
+				<para>Values in the from field for .dbf, INFO, and Geodatabase tables do not need to be sorted. For text-file based tables, they must be sorted in ascending order. The values should not overlap in either case.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ReclassByTable example 1 (Python window)</title>
+					
+					<para>This example uses a remap table to reclassify the input raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env  
+env.workspace = "C:/data"
+arcpy.ReclassByTable_3d("slope","remapslope","C:/sapyexamples/output/recslope",
+                        "FROM","TO","OUT", "NODATA")
+
+
+                    </code></scriptExample><scriptExample><title>ReclassByTable example 2 (stand-alone script)</title>
+					
+					<para>This example uses a remap table to reclassify the input raster.</para>
+				<code xml:space="preserve"># Name: ReclassByTable_Ex_02.py
+# Description: Reclassifies the values of the input raster using a remap table.
+# Requirements: 3D Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inRaster = "slope"
+inRemapTable = "remapslope"
+outRaster = "C:/output/recslope"
+
+# Check out the ArcGIS 3D Analyst extension license
+arcpy.CheckOutExtension("3D")
+
+# Execute Reclassify
+arcpy.ReclassByTable_3d(inRaster, inRemapTable, outRaster, "FROM","TO","OUT",
+                        "NODATA")
+                    </code></scriptExample></scriptExamples></tool></metadata>

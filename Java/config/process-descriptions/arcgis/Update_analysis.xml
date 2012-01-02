@@ -1,0 +1,111 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Update (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Computes a geometric intersection of the Input Features and Update Features. The attributes and geometry of the input features are updated by the update features in the output feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Amend</keyword><keyword>Combine</keyword><keyword>Cover</keyword><keyword>Inside</keyword><keyword>Intersect</keyword><keyword>Join</keyword><keyword>On Top Of</keyword><keyword>Outside</keyword><keyword>Overlap</keyword><keyword>Replace</keyword><keyword>Spatial Relationship</keyword><keyword>Substitute</keyword><keyword>Superimpose</keyword><keyword>Topological Set</keyword><keyword>Topology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Update" displayname="Update (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Computes a geometric intersection of the Input Features and Update Features. The attributes and geometry of the input features are updated by the update features in the output feature class.</para>
+		</summary><alink_name>Update_analysis</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/Update_analysis_v.gif" alt="Update illustration" /><toolIllust type="illustration" src="Update_analysis_h.gif" alt="Update illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature class or layer. Geometry type must be polygon.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class or layer. Geometry type must be polygon.</para>
+					</dialogReference></param><param sync="true" name="update_features" displayname="Update Features" datatype="Feature Layer" direction="Input" expression="update_features" type="Required"><pythonReference>
+						<para>The features that will be used to update the Input Features. Geometry type must be polygon.</para>
+					</pythonReference><dialogReference>
+						<para>The features that will be used to update the Input Features. Geometry type must be polygon.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The feature class to contain the results. Do not set this to be the same as the Input Features.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class to contain the results. Do not set this to be the same as the Input Features.</para>
+					</dialogReference></param><param sync="true" name="keep_borders" displayname="Borders" datatype="Boolean" direction="Input" expression="keep_borders" type="Optional"><pythonReference>
+						<para>Specifies whether the boundary of the update polygon features will be kept.</para>
+						<bulletList><bullet_item>BORDERS—The outside border of the Update Features will be kept in the Output Feature Class. This is the default option. </bullet_item><bullet_item>NO_BORDERS—The outside border of the Update Features are dropped after they are inserted into the Input Features. Item values of the Update Features take precedence over Input Features attributes. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether the boundary of the update polygon features will be kept.</para>
+						<bulletList>
+							<bullet_item>Checked—The outside border of the Update Features will be kept in the Output Feature Class. This is the default option. </bullet_item>
+							<bullet_item>Unchecked—The outside border of the Update Features are dropped after they are inserted into the Input Features. Item values of the Update Features take precedence over Input Features attributes.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="cluster_tolerance" displayname="XY Tolerance" datatype="Linear unit" direction="Input" expression="cluster_tolerance" type="Optional"><pythonReference>
+						<para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both).</para>
+					</pythonReference><dialogReference>
+						<para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both).</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Qualified_field_names" label="Qualified field names">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Input Features must be of type polygon.</para>
+			</bullet_item><bullet_item>
+				<para>The input feature class will not be modified by this tool. The results of the tool will be written to a new feature class.</para>
+			</bullet_item><bullet_item>
+				<para>The Update Features must be polygon.</para>
+			</bullet_item><bullet_item>
+				<para>The input feature class and update feature class field names must match.</para>
+			</bullet_item><bullet_item>
+				<para>If the update feature class is missing one (or many) of the fields that are present in the input feature class, the input feature class field value for the missing field(s) will be removed from the output feature class. </para>
+			</bullet_item><bullet_item>
+				<para>If the Borders parameter is unchecked in the dialog box (or set to NO_BORDERS in scripting or at the command line), the polygon boundaries along the outer edge of the update features will be dropped. Even though the outer boundaries of some update polygons are dropped, the attributes of the update features that overlap input features will be assigned to the polygons in the output feature class.</para>
+			</bullet_item><bullet_item>
+				<para>Attribute values from the input feature class(es) will be copied to the output feature class.  However, if the input is a layer(s) created by the  tool and a field's "Use Ratio Policy" is checked, then a ratio of the input attribute value is calculated for the output attribute value.    When "Use Ratio Policy" is enabled, whenever a feature in an overlay operation is split, the attributes of the resulting features are a ratio of the attribute value of the input feature. The output value  is based on the ratio in which the input feature  geometry was divided. For example, If the input geometry was divided equally, each new feature's attribute value is assigned one-half of the value of the input feature's attribute value. "Use Ratio Policy" only applies to numeric field types. </para><para>Geoprocessing tools do not honor geodatabase feature class or table field split policies.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will use a tiling process to handle very large datasets for better performance and scalability. For more details, see .</para>
+			</bullet_item><bullet_item>
+				<para>This tool may generate multipart features in the output even if all inputs were single part. If multipart features are not desired, use the  on the output feature class.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Update Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the Update function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.Update_analysis ("city_lots.shp", "data.gdb/flood_levels", "data.gdb/low_lots", 
+          "DROP_BORDER", 0.0003)
+                    </code></scriptExample><scriptExample><title>Update Example 2 (Stand-alone Script)</title>
+					<para>The following stand-alone script shows how to use the Update function in a scripting environment.</para>
+				<code xml:space="preserve"># Name: UpdateZones.py
+# Purpose: Update the "lots" feature class with features from "cutzones"
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set the workspace
+env.workspace = "c:/data/city.gdb"
+
+# Set local parameters
+inFeatures = "lots"
+updateFeatures = "cutzones"
+outFeatures = "futurecut"
+
+#Process: Update
+arcpy.Update_analysis(inFeatures, updateFeatures, outFeatures, "only_fid", 0.25)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

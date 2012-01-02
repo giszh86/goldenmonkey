@@ -1,0 +1,81 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Mod (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Finds the remainder (modulo) of the first raster when divided by the second raster on a cell-by-cell basis.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Division</keyword><keyword>Modulus</keyword><keyword>Remainder</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Mod" displayname="Mod (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Finds the remainder (modulo) of the first raster when divided by the second raster on a cell-by-cell basis.</para>
+		</summary><alink_name>Mod_sa</alink_name><toolIllust type="illustration" src="Mod_sa_h.png" alt="Mod illustration" /><parameters><param sync="true" name="in_raster_or_constant1" displayname="Input raster or constant value 1" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant1" type="Required"><pythonReference>
+						<para>The numerator input.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The numerator input.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="in_raster_or_constant2" displayname="Input raster or constant value 2" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant2" type="Required"><pythonReference>
+						<para>The denominator input.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The denominator input.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>The cell values are the remainder of the division of the values in the first input by the second input.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>The cell values are the remainder of the division of the values in the first input by the second input.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para>The order of inputs is relevant for this tool.</para></bullet_item><bullet_item>
+				<para>Mod assumes both its inputs are integers. If any inputs are not integer, those inputs will be converted to integers through truncation. Output values are always integers.</para>
+			</bullet_item><bullet_item>
+				<para>Any value modulated (divided) by 0 is assigned NoData on the output. Therefore, any location on the second input that is either 0 or NoData will return NoData for that location on the output.</para>
+			</bullet_item><bullet_item>
+				<para>If the second input value (the divisor) is larger than the first input value (the dividend), the output will be the same value as the first input. For example, if you were to divide a value of 8 by value 10, the integer division calculation will return the input value 8 for the remainder.</para>
+			</bullet_item><bullet_item>
+				<para>In Map Algebra, the equivalent  symbol for this tool is "%" ().</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Mod example 1 (Python window)</title>
+					<para>This example returns the value of the remainder (modulus) of dividing the cells in the first raster by the second.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outMod = Mod("degs", "negs")
+outMod.save("C:/sapyexamples/output/outmod.tif")
+                    </code></scriptExample><scriptExample><title>Mod example 2 (stand-alone script)</title>
+					<para>This example returns the value of the remainder (modulus) of dividing the cells in the first raster by the second.</para>
+				<code xml:space="preserve"># Name: Mod_Ex_02.py
+# Description: Finds the remainder of the first raster when divided by
+#              the second raster on a cell-by-cell basis
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster1 = "degs"
+inRaster2 = "negs"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Mod
+outMod = Mod(inRaster1, inRaster2)
+
+# Save the output 
+outMod.save("C:/sapyexamples/output/outmod")
+                    </code></scriptExample></scriptExamples></tool></metadata>

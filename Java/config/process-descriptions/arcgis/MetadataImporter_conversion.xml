@@ -1,0 +1,43 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Metadata Importer (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Copies metadata from the source item to the target item. Metadata is retrieved from the source item and transferred to the target item without changing it. The source and target may be ArcGIS items or stand-alone metadata XML files. </para>
+			<para>The source metadata should be ArcGIS metadata. If the imported information is not stored in the ArcGIS metadata format it must be upgraded to ArcGIS metadata before it  will be automatically updated to contain the item's intrinsic properties.</para>
+			<para>This tool is useful for saving changes made to your metadata with an XSLT stylesheet. For example, a model could update metadata using XSLT Transformation with a custom stylesheet, then use this tool to import the changes to the original ArcGIS item. </para><para></para>
+			
+				<para>Existing metadata will be replaced by the imported metadata.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Convert</keyword><keyword>Copy</keyword><keyword>Export</keyword><keyword>Format</keyword><keyword>Import</keyword><keyword>Make</keyword><keyword>Save</keyword><keyword>Standard</keyword><keyword>Style</keyword><keyword>Transfer</keyword><keyword>Turn</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MetadataImporter" displayname="Metadata Importer (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Copies metadata from the source item to the target item. Metadata is retrieved from the source item and transferred to the target item without changing it. The source and target may be ArcGIS items or stand-alone metadata XML files. </para>
+			<para>The source metadata should be ArcGIS metadata. If the imported information is not stored in the ArcGIS metadata format it must be upgraded to ArcGIS metadata before it  will be automatically updated to contain the item's intrinsic properties.</para>
+			<para>This tool is useful for saving changes made to your metadata with an XSLT stylesheet. For example, a model could update metadata using XSLT Transformation with a custom stylesheet, then use this tool to import the changes to the original ArcGIS item. </para><para></para>
+			
+				<para>Existing metadata will be replaced by the imported metadata.</para>
+			
+		</summary><alink_name>MetadataImporter_conversion</alink_name><parameters><param sync="true" name="source" displayname="Source Metadata" datatype="Data Element; Layer" direction="Input" expression="source" type="Required"><pythonReference>
+						<para>The item whose metadata will be imported, or a stand-alone XML file that will be imported.</para>
+						<para>If the source item is a stand-alone file it must contain well-formed XML data.</para>
+					</pythonReference><dialogReference>
+						<para>The item whose metadata will be imported, or a stand-alone XML file that will be imported.</para>
+						<para>If the source item is a stand-alone file it must contain well-formed XML data.</para>
+					</dialogReference></param><param sync="true" name="target" displayname="Target Metadata" datatype="Data Element; Layer" direction="Input" expression="target" type="Required"><pythonReference>
+						<para>The item to which the metadata will be imported, or a stand-alone XML file that will be replaced.</para>
+					</pythonReference><dialogReference>
+						<para>The item to which the metadata will be imported, or a stand-alone XML file that will be replaced.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para>Metadata may include unique identifiers that help to manage documents in a metadata catalog. This tool does not remove any unique identifiers in the source metadata before importing it. This is the desired behavior if you modify the source item's metadata as described above using an XSLT stylesheet, for example, to update contact information, and need to import the result back to the original item. In this case, you want the metadata to keep the same unique identifier it had before. </para>
+				<para>However, if you want to import metadata created outside of ArcGIS or to copy information from one item to another, use  instead; it removes unique identifiers from the imported information. Many items should not share the same unique identifier.</para>
+			</bullet_item><bullet_item>
+				<para>After the source metadata is copied to the target, no changes are made to the target item's metadata. For example, the target item's metadata will not be synchronized to contain the item's current properties.</para>
+			</bullet_item><bullet_item>
+				<para> Text or HTML files containing metadata can't be imported. </para>
+			</bullet_item><bullet_item><para>This tool can import one source item to one target item. To import one source item to many target items or to import different source items to different target items, open the tool in batch mode and set the tool's parameters appropriately.</para></bullet_item><bullet_item>
+				<para>The Source Metadata parameter has a complex data type. If you use this tool in a model, create a variable for the Source Metadata parameter in ModelBuilder by right-clicking the tool, pointing to Make VariableFrom ParameterSource Metadata.</para>
+			</bullet_item><bullet_item>
+				<para> When using this tool in ModelBuilder, the Output Metadata parameter is derived from the Target Metadata parameter.</para>
+			</bullet_item><bullet_item>
+				<para>If you do not  have write access to the ArcGIS item or its metadata or the stand-alone metadata XML file that you are trying to modify, this tool will complete successfully but the item's original metadata will remain unchanged.</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>Import an ArcGIS metadata template to an item</title><para>Imports an ArcGIS metadata template XML file containing information shared by all of a project's data. The target item's metadata won't be updated to contain its properties after. Import a template before editing the item's metadata.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/data.gdb"
+arcpy.MetadataImporter_conversion ("c:/data/template.xml","places")
+                    </code></scriptExample></scriptExamples></tool></metadata>

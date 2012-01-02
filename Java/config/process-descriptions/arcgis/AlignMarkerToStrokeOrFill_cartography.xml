@@ -1,0 +1,64 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Align Marker To Stroke Or Fill (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Align the representation marker symbols of a point feature class to the nearest stroke or fill representation symbols in a line or polygon feature class within a specified search distance.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cartography</keyword><keyword>Edge</keyword><keyword>Orient</keyword><keyword>Orientation</keyword><keyword>Override</keyword><keyword>Representation</keyword><keyword>Symbol</keyword><keyword>Symbology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AlignMarkerToStrokeOrFill" displayname="Align Marker To Stroke Or Fill (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Align the representation marker symbols of a point feature class to the nearest stroke or fill representation symbols in a line or polygon feature class within a specified search distance.</para>
+		</summary><alink_name>AlignMarkerToStrokeOrFill_cartography</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/AlignMarkerToStrokeOrFill_cartography_v.gif" alt="Illustration of aligning markers to stroke" /><toolIllust type="illustration" src="AlignMarkerToStrokeOrFill_cartography_h.gif" alt="Illustration of aligning markers to stroke" /><parameters><param sync="true" name="in_point_features" displayname="Input Point Features with Representation Markers" datatype="Layer" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para>The input point feature layer containing marker representations.</para>
+					</pythonReference><dialogReference>
+						<para>The input point feature layer containing marker representations.</para>
+					</dialogReference></param><param sync="true" name="in_line_or_polygon_features" displayname="Input Line or Polygon Features with Stroke or Fill Representations" datatype="Layer" direction="Input" expression="in_line_or_polygon_features" type="Required"><pythonReference>
+						<para>The input line or polygon feature layer containing stroke or fill representations.</para>
+					</pythonReference><dialogReference>
+						<para>The input line or polygon feature layer containing stroke or fill representations.</para>
+					</dialogReference></param><param sync="true" name="search_distance" displayname="Search Distance" datatype="Linear unit" direction="Input" expression="search_distance" type="Required"><pythonReference>
+						<para>The search distance from graphical marker edge to graphical stroke edge. A distance greater than or equal to zero must be specified.</para>
+					</pythonReference><dialogReference>
+						<para>The search distance from graphical marker edge to graphical stroke edge. A distance greater than or equal to zero must be specified.</para>
+					</dialogReference></param><param sync="true" name="marker_orientation" displayname="Representation Marker Orientation" datatype="String" direction="Input" expression="marker_orientation" type="Optional"><pythonReference>
+						<para>Specifies the representation marker orientation relative to the stroke or fill edge.</para>
+						<bulletList><bullet_item>PERPENDICULAR—aligns representation markers perpendicularly to the stroke or fill edge. This is the default. </bullet_item><bullet_item>PARALLEL—aligns representation markers parallel to the stroke or fill edge. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the representation marker orientation relative to the stroke or fill edge.</para>
+						<bulletList><bullet_item>PERPENDICULAR—aligns representation markers perpendicularly to the stroke or fill edge. This is the default. </bullet_item><bullet_item>PARALLEL—aligns representation markers parallel to the stroke or fill edge. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cartographic_coordinate_system" label="Cartographic coordinate system">
+						
+					</environment><environment name="Reference_scale" label="Reference scale">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Representation marker symbols are aligned by overriding the angle property of representation marker symbol layer.</para>
+			</bullet_item><bullet_item>
+				<para>The search distance is the measurement from the graphical edge of the marker to the graphical edge of the nearest stroke or fill outline. Representation geometry (shape) overrides are honored. Representation markers beyond the search distance will not be rotated. A search distance of zero aligns only markers that are coincident to a representation stroke or fill symbol.</para>
+			</bullet_item><bullet_item>
+				<para>Features that have null or invalid representation rules, or that have the representation visibility property off, will not be aligned. </para>
+			</bullet_item><bullet_item>
+				<para>Rotating markers may introduce graphic conflicts. The <bold></bold> tool can be used to identify these areas.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AlignMarkerToStrokeOrFill tool Example (Python Window)</title>
+					<para>This stand-alone script shows an example of using the AlignMarkerToStrokeOrFill tool.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+env.referenceScale = "50000"
+arcpy.AlignMarkerToStrokeOrFill_cartography("buildings.lyr", "roads.lyr", "2 Points", "PERPENDICULAR")
+                    </code></scriptExample><scriptExample><title>AlignMarkerToStrokeOrFill tool Example (Stand-alone python script)</title>
+					<para>This stand-alone script shows an example of using the AlignMarkerToStrokeOrFilltool.</para>
+				<code xml:space="preserve"># Name: AlignMarkerToStrokeOrFill_standalone_script.py
+# Description: Aligns representation markers to nearby line or polygon features symbolized with representations
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+env.referenceScale = "50000"
+
+# Set local variables
+in_point_features = "buildings.lyr"
+in_line_or_polygon_features = "roads.lyr"
+search_distance = "2 Points"
+marker_orientation = "PERPENDICULAR"
+
+# Execute Align Marker To Stroke Or Fill
+arcpy.AlignMarkerToStrokeOrFill_cartography(in_point_features, in_line_or_polygon_features, search_distance, marker_orientation)
+                    </code></scriptExample></scriptExamples></tool></metadata>

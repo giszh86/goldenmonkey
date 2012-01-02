@@ -1,0 +1,72 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Zonal Fill (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Fills zones using the minimum cell value from a weight raster along the zone boundary.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Fill</keyword><keyword>Minimum Elevation</keyword><keyword>Minimum Value</keyword><keyword>Pit</keyword><keyword>Sink</keyword><keyword>Watershed Boundary</keyword><keyword>Zone</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ZonalFill" displayname="Zonal Fill (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Fills zones using the minimum cell value from a weight raster along the zone boundary.</para>
+		</summary><alink_name>ZonalFill_sa</alink_name><parameters><param sync="true" name="in_zone_raster" displayname="Input zone raster" datatype="Raster Layer" direction="Input" expression="in_zone_raster" type="Required"><pythonReference>
+						<para>The input raster that defines the zones to be filled.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster that defines the zones to be filled.</para>
+					</dialogReference></param><param sync="true" name="in_weight_raster" displayname="Input weight raster" datatype="Raster Layer" direction="Input" expression="in_weight_raster" type="Required"><pythonReference>
+						<para>Weight, or value,  to be assigned to each zone.</para>
+					</pythonReference><dialogReference>
+						<para>Weight, or value,  to be assigned to each zone.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster for which the zones have been filled.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster for which the zones have been filled.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input zone raster can be integer or floating point. Note that this is an exception to the other zonal tools, which require the zone input to be integer type.</para>
+			</bullet_item><bullet_item>
+				<para>The data type of the output is the same as that of the input weight raster. If the values on the weight raster are floating point, the resultant output raster will be floating point. If the weight raster is integer, the output will be integer.</para>
+			</bullet_item><bullet_item>
+				<para>Zonal Fill can be used as part of a hydrological analysis to fill sinks to the minimum elevation of their watershed boundary.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ZonalFill example 1 (Python window)</title>
+					<para>This example fills the zones in a raster with the minimum value from the weight raster along the zone boundary.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outZonalFill = ZonalFill("inzone", "zoneweight")
+outZonalFill.save("C:/sapyexamples/output/zonefillout")
+                    </code></scriptExample><scriptExample><title>ZonalFill example 2 (stand-alone script)</title>
+					<para>This example fills the zones in a raster with the minimum value from the weight raster along the zone boundary.</para><code xml:space="preserve"># Name: ZonalFill_Ex_02.py
+# Description: Fills zones using the minimum cell value from a weight 
+#   raster, along the zone boundary.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inZoneRaster = "inzone"
+zoneWeightRaster = "zoneweight"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ZonalStatistics
+outZonalFill = ZonalFill(inZoneRaster, zoneWeightRaster)
+
+# Save the output 
+outZonalFill.save("C:/sapyexamples/output/zonefillout3")
+                    </code></scriptExample></scriptExamples></tool></metadata>

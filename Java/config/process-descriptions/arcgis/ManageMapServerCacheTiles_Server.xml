@@ -1,0 +1,261 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Manage Map Server Cache Tiles (Server)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates and updates tiles in an existing map service cache. This tool is used to create new tiles, replace missing tiles, overwrite outdated tiles, and delete tiles.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ManageMapServerCacheTiles" displayname="Manage Map Server Cache Tiles (Server)" toolboxalias="Server" softwarerestriction="none"><summary>
+			<para>Creates and updates tiles in an existing map service cache. This tool is used to create new tiles, replace missing tiles, overwrite outdated tiles, and delete tiles.</para>
+		</summary><alink_name>ManageMapServerCacheTiles_Server</alink_name><parameters><param sync="true" name="server_name" displayname="Host" datatype="String" direction="Input" expression="server_name" type="Required"><pythonReference>
+						<para>The ArcGIS Server machine hosting the map service whose tiles you want to update.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcGIS Server machine hosting the map service whose tiles you want to update.</para>
+					</dialogReference></param><param sync="true" name="object_name" displayname="Map Server" datatype="String" direction="Input" expression="object_name" type="Required"><pythonReference>
+						<para>The map service whose cache tiles you want to update.</para>
+						<para>Make sure you have a tiling scheme defined for your map service before using this tool. You can use the Caching tab of the Service Properties dialog box or the Create Map Server Cache tool to create the tiling scheme.</para>
+					</pythonReference><dialogReference>
+						<para>The map service whose cache tiles you want to update.</para>
+						<para>Make sure you have a tiling scheme defined for your map service before using this tool. You can use the Caching tab of the Service Properties dialog box or the Create Map Server Cache tool to create the tiling scheme.</para>
+					</dialogReference></param><param sync="true" name="data_frame" displayname="Data Frame" datatype="String" direction="Input" expression="data_frame" type="Required"><pythonReference>
+						<para>The source data frame for the map service.</para>
+					</pythonReference><dialogReference>
+						<para>The source data frame for the map service.</para>
+					</dialogReference></param><param sync="true" name="Layer" displayname="Input Layers" datatype="String" direction="Input" expression="[Layer,...]" type="Required"><pythonReference>
+						<para>Layers to remove from the cache.</para>
+					</pythonReference><dialogReference>
+						<para>Choose the layers to include in the cache. This option is disabled for fused caches. All layers are checked by default. If a layer is unchecked it will not be accessible to the cache (the files remain on disk, but the map service will never use the tiles in the layer).</para>
+					</dialogReference></param><param sync="true" name="levels" displayname="Scales" datatype="Double" direction="Input" expression="levels" type="Required"><pythonReference>
+						<para>The scale levels at which you will create or delete tiles when running this tool, depending on the Update Mode.</para>
+					</pythonReference><dialogReference>
+						<para>The scale levels at which you will create or delete tiles when running this tool, depending on the Update Mode.</para>
+					</dialogReference></param><param sync="true" name="update_mode" displayname="Update Mode" datatype="String" direction="Input" expression="update_mode" type="Required"><pythonReference>
+						<para>Choose a mode for updating the cache. The three modes are:</para>
+						<bulletList><bullet_item>Recreate Empty Tiles —Only tiles that are empty will be created. Existing tiles will be left unchanged.</bullet_item><bullet_item>Recreate All Tiles—Existing tiles will be replaced and new tiles will be added if the extent has changed or if layers have been added to a multilayer cache.</bullet_item><bullet_item>Delete Tiles —Tiles will be deleted from the cache. The cache folder structure will not be deleted. If you wish to delete the entire cache, including the  folder structure, use the Delete Map Server Cache tool.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose a mode for updating the cache. The three modes are:</para>
+						<bulletList><bullet_item>Recreate Empty Tiles —Only tiles that are empty will be created. Existing tiles will be left unchanged.</bullet_item><bullet_item>Recreate All Tiles—Existing tiles will be replaced and new tiles will be added if the extent has changed or if layers have been added to a multilayer cache.</bullet_item><bullet_item>Delete Tiles —Tiles will be deleted from the cache. The cache folder structure will not be deleted. If you wish to delete the entire cache, including the  folder structure, use the Delete Map Server Cache tool.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="constraining_extent" displayname="Update Extent" datatype="Extent" direction="Input" expression="constraining_extent" type="Optional"><pythonReference>
+						<para>Rectangular extent at which to create or delete tiles, depending on the Update Mode.</para>
+					</pythonReference><dialogReference>
+						<para>Rectangular extent at which to create or delete tiles, depending on the Update Mode.</para>
+					</dialogReference></param><param sync="true" name="thread_count" displayname="Number of MapServer Instances" datatype="Long" direction="Input" expression="thread_count" type="Optional"><pythonReference>
+						<para>Number of map service instances to use while running this tool. By default the maximum allowable number of instances will be used (default for an ArcGIS Server service is 2). If you have more server power, you can raise the maximum allowable number of instances in the service's Service Properties dialog box, then raise this parameter when you run the tool.</para>
+					</pythonReference><dialogReference>
+						<para>Number of map service instances to use while running this tool. By default the maximum allowable number of instances will be used (default for an ArcGIS Server service is 2). If you have more server power, you can raise the maximum allowable number of instances in the service's Service Properties dialog box, then raise this parameter when you run the tool.</para>
+					</dialogReference></param><param sync="true" name="Antialiasing" displayname="Antialiasing" datatype="Boolean" direction="Input" expression="Antialiasing" type="Optional"><pythonReference>
+						<para>This is a deprecated parameter that is ignored. The antialiasing property in your tiling scheme determines if antialiasing is applied to the cache.</para>
+					</pythonReference><dialogReference>
+						<para>This is a deprecated parameter that is ignored. The antialiasing property in your tiling scheme determines if antialiasing is applied to the cache.</para>
+					</dialogReference></param><param sync="true" name="update_feature_class" displayname="Update Extents Feature Class" datatype="Feature Class" direction="Input" expression="update_feature_class" type="Optional"><pythonReference>
+						<para>You can use a polygon feature class to manage tiles (create, update, or delete) based on the extents of features of a feature class. For example, if you are caching a country, you might supply a feature class of major urban areas. By doing so, you are requesting that the server only pre-create tiles that cover those urban areas. The rest of the areas can be cached on demand when requested by clients. This can save you time and disk space that would be consumed by creating unneeded tiles in rural areas.</para>
+					</pythonReference><dialogReference>
+						<para>You can use a polygon feature class to manage tiles (create, update, or delete) based on the extents of features of a feature class. For example, if you are caching a country, you might supply a feature class of major urban areas. By doing so, you are requesting that the server only pre-create tiles that cover those urban areas. The rest of the areas can be cached on demand when requested by clients. This can save you time and disk space that would be consumed by creating unneeded tiles in rural areas.</para>
+					</dialogReference></param><param sync="true" name="ignore_status" displayname="Cache areas for all features and ignore completion status field" datatype="Boolean" direction="Input" expression="ignore_status" type="Optional"><pythonReference><para>This parameter allows you to track the status of your caching if you are creating tiles based on feature class boundaries (see the update_feature_class parameter). </para><bulletList><bullet_item>IGNORE_COMPLETION_STATUS_FIELD—The feature class's Completed field is ignored and tiles are created for all features in the feature class. This is the default.</bullet_item><bullet_item>TRACK_COMPLETION_STATUS—The feature class's Completed field is read (and created if it doesn't exist yet). Features marked No or null in this field are cached and marked Yes when caching has completed for the feature. Features already marked Yes in this field are not cached.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>This parameter allows you to track the status of your caching if you are creating tiles based on feature class boundaries (see the Input Feature Class parameter). </para><bulletList><bullet_item>Checked—The feature class's Completed field is ignored and tiles are created for all features in the feature class. This is the default.</bullet_item><bullet_item>Unchecked—The feature class's Completed field is read (and created if it doesn't exist yet). Features marked No or null in this field are cached and marked Yes when caching has completed for the feature. Features already marked Yes in this field are not cached.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item><para>This tool may take a long time to run for caches that cover a large geographic extent or very large map scales. If the tool is cancelled, tile creation is stopped, but the existing tiles are not deleted. This means you can cancel the tool if you run out of time  and re-run it later on the same cache using the "Recreate Empty Tiles" update mode. Another way you can continue where you've left off is to use the status tracking described below in the description of the final parameter Ignore Status.</para></bullet_item></usage><scriptExamples><scriptExample><title></title><para>This example creates or updates all the tiles in the cache using the "Recreate All" option.</para><code xml:space="preserve"># ManageMapServerCacheTiles example (stand-alone script)
+
+# Name: ManageMapServerCacheTiles.py
+# Description: The following stand-alone script demonstrates how to Recreate all 
+#               cache tiles for the default number of scales in the cache tiling
+#               scheme.
+# Requirements: os, sys, time and traceback modules
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default value.
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, datetime, traceback, string
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of input variables for map service properties
+server = "MyServer"
+service = "Rainfall"
+dataFrame = "" 
+inputLayers = ""
+scaleValues = ""
+extents = ""
+updateMode = "Recreate All Tiles"
+antialiasing = "NONE"
+threadCount = "2"
+pathToFeatureClass = ""
+ignoreStatus = "IGNORE_COMPLETION_STATUS_FIELD"
+
+currentTime = datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+
+# print results of the script to a report
+report = open(file,'w')
+
+try:
+    starttime = time.clock()
+    result = arcpy.ManageMapServerCacheTiles_server(server, service, dataFrame,
+                                           inputLayers, scaleValues, updateMode,
+                                           extents, threadCount ,Antialiasing,
+                                           pathToFeatureClass, ignoreStatus)
+    finishtime = time.clock()
+    elapsedtime= finishtime - starttime
+
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+
+    print "Created cache tiles for given schema successfully for "
+    + service + " in " + str(elapsedtime) + " sec \n on " + arg2
+    
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 1 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+report.close()
+    
+print "Created Map server Cache Tiles "
+
+                    </code></scriptExample><scriptExample><title></title><para>This example updates empty tiles for some of the scales using the "Recreate Empty Tiles" option.</para><code xml:space="preserve"># ManageMapServerCacheTiles example (stand-alone script)
+
+# Name: ManageMapServerCacheTiles.py
+# Description: The following stand-alone script demonstrates how to Recreate all 
+#               cache tiles for the default number of scales in the cache tiling
+#               scheme.
+# Requirements: os, sys, time and traceback modules
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default value.
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, datetime, traceback, string
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of input variables for map service properties
+server = "MyServer"
+service = "Rainfall"
+dataFrame = "" 
+inputLayers = ""
+scaleValues = ""
+extents = ""
+updateMode = "Recreate All Tiles"
+antialiasing = "NONE"
+threadCount = "2"
+pathToFeatureClass = ""
+ignoreStatus = "IGNORE_COMPLETION_STATUS_FIELD"
+
+currentTime = datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+
+# print results of the script to a report
+report = open(file,'w')
+
+try:
+    starttime = time.clock()
+    result = arcpy.ManageMapServerCacheTiles_server(server, service, dataFrame,
+                                           inputLayers, scaleValues, updateMode,
+                                           extents, threadCount ,Antialiasing,
+                                           pathToFeatureClass, ignoreStatus)
+    finishtime = time.clock()
+    elapsedtime= finishtime - starttime
+
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+
+    print "Created cache tiles for given schema successfully for "
+    + service + " in " + str(elapsedtime) + " sec \n on " + arg2
+    
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 1 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+report.close()
+    
+print "Created Map server Cache Tiles "
+
+                    </code></scriptExample><scriptExample><title></title><para>This example constrains the update of tiles to the boundaries of a feature class.</para><code xml:space="preserve"># ManageMapServerCacheTiles example (stand-alone script)
+
+# Name: ManageMapServerCacheTiles.py
+# Description: The following stand-alone script demonstrates how to Recreate all 
+#               cache tiles for the default number of scales in the cache tiling
+#               scheme.
+# Requirements: os, sys, time and traceback modules
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default value.
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, datetime, traceback, string
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of input variables for map service properties
+server = "MyServer"
+service = "Rainfall"
+dataFrame = "" 
+inputLayers = ""
+scaleValues = ""
+extents = ""
+updateMode = "Recreate All Tiles"
+antialiasing = "NONE"
+threadCount = "2"
+pathToFeatureClass = ""
+ignoreStatus = "IGNORE_COMPLETION_STATUS_FIELD"
+
+currentTime = datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+
+# print results of the script to a report
+report = open(file,'w')
+
+try:
+    starttime = time.clock()
+    result = arcpy.ManageMapServerCacheTiles_server(server, service, dataFrame,
+                                           inputLayers, scaleValues, updateMode,
+                                           extents, threadCount ,Antialiasing,
+                                           pathToFeatureClass, ignoreStatus)
+    finishtime = time.clock()
+    elapsedtime= finishtime - starttime
+
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+
+    print "Created cache tiles for given schema successfully for "
+    + service + " in " + str(elapsedtime) + " sec \n on " + arg2
+    
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 1 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+report.close()
+    
+print "Created Map server Cache Tiles "
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

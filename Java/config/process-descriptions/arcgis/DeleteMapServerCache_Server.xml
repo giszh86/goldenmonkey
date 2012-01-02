@@ -1,0 +1,90 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Delete Map Server Cache (Server)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Deletes an existing map service cache, including all associated files on disk.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DeleteMapServerCache" displayname="Delete Map Server Cache (Server)" toolboxalias="Server" softwarerestriction="none"><summary>
+			<para>Deletes an existing map service cache, including all associated files on disk.</para>
+		</summary><alink_name>DeleteMapServerCache_Server</alink_name><parameters><param sync="true" name="server_name" displayname="Host" datatype="String" direction="Input" expression="server_name" type="Required"><pythonReference>
+						<para>The ArcGIS Server machine hosting the service whose cache will be deleted.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcGIS Server machine hosting the service whose cache will be deleted.</para>
+					</dialogReference></param><param sync="true" name="object_name" displayname="Map Server" datatype="String" direction="Input" expression="object_name" type="Required"><pythonReference>
+						<para>The map service whose cache will be deleted.</para>
+					</pythonReference><dialogReference>
+						<para>The map service whose cache will be deleted.</para>
+					</dialogReference></param><param sync="true" name="data_frame" displayname="Data Frame" datatype="String" direction="Input" expression="data_frame" type="Required"><pythonReference>
+						<para>The source data frame of the cache to be deleted. This appears in the user interface for informational purposes only and cannot be changed.</para>
+					</pythonReference><dialogReference>
+						<para>The source data frame of the cache to be deleted. This appears in the user interface for informational purposes only and cannot be changed.</para>
+					</dialogReference></param><param sync="true" name="Layer" displayname="Input Layers" datatype="String" direction="Input" expression="[Layer,...]" type="Required"><pythonReference>
+						<para>The layers to delete from the cache (only applies to multilayer caches). Layers that are included will be removed from the cache. Excluded layers will remain.</para>
+					</pythonReference><dialogReference>
+						<para>The layers to delete from the cache (only applies to multilayer caches). Layers that are included will be removed from the cache. Excluded layers will remain.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item><para>This is an unrecoverable operation so only use if you are sure you no longer need the cache. If you want to delete tiles but leave the cache folder structure and tiling scheme, use  with the Update Mode set to Delete Tiles.</para>
+			</bullet_item><bullet_item>
+				<para>If there are caches for more than one data frame in the cache directory, only the active data frame of the specified map service will be removed.</para>
+			</bullet_item><bullet_item>
+				<para>If there is only one data frame in the cache directory the entire directory will be removed.</para>
+			</bullet_item><bullet_item>
+				<para>After this tool runs the map service will be restarted.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><para>This example uses DeleteMapServerCache to delete a cache for a map service named Rainfall.</para><code xml:space="preserve"># DeleteMapServerCache example (stand-alone script)
+
+# Name: DeleteMapServerCache.py
+# Description: The following stand-alone script demonstrates how to delete map server cache
+#              tiles if the corresponding cache schema or tiles has been created
+# Requirements: os, sys, time &amp; traceback modules
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default value.
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, datetime, traceback, string
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of variables for mapservice properties
+server = "MyServer"
+service = "Rainfall"
+dataFrame = "" 
+layer = ""
+
+currentTime = datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+
+# print results of the script to a report
+report = open (file,'w')
+
+# To Recreate all the tiles for the default number of scales generated
+try:
+    starttime = time.clock()
+    result = arcpy.DeleteMapServerCache_server(server, service, dataFrame, layer)
+    finishtime = time.clock()
+    elapsedtime = finishtime - starttime
+
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+
+    print "Deleted cache tiles &amp; schema for mapservice " + service + "\n   at "
+    + cacheDir + service + " in " + str(elapsedtime) + " sec \n on " + arg2
+    
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 1 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+
+
+print "Deleted Map server Cache Tiles "
+
+report.close()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

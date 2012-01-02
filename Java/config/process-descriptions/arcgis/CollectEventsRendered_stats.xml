@@ -1,0 +1,82 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Collect Events with Rendering (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts event data to weighted point data and then applies a graduated circle rendering to the resultant count field.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coincident</keyword><keyword>Combine</keyword><keyword>Coordinate</keyword><keyword>Count</keyword><keyword>Duplicate</keyword><keyword>Group</keyword><keyword>Incident</keyword><keyword>Location</keyword><keyword>Occurrence</keyword><keyword>On Top Of</keyword><keyword>Point</keyword><keyword>Weight</keyword><keyword>X</keyword><keyword>Y</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CollectEventsRendered" displayname="Collect Events with Rendering (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Converts event data to weighted point data and then applies a graduated circle rendering to the resultant count field.</para>
+		</summary><alink_name>CollectEventsRendered_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/CollectEventsRendered_stats_v.gif" alt="Collect Events illustration" /><toolIllust type="illustration" src="CollectEventsRendered_stats_h.gif" alt="Collect Events illustration" /><parameters><param sync="true" name="Input_Incident_Features" displayname="Input Incident Features" datatype="Feature Class" direction="Input" expression="Input_Incident_Features" type="Required"><pythonReference>
+						<para>The features representing event or incident data.</para>
+					</pythonReference><dialogReference>
+						<para>The features representing event or incident data.</para>
+					</dialogReference></param><param sync="true" name="Output_Layer_File" displayname="Output Layer" datatype="Layer File" direction="Output" expression="Output_Layer_File" type="Required"><pythonReference>
+						<para>The layer file (.lyr) to store the graduate circle rendering information.</para>
+					</pythonReference><dialogReference>
+						<para>The layer file (.lyr) to store the graduate circle rendering information.</para>
+					</dialogReference></param><param sync="true" name="Output_Weighted_Point_Feature_Class" displayname="Output Weighted Point Feature Class" datatype="Feature Class" direction="Output" expression="Output_Weighted_Point_Feature_Class" type="Required"><pythonReference>
+						<para>The output feature class to contain the weighted point data.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class to contain the weighted point data.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Output_coordinate_system" label="Output coordinate system"></environment><environment name="Output_has_Z_values" label="Output has Z values"></environment><environment name="Default_output_Z_value" label="Default output Z value"></environment><environment name="Output_has_M_values" label="Output has M values"></environment></environments><usage><bullet_item>
+				<para>The Collect Events with Rendering tool is a model that combines the  tool with the  tool.</para>
+			</bullet_item><bullet_item><para>Beginning with ArcGIS 9.3, the output feature class from the  tool is automatically added to the TOC with default graduated circle rendering applied to the ICOUNT field.</para></bullet_item></usage><scriptExamples><scriptExample><title>Collect Events with Rendering Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Collect Events with Rendering tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/Data"
+arcpy.CollectEventsRendered_stats("911.shp", "911Count_rendered.lyr", "911Count.shp")
+                    </code></scriptExample><scriptExample><title>Collect Events with Rendering Example (Stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the Collect Events with Rendering tool.</para>
+				<code xml:space="preserve">
+# Analyze the spatial distribution of 911 calls in a metropolitan area
+# using the Hot-Spot Analysis Tool (Local Gi*)
+
+# Import system modules
+import arcpy
+
+# Set geoprocessor object property to overwrite existing output, by default
+arcpy.gp.overwriteOutput = True
+
+# Local variables...
+workspace = "C:/Data"
+
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.env.workspace = workspace
+
+    # Copy the input feature class and integrate the points to snap
+    # together at 500 feet
+    # Process: Copy Features and Integrate
+    cf = arcpy.CopyFeatures_management("911Calls.shp", "911Copied.shp",
+                         "#", 0, 0, 0)
+
+    integrate = arcpy.Integrate_management("911Copied.shp #", "500 Feet")
+
+    # Use Collect Events to count the number of calls at each location
+    # Process: Collect Events
+    ce = arcpy.CollectEventsRendered_stats("911Copied.shp", "911Count_rendered.lyr", "911Count.shp")
+
+    # Add a unique ID field to the count feature class
+    # Process: Add Field and Calculate Field
+    af = arcpy.AddField_management("911Count.shp", "MyID", "LONG", "#", "#", "#", "#",
+                     "NON_NULLABLE", "NON_REQUIRED", "#",
+                     "911Count.shp")
+    
+    cf = arcpy.CalculateField_management("911Count.shp", "MyID", "[FID]", "VB")
+
+    # Create Spatial Weights Matrix for Calculations
+    # Process: Generate Spatial Weights Matrix... 
+    swm = arcpy.GenerateSpatialWeightsMatrix_stats("911Count.shp", "MYID",
+                        "euclidean6Neighs.swm",
+                        "K_NEAREST_NEIGHBORS",
+                        "#", "#", "#", 6,
+                        "NO_STANDARDIZATION") 
+
+    # Hot Spot Analysis of 911 Calls
+    # Process: Hot Spot Analysis (Getis-Ord Gi*)
+    hs = arcpy.HotSpots_stats("911Count.shp", "ICOUNT", "911HotSpots.shp", 
+                     "GET_SPATIAL_WEIGHTS_FROM_FILE",
+                     "EUCLIDEAN_DISTANCE", "NONE",
+                     "#", "#", "euclidean6Neighs.swm")
+
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

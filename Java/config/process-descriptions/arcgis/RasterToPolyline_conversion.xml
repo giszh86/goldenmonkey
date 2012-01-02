@@ -1,0 +1,81 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Raster To Polyline (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a raster to polyline features.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>Import</keyword><keyword>Vectorize</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RasterToPolyline" displayname="Raster To Polyline (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts a raster to polyline features.</para>
+		</summary><alink_name>RasterToPolyline_conversion</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset.</para><para>The raster must be integer type.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster dataset.</para><para>The raster must be integer type.</para>
+					</dialogReference></param><param sync="true" name="out_polyline_features" displayname="Output polyline features" datatype="Feature Class" direction="Output" expression="out_polyline_features" type="Required"><pythonReference>
+						<para>The output feature class that will contain the converted polylines.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class that will contain the converted polylines.</para>
+					</dialogReference></param><param sync="true" name="background_value" displayname="Background value" datatype="String" direction="Input" expression="background_value" type="Optional"><pythonReference>
+						<para>Specifies the value that will identify the background cells. The raster dataset is viewed as a set of foreground cells and background cells. The linear features are formed from the foreground cells.</para>
+						<bulletList><bullet_item>ZERO—The background is composed of cells of zero or less or NoData. All cells with a value greater than zero are considered a foreground value.</bullet_item><bullet_item>NODATA—The background is composed of NoData cells. All cells with valid values belong to the foreground.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the value that will identify the background cells. The raster dataset is viewed as a set of foreground cells and background cells. The linear features are formed from the foreground cells.</para>
+						<bulletList><bullet_item>ZERO—The background is composed of cells of zero or less or NoData. All cells with a value greater than zero are considered a foreground value.</bullet_item><bullet_item>NODATA—The background is composed of NoData cells. All cells with valid values belong to the foreground.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="minimum_dangle_length" displayname="Minimum dangle length" datatype="Double" direction="Input" expression="minimum_dangle_length" type="Optional"><pythonReference>
+						<para>Minimum length of dangling polylines that will be retained. The default is zero.</para>
+					</pythonReference><dialogReference>
+						<para>Minimum length of dangling polylines that will be retained. The default is zero.</para>
+					</dialogReference></param><param sync="true" name="simplify" displayname="Simplify polylines" datatype="Boolean" direction="Input" expression="simplify" type="Optional"><pythonReference>
+						<para>Simplifies a line by removing small fluctuations or extraneous bends from it while preserving its essential shape.</para>
+						<bulletList><bullet_item>SIMPLIFY—The polylines will be simplified. This is the default. </bullet_item><bullet_item>NO_SIMPLIFY—The polylines will not be simplified. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Simplifies a line by removing small fluctuations or extraneous bends from it while preserving its essential shape.</para>
+						<bulletList>
+							<bullet_item>Checked—The polylines will be simplified. This is the default. </bullet_item>
+							<bullet_item>Unchecked—The polylines will not be simplified. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="raster_field" displayname="Field" datatype="Field" direction="Input" expression="raster_field" type="Optional"><pythonReference>
+						<para>The field used to assign values from the cells in the input raster to the polyline features in the output dataset.</para>
+						<para>It can be an integer or a string field.</para>
+					</pythonReference><dialogReference>
+						<para>The field used to assign values from the cells in the input raster to the polyline features in the output dataset.</para>
+						<para>It can be an integer or a string field.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input raster can have any cell size and may be any valid integer raster dataset.</para>
+			</bullet_item><bullet_item>
+				<para>The Field parameter allows you to choose which attribute field of the input raster dataset will become an attribute in the output feature class. If a field is not specified, the cell values of the input raster (the VALUE field) will become a column with the heading Grid_code in the attribute table of the output feature class.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RasterToPolyline example (Python window)</title>
+					<para>Converts a raster dataset to polyline features.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "c:/data"
+arcpy.RasterToPolyline_conversion("flowstr", "c:/output/streams.shp", "ZERO",
+                                   50, "SIMPLIFY")
+                    </code></scriptExample><scriptExample><title>RasterToPolyline example (stand-alone script)</title>
+					<para>Converts a raster dataset to polyline features.</para>
+				<code xml:space="preserve"># Name: RasterToPolyline_Ex_02.py
+# Description: Converts a raster dataset to polyline features.
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inRaster = "flowstr"
+outLines = "c:/output/flowstream.shp"
+backgrVal = "ZERO"
+dangleTolerance = 50
+field = "VALUE"
+
+# Execute RasterToPolygon
+arcpy.RasterToPolyline_conversion(inRaster, outLines, backgrVal, dangleTolerance,
+                                   "SIMPLIFY", field)
+                    </code></scriptExample></scriptExamples></tool></metadata>

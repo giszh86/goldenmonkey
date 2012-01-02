@@ -1,0 +1,80 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Dendrogram (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Constructs a tree diagram (dendrogram) showing attribute distances between sequentially merged classes in a signature file.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Class Distance</keyword><keyword>Classification</keyword><keyword>Image Processing</keyword><keyword>Multiband</keyword><keyword>Multivariate Statistics</keyword><keyword>Remote Sensing</keyword><keyword>Signature File</keyword><keyword>Tree Diagram</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Dendrogram" displayname="Dendrogram (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Constructs a tree diagram (dendrogram) showing attribute distances between sequentially merged classes in a signature file.</para>
+			
+		</summary><alink_name>Dendrogram_sa</alink_name><parameters><param sync="true" name="in_signature_file" displayname="Input signature file" datatype="File" direction="Input" expression="in_signature_file" type="Required"><pythonReference>
+						<para>Input signature file whose class signatures are used to produce a dendrogram.</para>
+						<para>A .gsg extension is required.</para>
+					</pythonReference><dialogReference>
+						<para>Input signature file whose class signatures are used to produce a dendrogram.</para>
+						<para>A .gsg extension is required.</para>
+					</dialogReference></param><param sync="true" name="out_dendrogram_file" displayname="Output dendrogram file" datatype="File" direction="Output" expression="out_dendrogram_file" type="Required"><pythonReference>
+						<para>The output dendrogram ASCII file.</para>
+						<para>The extension can be .txt or .asc.</para>
+					</pythonReference><dialogReference>
+						<para>The output dendrogram ASCII file.</para>
+						<para>The extension can be .txt or .asc.</para>
+					</dialogReference></param><param sync="true" name="distance_calculation" displayname="Use variance in distance calculations" datatype="Boolean" direction="Input" expression="distance_calculation" type="Optional"><pythonReference>
+						<para>Specifies the manner in which the distances between classes in multidimensional attribute space are defined.</para>
+						<bulletList><bullet_item>VARIANCE — The distances between classes will be computed based on the variances and the Euclidean distance between the means of their signatures. </bullet_item><bullet_item>MEAN_ONLY — The distances between classes will be determined by the Euclidean distances between the means of the class signatures only. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the manner in which the distances between classes in multidimensional attribute space are defined.</para>
+						<bulletList>
+							<bullet_item>Checked—The distances between classes will be computed based on the variances and the Euclidean distance between the means of their signatures. </bullet_item>
+							<bullet_item>Unchecked—The distances between classes will be determined by the Euclidean distances between the means of the class signatures only. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="line_width" displayname="Line width of dendrogram" datatype="Long" direction="Input" expression="line_width" type="Optional"><pythonReference>
+						<para>Sets the width of the dendrogram in number of characters on a line.</para>
+						<para>The default is 78.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the width of the dendrogram in number of characters on a line.</para>
+						<para>The default is 78.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input signature file must in the prescribed signature file format. A signature file can be created with the Iso Cluster or Create Signatures tools. The file must have a minimum of two classes. A signature file can be recognized by its .gsg extension.</para>
+			</bullet_item><bullet_item>
+				<para>The output of Dendrogram is an ASCII text file. The file has two components: a table and a graph.</para>
+				<para>The first component is a table of distances between pairs of classes, presented in the   sequence for merging. The second component is a graphical representation using ASCII characters of the classes that demonstrates the relationships and the hierarchy of the merging. The graph illustrates relative distances between pairs of merged classes in the signature file, which are based on statistically determined similarities. The classes themselves represent clusters of cells or cells from training samples extracted from the study site.</para>
+				<para>By analyzing the graph and the associate table, you can determine the potential of merging classes.</para>
+			</bullet_item><bullet_item>
+				<para>The default extension for the output text file is .txt. It can also be .asc.</para>
+			</bullet_item><bullet_item>
+				<para>The proximity of a pair of classes within a signature file is measured by the attribute distance.</para>
+			</bullet_item><bullet_item>
+				<para>The value entered for the line width specifies the width of the graph based on the number of characters. The default value of 78 is also the minimum valid number of characters. If numbers less than this are entered, the default value of 78 will be applied. When specifying values higher than the default, the resolution of the graph will increase, which may provide more accurate interpolation of the distances.</para>
+			</bullet_item><bullet_item>
+				<para>To make the display of the dendrogram meaningful, the ASCII file should be displayed with a nonproportional font such as Courier.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Dendrogram example 1 (Python window)</title>
+					<para>This example takes an input signature file and creates a Dendrogram view.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy.sa import *
+Dendrogram("c:/sapyexamples/data/zsamp12.gsg", 
+           "c:/sapyexamples/output/z12dendro.txt", "VARIANCE", "")
+                    </code></scriptExample><scriptExample><title>Dendrogram example 2 (stand-alone script)</title>
+					<para>This example takes an input signature file and creates a Dendrogram view.</para>
+				<code xml:space="preserve"># Name: Dendrogram_Ex_02.py
+# Description: Constructs a tree diagram showing attribute distances between
+#     sequentially merged classes in a signature file.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy.sa import *
+
+# Set local variables
+inSig = "c:/sapyexamples/data/zsamp12.gsg"
+outDendro = "c:/sapyexamples/output/z12dend.txt"
+lineLength = ""
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Dendrogram
+Dendrogram(inSig, outDendro, "VARIANCE", lineLength)
+                    </code></scriptExample></scriptExamples></tool></metadata>

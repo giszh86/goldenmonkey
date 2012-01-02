@@ -1,0 +1,141 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Ortho Corrected Raster Dataset (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool creates an ortho corrected raster dataset using the rational polynomial coefficients (RPC) associated with a raster dataset.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Accuracy</keyword><keyword>Dem</keyword><keyword>Fix</keyword><keyword>Georeference</keyword><keyword>New</keyword><keyword>Orthographic Distortion</keyword><keyword>Permanent</keyword><keyword>Preparation</keyword><keyword>Processing</keyword><keyword>Rational Polynomial Coefficient</keyword><keyword>Rectify</keyword><keyword>Rpb</keyword><keyword>Rpc</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="createorthocorrectedrasterdataset" displayname="Create Ortho Corrected Raster Dataset (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>This tool creates an ortho corrected raster dataset using the rational polynomial coefficients (RPC) associated with a raster dataset.</para>
+			
+		</summary><alink_name>createorthocorrectedrasterdataset_management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster" datatype="Mosaic Dataset ; Composite Layer ; Raster Dataset ; Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset that you want to ortho correct.</para>
+						<para>This raster dataset must have rational polynomial coeffients associated with it.</para></pythonReference><dialogReference>
+						<para>The input raster dataset that you want to ortho correct.</para>
+						<para>This raster dataset must have rational polynomial coeffients associated with it.</para></dialogReference></param><param sync="true" name="out_raster_dataset" displayname="Output Raster Dataset" datatype="Raster dataset" direction="Output" expression="out_raster_dataset" type="Required"><pythonReference>
+						<para>The output raster dataset.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</pythonReference><dialogReference>
+						<para>The output raster dataset.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</dialogReference></param><param sync="true" name="Ortho_type" displayname="Orthorectification Type" datatype="String" direction="Input" expression="Ortho_type" type="Optional"><pythonReference>
+						<para>The type of elevation to use in the orthorectification process.</para>
+						<bulletList><bullet_item>CONSTANT_ELEVATION—Uses a specified elevation value.</bullet_item><bullet_item>DEM—Uses a specified digital elevation model dataset.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of elevation to use in the orthorectification process.</para>
+						<bulletList><bullet_item>CONSTANT_ELEVATION—Uses a specified elevation value.</bullet_item><bullet_item>DEM—Uses a specified digital elevation model dataset.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="constant_ elevation" displayname="Constant Elevation (Meters)" datatype="Double" direction="Input" expression="constant_ elevation" type="Optional"><pythonReference>
+						<para>The constant elevation value to be used. If a DEM is used in the ortho correction process, this constant elevation is not used.</para>
+					</pythonReference><dialogReference>
+						<para>The constant elevation value to be used. If a DEM is used in the ortho correction process, this constant elevation is not used.</para>
+					</dialogReference></param><param sync="true" name="in_DEM_raster" displayname="DEM Raster" datatype="Raster layer" direction="Input" expression="in_DEM_raster" type="Optional"><pythonReference>
+						<para>The digital elevation model raster dataset to be used for orthorectification.</para>
+					</pythonReference><dialogReference>
+						<para>The digital elevation model raster dataset to be used for orthorectification.</para>
+					</dialogReference></param><param sync="true" name="ZFactor" displayname="Z Factor" datatype="Double" direction="Input" expression="ZFactor" type="Optional"><pythonReference>
+						<para>The scaling factor used to convert the elevation values. This is often used to convert from feet to meters or vice versa.</para>
+					</pythonReference><dialogReference>
+						<para>The scaling factor used to convert the elevation values. This is often used to convert from feet to meters or vice versa.</para>
+					</dialogReference></param><param sync="true" name="ZOffset" displayname="Z Offset" datatype="Double" direction="Input" expression="ZOffset" type="Optional"><pythonReference>
+						<para>The base value to be added to the elevation value in the DEM.</para>
+					</pythonReference><dialogReference>
+						<para>The base value to be added to the elevation value in the DEM.</para>
+					</dialogReference></param><param sync="true" name="Geoid" displayname="Geoid" datatype="Boolean" direction="Input" expression="Geoid" type="Optional"><pythonReference>
+						<para>Indicates whether a geoid correction is needed.</para>
+						<bulletList><bullet_item>NONE—No geoid correction is made. This is the default. </bullet_item><bullet_item>GEOID—A geoid correction will be made. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether a geoid correction is needed.</para>
+						<bulletList>
+							<bullet_item>Unchecked—No geoid correction is made. This is the default. </bullet_item>
+							<bullet_item>Checked—A geoid correction will be made. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Pyramid" label="Pyramid">
+						
+					</environment><environment name="Raster_statistics" label="Raster statistics">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Tile_size" label="Tile size">
+						
+					</environment></environments><usage><bullet_item>
+				<para>To ortho correct a raster dataset, the raster must have RPCs associated with it.</para>
+			</bullet_item><bullet_item>
+				<para>For a more accurate result, you should use the digital elevation model (DEM) option for elevation. A DEM should be used in the ortho correction process so that the elevation and curvatures of the earth can be taken into account.</para>
+			</bullet_item><bullet_item>
+				<para>If a DEM is used to ortho correct the raster dataset, the constant elevation value will not be used.</para>
+			</bullet_item><bullet_item>
+				<para>You can save your output to BIL, BIP, BMP, BSQ, DAT, GIF, GRID, IMG, JPEG, JPEG 2000, PNG, TIFF, or any geodatabase raster dataset. </para>
+			</bullet_item><bullet_item>
+				<para>Check the Geoid parameter if you would like the ortho correction process to assume the Earth is a geoid.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateOrthoCorrectedRasterDataset example (Python window)</title>
+					<para>This is a Python sample for the CreateOrthoCorrectedRasterDataset.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.CreateOrthoCorrectedRasterDataset_management("c:/data/RPCdata.tif",\
+                                                   "c:/data/orthoready.tif",\
+                                                   "DEM", "#", "c:/data/DEM.img",\
+                                                   "#", "10", "GEOID")
+                    </code></scriptExample><scriptExample><title>CreateOrthoCorrectedRasterDataset example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for the CreateOrthoCorrectedRasterDataset.</para>
+				<code xml:space="preserve">##====================================
+##Create Ortho Corrected Raster Dataset
+##Usage: CreateOrthoCorrectedRasterDataset_management in_raster out_raster_dataset
+##                                                    CONSTANT_ELEVATION | DEM constant_ elevation
+##                                                    in_DEM_raster {ZFactor} {ZOffset} {NONE | GEOID}
+
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:/Workspace"
+    
+    ##Ortho correct with Constant elevation
+    arcpy.CreateOrthoCorrectedRasterDataset_management("ortho.img", "orthoready.tif",\
+                                                       "CONSTANT_ELEVATION", "30", "#",\
+                                                       "#", "#", "#")
+    
+    ##Ortho correct with DEM image and Z factors
+    arcpy.CreateOrthoCorrectedRasterDataset_management("ortho.img", "orthoready_dem.tif",\
+                                                       "DEM", "#", "dem.img", "#", "10", "GEOID")
+    
+except:
+    print "Create Ortho Corrected Raster Dataset example failed."
+    print arcpy.GetMessages() 
+                    </code></scriptExample></scriptExamples></tool></metadata>

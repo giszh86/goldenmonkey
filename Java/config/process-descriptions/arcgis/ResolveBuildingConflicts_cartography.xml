@@ -1,0 +1,88 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Resolve Building Conflicts  (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Resolves symbol conflicts among buildings and with respect to linear barrier features by moving or hiding buildings. </para>
+			<para>Learn more about how Resolve Building Conflicts works.</para>
+			
+			<para>This tool does not produce output layers but instead alters the source feature classes of the input  layers. If the input layers are drawn with a representation (whose editing behavior is set to store shape overrides), the modified features are stored as shape overrides in the representation. If the layer is not drawn with a representation, the geometry of the input features is modified. Using representations is recommended when working with the conflict resolution tools. That way, if the results are not acceptable, or to rerun the tool with different parameters, simply remove the overrides using the Remove Override tool. It is strongly suggested that you make a copy of your input features if you are not using representations whose editing behavior is set to store shape overrides.</para>
+		<para> A warning is raised if the input features are not in a projected coordinate system. This tool relies on  linear distance units, which will create unexpected results in an unprojected coordinate system . It is strongly suggested that you run this tool on data in a projected coordinate system to ensure valid results. An error is raised and the tool will not process if the coordinate system is missing or unknown.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Barrier</keyword><keyword>Cartography</keyword><keyword>Classification</keyword><keyword>Conflict Detection</keyword><keyword>Conflict Resolution</keyword><keyword>Disperse</keyword><keyword>Displace</keyword><keyword>Displacement</keyword><keyword>Geometry Override</keyword><keyword>Graphic Conflict</keyword><keyword>Hide</keyword><keyword>Hierarchy</keyword><keyword>Mask</keyword><keyword>Move</keyword><keyword>Orient</keyword><keyword>Overlap</keyword><keyword>Representation</keyword><keyword>Reshape</keyword><keyword>Resize</keyword><keyword>Rotate</keyword><keyword>Shape Override</keyword><keyword>Snap</keyword><keyword>Symbol</keyword><keyword>Symbol Conflict</keyword><keyword>Symbol Footprint</keyword><keyword>Symbolisation</keyword><keyword>Symbolization</keyword><keyword>Symbology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" ResolveBuildingConflicts " displayname=" Resolve Building Conflicts  (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para> Resolves symbol conflicts among buildings and with respect to linear barrier features by moving or hiding buildings. </para>
+			<para>Learn more about how Resolve Building Conflicts works.</para>
+			
+			<para>This tool does not produce output layers but instead alters the source feature classes of the input  layers. If the input layers are drawn with a representation (whose editing behavior is set to store shape overrides), the modified features are stored as shape overrides in the representation. If the layer is not drawn with a representation, the geometry of the input features is modified. Using representations is recommended when working with the conflict resolution tools. That way, if the results are not acceptable, or to rerun the tool with different parameters, simply remove the overrides using the Remove Override tool. It is strongly suggested that you make a copy of your input features if you are not using representations whose editing behavior is set to store shape overrides.</para>
+		<para> A warning is raised if the input features are not in a projected coordinate system. This tool relies on  linear distance units, which will create unexpected results in an unprojected coordinate system . It is strongly suggested that you run this tool on data in a projected coordinate system to ensure valid results. An error is raised and the tool will not process if the coordinate system is missing or unknown.</para>
+		</summary><alink_name> ResolveBuildingConflicts _cartography</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/ResolveBuildingConflicts_cartography_v.png" alt="Resolve Building Conflicts tool" /><toolIllust type="illustration" src="ResolveBuildingConflicts_cartography_h.png" alt="Resolve Building Conflicts tool" /><parameters><param sync="true" name="in_buildings" displayname="Input Building Layers" datatype="Layer" direction="Input" expression="[in_buildings,...]" type="Required"><pythonReference>
+						<para> The input layers containing building features that may be in conflict, or smaller than allowable size. Buildings can be either points or polygons. Buildings will be modified to resolve conflicts with other buildings and with barrier features. </para>
+					</pythonReference><dialogReference>
+						<para> The input layers containing building features that may be in conflict, or smaller than allowable size. Buildings can be either points or polygons. Buildings will be modified to resolve conflicts with other buildings and with barrier features. </para>
+					</dialogReference></param><param sync="true" name="invisibility_field" displayname="Invisibility Field" datatype="Field" direction="Input" expression="invisibility_field" type="Required"><pythonReference>
+						<para> The field that stores the invisibility values that can be used to remove some buildings from display in order to resolve symbol conflicts. Buildings with a value of 1 should be removed from display; those with a value of zero should remain. Use a definition query on the layer to display visible buildings only. No features are deleted. </para>
+					</pythonReference><dialogReference>
+						<para> The field that stores the invisibility values that can be used to remove some buildings from display in order to resolve symbol conflicts. Buildings with a value of 1 should be removed from display; those with a value of zero should remain. Use a definition query on the layer to display visible buildings only. No features are deleted. </para>
+					</dialogReference></param><param sync="true" name="in_barriers" displayname="Input Barrier Layers" datatype="Value Table" direction="Input" expression="[[Layer, Boolean, Linear Unit],...]" type="Required"><pythonReference>
+						<para> The layers containing the linear or polygon features that are conflict barriers for input building features. Buildings will be modified to resolve conflicts between buildings and barriers. Orient value is Boolean, specifying whether buildings should be oriented to the barrier layer. </para><para>Gap specifies the distance that buildings should move toward or away from the barrier layer. A unit must be entered with the value. <bulletList><bullet_item>A gap value of 0 (zero) will snap buildings directly to the edge of barrier line or outline symbology.</bullet_item><bullet_item>A null (unspecified) gap value will mean that buildings will not be moved toward or away from barrier lines or outlines except for movement required by conflict resolution.</bullet_item></bulletList>
+						</para>
+						
+							<para>If no unit is entered with the Gap value (i.e., 10 instead of 10 meters), the linear unit from the input feature's coordinate system will be used.</para>
+						</pythonReference><dialogReference>
+						<para> The layers containing the linear or polygon features that are conflict barriers for input building features. Buildings will be modified to resolve conflicts between buildings and barriers. Orient value is Boolean, specifying whether buildings should be oriented to the barrier layer. </para><para>Gap specifies the distance that buildings should move toward or away from the barrier layer. A unit must be entered with the value. <bulletList><bullet_item>A gap value of 0 (zero) will snap buildings directly to the edge of barrier line or outline symbology.</bullet_item><bullet_item>A null (unspecified) gap value will mean that buildings will not be moved toward or away from barrier lines or outlines except for movement required by conflict resolution.</bullet_item></bulletList>
+						</para>
+						
+							<para>If no unit is entered with the Gap value (i.e., 10 instead of 10 meters), the linear unit from the input feature's coordinate system will be used.</para>
+						</dialogReference></param><param sync="true" name="building_gap" displayname="Building Gap" datatype="Linear Unit" direction="Input" expression="building_gap" type="Required"><pythonReference>
+						<para> The minimum allowable distance between symbolized buildings at scale. Buildings that are closer together will be displaced or hidden to enforce this distance. The minimum allowable distance is set relative to the reference scale (i.e. 15 meters at 1:50,000 scale). The value is 0 if reference scale is not set.</para>
+					</pythonReference><dialogReference>
+						<para> The minimum allowable distance between symbolized buildings at scale. Buildings that are closer together will be displaced or hidden to enforce this distance. The minimum allowable distance is set relative to the reference scale (i.e. 15 meters at 1:50,000 scale). The value is 0 if reference scale is not set.</para>
+					</dialogReference></param><param sync="true" name="minimum_size" displayname="Minimum Allowable Building Size" datatype="Linear Unit" direction="Input" expression="minimum_size" type="Required"><pythonReference>
+						<para> The minimum allowable size of the shortest side of a rotated best-fit bounding box around the symbolized building feature drawn at the reference scale. Buildings with a bounding box side smaller than this value will be enlarged to meet it. Resizing may happen nonproportionally resulting in a change to building morphology. </para>
+					</pythonReference><dialogReference>
+						<para> The minimum allowable size of the shortest side of a rotated best-fit bounding box around the symbolized building feature drawn at the reference scale. Buildings with a bounding box side smaller than this value will be enlarged to meet it. Resizing may happen nonproportionally resulting in a change to building morphology. </para>
+					</dialogReference></param><param sync="true" name="hierarchy_field" displayname="Hierarchy Field" datatype="Field" direction="Input" expression="hierarchy_field" type="Optional"><pythonReference>
+						<para> The field that contains hierarchical ranking of feature importance, where 1 is very important and larger integers reflect decreasing importance. A value of 0 (zero) forced the building to  retain visibility, although it may be moved somewhat to resolve conflicts. If this parameter is not used, feature importance will be assessed by the tool based on perimeter length and proximity to barrier features.</para>
+					</pythonReference><dialogReference>
+						<para> The field that contains hierarchical ranking of feature importance, where 1 is very important and larger integers reflect decreasing importance. A value of 0 (zero) forced the building to  retain visibility, although it may be moved somewhat to resolve conflicts. If this parameter is not used, feature importance will be assessed by the tool based on perimeter length and proximity to barrier features.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cartographic_coordinate_system" label="Cartographic coordinate system">
+						
+					</environment><environment name="Reference_scale" label="Reference scale">
+						
+					</environment></environments><usage><bullet_item>
+				<para> This tool operates by assessing graphic conflicts of symbolized features. The symbology extent and the reference scale are considered in conjunction with one another. Run this tool only after you have finalized the appearance of your symbols, and ensure that the reference scale corresponds to the final intended output scale.</para>
+			</bullet_item><bullet_item>
+				<para>The Invisibility Field must be present and named the same for all input feature classes. Features that should remain visible are assigned a value of 0; those that should be removed from the display are assigned a value of 1. Use a layer definition query or a selection  to display the resulting simplified collection (i.e., invisibility &lt;&gt; 1). You can use multiple invisibility fields to store different results—corresponding to different output scales—on the same feature class.</para>
+			</bullet_item><bullet_item><para>Before conflicts are assessed, polygonal buildings are enlarged to a minimum size specified by the Minimum Allowable Building Size parameter. Minimum size is measured as a linear distance along the shortest side of a rotated bounding box best fit to the feature. To review the final size of buildings in the output results, add a double or float  field to any of the input building feature classes called RBC_SIZE. As the tool processes this field will be updated with the shortest side of  a rotated bounding box around each feature.  </para></bullet_item><bullet_item>
+				<para>The Hierarchy Field parameter is optional. If it is not specified, buildings will be assigned a relative importance based on the perimeter of the building and proximity to barriers. Larger buildings closer to more than one barrier will be assessed as more significant than smaller buildings relatively far from a barrier. You can use a partially populated Hierarchy field where only the significant buildings are attributed with a hierarchical value and all other features (with a NULL hierarchy value) will have their relative significance internally calculated.</para>
+			</bullet_item><bullet_item>
+				<para>If the Hierarchy Field parameter is used, buildings can be forced to stay visible by assigning them a hierarchy value of 0 (zero). They will not be masked by the tool. A building with hierarchy  of zero is considered locally important, so nearby buildings may be compromised more than they would if that building was not forced to stay visible. Hierarchy zero buildings may still be transformed (moved, rotated, or resized) in order to resolve conflicts and match other required parameters.</para>
+			</bullet_item><bullet_item><para>Any buildings that are geometrically in conflict with barriers (that is the actual geometry—not just symbology—of the building overlaps that of a barrier feature like a road), will not be moved off of the barrier feature. These buildings may be flagged for masking in the course of conflict resolution processing, but they won't be moved. A conflict will remain.  </para></bullet_item></usage><scriptExamples><scriptExample><title>ResolveBuildingConflicts tool Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the ResolveBuildingConflicts tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+env.referenceScale = "50000"
+arcpy.ResolveBuildingConflicts_cartography("C:/data/footprints.lyr; C:/data/bldg_points.lyr", "invisible",
+                                           "'C:/data/roads.lyr' 'true' '5 Meters';'C:/data/trails.lyr' 'false' '10 Meters';'C:/data/streams.lyr' 'false' '5 Meters'",
+                                           "10 meters", "15 meters", "bldg_hierarchy")
+                    </code></scriptExample><scriptExample><title>ResolveBuildingConflicts tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the Resolve Building Conflicts tool.</para>
+				<code xml:space="preserve"># Name: ResolveBuildingConflicts_standalone_script.py
+# Description: Resolves the symbology conflicts between buildings and nearby barriers, in this case - roads
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+env.referenceScale = "50000"
+
+# Set local variables
+in_buildings = "C:/data/footprints.lyr;C:/data/bldg_points.lyr"
+invisibility_field = "invisible"
+in_barriers = "'C:/data/roads.lyr' 'true' '5 Meters';'C:/data/trails.lyr' 'false' '10 Meters';'C:/data/streams.lyr' 'false' '5 Meters'"
+building_gap = "10 meters"
+minimum_size = "15 meters"
+hierarchy_field = "bldg_hierarchy"
+
+# Execute Resolve Building Conflicts
+arcpy.ResolveBuildingConflicts_cartography(in_buildings, invisibility_field, in_barriers, building_gap, minimum_size, hierarchy_field)
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate End Date (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Populates the values for a specified end date field with values calculated using the start date field specified. This tool is useful when the intervals between start date field values are not regular and you want to animate the feature class or table through time or some other value using the Animation toolbar.</para>
+			<para>This is a deprecated tool. This functionality has been replaced by the Calculate End Time tool that calculates end time for a given start time field. </para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateEndDate" displayname="Calculate End Date (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Populates the values for a specified end date field with values calculated using the start date field specified. This tool is useful when the intervals between start date field values are not regular and you want to animate the feature class or table through time or some other value using the Animation toolbar.</para>
+			<para>This is a deprecated tool. This functionality has been replaced by the Calculate End Time tool that calculates end time for a given start time field. </para></summary><alink_name>CalculateEndDate_management</alink_name><parameters><param sync="true" name="Input_Table" displayname="Input Table" datatype="Table View" direction="Input" expression="Input_Table" type="Required"><pythonReference>
+						<para>The feature class or table for which an end date field is calculated based on the start date field specified.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class or table for which an end date field is calculated based on the start date field specified.</para>
+					</dialogReference></param><param sync="true" name="Unique_ID_Fields" displayname="Unique ID Fields" datatype="Field" direction="Input" expression="[Unique_ID_Field,...]" type="Optional"><pythonReference>
+						<para>The name of the field or fields that can be used to uniquely identify spatial entities. This field or these fields are used to first sort based on entity type if there is more than one entity. For instance, for a feature class representing population values per state over time, state name could be the unique value field (the entity). If population figures are per county, you would need to set county name and state name as the unique value fields, since some county names are the same for different states. If there is only one entity, this parameter can be ignored.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the field or fields that can be used to uniquely identify spatial entities. This field or these fields are used to first sort based on entity type if there is more than one entity. For instance, for a feature class representing population values per state over time, state name could be the unique value field (the entity). If population figures are per county, you would need to set county name and state name as the unique value fields, since some county names are the same for different states. If there is only one entity, this parameter can be ignored.</para>
+					</dialogReference></param><param sync="true" name="Start_date_field" displayname="Start Date Field" datatype="Field" direction="Input" expression="Start_date_field" type="Required"><pythonReference>
+						<para>The field containing values that will be used to calculate values for the end date field. The start date field and the end date field must be of the same format.</para>
+					</pythonReference><dialogReference>
+						<para>The field containing values that will be used to calculate values for the end date field. The start date field and the end date field must be of the same format.</para>
+					</dialogReference></param><param sync="true" name="End_date_field" displayname="End Date Field" datatype="Field" direction="Input" expression="End_date_field" type="Required"><pythonReference>
+						<para>The field that will be populated with values based on the start date field specified. The start date field and the end date field must be of the same format.</para>
+					</pythonReference><dialogReference>
+						<para>The field that will be populated with values based on the start date field specified. The start date field and the end date field must be of the same format.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>The table is first sorted by entity (unique value field) if this is specified, and then by time stamp. With the start date field sorted in ascending order, the end date of any row is the same as the start date of the next row.</para>
+			</bullet_item><bullet_item>
+				<para>In order to use this tool the start date field must be able to be sorted in ascending order. To test this, open the attribute table for the feature class, right-click the field and click Sort Ascending. If the field cannot be sorted in ascending order, the field must be reformatted before using this tool.</para>
+			</bullet_item><bullet_item>
+				<para>The end date field value for the last row will be the same as the start date field value.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CalculateEndDate (Python window)</title>
+					
+				<code xml:space="preserve">import arcpy
+arcpy.CalculateEndDate_management("C:/data/HistPop.shp", "State_FIP;County_FIP", "Start_Date", "End_Date")
+
+                    </code></scriptExample><scriptExample><title>CalculateEndDate (stand-alone script)</title>
+					
+				<code xml:space="preserve"># Name: CalculateEndDate_Ex02.py
+# Description: Calculate end date based on a start date field
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+inTable = "C:/Data/HistPop.shp"
+uniqueIdFields = "State_FIP;County_FIP"
+startDateField = "Start_Date"
+endDateField = "End_Date"
+ 
+# Execute CalculateEndDate
+arcpy.CalculateEndDate_management(inTable, uniqueIdFields, startDateField, endDateField)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

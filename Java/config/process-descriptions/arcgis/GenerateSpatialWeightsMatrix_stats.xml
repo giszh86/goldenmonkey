@@ -1,0 +1,140 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Generate Spatial Weights Matrix (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Constructs a spatial weights matrix (.swm) file to represent the spatial relationships among features in a dataset.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Contiguity</keyword><keyword>Delaunay</keyword><keyword>Distance</keyword><keyword>Feature</keyword><keyword>Neighbor</keyword><keyword>Swm</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GenerateSpatialWeightsMatrix" displayname="Generate Spatial Weights Matrix (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Constructs a spatial weights matrix (.swm) file to represent the spatial relationships among features in a dataset.</para>
+			
+		</summary><alink_name>GenerateSpatialWeightsMatrix_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/GenerateSpatialWeightsMatrix_stats_v.png" alt="Spatial weights based on polygon contiguity." /><toolIllust type="illustration" src="GenerateSpatialWeightsMatrix_stats_h.gif" alt="Spatial weights based on Polygon Contiguity." /><parameters><param sync="true" name="Input_Feature_Class" displayname="Input Feature Class" datatype="Feature Class" direction="Input" expression="Input_Feature_Class" type="Required"><pythonReference>
+						<para>The feature class for which spatial relationships of features will be assessed.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class for which spatial relationships of features will be assessed.</para>
+					</dialogReference></param><param sync="true" name="Unique_ID_Field" displayname="Unique ID Field" datatype="Field" direction="Input" expression="Unique_ID_Field" type="Required"><pythonReference>
+						<para>An integer field containing a different value for every feature in the Input Feature Class.</para>
+					</pythonReference><dialogReference>
+						<para>An integer field containing a different value for every feature in the Input Feature Class.</para>
+					</dialogReference></param><param sync="true" name="Output_Spatial_Weights_Matrix_File" displayname="Output Spatial Weights Matrix File" datatype="File" direction="Output" expression="Output_Spatial_Weights_Matrix_File" type="Required"><pythonReference>
+						<para>The full pathname for the spatial weights matrix file (.swm) you want to create.</para>
+					</pythonReference><dialogReference>
+						<para>The full pathname for the spatial weights matrix file (.swm) you want to create.</para>
+					</dialogReference></param><param sync="true" name="Conceptualization_of_Spatial_Relationships" displayname="Conceptualization of Spatial Relationships" datatype="String" direction="Input" expression="Conceptualization_of_Spatial_Relationships" type="Required"><pythonReference>
+						<para>Specifies how spatial relationships among features are conceptualized.</para>
+						<bulletList><bullet_item>INVERSE_DISTANCE—The impact of one feature on another feature decreases with distance. </bullet_item><bullet_item>FIXED_DISTANCE—Everything within a specified critical distance of each feature is included in the analysis; everything outside the critical distance is excluded. </bullet_item><bullet_item>K_NEAREST_NEIGHBORS—The closest "k" features are included in the analysis; k is a specified numeric parameter. </bullet_item><bullet_item>CONTIGUITY_EDGES_ONLY—Polygon features that share a boundary are neighbors. </bullet_item><bullet_item>CONTIGUITY_EDGES_CORNERS—Polygon features that share a boundary and/or share a node are neighbors. </bullet_item><bullet_item>DELAUNAY_TRIANGULATION—A mesh of nonoverlapping triangles is created from feature centroids; features associated with triangle nodes that share edges are neighbors. </bullet_item><bullet_item>CONVERT_TABLE—Spatial relationships are defined in a table. </bullet_item></bulletList>
+						<para>Note: Polygon Contiguity methods are only available with an ArcInfo license.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies how spatial relationships among features are conceptualized.</para>
+						<bulletList><bullet_item>INVERSE_DISTANCE—The impact of one feature on another feature decreases with distance. </bullet_item><bullet_item>FIXED_DISTANCE—Everything within a specified critical distance of each feature is included in the analysis; everything outside the critical distance is excluded. </bullet_item><bullet_item>K_NEAREST_NEIGHBORS—The closest "k" features are included in the analysis; k is a specified numeric parameter. </bullet_item><bullet_item>CONTIGUITY_EDGES_ONLY—Polygon features that share a boundary are neighbors. </bullet_item><bullet_item>CONTIGUITY_EDGES_CORNERS—Polygon features that share a boundary and/or share a node are neighbors. </bullet_item><bullet_item>DELAUNAY_TRIANGULATION—A mesh of nonoverlapping triangles is created from feature centroids; features associated with triangle nodes that share edges are neighbors. </bullet_item><bullet_item>CONVERT_TABLE—Spatial relationships are defined in a table. </bullet_item></bulletList>
+						<para>Note: Polygon Contiguity methods are only available with an ArcInfo license.</para>
+					</dialogReference></param><param sync="true" name="Distance_Method" displayname="Distance Method" datatype="String" direction="Input" expression="Distance_Method" type="Required"><pythonReference>
+						<para>Specifies how distances are calculated from each feature to neighboring features.</para>
+						<bulletList><bullet_item>EUCLIDEAN_DISTANCE—The straight-line distance between two points (as the crow flies) </bullet_item><bullet_item>MANHATTAN_DISTANCE—The distance between two points measured along axes at right angles (city block); calculated by summing the (absolute) difference between the x- and y-coordinates </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how distances are calculated from each feature to neighboring features.</para>
+						<bulletList><bullet_item>EUCLIDEAN_DISTANCE—The straight-line distance between two points (as the crow flies) </bullet_item><bullet_item>MANHATTAN_DISTANCE—The distance between two points measured along axes at right angles (city block); calculated by summing the (absolute) difference between the x- and y-coordinates </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Exponent" displayname="Exponent" datatype="Double" direction="Input" expression="Exponent" type="Optional"><pythonReference>
+						<para>Parameter for inverse distance calculation. Typical values are 1 or 2.</para>
+					</pythonReference><dialogReference>
+						<para>Parameter for inverse distance calculation. Typical values are 1 or 2.</para>
+					</dialogReference></param><param sync="true" name="Threshold_Distance" displayname="Threshold Distance" datatype="Double" direction="Input" expression="Threshold_Distance" type="Optional"><pythonReference>
+						<para>Specifies a cutoff distance for Inverse Distance and Fixed Distance conceptualizations of spatial relationships. Enter this value using the units specified in the environment output coordinate system.</para>
+						<para>A value of zero indicates that no threshold distance is applied. When this parameter is left blank, a default threshold value is computed based on output feature class extent and the number of features.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies a cutoff distance for Inverse Distance and Fixed Distance conceptualizations of spatial relationships. Enter this value using the units specified in the environment output coordinate system.</para>
+						<para>A value of zero indicates that no threshold distance is applied. When this parameter is left blank, a default threshold value is computed based on output feature class extent and the number of features.</para>
+					</dialogReference></param><param sync="true" name="Number_of_Neighbors" displayname="Number of Neighbors" datatype="Integer" direction="Input" expression="Number_of_Neighbors" type="Optional"><pythonReference>
+						<para>An integer reflecting either the minimum or the exact number of neighbors. For <bold>K Nearest Neighbors</bold>, each feature will have exactly this specified number of neighbors. For <bold>Inverse Distance</bold> or <bold>Fixed Distance</bold> each feature will have at least this many neighbors (the threshold distance will be temporarily extended to ensure this many neighbors, if necessary). When there are island polygons and one of the <bold>Contiguity</bold>
+							Conceptualizations of Spatial Relationships is selected, then this specified number of nearest polygons will be associated with those island polygons.</para>
+					</pythonReference><dialogReference>
+						<para>An integer reflecting either the minimum or the exact number of neighbors. For <bold>K Nearest Neighbors</bold>, each feature will have exactly this specified number of neighbors. For <bold>Inverse Distance</bold> or <bold>Fixed Distance</bold> each feature will have at least this many neighbors (the threshold distance will be temporarily extended to ensure this many neighbors, if necessary). When there are island polygons and one of the <bold>Contiguity</bold>
+							Conceptualizations of Spatial Relationships is selected, then this specified number of nearest polygons will be associated with those island polygons.</para>
+					</dialogReference></param><param sync="true" name="Row_Standardization" displayname="Row Standardization" datatype="Boolean" direction="Input" expression="Row_Standardization" type="Optional"><pythonReference>
+						<para>Row standardization is recommended whenever feature distribution is potentially biased due to sampling design or to an imposed aggregation scheme.</para>
+						<bulletList><bullet_item>ROW_STANDARDIZATION—Spatial weights are standardized by row. Each weight is divided by its row sum. </bullet_item><bullet_item>NO_STANDARDIZATION—No standardization of spatial weights is applied. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Row standardization is recommended whenever feature distribution is potentially biased due to sampling design or to an imposed aggregation scheme.</para>
+						<bulletList><bullet_item>Checked—Spatial weights are standardized by row. Each weight is divided by its row sum.</bullet_item><bullet_item>Unchecked—No standardization of spatial weights is applied.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Input_Table" displayname="Input Table" datatype="File" direction="Input" expression="Input_Table" type="Optional"><pythonReference>
+						<para>A table containing numeric weights relating every feature to every other feature in the input feature class. Required fields are the Input Feature Class Unique ID field, NID (neighbor ID), and WEIGHT.</para>
+					</pythonReference><dialogReference>
+						<para>A table containing numeric weights relating every feature to every other feature in the input feature class. Required fields are the Input Feature Class Unique ID field, NID (neighbor ID), and WEIGHT.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Output_coordinate_system" label="Output coordinate system">Feature geometry is projected to the Output Coordinate System prior to analysis. </environment></environments><usage><bullet_item>
+				<para>Output from this tool is a spatial weights matrix file (.swm).  Tools that require you to specify a Conceptualization of Spatial Relationships option will accept a ; select GET_SPATIAL_WEIGHTS_FROM_FILE for the Conceptualization of Spatial Relationships parameter and, for the Weights Matrix File parameter, specify the full pathname to the spatial weights file you create using this tool.</para>
+			</bullet_item><bullet_item><para>This tool also reports characteristics of the resultant spatial weights matrix file: number of features, connectivity, minimum, maximum and average number of neighbors.  This summary is accessible from the  and may be viewed by right-clicking on the  in the Results window and selecting <bold>View</bold>.  Using this summary, ensure that all features have at least 1 neighbor (8 neighbors is ideal).  In general, especially with large datasets, a low value for feature connectivity is desirable.</para></bullet_item><bullet_item>
+				<para>Whenever using a distance-based Conceptualization of Spatial Relationships, data should be in a  (rather than a ). </para>
+			</bullet_item><bullet_item>
+				<para>For line and polygon features, feature centroids are used in distance computations. For multipoints, polylines, or polygons with multiple parts, the centroid is computed using the weighted mean center of all feature parts. The weighting for point features is 1, for line features is length, and for polygon features is area.</para>
+			</bullet_item><bullet_item>
+				<para>The Unique ID field is linked to feature relationships derived from running this tool. Consequently, the Unique ID values must be unique for every feature and typically should be in a permanent field that remains with the feature class. If you don't have a Unique ID field, you can easily create one by adding a new integer field to your feature class table and calculating the field values to be equal to the FID/OID field. You cannot use the FID/OID field directly for the Unique ID parameter.</para>
+			</bullet_item><bullet_item>
+				<para>The polygon contiguity options, CONTIGUITY_EDGES_ONLY and CONTIGUITY_EDGES_CORNERS, for the Conceptualization of Spatial Relationships parameter are only valid for polygon features. These options are available with the ArcInfo license only.</para>
+			</bullet_item><bullet_item>
+				<para>The Number of Neighbors parameter may override the Threshold Distance parameter for Inverse or Fixed Distance Conceptualizations of Spatial Relationships. If you specify a threshold distance of 10 miles and 3 for the number of neighbors, all features will receive a minimum of 3 neighbors even if the threshold has to be increased to find them.  The threshold distance is only increased in those cases where the minimum number of neighbors is not met.</para>
+			</bullet_item><bullet_item><para>The CONVERT_TABLE option for the Conceptualization of Spatial Relationships parameter may be used to convert an  to a .  First you will need to put your ASCII weights into a  table (using Excel, for example).<para>If your table includes weights for , they will be omitted from the .swm output file, and the default self-potential value will be used in analyses.  The default self-potential value for the  tool is one, but this value can be overwritten by specifying a Self-Potential Field value; for all other tools, the default self-potential value is zero.</para></para></bullet_item><bullet_item><para>For polygon features, you will almost <italics>always</italics> want to choose <bold>Row</bold> for the Standardization parameter.   mitigates bias when the number of neighbors each feature has is a function of the aggregation scheme or sampling process, rather than reflecting the actual spatial distribution of the variable you are analyzing.</para></bullet_item><bullet_item>
+				<para>The  help topic provides additional information about this tool's parameters.</para>
+			</bullet_item><bullet_item>
+				
+					<para>When using shapefiles, keep in mind that they cannot store null values. Tools or other procedures that create shapefiles from non-shapefile inputs may store or interpret null values as zero. This can lead to unexpected results.  See also .</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>GenerateSpatialWeightsMatrix Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the GenerateSpatialWeightsMatrix tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data"
+arcpy.GenerateSpatialWeightsMatrix_stats("911Count.shp", "MYID","euclidean6Neighs.swm","K_NEAREST_NEIGHBORS","#", "#", "#", 6,"NO_STANDARDIZATION") 
+                    </code></scriptExample><scriptExample><title>GenerateSpatialWeightsMatrix Example (stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the GenerateSpatialWeightsMatrix tool.</para>
+				<code xml:space="preserve">
+# Analyze the spatial distribution of 911 calls in a metropolitan area
+# using the Hot-Spot Analysis Tool (Local Gi*)
+
+# Import system modules
+import arcpy
+
+# Set geoprocessor object property to overwrite existing output, by default
+arcpy.gp.overwriteOutput = True
+
+# Local variables...
+workspace = "C:/Data"
+
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.env.workspace = workspace
+
+    # Copy the input feature class and integrate the points to snap
+    # together at 500 feet
+    # Process: Copy Features and Integrate
+    cf = arcpy.CopyFeatures_management("911Calls.shp", "911Copied.shp",
+                         "#", 0, 0, 0)
+
+    integrate = arcpy.Integrate_management("911Copied.shp #", "500 Feet")
+
+    # Use Collect Events to count the number of calls at each location
+    # Process: Collect Events
+    ce = arcpy.CollectEvents_stats("911Copied.shp", "911Count.shp", "Count", "#")
+
+    # Add a unique ID field to the count feature class
+    # Process: Add Field and Calculate Field
+    af = arcpy.AddField_management("911Count.shp", "MyID", "LONG", "#", "#", "#", "#",
+                     "NON_NULLABLE", "NON_REQUIRED", "#",
+                     "911Count.shp")
+    
+    cf = arcpy.CalculateField_management("911Count.shp", "MyID", "[FID]", "VB")
+
+    # Create Spatial Weights Matrix for Calculations
+    # Process: Generate Spatial Weights Matrix... 
+    swm = arcpy.GenerateSpatialWeightsMatrix_stats("911Count.shp", "MYID",
+                        "euclidean6Neighs.swm",
+                        "K_NEAREST_NEIGHBORS",
+                        "#", "#", "#", 6,
+                        "NO_STANDARDIZATION") 
+
+    # Hot Spot Analysis of 911 Calls
+    # Process: Hot Spot Analysis (Getis-Ord Gi*)
+    hs = arcpy.HotSpots_stats("911Count.shp", "ICOUNT", "911HotSpots.shp", 
+                     "GET_SPATIAL_WEIGHTS_FROM_FILE",
+                     "EUCLIDEAN_DISTANCE", "NONE",
+                     "#", "#", "euclidean6Neighs.swm")
+
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

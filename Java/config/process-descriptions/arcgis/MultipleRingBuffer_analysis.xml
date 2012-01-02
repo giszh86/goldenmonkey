@@ -1,0 +1,115 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Multiple Ring Buffer (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates multiple buffers at specified distances around the input features. These buffers can optionally be merged and dissolved using the buffer distance values to create non-overlapping buffers.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Adjacent</keyword><keyword>Area</keyword><keyword>Around</keyword><keyword>Bound</keyword><keyword>Circle</keyword><keyword>Close</keyword><keyword>Coast</keyword><keyword>Concentric</keyword><keyword>Distance</keyword><keyword>Euclidean</keyword><keyword>Expand</keyword><keyword>Extend</keyword><keyword>Fall Inside</keyword><keyword>Far</keyword><keyword>Geodesic</keyword><keyword>Gradient</keyword><keyword>Gradual</keyword><keyword>Graduate</keyword><keyword>Near</keyword><keyword>Neighbor</keyword><keyword>Offset</keyword><keyword>Outside</keyword><keyword>Outward</keyword><keyword>Region</keyword><keyword>Sequence</keyword><keyword>Surround</keyword><keyword>Vignette</keyword><keyword>Within</keyword><keyword>Zone</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MultipleRingBuffer" displayname="Multiple Ring Buffer (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Creates multiple buffers at specified distances around the input features. These buffers can optionally be merged and dissolved using the buffer distance values to create non-overlapping buffers.</para>
+		</summary><alink_name>MultipleRingBuffer_analysis</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/MultipleRingBuffer_analysis_v.gif" alt="Multiple Ring Buffer illustration" /><toolIllust type="illustration" src="MultipleRingBuffer_analysis_h.gif" alt="Multiple Ring Buffer illustration" /><parameters><param sync="true" name="Input_Features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="Input_Features" type="Required"><pythonReference>
+						<para>The input point, line, or polygon features to be buffered.</para>
+					</pythonReference><dialogReference>
+						<para>The input point, line, or polygon features to be buffered.</para>
+					</dialogReference></param><param sync="true" name="Output_Feature_class" displayname="Output Feature class" datatype="Feature Class" direction="Output" expression="Output_Feature_class" type="Required"><pythonReference>
+						<para>The output feature class containing feature buffers.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class containing feature buffers.</para>
+					</dialogReference></param><param sync="true" name="Distances" displayname="Distances" datatype="Double" direction="Input" expression="[Distances,...]" type="Required"><pythonReference>
+						<para>The list of buffer distances.</para>
+					</pythonReference><dialogReference>
+						<para>The list of buffer distances. Distances are entered individually and can be committed to the list by pressing the Add button. The Distances list is managed using the side-panel controls.</para>
+					</dialogReference></param><param sync="true" name="Buffer_Unit" displayname="Buffer Unit" datatype="String" direction="Input" expression="Buffer_Unit" type="Optional"><pythonReference>
+						<para>The linear unit to be used with the Distance values. If the units are not specified, or entered as 'Default', the linear unit of the input features' spatial reference is used. If the Buffer Unit is specified as 'Default' and the Output Coordinate System geoprocessing environment has been set, its linear unit will be used.</para>
+					</pythonReference><dialogReference>
+						<para>The linear unit to be used with the Distance values. If the units are not specified, or entered as 'Default', the linear unit of the input features' spatial reference is used. If the Buffer Unit is specified as 'Default' and the Output Coordinate System geoprocessing environment has been set, its linear unit will be used.</para>
+					</dialogReference></param><param sync="true" name="Field_Name" displayname="Field Name" datatype="String" direction="Input" expression="Field_Name" type="Optional"><pythonReference>
+						<para>The name of the field in the output feature class that stores the buffer distance used to create each buffer feature. If no name is specified, the default field name is 'distance'. This field will be of type Double.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the field in the output feature class that stores the buffer distance used to create each buffer feature. If no name is specified, the default field name is 'distance'. This field will be of type Double.</para>
+					</dialogReference></param><param sync="true" name="Dissolve_Option" displayname="Dissolve Option" datatype="String" direction="Input" expression="Dissolve_Option" type="Optional"><pythonReference>
+						<para>Determines if the output buffers will be rings or disks around the input features.</para>
+						<bulletList><bullet_item>ALL—Buffers will be rings around the input features that do not overlap (think of these as rings or donuts around the input features). This is the default. </bullet_item><bullet_item>NONE—Buffers will be disks around the input features that do overlap. Each buffer overlaps all buffers with a smaller buffer distance than its own. The output buffers will resemble a group of concentrically larger circles.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines if the output buffers will be rings or disks around the input features.</para>
+						<bulletList><bullet_item>ALL—Buffers will be rings around the input features that do not overlap (think of these as rings or donuts around the input features). This is the default. </bullet_item><bullet_item>NONE—Buffers will be disks around the input features that do overlap. Each buffer overlaps all buffers with a smaller buffer distance than its own. The output buffers will resemble a group of concentrically larger circles.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Outside_Polygons_Only" displayname="Outside Polygons Only" datatype="Boolean" direction="Input" expression="Outside_Polygons_Only" type="Optional"><pythonReference>
+						<para>Valid only for polygon input features.</para>
+						<bulletList><bullet_item>FULL—Buffers will be generated fully around polygon input features, and these buffers will contain and overlap the area of the input features. This is the default.</bullet_item><bullet_item>OUTSIDE_ONLY—Buffers will be generated only outside of the input polygon features (the area inside the input polygon will be erased from the output buffer).</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Valid only for polygon input features.</para>
+						<para>
+							<bulletList>
+								<bullet_item>Unchecked—Buffers will be generated fully around polygon input features, and these buffers will contain and overlap the area of the input features. This is the default.</bullet_item>
+								<bullet_item>Checked—Buffers will be generated only outside of the input polygon features (the area inside the input polygon will be erased from the output buffer).</bullet_item>
+							</bulletList>
+						</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Geograpic_transformations" label="Geograpic transformations">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The tool creates temporary data. This temporary data will be written to the location specified in the  environment setting. If the Scratch workspace environment is not set, the temporary data is written to the location defined by the TEMP system variable.</para>
+			</bullet_item><bullet_item>
+				<para>If the input features do not have a defined spatial reference, the distance units of the input feature class is unknown. Therefore, the Buffer Unit parameter (i.e., meters, feet) is ignored if the input features do not have a spatial reference.</para>
+			</bullet_item><bullet_item>
+				<para>
+					
+					
+					
+						<para>This tool is a Python script tool whose code can be viewed by right-clicking the tool and selecting Edit. The general logic for the Python code is to use the  tool to create the initial buffers. If theDissolve Option ALL is used, the , , and  tools merge the buffers to create nonoverlapping buffers around the input features. If the Dissolve Option NONE is used, the  tool is used to aggregate buffers so that they overlap, resembling a group of concentrically larger circles.</para>
+					
+				</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MultipleRingBuffer Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the MultipleRingBuffer tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/airport.gdb"
+arcpy.MultipleRingBuffer_analysis("schools", "c:/output/output.gdb/multibuffer1", [10,20,30],
+                         "meters", "", "ALL")
+
+                    </code></scriptExample><scriptExample><title>MultipleRingBuffer Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the MultipleRingBuffer tool.</para>
+				<code xml:space="preserve">
+# Name: MultipleRingBuffer_Example2.py
+# Description: Create multiple buffers for the input features
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data/airport.gdb"
+ 
+# Set local variables
+inFeatures = "schools"
+outFeatureClass = "c:/output/output.gdb/multibuffer1"
+distances = [10,20,30]
+bufferUnit = "meters"
+ 
+# Execute MultipleRingBuffer
+arcpy.MultipleRingBuffer_analysis(inFeatures, outFeatureClass, distances, bufferUnit, "", "ALL")
+                    </code></scriptExample></scriptExamples></tool></metadata>

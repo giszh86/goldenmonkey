@@ -1,0 +1,71 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Power (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Raises the cell values in a raster to the power of the values found in another raster.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>**</keyword><keyword>Exponent</keyword><keyword>Pow</keyword><keyword>Raise</keyword><keyword>^</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Power" displayname="Power (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Raises the cell values in a raster to the power of the values found in another raster.</para>
+		</summary><alink_name>Power_sa</alink_name><toolIllust type="illustration" src="Power_sa_h.png" alt="Power illustration" /><parameters><param sync="true" name="in_raster_or_constant1" displayname="Input raster or constant value 1" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant1" type="Required"><pythonReference>
+						<para>The input values to be raised to the power defined by the second input.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para></pythonReference><dialogReference>
+						<para>The input values to be raised to the power defined by the second input.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para></dialogReference></param><param sync="true" name="in_raster_or_constant2" displayname="Input raster or constant value 2" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant2" type="Required"><pythonReference>
+						<para>The input that determines the power the values in the first input will be raised to.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The input that determines the power the values in the first input will be raised to.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para><para>The cell values are the result of raising the values in the first input to the power of the values in the second input.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para><para>The cell values are the result of raising the values in the first input to the power of the values in the second input.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para>The output raster from this tool is always floating point type, regardless of the input value type.</para></bullet_item><bullet_item>
+				<para>In Map Algebra, the equivalent  symbol for this tool is "**" ().</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Power example 1 (Python window)</title>
+					<para>This example uses the values in the second input raster as the power to raise the values in the first input raster by, and outputs the result as an IMG raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outPower = Power("degs", "cost")
+outPower.save("C:/sapyexamples/output/outpower.img")
+                    </code></scriptExample><scriptExample><title>Power example 2 (stand-alone script)</title>
+					<para>This example uses the values in the second input raster as the power to raise the values in the first input raster by, and outputs the result as an IMG raster.</para>
+				<code xml:space="preserve"># Name: Power_Ex_02.py
+# Description: Raises the cells in a raster to the power of the values
+#              found in another raster
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster1 = "degs"
+inRaster2 = "cost"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Power
+outPower = Power(inRaster1, inRaster2)
+
+# Save the output 
+outPower.save("C:/sapyexamples/output/outpower.img")
+                    </code></scriptExample></scriptExamples></tool></metadata>

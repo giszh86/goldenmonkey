@@ -1,0 +1,59 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Table (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates an ArcSDE, file, or personal geodatabase table, or an INFO or dBASE table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Dbase</keyword><keyword>Dbf</keyword><keyword>Empty</keyword><keyword>Geodatabase</keyword><keyword>Info</keyword><keyword>New</keyword><keyword>Tbl</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateTable" displayname="Create Table (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates an ArcSDE, file, or personal geodatabase table, or an INFO or dBASE table.</para>
+		</summary><alink_name>CreateTable_management</alink_name><parameters><param sync="true" name="out_path" displayname="Output Location" datatype="Workspace" direction="Input" expression="out_path" type="Required"><pythonReference>
+						<para>The ArcSDE, file, or personal geodatabase or workspace in which the output table will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcSDE, file, or personal geodatabase or workspace in which the output table will be created.</para>
+					</dialogReference></param><param sync="true" name="out_name" displayname="Output Table" datatype="String" direction="Input" expression="out_name" type="Required"><pythonReference>
+						<para>The name of the table to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the table to be created.</para>
+					</dialogReference></param><param sync="true" name="template" displayname="Template Table Name" datatype="Table View" direction="Input" expression="[template,...]" type="Optional"><pythonReference>
+						<para>A table whose attribute schema is used to define the output table. Fields in the template table(s) will be added to the output table.</para>
+					</pythonReference><dialogReference>
+						<para>A table whose attribute schema is used to define the output table. Fields in the template table(s) will be added to the output table.</para>
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="Config keyword" datatype="String" direction="Input" expression="config_keyword" type="Optional"><pythonReference>
+						<para>The configuration keyword that determines the storage parameters of the table in an ArcSDE geodatabase.</para>
+					</pythonReference><dialogReference>
+						<para>The configuration keyword that determines the storage parameters of the table in an ArcSDE geodatabase.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword"> ArcSDE data only. </environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If the output location is a folder, the default output is an INFO table. </para>
+			</bullet_item><bullet_item>
+				<para>To create a dBASE table in a folder, you must append the extension .dbf to the output table name.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateTable Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the CreateTable function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/data"
+arcpy.CreateTable_management("C:/output", "habitatTemperatures.dbf", "vegtable.dbf")
+                    </code></scriptExample><scriptExample><title>CreateTable Example 2 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the CreateTable function in a stand-alone script.</para>
+				<code xml:space="preserve">
+# Name: CreateTable_Example2.py
+# Description: Create table to store temperature data in gnatcatcher habitat areas
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/data"
+
+# Set local variables
+out_path = "C:/output"
+out_name = "C:/output/habitatTemperatures.dbf"
+template = "vegtable.dbf"
+config_keyword = ""
+
+# Execute CreateTable
+arcpy.CreateTable_management(out_path, out_name, template, config_keyword)
+                    </code></scriptExample></scriptExamples></tool></metadata>

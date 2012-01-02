@@ -1,0 +1,101 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Neighborhood Selection (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a layer of points based on a user-defined neighborhood.</para>
+			<para>
+				
+			</para>
+			
+				
+				
+				
+			<para>The input point feature class contains all the red and blue points. You want to create a selection of points around the red star based on a circular neighborhood. The output layer contains the selection set of 20 (blue) points.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Neighbourhood</keyword><keyword>User-Defined Neighborhood</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GANeighborhoodSelection" displayname="Neighborhood Selection (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Creates a layer of points based on a user-defined neighborhood.</para>
+			<para>
+				
+			</para>
+			
+				
+				
+				
+			<para>The input point feature class contains all the red and blue points. You want to create a selection of points around the red star based on a circular neighborhood. The output layer contains the selection set of 20 (blue) points.</para></summary><alink_name>GANeighborhoodSelection_ga</alink_name><parameters><param sync="true" name="in_dataset" displayname="Input point features" datatype="Feature Layer" direction="Input" expression="in_dataset" type="Required"><pythonReference>
+						<para>Points used to create a neighborhood selection.</para>
+					</pythonReference><dialogReference>
+						<para>Points used to create a neighborhood selection.</para>
+					</dialogReference></param><param sync="true" name="out_layer" displayname="Output layer" datatype="Feature Layer" direction="Output" expression="out_layer" type="Required"><pythonReference>
+						<para>Layer to store the neighborhood selection.</para>
+					</pythonReference><dialogReference>
+						<para>Layer to store the neighborhood selection.</para>
+					</dialogReference></param><param sync="true" name="point_coord" displayname="Input point X Coordinate, Y Coordinate" datatype="Point" direction="Input" expression="point_coord" type="Required"><pythonReference>
+						<para>The neighborhood center's x,y coordinate.</para>
+					</pythonReference><dialogReference>
+						<para>The neighborhood center's x,y coordinate.</para>
+					</dialogReference></param><param sync="true" name="neighbors_max" displayname="Neighbors to include" datatype="Long" direction="Input" expression="neighbors_max" type="Required"><pythonReference>
+						<para>The number of points to use in each sector. If a sector has the required number of points, all points in that sector are used.</para>
+					</pythonReference><dialogReference>
+						<para>The number of points to use in each sector. If a sector has the required number of points, all points in that sector are used.</para>
+					</dialogReference></param><param sync="true" name="neighbors_min" displayname="Include at least" datatype="Long" direction="Input" expression="neighbors_min" type="Required"><pythonReference>
+						<para>The minimum number of points to use in each sector. If the minimum number of required points are not available in any given sector, the nearest available point(s) outside the sector will be selected.</para>
+					</pythonReference><dialogReference>
+						<para>The minimum number of points to use in each sector. If the minimum number of required points are not available in any given sector, the nearest available point(s) outside the sector will be selected.</para>
+					</dialogReference></param><param sync="true" name="minor_semiaxis" displayname="Minor semiaxis" datatype="Double" direction="Input" expression="minor_semiaxis" type="Required"><pythonReference>
+						<para>Size of the minor semiaxis of the search neighborhood.</para>
+					</pythonReference><dialogReference>
+						<para>Size of the minor semiaxis of the search neighborhood.</para>
+					</dialogReference></param><param sync="true" name="major_semiaxis" displayname="Major semiaxis" datatype="Double" direction="Input" expression="major_semiaxis" type="Required"><pythonReference>
+						<para>Size of the major semiaxis of the search neighborhood.</para>
+					</pythonReference><dialogReference>
+						<para>Size of the major semiaxis of the search neighborhood.</para>
+					</dialogReference></param><param sync="true" name="angle" displayname="Angle" datatype="Double" direction="Input" expression="angle" type="Required"><pythonReference>
+						<para>The angle of rotation of the neighborhood axis.</para>
+					</pythonReference><dialogReference>
+						<para>The angle of rotation of the neighborhood axis.</para>
+					</dialogReference></param><param sync="true" name="shape_type" displayname="Shape type" datatype="String" direction="Input" expression="shape_type" type="Optional"><pythonReference>
+						<para>The geometry of the neighborhood.</para>
+						<bulletList><bullet_item>ONE SECTOR — Single ellipse. </bullet_item><bullet_item>FOUR SECTORS — Ellipse divided in four sectors. </bullet_item><bullet_item>FOUR SECTOR SHIFTED — Ellipse divided in four sectors and shifted 45 degrees. </bullet_item><bullet_item>EIGHT SECTORS — Ellipse divided into eight sectors. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The geometry of the neighborhood.</para>
+						<bulletList><bullet_item>ONE SECTOR — Single ellipse. </bullet_item><bullet_item>FOUR SECTORS — Ellipse divided in four sectors. </bullet_item><bullet_item>FOUR SECTOR SHIFTED — Ellipse divided in four sectors and shifted 45 degrees. </bullet_item><bullet_item>EIGHT SECTORS — Ellipse divided into eight sectors. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>This tool can be used in conjunction with the  tools when different  are examined.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>NeighborhoodSelection example 1 (Python window)</title>
+					<para>Create a feature layer based on some neighborhood criteria.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/gapyexamples/data"
+arcpy.GANeighborhoodSelection_ga("ca_ozone_pts", "outNS", "-2000000 -50000", "20", "5",
+                                 "200000", "200000", "0", "One sector")
+
+                    </code></scriptExample><scriptExample><title>NeighborhoodSelection example 2 (stand-alone script)</title>
+					<para>Create a feature layer based on some neighborhood criteria.</para>
+				<code xml:space="preserve"># Name: NeighborhoodSelection_Example_02.py
+# Description: Creates a layer of points based on a user-defined neighborhood.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inPoints = "ca_ozone_pts.shp"
+outLayer = "outNS"
+pointCoord = "-2000000 -50000"
+maxNeighbors = 20
+minNeighbors = 5
+majSemiaxis = 200000
+minSemiaxis = 200000
+angle = 0
+shape = "One Sector"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute NeighborhoodSelection
+arcpy.GANeighborhoodSelection_ga(inPoints, outLayer, pointCoord, maxNeighbors,
+                                 minNeighbors, majSemiaxis, minSemiaxis, angle,
+                                 shape)
+
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

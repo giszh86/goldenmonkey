@@ -1,0 +1,34 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Compress (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Compresses an ArcSDE geodatabase by removing states not referenced by a version and redundant rows.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Defrag</keyword><keyword>Delete</keyword><keyword>Duplicate</keyword><keyword>Efficient</keyword><keyword>Fragment</keyword><keyword>Geodatabase</keyword><keyword>Performance</keyword><keyword>Redundant</keyword><keyword>Remove</keyword><keyword>Sde</keyword><keyword>Space</keyword><keyword>State</keyword><keyword>Version</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Compress" displayname="Compress (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Compresses an ArcSDE geodatabase by removing states not referenced by a version and redundant rows.</para>
+		</summary><alink_name>Compress_management</alink_name><parameters><param sync="true" name="in_workspace" displayname="Input Workspace" datatype="Workspace" direction="Input" expression="in_workspace" type="Required"><pythonReference>
+						<para>The ArcSDE database to be compressed.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcSDE database to be compressed.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>When you delete a record from a database, it is only marked as deleted; it is not actually removed from the associated table. Therefore, the table will remain the same size after you delete records. To actually remove deleted records from the database, you must compress the database.</para>
+			</bullet_item><bullet_item>
+				<para>To improve database performance, the database should be compressed periodically.</para>
+			</bullet_item><bullet_item>
+				<para>A compressed database is more efficient. A database that is never compressed is more likely to develop errors.</para>
+			</bullet_item><bullet_item>
+				<para>Once a database is compressed, deleted records cannot be recovered.</para>
+			</bullet_item><bullet_item>
+				<para>Compression of databases not only reduces space requirements but can also reduce overall retrieval times.</para>
+			</bullet_item><bullet_item>
+				<para>When the Compress tool is executed, the database is unavailable until compression is completed.</para>
+			</bullet_item><bullet_item>
+				<para>Only the SDE administrator can perform compression.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><para>This stand-alone Python script uses the Compress tool to compress the geodatabase.</para><code xml:space="preserve">import arcgisscripting
+gp = arcgisscripting.create()
+ 
+gp.toolbox = "management"
+gp.compress("Database Connections\Connection to deerfoot.sde")
+                    </code></scriptExample></scriptExamples></tool></metadata>

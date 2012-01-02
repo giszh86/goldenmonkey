@@ -1,0 +1,63 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Delete Identical (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Deletes records in a feature class or table which have identical values in a list of fields. If the field 'Shape' is selected, feature geometries are compared.</para>
+			<para>The Find Identical tool can be used to report which records are considered identical without deleting the identical records.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Double</keyword><keyword>Duplicate</keyword><keyword>Feature</keyword><keyword>Field</keyword><keyword>Geometry</keyword><keyword>Identical</keyword><keyword>Record</keyword><keyword>Redundant</keyword><keyword>Remove</keyword><keyword>Row</keyword><keyword>Same</keyword><keyword>Shape</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DeleteIdentical" displayname="Delete Identical (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Deletes records in a feature class or table which have identical values in a list of fields. If the field 'Shape' is selected, feature geometries are compared.</para>
+			<para>The Find Identical tool can be used to report which records are considered identical without deleting the identical records.</para>
+		</summary><alink_name>DeleteIdentical_management</alink_name><parameters><param sync="true" name="in_dataset" displayname="Input Dataset" datatype="Table View" direction="Input" expression="in_dataset" type="Required"><pythonReference>
+						<para>The table or feature class which will have its identical records deleted.</para>
+					</pythonReference><dialogReference>
+						<para>The table or feature class which will have its identical records deleted.</para>
+					</dialogReference></param><param sync="true" name="fields" displayname="Field(s)" datatype="Field" direction="Input" expression="[fields,...]" type="Required"><pythonReference><para>The field(s) whose values will be compared to find identical records.</para></pythonReference><dialogReference>
+						<para>The field(s) whose values will be compared to find identical records.</para>
+						<para>The Add Field button, which is used only in ModelBuilder, allows you to add expected fields so that you can complete the dialog box and continue to build your model.</para></dialogReference></param><param sync="true" name="xy_tolerance" displayname="XY Tolerance" datatype="Linear Unit" direction="Input" expression="xy_tolerance" type="Optional"><pythonReference>
+						<para>The xy tolerance which will be applied to each vertex when evaluating if there is an identical vertex in another feature.</para>
+					</pythonReference><dialogReference>
+						<para>The xy tolerance which will be applied to each vertex when evaluating if there is an identical vertex in another feature.</para>
+					</dialogReference></param><param sync="true" name="z_tolerance" displayname="Z Tolerance" datatype="Linear Unit" direction="Input" expression="z_tolerance" type="Optional"><pythonReference>
+						<para>The z tolerance which will be applied to each vertex when evaluating if there is an identical vertex in another feature.</para>
+					</pythonReference><dialogReference>
+						<para>The z tolerance which will be applied to each vertex when evaluating if there is an identical vertex in another feature.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="MaintainSpatialIndex" label="MaintainSpatialIndex"></environment></environments><usage><bullet_item>
+				
+					<para>This tool modifies the input data. See  for more information and strategies to avoid undesired data changes.</para>
+				
+			</bullet_item><bullet_item>
+				<para>This tool finds identical records based on input field values, then deletes all but one of the identical records from each set of identical records. The values from multiple fields in the input dataset can be compared. If more than one field is specified, records are matched by the values in the first field, then by the values of the second field, and so on.</para>
+			</bullet_item><bullet_item>
+				<para>With feature class or feature layer input, select the field 'Shape' in the Field(s) parameter to compare feature geometries to find identical features by location. XY Tolerance and Z Tolerance parameters are only valid when 'Shape' is selected as one of the input fields.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DeleteIdentical Example 1 (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the DeleteIdentical function in a Python window.</para>
+				<code xml:space="preserve">import arcpy
+
+arcpy.DeleteIdentical_management("C:/data/fireincidents.shp", ["ZONE", "INTENSITY"])
+                    </code></scriptExample><scriptExample><title>DeleteIdentical Example 2 (Stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the DeleteIdentical function to identify duplicate records of a table or feature class.</para>
+				<code xml:space="preserve"># Name: DeleteIdentical_Example2.py
+# Description: Delete identical features in a dataset based on Shape (geometry) and a TEXT field.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+env.overwriteOutput = True
+
+# Set workspace environment
+env.workspace = "C:/data/sbfire.gdb"
+
+# Set input feature class
+in_dataset = "fireincidents"
+
+# Set the field upon which the identicals are found
+fields = ["Shape", "INTENSITY"]
+
+# Set the XY tolerance within which to identical records to be deleted
+xy_tol = "0.02 Miles"
+
+# Set the Z tolerance to default
+z_tol = ""
+
+# Execute Delete Identical 
+arcpy.DeleteIdentical_management(in_dataset, fields, xy_tol, z_tol)
+                    </code></scriptExample></scriptExamples></tool></metadata>

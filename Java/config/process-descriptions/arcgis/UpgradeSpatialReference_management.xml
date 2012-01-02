@@ -1,0 +1,60 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Upgrade Spatial Reference (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Upgrades a low precision dataset's spatial reference to high precision. </para><para>Input to this tool is a stand-alone feature class, feature dataset, or raster catalog which has a low resolution spatial reference and is stored in a current version personal or ArcSDE geodatabase. The origin and precision of the high precision spatial reference grid will <italics>mesh</italics> with the existing low precision grid. For each point of the original low precision spatial reference grid there is a point in the new high precision spatial reference grid. Coordinate values will not be affected by the upgrade.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Domain</keyword><keyword>Efficient</keyword><keyword>Geodatabase</keyword><keyword>High</keyword><keyword>Increase</keyword><keyword>Low</keyword><keyword>Performance</keyword><keyword>Precision</keyword><keyword>Resolution</keyword><keyword>Xy</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="UpgradeSpatialReference" displayname="Upgrade Spatial Reference (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Upgrades a low precision dataset's spatial reference to high precision. </para><para>Input to this tool is a stand-alone feature class, feature dataset, or raster catalog which has a low resolution spatial reference and is stored in a current version personal or ArcSDE geodatabase. The origin and precision of the high precision spatial reference grid will <italics>mesh</italics> with the existing low precision grid. For each point of the original low precision spatial reference grid there is a point in the new high precision spatial reference grid. Coordinate values will not be affected by the upgrade.</para>
+		</summary><alink_name>UpgradeSpatialReference_management</alink_name><toolIllust type="illustration" src="UpgradeSpatialReference_management_h.gif" alt="Upgrade Spatial Reference graphic" /><parameters><param sync="true" name="input_dataset" displayname="Input Dataset" datatype="Feature Class; Feature Dataset; Raster Catalog" direction="Input" expression="input_dataset" type="Required"><pythonReference>
+						<para>The input dataset whose spatial reference precision will be upgraded. Valid input is a feature class, feature dataset, or raster catalog with a low resolution spatial reference, stored in a 9.2 or current version personal or ArcSDE geodatabase.</para>
+					</pythonReference><dialogReference>
+						<para>The input dataset whose spatial reference precision will be upgraded. Valid input is a feature class, feature dataset, or raster catalog with a low resolution spatial reference, stored in a 9.2 or current version personal or ArcSDE geodatabase.</para>
+					</dialogReference></param><param sync="true" name="xy_resolution" displayname="XY Resolution" datatype="Double" direction="Input" expression="xy_resolution" type="Optional"><pythonReference>
+						<para>The value to which the dataset's XY Resolution will be changed as part of the upgrade. The maximum value is the same as the dataset's current XY Resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The value to which the dataset's XY Resolution will be changed as part of the upgrade. The maximum value is the same as the dataset's current XY Resolution.</para>
+					</dialogReference></param><param sync="true" name="z_resolution" displayname="Z Resolution" datatype="Double" direction="Input" expression="z_resolution" type="Optional"><pythonReference>
+						<para>The value to which the dataset's Z Resolution will be changed as part of the upgrade. The maximum value is the same as the dataset's current Z Resolution. By default, the resolution will be improved by a factor of 4.</para>
+					</pythonReference><dialogReference>
+						<para>The value to which the dataset's Z Resolution will be changed as part of the upgrade. The maximum value is the same as the dataset's current Z Resolution. By default, the resolution will be improved by a factor of 4.</para>
+					</dialogReference></param><param sync="true" name="m_resolution" displayname="M Resolution" datatype="Double" direction="Input" expression="m_resolution" type="Optional"><pythonReference>
+						<para>The value to which the dataset's M Resolution will be changed as part of the upgrade. The maximum value is the same as the dataset's current M Resolution. By default, the resolution will be improved by a factor of 4.</para>
+					</pythonReference><dialogReference>
+						<para>The value to which the dataset's M Resolution will be changed as part of the upgrade. The maximum value is the same as the dataset's current M Resolution. By default, the resolution will be improved by a factor of 4.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>To determine the geodatabase version, right-click the geodatabase and select "Properties...". The "Upgrade Status" section under the General tab will show the ArcGIS release that the geodatabase corresponds to. If version number is less than 9.2, you can use the "Upgrade Geodatabase" function to upgrade the geodatabase to the ArcGIS version being used.</para>
+			</bullet_item><bullet_item>
+				<para>To determine if a dataset (feature class, feature dataset, or raster catalog) is high precision, right-click the dataset and select "Properies...", then select the General tab. In the Geometry Properties, youll see either "Data Storage : High Precision" or "Low Precision". Datasets stored in a file geodatabase are always high precision.</para>
+			</bullet_item><bullet_item>
+				<para>Individual feature classes within a feature dataset cannot be upgraded individually as they inherit their spatial reference from the feature dataset. In order to upgrade them, upgrade the feature dataset's spatial reference, which means the spatial reference of all the feature classes in the dataset will be upgraded.</para>
+			</bullet_item><bullet_item>
+				<para>ArcCatalog's Copy/Paste functionality automatically upgrades the spatial reference of datasets when the output is a 9.2 (or later) geodatabase.</para>
+			</bullet_item><bullet_item>
+				<para>When used on a feature dataset, the M Resolution will not be applied to feature classes contained within a feature dataset.</para>
+			</bullet_item><bullet_item>
+				<para>The XY tolerance property of the upgraded spatial reference will be 2.0 * (9.1 dataset resolution).</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Upgrade Spatial Reference Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the UpgradeSpatialReference function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/data.gdb"
+arcpy.UpgradeSpatialReference_management("Euro_WGS", "0.0000000625", "0.0000025", "0.0000025")
+                    </code></scriptExample><scriptExample><title>Upgrade Spatial Reference Example 2 (Stand-alone Script)</title>
+					<para>The following standalone script is a simple example of how to apply the UpgradeSpatialReference function in python scripting.</para>
+				<code xml:space="preserve"># Name: upgradeSR_Example.py
+# Description: upgrade two datasets' spatial references
+# Author: ESRI
+
+#Import the system modules
+import arcpy
+
+# Set the local parameters
+inDataset = "Database Connections/Connection to birch.sde/database.transportFDS"
+xyRes = "1.56250000145519E-08"
+zRes = "0.0000025"
+mRes = "0.0000025"
+ 
+# Upgrade and specify explicit resolutions
+arcpy.UpgradeSpatialReference_management(inDataset, xyRes, zRes, mRes)
+ 
+# Upgrade and let the 3 resolution parameters default
+inDataset = "Database Connections/Connection to birch.sde/database.environmentFDS"
+arcpy.UpgradeSpatialReference_management(inDataset, "", "", "")
+                    </code></scriptExample></scriptExamples></tool></metadata>

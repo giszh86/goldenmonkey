@@ -1,0 +1,64 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Thiessen (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts input coverage points to an output coverage of Thiessen proximal polygons.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Analysis</keyword><keyword>Arc</keyword><keyword>Bisected Tin</keyword><keyword>Coverage Tool</keyword><keyword>Delaunay Criterion</keyword><keyword>Proximal Polygons</keyword><keyword>Proximal Tolerance</keyword><keyword>Proximity</keyword><keyword>Thiessen Polygons</keyword><keyword>Tolerance</keyword><keyword>Voronoi Polygons</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Thiessen" displayname="Thiessen (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Converts input coverage points to an output coverage of Thiessen proximal polygons.</para>
+			
+		</summary><alink_name>Thiessen_arc</alink_name><toolIllust type="illustration" src="Thiessen_arc_h.gif" alt="Create Thiessen polygons illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage that must have a point feature attribute table created by BUILD with the POINT option.</para>
+					</pythonReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The polygon coverage in which the Thiessen proximal polygons will be produced.</para>
+					</pythonReference><dialogReference>
+						<para>The polygon coverage in which the Thiessen proximal polygons will be produced.</para>
+					</dialogReference></param><param sync="true" name="proximal_tolerance" displayname="Proximal Tolerance" datatype="Double" direction="Input" expression="proximal_tolerance" type="Optional"><pythonReference>
+						<para>Tolerance used to eliminate Input Coverage points that fall within the specified distance of other Input Coverage points. The default Proximal Tolerance is the machine precision of the computer.</para>
+					</pythonReference><dialogReference>
+						<para>Tolerance used to eliminate Input Coverage points that fall within the specified distance of other Input Coverage points. The default Proximal Tolerance is the machine precision of the computer.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Thiessen polygons have the unique property that each polygon contains only one input point, and any location within a polygon is closer to its associated point than to the point of any other polygon.</para>
+			</bullet_item><bullet_item>
+				<para>To ignore close points, specify a proximal tolerance. For point coverages with an automation scale between 1:10,000 and 1:100,000, try a tolerance between 1.668 ft (0.508 m) and 16.620 ft (5.080 m).</para>
+			</bullet_item><bullet_item>
+				<para>The Output Coverage inherits these data model contents from the Input Coverage: items from the point attribute table, tics, and the projection file.</para>
+			</bullet_item><bullet_item>
+				<para>Thiessen polygons can be used to apportion a point coverage into regions known as Thiessen or Voronoi polygons. Each region contains only one Input Coverage point. Each region has the unique property that any location within a region is closer to the region's point than to the point of any other region.</para>
+			</bullet_item><bullet_item>
+				<para>All items in the Input Coverage point attribute table (PAT) are copied to their associated polygons in the Output Coverage PAT.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Coverage polygon label points are located at the same positions as the Input Coverage points.</para>
+			</bullet_item><bullet_item>
+				<para>If the Input Coverage has a PRJ file, it is copied to the Output Coverage.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Thiessen example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to create a thiessen proximal polygon around each well in a point coverage.</para>
+					
+				<code xml:space="preserve"># Name: Thiessen_Example.py
+# Description: Creates a thiessen area around each well in a point coverage.
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "wells"
+outCover = "C:/output/wellareas"
+
+# Execute Thiessen
+arcpy.Thiessen_arc (inCover, outCover, "")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

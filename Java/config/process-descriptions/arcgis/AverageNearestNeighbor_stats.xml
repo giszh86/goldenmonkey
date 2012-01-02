@@ -1,0 +1,89 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Average Nearest Neighbor (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates a nearest neighbor index based on the average distance from each feature to its nearest neighboring feature.  Results are accessible from the Results window.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Between</keyword><keyword>Closest</keyword><keyword>Cluster</keyword><keyword>Disperse</keyword><keyword>Distance</keyword><keyword>Distribution</keyword><keyword>Feature</keyword><keyword>Geographic</keyword><keyword>Global</keyword><keyword>Point Pattern Analysis</keyword><keyword>Random</keyword><keyword>Seperation</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AverageNearestNeighbor" displayname="Average Nearest Neighbor (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Calculates a nearest neighbor index based on the average distance from each feature to its nearest neighboring feature.  Results are accessible from the Results window.</para>
+			
+		</summary><alink_name>AverageNearestNeighbor_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/AverageNearestNeighbor_stats_v.gif" alt="Nearest Neighbor illustration" /><toolIllust type="illustration" src="AverageNearestNeighbor_stats_h.gif" alt="Average Nearest Neighbor illustration" /><parameters><param sync="true" name="Input_Feature_Class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="Input_Feature_Class" type="Required"><pythonReference>
+						<para>The feature class, typically a point feature class, for which the average nearest neighbor distance will be calculated.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class, typically a point feature class, for which the average nearest neighbor distance will be calculated.</para>
+					</dialogReference></param><param sync="true" name="Distance_Method" displayname="Distance Method" datatype="String" direction="Input" expression="Distance_Method" type="Required"><pythonReference>
+						<para>Specifies how distances are calculated from each feature to neighboring features.</para>
+						<bulletList><bullet_item>EUCLIDEAN_DISTANCE—The straight-line distance between two points (as the crow flies) </bullet_item><bullet_item>MANHATTAN_DISTANCE—The distance between two points measured along axes at right angles (city block); calculated by summing the (absolute) difference between the x- and y-coordinates </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how distances are calculated from each feature to neighboring features.</para>
+						<bulletList><bullet_item>EUCLIDEAN_DISTANCE—The straight-line distance between two points (as the crow flies) </bullet_item><bullet_item>MANHATTAN_DISTANCE—The distance between two points measured along axes at right angles (city block); calculated by summing the (absolute) difference between the x- and y-coordinates </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Generate_Report" displayname="Generate_Report" datatype="Boolean" direction="Input" expression="Generate_Report" type="Required"><pythonReference>
+						<bulletList><bullet_item>NO_REPORT—No graphical summary will be created (default).</bullet_item><bullet_item>GENERATE_REPORT—A graphical summary will be created as an HTML file.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether the tool will create a graphical summary of results.</para>
+						<bulletList>
+							<bullet_item>Checked—A graphical summary will be created as an HTML file. </bullet_item>
+							<bullet_item>Unchecked—No graphial summary will be created.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="Area" displayname="Area" datatype="Double" direction="Input" expression="Area" type="Optional"><pythonReference>
+						<para>A numeric value representing the study area size. The default value is the area of the minimum enclosing rectangle that would encompass all features (or all selected features). Units should match those for the Output Coordinate System.</para>
+					</pythonReference><dialogReference>
+						<para>A numeric value representing the study area size. The default value is the area of the minimum enclosing rectangle that would encompass all features (or all selected features). Units should match those for the Output Coordinate System.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Output_coordinate_system" label="Output coordinate system">Feature geometry is projected to the Output Coordinate System prior to analysis. All mathematical computations are based on the Output Coordinate System spatial reference.</environment></environments><usage><bullet_item>
+				<para>The Average Nearest Neighbor tool returns five values: Observed Mean Distance, Expected Mean Distance, Nearest Neighbor Index, z-score, and p-value. These values are accessible from the  and are also passed as derived output values for potential use in models or scripts. Optionally, this tool will create an HTML file with a graphical summary of results. Double-clicking on the HTML entry in the Results window will open the HTML file in the default Internet browser.  Right-clicking on the  in the Results window and selecting <bold>View</bold> will display the results in a <bold>Message dialog box</bold>.  </para><para><para><bulletList><bullet_item>If this tool is part of a custom model tool, the HTML link will only appear in the Results window if it is set as a  prior to running the tool. </bullet_item><bullet_item>For best display of HTML graphics, ensure your monitor is set for 96 DPI.</bullet_item></bulletList></para></para></bullet_item><bullet_item>
+				<para>The  results are measures of statistical significance which tell you whether or not to reject the null hypothesis. For the Average Nearest Neighbor statistic, the null hypothsis states that features are randomly distributed.</para>
+			</bullet_item><bullet_item>
+				<para>The Nearest Neighbor Index is expressed as the ratio of the Observed Mean Distance to the Expected Mean Distance. The expected distance is the average distance between neighbors in a hypothetical random distribution. If the index is less than 1, the pattern exhibits clustering; if the index is greater than 1, the trend is toward dispersion or competition.</para>
+			</bullet_item><bullet_item>
+				<para>The average nearest neighbor method is very sensitive to the Area value (small changes in the Area parameter value can result in considerable changes in the results). Consequently, the Average Nearest Neighbor tool is most effective for comparing different features in a fixed study area. Use the  on the study area polygon as one way to get an Area value for the Area parameter.  The picture below is a classic example of how identical feature distributions can be dispersed or clustered depending on the study area specified.  </para><para>
+						
+						
+					</para>
+			</bullet_item><bullet_item>
+				<para>If an Area parameter value is not specified, then the area of the minimum enclosing rectangle around the input features is used. Unlike the extent, a minimum enclosing rectangle will not necessarily align with the x- and y-axes.</para>
+			</bullet_item><bullet_item>
+				<para>There are special cases of input features that would result in invalid (zero-area) minimum enclosing rectangles. In these cases, a small value derived from the input feature XY tolerance will be used to create the minimum enclosing rectangle. For example, if all features are coincident (i.e., all have the exact same X and Y coordinates), the area for a very small square polygon around the single location will be used in calculations. Another example would be if all features align perfectly (e.g., 3 points in a straight line); in this case the area of a rectangle polygon with a very small width around the features will be used in computations. It is always best to supply an Area value when using the Average Nearest Neighbor tool.</para>
+			</bullet_item><bullet_item>
+				<para>Although this tool will work with polygon or line data, it is most appropriate for event, incident, or other fixed-point feature data. For line and polygon features, the true geometric centroid for each feature is used in computations. For multipoint, polyline, or polygons with multiple parts, the centroid is computed using the weighted mean center of all feature parts. The weighting for point features is 1, for line features is length, and for polygon features is area.</para>
+			</bullet_item><bullet_item>
+				<para>Calculations based on either Euclidean or Manhattan distance require  to accurately measure distances.</para>
+			</bullet_item><bullet_item>
+				<para>Map layers can be used to define the Input Feature Class. When using a layer with a selection, only the selected features are included in the analysis.</para>
+			</bullet_item><bullet_item>
+				
+					<para>When using shapefiles, keep in mind that they cannot store null values. Tools or other procedures that create shapefiles from non-shapefile inputs may store or interpret null values as zero. This can lead to unexpected results.  See also .</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>AverageNearestNeighbor Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the AverageNearestNeighbor tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = r"C:\data"
+arcpy.AverageNearestNeighbor_stats("burglaries.shp", "EUCLIDEAN_DISTANCE", "NO_REPORT", "#")
+                    </code></scriptExample><scriptExample><title>AverageNearestNeighbor Example (Stand-alone Python script)</title>
+					<para>The following stand-alone python script demonstrates how to use the AverageNearestNeighbor tool.</para>
+				<code xml:space="preserve"># Analyze crime data to determine if spatial patterns are statistically significant
+ 
+# Import system modules
+import arcpy
+ 
+# Local variables...
+workspace = "C:/data"
+crime_data = "burglaries.shp"
+ 
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.env.workspace = workspace
+ 
+    # Obtain Nearest Neighbor Ratio and z-score
+    # Process: Average Nearest Neighbor...
+    nn_output = arcpy.AverageNearestNeighbor_stats(crime_data, "EUCLIDEAN_DISTANCE", "NO_REPORT", "#")
+    
+    # Create list of Average Nearest Neighbor output values by splitting the result object
+				nn_values = nn_output.split(";")
+    print "The nearest neighbor index is: " + nn_values[0]
+    print "The z-score of the nearest neighbor index is: " + nn_values[1]
+    print "The p-value of the nearest neighbor index is: " + nn_values[2]
+				print "The expected mean distance is: " + nn_values[3]
+    print "The observed mean distance is: " + nn_values[4]
+				print "The path of the HTML report: " + nn_values[5]
+ 
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

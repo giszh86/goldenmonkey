@@ -1,0 +1,92 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Boundary Clean (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Smoothes the boundary between zones by expanding and shrinking it.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Clean</keyword><keyword>Generalize</keyword><keyword>Image Processing</keyword><keyword>Simplify</keyword><keyword>Smooth</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BoundaryClean" displayname="Boundary Clean (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Smoothes the boundary between zones by expanding and shrinking it.</para>
+			
+		</summary><alink_name>BoundaryClean_sa</alink_name><toolIllust type="illustration" src="BoundaryClean_sa_h.png" alt="Boundary Clean illustration" /><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster for which the boundary between zones will be smoothed.</para>
+						<para>It must be of integer type.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster for which the boundary between zones will be smoothed.</para>
+						<para>It must be of integer type.</para>
+					</dialogReference></param><param sync="true" name="sort_type" displayname="Sorting technique" datatype="String" direction="Input" expression="sort_type" type="Optional"><pythonReference>
+						<para>Specifies the type of sorting to use in the smoothing process.</para>
+						<para>This determines the priority by which cells can expand into their neighbors.</para>
+						<bulletList><bullet_item>NO_SORT — Does no sorting by size. Zones with larger values have a higher priority to expand into zones with smaller values.
+This is the default.</bullet_item><bullet_item>DESCEND — Sorts zones in descending order by size. Zones with larger total areas have a higher priority to expand into zones with smaller total areas.</bullet_item><bullet_item>ASCEND — Sorts zones in ascending order by size. Zones with smaller total areas have a higher priority to expand into zones with larger total areas.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the type of sorting to use in the smoothing process.</para>
+						<para>This determines the priority by which cells can expand into their neighbors.</para>
+						<bulletList><bullet_item>NO_SORT — Does no sorting by size. Zones with larger values have a higher priority to expand into zones with smaller values.
+This is the default.</bullet_item><bullet_item>DESCEND — Sorts zones in descending order by size. Zones with larger total areas have a higher priority to expand into zones with smaller total areas.</bullet_item><bullet_item>ASCEND — Sorts zones in ascending order by size. Zones with smaller total areas have a higher priority to expand into zones with larger total areas.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="number_of_runs" displayname="Run expansion and shrinking twice" datatype="Boolean" direction="Input" expression="number_of_runs" type="Optional"><pythonReference>
+						<para>Specifies the number of directions in which the smoothing process will take place.</para>
+						<bulletList><bullet_item>TWO_WAY — Performs expansion and shrinking according to sorting type, then performs an additional shrinking and expansion with the priority reversed.
+This is the default.</bullet_item><bullet_item>ONE_WAY — Performs expansion and shrinking once, according to sorting type.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the number of directions in which the smoothing process will take place.</para>
+						<bulletList>
+							<bullet_item>Checked—Performs expansion and shrinking according to the specified sorting type, then performs an additional shrinking and expansion with the priority reversed.<para>
+This is the default.</para></bullet_item>
+							<bullet_item>Unchecked—Performs expansion and shrinking once, according to the sorting type.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output generalized raster.</para><para>The boundaries between zones in the input will be smoothed.</para></pythonReference><dialogReference>
+							<para>The output generalized raster.</para><para>The boundaries between zones in the input will be smoothed.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>All regions of less than three cells in the x- or y-direction will be changed.</para>
+			</bullet_item><bullet_item><para>The shrinking that occurs with the ONE_WAY smoothing process (expansion-shrinking process run once)  or the first pass when the TWO_WAY smoothing process is different than the shrinking that occurs with the second pass of the TWO_WAY smoothing.</para><para>In the first pass, for any processing cell in the expanded raster that has a neighbor of the original value of the processing cell, the original value of the processing cell will be recovered. In the second pass of TWO_WAY, any cell in the expanded raster that is not completely surrounded by eight cells of the same value will recover its original value.</para></bullet_item><bullet_item>
+				<para>The expansion is identical for the first and second pass.</para>
+			</bullet_item><bullet_item>
+				<para>Input cells of NoData have the lowest prioroty in the ONE_WAY sorting type, or in the first pass of TWO_WAY sorting.  In the second pass of TWO_WAY sorting, cells of NoData have the highest priority.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>BoundaryClean example 1 (Python window)</title>
+					<para>This example smooths the boundary between zones in a descending order with a two-way run.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+OutBndCln = BoundaryClean("land", "DESCEND", "TWO_WAY")
+OutBndCln.save("c:/sapyexamples/output/bndcln_des2")
+
+                    </code></scriptExample><scriptExample><title>BoundaryClean example 2 (stand-alone script)</title>
+					<para>This example smooths the boundary between zones in a descending order with a two-way run.</para>
+				<code xml:space="preserve"># Name: BoundaryClean_Ex_02.py
+# Description: Smoothes the boundary between zones 
+#              by expanding and shrinking it.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "land"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute BoundaryClean
+OutBndCln = BoundaryClean(inRaster, "ASCEND", "TWO_WAY")
+
+# Save the output 
+OutBndCln.save("c:/sapyexamples/output/bndcln_asc2")
+                    </code></scriptExample></scriptExamples></tool></metadata>

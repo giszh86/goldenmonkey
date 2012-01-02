@@ -1,0 +1,139 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Solar Radiation Graphics (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Derives raster representations of a hemispherical viewshed, sunmap, and skymap, which are used in the calculation of direct, diffuse, and global solar radiation.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Atmosphere</keyword><keyword>Diffuse</keyword><keyword>Duration</keyword><keyword>Energy</keyword><keyword>Exposure</keyword><keyword>Global</keyword><keyword>Hemisphere</keyword><keyword>Horizon</keyword><keyword>Insolation</keyword><keyword>Skymap</keyword><keyword>Solar Analyst</keyword><keyword>Sun</keyword><keyword>Sunmap</keyword><keyword>Surface</keyword><keyword>Time Configuration</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SolarRadiationGraphics" displayname="Solar Radiation Graphics (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Derives raster representations of a hemispherical viewshed, sunmap, and skymap, which are used in the calculation of direct, diffuse, and global solar radiation.</para>
+		</summary><alink_name>SolarRadiationGraphics_sa</alink_name><parameters><param sync="true" name="in_surface_raster" displayname="Input surface raster" datatype="Raster Layer" direction="Input" expression="in_surface_raster" type="Required"><pythonReference>
+						<para>Input elevation surface raster.</para>
+					</pythonReference><dialogReference>
+						<para>Input elevation surface raster.</para>
+					</dialogReference></param><param sync="true" name="in_points_feature_or_table" displayname="Input points feature or table" datatype="Feature Layer | Table View" direction="Input" expression="in_points_feature_or_table" type="Optional"><pythonReference>
+						<para>The input point feature class or table specifying the locations to analyze solar radiation.</para>
+					</pythonReference><dialogReference>
+						<para>The input point feature class or table specifying the locations to analyze solar radiation.</para>
+					</dialogReference></param><param sync="true" name="sky_size" displayname="Sky size / Resolution" datatype="Long" direction="Input" expression="sky_size" type="Optional"><pythonReference>
+						<para>The resolution or sky size for the viewshed, sky map, and sun map grids. The units are cells.</para>
+						<para>The default creates a raster of 200 x 200 cells.</para>
+					</pythonReference><dialogReference>
+						<para>The resolution or sky size for the viewshed, sky map, and sun map grids. The units are cells.</para>
+						<para>The default creates a raster of 200 x 200 cells.</para>
+					</dialogReference></param><param sync="true" name="height_offset" displayname="Height offset" datatype="Double" direction="Input" expression="height_offset" type="Optional"><pythonReference>
+						<para>The height (in meters) above the DEM surface for which calculations are to be performed.</para>
+						<para>The height offset will be applied to all input locations.</para>
+					</pythonReference><dialogReference>
+						<para>The height (in meters) above the DEM surface for which calculations are to be performed.</para>
+						<para>The height offset will be applied to all input locations.</para>
+					</dialogReference></param><param sync="true" name="calculation_directions" displayname="Calculation directions" datatype="Long" direction="Input" expression="calculation_directions" type="Optional"><pythonReference>
+						<para>The number of azimuth directions used when calculating the viewshed.</para>
+						<para>Valid values must be multiples of 8 (8, 16, 24, 32, and so on). The default value is 32 directions, which is adequate for complex topography.</para>
+					</pythonReference><dialogReference>
+						<para>The number of azimuth directions used when calculating the viewshed.</para>
+						<para>Valid values must be multiples of 8 (8, 16, 24, 32, and so on). The default value is 32 directions, which is adequate for complex topography.</para>
+					</dialogReference></param><param sync="true" name="latitude" displayname="Latitude" datatype="Double" direction="Input" expression="latitude" type="Optional"><pythonReference>
+						<para>The latitude for the site area. The units are decimal degrees, with positive values for the northern hemisphere and negative for the southern.</para>
+						<para>For input surface rasters containing a spatial reference, the mean latitude is automatically calculated; otherwise, latitude will default to 45 degrees.</para>
+					</pythonReference><dialogReference>
+						<para>The latitude for the site area. The units are decimal degrees, with positive values for the northern hemisphere and negative for the southern.</para>
+						<para>For input surface rasters containing a spatial reference, the mean latitude is automatically calculated; otherwise, latitude will default to 45 degrees.</para>
+					</dialogReference></param><param sync="true" name="time_configuration" displayname="Time configuration" datatype="Time configuration" direction="Input" expression="time_configuration" type="Optional"><pythonReference>
+						<para>Specifies the time configuration (period) used for calculating solar radiation.</para><para>The  Time class objects are  used to specify the time configuration.</para><para>The different types of time configurations available are TimeWithinDay, TimeMultiDays,  TimeSpecialDays, and TimeWholeYear.</para>
+						<para>The following are the forms:</para>
+						<bulletList>
+							<bullet_item>TimeWithinDay({day},{start_time},{end_time})</bullet_item>
+							<bullet_item>TimeMultiDays({year},{start_day},{end_day})</bullet_item>
+							<bullet_item>TimeSpecialDays()</bullet_item>
+							<bullet_item>TimeWholeYear({year})</bullet_item>
+						</bulletList>
+						<para>The default time_configuration is TimeMultiDays with the start_day of 5 and end_day of 160, for the current Julian year.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the time period to use for the calculations.</para>
+						<bulletList>
+							<bullet_item>Special days—Calculates solar insolation for summer solstice/equinox/winter solstice days.</bullet_item><bullet_item>Within a day—Performs calculations for a specified time period within one single day.<para>Select the Julian Day, then enter the start and end times. When the start time and the end time are the same, instantaneous insolation will be calculated. When the start time is before sunrise and the end time is after sunset, insolation will be calculated for the whole day.</para>
+								<bulletList><bullet_item>To facilitate entering the correct day, you can use the calendar button to open the Calendar dialog box.</bullet_item><bullet_item>To set start and end times, you can use the  clock button to open the Time Conversion dialog box.  Here you can enter the local solar time, or the local standard time while correcting for your degree of longitude and time zone.</bullet_item></bulletList></bullet_item>
+							<bullet_item>Multiple days in a year—Performs calculations for a specific multiple-day period within a year.<para>Specify the start year, start day, and end day. When the end day is smaller than the start day, the end day is considered to be in the following year. The default time configuration starts on day 5 and ends on  day 160 of the current Julian year.</para><bulletList><bullet_item>To facilitate entering the correct days, you can use the calendar button to open the Calendar dialog box.</bullet_item></bulletList></bullet_item>
+							<bullet_item>Whole year with monthly interval—Performs calculations for an entire year using monthly intervals for calculations.<para>If the Create outputs for each interval option is checked, output files will be created for each month; otherwise, a single output will be created for the whole year.</para></bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="day_interval" displayname="Day interval" datatype="Long" direction="Input" expression="day_interval" type="Optional"><pythonReference>
+						<para>The time interval through the year (units: days) used for calculation of sky sectors for the sun map.</para>
+						<para>The default value is 14 (biweekly).</para>
+					</pythonReference><dialogReference>
+						<para>The time interval through the year (units: days) used for calculation of sky sectors for the sun map.</para>
+						<para>The default value is 14 (biweekly).</para>
+					</dialogReference></param><param sync="true" name="hour_interval" displayname="Hour interval" datatype="Double" direction="Input" expression="hour_interval" type="Optional"><pythonReference>
+						<para>Time interval through the day (units: hours) used for calculation of sky sectors for sun maps.</para>
+						<para>The default value is 0.5.</para>
+					</pythonReference><dialogReference>
+						<para>Time interval through the day (units: hours) used for calculation of sky sectors for sun maps.</para>
+						<para>The default value is 0.5.</para>
+					</dialogReference></param><param sync="true" name="out_sunmap_raster" displayname="Output sunmap raster" datatype="Raster Dataset" direction="Output" expression="out_sunmap_raster" type="Optional"><pythonReference>
+						<para>The output sunmap raster.</para>
+						<para>The output is a representation that specifies sun tracks, the apparent position of the sun as it varies through time. The output is at the same resolution as the viewshed and skymap.</para>
+					</pythonReference><dialogReference>
+						<para>The output sunmap raster.</para>
+						<para>The output is a representation that specifies sun tracks, the apparent position of the sun as it varies through time. The output is at the same resolution as the viewshed and skymap.</para>
+					</dialogReference></param><param sync="true" name="zenith_divisions" displayname="Zenith divisions" datatype="Long" direction="Input" expression="zenith_divisions" type="Optional"><pythonReference>
+						<para>The number of divisions used to create sky sectors in the sky map.</para>
+						<para>The default is eight divisions (relative to zenith). Values must be greater than zero and less than half the sky size value.</para>
+					</pythonReference><dialogReference>
+						<para>The number of divisions used to create sky sectors in the sky map.</para>
+						<para>The default is eight divisions (relative to zenith). Values must be greater than zero and less than half the sky size value.</para>
+					</dialogReference></param><param sync="true" name="azimuth_divisions" displayname="Azimuth divisions" datatype="Long" direction="Input" expression="azimuth_divisions" type="Optional"><pythonReference>
+						<para>The number of divisions used to create sky sectors in the sky map.</para>
+						<para>The default is eight divisions (relative to north). Valid values must be multiples of 8. Values must be greater than zero and less than 160.</para>
+					</pythonReference><dialogReference>
+						<para>The number of divisions used to create sky sectors in the sky map.</para>
+						<para>The default is eight divisions (relative to north). Valid values must be multiples of 8. Values must be greater than zero and less than 160.</para>
+					</dialogReference></param><param sync="true" name="out_skymap_raster" displayname="Output skymap raster" datatype="Raster Dataset" direction="Output" expression="out_skymap_raster" type="Optional"><pythonReference>
+						<para>The output skymap raster.</para>
+						<para>The output is constructed by dividing the whole sky into a series of sky sectors defined by zenith and azimuth divisions. The output is at the same resolution as the viewshed and sunmap.</para>
+					</pythonReference><dialogReference>
+						<para>The output skymap raster.</para>
+						<para>The output is constructed by dividing the whole sky into a series of sky sectors defined by zenith and azimuth divisions. The output is at the same resolution as the viewshed and sunmap.</para>
+					</dialogReference></param><param sync="true" name="out_viewshed_raster" displayname="Output viewshed raster" datatype="Raster" direction="Output" expression="out_viewshed_raster" type="Required"><pythonReference>
+							<para>The output viewshed raster.</para>
+							<para>The resulting viewshed for a location represents which sky directions are visible and which are obscured. This is similar to the view provided by upward-looking hemispherical ("fisheye") photographs.</para>
+						</pythonReference><dialogReference>
+							<para>The output viewshed raster.</para>
+							<para>The resulting viewshed for a location represents which sky directions are visible and which are obscured. This is similar to the view provided by upward-looking hemispherical ("fisheye") photographs.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Outputs from the Solar Radiation Graphics tool are raster representations and are not maps that correspond to the outputs from the area or point solar radiation analysis. Rather, they are representations of directions in a hemisphere of directions looking upward from a given location. In a hemispherical projection, the center is the zenith, the edge of the circular "map" is the horizon, and the angle relative to the zenith is proportionate to the radius. Hemispherical projections do not have a geographic coordinate system and have a bottom left corner of (0,0).</para>
+			</bullet_item><bullet_item>
+				<para>It would not be practical to store viewsheds for all locations in a DEM, so when input locations are not specified, a single viewshed is created for the center of the input surface raster. When input point features or locations file are specified, multiple viewshed rasters are created for each input location. When multiple locations are specified, the default output format is an ESRI GRID stack, which contains multiple bands that correspond to the viewshed for each location.</para>
+			</bullet_item><bullet_item>
+				<para>The input locations table can be an INFO table, a .dbf file, an Access table, or a text file.</para>
+			</bullet_item><bullet_item>
+				<para>Output graphic display rasters do not honor extent or cell size environment settings. The output extents are always respective of the sky size/resolution and have a cell size equal to one. However, the underlying analysis will use the environment settings and may affect the results of the viewshed.</para>
+			</bullet_item><bullet_item>
+				<para>One or two sunmap rasters may be generated, depending on whether the time configuration includes overlapping sun positions throughout the year. When two sunmaps are created, one represents the period between the winter and summer solstice (December 22 to June 22), and the other represents the period between the summer solstice and the winter solstice (June 22 to December 22). When multiple sunmaps are created, the default output is an ESRI GRID stack. When the output is added to ArcMap, only the first band will be displayed.</para>
+			</bullet_item><bullet_item>
+				<para>The latitude for the site area (units: decimal degree, positive for the north hemisphere and negative for the south hemisphere) is used in calculations such as solar declination and solar position.</para><para>The analysis is designed only for local landscape scales, so it is generally acceptable to use one latitude value for the whole DEM. With larger datasets (i.e., states, countries, or continents), the insolation results will differ significantly at different latitudes (greater than 1 degree). To analyze broader geographic regions, it is necessary to divide the study area into zones with different latitudes.</para>
+			</bullet_item><bullet_item>
+				<para>For input surface rasters containing a spatial reference, the mean latitude is automatically calculated; otherwise, the latitude will default to 45 degrees. When using an input layer, the spatial reference of the data frame is used.</para>
+			</bullet_item><bullet_item>
+				<para>Sky size is the resolution of the viewshed, sky map, and sun map rasters which are used in the radiation calculations (units: cells per side). These are upward-looking, hemispherical raster representations of the sky and do not have a geographic coordinate system. These grids are square (equal number of rows and columns).</para>
+				<para>Increasing the sky size increases calculation accuracy but also increases calculation time considerably.</para></bullet_item><bullet_item>
+				<para>When the "day interval" setting is small (e.g., &lt; 14 days) a larger sky size should be used. During analysis the sun map (determined by the sky size) is used to represent sun positions (tracks) for particular time periods to calculate direct radiation. With smaller day intervals, if the sky size resolution is not large enough, sun tracks may overlap, resulting in zero or lower radiation values for that track. Increasing the resolution provides a more accurate result.</para>
+			</bullet_item><bullet_item>
+				<para>The maximum sky size value is 4000. A value of 200 is default and is sufficient for whole DEMs with large day intervals (e.g., &gt; 14 days). A sky size value of 512 is sufficient for calculations at point locations where calculation time is less of an issue. At smaller day intervals (e.g., &lt; 14 days), it is recommended to use higher values. For example, to calculate insolation for a location at the equator with day interval = 1, it is recommended to use a sky size of 2800 or more.</para>
+			</bullet_item><bullet_item>
+				<para>Day intervals greater than 3 are recommended as sun tracks within three days typically overlap, depending on sky size and time of year. For calculations of the whole year with monthly interval, day interval is disabled and the program internally uses calendar month intervals. The default value is 14.</para>
+			</bullet_item><bullet_item>
+				<para>Because the viewshed calculation can be highly intensive, horizon angles are only traced for the number of calculation directions specified. Valid values must be multiples of 8 (8, 16, 24, 32, and so on). Typically, a value of 8 or 16 is adequate for areas with gentle topography, whereas a value of 32 is adequate for complex topography. The default value is 32.</para>
+			</bullet_item><bullet_item>
+				<para>The number of calculation directions needed is related to the resolution of the input DEM. Natural terrain at 30m resolution is usually quite smooth so fewer directions are sufficient for most situations (16 or 32). With finer DEMs, and particularly with man-made structures incorporated in the DEMs, the number of directions needs to increase. Increasing the number of directions will increase accuracy but will also increase calculation time.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SolarRadiationGraphics example 1 (Python window)</title>
+					<para>The following Python Window script demonstrates how to use the SolarRadiationGraphics tool.</para>
+				<code xml:space="preserve">Missing source code file
+                    </code></scriptExample><scriptExample><title>SolarRadiationGraphics example 2 (stand-alone script)</title>
+					<para>Create a viewshed, sunmap, and skymap used in the solar radiation analysis.</para>
+				<code xml:space="preserve">Missing source code file
+                    </code></scriptExample></scriptExamples></tool></metadata>

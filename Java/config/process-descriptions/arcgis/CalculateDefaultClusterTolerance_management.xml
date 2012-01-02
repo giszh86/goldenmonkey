@@ -1,0 +1,41 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate Default XY Tolerance (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates a default  XY tolerance by examining the spatial reference and the extent of the feature class.</para><para> With geodatabase feature classes, the value returned by this tool will be identical to the XY Tolerance property on a geodatabase feature class or dataset, or the  cluster tolerance of a topology.  With non-geodatabase feature classes such as coverage feature classes, shape files, or CAD feature classes, the value will be based on the default tolerance of the feature class' spatial reference. </para><para><para>The terms XY Tolerance and Cluster Tolerance are synonymous. You will see the usage of Cluster Tolerance in topology, python script, and ArcGIS prior to the 9.2 Release. The name of this tool (used in scripting) is CalculateDefaultClusterTolerance.  </para></para><para>XY tolerance is also available in scripting through the XYTolerance property of a SpatialReference object. A SpatialReference object can be created by describing a feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coincident</keyword><keyword>Fuzzy</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateDefaultClusterTolerance" displayname="Calculate Default XY Tolerance (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Calculates a default  XY tolerance by examining the spatial reference and the extent of the feature class.</para><para> With geodatabase feature classes, the value returned by this tool will be identical to the XY Tolerance property on a geodatabase feature class or dataset, or the  cluster tolerance of a topology.  With non-geodatabase feature classes such as coverage feature classes, shape files, or CAD feature classes, the value will be based on the default tolerance of the feature class' spatial reference. </para><para><para>The terms XY Tolerance and Cluster Tolerance are synonymous. You will see the usage of Cluster Tolerance in topology, python script, and ArcGIS prior to the 9.2 Release. The name of this tool (used in scripting) is CalculateDefaultClusterTolerance.  </para></para><para>XY tolerance is also available in scripting through the XYTolerance property of a SpatialReference object. A SpatialReference object can be created by describing a feature class.</para>
+		</summary><alink_name>CalculateDefaultClusterTolerance_management</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The feature class for which the default XY tolerance will be calculated.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class for which the default XY tolerance will be calculated.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item><para>This tool cannot be used to reset the value of default XY Tolerance; it can only calculate the XY tolerance value. </para></bullet_item><bullet_item><para>The result of this tool will be returned as a message from the tool. The values can be viewed in the geoprocessing Results window, or the value can be assigned to a variable in scripting by accessing the tool execution result object.</para></bullet_item><bullet_item>
+				<para>Although the default XY tolerance of non-geodatabase feature classes maybe different depending on the spatial reference, its value is  equivalent to 0.001 meter. This default value cannot be changed. </para><para></para>
+			</bullet_item><bullet_item><para>The XY tolerance of a geodatabase feature classes can be specified when a new feature class, or its containing feature dataset or topology, is created  in a geodatabase. If you do not specify a new XY tolerance, the default values of the containing feature classes are used, which usually is equivalent to 0.001 meter. If the feature class is saved in a topology of a  geodatabase, then XY tolerance can be reset using the  tool. For more information, you can right-click any feature class or dataset and click Properties, then select the  Tolerance tab, then check About Setting Tolerance help.</para></bullet_item><bullet_item>
+				<para>Most tools that create new feature classes (such as Create Feature Class or Copy Features) honor the  environment setting.    However, only those tools that use this environment will set the XY tolerance on the output feature class.  The input XY tolerance will not be affected by this environment setting. </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Calculate Default XY Tolerance Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the Calculate Default Cluster Tolerance function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy 
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.CalculateDefaultClusterTolerance_management("roads.shp")
+                    </code></scriptExample><scriptExample><title>Calculate Default XY Tolerance Example 2 (Standalone Script)</title>
+					<para>The following Python window script demonstrates how to use the Calculate Default Cluster Tolerance function in a scripting environment.</para>
+				<code xml:space="preserve"># Name: CalculateDefaultClusterTolerance_Example.py
+# Description: Calculate the default cluster tolerance of a shape file
+# Author: ESRI
+
+#Import the system modules
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/temp"
+
+#Set local variables
+shapefileName = "linefc.shp"
+
+arcpy.CalculateDefaultClusterTolerance_management(shapefileName)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

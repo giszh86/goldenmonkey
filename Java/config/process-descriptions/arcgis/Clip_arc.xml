@@ -1,0 +1,109 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Clip (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Uses the outside polygon boundary of the clip coverage to cookie-cut features and attributes from the input coverage.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Analysis</keyword><keyword>Arc</keyword><keyword>Clip</keyword><keyword>Cookie</keyword><keyword>Coverage</keyword><keyword>Cut</keyword><keyword>Extract</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Clip" displayname="Clip (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Uses the outside polygon boundary of the clip coverage to cookie-cut features and attributes from the input coverage.</para>
+			
+		</summary><alink_name>Clip_arc</alink_name><toolIllust type="illustration" src="Clip_arc_h.gif" alt="Clip illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage containing features to be clipped.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage containing features to be clipped.</para>
+					</dialogReference></param><param sync="true" name="clip_cover" displayname="Clip Coverage" datatype="Coverage" direction="Input" expression="clip_cover" type="Required"><pythonReference>
+						<para>The coverage whose outer polygon defines the clipping region.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage whose outer polygon defines the clipping region.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The coverage to be created. The output coverage cannot already exist.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage to be created. The output coverage cannot already exist.</para>
+					</dialogReference></param><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Optional"><pythonReference>
+						<para>The feature class to be clipped:</para>
+						<bulletList><bullet_item>POLY—Polygons and region subclasses are clipped and a PAT is saved. Label points for remaining polygons are moved only if their original location falls outside the clipping boundary. Route systems are ignored. </bullet_item><bullet_item>LINE—Arcs are clipped, and an AAT is saved. Route systems are maintained. </bullet_item><bullet_item>POINT—Points are clipped, and a PAT is saved. </bullet_item><bullet_item>NET—Polygons and arcs are clipped, and their PAT and AAT are saved. Route systems and regions are maintained and clipped. </bullet_item><bullet_item>LINK—Arcs and points are clipped, and their AAT and PAT are saved. Route systems are maintained. </bullet_item><bullet_item>RAW—Points, arcs, and annotation in a coverage with or without topology (no attribute files) are clipped. Route systems are maintained, but regions, PAT, and AAT are not saved. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The feature class to be clipped:</para>
+						<bulletList><bullet_item>POLY—Polygons and region subclasses are clipped and a PAT is saved. Label points for remaining polygons are moved only if their original location falls outside the clipping boundary. Route systems are ignored. </bullet_item><bullet_item>LINE—Arcs are clipped, and an AAT is saved. Route systems are maintained. </bullet_item><bullet_item>POINT—Points are clipped, and a PAT is saved. </bullet_item><bullet_item>NET—Polygons and arcs are clipped, and their PAT and AAT are saved. Route systems and regions are maintained and clipped. </bullet_item><bullet_item>LINK—Arcs and points are clipped, and their AAT and PAT are saved. Route systems are maintained. </bullet_item><bullet_item>RAW—Points, arcs, and annotation in a coverage with or without topology (no attribute files) are clipped. Route systems are maintained, but regions, PAT, and AAT are not saved. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="fuzzy_tolerance" displayname="Fuzzy Tolerance" datatype="Double" direction="Input" expression="fuzzy_tolerance" type="Optional"><pythonReference>
+						<para>The minimum distance between coordinates in the output coverage. By default, the minimum fuzzy tolerance value from the input coverage and erase coverage is used.</para>
+						
+					</pythonReference><dialogReference>
+						<para>The minimum distance between coordinates in the output coverage. By default, the minimum fuzzy tolerance value from the input coverage and erase coverage is used.</para>
+						
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>A fuzzy tolerance value of zero will not be accepted by CLIP.</para>
+			</bullet_item><bullet_item>
+				<para>The Clip Coverage must have polygon topology.</para>
+			</bullet_item><bullet_item>
+				<para>When the input coverage contains linear data belonging to different planar graphs, the data will be maintained in the output coverage. For example, with coincident or colinear arcs such as arcs representing utility cables at different levels or a road following a stream, the coincident and colinear line segments will be preserved. However, additional vertices may be inserted. In the case of intersecting arcs such as a road passing over a stream, nodes will not be inserted at the apparent intersection.</para>
+			</bullet_item><bullet_item>
+				<para>Boundaries of interior polygons in the Clip Coverage are not used in CLIP. Any Clip Coverage polygon whose internal number is greater than one is considered inside the Clipping window.</para>
+			</bullet_item><bullet_item>
+				<para>The User-ID for each feature will be the same in output coverage as it is in input coverage.</para>
+			</bullet_item><bullet_item>
+				<para>When clipping polygons, new label points for polygons are only generated when necessary. Each old polygon keeps its original label point position if the label is within the clipping boundary.</para>
+			</bullet_item><bullet_item>
+				<para>Annotation is saved if its lower left starting point falls within the clipping polygon.</para>
+			</bullet_item><bullet_item>
+				<para>New nodes created on the clipping boundary have their attributes set to zero.</para>
+			</bullet_item><bullet_item>
+				<para>Route systems are maintained for LINE, NET, LINK, and RAW options but ignored on the POLY option. Route systems are duplicated for arcs split into multiple pieces and eliminated for eliminated arcs. CLIP maintains all route system subclasses.</para>
+			</bullet_item><bullet_item>
+				<para>Route systems are duplicated for arcs split into multiple pieces and eliminated for removed arcs. The RAT&lt;subclass&gt;-ID item is the unique route identifier and is used to remove duplicates. If you need to maintain all the user-defined attributes, make sure all the route IDs are unique before running CLIP; otherwise, some user-defined attributes may be lost.</para>
+			</bullet_item><bullet_item>
+				<para>When all the regions are removed, the region subclasses are maintained as empty subclasses.</para>
+			</bullet_item><bullet_item>
+				<para>Region subclasses of the input coverage are maintained with the POLY and NET options. Regions in the input coverage are clipped in the output coverage by the extent of the Clip Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>The output coverage tics are copied from the input coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Annotation features from the input coverage are clipped and saved in the output coverage.</para>
+			</bullet_item><bullet_item>
+				<para>If an NAT exists in the input coverage, it will be updated in the output coverage. New nodes will have their attributes set to zero.</para>
+			</bullet_item><bullet_item>
+				<para>The output coverage inherits these data model contents from the input coverage:<bulletList>
+						<bullet_item>Feature classes</bullet_item>
+						<bullet_item>Feature attribute table items</bullet_item>
+						<bullet_item>User-IDs</bullet_item>
+						<bullet_item>Tics</bullet_item>
+						<bullet_item>Annotation</bullet_item>
+						<bullet_item>Node attribute table</bullet_item>
+						<bullet_item>Projection file</bullet_item>
+					</bulletList></para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of each output coverage is determined by the current processing rule as set by the  environment setting. If the processing rule has not been established during the current session, the output coverages will be in the same precision as the input coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Projection files will be compared for similarity using the level of comparison specified with the  environment setting.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Clip example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to create a new coverage that contains the clipped out area of a larger coverage. </para>
+				<code xml:space="preserve"># Name: Clip_Example.py
+# Description: Clips a subset out of a polygon coverage.
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "tongass1"
+clipCover = "tong_basin4"
+outCover = "C:/output/basin4"
+featureType = "POLY"
+
+# Execute Clip
+arcpy.Clip_arc(inCover, clipCover, outCover, featureType, "")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,67 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Is Null (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Determines which values from the input raster are NoData on a cell-by-cell basis.</para>
+			<para>Returns a value of 1 if the input value is NoData and 0 for cells that are not.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>False</keyword><keyword>Math</keyword><keyword>Math Operator</keyword><keyword>Nodata</keyword><keyword>Relational</keyword><keyword>True</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="IsNull" displayname="Is Null (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Determines which values from the input raster are NoData on a cell-by-cell basis.</para>
+			<para>Returns a value of 1 if the input value is NoData and 0 for cells that are not.</para>
+		</summary><alink_name>IsNull_sa</alink_name><toolIllust type="illustration" src="IsNull_sa_h.png" alt="Is Null illustration" /><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster being tested to identify the cells that are NoData (null).</para>
+						<para>The input can be either integer or floating point type.</para></pythonReference><dialogReference>
+						<para>The input raster being tested to identify the cells that are NoData (null).</para>
+						<para>The input can be either integer or floating point type.</para></dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>The output raster identifies with a value of 1 which cells in the input are NoData. If the input is any other value, the output is 0.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>The output raster identifies with a value of 1 which cells in the input are NoData. If the input is any other value, the output is 0.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Is Null can be used along with the Con tool to .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>IsNull example 1 (Python window)</title>
+					<para>This example identifies which cells in the input raster are NoData, and outputs the result as an IMG raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outIsNull = IsNull("degs")
+outIsNull.save("C:/sapyexamples/output/outisnull.img")
+                    </code></scriptExample><scriptExample><title>IsNull example 2 (stand-alone script)</title>
+					<para>This example identifies which cells in the input raster are NoData, and outputs the result as a GRID raster.</para>
+				<code xml:space="preserve"># Name: IsNull_Ex_02.py
+# Description: Find which cell values of the input raster are NoData
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "degs"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute IsNull
+outIsNull = IsNull(inRaster)
+
+# Save the output 
+outIsNull.save("C:/sapyexamples/output/outisnull")
+                    </code></scriptExample></scriptExamples></tool></metadata>

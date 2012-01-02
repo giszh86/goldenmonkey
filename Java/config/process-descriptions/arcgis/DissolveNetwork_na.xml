@@ -1,0 +1,93 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Dissolve Network (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Creates a network dataset that minimizes the number of line features required to correctly model the input network dataset. The more efficient output network dataset reduces the time required to solve analyses, draw results, and generate driving directions. This tool outputs a new network dataset and source feature classes; the input network dataset and its source features remain unchanged. </para>
+			Learn more about how Dissolve Network works
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" DissolveNetwork " displayname=" Dissolve Network (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para> Creates a network dataset that minimizes the number of line features required to correctly model the input network dataset. The more efficient output network dataset reduces the time required to solve analyses, draw results, and generate driving directions. This tool outputs a new network dataset and source feature classes; the input network dataset and its source features remain unchanged. </para>
+			Learn more about how Dissolve Network works
+		</summary><alink_name> DissolveNetwork _na</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/DissolveNetwork_na_v.png" alt=" Dissolve Network Illustration " /><toolIllust type="illustration" src="DissolveNetwork_na_h.png" alt=" Dissolve Network Illustration " /><parameters><param sync="true" name="in_network_dataset" displayname="Input Network Dataset" datatype="Network Dataset Layer" direction="Input" expression="in_network_dataset" type="Required"><pythonReference>
+						<para> The network dataset to be dissolved. </para>
+						<para> The input network dataset must be a file or personal geodatabase network dataset with exactly one edge source. Any number of junction sources and turn sources is allowed. The edge source must have:<bulletList>
+								<bullet_item>End point connectivity policy</bullet_item>
+								<bullet_item>An elevation policy of either None or Elevation Fields</bullet_item>
+							</bulletList></para>
+						<para> The input network dataset must be built before it can be used in this tool.</para>
+					</pythonReference><dialogReference>
+						<para> The network dataset to be dissolved. </para>
+						<para> The input network dataset must be a file or personal geodatabase network dataset with exactly one edge source. Any number of junction sources and turn sources is allowed. The edge source must have:<bulletList>
+								<bullet_item>End point connectivity policy</bullet_item>
+								<bullet_item>An elevation policy of either None or Elevation Fields</bullet_item>
+							</bulletList></para>
+						<para> The input network dataset must be built before it can be used in this tool.</para>
+					</dialogReference></param><param sync="true" name="out_workspace_location" displayname="Output Geodatabase Workspace" datatype="Workspace" direction="Input" expression="out_workspace_location" type="Required"><pythonReference>
+						<para> The geodatabase workspace in which to create the dissolved network dataset. The workspace must be an ArcGIS 10 geodatabase or later. </para>
+					</pythonReference><dialogReference>
+						<para> The geodatabase workspace in which to create the dissolved network dataset. The workspace must be an ArcGIS 10 geodatabase or later. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool does not create a built network. Use the  tool to build the newly created network dataset prior to performing any analysis on it. </para>
+			</bullet_item><bullet_item>
+				<para>The network dataset and feature classes created in the output geodatabase workspace have the same feature dataset name, network dataset name, and feature class names as the input network dataset. The tool fails to execute if any datasets with these names already exist in the output geodatabase workspace. </para>
+			</bullet_item><bullet_item>
+				<para>Only fields from the source feature class that are used by the network dataset are transferred to the output line feature class. Examples of fields include:</para>
+				<bulletList>
+					<bullet_item>Elevation fields</bullet_item>
+					<bullet_item>Fields used in network attribute evaluators (length, time, one-way restrictions, hierarchy, and so on)</bullet_item>
+					<bullet_item>Fields used in generating driving directions (Street names, Shield, and so on)</bullet_item>
+				</bulletList>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DissolveNetwork example 1 (Python window)</title>
+					<para>Execute the tool using all parameters </para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.DissolveNetwork_na("Transportation/Streets_ND","C:/Data/DissolvedNet.gdb")
+
+                    </code></scriptExample><scriptExample><title>DissolveNetwork example 2 (workflow)</title>
+					<para>The following stand-alone Python script demonstrates how the DissolveNetwork tool can be used  to create a new network dataset with a reduced number of line features.</para>
+				<code xml:space="preserve"># Name: DissolveNetwork_Workflow.py
+# Description: Creates a new network dataset with reduced number of line 
+#              features in a new file geodatabase workspace. The network dataset
+#              is also built so that it can be used to perform network analyses.
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+try:
+    #Check out the Network Analyst extension license
+    arcpy.CheckOutExtension("Network")
+
+    #Set environment settings
+    env.workspace = "C:/data/SanFrancisco.gdb"
+    env.overwriteOutput = True
+    
+    #Set local variables
+    inNetworkDataset = "Transportation/Streets_ND"
+    outFolder = "C:/data/output"
+    outputGDBName = "SanFranciscoDissolved"
+    
+    #Create a new file geodatabase that will contain the dissolved network
+    result = arcpy.CreateFileGDB_management(outFolder, outputGDBName)
+    
+    #Get the path to the newly created file gdb from the result object.    
+    outputGDB = result.getOutput(0)
+    
+    #Dissolve the network dataset
+    result = arcpy.DissolveNetwork_na(inNetworkDataset, outputGDB)
+    
+    #Get the path to the dissolved network dataset from the result object
+    dissolvedNetworkDataset = result.getOutput(0)
+    
+    #The dissolved network dataset is unbuilt. So build the network dataset
+    arcpy.BuildNetwork_na(dissolvedNetworkDataset)
+    
+    print "Script completed successfully"
+
+except Exception as e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "An error occured on line %i" % tb.tb_lineno
+    print str(e)
+                    </code></scriptExample></scriptExamples></tool></metadata>

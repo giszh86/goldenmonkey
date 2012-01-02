@@ -1,0 +1,197 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Local Polynomial Interpolation (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Fits the specified order (zero, first, second, third, and so on) polynomial, each within specified overlapping neighborhoods, to produce an output surface.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Bandwidth</keyword><keyword>Condition Number</keyword><keyword>Esda</keyword><keyword>Estimate</keyword><keyword>Kernel</keyword><keyword>Lpi</keyword><keyword>Predict</keyword><keyword>Smooth Interpolation</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="LocalPolynomialInterpolation" displayname="Local Polynomial Interpolation (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Fits the specified order (zero, first, second, third, and so on) polynomial, each within specified overlapping neighborhoods, to produce an output surface.</para>
+			
+		</summary><alink_name>LocalPolynomialInterpolation_ga</alink_name><parameters><param sync="true" name="in_features" displayname="Input point features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input point features containing the z-values to be interpolated.</para>
+					</pythonReference><dialogReference>
+						<para>The input point features containing the z-values to be interpolated.</para>
+					</dialogReference></param><param sync="true" name="z_field" displayname="Z value field" datatype="Field" direction="Input" expression="z_field" type="Required"><pythonReference>
+						<para>Field that holds a height or magnitude value for each point. This can be a numeric field or the Shape field if the input features contains z-values or m-values.</para>
+					</pythonReference><dialogReference>
+						<para>Field that holds a height or magnitude value for each point. This can be a numeric field or the Shape field if the input features contains z-values or m-values.</para>
+					</dialogReference></param><param sync="true" name="out_ga_layer" displayname="Output geostatistical layer" datatype="Geostatistical Layer" direction="Output" expression="out_ga_layer" type="Required"><pythonReference>
+						<para>The geostatistical layer produced. This layer is required output only if no output raster is requested.</para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical layer produced. This layer is required output only if no output raster is requested.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Optional"><pythonReference>
+						<para>The output raster. This raster is required output only if no output geostatistical layer is requested.</para>
+					</pythonReference><dialogReference>
+						<para>The output raster. This raster is required output only if no output geostatistical layer is requested.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="power" displayname="Power" datatype="Long" direction="Input" expression="power" type="Optional"><pythonReference>
+						<para> The order of the polynomial. </para>
+					</pythonReference><dialogReference>
+						<para> The order of the polynomial. </para>
+					</dialogReference></param><param sync="true" name="search_neighborhood" displayname="Search neighborhood" datatype="Geostatistical Search Neighborhood" direction="Input" expression="search_neighborhood" type="Optional"><pythonReference>
+						
+						<para>Defines which surrounding points will be used to control the output. There are two options: STANDARD and SMOOTH. Standard is the default.</para>
+						<para>This is a Search Neighborhood class ( SearchNeighborhoodStandard  and SearchNeighborhoodSmooth).</para>
+						<para>STANDARD</para>
+						<bulletList>
+							<bullet_item>Major semiaxis — The major semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Minor semiaxis — The minor semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Angle — The angle of rotation for the axis (circle) or semi-major axis (ellipse) of the moving window.</bullet_item>
+							<bullet_item>Maximum neighbors — The maximum number of neighbors that will be used to estimate the value at the unknown location.</bullet_item>
+							<bullet_item>Minimum neighbors — The minimum number of neighbors that will be used to estimate the value at the unknown location.</bullet_item>
+							<bullet_item>Sector type — The geometry of the neighborhood. <bulletList>
+									<bullet_item>One sector - Single ellipse</bullet_item>
+									<bullet_item>Four sectors - Ellipse divided in four sectors.</bullet_item>
+									<bullet_item>Four sectors shifted - Ellipse divided in four sectors and shifted 45 degrees.</bullet_item>
+									<bullet_item>Eight sectors - Ellipse divided into eight sectors.</bullet_item>
+								</bulletList></bullet_item>
+						</bulletList>
+						<para>SMOOTH</para>
+						<bulletList>
+							<bullet_item>Major semiaxis — The major semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Minor semiaxis — The minor semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Angle — The angle of rotation for the axis (circle) or semi-major axis (ellipse) of the moving window.</bullet_item>
+							<bullet_item>Smoothing factor — The Smooth Interpolation option creates an outer ellipse and an inner ellipse at a distance equal to the Major Semiaxis multiplied by the Smoothing factor. The points that fall outside the smaller ellipse but inside the largest ellipse are weighted using a sigmoidal function with a value between zero and one.</bullet_item>
+						</bulletList>
+						
+					</pythonReference><dialogReference>
+						
+						<para>Defines which surrounding points will be used to control the output. There are two options: STANDARD and SMOOTH. Standard is the default.</para>
+						<para>STANDARD</para>
+						<bulletList>
+							<bullet_item>Major semiaxis — The major semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Minor semiaxis — The minor semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Angle — The angle of rotation for the axis (circle) or semi-major axis (ellipse) of the moving window.</bullet_item>
+							<bullet_item>Maximum neighbors — The maximum number of neighbors that will be used to estimate the value at the unknown location.</bullet_item>
+							<bullet_item>Minimum neighbors — The minimum number of neighbors that will be used to estimate the value at the unknown location.</bullet_item>
+							<bullet_item>Sector type — The geometry of the neighborhood. <bulletList>
+									<bullet_item>One sector - Single ellipse</bullet_item>
+									<bullet_item>Four sectors - Ellipse divided in four sectors.</bullet_item>
+									<bullet_item>Four sectors shifted - Ellipse divided in four sectors and shifted 45 degrees.</bullet_item>
+									<bullet_item>Eight sectors - Ellipse divided into eight sectors.</bullet_item>
+								</bulletList></bullet_item>
+						</bulletList>
+						<para>SMOOTH</para>
+						<bulletList>
+							<bullet_item>Major semiaxis — The major semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Minor semiaxis — The minor semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Angle — The angle of rotation for the axis (circle) or semi-major axis (ellipse) of the moving window.</bullet_item>
+							<bullet_item>Smoothing factor — The Smooth Interpolation option creates an outer ellipse and an inner ellipse at a distance equal to the Major Semiaxis multiplied by the Smoothing factor. The points that fall outside the smaller ellipse but inside the largest ellipse are weighted using a sigmoidal function with a value between zero and one.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="kernel_function" displayname="Kernel function" datatype="String" direction="Input" expression="kernel_function" type="Optional"><pythonReference>
+						<para> The kernel function used in the simulation.</para>
+						<bulletList><bullet_item> QUARTIC— Fourth order polynomial function.</bullet_item><bullet_item> EXPONENTIAL— The function grows or decays proportionally. </bullet_item><bullet_item>GAUSSIAN— Bell shaped function that falls off quickly towards plus/minus infinity. </bullet_item><bullet_item> EPANECHNIKOV— A discontinuous parabolic function. </bullet_item><bullet_item> POLYNOMIAL5— Fifth order polynomial function.</bullet_item><bullet_item> CONSTANT—An indicator function.</bullet_item></bulletList>
+						
+							
+							
+						
+					</pythonReference><dialogReference>
+						<para> The kernel function used in the simulation.</para>
+						<bulletList><bullet_item> QUARTIC— Fourth order polynomial function.</bullet_item><bullet_item> EXPONENTIAL— The function grows or decays proportionally. </bullet_item><bullet_item>GAUSSIAN— Bell shaped function that falls off quickly towards plus/minus infinity. </bullet_item><bullet_item> EPANECHNIKOV— A discontinuous parabolic function. </bullet_item><bullet_item> POLYNOMIAL5— Fifth order polynomial function.</bullet_item><bullet_item> CONSTANT—An indicator function.</bullet_item></bulletList>
+						
+							
+							
+						
+					</dialogReference></param><param sync="true" name="use_condition_number" displayname="Use spatial condition number threshold" datatype="Boolean" direction="Input" expression="use_condition_number" type="Optional"><pythonReference>
+						<para>Option to control the creation of prediction and prediction standard errors where the predictions are unstable. This option is only available for polynomials of order 1, 2 and 3.</para>
+						<bulletList><bullet_item>NO_USE_CONDITION_NUMBER—Prediction and prediction standard errors can  be created  where the predictions are unstable. This is the default.</bullet_item><bullet_item>USE_CONDITION_NUMBER—Prediction and prediction standard errors will not be created  where the predictions are unstable.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Option to control the creation of prediction and prediction standard errors where the predictions are unstable. This option is only available for polynomials of order 1, 2 and 3.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Prediction and prediction standard errors can  be created  where the predictions are unstable. This is the default.</bullet_item><bullet_item>Checked—Prediction and prediction standard errors will not be created  where the predictions are unstable. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="bandwidth" displayname="Bandwidth parameter" datatype="Double" direction="Input" expression="bandwidth" type="Optional"><pythonReference>
+						<para> Used to specify the maximum distance at which data points are used for prediction. With increasing bandwidth, prediction bias increases and prediction variance decreases.</para>
+					</pythonReference><dialogReference>
+						<para> Used to specify the maximum distance at which data points are used for prediction. With increasing bandwidth, prediction bias increases and prediction variance decreases.</para>
+					</dialogReference></param><param sync="true" name="condition_number" displayname="Spatial condition number" datatype="Double" direction="Input" expression="condition_number" type="Optional"><pythonReference>
+						<para> Every invertible square matrix has a condition number that indicates how inaccurate the solution to the linear equations can be with a small change in the matrix coefficients (it can be due to imprecise data) . If the condition number is large, a small change in the matrix coefficients results in a large change in the solution vector. </para>
+					</pythonReference><dialogReference>
+						<para> Every invertible square matrix has a condition number that indicates how inaccurate the solution to the linear equations can be with a small change in the matrix coefficients (it can be due to imprecise data) . If the condition number is large, a small change in the matrix coefficients results in a large change in the solution vector. </para>
+					</dialogReference></param><param sync="true" name="weight_field" displayname="Weight field" datatype="Field" direction="Input" expression="weight_field" type="Optional"><pythonReference>
+						<para>Used to emphasize an observation. The larger the weight, the more impact it has on the prediction. For coincident observations, assign the largest weight to the most reliable measurement.</para>
+					</pythonReference><dialogReference>
+						<para>Used to emphasize an observation. The larger the weight, the more impact it has on the prediction. For coincident observations, assign the largest weight to the most reliable measurement.</para>
+					</dialogReference></param><param sync="true" name="output_type" displayname="Output surface type" datatype="String" direction="Input" expression="output_type" type="Optional"><pythonReference>
+						<para> Surface type to store the interpolation results.</para>
+						<bulletList><bullet_item> PREDICTION—Predicition surfaces are produced from the interpolated values.</bullet_item><bullet_item> PREDICTION_STANDARD_ERROR— Standard Error surfaces are produced from the standard errors of the interpolated values.</bullet_item><bullet_item>CONDITION_NUMBER—The Spatial condition number surface indicates variation in the numerical model stability and provides additional information on the prediction uncertainty as the prediction standard error surface is created assuming that the model is correct, which implies that there is no reason for model instability. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Surface type to store the interpolation results.</para>
+						<bulletList><bullet_item> PREDICTION—Predicition surfaces are produced from the interpolated values.</bullet_item><bullet_item> PREDICTION_STANDARD_ERROR— Standard Error surfaces are produced from the standard errors of the interpolated values.</bullet_item><bullet_item>CONDITION_NUMBER—The Spatial condition number surface indicates variation in the numerical model stability and provides additional information on the prediction uncertainty as the prediction standard error surface is created assuming that the model is correct, which implies that there is no reason for model instability. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Coincident_points" label="Coincident points"></environment></environments><usage><bullet_item>
+				<para> Use <bold>Local Polynomial Interpolation</bold> when your dataset exhibits short-range variation.</para>
+			</bullet_item><bullet_item>
+				<para> is useful for creating smooth surfaces and identifying long-range trends in the dataset. However, in earth sciences the variable of interest usually has short-range variation in addition to long-range trend. When the dataset exhibits short-range variation, Local Polynomial Interpolation maps can capture the short-range variation. </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>LocalPolynomialInterpolation example 1 (Python window)</title>
+					<para>Interpolate point features onto a rectangular raster.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapyexamples/data"
+arcpy.LocalPolynomialInterpolation_ga("ca_ozone_pts", "OZONE", "outLPI",
+                                      "C:/gapyexamples/output/lpiout", "2000", "2",
+                                      arcpy.SearchNeighborhoodSmooth(300000, 300000, 0, 0.5),
+                                      "QUARTIC", "", "", "", "", "PREDICTION")
+
+                    </code></scriptExample><scriptExample><title>LocalPolynomialInterpolation example 2 (stand-alone script)</title>
+					<para>Interpolate point features onto a rectangular raster.</para>
+				<code xml:space="preserve"># Name: LocalPolynomialInterpolation_Example_02.py
+# Description: Local Polynomial interpolation fits many polynomials, each within
+#   specified overlapping neighborhoods. 
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inPointFeatures = "ca_ozone_pts.shp"
+zField = "ozone"
+outLayer = "outLPI"
+outRaster = "C:/gapyexamples/output/lpiout"
+cellSize = 2000.0
+power = 2
+kernelFunction = "QUARTIC"
+bandwidth = ""
+useConNumber = ""
+conNumber = ""
+weightField = ""
+outSurface = "PREDICTION"
+
+# Set variables for search neighborhood
+majSemiaxis = 300000
+minSemiaxis = 300000
+angle = 0
+smoothFactor = 0.5
+searchNeighbourhood = arcpy.SearchNeighborhoodSmooth(majSemiaxis, minSemiaxis,
+                                                     angle, smoothFactor)
+
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute LocalPolynomialInterpolation
+arcpy.LocalPolynomialInterpolation_ga(inPointFeatures, zField, outLayer, outRaster,
+                                      cellSize, power, searchNeighbourhood,
+                                      kernelFunction, bandwidth, useConNumber,
+                                      conNumber, weightField, outSurface)
+
+
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

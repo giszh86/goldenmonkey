@@ -1,0 +1,174 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate Locations (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds fields to the input features that contain the network location of the features. The tool is used to store the network location information as feature attributes to quickly load the features as inputs for a network analysis layer.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alter</keyword><keyword>Altered</keyword><keyword>Feature Class</keyword><keyword>Layer</keyword><keyword>Locations</keyword><keyword>Network Analyst Layer</keyword><keyword>Points</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateLocations" displayname="Calculate Locations (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Adds fields to the input features that contain the network location of the features. The tool is used to store the network location information as feature attributes to quickly load the features as inputs for a network analysis layer.</para>
+		</summary><alink_name>CalculateLocations_na</alink_name><parameters><param sync="true" name="in_point_features" displayname="Input features" datatype="Table View" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para>The input features for which the network locations will be calculated. </para>
+						<para> For line and polygon features, since the network location information is stored in a blob field (specified in the Location ranges field parameter), only geodatabase feature classes are supported.</para>
+					</pythonReference><dialogReference>
+						<para>The input features for which the network locations will be calculated. </para>
+						<para> For line and polygon features, since the network location information is stored in a blob field (specified in the Location ranges field parameter), only geodatabase feature classes are supported.</para>
+					</dialogReference></param><param sync="true" name="in_network_dataset" displayname="Input analysis network" datatype="Network Dataset Layer" direction="Output" expression="in_network_dataset" type="Required"><pythonReference>
+						<para>The network dataset used to calculate the locations.</para>
+						<para>If a sublayer of a network analysis layer is used as input features, the parameter must be set to the network dataset referenced by the network analysis layer. </para>
+					</pythonReference><dialogReference>
+						<para>The network dataset used to calculate the locations.</para>
+						<para>If a sublayer of a network analysis layer is used as input features, the parameter is automatically set to the network dataset referenced by the network analysis layer. </para>
+					</dialogReference></param><param sync="true" name="search_tolerance" displayname="Search tolerance" datatype="Linear unit" direction="Input" expression="search_tolerance" type="Required"><pythonReference>
+						<para>The search tolerance for locating the input features on the network. Features that are outside the search tolerance are left unlocated. The parameter includes a value and units for the tolerance.</para>
+						<para>The parameter is not used when calculating locations for line or polygon features. In such cases, use "#" as the parameter value.</para>
+					</pythonReference><dialogReference>
+						<para>The search tolerance for locating the input features on the network. Features that are outside the search tolerance are left unlocated. The parameter includes a value and units for the tolerance.</para>
+					</dialogReference></param><param sync="true" name="search_criteria" displayname="Search criteria" datatype="Value Table" direction="Input" expression="[[Source, SnapType],...]" type="Required"><pythonReference>
+						<para>Specifies which sources in the network dataset will be searched when finding locations and what portions of geometry (also known as snap types) will be used.</para>
+						<para>The parameter value is specified as a list with nested lists. The nested list is made up of two values indicating the name and the snap type for each network source. The snap type is specified using the "SHAPE", "MIDDLE", "END" ,or "NONE" keywords. For example, when finding locations, the parameter value [["Streets","SHAPE"],["Streets_ND_Junctions","NONE"]] specifies that the search can locate on the shape of the Streets source but not on the Streets_ND_Junctions source.</para>
+						<para>To specify multiple snap types for a single network source, use the combination of the snap type keywords separate by an underscore. For example, MIDDLE_END specifies that the locations can be snapped to the middle or end of the network source. </para>
+						<para>For geodatabase network datasets, the snap types can be specified for each subtype of the network source.</para>
+						<para>When calculating locations for line or polygon features, only the Shape snap type is used even if other snap types are specified.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies which sources in the network dataset will be searched when finding locations and what portions of geometry (also known as snap types) will be used.</para>
+						<para>For geodatabase network datasets, the snap types can be specified for each subtype of the network source.</para>
+						<para>When calculating locations for line or polygon features, only the Shape snap type is used even if other snap types are specified.</para>
+					</dialogReference></param><param sync="true" name="match_type" displayname="Find closest among all classes" datatype="Boolean" direction="Input" expression="match_type" type="Optional"><pythonReference>
+						<bulletList><bullet_item>MATCH_TO_CLOSEST—Matches the new network locations to the closest network source among all the sources that have a snap type specified in the search criteria . This is the default.</bullet_item><bullet_item>PRIORITY—Matches the new network locations to the first network source having a snap type specified in the search criteria. The sources are searched in the priority order and the searching stops when the location is found within the search tolerance.</bullet_item></bulletList>
+						<para>The parameter is not used when calculating locations for line or polygon features. In such cases, use "#" as the parameter value.</para>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked -- Matches the new network locations to the closest network source among all the sources that have a snap type specified in the search criteria. This is the default.</bullet_item>
+							<bullet_item>Unchecked -- Matches the new network locations to the first network source having a snap type specified in the search criteria. The sources are searched in the priority order and the searching stops when the location is found within the search tolerance. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="source_ID_field" displayname="Source ID field" datatype="Field" direction="Input" expression="source_ID_field" type="Optional"><pythonReference>
+						<para>Name of the field to be created or updated with the source ID of the computed network location. A field called "SourceID" is created or updated by default.</para>
+						<para>The parameter is not used when calculating locations for line or polygon features. In such cases, use "#" as the parameter value.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the field to be created or updated with the source ID of the computed network location. A field called "SourceID" is created or updated by default.</para>
+					</dialogReference></param><param sync="true" name="source_OID_field" displayname="Source OID field" datatype="Field" direction="Input" expression="source_OID_field" type="Optional"><pythonReference>
+						<para>Name of the field to be created or updated with the source OID of the computed network location. A field called "SourceOID" is created or updated by default. </para>
+						<para>The parameter is not used when calculating locations for line or polygon features. In such cases, use "#" as the parameter value.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the field to be created or updated with the source OID of the computed network location. A field called "SourceOID" is created or updated by default. </para>
+					</dialogReference></param><param sync="true" name="position_field" displayname="Percent along field" datatype="Field" direction="Input" expression="position_field" type="Optional"><pythonReference>
+						<para>Name of the field to be created or updated with the percent along of the computed network location. A field called "PosAlong" is created or updated by default.</para>
+						<para>The parameter is not used when calculating locations for line or polygon features. In such cases, use "#" as the parameter value.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the field to be created or updated with the percent along of the computed network location. A field called "PosAlong" is created or updated by default.</para>
+					</dialogReference></param><param sync="true" name="side_field" displayname="Side of edge field" datatype="Field" direction="Input" expression="side_field" type="Optional"><pythonReference>
+						<para>Name of the field to be created or updated with the side of edge on which the point feature is located on the computed network location. A field called "SideOfEdge" is created or updated by default.</para>
+						<para>The parameter is not used when calculating locations for line or polygon features. In such cases, use "#" as the parameter value.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the field to be created or updated with the side of edge on which the point feature is located on the computed network location. A field called "SideOfEdge" is created or updated by default.</para>
+					</dialogReference></param><param sync="true" name="snap_x_field" displayname="Located X-coordinate field" datatype="Field" direction="Input" expression="snap_x_field" type="Optional"><pythonReference>
+						<para>Name of the field to be created or updated with the x-coordinate of the computed network location. A field called "SnapX" is created or updated by default.</para>
+						<para>The parameter is not used when calculating locations for line or polygon features. In such cases, use "#" as the parameter value.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the field to be created or updated with the x-coordinate of the computed network location. A field called "SnapX" is created or updated by default.</para>
+					</dialogReference></param><param sync="true" name="snap_y_field" displayname="Located Y-coordinate field" datatype="Field" direction="Input" expression="snap_y_field" type="Optional"><pythonReference>
+						<para>Name of the field to be created or updated with the y-coordinate of the computed network location. A field called "SnapY" is created or updated by default.</para>
+						<para>The parameter is not used when calculating locations for line or polygon features. In such cases, use "#" as the parameter value.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the field to be created or updated with the y-coordinate of the computed network location. A field called "SnapY" is created or updated by default.</para>
+					</dialogReference></param><param sync="true" name="distance_field" displayname="Distance from feature field" datatype="Field" direction="Input" expression="distance_field" type="Optional"><pythonReference>
+						<para>Name of the field to be created or updated with the distance of the point feature from the computed network location. A field called "Distance" is created or updated by default.</para>
+						<para>The parameter is not used when calculating locations for line or polygon features. In such cases, use "#" as the parameter value.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the field to be created or updated with the distance of the point feature from the computed network location. A field called "Distance" is created or updated by default.</para>
+					</dialogReference></param><param sync="true" name="snap_Z_field" displayname="Located Z-coordinate field" datatype="Field" direction="Input" expression="snap_Z_field" type="Optional"><pythonReference>
+						<para> Name of the field to be created or updated with the z-coordinate of the computed network location. A field called "SnapZ" is created or updated by default. </para>
+						<para>The parameter is not used when calculating locations for line or polygon features. In such cases, use "#" as the parameter value.</para>
+						<para>When calculating locations for point features, the parameter is used only when the input network dataset supports connectivity based on z-coordinate values of the network sources. In all other cases, use "#" as the parameter value.</para>
+					</pythonReference><dialogReference>
+						<para> Name of the field to be created or updated with the z-coordinate of the computed network location. A field called "SnapZ" is created or updated by default. </para>
+					</dialogReference></param><param sync="true" name="location_field" displayname="Location ranges field" datatype="Field" direction="Input" expression="location_field" type="Optional"><pythonReference>
+						<para> Name of the field to be created or updated with the location ranges of the computed network locations for the line or polygon features. A field called "Locations" is created or updated by default. </para>
+						<para>The parameter is used only when the calculating locations for line or polygon features. For input point features, use "#" as the parameter value.</para>
+					</pythonReference><dialogReference>
+						<para> Name of the field to be created or updated with the location ranges of the computed network locations for the line or polygon features. A field called "Locations" is created or updated by default. </para>
+					</dialogReference></param><param sync="true" name="exclude_restricted_elements" displayname="Exclude restricted portions of the network" datatype="Boolean" direction="Input" expression="exclude_restricted_elements" type="Optional"><pythonReference>
+						<para>This parameter is applicable only when the input features are from the sub layer of a network analysis layer and are not barrier objects. In all other cases, use "#" as the parameter value.</para>
+						<bulletList><bullet_item>EXCLUDE—Specifies that the network locations are only placed on traversable portions of the network. This prevents placing network locations on elements that you can't reach due to restrictions or barriers. Before relocating your network locations using this option, make sure that you have already added all the restriction barriers to the network analysis layer to get expected results.</bullet_item><bullet_item>INCLUDE—Specifies that the network locations are placed on all the elements of the network. The network locations that are relocated with this option may be unreachable during the solve process if they are placed on restricted elements.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> This parameter is applicable only when the input features are from the sub layer of a network analysis layer and are not barrier objects. </para>
+						<bulletList>
+							<bullet_item>Checked -- The network locations are only placed on traversable portions of the network. This prevents placing network locations on elements that you can't reach due to restrictions or barriers. Before relocating your network locations using this option, make sure that you have already added all the restriction barriers to the network analysis layer to get expected results.</bullet_item>
+							<bullet_item>Unchecked -- The network locations are placed on all the elements of the network. The network locations that are relocated with this option may be unreachable during the solve process if they are placed on restricted elements.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="search_query" displayname="Search query" datatype="Value Table" direction="Input" expression="[[Source, Expression],...]" type="Optional"><pythonReference><para>
+Specifies a query to restrict the search to a subset of the features within a source feature class. This is useful if you don't want to find features that may be unsuited for a network location. For example, if you are loading centroids of polygons and don't want to locate on local roads, you can define a query that searches for major roads only.
+</para><para>The parameter value is specified as a list with nested lists. The nested list is made up of two values indicating the name and the SQL expression for all of   the network sources.  The syntax for the SQL expression differs slightly depending on the
+type of the network source feature class. For example, if
+you're querying source feature classes stored in file or ArcSDE geodatabases, shapefiles, or
+SDC, enclose field names in double quotes: "CFCC". If you're
+querying source feature classes stored in personal geodatabases, enclose fields in square
+brackets: [CFCC]. </para>
+						<para>If you don't want to specify a query for a particular source, use "#" as the value for the SQL expression or exclude the source name and the SQL expression from the parameter value. If you don't want to specify a query for all of the network sources, use "#" as the parameter value. </para><para>For example, the parameter value [["Streets","\"CFCC\" = 'A15'"], ["Streets_ND_Junctions",""]] specifies a SQL expression for the Streets source feature class and no expression for Streets_ND_Junctions source feature class. Note that the double quotes used to enclose the field name CFCC are escaped using back slash characters to avoid a parsing error from the Python interpreter. </para></pythonReference><dialogReference>
+						<para>
+Specifies a query to restrict the search to a subset of the features within a source feature class. This is useful if you don't want to find features that may be unsuited for a network location. For example, if you are loading centroids of polygons and don't want to locate on local roads, you can define a query that searches for major roads only.
+</para>
+						<para>A SQL expression for a given source is specified by selecting the source name in the Name column and clicking the SQL button. If you don't want to specify a query for a source, remove the SQL expression for that source by selecting the source name and clicking the remove button. </para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is used to calculate locations fields that can be input to the  tool. It should be used on features that will be used more than once as input to a network analysis layer. Once the locations have been computed, then the Use Network Location Fields instead of geometry parameter on the Add Locations tool can be used to quickly load the features as network locations. </para>
+			</bullet_item><bullet_item>
+				<para>This tool can also be used to re-calculate the network locations that are unlocated in your network analysis layer using a different set of search options. For example, If the stops in your route network analysis layer were initially added with a search tolerance of 500 meters and few of your stops were unlocated, you can select the unlocated stops, for example, using the  tool, and re-run this  tool specifying the stops sub layer as the Input features with an increased search tolerance.  </para>
+				</bullet_item><bullet_item>
+				<para>This tool runs significantly faster if the feature classes used as the network sources in the network dataset have a valid and up to date spatial index. </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CalculateLocations example 1 (Python window)</title>
+					<para>Calculate Locations for point features using only the required parameters.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.CalculateLocations_na("Analysis/Stores","Transportation/Streets_ND",
+                            "5000 Meters",[["Streets","SHAPE"],
+                                           ["Streets_ND_Junctions","NONE"]])
+
+                    </code></scriptExample><scriptExample><title>CalculateLocations example 2 (Python window)</title>
+					<para>Calculate Locations for point features on a subtype of a network source.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/Paris.gdb"
+arcpy.CalculateLocations_na(
+    "Analysis/Warehouses","Transportation/ParisNet","5000 Meters",
+    [["Streets : Highways","NONE"],["Streets : Major Roads","NONE"],
+     ["Streets : Local Streets","SHAPE"],["ParisNet_Junctions", "NONE"]],
+    "MATCH_TO_CLOSEST","SID","SOID","PA","SOE","SnapX","SnapY","Distance",
+    "","","","")
+
+                    </code></scriptExample><scriptExample><title>CalculateLocations example 3 (Python window)</title>
+					<para>Calculate Locations for polygon features</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.CalculateLocations_na("Basemap/Parks","Transportation/Streets_ND","",
+                            [["Streets","SHAPE"],
+                             ["Streets_ND_Junctions","NONE"]],
+                            location_field="Locations")
+
+                    </code></scriptExample><scriptExample><title>CalculateLocations example 4 (Stand-alone Python script)</title><para>The following Python script demonstrates how to use the CalculateLocations tool in a stand-alone script.
+</para><code xml:space="preserve"># Name: CalculateLocations_ex04.py
+# Description: Calculate network locations for fire stations. Make sure that the 
+#              fire stations are not located on the freeways.
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+
+#Check out the Network Analyst extension license
+arcpy.CheckOutExtension("Network")
+
+#Set environment settings
+env.workspace = "C:/data/SanFrancisco.gdb"
+
+#Set local variables
+inFeatures = "Analysis/FireStations"
+inNetworkDataset = "Transportation/Streets_ND"
+searchTolerance = "2000 Meters"
+searchCriteria = [["Streets","SHAPE"],["Streets_ND_Junctions","NONE"]]
+searchQuery = [["Streets",'"FREEWAY" = 0'],["Streets_ND_Junctions",""]]
+
+#Calculate network locations and store them in defaut field names
+arcpy.CalculateLocations_na(inFeatures,inNetworkDataset,searchTolerance,
+                            searchCriteria,"MATCH_TO_CLOSEST", 
+                            exclude_restricted_elements="EXCLUDE",
+                            search_query=searchQuery)
+print "Script completed successfully."
+                    </code></scriptExample></scriptExamples></tool></metadata>

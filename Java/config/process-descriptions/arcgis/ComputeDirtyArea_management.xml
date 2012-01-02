@@ -1,0 +1,79 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">
+Compute Dirty Area
+ (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>
+Identifies an area within a mosaic dataset that has changed since a specified point in time.
+</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="&#xA;ComputeDirtyArea&#xA;" displayname="&#xA;Compute Dirty Area&#xA; (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>
+Identifies an area within a mosaic dataset that has changed since a specified point in time.
+</para>
+		</summary><alink_name>
+ComputeDirtyArea
+_management</alink_name><parameters><param sync="true" name="in_mosaic_dataset" displayname="Mosaic Dataset" datatype="Mosaic Layer" direction="Input" expression="in_mosaic_dataset" type="Required"><pythonReference>
+						<para>
+The input mosaic dataset.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The input mosaic dataset.
+</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Query Definition" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>
+An optional SQL query that can be specified to only process a specific subset of data.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+An optional SQL query that can be specified to only process a specific subset of data.
+</para>
+					</dialogReference></param><param sync="true" name="timestamp" displayname="Start Date and Time" datatype="String" direction="Input" expression="timestamp" type="Required"><pythonReference>
+						<para>
+Specify a  
+date and time. All mosaic items modified after this date will be used to compute the dirty area.</para>
+						<para>Currently, there are two types of date formats supported:<bulletList><bullet_item>XML time syntax: <italics>YYYY-MM-DD</italics>T<italics>hh:mm:ss</italics>, <italics>YYYY-MM-DD</italics>T<italics>hh:mm:ss.ssssZ</italics>,
+<italics>2002-10-10</italics>T<italics>12:00:00.ssss-00:00</italics>,
+<italics>2002-10-10</italics>T<italics>12:00:00+00:00</italics></bullet_item><bullet_item>Non-XML time syntax: 2002/12/25
+23:59:58.123</bullet_item></bulletList></para><para>For more information about the formatting of the time string, refer to the Usage Tips.</para></pythonReference><dialogReference>
+						<para>
+Specify a  
+date and time. All mosaic items modified after this date will be used to compute the dirty area.</para>
+						<para>Currently, there are two types of date formats supported:<bulletList><bullet_item>XML time syntax: <italics>YYYY-MM-DD</italics>T<italics>hh:mm:ss</italics>, <italics>YYYY-MM-DD</italics>T<italics>hh:mm:ss.ssssZ</italics>,
+<italics>2002-10-10</italics>T<italics>12:00:00.ssss-00:00</italics>,
+<italics>2002-10-10</italics>T<italics>12:00:00+00:00</italics></bullet_item><bullet_item>Non-XML time syntax: 2002/12/25
+23:59:58.123</bullet_item></bulletList></para><para>For more information about the formatting of the time string, refer to the Usage Tips.</para></dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>
+The output feature class where the dirty area polygons will be created.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The output feature class where the dirty area polygons will be created.
+</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>
+This tool constructs a polygon that defines regions containing one or more mosaic dataset items that have been modified since a specified point in time.  </para>
+			</bullet_item><bullet_item><para>This allows tools and applications that depend on the mosaic dataset for the construction of derived products, such as cache, to perform partial updates since the last time the derived products were synchronized with the mosaic dataset.
+</para></bullet_item><bullet_item>
+				<para>
+The date and time parameter can be specified in one of two ways: <bulletList><bullet_item>XML time sting</bullet_item><bullet_item>Non-XML string</bullet_item></bulletList></para>
+			</bullet_item><bullet_item><para>A valid XML time string must be in one of the following formats:<bulletList><bullet_item><italics>YYYY-MM-DD</italics>T<italics>hh:mm:ss</italics></bullet_item><bullet_item><italics>YYYY-MM-DD</italics>T<italics>hh:mm:ss.ssss</italics>Z</bullet_item><bullet_item><italics>YYYY-MM-DD</italics>T<italics>hh:mm:ss.ssss-00:00</italics></bullet_item><bullet_item><italics>YYYY-MM-DD</italics>T<italics>hh:mm:ss+00:00</italics></bullet_item><bullet_item><italics>YYYY</italics></bullet_item><bullet_item><italics>YYYY-MM</italics></bullet_item><bullet_item><italics>YYYY-MM-DD</italics></bullet_item><bullet_item><italics>YYYY-MM-DD</italics>Z</bullet_item><bullet_item><italics>YYYY-MM-DD</italics>T<italics>hh</italics></bullet_item><bullet_item><italics>YYYY-MM-DD</italics>T<italics>hh</italics>Z</bullet_item><bullet_item><italics>YYYY-MM-DD</italics>T<italics>hh:mm</italics></bullet_item><bullet_item><italics>YYYY-MM-DD</italics>T<italics>hh:mm</italics>Z</bullet_item><bullet_item><italics>YYYY-MM-DD</italics>T<italics>hh:mm:ss</italics></bullet_item><bullet_item><italics>YYYY-MM-DD</italics>T<italics>hh:mm:ss</italics>Z</bullet_item></bulletList></para></bullet_item><bullet_item><para>The last possible part of the XML time strings is the time zone. The time zones specified with a Z refers to Zulu Time, or Greenwich Mean Time. You can also specify a time zone by using the positive or negative hours from Zulu Time.  If you do not specify a time zone, then the local time zone will be used.</para></bullet_item><bullet_item><para>Valid Non-XML time strings can take on any format shown below:<bulletList><bullet_item><italics>YYYY/MM/DD hh:mm:ss.s</italics></bullet_item><bullet_item><italics>YYYY/MM/DD hh:mm:ss</italics></bullet_item><bullet_item><italics>YYYY/MM/DD hh:mm</italics></bullet_item><bullet_item><italics>YYYY/MM/DD hh</italics></bullet_item><bullet_item><italics>YYYY/MM</italics></bullet_item><bullet_item><italics>YYYY-MM-DDhhmmss.s</italics></bullet_item><bullet_item><italics>YYYY-MM-DDhhmmss</italics></bullet_item><bullet_item><italics>YYYY-MM-DDhhmm</italics></bullet_item><bullet_item><italics>YYYY-MM-DDhh</italics></bullet_item><bullet_item><italics>YYYY-MM-DD</italics></bullet_item><bullet_item><italics>YYYY-MM</italics></bullet_item><bullet_item><italics>YYYYMMDDhhmmss.s</italics></bullet_item><bullet_item><italics>YYYYMMDDhhmmss</italics></bullet_item><bullet_item><italics>YYYYMMDDhhmm</italics></bullet_item><bullet_item><italics>YYYYMMDDhh</italics></bullet_item><bullet_item><italics>YYYYMMDD</italics></bullet_item><bullet_item><italics>YYYYMM</italics></bullet_item><bullet_item><italics>YYYY</italics>
+						</bullet_item></bulletList></para></bullet_item></usage><scriptExamples><scriptExample><title>ComputeDirtyArea example 1 (Python window)</title>
+					<para>A Python sample for ComputeDirtyArea.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.ComputeDirtyArea_management("c:/workspace/fgdb.gdb/md", "#", 
+                                  "2010-01-12T18:00:00.00-08:00", "dirtyarea.shp")
+                    </code></scriptExample><scriptExample><title>ComputeDirtyArea example 2 (stand-alone script)</title><para>A Python script sample for ComputeDirtyArea.</para><code xml:space="preserve">##===========================
+##Compute Dirty Area
+##Usage: ComputeDirtyArea_management in_mosaic_dataset {where_clause} timestamp
+##                                   out_feature_class
+
+try:
+    import arcpy
+    arcpy.env.workspace = "c:/workspace"
+    
+    # Find the area changed after 6:00pm Jan 12th 2010
+    arcpy.ComputeDirtyArea_management("fgdb.gdb/md", "#", "2010-01-12T18:00:00.00-08:00", "dirtyarea.shp")                                              
+    
+except:
+    print "Compute Dirty Area example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

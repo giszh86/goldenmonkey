@@ -1,0 +1,114 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Dissolve (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a new coverage by merging adjacent polygons, lines, or regions that have the same value for a specified item.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Aggregate</keyword><keyword>Combine</keyword><keyword>Dissolve</keyword><keyword>Generalization</keyword><keyword>Merge</keyword><keyword>Pseudo Nodes</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Dissolve" displayname="Dissolve (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Creates a new coverage by merging adjacent polygons, lines, or regions that have the same value for a specified item.</para>
+		</summary><alink_name>Dissolve_arc</alink_name><toolIllust type="illustration" src="Dissolve_arc_h.gif" alt="Dissolve illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage containing features to be dissolved.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage containing features to be dissolved.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The coverage to be created. The output coverage cannot already exist.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage to be created. The output coverage cannot already exist.</para>
+					</dialogReference></param><param sync="true" name="dissolve_item" displayname="Dissolve Item" datatype="ArcInfo item" direction="Input" expression="dissolve_item" type="Required"><pythonReference>
+						<para>The item in the in_cover feature attribute table that is used to dissolve features.</para>
+						<bulletList>
+							<bullet_item>Dissolve_item—An item name will be used to perform the dissolve. The item may be a redefined item.</bullet_item>
+							<bullet_item>#ALL—All items past the cover-ID in the PAT, AAT, or region subclass PAT will be used as a single dissolve item. If there are no items past the cover-ID, then the cover-ID will be used.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>The item in the in_cover feature attribute table that is used to dissolve features.</para>
+						<bulletList>
+							<bullet_item>Dissolve_item—An item name will be used to perform the dissolve. The item may be a redefined item.</bullet_item>
+							<bullet_item>#ALL—All items past the cover-ID in the PAT, AAT, or region subclass PAT will be used as a single dissolve item. If there are no items past the cover-ID, then the cover-ID will be used.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Optional"><pythonReference>
+						<para>The feature classes to be preserved in the output coverage:</para>
+						<bulletList><bullet_item>POLY—Polygons will be dissolved; an AAT will not be created for the output coverage. This is the default option. </bullet_item><bullet_item>LINE—Nodes will be dissolved; a PAT will not be created for the output coverage. </bullet_item><bullet_item>NET—Polygons will be dissolved, and both a PAT and AAT will be created for the output coverage. </bullet_item><bullet_item>REGION.subclass—Region subclass will be dissolved, and all existing attributes of the input coverage will be maintained in the output coverage. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The feature classes to be preserved in the output coverage:</para>
+						<bulletList><bullet_item>POLY—Polygons will be dissolved; an AAT will not be created for the output coverage. This is the default option. </bullet_item><bullet_item>LINE—Nodes will be dissolved; a PAT will not be created for the output coverage. </bullet_item><bullet_item>NET—Polygons will be dissolved, and both a PAT and AAT will be created for the output coverage. </bullet_item><bullet_item>REGION.subclass—Region subclass will be dissolved, and all existing attributes of the input coverage will be maintained in the output coverage. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is used to create a simplified coverage from one that is more complex. Although the input coverage may contain information concerning many feature attributes, the output coverage contains information only about the dissolve item.</para>
+			</bullet_item><bullet_item>
+				<para>The merging of polygons with this tool is the counterpart of intersecting polygons in overlays. Dissolve will remove the boundaries.</para>
+			</bullet_item><bullet_item>
+				<para>The output coverage cannot already exist.</para>
+			</bullet_item><bullet_item>
+				<para>Dissolve maintains linear data belonging to different planar graphs in the same coverage. These may include arcs representing utility cables at different levels or a road passing over a stream. If there are arcs that appear to intersect, but do not, nodes will not be inserted at the apparent intersection. Coincident and colinear line segments are preserved; additional vertices may be inserted. Two colinear arcs, one representing a road that follows the second, a stream, are maintained as colinear.</para>
+			</bullet_item><bullet_item>
+				<para>With the POLY option, Dissolve will remove dangling arcs and pseudo nodes. The output coverage PAT with the POLY option or the output coverage AAT with the LINE option will only contain the dissolve item but no additional attributes. If #ALL is used as the dissolve item, input coverage item definitions and data are preserved in the output coverage but User-IDs will be altered.</para>
+			</bullet_item><bullet_item>
+				<para>If a pseudo node has attributes that are not zero or blank, arcs will not be joined for polygon features.</para>
+			</bullet_item><bullet_item>
+				<para>Route systems are copied to the output coverage. If the NET option is specified, sections attached to any deleted arcs will be removed and ARCLINK# will be renumbered. If the LINE option is specified, sections residing on merged arcs will have their F-POS and T-POS values adjusted so they occupy the same set of locations as previously.</para>
+			</bullet_item><bullet_item>
+				<para>This tool maintains all section subclasses.</para>
+			</bullet_item><bullet_item>
+				<para>Region subclasses are maintained with the POLY and NET options. The regions may change shape when polygons or arcs are dissolved.</para>
+			</bullet_item><bullet_item>
+				<para>With the NET option, Dissolve will not remove dangling arcs or pseudo nodes. The output coverage AAT will have the same items as the input coverage; only the records for the dissolved arcs will be removed.</para>
+			</bullet_item><bullet_item>
+				<para>With the NET option, arcs will be joined if all item values for one arc are identical to all item values of the other arc on an item-by-item basis.</para>
+			</bullet_item><bullet_item>
+				<para>The NAT will be maintained for any nodes whose arcs were dissolved.</para>
+			</bullet_item><bullet_item>
+				<para>The polygons output by Dissolve with POLY will contain both topology and attributes. The items in the PAT will be AREA, PERIMETER, COVER#, COVER-ID, and the dissolve item.</para>
+			</bullet_item><bullet_item>
+				<para>If all polygon attributes are coded with the same value, then Dissolve with POLY using the #ALL option will leave you with a null set. If you want to retain the bounding or outer polygon, be sure to code the universe polygon with a different value than the rest of the set.</para>
+			</bullet_item><bullet_item>
+				<para>The dissolve item may be a redefined item. If a redefined item is used, its begin column must be the begin column of a normal item, and its end column must be the end column of a normal item. The redefined item may span several normal items. For either a normal or a redefined item, all redefined items that are wholly contained within its range will be transferred to the output feature attribute table.</para>
+			</bullet_item><bullet_item>
+				<para>The lines output by Dissolve with LINE will contain attributes. The items in the AAT will be FNODE#, TNODE#, LPOLY#, RPOLY#, LENGTH, COVER#, COVER-ID, and the dissolve item. With the LINE option, redefined items are maintained. Dissolve is allowed on equation items, producing an item called EQUATION.</para>
+			</bullet_item><bullet_item>
+				<para>The regions output by Dissolve with REGION.subclass will contain topology and attributes. The items in the region PAT will be AREA, PERIMETER, SUBCLASS#, SUBCLASS-ID, and the dissolve item. If polygon and arc attributes exist in the input coverage, they will be maintained in the output coverage.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of the output coverage is determined by the current processing environment settings. The default precision setting for derived coverages is HIGHEST; therefore, Dissolve will create an output coverage in the same precision as the input coverage.</para>
+			</bullet_item><bullet_item>
+				<para>The projection file (PRJ) will be copied to the output coverage.</para>
+			</bullet_item><bullet_item>
+				<para>The maximum number of arcs connected to a node that Dissolve can handle in a coverage is 100.</para>
+			</bullet_item><bullet_item>
+				<para>Dissolve eliminates nodes or arcs between adjacent lines or polygons containing equal values for the dissolve item.</para>
+			</bullet_item><bullet_item>
+				<para>With the POLY or NET option, if merged polygons contain label points, one of the points is preserved in the output coverage. If the POLY option has been specified, dangling arcs of any length are removed; pseudo nodes are also removed, unless they are the only node in a polygon (for example, an island or donut).</para>
+			</bullet_item><bullet_item>
+				<para>With the LINE option, Dissolve eliminates nodes between adjacent arcs containing equal values for the dissolve item. The new cover-ID of the merged arc will be the lowest cover-ID of the combined arcs. If a resulting arc reaches the 500-vertex-per-arc size limit, a pseudo node is added and a new arc is begun.</para>
+			</bullet_item><bullet_item>
+				<para>With the NET option, arcs are joined as units, and before two arcs are joined, the total number of vertices is compared to the 500-vertex limit. If greater than 500, the join is not done.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Dissolve example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to dissolve polygons into larger sections.
+</para>
+				<code xml:space="preserve"># Name: Dissolve_Example.py
+# Description: Dissolves polygons into larger sections
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "tra_airport"
+outCover = "C:/output/airport_sect"
+dissolveItem = "section"
+featureType = "POLY"
+
+# Execute Dissolve
+arcpy.Dissolve_arc(inCover, outCover, dissolveItem, featureType)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

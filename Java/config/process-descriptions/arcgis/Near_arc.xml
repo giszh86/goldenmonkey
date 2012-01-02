@@ -1,0 +1,108 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Near (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Computes the distance from each point in a coverage to the nearest arc, point, or node in another coverage.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Analysis</keyword><keyword>Distance</keyword><keyword>Location</keyword><keyword>Near</keyword><keyword>Near_Arc</keyword><keyword>Nearest Feature</keyword><keyword>Proximity</keyword><keyword>Search Radius</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Near" displayname="Near (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Computes the distance from each point in a coverage to the nearest arc, point, or node in another coverage.</para>
+		</summary><alink_name>Near_arc</alink_name><toolIllust type="illustration" src="Near_arc_h.gif" alt="Near illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage containing points from which distances are calculated to each closest arc, point, or node in the &lt;near_cover:&gt;.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage containing points from which distances are calculated to each closest arc, point, or node in the near coverage.</para>
+					</dialogReference></param><param sync="true" name="near_cover" displayname="Near Coverage" datatype="Coverage" direction="Input" expression="near_cover" type="Required"><pythonReference>
+						<para>The line or point coverage whose features are used to calculate distances from each input cover point. This must be different from the input cover.</para>
+					</pythonReference><dialogReference>
+						<para>The line or point coverage whose features are used to calculate distances from each input cover point. This must be different from the input cover.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The coverage to be created. The &lt;input_cover&gt; is copied to the &lt;output_cover:&gt;, then NEAR is performed on the &lt;output_cover:&gt;.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage to be created. The input coverage is copied to the output coverage and then NEAR is performed on the output coverage.</para>
+					</dialogReference></param><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Optional"><pythonReference>
+						<para>The type of feature that will be searched from points to find the nearest feature and calculate the distance between them.</para>
+						<bulletList><bullet_item>LINE—A point-to-arc distance will be determined. New items for distance and the internal number of the closest arc in the &lt;near_cover:&gt; will be added to the &lt;input_cover&gt; PAT. This is the default option. </bullet_item><bullet_item>POINT—A point-to-point distance will be determined. New items for distance and the internal number of the closest point in the &lt;near_cover:&gt; will be added to the &lt;input_cover&gt; PAT. </bullet_item><bullet_item>NODE—A point-to-node distance will be determined. New items for distance and the internal node number of the closest node in the &lt;near_cover:&gt; will be added to the &lt;input_cover&gt; PAT. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of feature that will be searched from points to find the nearest feature and calculate the distance between them.</para>
+						<bulletList><bullet_item>LINE—A point-to-arc distance will be determined. New items for distance and the internal number of the closest arc in the &lt;near_cover:&gt; will be added to the &lt;input_cover&gt; PAT. This is the default option. </bullet_item><bullet_item>POINT—A point-to-point distance will be determined. New items for distance and the internal number of the closest point in the &lt;near_cover:&gt; will be added to the &lt;input_cover&gt; PAT. </bullet_item><bullet_item>NODE—A point-to-node distance will be determined. New items for distance and the internal node number of the closest node in the &lt;near_cover:&gt; will be added to the &lt;input_cover&gt; PAT. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="search_radius" displayname="Search Radius" datatype="Double" direction="Input" expression="search_radius" type="Optional"><pythonReference>
+						<para>The maximum distance in coverage units between input cover features and near cover features for which distance and near cover internal number will be determined.</para>
+						<para>If no near cover feature is within the search radius of a given input cover point or line, both the internal number and distance output by NEAR will be zero.</para>
+						<para>The default search radius is the width or height of the near coverage BND divided by 100, whichever is larger. This default search radius is used whenever the search radius argument is set to zero or skipped.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum distance in coverage units between input cover features and near cover features for which distance and near cover internal number will be determined.</para>
+						<para>If no near cover feature is within the search radius of a given input cover point or line, both the internal number and distance output by NEAR will be zero.</para>
+						<para>The default search radius is the width or height of the near coverage BND divided by 100, whichever is larger. This default search radius is used whenever the search radius argument is set to zero or skipped.</para>
+					</dialogReference></param><param sync="true" name="location" displayname="Save location of nearest feature" datatype="Boolean" direction="Input" expression="location" type="Optional"><pythonReference>
+						<para>Determines whether the x,y coordinates of the "nearest point" of the closest arc, point, or node are to be saved as well as the cover# and distance. The new items are X-COORD and Y-COORD.</para>
+						<bulletList><bullet_item>NO_LOCATION—The x,y coordinates of the nearest point are not saved. This is the default. </bullet_item><bullet_item>LOCATION—The x,y coordinates of the nearest point, as well as the cover# and distance, will be saved. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines whether the x,y coordinates of the "nearest point" of the closest arc, point, or node are to be saved as well as the cover# and distance. The new items are X-COORD and Y-COORD.</para>
+						<bulletList>
+							<bullet_item>Unchecked—The x,y coordinates of the nearest point are not saved. This is the default.</bullet_item>
+							<bullet_item>Checked—The x,y coordinates of the nearest point, as well as the cover# and distance, will be saved.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The search radius is the maximum distance in coverage units a feature can be from the current point for consideration as the closest feature. The default is the width or height of the near coverage BND divided by 100, whichever is larger.</para>
+			</bullet_item><bullet_item>
+				<para>The results are recorded in the Output coverage point attribute table (PAT). Items for DISTANCE and the internal number of the closest feature are added or updated; items for x and y coordinates are added when Record x,y coordinates of nearest feature are checked. All item values are set to zero if no feature is found within the search radius.</para>
+			</bullet_item><bullet_item>
+				<para>DISTANCE values are recalculated if this item already exists in the input coverage. If the DISTANCE item is added, it will be in the same precision as the coverage.</para>
+				<para>Items output by NEAR include:</para>
+				
+					
+					
+				
+				<para>These items are added to the input coverage PAT. If an item named DISTANCE already exists, the values will be recalculated. If the DISTANCE item is added, it will be in the same precision as the coverage. The values for both items will be zero if no match is found within the search_radius for a particular input coverage point.</para>
+			</bullet_item><bullet_item>
+				<para>The calculated distance from point to arc will be from the point to the nearest location along the arc. The calculated distance from point to node will be between the nearest node locations on the arcs.</para>
+			</bullet_item><bullet_item>
+				<para>The distance and the internal number of the closest feature are saved as new items in the input coverage's feature attribute table.</para>
+			</bullet_item><bullet_item>
+				<para>NEAR skips duplicate node numbers to increase operation time.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of input coverage is not affected by NEAR.</para>
+			</bullet_item><bullet_item>
+				<para>NEAR is useful for assigning point attributes to nearest arcs, or vice versa. This operation is helpful in assigning address ranges to arcs; associating point attributes to nodes, such as DIME node numbers; or finding the nearest available line in a network (for example, determining which sewer line a property might connect with).</para>
+			</bullet_item><bullet_item>
+				<para>Common uses for Near include:<bulletList>
+						<bullet_item>Assigning point attributes to nearest arcs, or visa versa.</bullet_item>
+						<bullet_item>Assigning address ranges to arcs.</bullet_item>
+						<bullet_item>Associating point attributes to nodes, such as DIME node numbers.</bullet_item>
+						<bullet_item>Finding the nearest available line in a network.</bullet_item>
+					</bulletList></para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Near example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to calculate the distances between wells in one coverage and roads in another.
+
+					</para>
+				<code xml:space="preserve"># Name: Near_Example.py
+# Description: Computes the distances between wells and roads
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "wells142"
+nearCover = "road"
+outCover = "C:/output/nearwells"
+featureType = "LINE"
+searchRadius = 12000
+location = "LOCATION"
+
+# #Execute Near
+arcpy.Near_arc(inCover, nearCover, outCover, featureType, 
+               searchRadius, location)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

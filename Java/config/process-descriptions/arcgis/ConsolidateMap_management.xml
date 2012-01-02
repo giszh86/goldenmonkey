@@ -1,0 +1,85 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Consolidate Map  (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Consolidates a map document and all referenced data sources to a specified output folder.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Aggregate</keyword><keyword>Amalgamate</keyword><keyword>Assemble</keyword><keyword>Bundle</keyword><keyword>Centralize</keyword><keyword>Collect</keyword><keyword>Copy</keyword><keyword>Gather</keyword><keyword>Group</keyword><keyword>Incorporate</keyword><keyword>Move</keyword><keyword>Share</keyword><keyword>Together</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" ConsolidateMap" displayname=" Consolidate Map  (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Consolidates a map document and all referenced data sources to a specified output folder.</para>
+		</summary><alink_name> ConsolidateMap_management</alink_name><toolIllust type="illustration" src="ConsolidateMap_management_h.png" alt="Consolidate Map illustration" /><parameters><param sync="true" name="in_map" displayname="Input Map Document" datatype="ArcMap Document" direction="Input" expression="in_map" type="Required"><pythonReference>
+						<para> The input map document (.mxd) that will be consolidated.</para>
+					</pythonReference><dialogReference>
+						<para> The input map document (.mxd) that will be consolidated.</para>
+					</dialogReference></param><param sync="true" name="output_folder" displayname="Output Folder" datatype="Folder" direction="Output" expression="output_folder" type="Required"><pythonReference>
+						<para> The output folder that will contain the consolidated map document and data.</para>
+					</pythonReference><dialogReference>
+						<para> The output folder that will contain the consolidated map document and data.</para>
+					</dialogReference></param><param sync="true" name="convert_data" displayname="Convert Data to File Geodatabase" datatype="Boolean" direction="Input" expression="convert_data" type="Optional"><pythonReference>
+						<para>Specifies whether input layers will be converted into file geodatabase or preserve their original format. </para>
+						<bulletList><bullet_item>CONVERT — Data will be copied to a file geodatabase. </bullet_item><bullet_item>PRESERVE — Data formats will be preserved.  This is the default.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether input layers will be converted to a file geodatabase or preserve their original format. </para>
+						<bulletList>
+							<bullet_item>Checked—All data will be converted to a file geodatabase.</bullet_item>
+							<bullet_item>Unchecked—Data formats will be preserved. This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="convert_arcsde_data" displayname="Convert ArcSDE Data to File Geodatabase" datatype="Boolean" direction="Input" expression="convert_arcsde_data" type="Optional"><pythonReference>
+						<para>Specifies whether input layers will be converted into file geodatabase or preserve their original format. </para>
+						<bulletList><bullet_item>CONVERT_ARCSDE— ArcSDE data will be copied to a file geodatabase. This is the default.</bullet_item><bullet_item>PRESERVE_ARCSDE— ArcSDE data will be preserved and will be referenced in the resulting consolidated folder or package. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether input ArcSDE layers will be converted into a file geodatabase or will be preserved.   </para>
+						<bulletList>
+							<bullet_item>Checked—All ArcSDE data will be converted to a file geodatabase. This is the default.</bullet_item>
+							<bullet_item>Unchecked—ArcSDE data sources will be preserved and will be referenced in the resulting package.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="extent" displayname="Extent" datatype="Extent" direction="Input" expression="extent" type="Optional"><pythonReference>
+						<para>Specify the extent by manually entering the coordinates in the extent parameter using the format X-Min Y-Min X-Max Y-Max. Additionally, to use the extent of a specific layer, simply add the layer name for the extent parameter.</para>
+						<bulletList><bullet_item>MAXOF—Union of inputs</bullet_item><bullet_item>MINOF—Intersection of inputs</bullet_item><bullet_item>DISPLAY—Same as Display</bullet_item><bullet_item>&lt;Layer&gt;—Same as Layer...</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Specify the extent that will be used to select or clip features.</para><bulletList>
+							<bullet_item>Default—The extent will be based on the maximum extent of all participating layers. This is the default.</bullet_item>
+							<bullet_item>Union of Inputs—The maximum extent of all input(s).</bullet_item>
+							<bullet_item>Intersection of Inputs—The minimum area common to all input(s).</bullet_item>
+							<bullet_item>As Specified Below—Specify the minimum and maximum extent values.</bullet_item>
+							<bullet_item>Same as Display—Extent is equal to the dataframe or visible display.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="apply_extent_to_arcsde" displayname="Apply Extent to ArcSDE Layers Only" datatype="Boolean" direction="Input" expression="apply_extent_to_arcsde" type="Optional"><pythonReference>
+						<para>Specifies the extent that will be used to select ArcSDE data sources.</para>
+						<bulletList><bullet_item>ALL — Specified extent is applied to all layers. This is the default.</bullet_item><bullet_item>ARCSDE_ONLY —Specified extent is applied to ArcSDE layers only. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines whether specified extent will be applied to ArcSDE data sources only.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Extent will be applied to all layers. This is the default.</bullet_item><bullet_item>Checked—Extent will be applied to ArcSDE layers only. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item><para>When Convert Data to File Geodatabase is checked<bulletList><bullet_item>Each data source will have a unique file geodatabase created in the consolidated folder.</bullet_item><bullet_item>Compressed raster and vector  formats will be converted to file geodatabase, and  compression will be lost.</bullet_item></bulletList></para></bullet_item><bullet_item><para>When Convert Data to File Geodatabase is unchecked<bulletList><bullet_item>The format of the input layers will be preserved with one exception; layers that reference data in a personal geodatabase are always converted to file geodatabase.<bold></bold></bullet_item><bullet_item>Every data source will preserve its original format.   File geodatabases will be consolidated into a version-specific folder, and all other formats will be consolidated in the commonData folder.</bullet_item><bullet_item>Layers that point to ArcSDE data sources will preserve their connection information and remain pointing to the ArcSDE data source in the consolidated folder or package. </bullet_item><bullet_item>ADRG, CADRG, CIB, and RPF raster formats will always convert to file geodatabase rasters. ArcGIS cannot natively write out these formats.  They will always be converted to File Geodatabase rasters for efficiency.</bullet_item><bullet_item>Compressed raster and vector formats will not be clipped, even if an extent is specified in the Extent parameter.  </bullet_item></bulletList>
+				</para></bullet_item><bullet_item>
+				<para>For layers that contain a join or participate in a relationship class, all joined or related data sources will be consolidated into the output folder. </para>
+			</bullet_item><bullet_item>
+				<para>Some datasets reference other datasets.  For example, you may have a Topology dataset that references four feature classes. Other examples of datasets that reference other datasets include Geometric Networks, Networks, and Locators.  When consolidating or packaging a layer based on these types of datasets, the participating datasets will also be consolidated or packaged.</para>
+			</bullet_item><bullet_item>
+				<para>For feature layers,   the Extent parameter is used to <bold>select</bold> the features that will be consolidated. For raster layers , the Extent parameter is used to <bold>clip</bold> the raster datasets.</para>
+			</bullet_item><bullet_item><para>Consolidating or packaging Coverage or VPF layers will copy the entire Coverage or VPF dataset into the consolidated folder or package.</para></bullet_item></usage><scriptExamples><scriptExample><title>ConsolidateMap Example (Python Window)</title>
+					<para>The following Python script demonstrates how to use the ConsolidateMap tool from the Python window:</para>
+				<code xml:space="preserve">
+import arcpy
+arcpy.env.workspace = "C:/arcgis/ArcTutor/Editing" 
+arcpy.ConsolidateMap_management('Exercise1.mxd', 'Consolidate_folder', "PRESERVE", "CONVERT_SDE", "#", "ALL")
+                    </code></scriptExample><scriptExample><title>ConsolidateMap Example (stand-alone script)</title>
+					<para>Finds and consolidates all map documents that reside in a specified folder.</para><para></para><code xml:space="preserve">
+# Name: ConsolidateMap.py
+# Description:  Find all the map documents that reside in a specified folder and create a consolidated
+# folder for each map document found.
+# Author: ESRI
+
+# import system modules
+import arcpy, os
+from arcpy import env
+
+# Set environment settings
+env.overwriteOutput = True
+env.workspace = "C:/arcgis/ArcTutor/Editing" 
+wrksp = env.workspace
+
+# Loop through the workspace, find all the mxds and create a consolidated folder using the same 
+# name as the original mxd
+for mxd in arcpy.ListFiles("*.mxd"):
+				arcpy.ConsolidateMap_management(mxd, 'os.path.splitext(mxd)[0],"PRESERVE", "CONVERT_SDE", "#", "ALL")
+                    </code></scriptExample></scriptExamples></tool></metadata>

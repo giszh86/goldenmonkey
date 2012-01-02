@@ -1,0 +1,133 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Reclassify (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Reclassifies (or changes) the values in a raster.</para>
+			<para></para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coded Values</keyword><keyword>Common Scale</keyword><keyword>Group</keyword><keyword>Reclassification</keyword><keyword>Reclassify</keyword><keyword>Remap</keyword><keyword>Replace</keyword><keyword>Replace Values</keyword><keyword>Values</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Reclassify" displayname="Reclassify (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Reclassifies (or changes) the values in a raster.</para>
+			<para></para></summary><alink_name>Reclassify_sa</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster to be reclassified.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster to be reclassified.</para>
+					</dialogReference></param><param sync="true" name="reclass_field" displayname="Reclass field" datatype="Field" direction="Input" expression="reclass_field" type="Required"><pythonReference>
+						<para>Field denoting the values that will be reclassified.</para>
+					</pythonReference><dialogReference>
+						<para>Field denoting the values that will be reclassified.</para>
+					</dialogReference></param><param sync="true" name="remap" displayname="Reclassification" datatype="Remap" direction="Input" expression="remap" type="Required"><pythonReference>
+						<para>The Remap object is used to specify how to  reclassify values of the input raster.</para>
+						<para>There are two ways to define how the values will be reclassified in the output raster; RemapRange and RemapValue.  Either ranges of input values can be assigned to a new output value, or individual values can be assigned to a new output value.</para><para>The following are the forms of the remap objects.</para><bulletList><bullet_item>RemapRange ([[startValue, endValue, newValue],...])<bulletList><bullet_item>startValue — The lower boundary of the range of values to be assigned a new output value.</bullet_item><bullet_item>endValue — The upper boundary of the range of values to be assigned a new output value.</bullet_item><bullet_item>newValue — The new value to be assigned to the range of input values defined by the start and end values.</bullet_item></bulletList></bullet_item></bulletList>
+						<bulletList>
+							<bullet_item>RemapValue ([[oldValue, newValue],...])<bulletList><bullet_item>oldValue — Represents an original value from the base raster.</bullet_item><bullet_item>newValue — The new reclassified value.</bullet_item></bulletList></bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>A remap table that defines how the values will be reclassified.</para>
+						<bulletList>
+							<bullet_item>Old values—The ranges of values of cells in the input raster. Acceptable settings are a single value, a range of values, a string, or NoData. A list of single values can be specified by separating each with a semicolon (;). A range of values can be specified by using a hyphen (-) as the range separator.</bullet_item>
+							<bullet_item>New values—The new value to assign the values or ranges of values.</bullet_item>
+							<bullet_item>Classify...—Opens the dialog box allowing the classification Method to be specified. The options are Manual, Equal Interval, Defined Interval, Quantile, Natural Breaks (Jenks), and Standard Deviation.</bullet_item>
+							<bullet_item>Unique—Reclassifies the input raster into unique values (lowest cell value of input will be value 1, next lowest input value will be 2, and so on).</bullet_item>
+							<bullet_item>Add Entry—Adds a blank entry to the reclassification.</bullet_item>
+							<bullet_item>Delete Entries—Deletes selected entries from the reclassification.</bullet_item>
+							<bullet_item>Load—Loads a previously created remap table.</bullet_item>
+							<bullet_item>Save—Saves the specified remap table.</bullet_item>
+							<bullet_item>Reverse New Values—Re-sorts the New values list (for example, "1,2,3" becomes "3,2,1").</bullet_item>
+							<bullet_item>Precision—Controls the numerical precision of the reclassification values.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="missing_values" displayname="Change missing values to NoData" datatype="Boolean" direction="Input" expression="missing_values" type="Optional"><pythonReference>
+						<para>Denotes whether missing values in the reclass table retain their value or get mapped to NoData.</para>
+						<bulletList><bullet_item>DATA —Signifies that if any cell location on the input raster contains a value that is not present or reclassed in a remap table, the value should remain intact and be written for that location to the output raster. This is the default.</bullet_item><bullet_item>NODATA — Signifies that if any cell location on the input raster contains a value that is not present or reclassed in a remap table, the value will be reclassed to NoData for that location on the output raster.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Denotes whether missing values in the reclass table retain their value or get mapped to NoData.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Signifies that if any cell location on the input raster contains a value that is not present or reclassed in a remap table, the value should remain intact and be written for that location to the output raster. This is the default.</bullet_item>
+							<bullet_item>Checked—Signifies that if any cell location on the input raster contains a value that is not present or reclassed in a remap table, the value will be reclassed to NoData for that location on the output raster.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output reclassified raster.</para><para>The output will always be of integer type.</para>
+						</pythonReference><dialogReference>
+							<para>The output reclassified raster.</para><para>The output will always be of integer type.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input raster must have valid statistics. If the statistics do
+not exist, they can be created using the  tool in the Data Management Tools toolbox.</para>
+			</bullet_item><bullet_item>
+				<para>If using the tool dialog box, the remap table can be stored for future use with the Save button. Use the Load button to open the remap tables you created previously with the Save button.</para>
+			</bullet_item><bullet_item>
+				<para>It is recommended to only load  tables previously saved by the Reclassify tool.      The table format is specific and must contain the fields FROM, TO, OUT, and MAPPING.</para>
+			</bullet_item><bullet_item>
+				<para>By default, the input raster will be classified into nine classes for the reclassification table.</para>
+			</bullet_item><bullet_item>
+				<para>If the input raster is a layer, the old values of the reclassification will be obtained from the renderer. If the renderer is stretched, the reclassification will default to 255 classes.</para>
+			</bullet_item><bullet_item>
+				<para>Once the remap table of the reclassification has been modified,  the values will not be updated if a new input raster is selected. If the reclassification is not suitable for the new raster, a default reclassification can be reinitialized by:</para>
+				<bulletList>
+					<bullet_item>Editing or selecting a new value for the reclass field</bullet_item>
+					<bullet_item>Restarting the tool</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>This tool has a precision control that manages how decimal places are treated.</para>
+			</bullet_item><bullet_item>
+				<para>When using the Reclassify tool as part of a model:</para>
+				<bulletList>
+					<bullet_item>If the input to the tool is derived data from a tool that isn't already run, the remap parameter in the Reclassify tool will be empty until the preceding tool is run and the model is validated. To avoid this, always run preceding tools before connecting their output variables as input to the Reclassify tool. Alternatively, you can create a custom reclassification table by adding entries.</bullet_item>
+					<bullet_item>If exposing the reclassification table as a model parameter, the reclass field must be exposed as a variable. However, it does not need to be set as a model parameter. If the field is not exposed as a variable, the classify and unique values buttons will be disabled in the model tool dialog box.</bullet_item>
+				</bulletList>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Reclassify example 1 (Python window)</title>
+					<para>The following examples show several ways of several ways reclassifying a raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env  
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+
+outReclass1 = Reclassify("landuse", "Value", 
+                         RemapValue([[1,9],[2,8],[3,1],[4,6],[5,3],[6,3],[7,1]]))
+outReclass1.save("C:/sapyexamples/output/landuse_rcls")
+
+outReclass2 = Reclassify("slope_grd", "Value", 
+                         RemapRange([[0,10,"NODATA"],[10,20,1],[20,30,2],
+                                     [30,40,3],[40,50,4],[50,60,5],[60,75,6]]))
+outReclass2.save("C:/sapyexamples/output/slope_rcls")
+
+outReclass3 = Reclassify("pop_density", "Value", 
+                         RemapRange([[10,10,1],[10,20,2],[20,25,3],
+                                     [25,50,4],[50,]]), "NODATA")
+outReclass3.save("C:/sapyexamples/output/popden_rcls")
+                    </code></scriptExample><scriptExample><title>Reclassify example 2 (stand-alone script)</title>
+					<para>This example reclassifies the input raster based on the values in a string field.</para>
+				<code xml:space="preserve"># Name: reclassify_example02.py
+# Description: Reclassifies the values in a raster.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "landuse"
+reclassField = "LANDUSE"
+remap = RemapValue([["Brush/transitional", 0], ["Water", 1],["Barren land", 2]])
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Reclassify
+outReclassify = Reclassify(inRaster, reclassField, remap, "NODATA")
+
+# Save the output 
+outReclassify.save("C:/sapyexamples/output/outreclass02")
+                    </code></scriptExample></scriptExamples></tool></metadata>

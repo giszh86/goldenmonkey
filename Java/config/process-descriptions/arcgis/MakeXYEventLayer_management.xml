@@ -1,0 +1,89 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make XY Event Layer (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a new point feature layer based on <italics>X</italics> and <italics>Y</italics> coordinates defined in a source table. If the source table contains <italics>Z</italics> coordinates (e.g., elevation values), that field can also be specified in the creation of the event layer. The layer created by this tool is temporary.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Coordinate</keyword><keyword>Create</keyword><keyword>Dbf</keyword><keyword>Gps</keyword><keyword>Latitude</keyword><keyword>Location</keyword><keyword>Longitude</keyword><keyword>Memory</keyword><keyword>New</keyword><keyword>Point</keyword><keyword>Table</keyword><keyword>Temporary</keyword><keyword>X</keyword><keyword>Y</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeXYEventLayer" displayname="Make XY Event Layer (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a new point feature layer based on <italics>X</italics> and <italics>Y</italics> coordinates defined in a source table. If the source table contains <italics>Z</italics> coordinates (e.g., elevation values), that field can also be specified in the creation of the event layer. The layer created by this tool is temporary.</para>
+		</summary><alink_name>MakeXYEventLayer_management</alink_name><parameters><param sync="true" name="table" displayname="XY Table" datatype="Table View" direction="Input" expression="table" type="Required"><pythonReference>
+						<para>The table containing the <italics>X</italics> and <italics>Y</italics> coordinates that define the locations of the point features in the output event layer.</para>
+					</pythonReference><dialogReference>
+						<para>The table containing the <italics>X</italics> and <italics>Y</italics> coordinates that define the locations of the point features in the output event layer.</para>
+					</dialogReference></param><param sync="true" name="in_x_field" displayname="X Field" datatype="Field" direction="Input" expression="in_x_field" type="Required"><pythonReference>
+						<para>The field in the input table that contains the <italics>X</italics> coordinates.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the input table that contains the <italics>X</italics> coordinates.</para>
+					</dialogReference></param><param sync="true" name="in_y_field" displayname="Y Field" datatype="Field" direction="Input" expression="in_y_field" type="Required"><pythonReference>
+						<para>The field in the input table that contains the <italics>Y</italics> coordinates.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the input table that contains the <italics>Y</italics> coordinates.</para>
+					</dialogReference></param><param sync="true" name="out_layer" displayname="Layer Name" datatype="Feature Layer" direction="Output" expression="out_layer" type="Required"><pythonReference>
+						<para>The name of the output point event layer.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output point event layer.</para>
+					</dialogReference></param><param sync="true" name="spatial_reference" displayname="Spatial Reference" datatype="Spatial Reference" direction="Input" expression="spatial_reference" type="Optional"><pythonReference>
+						<para>The spatial reference of the coordinates in the X and Y Fields defined above. This will be the output event layer's spatial reference.</para>
+					</pythonReference><dialogReference>
+						<para>The spatial reference of the coordinates in the X and Y Fields defined above. This will be the output event layer's spatial reference.</para>
+					</dialogReference></param><param sync="true" name="in_z_field" displayname="Z Field" datatype="Field" direction="Input" expression="in_z_field" type="Optional"><pythonReference>
+						<para>The field in the input table that contains the <italics>Z</italics> coordinates.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the input table that contains the <italics>Z</italics> coordinates.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is used to create a point feature layer based on <italics>X</italics>, <italics>Y</italics>, and <italics>Z</italics> coordinate fields from an input table.</para>
+			</bullet_item><bullet_item>
+				<para>The output point feature layer created by this  tool is temporary and will not persist after the session ends. To persist this layer, save the document it was created in or export the layer to a feature class on disk using the , , or  tool.</para>
+			</bullet_item><bullet_item>
+				<para>The optional Spatial Reference parameter allows the spatial reference of the output point feature layer to be specified.</para>
+			</bullet_item><bullet_item>
+				<para>It is not possible to interactively move the output event layer point features on the map through editing controls, since event layers are not editable objects. Alternatives to directly moving these point event features are to change the <italics>X</italics> and <italics>Y</italics> coordinate attributes in the input table then recreate the event layer, or persist the event layer to a feature class on disk then perform edits on the feature class.</para>
+			</bullet_item><bullet_item>
+				<para>If the table does not have an ObjectID, you will not be able to make selections or add joins to the resulting layer. Many delimited text files or tables from OLE DS connections do not have ObjectID fields.</para>
+			</bullet_item><bullet_item>
+				<para>When using this  tool in ArcCatalog, you can use the  tool to write the output event layer to a permanent layer file. When using ArcMap, ArcGlobe, and ArcScene, the tool adds the output event layer to the Table of Contents automatically.</para>
+			</bullet_item><bullet_item>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>Make XY Event Layer Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Make XY Event Layer tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data"
+arcpy.MakeXYEventLayer_management("firestations.dbf", "POINT_X", "POINT_Y", "firestations_points","", "POINT_Z")
+                    </code></scriptExample><scriptExample><title>Make XY Event Layer Example (Stand-alone script)</title>
+					<para>The following stand-alone Python script demonstates how to use the Make XY Event Layer tool.</para>
+				<code xml:space="preserve">
+# MakeXYLayer.py
+# Description: Creates an XY layer and exports it to a layer file
+# Author: ESRI
+
+# import system modules 
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+ 
+try:
+    # Set the local variables
+    in_Table = "firestations.dbf"
+    x_coords = "POINT_X"
+    y_coords = "POINT_Y"
+    z_coords = "POINT_Z"
+    out_Layer = "firestations_layer"
+    saved_Layer = r"c:\output\firestations.lyr"
+ 
+    # Set the spatial reference
+    spRef = r"Coordinate Systems\Projected Coordinate Systems\Utm\Nad 1983\NAD 1983 UTM Zone 11N.prj"
+ 
+    # Make the XY event layer...
+    arcpy.MakeXYEventLayer_management(in_Table, x_coords, y_coords, out_Layer, spRef, z_coords)
+ 
+    # Print the total rows
+    print arcpy.GetCount_management(out_Layer)
+ 
+    # Save to a layer file
+    arcpy.SaveToLayerFile_management(out_Layer, saved_Layer)
+ 
+except:
+    # If an error occurred print the message to the screen
+    print arcpy.GetMessages()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

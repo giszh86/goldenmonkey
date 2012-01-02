@@ -1,0 +1,153 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Generate Network Spatial Weights (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Constructs a spatial weights matrix file (.swm) using a Network dataset, defining feature spatial relationships in terms of the underlying network structure. </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Distance</keyword><keyword>Road</keyword><keyword>Street</keyword><keyword>Swm</keyword><keyword>Time</keyword><keyword>Travel</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GenerateNetworkSpatialWeights" displayname="Generate Network Spatial Weights (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Constructs a spatial weights matrix file (.swm) using a Network dataset, defining feature spatial relationships in terms of the underlying network structure. </para>
+			
+		</summary><alink_name>GenerateNetworkSpatialWeights_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/GenerateNetworkSpatialWeights_stats_v.png" alt="Generate Network Spatial Weights illustration" /><toolIllust type="illustration" src="GenerateNetworkSpatialWeights_stats_h.gif" alt="Generate Network Spatial Weights illustration" /><parameters><param sync="true" name="Input_Feature_Class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="Input_Feature_Class" type="Required"><pythonReference>
+						<para>The point feature class for which Network spatial relationships among features will be assessed.</para>
+					</pythonReference><dialogReference>
+						<para>The point feature class for which Network spatial relationships among features will be assessed.</para>
+					</dialogReference></param><param sync="true" name="Unique_ID_Field" displayname="Unique ID Field" datatype="Field" direction="Input" expression="Unique_ID_Field" type="Required"><pythonReference>
+						<para>An integer field containing a different value for every feature in the input feature class.</para>
+					</pythonReference><dialogReference>
+						<para>An integer field containing a different value for every feature in the input feature class.</para>
+					</dialogReference></param><param sync="true" name="Output_Spatial_Weights_Matrix_File" displayname="Output Spatial Weights Matrix File" datatype="File" direction="Output" expression="Output_Spatial_Weights_Matrix_File" type="Required"><pythonReference>
+						<para>The full path for the network spatial weights matrix (.swm) file created.</para>
+					</pythonReference><dialogReference>
+						<para>The full path for the network spatial weights matrix (.swm) file created.</para>
+					</dialogReference></param><param sync="true" name="Input_Network" displayname="Input analysis network" datatype="Network Dataset Layer" direction="Input" expression="Input_Network" type="Required"><pythonReference>
+						<para>The network dataset for which spatial relationships among features in the input feature class will be defined.</para>
+					</pythonReference><dialogReference>
+						<para>The network dataset for which spatial relationships among features in the input feature class will be defined.</para>
+					</dialogReference></param><param sync="true" name="Impedance_Attribute" displayname="Impedance Attribute" datatype="String" direction="Input" expression="Impedance_Attribute" type="Required"><pythonReference>
+						<para>The type of cost units to use as impedance in the analysis.</para>
+					</pythonReference><dialogReference>
+						<para>The type of cost units to use as impedance in the analysis.</para>
+					</dialogReference></param><param sync="true" name="Impedance_Cutoff" displayname="Impedance Cutoff" datatype="Double" direction="Input" expression="Impedance_Cutoff" type="Optional"><pythonReference>
+						<para>Specifies a cutoff value for Inverse and Fixed conceptualizations of spatial relationships. Enter this value using the units specified by the Impedance Attribute parameter.</para>
+						<para>A value of zero indicates that no threshold is applied. When this parameter is left blank, a default threshold value is computed based on input feature class extent and the number of features.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies a cutoff value for Inverse and Fixed conceptualizations of spatial relationships. Enter this value using the units specified by the Impedance Attribute parameter.</para>
+						<para>A value of zero indicates that no threshold is applied. When this parameter is left blank, a default threshold value is computed based on input feature class extent and the number of features.</para>
+					</dialogReference></param><param sync="true" name="Maximum_Number_of_Neighbors" displayname="Maximum Number of Neighbors" datatype="Integer" direction="Input" expression="Maximum_Number_of_Neighbors" type="Optional"><pythonReference>
+						<para>An integer reflecting the maximum number of neighbors to find for each feature.</para>
+					</pythonReference><dialogReference>
+						<para>An integer reflecting the maximum number of neighbors to find for each feature.</para>
+					</dialogReference></param><param sync="true" name="Barriers" displayname="Barriers" datatype="Feature Class" direction="Input" expression="Barriers" type="Optional"><pythonReference>
+						<para>The name of a point feature class with features representing blocked intersections, road closures, accident sites, or other locations where travel is blocked along the network.</para>
+					</pythonReference><dialogReference>
+						<para>The name of a point feature class with features representing blocked intersections, road closures, accident sites, or other locations where travel is blocked along the network.</para>
+					</dialogReference></param><param sync="true" name="U-turn_Policy" displayname="U-turn Policy" datatype="String" direction="Input" expression="U-turn_Policy" type="Optional"><pythonReference>
+						<para>Specifies optional U-turn restrictions.</para>
+						<bulletList><bullet_item>ALLOW_UTURNS—U-turns will be possible anywhere (default). </bullet_item><bullet_item>NO_UTURNS—No u-turns will be allowed during navigation. </bullet_item><bullet_item>ALLOW_DEAD_ENDS_ONLY—U-turns will be possible only at the dead ends (i.e., single-valent junctions). </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies optional U-turn restrictions.</para>
+						<bulletList><bullet_item>ALLOW_UTURNS—U-turns will be possible anywhere (default). </bullet_item><bullet_item>NO_UTURNS—No u-turns will be allowed during navigation. </bullet_item><bullet_item>ALLOW_DEAD_ENDS_ONLY—U-turns will be possible only at the dead ends (i.e., single-valent junctions). </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Restrictions" displayname="Restrictions" datatype="String" direction="Input" expression="[Restriction,...]" type="Optional"><pythonReference>
+						<para>A list of restrictions. Check ON the restrictions to be honored in spatial relationship computations.</para>
+					</pythonReference><dialogReference>
+						<para>A list of restrictions. Check ON the restrictions to be honored in spatial relationship computations.</para>
+					</dialogReference></param><param sync="true" name="Use_Hierarchy_in_Analysis" displayname="Use Hierarchy in Analysis" datatype="Boolean" direction="Input" expression="Use_Hierarchy_in_Analysis" type="Optional"><pythonReference>
+						<para>Specifies whether or not to use a hierarchy in the analysis.</para>
+						<bulletList><bullet_item>USE_HIERARCHY—Will use the network dataset's hierarchy attribute in a heuristic path algorithm to speed analysis. </bullet_item><bullet_item>NO_HIERARCHY—Will use an exact path algorithm instead. If there is no hierarchy attribute, this option does not affect analysis. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether or not to use a hierarchy in the analysis.</para>
+						<bulletList><bullet_item>Checked—Will use the network dataset's hierarchy attribute in a heuristic path algorithm to speed analysis. </bullet_item><bullet_item>Unchecked—Will use an exact path algorithm instead. If there is no hiearchy attribute, this option does not affect analysis. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Search_Tolerance" displayname="Search Tolerance" datatype="Linear Unit" direction="Input" expression="Search_Tolerance" type="Required"><pythonReference>
+						<para>The search threshold used to locate features in the Input Feature Class onto the Network Dataset. This parameter includes a search value and the units for the tolerance.</para>
+					</pythonReference><dialogReference>
+						<para>The search threshold used to locate features in the Input Feature Class onto the Network Dataset. This parameter includes a search value and the units for the tolerance.</para>
+					</dialogReference></param><param sync="true" name="Conceptualization_of_Spatial_Relationships" displayname="Conceptualization of Spatial Relationships" datatype="String" direction="Input" expression="Conceptualization_of_Spatial_Relationships" type="Required"><pythonReference>
+						<para>Specifies how the weighting associated with each spatial relationship is specified. For INVERSE, features farther away have a smaller weight than features nearby. For FIXED, features within the Impedance Cutoff of a target feature are neighbors (weight of 1); features outside the Impedance Cutoff of a target feature are not (weight of 0).</para>
+					</pythonReference><dialogReference>
+						<para>Specifies how the weighting associated with each spatial relationship is specified. For INVERSE, features farther away have a smaller weight than features nearby. For FIXED, features within the Impedance Cutoff of a target feature are neighbors (weight of 1); features outside the Impedance Cutoff of a target feature are not (weight of 0).</para>
+					</dialogReference></param><param sync="true" name="Exponent" displayname="Exponent" datatype="Double" direction="Input" expression="Exponent" type="Optional"><pythonReference>
+						<para>Parameter for the INVERSE Conceptualization of Spatial Relationships calculation. Typical values are 1 or 2. Weights drop off quicker with distance as this exponent value increases.</para>
+					</pythonReference><dialogReference>
+						<para>Parameter for the INVERSE Conceptualization of Spatial Relationships calculation. Typical values are 1 or 2. Weights drop off quicker with distance as this exponent value increases.</para>
+					</dialogReference></param><param sync="true" name="Row_Standardization" displayname="Row Standardization" datatype="Boolean" direction="Input" expression="Row_Standardization" type="Optional"><pythonReference>
+						<para>Row standardization is recommended whenever feature distribution is potentially biased due to sampling design or to an imposed aggregation scheme.</para>
+						<bulletList><bullet_item>ROW_STANDARDIZATION—Spatial weights are standardized by row. Each weight is divided by its row sum. </bullet_item><bullet_item>NO_STANDARDIZATION—No standardization of spatial weights is applied. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Row standardization is recommended whenever feature distribution is potentially biased due to sampling design or to an imposed aggregation scheme.</para>
+						<bulletList><bullet_item>Checked—Spatial weights are standardized by row. Each weight is divided by its row sum.</bullet_item><bullet_item>Unchecked—No standardization of spatial weights is applied.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>Output from this tool is a spatial weights matrix file (.swm).  Tools that require you to specify a Conceptualization of Spatial Relationships option will accept a ; select GET_SPATIAL_WEIGHTS_FROM_FILE for the Conceptualization of Spatial Relationships parameter and, for the Weights Matrix File parameter, specify the full pathname to the spatial weights file created using this tool.</para>
+			</bullet_item><bullet_item>
+				<para>This tool was designed to work with point Input Feature Class data only.</para>
+			</bullet_item><bullet_item>
+				<para>A  quantifies the spatial relationships that
+exist among the features in your dataset.  Many tools in the  evaluate each feature within the context of its neighboring features.  The spatial weights matrix file defines those neighbor relationships.  For this tool, neighbor relationships are based on the time or distance between features, in the case where travel is restricted to a network. 
+For more information about spatial weights and , see .</para>
+			</bullet_item><bullet_item><para>
+					<para>, free to ArcGIS users, contains StreetMap data including a prebuilt network dataset in SDC format. The coverage for this dataset is the United States and Canada.  These network datasets can be used directly by this tool. </para></para></bullet_item><bullet_item>
+				<para>The Unique ID field is linked to feature relationships derived from running this tool. Consequently, the Unique ID values must be unique for every feature and typically should be in a permanent field that remains with the feature class. If you don't have a Unique ID field, you can easily create one by adding a new integer field to your feature class table and calculating the field values to be equal to the FID/OID field. You cannot use the FID/OID field directly for the Unique ID parameter.</para>
+			</bullet_item><bullet_item>
+				<para>The Maximum Number of Neighbors parameter for this tool specifies the exact number of neighbors that will be associated with each feature. The Impedance Cutoff overrides the number of neighbors parameter, so that some features may have fewer neighbors if the number of neighbors specified cannot be found within the cutoff distance/time.</para>
+			</bullet_item><bullet_item>
+				<para>You can define spatial relationships using the hierarchy in the network dataset, if it has one, by checking the Use Hierarchy in Analysis parameter. The hierarchy classifies network edges into primary, secondary, and local roads. When using the hierarchy of the network to create spatial relationships among features, preference will be given to travel on primary roads more than secondary roads and secondary roads more than local roads.</para>
+			</bullet_item><bullet_item><para>This tool does not honor the Environment output coordinate system.  All feature geometry is projected to match the spatial reference associated with the  prior to analysis. The resultant spatial weights matrix file created by this tool will reflect spatial relationships defined using the Network Dataset spatial reference.   It is recommended that when performing analyses using a network spatial weights matrix file, the input feature class be projected to match the coordinate system of the network dataset used to create the network swm. </para></bullet_item><bullet_item>
+				
+					<para>When using shapefiles, keep in mind that they cannot store null values. Tools or other procedures that create shapefiles from non-shapefile inputs may store or interpret null values as zero. This can lead to unexpected results.  See also .</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>GenerateNetworkSpatialWeights Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the GenerateNetworkSpatialWeights tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "c:/data"
+arpcy.GenerateNetworkSpatialWeights_stats("Hospital.shp", "MyID","network6Neighs.swm", "Streets_ND","MINUTES", 10, 6, "#", "ALLOW_UTURNS","#", "USE_HIERARCHY", "#", "INVERSE", 1,"ROW_STANDARDIZATION")
+                    </code></scriptExample><scriptExample><title>GenerateNetworkSpatialWeights Example (stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the GenerateNetworkSpatialWeights tool.</para>
+				<code xml:space="preserve"># Create a Spatial Weights Matrix based on Network Data 
+
+# Import system modules
+import arcpy
+
+# Set the geoprocessor object property to overwrite existing output
+arcpy.gp.overwriteOutput = True
+
+# Check out the Network Analyst extension (required for the Generate Network Spatial Weights tool)
+arcpy.CheckOutExtension("Network")
+
+# Local variables...
+workspace = r"C:\Data"
+
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.env.workspace = workspace
+
+    # Create Spatial Weights Matrix based on Network Data 
+    # Process: Generate Network Spatial Weights... 
+    nwm = arcpy.GenerateNetworkSpatialWeights_stats("Hospital.shp", "MyID",
+                        "network6Neighs.swm", "Streets_ND",
+                        "MINUTES", 10, 6, "#", "ALLOW_UTURNS",
+                        "#", "USE_HIERARCHY", "#", "INVERSE",
+                        1, "ROW_STANDARDIZATION")
+
+    # Create Spatial Weights Matrix based on Euclidean Distance
+    # Process: Generate Spatial Weights Matrix... 
+    swm = arcpy.GenerateSpatialWeightsMatrix_stats("Hospital.shp", "MYID",
+                        "euclidean6Neighs.swm",
+                        "K_NEAREST_NEIGHBORS",
+                        "#", "#", "#", 6) 
+
+    # Calculate Moran's Index of Spatial Autocorrelation for 
+    # average hospital visit times using Network Spatial Weights 
+    # Process: Spatial Autocorrelation (Morans I)...       
+    moransINet = arcpy.SpatialAutocorrelation_stats("Hospital.shp", "VisitTime",
+                        "NO_REPORT", "GET_SPATIAL_WEIGHTS_FROM_FILE", 
+                        "EUCLIDEAN_DISTANCE", "NONE", "#", 
+                        "network6Neighs.swm")
+
+    # Calculate Moran's Index of Spatial Autocorrelation for 
+    # average hospital visit times using Euclidean Spatial Weights   
+    # Process: Spatial Autocorrelation (Morans I)...       
+    moransIEuc = arcpy.SpatialAutocorrelation_stats("Hospital.shp", "VisitTime",
+                        "NO_REPORT", "GET_SPATIAL_WEIGHTS_FROM_FILE", 
+                        "EUCLIDEAN_DISTANCE", "NONE", "#", 
+                        "euclidean6Neighs.swm")
+
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

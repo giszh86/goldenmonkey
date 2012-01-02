@@ -1,0 +1,112 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Sort (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool reorders, in ascending or descending order, records in a feature class or table based on field values. The reordered result is copied to a new dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arrange</keyword><keyword>Ascend</keyword><keyword>Attribute</keyword><keyword>Dataset</keyword><keyword>Descend</keyword><keyword>Feature</keyword><keyword>Optimize</keyword><keyword>Order</keyword><keyword>Organize</keyword><keyword>Peano</keyword><keyword>Piano</keyword><keyword>Reorder</keyword><keyword>Space Filling</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Sort" displayname="Sort (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>This tool reorders, in ascending or descending order, records in a feature class or table based on field values. The reordered result is copied to a new dataset.</para>
+		</summary><alink_name>Sort_management</alink_name><parameters><param sync="true" name="in_dataset" displayname="Input Dataset" datatype="Table View" direction="Input" expression="in_dataset" type="Required"><pythonReference>
+						<para>The input dataset whose records will be reordered based on the field values in the sort field(s).</para>
+					</pythonReference><dialogReference>
+						<para>The input dataset whose records will be reordered based on the field values in the sort field(s).</para>
+					</dialogReference></param><param sync="true" name="out_dataset" displayname="Output Dataset" datatype="Feature Class;Table" direction="Output" expression="out_dataset" type="Required"><pythonReference>
+						<para>The output feature class or table.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class or table.</para>
+					</dialogReference></param><param sync="true" name="sort_field" displayname="Field(s)" datatype="Value Table" direction="Input" expression="[[Sort Field, Direction],...]" type="Required"><pythonReference>
+						<para>Specifies the field(s) whose values will be used to reorder the input records, and the direction the records will be sorted. </para>
+						<bulletList><bullet_item>ASCENDING—Records are sorted from low value to high value.</bullet_item><bullet_item>DESCENDING—Records are sorted from high value to low value.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the field(s) whose values will be used to reorder the input records, and the direction the records will be sorted. </para>
+						<bulletList><bullet_item>ASCENDING—Records are sorted from low value to high value.</bullet_item><bullet_item>DESCENDING—Records are sorted from high value to low value.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="spatial_sort_method" displayname="Spatial Sort Method" datatype="String" direction="Input" expression="spatial_sort_method" type="Optional"><pythonReference>
+						<para>Specifies how features are spatially sorted. Sort method is only enabled when 'Shape' is selected as one of the sort fields.</para>
+						<bulletList><bullet_item>UR—Sorting starts at upper right corner. This is the default.</bullet_item><bullet_item>UL—Sorting starts at upper left corner.</bullet_item><bullet_item>LR—Sorting starts at lower right corner.</bullet_item><bullet_item>LL—Sorting starts at lower left corner.</bullet_item><bullet_item>PEANO—Sorting uses a space filling curve algorithm, also known as a peano curve.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how features are spatially sorted. Sort method is only enabled when 'Shape' is selected as one of the sort fields.</para>
+						<bulletList><bullet_item>UR—Sorting starts at upper right corner. This is the default.</bullet_item><bullet_item>UL—Sorting starts at upper left corner.</bullet_item><bullet_item>LR—Sorting starts at lower right corner.</bullet_item><bullet_item>LL—Sorting starts at lower left corner.</bullet_item><bullet_item>PEANO—Sorting uses a space filling curve algorithm, also known as a peano curve.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment><environment name="Qualified_field_names" label="Qualified field names">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Feature classes can be spatially reordered, or sorted. The 'Shape' field must be used as the sort field for spatial sorting. There are a number of spatial sort methods that arrange the features differently based on their location.</para>
+			</bullet_item><bullet_item>
+				<para>Geodatabase and SDE feature classes, shapefiles, feature layers, tables, and table views are valid inputs. Individual components of CAD and SDC datasets are also valid inputs.</para>
+			</bullet_item><bullet_item>
+				<para> If any input records are selected, only the subset of selected records are sorted and copied to the output.</para>
+			</bullet_item><bullet_item>
+				<para>If more than one field is set as a sort field, rows are first sorted by the first field and within that order sorted by the second field, and so on.</para>
+			</bullet_item><bullet_item>
+				<para>Polygon features can be sorted by their area using the Shape_Area field of a geodatabase feature class. Similarly, polyline features can be sorted by their length using the Shape_Length field. If you want to sort polygon features in a Shapefile add a new field, calculate the area into the new field using  and run Sort using the new field.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Sort Example 1 (Python Window)</title>
+					<para>The following Python window script demonstrates how to use Sort to order features by the values of a field.</para>
+					
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/input/sort.gdb"
+
+arcpy.Sort_management("crime", "crime_Sort", [["DATE_OCCURRED", "ASCENDING"]])
+                    </code></scriptExample><scriptExample><title>Sort Example 2 (stand-alone Python Script)</title><para>The following Python script demonstrates how to use the Sort in a stand-alone script.</para><code xml:space="preserve"># Name: Sort_example2.py
+# Description: Sorts wells by location and well yield.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+try:
+    # Set workspace environment
+    env.workspace = "C:/data/newfoundland.gdb"
+
+    # set local variables
+    inDataset = "wells"
+    outDataset = "wells_Sort"
+
+    # Order features first by location (Shape) and then by WELL_YIELD
+    sort_fields = [["Shape", "ASCENDING"], ["WELL_YIELD", "DESCENDING"]]
+
+    # Use Peano algorithm
+    sort_method = "PEANO"
+
+    # execute the function
+    arcpy.Sort_management(inDataset, outDataset, sort_fields, sort_method)
+
+except:
+    # Print error messages
+    arcpy.GetMessages()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

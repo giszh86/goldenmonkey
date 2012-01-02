@@ -1,0 +1,53 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Table to dBASE (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts one or more tables to dBASE tables in an output folder. The inputs can be dBASE, INFO, geodatabase, or OLE DB tables.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Batch</keyword><keyword>Change</keyword><keyword>Convert</keyword><keyword>Dbf</keyword><keyword>Export</keyword><keyword>Format</keyword><keyword>Import</keyword><keyword>Info</keyword><keyword>Make</keyword><keyword>Ole</keyword><keyword>Record</keyword><keyword>Row</keyword><keyword>Turn</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TableToDBASE" displayname="Table to dBASE (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts one or more tables to dBASE tables in an output folder. The inputs can be dBASE, INFO, geodatabase, or OLE DB tables.</para>
+		</summary><alink_name>TableToDBASE_conversion</alink_name><parameters><param sync="true" name="input_table" displayname="Input Table" datatype="Table View" direction="Input" expression="[input_table,...]" type="Required"><pythonReference>
+						<para>The list of tables to be converted to dBASE. Input tables can be INFO, geodatabase, OLE DB, or dBASE tables, or table views.</para>
+					</pythonReference><dialogReference>
+						<para>The list of tables to be converted to dBASE. Input tables can be INFO, geodatabase, OLE DB, or dBASE tables, or table views.</para>
+					</dialogReference></param><param sync="true" name="output_folder" displayname="Output Folder" datatype="Folder" direction="Input" expression="output_folder" type="Required"><pythonReference>
+						<para>The destination folder where the output dBASE table(s) will be placed.</para>
+					</pythonReference><dialogReference>
+						<para>The destination folder where the output dBASE table(s) will be placed.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The name of the output dBASE tables will be based on the name of the input table. To control the output name and for additional conversion options use the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>The  and  tools can also be used to convert a table to a dBASE file.</para>
+			</bullet_item><bullet_item>
+				<para>If the name of the output table already exists in the output folder, a number will be appended to the end of the name to make it unique (for example, OutputTbl_1.dbf).</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TableToDBASE Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the TableToDBASE function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/Habitat_Analysis.gdb"
+arcpy.TableToDBASE_conversion(["vegtype", "futrds"], "C:/output")
+                    </code></scriptExample><scriptExample><title>TableToDBASE Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the TableToDBASE function.</para>
+				<code xml:space="preserve"># Name: TableToDBASE_Example2.py
+# Description: Use TableToDBASE to copy tables to dBASE format
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data"
+ 
+# Set local variables
+inTables = ["vegtype", "futrds"]
+outLocation = "C:/output"
+
+try: 
+    # Execute TableToDBASE
+    arcpy.TableToDBASE_conversion(inTables, outLocation)
+except:
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

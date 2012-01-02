@@ -1,0 +1,71 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Collapse Dual Lines To Centerline (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Derives centerlines (single lines) from dual-line features, such as road casings, based on specified width tolerances.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Axis</keyword><keyword>Casing</keyword><keyword>Central</keyword><keyword>Complex</keyword><keyword>Detail</keyword><keyword>Double</keyword><keyword>Half</keyword><keyword>Less</keyword><keyword>Middle</keyword><keyword>Parallel</keyword><keyword>Reduce</keyword><keyword>Remove</keyword><keyword>Road</keyword><keyword>Scale</keyword><keyword>Single</keyword><keyword>Skeleton</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CollapseDualLinestoCenterline" displayname="Collapse Dual Lines To Centerline (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Derives centerlines (single lines) from dual-line features, such as road casings, based on specified width tolerances.</para>
+			
+		</summary><alink_name>CollapseDualLinestoCenterline_arc</alink_name><toolIllust type="illustration" src="CollapseDualLinestoCenterline_arc_h.gif" alt="Creating centerlines" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage containing near parallel dual lines, such as road casings, from which centerlines are derived.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage containing near parallel dual lines, such as road casings, from which centerlines are derived.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The output coverage containing the derived centerlines. The output coverage name must be different from the input coverage name.</para>
+					</pythonReference><dialogReference>
+						<para>The output coverage containing the derived centerlines. The output coverage name must be different from the input coverage name.</para>
+					</dialogReference></param><param sync="true" name="maximum_width" displayname="Maximum Width" datatype="Double" direction="Input" expression="maximum_width" type="Required"><pythonReference>
+						<para>Sets the maximum width in coverage units.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the maximum width in coverage units.</para>
+					</dialogReference></param><param sync="true" name="minimum_width" displayname="Minimum Width" datatype="Double" direction="Input" expression="minimum_width" type="Optional"><pythonReference>
+						<para>Sets the minimum width in coverage units. The default is zero.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the minimum width in coverage units. The default is zero.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>In addition to the standard items, the Output Coverage.AAT will contain the following five new items:</para>
+				<bulletList>
+					<bullet_item>LTYPE—Contains a line type value of:
+								1   centerlines
+	2   unused lines and outlines of complicated intersections
+	3   partition lines
+						</bullet_item>
+					<bullet_item>LL#—Carries the left source arc record number.</bullet_item>
+					<bullet_item>RL#—Carries the right source arc record number.</bullet_item>
+					<bullet_item>L-ID—Carries the left source arc user ID.</bullet_item>
+					<bullet_item>R-ID—Carries the right source arc user ID.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>The values for item_width, output_width, and item_type in the item definition for all these items are 4, 5, and B.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title> CollapseDualLinesToCenterline example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to create a line coverage of street centerlines from a line coverage of street casings.</para>
+				<code xml:space="preserve"># Name: CollapseDualLinesToCenterline_Example.py
+# Description: Creates street centerlines from a street casing coverage.
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "streets"
+outCover = "C:/output/centerlines"
+maximumWidth = 50
+
+# Execute CollapseDualLinesToCenterline
+arcpy.CollapseDualLinesToCenterline_arc(inCover, outCover, maximumWidth, "")
+ 
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

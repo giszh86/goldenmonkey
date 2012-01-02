@@ -1,0 +1,82 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Con (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs a conditional if/else evaluation on each of the input cells of an input raster.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Case</keyword><keyword>Condition</keyword><keyword>Else</keyword><keyword>Evaluate</keyword><keyword>Expression</keyword><keyword>False</keyword><keyword>If</keyword><keyword>Logical</keyword><keyword>Query</keyword><keyword>Test</keyword><keyword>True</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Con" displayname="Con (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Performs a conditional if/else evaluation on each of the input cells of an input raster.</para>
+			
+		</summary><alink_name>Con_sa</alink_name><toolIllust type="illustration" src="Con_sa_h.png" alt="Con illustration" /><parameters><param sync="true" name="in_conditional_raster" displayname="Input conditional raster" datatype="Raster Layer" direction="Input" expression="in_conditional_raster" type="Required"><pythonReference><para>Input raster representing the true or false result of the desired condition.</para><para>It can be of integer or floating point type.</para></pythonReference><dialogReference><para>Input raster representing the true or false result of the desired condition.</para><para>It can be of integer or floating point type.</para></dialogReference></param><param sync="true" name="in_true_raster_or_constant" displayname="Input true raster or constant value" datatype="Raster Layer | Constant" direction="Input" expression="in_true_raster_or_constant" type="Required"><pythonReference>
+						<para>The input whose values will be used as the output cell values if the condition is true.</para>
+						<para>It can be an integer or a floating point raster, or a constant value.</para></pythonReference><dialogReference>
+						<para>The input whose values will be used as the output cell values if the condition is true.</para>
+						<para>It can be an integer or a floating point raster, or a constant value.</para></dialogReference></param><param sync="true" name="in_false_raster_or_constant" displayname="Input false raster or constant value" datatype="Raster Layer | Constant" direction="Input" expression="in_false_raster_or_constant" type="Optional"><pythonReference>
+						<para>The input whose values will be used as the output cell values if the condition is false.</para>
+						<para>It can be an integer or a floating point raster, or a constant value.</para>
+					</pythonReference><dialogReference>
+						<para>The input whose values will be used as the output cell values if the condition is false.</para>
+						<para>It can be an integer or a floating point raster, or a constant value.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Where clause" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference><para>A logical expression that determines which of the input cells are to be true or false.</para><para>The expression follows the general form of an SQL expression.</para><para>Consult the documentation for more information on the SQL reference for query expressions used in ArcGIS and specifying a query in Python.</para></pythonReference><dialogReference><para>A logical expression that determines which of the input cells are to be true or false.</para><para>The expression follows the general form of an SQL expression. It can be entered directly into the Where clause, for example, "VALUE" &gt; 100. It can also be created in the Query Builder dialog box. </para><para>Consult the documentation for more information on building a query expression and the SQL reference for query expressions used in ArcGIS.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para></pythonReference><dialogReference>
+							<para>The output raster.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If either the true raster or optional false raster is floating point, the output raster will be floating point. If both the true expression and optional false raster are integer, the output raster will be integer.</para>
+			</bullet_item><bullet_item>
+				<para>If the evaluation of the expression is nonzero, it is treated as True.</para>
+			</bullet_item><bullet_item>
+				<para>If no input false raster or constant is specified, NoData will be assigned to those cells that do not result in True from the expression.</para>
+			</bullet_item><bullet_item>
+				<para>If NoData does not satisfy the expression, it does not receive the value of the input false raster; it remains NoData.</para>
+			</bullet_item><bullet_item>
+				<para>The maximum length of the logical expression is 4,096 characters.</para>
+			</bullet_item><bullet_item>
+				<para>In Python, the {where_clause} should be enclosed in quotes, for example, "Value &gt; 5".</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Con example 1 (Python window)</title>
+					<para>In this example the original value will be retained in the output where the input conditional raster is greater than a value of 2000, and a value of NoData where it is not.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outCon = Con("elevation", "elevation", "", "VALUE &gt; 2000")
+outCon.save("C:/sapyexamples/output/outcon.img")
+                    </code></scriptExample><scriptExample><title>Con example 2 (stand-alone script)</title>
+					<para>In this example, where the value of the input conditional raster is greater than or equal to 1500, the output value will be 1, and where it is less than 1500, the output value will be 0.</para><code xml:space="preserve"># Name: Con_Ex_02.py
+# Description: Performs a conditional if/else evaluation 
+#              on each cell of an input raster.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "elevation"
+inTrueRaster = "1"
+inFalseConstant = 0
+whereClause = "VALUE &gt;= 1500"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Con
+outCon = Con(inRaster, inTrueRaster, inFalseConstant, whereClause)
+
+# Save the output 
+outCon.save("C:/sapyexamples/output/outcon")
+                    </code></scriptExample></scriptExamples></tool></metadata>

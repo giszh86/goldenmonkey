@@ -1,0 +1,100 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Generate Near Table (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Determines the distances from each feature in the input features to one or more nearby features in the near features, within the search radius. The results are recorded in the output table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Adjacent</keyword><keyword>Angle</keyword><keyword>Azimuth</keyword><keyword>Bearing</keyword><keyword>Close</keyword><keyword>Coordinate</keyword><keyword>Distance</keyword><keyword>Euclidean</keyword><keyword>Far</keyword><keyword>From</keyword><keyword>Length</keyword><keyword>Location</keyword><keyword>Long</keyword><keyword>Matrix</keyword><keyword>Near</keyword><keyword>Neighbor</keyword><keyword>Radius</keyword><keyword>Search</keyword><keyword>Separation</keyword><keyword>Short</keyword><keyword>Straight Line</keyword><keyword>To</keyword><keyword>X</keyword><keyword>Y</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GenerateNearTable" displayname="Generate Near Table (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Determines the distances from each feature in the input features to one or more nearby features in the near features, within the search radius. The results are recorded in the output table.</para>
+		</summary><alink_name>GenerateNearTable_analysis</alink_name><toolIllust type="illustration" src="GenerateNearTable_analysis_h.png" alt="Generate Near Table Illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input features that can be point, polyline, polygon or multipoint type.</para>
+					</pythonReference><dialogReference>
+						<para>The input features that can be point, polyline, polygon or multipoint type.</para>
+					</dialogReference></param><param sync="true" name="near_features" displayname="Near Features" datatype="Feature Layer" direction="Input" expression="[near_features,...]" type="Required"><pythonReference>
+						<para>The near features used to find the nearest features from input features. There can be one or more entries of near features; each entry can be of point, polyline, polygon or multipoint type. When multiple entries of near features are specified, a new field NEAR_FC is added to the input table to store the paths of the source feature class that contains the nearest features.</para>
+					</pythonReference><dialogReference>
+						<para>The near features used to find the nearest features from input features. There can be one or more entries of near features; each entry can be of point, polyline, polygon or multipoint type. When multiple entries of near features are specified, a new field NEAR_FC is added to the input table to store the paths of the source feature class that contains the nearest features.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>The output table that will contain the proximity information—such as IN_FID, NEAR_FID, NEAR_DIST—and other attributes—such as location (NEAR_X, NEAR_Y), angle (NEAR_ANGLE)—of the near feature and the NEAR_FC, if necessary.</para>
+					</pythonReference><dialogReference>
+						<para>The output table that will contain the proximity information—such as IN_FID, NEAR_FID, NEAR_DIST—and other attributes—such as location (NEAR_X, NEAR_Y), angle (NEAR_ANGLE)—of the near feature and the NEAR_FC, if necessary.</para>
+					</dialogReference></param><param sync="true" name="search_radius" displayname="Search Radius" datatype="Linear unit" direction="Input" expression="search_radius" type="Optional"><pythonReference>
+						<para>Specifies the radius used to search for candidate near features. The near features within this radius are considered for calculating the nearest feature. If no value is specified, that is the default (empty)radius is used, all near features are considered for calculation. You can specify any distance unit replacing the default unit of the input features.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the radius used to search for candidate near features. The near features within this radius are considered for calculating the nearest feature. If no value is specified, that is the default (empty)radius is used, all near features are considered for calculation. You can specify any distance unit replacing the default unit of the input features.</para>
+					</dialogReference></param><param sync="true" name="location" displayname="Location" datatype="Boolean" direction="Input" expression="location" type="Optional"><pythonReference>
+						<para>Specifies whether x and y coordinates of the nearest location of the near feature will be written to new fields NEAR_X and NEAR_Y respectively.</para>
+						<bulletList><bullet_item>NO_LOCATION—specifies that the x and y coordinates of the nearest location will not be written out. This is the default.</bullet_item><bullet_item>LOCATION—specifies that the x and y coordinates of the nearest location will be written to NEAR_X and NEAR_Y fields.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether x and y coordinates of the nearest location of the near feature will be written to new fields NEAR_X and NEAR_Y respectively.</para>
+						<bulletList>
+							<bullet_item>Unchecked—specifies that the x and y coordinates of the nearest location will not be written out. This is the default.</bullet_item>
+							<bullet_item>Checked—specifies that the x and y coordinates of the nearest location will be written to NEAR_X and NEAR_Y fields.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="angle" displayname="Angle" datatype="Boolean" direction="Input" expression="angle" type="Optional"><pythonReference>
+						<para>Specifies whether the near angle values in decimal degrees will be calculated and written to a new field, NEAR_ANGLE. A near angle measures from the x-axis (horizontal axis) to the direction of the line connecting an input feature to its nearest feature at their closest locations; and it is within the range of 0 to 180 or 0 to -180 decimal degrees.</para>
+						<bulletList><bullet_item>NO_ANGLE—specifies that the near angle values will not be written out. This is the default.</bullet_item><bullet_item>ANGLE—specifies that the near angle values will be written out to NEAR_ANGLE field.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether the near angle values in decimal degrees will be calculated and written to a new field, NEAR_ANGLE. A near angle measures from the x-axis (horizontal axis) to the direction of the line connecting an input feature to its nearest feature at their closest locations; and it is within the range of 0 to 180 or 0 to -180 decimal degrees.</para>
+						<bulletList>
+							<bullet_item>Unchecked—specifies that the near angle values will not be written out. This is the default.</bullet_item>
+							<bullet_item>Checked—specifies that the near angle values will be written out to NEAR_ANGLE field.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="closest" displayname="Find only closest feature" datatype="Boolean" direction="Input" expression="closest" type="Optional"><pythonReference>
+						<para>Determines whether to locate and return only the closest features or return all the features within the search radius.</para>
+						<bulletList><bullet_item>CLOSEST—Locate and return only the closest features from the Near Features to the Input Features within the search radius. This is the default.</bullet_item><bullet_item>ALL—Locate and return all features from the Near Features to the Input Features within the search radius.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines whether to locate and return only the closest features or return all the features within the search radius.</para>
+						<bulletList>
+							<bullet_item>Checked—Locate and return only the closest features from the Near Features to the Input Features within the search radius. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Locate and return all features from the Near Features to the Input Features within the search radius.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="closest_count" displayname="Maximum number of closest matches" datatype="Long" direction="Input" expression="closest_count" type="Optional"><pythonReference>
+						<para>Find only the specified number of closest features. This parameter will not be used if the Find only closest feature option is checked.</para>
+					</pythonReference><dialogReference>
+						<para>Find only the specified number of closest features. This parameter will not be used if the Find only closest feature option is checked.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>This tool behaves the same as the  tool. However, instead of updating the input features, it creates a new output table. Moreover, it can find as many near features as specified by the Maximum number of closest matches parameter.</para>
+			</bullet_item><bullet_item><para>The output table contains three fields IN_FID, NEAR_FID and NEAR_DIST by default. Additional fields are added to output depending on the optional parameters selected as explained in the parameter entry. </para></bullet_item><bullet_item>
+				<para>The output table can be joined back to the input feature class or a near feature class using the INPUT_FID or NEAR_FID fields.</para>
+			</bullet_item><bullet_item>
+				<para>Both input features and near features and can be point, multipoint, line, or polygon.</para>
+			</bullet_item><bullet_item>
+				<para>The default option for this tool is to find the distance from each input feature to the closest near feature. Choose the ALL option, that is uncheck the Find only closest feature parameter to create a table containing the distance between all input to all near features.</para>
+			</bullet_item><bullet_item>
+				<para>The values for NEAR_FID and NEAR_DIST will be -1 if no feature is found within the search radius.</para>
+			</bullet_item><bullet_item>
+				<para>If no Search Radius is specified, a radius large enough is used so that all Near Features can be incorporated in the distance calculation. If the default Search Radius is used (no radius is specified) the Output Table can be quite large. For example, calculating distances from 1,000 points in one feature class to 1,000 points in another feature class can produce an output table containing one million records. Use the search radius to limit the number of output records.</para>
+			</bullet_item><bullet_item>
+				<para>Both the Input Features and Near Features can be the same dataset. In that case when the input and near features are the same record, that result will be skipped so as not to report that each feature is 0 units from itself.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>GenerateNearTable Example 1 (Python Window)</title>
+					<para>The following snippet demonstrates how to use the GenerateNearTable function in the Python Window.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data/input/gnt.gdb"
+arcpy.GenerateNearTable_analysis("campsites", ["parks", "trails"], "better_sites")
+                    </code></scriptExample><scriptExample><title>GenerateNearTable Example 2 (stand-alone Python script)</title>
+					<para>The following Python script demonstrates how to use the GenerateNearTable function in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: GenerateNearTable.py
+# Description: Finds 3 nearest in the near feature class from the input feature class.
+# Author: ESRI
+
+# import system modules
+import arcpy
+from arcpy import env
+
+# set workspace environment
+env.workspace = "C:/data/input/gnt.gdb"
+
+# set required parameters 
+inFeatures = "campsites"
+nearFeatures = ["parks", "trails"]
+outTable = "near_parks_trails"
+
+# optional parameters
+searchRadius = '1500 Meters'
+location = 'NO_LOCATION'
+angle = 'NO_ANGLE'
+closest = 'ALL'
+closestCount = 3
+
+# find crime locations within the search radius
+arcpy.GenerateNearTable_analysis(inFeatures, nearFeatures, outTable, searchRadius, location, angle, closest, closestCount)
+                    </code></scriptExample></scriptExamples></tool></metadata>

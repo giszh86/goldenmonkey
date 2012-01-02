@@ -1,0 +1,73 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Flow Length (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the upstream or downstream distance, or weighted distance, along the flow path for each cell.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Catchment</keyword><keyword>Distance</keyword><keyword>Flow</keyword><keyword>Flowlength</keyword><keyword>Length</keyword><keyword>Surface Water</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FlowLength" displayname="Flow Length (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates the upstream or downstream distance, or weighted distance, along the flow path for each cell.</para>
+		</summary><alink_name>FlowLength_sa</alink_name><parameters><param sync="true" name="in_flow_direction_raster" displayname="Input flow direction raster" datatype="Raster Layer" direction="Input" expression="in_flow_direction_raster" type="Required"><pythonReference>
+						<para>The input raster that shows the direction of flow out of each cell.</para><para>The flow direction raster can be created using the Flow Direction tool.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster that shows the direction of flow out of each cell.</para><para>The flow direction raster can be created using the Flow Direction tool.</para>
+					</dialogReference></param><param sync="true" name="direction_measurement" displayname="Direction of measurement" datatype="String" direction="Input" expression="direction_measurement" type="Optional"><pythonReference>
+						<para>The direction of measurement along the flow path.</para>
+						<bulletList><bullet_item>DOWNSTREAM — Calculates the downslope distance along the flow path, from each cell to a sink or outlet on the edge of the raster.</bullet_item><bullet_item>UPSTREAM — Calculates the longest upslope distance along the flow path, from each cell to the top of the drainage divide.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The direction of measurement along the flow path.</para>
+						<bulletList><bullet_item>DOWNSTREAM — Calculates the downslope distance along the flow path, from each cell to a sink or outlet on the edge of the raster.</bullet_item><bullet_item>UPSTREAM — Calculates the longest upslope distance along the flow path, from each cell to the top of the drainage divide.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="in_weight_raster" displayname="Input weight raster" datatype="Raster Layer" direction="Input" expression="in_weight_raster" type="Optional"><pythonReference>
+						<para>An optional input raster for applying a weight to each cell.</para><para>If no weight raster is specified, a default weight of 1 will be applied to each cell. For each cell in the output raster, the result will be the number of cells that flow into it.</para>
+					</pythonReference><dialogReference>
+						<para>An optional input raster for applying a weight to each cell.</para><para>If no weight raster is specified, a default weight of 1 will be applied to each cell. For each cell in the output raster, the result will be the number of cells that flow into it.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster that shows for each cell the upstream or downstream distance along a flow path.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster that shows for each cell the upstream or downstream distance along a flow path.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The value type for the Flow Length output raster is floating point.</para>
+			</bullet_item><bullet_item><para>A primary use of the Flow Length tool is to calculate the length of the longest flow path within a given basin. This measure is often used to calculate the time of concentration of a basin. This would be done using the UPSTREAM option.</para><para>The tool can also be used to create distance-area diagrams of hypothetical rainfall and runoff events using the weight raster as an impedance to movement downslope.</para></bullet_item></usage><scriptExamples><scriptExample><title>FlowLength example 1 (Python window)</title>
+					<para>This example Calculates the downstream distance along the flow path for each cell.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outFlowLength = FlowLength("flowdir", "DOWNSTREAM", "")
+outFlowLength.save("c:/sapyexamples/output/outflowlen01")
+                    </code></scriptExample><scriptExample><title>FlowLength example 2 (stand-alone script)</title>
+					<para>This example Calculates the downstream distance along the flow path for each cell.</para><code xml:space="preserve"># Name: _Ex_02.py
+# Description: 
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inFlowDirectionRaster = "flowdir"
+inWeightRaster = ""
+directionType = "DOWNSTREAM"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute 
+outFlowLength = FlowLength(inFlowDirectionRaster, directionType, inWeightRaster)
+
+# Save the output 
+outFlowLength.save("c:/sapyexamples/output/outflowlen02.tif")
+                    </code></scriptExample></scriptExamples></tool></metadata>

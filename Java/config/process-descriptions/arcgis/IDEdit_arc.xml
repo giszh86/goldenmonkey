@@ -1,0 +1,58 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Update IDs (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			
+			<para>Updates User-IDs in a coverage after they have been modified in a feature attribute table. The feature attribute table is used to determine the correct User-ID for each feature in the coverage. This value is recorded in all places where the feature User-ID is stored.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Coverage</keyword><keyword>Data Management</keyword><keyword>Idedit</keyword><keyword>Tables</keyword><keyword>Update</keyword><keyword>Update Ids</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="IDEdit" displayname="Update IDs (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			
+			<para>Updates User-IDs in a coverage after they have been modified in a feature attribute table. The feature attribute table is used to determine the correct User-ID for each feature in the coverage. This value is recorded in all places where the feature User-ID is stored.</para>
+			
+		</summary><alink_name>IDEdit_arc</alink_name><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage for which User-IDs have been modified.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage for which User-IDs have been modified.</para>
+					</dialogReference></param><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Required"><pythonReference>
+						<para>Specifies the class of features for which User-IDs are to be updated.</para>
+						<bulletList><bullet_item>POLY—Polygon User-IDs will be updated. This is the default option. </bullet_item><bullet_item>LINE—Arc User-IDs will be updated. </bullet_item><bullet_item>POINT—Point User-IDs will be updated. </bullet_item><bullet_item>ANNO.subclass—Annotation User-IDs will be updated. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the class of features for which User-IDs are to be updated.</para>
+						<bulletList><bullet_item>POLY—Polygon User-IDs will be updated. This is the default option. </bullet_item><bullet_item>LINE—Arc User-IDs will be updated. </bullet_item><bullet_item>POINT—Point User-IDs will be updated. </bullet_item><bullet_item>ANNO.subclass—Annotation User-IDs will be updated. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Tools such as  and  can be used to add or modify User-IDs in a coverage's feature attribute table before Update IDs is used.</para>
+			</bullet_item><bullet_item>
+				<para>If the  tool has been used to create new label points for coverage polygons, the polygon User-IDs stored in the coverage PAT are not equal to the new label point User-IDs. Create Labels stores the new label points and their User-IDs in the LAB file. Update IDs may be used to change the label point User-IDs to be equal to the User-IDs stored in the PAT.</para>
+			</bullet_item><bullet_item>
+				<para>To change the User-IDs stored in the PAT to be equal to the label point User-IDs, use the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>There is no NODE option because the Update IDs tool is not necessary after updating User-IDs in the NAT file.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>IDEdit example (stand-alone script)</title><para>The following stand-alone script demonstrates how to update User-IDs in a coverage. </para>
+				<code xml:space="preserve"># Name: IDEdit_Example.py
+# Description: Adds polygon labels, then updates the User-IDs for a coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "texas"
+featureType = "POLY"
+
+#Execute IDEdit
+arcpy.IDEdit_arc(inCover, featureType)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

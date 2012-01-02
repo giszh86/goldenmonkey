@@ -1,0 +1,95 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Convert Coordinate Notation (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a table containing point  coordinate fields  to a point feature class.
+The input table's coordinate fields can be in a variety of notations, such as GARS, UTM, and MGRS.  The output point feature class also contains point coordinate  fields  in a coordinate notation of your choosing.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Dd</keyword><keyword>Ddm</keyword><keyword>Decimal</keyword><keyword>Degrees</keyword><keyword>Dms</keyword><keyword>Gars</keyword><keyword>Georef</keyword><keyword>Grid</keyword><keyword>Mgrs</keyword><keyword>Military</keyword><keyword>Minutes</keyword><keyword>Reference</keyword><keyword>Seconds</keyword><keyword>System</keyword><keyword>Universal Transverse Mercator</keyword><keyword>Usng</keyword><keyword>Utm</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ConvertCoordinateNotation" displayname="Convert Coordinate Notation (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Converts a table containing point  coordinate fields  to a point feature class.
+The input table's coordinate fields can be in a variety of notations, such as GARS, UTM, and MGRS.  The output point feature class also contains point coordinate  fields  in a coordinate notation of your choosing.</para></summary><alink_name>ConvertCoordinateNotation_management</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>
+Table containing the coordinate field(s) to convert.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Table containing the coordinate field(s) to convert.
+</para>
+					</dialogReference></param><param sync="true" name="out_featureclass" displayname="Output feature class" datatype="Feature Class" direction="Input" expression="out_featureclass" type="Required"><pythonReference>
+						<para>
+Output feature class of points.  The attribute table will contain a field of the converted coordinates.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Output feature class of points.  The attribute table will contain a field of the converted coordinates.
+</para>
+					</dialogReference></param><param sync="true" name="x_field" displayname="X Field" datatype="Field" direction="Input" expression="x_field" type="Required"><pythonReference>
+						<para>
+X coordinate field name in the Input Table. For DD and DDM this is the longitude field. For DMS, GARS, GEOREF, UTM, USNG, and MGRS, this is the only field as these are single-string coordinate types.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+X coordinate field name in the Input Table. For DD and DDM this is the longitude field. For DMS, GARS, GEOREF, UTM, USNG, and MGRS, this is the only field as these are single-string coordinate types.
+</para>
+					</dialogReference></param><param sync="true" name="y_field" displayname="Y Field" datatype="Field" direction="Input" expression="y_field" type="Required"><pythonReference>
+						<para>
+Y coordinate field name in the input table. For DD and DDM this is the latitude field. This parameter is disabled for DMS, GARS, GEOREF, UTM, USNG, and MGRS.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Y coordinate field name in the input table. For DD and DDM this is the latitude field. This parameter is disabled for DMS, GARS, GEOREF, UTM, USNG, and MGRS.
+</para>
+					</dialogReference></param><param sync="true" name="input_coordinate_format" displayname="Input Coordinate Format" datatype="String" direction="Input" expression="input_coordinate_format" type="Optional"><pythonReference>
+						<para>
+Coordinate format of the input fields. The default is DD.</para><bulletList><bullet_item>DD—Decimal degrees</bullet_item><bullet_item>DDM	—Decimal minutes</bullet_item><bullet_item>DMS—Degrees-minutes-seconds</bullet_item><bullet_item>GARS—Global Area Reference System</bullet_item><bullet_item>GEOREF—World Geographic Reference System</bullet_item><bullet_item>UTM	—Universal Transverse Mercator</bullet_item><bullet_item>USNG—United States National Grid</bullet_item><bullet_item>MGRS—Military Grid Reference System</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>
+Coordinate format of the input fields. The default is DD.</para><bulletList><bullet_item>DD—Decimal degrees</bullet_item><bullet_item>DDM	—Decimal minutes</bullet_item><bullet_item>DMS—Degrees-minutes-seconds</bullet_item><bullet_item>GARS—Global Area Reference System</bullet_item><bullet_item>GEOREF—World Geographic Reference System</bullet_item><bullet_item>UTM	—Universal Transverse Mercator</bullet_item><bullet_item>USNG—United States National Grid</bullet_item><bullet_item>MGRS—Military Grid Reference System</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="output_coordinate_format" displayname="Output Coordinate Format" datatype="String" direction="Input" expression="output_coordinate_format" type="Optional"><pythonReference>
+						<para>
+Format of the output coordinates in the output point feature class. The default is DD.
+</para>
+						<bulletList><bullet_item>DD—Decimal degrees in the format: DDD.dddd</bullet_item><bullet_item>DDM	—Decimal minutes in the format: DDD MM.mmmm</bullet_item><bullet_item>DMS—Degrees-minutes-seconds in the format: DDD MM SS.ssss</bullet_item><bullet_item>GARS—Global Area Reference System</bullet_item><bullet_item>GEOREF—World Geographic Reference System</bullet_item><bullet_item>UTM	—Universal Transverse Mercator</bullet_item><bullet_item>USNG—United States National Grid</bullet_item><bullet_item>MGRS—Military Grid Reference System</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>
+Format of the output coordinates in the output point feature class. The default is DD.
+</para>
+						<bulletList><bullet_item>DD—Decimal degrees in the format: DDD.dddd</bullet_item><bullet_item>DDM	—Decimal minutes in the format: DDD MM.mmmm</bullet_item><bullet_item>DMS—Degrees-minutes-seconds in the format: DDD MM SS.ssss</bullet_item><bullet_item>GARS—Global Area Reference System</bullet_item><bullet_item>GEOREF—World Geographic Reference System</bullet_item><bullet_item>UTM	—Universal Transverse Mercator</bullet_item><bullet_item>USNG—United States National Grid</bullet_item><bullet_item>MGRS—Military Grid Reference System</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="id_field" displayname="ID" datatype="Field" direction="Input" expression="id_field" type="Required"><pythonReference>
+						<para>
+ID field from the input table. This may be used to join the output features back to the input table.</para>
+					</pythonReference><dialogReference>
+						<para>
+ID field from the input table. This may be used to join the output features back to the input table.</para>
+					</dialogReference></param><param sync="true" name="spatial_reference" displayname="Spatial Reference" datatype="Spatial Reference" direction="Input" expression="spatial_reference" type="Optional"><pythonReference>
+						<para> Spatial reference of the input coordinates. The default is GCS_WGS_1984.
+</para>
+					</pythonReference><dialogReference>
+						<para> Spatial reference of the input coordinates. The default is GCS_WGS_1984.
+</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item><para>The input coordinate fields can be in any of the following notations.  The point output feature class will also have coordinate fields in any of these notations.</para><para><bulletList><bullet_item>decimal degrees (DD)</bullet_item><bullet_item>decimal minutes (DDM)</bullet_item><bullet_item>degrees-minutes-seconds (DMS)</bullet_item><bullet_item>Global Area Reference System (GARS)</bullet_item><bullet_item> World Geographic Reference System (GEOREF)</bullet_item><bullet_item>Universal Transverse Mercator (UTM)</bullet_item><bullet_item>United States National Grid (USNG)</bullet_item><bullet_item>Military Grid Reference System (MGRS)</bullet_item></bulletList>
+				</para>
+			</bullet_item><bullet_item>
+				<para>
+Decimal degree (DD) coordinates are two strings and  must be in the format DDD.dddd.
+</para>
+			</bullet_item><bullet_item><para>Decimal minute (DDM) coordinates are two strings and  must be in the format DDD MM.mmmm.</para></bullet_item><bullet_item><para>Degree-minute-second (DMS) coordinates are single string and  must be in the format DD MM SS.ssss DDD MM SS.ssss.  Latitude is first followed by longitude separated by spaces.</para></bullet_item><bullet_item><para>GARS, GEOREF, UTM, USNG, and MGRS are single-string coordinate formats, meaning only one field contains the coordinate. When converting from one of these formats only the X Field will be used.</para></bullet_item><bullet_item><para>Field names in the output point feature class match the output coordinate notation name. For example, MGRS coordinates will be stored in a field named MGRS. If the field name exists, a new sequential field will be added (e.g., MGRS1, MGRS2, MGRS3, and so on).</para></bullet_item><bullet_item><para>Fields from the input table are not copied to the output feature class.  You can use the  tool to copy fields from the input table to the output feature class.</para></bullet_item><bullet_item><para>The  tool can be used to create a feature class from a table containing x,y coordinate fields.</para></bullet_item></usage><scriptExamples><scriptExample><title>ConvertCoordinateNotation example 1 (stand-alone script)</title>
+					<para>Basic ConvertCoordinateNotation usage with one input field.</para>
+				<code xml:space="preserve">
+#Imports
+import arcpy
+
+#Locals
+in_tab = r"c:\workspace\inmed.gdb\loc_mgrs"
+out_pts = r"c:\workspace\inmed.gdb\loc_final"
+
+#Convert Coordinate Notation with MGRS as input field.
+arcpy.ConvertCoordinateNotation_management(in_tab,out_pts,"m10d","#","MGRS","DD")
+
+                    </code></scriptExample><scriptExample><title>ConvertCoordinateNotation example 2 (stand-alone script)</title><para>Basic ConvertCoordinateNotation usage with two input fields.</para><code xml:space="preserve">
+#Imports
+import arcpy
+
+#Locals
+in_tab = r"c:\workspace\mtf.gdb\rit_up_DD"
+out_pts = r"c:\workspace\mtf.gdb\ritLOC"
+
+#Convert Coordinate Notation with DD as input fields.
+arcpy.ConvertCoordinateNotation_management(in_tab,out_pts,"LON","LAT","DD","GARS")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

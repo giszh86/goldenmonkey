@@ -1,0 +1,112 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Random Raster (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a random raster dataset based on a user-specified distribution and extent.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arbitrary</keyword><keyword>Erdas Imagine</keyword><keyword>Exponential</keyword><keyword>Extent</keyword><keyword>Geometric</keyword><keyword>Grid</keyword><keyword>Img</keyword><keyword>Make</keyword><keyword>Negative Binomial</keyword><keyword>Normal Distribution</keyword><keyword>Poisson</keyword><keyword>Probability</keyword><keyword>Tif</keyword><keyword>Tiff</keyword><keyword>Value</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateRandomRaster" displayname="Create Random Raster (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a random raster dataset based on a user-specified distribution and extent.</para>
+		</summary><alink_name>CreateRandomRaster_management</alink_name><parameters><param sync="true" name="out_path" displayname="Output Location" datatype="Workspace;Raster Catalog" direction="Input" expression="out_path" type="Required"><pythonReference>
+						<para>The location of the output raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The location of the output raster dataset.</para>
+					</dialogReference></param><param sync="true" name="out_name" displayname="Raster dataset name with extension" datatype="String" direction="Input" expression="out_name" type="Required"><pythonReference>
+						<para>The name of the raster dataset to be created.</para>
+						<para>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for a GRID file format.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the raster dataset to be created.</para>
+						<para>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for a GRID file format.</para>
+					</dialogReference></param><param sync="true" name="distribution" displayname="Distribution" datatype="String" direction="Input" expression="distribution" type="Optional"><pythonReference>
+						<para>The distribution of random values desired is as follows:</para>
+						<bulletList>
+							<bullet_item>UNIFORM {Minimum}, {Maximum}—A uniform distribution with a range defined by the {Minimum} and {Maximum}. Both the {Minimum} and {Maximum} are of type double.<para>The default values are 0.0 for {Minimum} and 1.0 for {Maximum}.</para></bullet_item>
+							<bullet_item>INTEGER {Minimum}, {Maximum}—An integer distribution with a range defined by the {Minimum} and {Maximum}. Both the {Minimum} and {Maximum} are of type long.<para>The default values are 1 for {Minimum} and 10 for {Maximum}.</para></bullet_item>
+							<bullet_item>NORMAL {Mean}, {Standard Deviation}—A normal distribution with a defined {Mean} and {Standard Deviation}. Both the {Mean} and {Standard Deviation} are of type double.<para>The default values are 0.0 for {Mean} and 1.0 for {Standard Deviation}.</para></bullet_item>
+							<bullet_item>EXPONENTIAL {Mean}—An exponential distribution with a defined {Mean}. The {Mean} is of type double.<para>The default value for {Mean} is 1.0.</para></bullet_item>
+							<bullet_item>POISSON {Mean}—A Poisson distribution with a defined {Mean}. The {Mean} is of type double.<para>The default value for {Mean} is 1.0.</para></bullet_item>
+							<bullet_item>GAMMA {Alpha}, {Beta}—A gamma distribution with a defined {Alpha} and {Beta}. Both the {Alpha} and {Beta} are of type double. The default values are 1.0 for {Alpha} and 1.0 for {Beta}.</bullet_item>
+							<bullet_item>BINOMIAL {N}, {Probability}—A binomial distribution with a defined {N} and {Probability}. The {N} is of type long and {Probability} is of type double.<para>The default values are 10 for {N} and 0.5 for {Probability}.</para></bullet_item>
+							<bullet_item>GEOMETRIC {Probability}—A geometric distribution with a defined {Probability}. The {Probability} is of type double.<para>The default value for {Probability} is 0.5.</para></bullet_item>
+							<bullet_item>NEGATIVE BINOMIAL {N}, {Probability}—A Pascal distribution with a defined {N} and {Probability}. The {N} is of type long and {Probability} is of type double.<para>The default values are 10 for {N} and 0.5 for {Probability}.</para></bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>The distribution of random values desired is as follows:</para>
+						<bulletList>
+							<bullet_item>UNIFORM (Minimum, Maximum)—A uniform distribution with a range defined by the Minimum and Maximum. Both the Minimum and Maximum are of type double.<para>The default values are 0.0 for Minimum and 1.0 for Maximum.</para></bullet_item>
+							<bullet_item>INTEGER (Minimum, Maximum)—An integer distribution with a range defined by the Minimum and Maximum. Both the Minimum and Maximum are of type long.<para>The default values are 1 for Minimum and 10 for Maximum.</para></bullet_item>
+							<bullet_item>NORMAL (Mean, Standard Deviation)—A normal distribution with a defined Mean and Standard Deviation. Both the Mean and Standard Deviation are of type double.<para>The default values are 0.0 for Mean and 1.0 for Standard Deviation.</para></bullet_item>
+							<bullet_item>EXPONENTIAL (Mean)—An exponential distribution with a defined Mean. The Mean is of type double.<para>The default value for Mean is 1.0.</para></bullet_item>
+							<bullet_item>POISSON (Mean)—A Poisson distribution with a defined Mean. The Mean is of type double.<para>The default value for Mean is 1.0.</para></bullet_item>
+							<bullet_item>GAMMA (Alpha, Beta)—A gamma distribution with a defined Alpha and Beta. Both the Alpha and Beta are of type double. The default values are 1.0 for Alpha and 1.0 for Beta.</bullet_item>
+							<bullet_item>BINOMIAL (N, Probability)—A binomial distribution with a defined N and Probability. The N is of type long and Probability is of type double.<para>The default values are 10 for N and 0.5 for Probability.</para></bullet_item>
+							<bullet_item>GEOMETRIC (Probability)—A geometric distribution with a defined Probability. The Probability is of type double.<para>The default value for Probability is 0.5.</para></bullet_item>
+							<bullet_item>NEGATIVE BINOMIAL (N, Probability)—A Pascal distribution with a defined N and Probability. The N is of type long and Probability is of type double.<para>The default values are 10 for N and 0.5 for Probability.</para></bullet_item>
+						</bulletList>
+						<para>To edit the default value, click on the value in the table and type the new value.</para>
+					</dialogReference></param><param sync="true" name="raster_extent" displayname="Output extent" datatype="Extent" direction="Input" expression="raster_extent" type="Optional"><pythonReference>
+						<para>The spatial extent of the random raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The spatial extent of the random raster dataset.</para>
+					</dialogReference></param><param sync="true" name="cellsize" displayname="cellsize" datatype="Double" direction="Input" expression="cellsize" type="Optional"><pythonReference>
+						<para>The cell size of the new random raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size of the new random raster dataset.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Pyramid" label="Pyramid">
+						
+					</environment><environment name="Raster_statistics" label="Raster statistics">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Tile_size" label="Tile size">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Uniform, Integer, Normal, and Exponential distributions' processing times are independent of their arguments, while the Poisson, Gamma, Binomial, Geometric, and Pascal distributions' processing times can vary considerably when arguments are changed.</para>
+			</bullet_item><bullet_item>
+				<para>The values assigned to each cell in the random raster are derived from the random number generator and the selected distribution. The random number generator is identified in the Environments Settings, under Random Numbers. The random number generator starts a stream of random numbers based on the generator type and seed. The numbers are randomly determined and the values are between 0 and 1. The numbers are created as needed.</para>
+				<para>The Create Random Raster tool pulls numbers from the random stream and transforms them based on the distribution identified in the tool. Each value is independent of the other values. There are multiple distributions available for assigning (or transforming) the values in the random output raster. The distributions generally produce different results, and which distribution to select is determined by the end use of the raster. If the random raster is to model some natural phenomenon, the distribution selected should be the best representation of the process of the phenomenon. </para>
+				<para> For a description of the distributions and how they are generally used, see .</para>
+			</bullet_item><bullet_item>
+				<para>A default value is calculated for the cell size parameter if no value is provided. This value is based on the size of the extent.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateRandomRaster Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the CreateRandomRaster function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.CreateRandomRaster_management("c:/output", "randrast", "NORMAL 3.0",\
+                                    "0 0 500 500", 50)
+                    </code></scriptExample><scriptExample><title>CreateRandomRaster Example 2 (stand-alone script)</title>
+					<para>This stand-alone script is an example of how to execute the CreateRandomRaster function in a scripting environment.</para>
+				<code xml:space="preserve"># Name: CreateRandomRaster_Ex_02.py
+# Description: Creates a random raster dataset based on a user-specified 
+#     distribution and extent.
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+outPath = "c:/output"
+outFile = "randrast02"
+distribution = "POISSON 6.4"
+outExtent = "250 250 750 750"
+cellSize = 25
+
+# Execute CreateRandomRaster
+arcpy.CreateRandomRaster_management(outPath, outFile, distribution, outExtent,
+                                    cellSize)
+                    </code></scriptExample></scriptExamples></tool></metadata>

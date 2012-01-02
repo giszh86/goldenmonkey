@@ -1,0 +1,203 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Make Grids and Graticules Layer  (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Creates a grouped layer of feature classes depicting grid, graticule, and border features using predefined cartographic specifications. Grid layers are ideal for advanced grid definitions which are scale and extent specific.</para>
+			<para>Each grid layer can be composed of a mask polygon, clip polygon, segments (line), gridlines (line), ticks (line), endpoints (point), points (point), and annotation feature classes. These components are stored as features in corresponding feature classes. These features classes are saved within a specified feature dataset in a geodatabase. There are seven feature classes that store the basic components of a grid. Each feature class is named with a three letter prefix that helps identify the grid component the feature class holds.    These feature class/components are:</para>
+			<bulletList>
+				<bullet_item>ANO_ is the annotation feature class</bullet_item>
+				<bullet_item>EPT_ is the endpoints feature class</bullet_item>
+				<bullet_item>GLN_ is the gridlines feature class</bullet_item><bullet_item>MSK_ is the masks feature class</bullet_item><bullet_item>PNT_ is the points feature class</bullet_item><bullet_item>SEG_ is the segments feature class</bullet_item><bullet_item>TKS_ is the segments feature class</bullet_item></bulletList><para>These feature classes can hold information for multiple grids. An eighth feature class (GRD_)  contains organization information such as map name and grid types that are used to organize your grids.</para><para>The grid definition template is stored in a predefined XML file. This file stores specification properties for each grid, such as the number, color, and line weight of gridlines. When the definition template is applied, features are created according to the specification based on the current extent or extent of a selected feature (area of interest), scale and coordinate systems.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Border</keyword><keyword>Coordinate Labels</keyword><keyword>Create</keyword><keyword>Generate</keyword><keyword>Layout</keyword><keyword>Projection</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeGridsandGraticulesLayer " displayname=" Make Grids and Graticules Layer  (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para> Creates a grouped layer of feature classes depicting grid, graticule, and border features using predefined cartographic specifications. Grid layers are ideal for advanced grid definitions which are scale and extent specific.</para>
+			<para>Each grid layer can be composed of a mask polygon, clip polygon, segments (line), gridlines (line), ticks (line), endpoints (point), points (point), and annotation feature classes. These components are stored as features in corresponding feature classes. These features classes are saved within a specified feature dataset in a geodatabase. There are seven feature classes that store the basic components of a grid. Each feature class is named with a three letter prefix that helps identify the grid component the feature class holds.    These feature class/components are:</para>
+			<bulletList>
+				<bullet_item>ANO_ is the annotation feature class</bullet_item>
+				<bullet_item>EPT_ is the endpoints feature class</bullet_item>
+				<bullet_item>GLN_ is the gridlines feature class</bullet_item><bullet_item>MSK_ is the masks feature class</bullet_item><bullet_item>PNT_ is the points feature class</bullet_item><bullet_item>SEG_ is the segments feature class</bullet_item><bullet_item>TKS_ is the segments feature class</bullet_item></bulletList><para>These feature classes can hold information for multiple grids. An eighth feature class (GRD_)  contains organization information such as map name and grid types that are used to organize your grids.</para><para>The grid definition template is stored in a predefined XML file. This file stores specification properties for each grid, such as the number, color, and line weight of gridlines. When the definition template is applied, features are created according to the specification based on the current extent or extent of a selected feature (area of interest), scale and coordinate systems.</para>
+		</summary><alink_name>MakeGridsandGraticulesLayer _cartography</alink_name><parameters><param sync="true" name="in_template" displayname="Grid Template (XML file)" datatype="File" direction="Input" expression="in_template" type="Required"><pythonReference>
+						<para> The XML grid definition template stores the specification's graphic properties for each grid layer. In addition to the graphic properties, which cannot be altered before execution, the definition has specific default values, exposed as parameters, that can be modified before execution.</para>
+						<para>Template files are located in the \ArcGIS\Desktop10.0\GridTemplates directory. Additional grid templates can be obtained and shared using the ArcGIS Resource Center.</para>
+						<para>The ArcGIS Production Mapping extension provides a grid designer that allows you to create new templates as well as modify existing ones.</para>
+					</pythonReference><dialogReference>
+						<para>The XML grid definition template stores the specification's graphic properties for each grid layer. In addition to the graphic properties, which cannot be altered before execution, the definition has specific default values and behavior that can be modified before execution, exposed as parameters.</para>
+						<para>Template files are located in the \ArcGIS\Desktop10.0\GridTemplates directory. Additional grid templates can be obtained and shared using the ArcGIS Resource Center. The ArcGIS Production Mapping extension also provides a grid designer that allows you to create new templates as well as modify existing ones.</para>
+						<para>
+							
+								<para>Once this parameter is defined, hovering over or clicking the context-sensitive area immediately to the left of the parameter name displays information that includes grid type, description, rotation type, and scale type for the defined XML grid definition template.</para>
+							
+						</para>
+					</dialogReference></param><param sync="true" name="in_aoi" displayname="Input Area of Interest [feature or extent]" datatype="Feature Layer; Extent" direction="Input" expression="in_aoi" type="Required"><pythonReference>
+						<para>The feature layer or x,y extent used to determine the extent of the grid layer created.</para>
+						<para><bulletList>
+								<bullet_item>Feature layer—Indicates you can choose the layer to use for the area of interest. Only one selected feature will be used from this layer. For layers that have more than one feature, the tool will only create a grid layer based on the first feature. The first feature is based on object id. All remaining features are ignored.</bullet_item>
+								<bullet_item>Extent—Indicates you can use one of the following as the area of interest:<bulletList>
+										<bullet_item>The default area of interest of the data frame</bullet_item>
+										<bullet_item> As Specified Below - When you specify an extent by directly adding coordinates, a spatial reference for those coordinates is derived from the following, in order: (1) ArcMap's focused data frame (2) or, if ArcMap is not active, the Cartographic Coordinate System set in the Environment Settings </bullet_item><bullet_item>The same AOI as the display</bullet_item>
+									</bulletList></bullet_item>
+							</bulletList></para><para>
+							
+								<para>The only extent options valid for this tool are "Default", "As Specified Below" or "Same as Display". Selecting any other option will result in an error.</para>
+							
+						</para>
+					</pythonReference><dialogReference>
+						<para>The feature layer or x,y extent used to determine the extent of the grid layer created.</para>
+						<para><bulletList>
+								<bullet_item>Feature layer—Indicates you can choose the layer to use for the area of interest. Only one selected feature will be used from this layer. For layers that have more than one feature, the tool will only create a grid layer based on the first feature. The first feature is based on object id. All remaining features are ignored.</bullet_item>
+								<bullet_item>Extent—Indicates you can use one of the following as the area of interest:<bulletList>
+										<bullet_item>The default area of interest of the data frame</bullet_item>
+										<bullet_item> As Specified Below - When you specify an extent by directly adding coordinates, a spatial reference for those coordinates is derived from the following, in order: (1) ArcMap's focused data frame (2) or, if ArcMap is not active, the Cartographic Coordinate System set in the Environment Settings </bullet_item><bullet_item>The same AOI as the display</bullet_item>
+									</bulletList></bullet_item>
+							</bulletList></para><para>
+							
+								<para>The only extent options valid for this tool are "Default", "As Specified Below" or "Same as Display". Selecting any other option will result in an error.</para>
+							
+						</para>
+					</dialogReference></param><param sync="true" name="input_feature_dataset" displayname="Input Feature Dataset" datatype="Feature Dataset" direction="Input" expression="input_feature_dataset" type="Required"><pythonReference>
+						<para> The feature dataset that will store the features. Grid-specific feature classes will be created if they do not already exist. If they already exist, and a grid with the same name and type as the one being created also exists, it will be overwritten.</para>
+						
+							<para>A grid with the same name and type as the one created will always be overwritten, regardless of the GP environment.</para>
+						
+					</pythonReference><dialogReference>
+						<para> The feature dataset that will store the features. Grid-specific feature classes will be created if they do not already exist. If they already exist, and a grid with the same name and type as the one being created also exists, it will be overwritten.</para>
+						
+							<para>A grid with the same name and type as the one created will always be overwritten, regardless of the GP environment.</para>
+						
+					</dialogReference></param><param sync="true" name="output_layer" displayname="Output Layer" datatype="Group Layer" direction="Output" expression="output_layer" type="Required"><pythonReference>
+						<para>The grouped layer of feature classes depicting grid, graticule, and border features. Each grid layer can be composed of a mask polygon, a clip polygon, segments(line), gridlines(line), ticks(line), endpoints(point), points(point), and annotation feature classes.</para>
+						<para>
+							
+								<para>This is an in-memory layer that you must save in the ArcMap document or as a layer file.</para>
+							
+						</para>
+					</pythonReference><dialogReference>
+						<para>The grouped layer of feature classes depicting grid, graticule, and border features. Each grid layer can be composed of a mask polygon, a clip polygon, segments(line), gridlines(line), ticks(line), endpoints(point), points(point), and annotation feature classes.</para>
+						<para>
+							
+								<para>This is an in-memory layer that you must save in the ArcMap document or as a layer file.</para>
+							
+						</para>
+					</dialogReference></param><param sync="true" name="name" displayname="Name [value or field]" datatype="String; Field" direction="Input" expression="name" type="Optional"><pythonReference>
+						<para> The name for the cartographic grid created that allows for distinction between grids that are stored in the same feature dataset and set of feature classes, expressed in one of the following formats:</para>
+						<para><bulletList>
+								<bullet_item>String—Enter a text string for the grid name.</bullet_item>
+								<bullet_item>Field—Enter a field from the feature layer. The value of the field for the selected feature is used to name the grid. An area of interest field name can be used when the Input Area of Interest parameter is defined as Feature Layer.</bullet_item>
+							</bulletList></para></pythonReference><dialogReference>
+						<para> The name for the cartographic grid created that allows for distinction between grids that are stored in the same feature dataset and set of feature classes, expressed in one of the following formats:</para>
+						<para><bulletList>
+								<bullet_item>String—Enter a text string for the grid name.</bullet_item>
+								<bullet_item>Field—Enter a field from the feature layer. The value of the field for the selected feature is used to name the grid. An area of interest field name can be used when the Input Area of Interest parameter is defined as Feature Layer.</bullet_item>
+							</bulletList></para></dialogReference></param><param sync="true" name="refscale" displayname="Reference Scale" datatype="Double" direction="Input" expression="refscale" type="Optional"><pythonReference>
+						<para>The scale at which the grid is created and should be viewed. When the reference scale from the XML grid definition file is defined as "Use Environment", the reference scale is derived in the following order:</para>
+						<para><bulletList>
+								<bullet_item>The geoprocessing Reference Scale environment setting</bullet_item>
+								<bullet_item>The active data frame's reference scale</bullet_item>
+								<bullet_item>The active data frame's scale</bullet_item>
+								<bullet_item>The value from the XML grid definition file</bullet_item>
+							</bulletList></para></pythonReference><dialogReference>
+						<para>The scale at which the grid is created and should be viewed. When the reference scale from the XML grid definition file is defined as "Use Environment", the reference scale is derived in the following order:</para>
+						<para><bulletList>
+								<bullet_item>The geoprocessing Reference Scale environment setting</bullet_item>
+								<bullet_item>The active data frame's reference scale</bullet_item>
+								<bullet_item>The active data frame's scale</bullet_item>
+								<bullet_item>The value from the XML grid definition file</bullet_item>
+							</bulletList></para></dialogReference></param><param sync="true" name="rotation" displayname="Rotation" datatype="Double" direction="Input" expression="rotation" type="Optional"><pythonReference>
+						<para>The rotation angle for the grid components. Rotation is used to provide annotation that is level with the page. Unless otherwise specified, rotation is calculated using the area of interest feature. When the rotation type from the XML grid definition file is defined as "Use Environment", the rotation is derived in the following order:</para>
+						<para><bulletList>
+								<bullet_item>The active data frame's rotation</bullet_item>
+								<bullet_item>The value from the XML grid definition file</bullet_item>
+							</bulletList></para></pythonReference><dialogReference>
+						<para>The rotation angle for the grid components. Rotation is used to provide annotation that is level with the page. Unless otherwise specified, rotation is calculated using the area of interest feature. When the rotation type from the XML grid definition file is defined as "Use Environment", the rotation is derived in the following order:</para>
+						<para><bulletList>
+								<bullet_item>The active data frame's rotation</bullet_item>
+								<bullet_item>The value from the XML grid definition file</bullet_item>
+							</bulletList></para></dialogReference></param><param sync="true" name="mask_size" displayname="Mask Size" datatype="Linear Unit" direction="Input" expression="mask_size" type="Optional"><pythonReference>
+						<para> The mask is a polygon feature that forms an outer ring around the extent of the neatline and is used to mask data that falls in the area reserved for coordinate labels. Mask size defines the width of the polygon mask feature in map or page units. The data frame may have to be resized to fit around the edge of the mask while including the coordinate labels.</para>
+					</pythonReference><dialogReference>
+						<para> The mask is a polygon feature that forms an outer ring around the extent of the neatline and is used to mask data that falls in the area reserved for coordinate labels. Mask size defines the width of the polygon mask feature in map or page units. The data frame may have to be resized to fit around the edge of the mask while including the coordinate labels.</para>
+					</dialogReference></param><param sync="true" name="xy_tolerance" displayname="XY Tolerance" datatype="Linear unit" direction="Input" expression="xy_tolerance" type="Optional"><pythonReference>
+						<para>The minimum tolerated distance between geodatabase features, expressed in linear units. This value is defaulted from the value set in the XML.</para>
+						<para>You can set the value higher for data with less coordinate accuracy and lower for data with extremely high accuracy. Features that fall within the set XY tolerance will be considered coincident. </para>
+					</pythonReference><dialogReference>
+						<para>The minimum tolerated distance between geodatabase features, expressed in linear units. This value is defaulted from the value set in the XML.</para>
+						<para>You can set the value higher for data with less coordinate accuracy and lower for data with extremely high accuracy. Features that fall within the set XY tolerance will be considered coincident. </para>
+					</dialogReference></param><param sync="true" name="primary_coordinate_system" displayname="Primary Coordinate System" datatype="Spatial Reference" direction="Input" expression="primary_coordinate_system" type="Optional"><pythonReference>
+						<para>The grid template XML file creates grid components depicting coordinates or locations for  a primary coordinates system and up to four ancillary coordinate systems. The number of  ancillary grids is specified by the file. You cannot add or delete ancillary coordinate systems. All coordinate systems specified must share a common geographic coordinate system. If you want to change the primary coordinate system to one that uses a different datum than the default, say for example you change the coordinate system from one that uses WGS 1984 to one that uses NAD 1983, you must change each default ancillary coordinate systems to NAD 1983 as well.</para><para>This is the primary coordinate system for the grid layer being created. Typically, it will be the coordinate system of the final product or data frame. This coordinate system must be a projected coordinate system. </para>
+					</pythonReference><dialogReference>
+						<para>The grid template XML file creates grid components depicting coordinates or locations for  a primary coordinates system and up to four ancillary coordinate systems. The number of  ancillary grids is specified by the file. You cannot add or delete ancillary coordinate systems. All coordinate systems specified must share a common geographic coordinate system. If you want to change the primary coordinate system to one that uses a different datum than the default, say for example you change the coordinate system from one that uses WGS 1984 to one that uses NAD 1983, you must change each default ancillary coordinate systems to NAD 1983 as well.</para><para>This is the primary coordinate system for the grid layer being created. Typically, it will be the coordinate system of the final product or data frame. This coordinate system must be a projected coordinate system. </para>
+					</dialogReference></param><param sync="true" name="configure_layout" displayname="Configure data frame and layout using grid settings" datatype="Boolean" direction="Input" expression="configure_layout" type="Optional"><pythonReference>
+						<para>Adjusts the data frame settings to ensure they match the grid layer. The data frame's coordinate system, scale, rotation, size, extent, and clipping may be altered to enforce consistency. This setting is only available when the tool is executed from ArcMap's layout view and is not being run in the background. The default is to have this check box unchecked.</para>
+						<bulletList><bullet_item>CONFIGURELAYOUT—Indicates data frame and layout are configured using grid settings.</bullet_item><bullet_item>NO_CONFIGURELAYOUT—Indicates data frame and layout are not configured. This is the default.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Adjusts the data frame settings to ensure they match the grid layer. The data frame's coordinate system, scale, rotation, size, extent, and clipping may be altered to enforce consistency. This setting is only available when the tool is executed from ArcMap's layout view and is not being run in the background. The default is to have this check box unchecked.</para>
+						<para><bulletList>
+								<bullet_item>Checked—Indicates data frame and layout are configured using grid settings.</bullet_item>
+								<bullet_item>Unchecked—Indicates data frame and layout are not configured.</bullet_item>
+							</bulletList></para></dialogReference></param><param sync="true" name="ancillary_coordinate_system_1" displayname="Ancillary Coordinate System 1" datatype="Spatial Reference" direction="Input" expression="ancillary_coordinate_system_1" type="Optional"><pythonReference>
+						<para>The grid template XML file creates grid components depicting coordinates or locations for  a primary coordinate system and up to four ancillary coordinate systems. The number of  ancillary grids is specified by the file. You cannot add or delete ancillary coordinate systems. All coordinate systems specified must share a common geographic coordinate system. If you want to change the primary coordinate system to one that uses a different datum than the default, say for example you change the coordinate system from one that uses WGS 1984 to one that uses NAD 1983, you must change each default ancillary coordinate systems to NAD 1983 as well.</para>
+						<para>This is the first ancillary coordinate system.</para>
+					</pythonReference><dialogReference>
+						<para>The grid template XML file creates grid components depicting coordinates or locations for  a primary coordinate system and up to four ancillary coordinate systems. The number of  ancillary grids is specified by the file. You cannot add or delete ancillary coordinate systems. All coordinate systems specified must share a common geographic coordinate system. If you want to change the primary coordinate system to one that uses a different datum than the default, say for example you change the coordinate system from one that uses WGS 1984 to one that uses NAD 1983, you must change each default ancillary coordinate systems to NAD 1983 as well.</para>
+						<para>This is the first ancillary coordinate system.</para>
+					</dialogReference></param><param sync="true" name="ancillary_coordinate_system_2" displayname="Ancillary Coordinate System 2" datatype="Spatial Reference" direction="Input" expression="ancillary_coordinate_system_2" type="Optional"><pythonReference>
+						<para>The grid template XML file creates grid components depicting coordinates or locations for  a primary coordinates system and up to four ancillary coordinate systems. The number of  ancillary grids is specified by the file. You cannot add or delete ancillary coordinate systems. All coordinate systems specified must share a common geographic coordinate system. If you want to change the primary coordinate system to one that uses a different datum than the default, say for example you change the coordinate system from one that uses WGS 1984 to one that uses NAD 1983, you must change each default ancillary coordinate systems to NAD 1983 as well.</para>
+						<para>This is the second ancillary coordinate system.</para>
+					</pythonReference><dialogReference>
+						<para>The grid template XML file creates grid components depicting coordinates or locations for  a primary coordinates system and up to four ancillary coordinate systems. The number of  ancillary grids is specified by the file. You cannot add or delete ancillary coordinate systems. All coordinate systems specified must share a common geographic coordinate system. If you want to change the primary coordinate system to one that uses a different datum than the default, say for example you change the coordinate system from one that uses WGS 1984 to one that uses NAD 1983, you must change each default ancillary coordinate systems to NAD 1983 as well.</para>
+						<para>This is the second ancillary coordinate system.</para>
+					</dialogReference></param><param sync="true" name="ancillary_coordinate_system_3" displayname="Ancillary Coordinate System 3" datatype="Spatial Reference" direction="Input" expression="ancillary_coordinate_system_3" type="Optional"><pythonReference>
+						<para>The grid template XML file creates grid components depicting coordinates or locations for  a primary coordinates system and up to four ancillary coordinate systems. The number of  ancillary grids is specified by the file. You cannot add or delete ancillary coordinate systems. All coordinate systems specified must share a common geographic coordinate system. If you want to change the primary coordinate system to one that uses a different datum than the default, say for example you change the coordinate system from one that uses WGS 1984 to one that uses NAD 1983, you must change each default ancillary coordinate systems to NAD 1983 as well.</para><para>This is the third ancillary coordinate system.</para>
+					</pythonReference><dialogReference>
+						<para>The grid template XML file creates grid components depicting coordinates or locations for  a primary coordinates system and up to four ancillary coordinate systems. The number of  ancillary grids is specified by the file. You cannot add or delete ancillary coordinate systems. All coordinate systems specified must share a common geographic coordinate system. If you want to change the primary coordinate system to one that uses a different datum than the default, say for example you change the coordinate system from one that uses WGS 1984 to one that uses NAD 1983, you must change each default ancillary coordinate systems to NAD 1983 as well.</para><para>This is the third ancillary coordinate system.</para>
+					</dialogReference></param><param sync="true" name="ancillary_coordinate_system_4" displayname="Ancillary Coordinate System 4" datatype="Spatial Reference" direction="Input" expression="ancillary_coordinate_system_4" type="Optional"><pythonReference>
+						<para>The grid template XML file creates grid components depicting coordinates or locations for  a primary coordinates system and up to four ancillary coordinate systems. The number of  ancillary grids is specified by the file. You cannot add or delete ancillary coordinate systems. All coordinate systems specified must share a common geographic coordinate system. If you want to change the primary coordinate system to one that uses a different datum than the default, say for example you change the coordinate system from one that uses WGS 1984 to one that uses NAD 1983, you must change each default ancillary coordinate systems to NAD 1983 as well.</para><para>This is the fourth ancillary coordinate system.</para>
+					</pythonReference><dialogReference>
+						<para>The grid template XML file creates grid components depicting coordinates or locations for  a primary coordinates system and up to four ancillary coordinate systems. The number of  ancillary grids is specified by the file. You cannot add or delete ancillary coordinate systems. All coordinate systems specified must share a common geographic coordinate system. If you want to change the primary coordinate system to one that uses a different datum than the default, say for example you change the coordinate system from one that uses WGS 1984 to one that uses NAD 1983, you must change each default ancillary coordinate systems to NAD 1983 as well.</para><para>This is the fourth ancillary coordinate system.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cartographic_coordinate_system" label="Cartographic coordinate system">The primary and ancillary coordinate systems parameters will use this setting when the XML grid definition file is defined as "Use Environment".</environment><environment name="Reference_scale" label="Reference scale">The Reference Scale parameter will use this setting when the XML grid definition file is defined as "Use Environment".</environment><environment name="XY_tolerance" label="XY tolerance">The XY Tolerance parameter will use this setting when the XML grid definition file is defined as "Use Environment".</environment></environments><usage><bullet_item><para>This tool is designed for projected maps that will be printed or exported. It is not meant for creating grids or graticules that dynamically update as the user navigates the map.</para></bullet_item><bullet_item>
+				<para>You must input an area of interest to determine the extent of the grid layer to be created.</para>
+			</bullet_item><bullet_item>
+				<para>In the Make Grids and Graticules Layer dialog box, once the Grid Template (XML file) parameter is defined, hover over or click the context-sensitive area immediately to the left of the parameter name to display grid type, description, rotation type, and scale type information for the defined XML grid definition template.</para>
+			</bullet_item><bullet_item><para>The grid template XML file specifies grid components depicting measurements or locations for  a primary and ancillary coordinates systems. All coordinate systems specified must share a common geographic coordinate system. If you want to change the primary coordinate system to one that uses a different datum than the default, say for example you change the coordinate system from one that uses WGS 1984 to one that uses NAD 1983, you must change each default ancillary coordinate systems to NAD 1983 as well.</para></bullet_item><bullet_item><para>The grid template XML file creates grid components for up to four ancillary coordinate systems. The number of  ancillary grids is specified by the XML file. You cannot add or delete ancillary coordinate systems, but you can override the default values. </para></bullet_item><bullet_item><para>The Primary Coordinate System must be a projected coordinate system.</para></bullet_item><bullet_item><para>Ancillary coordinate systems can be either a projected coordinate system or a geographic coordinate system.</para></bullet_item><bullet_item><para>The spatial reference of the Input Feature Dataset should have the same geographic coordinate system as specified by the grid template XML file.</para></bullet_item><bullet_item><para>The spatial reference of the Input Area of  Interest should have the same geographic coordinate system as specified by the grid template XML file.</para></bullet_item><bullet_item><para>If you are accessing the tool from ArcMap checking the Configure data frame and layout using grid settings checkbox ensures that the data frame on the layout is adjusted to best fit the created grid. The data frame's coordinate system, scale, rotation, size, extent, and clipping may be altered to match the XML grid specification. This setting is only available when the tool is executed from ArcMap's layout view and is not being run in the background. The default is to have this check box unchecked, which will not change any of your data frame properties.</para></bullet_item></usage><scriptExamples><scriptExample><title></title><para>Creates a cartographic grid.</para><code xml:space="preserve"># Name: MakeGridsAndGraticulesLayer.py
+# Description: Create grid for a selected area of interest in a file
+# geodatabase
+# Author: ESRI
+
+# Import system module
+import arcpy
+
+# Enabling logging of the results
+arcpy.logHistory = True
+
+# Enable background geoprocessing 
+# arcpy.Command("force_run_in_background yes")  #uncomment this to run the
+# GP tool in the background
+
+# Set overwrite outputs of geoprocessing operations to true
+arcpy.gp.overwriteOutput = 1
+
+# Create a feature layer from the input area of interest feature class
+# to pass to the Selection geoprocess below 
+arcpy.MakeFeatureLayer_management("C:/Base_Data/AOIs.gdb/QUAD_24K",
+                                  "QUAD_24K")
+
+# Select a feature from the area of interest feature layer based on a
+# definiton query (this query, formatted for a file geodatabase, has
+# been adjusted for use in python, in particular the use of \ in
+# conjunction with the double quotes surrounding the field name in the
+# definition query)
+arcpy.SelectLayerByAttribute_management("QUAD_24K", "NEW_SELECTION",
+                                        "\"MSNAME\" = 'Swift Minnesota'")
+
+# Set the values of the tool's parameters using one of the grid
+# defintion XML files located under the GridTemplates directory
+t = "C:/Program Files/ArcGIS/Desktop10.0/GridTemplates/Quad_24K_NAD83.xml"
+
+in_aoi = "QUAD_24K"
+input_feature_dataset = "C:/Python_Output/grid_layers.gdb/QUAD_24K"
+output_layer = "QUAD_24K_NAD83_Grid"
+name = "MSNAME"
+
+# Process: Make Grids and Graticules Layer (the '#' indicates use
+# default values)
+arcpy.MakeGridsAndGraticulesLayer_cartography(t, in_aoi,
+                                              input_feature_dataset,
+                                              output_layer, name, "#", "#",
+                                              "#", "#", "#")
+                    </code></scriptExample></scriptExamples></tool></metadata>

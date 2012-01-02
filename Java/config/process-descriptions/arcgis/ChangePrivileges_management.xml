@@ -1,0 +1,52 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Change Privileges (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Establishes or changes user access privileges to the input ArcSDE datasets, stand-alone feature classes, or tables.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Access</keyword><keyword>Allow</keyword><keyword>Database</keyword><keyword>Dataset</keyword><keyword>Edit</keyword><keyword>Grant</keyword><keyword>Password</keyword><keyword>Permission</keyword><keyword>Read</keyword><keyword>Revoke</keyword><keyword>User</keyword><keyword>View</keyword><keyword>Write</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ChangePrivileges" displayname="Change Privileges (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Establishes or changes user access privileges to the input ArcSDE datasets, stand-alone feature classes, or tables.</para>
+		</summary><alink_name>ChangePrivileges_management</alink_name><parameters><param sync="true" name="in_dataset" displayname="Input Dataset" datatype="Layer ; Table View ; Dataset" direction="Input" expression="[in_dataset,...]" type="Required"><pythonReference>
+						<para>The datasets, feature classes, or tables whose access privileges will be changed.</para>
+					</pythonReference><dialogReference>
+						<para>The datasets, feature classes, or tables whose access privileges will be changed.</para>
+					</dialogReference></param><param sync="true" name="user" displayname="User" datatype="String" direction="Input" expression="user" type="Required"><pythonReference>
+						<para>The database username whose privileges are being modified.</para>
+					</pythonReference><dialogReference>
+						<para>The database username whose privileges are being modified.</para>
+					</dialogReference></param><param sync="true" name="view" displayname="View (Select)" datatype="String" direction="Input" expression="view" type="Optional"><pythonReference>
+						<para>Establishes the user's View privileges.</para>
+						<bulletList><bullet_item>AS_IS —No change to the user's existing view privilege. If the user has view privileges, they will continue to have view privileges. If the user doesn't have view privileges, they will continue to not have view privileges. </bullet_item><bullet_item>GRANT—Allows user to view datasets.</bullet_item><bullet_item>REVOKE—Removes all user privileges to view datasets.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Establishes the user's View privileges.</para>
+						<bulletList><bullet_item>AS_IS —No change to the user's existing view privilege. If the user has view privileges, they will continue to have view privileges. If the user doesn't have view privileges, they will continue to not have view privileges. </bullet_item><bullet_item>GRANT—Allows user to view datasets.</bullet_item><bullet_item>REVOKE—Removes all user privileges to view datasets.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="edit" displayname="Edit (Insert/Update/Delete)" datatype="String" direction="Input" expression="edit" type="Optional"><pythonReference>
+						<para>Establishes the user's Edit privileges.</para>
+						<bulletList><bullet_item>AS_IS — No change to the user's existing edit privilege. If the user has edit privileges, they will continue to have edit privileges. If the user doesn't have edit privileges, they will continue to not have edit privileges. This is the default.</bullet_item><bullet_item>GRANT—Allows the user to edit the input datasets.</bullet_item><bullet_item>REVOKE—Removes the user's edit privileges. The user may still view the Input dataset. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Establishes the user's Edit privileges.</para>
+						<bulletList><bullet_item>AS_IS — No change to the user's existing edit privilege. If the user has edit privileges, they will continue to have edit privileges. If the user doesn't have edit privileges, they will continue to not have edit privileges. This is the default.</bullet_item><bullet_item>GRANT—Allows the user to edit the input datasets.</bullet_item><bullet_item>REVOKE—Removes the user's edit privileges. The user may still view the Input dataset. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>To edit ArcSDE datasets, both the View and Edit parameters must be granted. Edit privileges are dependent on the View privilege, since you cannot edit what you cannot see (view).</para>
+			</bullet_item><bullet_item>
+				<para>Edit privileges may be revoked, but you can still view the dataset. However, if the View privilege is revoked, the Edit privileges will automatically be revoked as well.</para>
+			</bullet_item><bullet_item>
+				<para>The possible privilege combinations and their outcome are as follows:</para>
+				
+					
+					
+					
+				
+			</bullet_item><bullet_item>
+				<para>The relational database management system (RDBMS) equivalent command for the View parameter is Select.</para>
+			</bullet_item><bullet_item>
+				<para>The RDBMS equivalent commands for the Edit parameter are Update, Insert, and Delete. All three are granted or revoked simultaneously by the Edit parameter.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><para> The following stand-alone script demonstrates how to grants view and edit privileges to WendelClark.</para><code xml:space="preserve"># Name: GrantPrivileges_Example.py
+# Description: Grants view and edit privileges to WendelClark
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+datasetName = "Database Connections/ninefour@gdb.sde/ninefour.GDB.ctgFuseFeature"
+
+# Execute ChangePrivileges
+arcpy.ChangePrivileges_management( datasetName, "WENDELCLARK", "GRANT", "GRANT")
+                    </code></scriptExample></scriptExamples></tool></metadata>

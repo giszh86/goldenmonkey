@@ -1,0 +1,46 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">XML Schema Validation  (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Uses the .NET 3.5 Framework's XML software to validate an ArcGIS item's metadata or any XML file. The XML is checked to see  if it follows the structure and content rules outlined by an XML schema. Schemas written using the DTD or W3C XML Schema languages may be used with this tool. </para>
+			<para>ArcGIS metadata is not formatted in a manner that can be directly validated against an XML schema. However, other metadata geoprocessing tools can export ArcGIS metadata to XML files that are formatted to follow a metadata standard's XML Schema or DTD; use this tool to validate the exported XML file.</para>
+			<para>If the metadata or XML file is not valid for the specified XML Schema or DTD, the warning or error returned by the XML software will appear in the tool's messages. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Check</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>Extensible</keyword><keyword>Format</keyword><keyword>Import</keyword><keyword>Language</keyword><keyword>Make</keyword><keyword>Markup</keyword><keyword>Parse</keyword><keyword>Schema</keyword><keyword>Standard</keyword><keyword>Style</keyword><keyword>Test</keyword><keyword>Transfer</keyword><keyword>Turn</keyword><keyword>Validate</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" XMLSchemaValidator " displayname="XML Schema Validation  (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para> Uses the .NET 3.5 Framework's XML software to validate an ArcGIS item's metadata or any XML file. The XML is checked to see  if it follows the structure and content rules outlined by an XML schema. Schemas written using the DTD or W3C XML Schema languages may be used with this tool. </para>
+			<para>ArcGIS metadata is not formatted in a manner that can be directly validated against an XML schema. However, other metadata geoprocessing tools can export ArcGIS metadata to XML files that are formatted to follow a metadata standard's XML Schema or DTD; use this tool to validate the exported XML file.</para>
+			<para>If the metadata or XML file is not valid for the specified XML Schema or DTD, the warning or error returned by the XML software will appear in the tool's messages. </para>
+		</summary><alink_name> XMLSchemaValidator _conversion</alink_name><parameters><param sync="true" name="source" displayname="Source Metadata" datatype="Data Element; Layer" direction="Input" expression="source" type="Required"><pythonReference>
+						<para>The item whose metadata will be validated, or a stand-alone XML file that will be validated.</para>
+					</pythonReference><dialogReference>
+						<para>The item whose metadata will be validated, or a stand-alone XML file that will be validated.</para>
+					</dialogReference></param><param sync="true" name="schemaurl" displayname="Schema URL" datatype="String" direction="Input" expression="schemaurl" type="Required"><pythonReference>
+						<para>The XML Schema or XML DTD that describes the structure and content of a valid XML document. </para>
+					</pythonReference><dialogReference>
+						<para>The XML Schema or XML DTD that describes the structure and content of a valid XML document. </para>
+					</dialogReference></param><param sync="true" name="nsuri" displayname="Namespace URI" datatype="String" direction="Input" expression="nsuri" type="Optional"><pythonReference>
+						<para>The XML namespace that will be validated. </para>
+						<para>If Schema URL identifies a DTD this value won't be used.</para>
+					</pythonReference><dialogReference>
+						<para>The XML namespace that will be validated. </para>
+						<para>If Schema URL identifies a DTD this value won't be used.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item><para>Some XML Schemas require you to specify the XML namespace you want to validate, while others do not.</para></bullet_item><bullet_item><para>The message Adding schemas... indicates the schema is loading. All errors or warnings found in the schema will be reported here. </para><para>The message Reading document... indicates when validation of the metadata or XML file begins. All errors or warnings found in the metadata or XML file are reported  here.</para></bullet_item><bullet_item><para>If you have metadata XML files formatted to follow the ISO 19139 metadata standard, <italics>Geographic Information—Metadata—Implementation Specification</italics>, and you validate them against the 2005 version of the XML Schemas provided with this standard, the tool reports an issue with the . This warning is only reported by the .NET 3.5 Framework's XML software and appears in the tool's messages as follows: validation warning (423:8): Empty choice cannot be satisfied if 'minOccurs' is not equal to 0. The warning indicates there is a problem in the 8th character on line 423; it occurs in the coverage.xsd XML Schema. Other XML parsers don't report any problems with the same XML Schemas.</para></bullet_item><bullet_item>
+				<para>The Source Metadata parameter has a complex data type. If you use this tool in a model, create a variable for the Source Metadata parameter in ModelBuilder by right-clicking the tool, pointing to Make VariableFrom ParameterSource Metadata.</para>
+			</bullet_item><bullet_item>
+				<para> When using this tool in ModelBuilder, the Output Metadata parameter is derived from the Source Metadata parameter.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Validate an ISO 19139 metadata XML file using an XML Schema</title>
+					
+					<para>Validates a stand-alone XML file containing ISO 19139-formatted metadata using the online ISO 19139 XML Schema. These XML Schemas require you to specify the XML namespace you want to validate.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+#set local variables
+schema = "http://www.isotc211.org/schemas/2005/gmd/metadataEntity.xsd"
+namespace = "http://www.isotc211.org/2005/gmd"
+arcpy.XMLSchemaValidator_conversion("metadata_19139.xml", schema, namespace)
+                    </code></scriptExample><scriptExample><title>Validate an FGDC metadata XML file using an XML Schema</title>
+					
+					<para>Validates a stand-alone XML file containing FGDC CSDGM-formatted metadata using a local copy of the FGDC XML Schema files. These can be downloaded from the . These XML Schemas don't require you to specify the XML namespace you want to validate.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+#set local variables
+schema = "c:/metadata/FGDCxsd/non-annotated/fgdc-std-001-1998.xsd"
+arcpy.XMLSchemaValidator_conversion("metadata_fgdc.xml", schema, "#")
+                    </code></scriptExample></scriptExamples></tool></metadata>

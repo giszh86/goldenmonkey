@@ -1,0 +1,117 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Interpolate Shape (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool interpolates z-values for a feature class based on an underlying raster, triangulated irregular network (TIN), or terrain dataset surface. </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D</keyword><keyword>Interpolate</keyword><keyword>Interpolate 3D Shape</keyword><keyword>Shape</keyword><keyword>Surface</keyword><keyword>Surface Analysis</keyword><keyword>Tin</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="InterpolateShape" displayname="Interpolate Shape (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool interpolates z-values for a feature class based on an underlying raster, triangulated irregular network (TIN), or terrain dataset surface. </para>
+			
+		</summary><alink_name>InterpolateShape_3d</alink_name><toolIllust type="illustration" src="InterpolateShape_3d_h.gif" alt="Interpolate Shape illustration" /><parameters><param sync="true" name="in_surface" displayname="Input Surface" datatype="TIN Layer; Raster Layer; Terrain Layer" direction="Input" expression="in_surface" type="Required"><pythonReference>
+						<para>The input raster, TIN, or terrain surface to be used as a source of z-values.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster, TIN, or terrain surface to be used as a source of z-values.</para>
+					</dialogReference></param><param sync="true" name="in_feature_class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_feature_class" type="Required"><pythonReference>
+						<para>The input 2D feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The input 2D feature class.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class.</para>
+					</dialogReference></param><param sync="true" name="sample_distance" displayname="Sampling Distance" datatype="Double" direction="Input" expression="sample_distance" type="Optional"><pythonReference>
+						<para>The spacing at which z-values will be interpolated. By default, this is a raster's cell size or a TIN's natural densification.</para>
+					</pythonReference><dialogReference>
+						<para>The spacing at which z-values will be interpolated. By default, this is a raster's cell size or a TIN's natural densification.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>The factor by which the heights of the input surface will be multiplied to calculate new heights in the output feature class. It is used for converting z-units to match x,y units.   The Z factor parameter only affects results for rasters and TINs, not terrain datasets.   To apply a factor to features made from a terrain dataset use the Adjust 3D Z geoprocessing tool.</para>
+					</pythonReference><dialogReference>
+						<para>The factor by which the heights of the input surface will be multiplied to calculate new heights in the output feature class. It is used for converting z-units to match x,y units.   The Z factor parameter only affects results for rasters and TINs, not terrain datasets.   To apply a factor to features made from a terrain dataset use the Adjust 3D Z geoprocessing tool.</para>
+					</dialogReference></param><param sync="true" name="method" displayname="Method" datatype="String" direction="Input" expression="method" type="Optional"><pythonReference>
+						<para> Interpolation method used to define the Z values for the input features. </para>
+						<bulletList><bullet_item>LINEAR— Default interpolation method. Estimates z from the plane defined by the TIN or terrain triangle that contains the XY location of a query point. </bullet_item><bullet_item>NATURAL_NEIGHBORS— Estimates z by applying area based weights to the TIN or terrain's natural neighbors of a query point. </bullet_item><bullet_item>CONFLATE_ZMIN— Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor with the minimum height is used.</bullet_item><bullet_item>CONFLATE_ZMAX— Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor with the maximum height is used.</bullet_item><bullet_item>CONFLATE_NEAREST— Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor closest in XY to the query point is used.</bullet_item><bullet_item>CONFLATE_CLOSEST_TO_MEAN — Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor which is closest to the average height of all the neighbors is used.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Interpolation method used to define the Z values for the input features. </para>
+						<bulletList><bullet_item>LINEAR— Default interpolation method. Estimates z from the plane defined by the TIN or terrain triangle that contains the XY location of a query point. </bullet_item><bullet_item>NATURAL_NEIGHBORS— Estimates z by applying area based weights to the TIN or terrain's natural neighbors of a query point. </bullet_item><bullet_item>CONFLATE_ZMIN— Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor with the minimum height is used.</bullet_item><bullet_item>CONFLATE_ZMAX— Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor with the maximum height is used.</bullet_item><bullet_item>CONFLATE_NEAREST— Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor closest in XY to the query point is used.</bullet_item><bullet_item>CONFLATE_CLOSEST_TO_MEAN — Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor which is closest to the average height of all the neighbors is used.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="vertices_only" displayname="Interpolate Vertices Only" datatype="Boolean" direction="Input" expression="vertices_only" type="Optional"><pythonReference>
+						<para>The sample distance will be ignored and the interpolation will use the input vertex locations only.</para>
+					</pythonReference><dialogReference>
+						<para>When checked, the interpolation will ignore sample distance and only use the input vertex locations for the interpolation.</para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Double" direction="Input" expression="pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The resolution of the terrain dataset pyramid level to use for geoprocessing. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The resolution of the terrain dataset pyramid level to use for geoprocessing. The default is 0, full resolution.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>When using the  interpolation option, make sure to specify a reasonable sample distance. This usually falls between 0.5 and 1.0 times the average point spacing of the data used to build the TIN or terrain dataset.</para>
+			</bullet_item><bullet_item>
+				<para>When using the Interpolate Vertices Only option, input features with vertices that fall outside the data area of the surface will be ignored and not output. Clip features prior to running Interpolate Shape to ensure the features are completely on the surface.</para>
+			</bullet_item><bullet_item><para>The Z factor parameter only affects results for rasters and TINs, not terrain datasets.   To apply a z factor to features made from a terrain dataset use the  geoprocessing tool.</para></bullet_item></usage><scriptExamples><scriptExample><title>Interpolate Shape Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Interpolate Shape
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.InterpolateShape_3d("C:/Data/tin1", "Roads.shp", "roads_interp.shp")
+                    </code></scriptExample><scriptExample><title>Interpolate Shape Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Interpolate Shape
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: InterpolateShape Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              InterpolateShape tool on all 2D feature classes in a target
+#              workspace.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Create list of feature classes in the current workspace
+    fcList = arcpy.ListFeatureClasses()
+    # Determine if the list found any feature classes
+    if len(fcList) &gt; 0:
+        # Iterate through the list
+        for fc in fcList:
+            desc = arcpy.Describe(fc)
+            # Determine if the feature class is 2D
+            if desc.hasZ is False:
+                # Set Local Variables
+                inSurface = "elevation_tin"
+                outFC = fc[:-4] + "_3D.shp"
+                method = "BILINEAR"
+                # Execute InterpolateShape
+                arcpy.InterpolateShape_3d(inSurface, fc, outFC, 10, 1, method, True)
+            else:
+                print fc + " is not a 2D feature."
+            del desc, method, inSurface, outFC
+    else:
+        print "There are no feature classes in the " + env.workspace + " directory."
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

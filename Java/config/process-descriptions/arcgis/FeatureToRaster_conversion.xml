@@ -1,0 +1,72 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Feature to Raster (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts features to a raster dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>Import</keyword><keyword>Rasterize</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FeatureToRaster" displayname="Feature to Raster (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts features to a raster dataset.</para>
+		</summary><alink_name>FeatureToRaster_conversion</alink_name><parameters><param sync="true" name="in_features" displayname="Input features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature dataset to be converted to a raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature dataset to be converted to a raster dataset.</para>
+					</dialogReference></param><param sync="true" name="field" displayname="Field" datatype="Field" direction="Input" expression="field" type="Required"><pythonReference><para>
+The field used to assign values to the output raster.</para><para>It can be any field of the input feature dataset's attribute table.</para><para>If the input is a point or multipoint dataset and contains z, this can be the Shape field.</para>
+						</pythonReference><dialogReference><para>
+The field used to assign values to the output raster.</para><para>It can be any field of the input feature dataset's attribute table.</para><para>If the input is a point or multipoint dataset and contains z, this can be the Shape field.</para>
+						</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Required"><pythonReference><para>
+The output raster dataset to be created.</para><para>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for a GRID raster format.</para>
+					</pythonReference><dialogReference><para>
+The output raster dataset to be created.</para><para>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for a GRID raster format.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis Cell Size" direction="Input" expression="cell_size" type="Optional"><pythonReference><para>
+The cell size for the output raster dataset.</para>
+						<para>The default cell size is the shortest of the width or height of the extent of the input feature dataset, in the output spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference><para>
+The cell size for the output raster dataset.</para>
+						<para>The default cell size is the shortest of the width or height of the extent of the input feature dataset, in the output spatial reference, divided by 250.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Pyramid" label="Pyramid"></environment></environments><usage><bullet_item>
+				<para>Any feature class (geodatabase, shapefile or coverage) containing point, line, or polygon features can be converted to a raster dataset.</para>
+			</bullet_item><bullet_item>
+				<para>The input field type determines the type of output raster.  If the field is integer, the output raster will be integer; if it is floating-point, the output will be floating-point.</para>
+			</bullet_item><bullet_item>
+				<para>This tool always uses the cell center to decide the value of a raster pixel. If more control over how different types of input feature geometries are to be converted, please refer to the respective specific conversion tools: , , and .</para>
+			</bullet_item><bullet_item>
+				<para>This tool is a complement to the , , and  tools, which convert a raster to different types of feature dataset geometries.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FeatureToRaster example 1 (Python window)</title>
+					<para>Converts features to a raster dataset.
+</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "c:/data"
+arcpy.FeatureToRaster_conversion("roads.shp", "CLASS", "c:/output/roadsgrid", 25)
+                    </code></scriptExample><scriptExample><title>FeatureToRaster example 2 (stand-alone script)</title>
+					<para>Converts features to a raster dataset.
+</para>
+				<code xml:space="preserve"># Name: FeatureToRaster_Ex_02.py
+# Description: Converts features to a raster dataset.
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inFeature = "roads.shp"
+outRaster = "c:/output/roadsgrd"
+cellSize = 25
+field = "CLASS"
+
+# Execute FeatureToRaster
+arcpy.FeatureToRaster_conversion(inFeature, field, outRaster, cellSize)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

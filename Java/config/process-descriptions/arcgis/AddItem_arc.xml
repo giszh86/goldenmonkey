@@ -1,0 +1,106 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Item (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds a new blank or zero item to a new or existing INFO table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Info Table</keyword><keyword>Items</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddItem" displayname="Add Item (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Adds a new blank or zero item to a new or existing INFO table.</para>
+		</summary><alink_name>AddItem_arc</alink_name><parameters><param sync="true" name="in_info_table" displayname="Input Info Table" datatype="ArcInfo Table" direction="Input" expression="in_info_table" type="Required"><pythonReference>
+						<para>The INFO table to which the item is to be added.</para>
+					</pythonReference><dialogReference>
+						<para>The INFO table to which the item is to be added.</para>
+					</dialogReference></param><param sync="true" name="out_info_table" displayname="Output Info Table" datatype="ArcInfo Table" direction="Output" expression="out_info_table" type="Required"><pythonReference>
+						<para>The INFO table to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The INFO table to be created.</para>
+					</dialogReference></param><param sync="true" name="item_name" displayname="Item Name" datatype="String" direction="Input" expression="item_name" type="Required"><pythonReference>
+						<para>The new item to be added to the INFO table.</para>
+					</pythonReference><dialogReference>
+						<para>The new item to be added to the INFO table.</para>
+					</dialogReference></param><param sync="true" name="item_width" displayname="Item Width" datatype="Long" direction="Input" expression="item_width" type="Required"><pythonReference>
+						<para>The INFO width of the added item. Supported widths:</para>
+						<bulletList>
+							<bullet_item>BINARY—Either 2 or 4 bytes</bullet_item>
+							<bullet_item>CHARACTER—1 to 320 characters</bullet_item>
+							<bullet_item>DATE—Always 8 bytes; stored as mm/dd/yy</bullet_item>
+							<bullet_item>FLOATING—Either 4 bytes (single precision) or 8 bytes (double precision)</bullet_item>
+							<bullet_item>NUMERIC—1 to 16 digits</bullet_item>
+							<bullet_item>INTEGER—1 to 16 digits</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>The INFO width of the added item. Supported widths:</para>
+						<bulletList>
+							<bullet_item>BINARY—Either 2 or 4 bytes</bullet_item>
+							<bullet_item>CHARACTER—1 to 320 characters</bullet_item>
+							<bullet_item>DATE—Always 8 bytes; stored as mm/dd/yy</bullet_item>
+							<bullet_item>FLOATING—Either 4 bytes (single precision) or 8 bytes (double precision)</bullet_item>
+							<bullet_item>NUMERIC—1 to 16 digits</bullet_item>
+							<bullet_item>INTEGER—1 to 16 digits</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="output_width" displayname="Output Width" datatype="Long" direction="Input" expression="output_width" type="Required"><pythonReference>
+						<para>The output width of the added item. This is the number of characters used to display an item value.</para>
+						<para>For example, in a 2-byte integer (item type BINARY), values can be as high as 32767, which requires five characters for display. Dates can be displayed using eight (mm/dd/yy) or ten (mm/dd/yyyy) characters. For international date displays, months and days can be switched (for example, dd/mm/yy).</para>
+					</pythonReference><dialogReference>
+						<para>The output width of the added item. This is the number of characters used to display an item value.</para>
+						<para>For example, in a 2-byte integer (item type BINARY), values can be as high as 32767, which requires five characters for display. Dates can be displayed using eight (mm/dd/yy) or ten (mm/dd/yyyy) characters. For international date displays, months and days can be switched (for example, dd/mm/yy).</para>
+					</dialogReference></param><param sync="true" name="item_type" displayname="Item Type" datatype="String" direction="Input" expression="item_type" type="Required"><pythonReference>
+						<para>The INFO item type of the added item.</para>
+						<bulletList><bullet_item>BINARY—Binary integer; requires less storage than integer </bullet_item><bullet_item>CHARACTER—Text </bullet_item><bullet_item>DATE—Date; stores day, month, and year </bullet_item><bullet_item>FLOATING—Floating-point binary number, either single or double precision </bullet_item><bullet_item>NUMERIC—Decimal number stored as one byte per digit </bullet_item><bullet_item>INTEGER—Integer number stored as one byte per digit </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The INFO item type of the added item.</para>
+						<bulletList><bullet_item>BINARY—Binary integer; requires less storage than integer </bullet_item><bullet_item>CHARACTER—Text </bullet_item><bullet_item>DATE—Date; stores day, month, and year </bullet_item><bullet_item>FLOATING—Floating-point binary number, either single or double precision </bullet_item><bullet_item>NUMERIC—Decimal number stored as one byte per digit </bullet_item><bullet_item>INTEGER—Integer number stored as one byte per digit </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="decimal_places" displayname="Decimal Places" datatype="Long" direction="Input" expression="decimal_places" type="Optional"><pythonReference>
+						<para>The number of decimal places for the added item. This needs to be specified for INFO item types NUMERIC and FLOATING.</para>
+					</pythonReference><dialogReference>
+						<para>The number of decimal places for the added item. This needs to be specified for INFO item types NUMERIC and FLOATING.</para>
+					</dialogReference></param><param sync="true" name="start_item" displayname="Start Item" datatype="ArcInfo Item" direction="Input" expression="start_item" type="Optional"><pythonReference>
+						<para>The item in the in_info_table after which the new item is to be added. The default start_item is the last item in the in_info_table.</para>
+					</pythonReference><dialogReference>
+						<para>The item in the Input Info Table after which the new item is to be added. The default Start item is the last item in the Input Info Table.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool creates a new INFO table that is a copy of the Input Info Table with a new item containing blanks or zeroes. Data in other items are copied from the Input Info Table to the Output Info Table. When the Input Info Table and the Output Info Table have the same name, the item is added to the Input Info Table;otherwise, the Output Info Table is created as a new internal INFO table, and the Input Info Table is not altered.</para>
+			</bullet_item><bullet_item>
+				<para>Do not insert items before the cover-ID in a feature attribute table.</para>
+			</bullet_item><bullet_item>
+				<para>Do not insert items before the COUNT item in a grid VAT.</para>
+			</bullet_item><bullet_item>
+				<para>If Item Type defines a character, blanks are inserted for each record. If Item Type defines a numeric item, then zeroes are inserted for each record.</para>
+			</bullet_item><bullet_item>
+				<para>Adding items to coverage tic files is not recommended. Negative results may occur depending on the operations performed on the coverage. , , and other tools will maintain only the original tic items.</para>
+			</bullet_item><bullet_item>
+				<para>A similar tool, , adds items by merging two INFO tables. Add Item is different from Join Info Tables in that it adds only one item at a time, and the new item values are always zero or blank. Join Info Tables may be preferable when many items are to be added from an existing INFO table.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title> AddItem example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to add a binary item to a coverage's point attribute table. It uses the same table as input and output so that no new table gets created. </para>
+				<code xml:space="preserve"># Name: AddItem_Example.py
+# Description: Adds an item to a coverage's polygon attribute table
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inInfoTable = "tra_airport/polygon"
+outInfoTable = inInfoTable
+itemName = "sites"
+itemWidth = 4
+outputWidth = 5
+itemType = "BINARY"
+
+# Execute AddItem
+arcpy.AddItem_arc(inInfoTable, outInfoTable, itemName, itemWidth, outputWidth, 
+                  itemType, "", "")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

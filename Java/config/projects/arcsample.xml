@@ -1,0 +1,49 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?> 
+<!--
+  domain(type)={"FFD","WPS","GPW"}
+--> 
+<process type="FFD"
+         stepByStep="false"
+         title="ArcToolbox示例" abstract="ArcToolbox示例" >
+
+  <flow>   
+    <start id="1" name="start" title="开始" icon="2" x="10" y="10" siz="16" />    
+    <operation name="Buffer_analysis" id="2" title="道路缓冲区" abstract="道路缓冲区" color="" icon="3" x="20" y="30" size="16" >	  
+      <inputs>  
+		<input name="in_features" type="String" title="Input Features" abstract="The input point, line, or polygon features to be buffered." option="false" variable="" />
+		<input name="out_feature_class" type="String" title="Output Feature Class" abstract="The feature class containing the output feature buffers." option="false" variable="" />
+		<input name="buffer_distance_or_field" type="String" title="Distance [value or field]" abstract="The distance around the input features in which buffer zones are created. Distances can be provided as either a value representing a linear distance or as a numeric field from the input features that contains the linear distances to buffer each feature.If the Distance linear units are not specified or are entered as Unknown, the linear unit of the input features' spatial reference is used." option="false" variable="" />
+		<input name="line_side" type="String" title="Side Type" abstract="The side(s) of the input features that will be buffered.FULL—For line input features, buffers will be generated on both sides of the line. For polygon input features, buffers will be generated around the polygon and will contain and overlap the area of the input features. For point input features, buffers will be generated around the point. This is the default. LEFT—For line input features, buffers will be generated on the topological left of the line. This option is not valid for polygon input features.RIGHT—For line input features, buffers will be generated on the topological right of the line. This option is not valid for polygon input features.OUTSIDE_ONLY—For polygon input features, buffers will be generated only outside the input polygon (the area inside the input polygon will be erased from the output buffer). This option is not valid for line input features." option="false" variable="" />
+		<input name="line_end_type" type="String" title="End Type" abstract="The shape of the buffer at the end of line input features. This parameter is not valid for polygon input features." option="false" variable="" />
+		<input name="dissolve_option" type="String" title="Dissolve Type" abstract="Specifies the dissolve to be performed to remove output buffer overlap." option="false" variable="" />
+		<input name="dissolve_field" type="String" title="Dissolve Field(s)" abstract="The list of field(s) from the input features on which to dissolve the output buffers. Any buffers sharing attribute values in the listed fields (carried over from the input features) are dissolved." option="false" variable="" />
+      </inputs>
+      <outputs>
+		<output name="out_feature_class" type="String" title="Output Feature Class" abstract="The feature class containing the output feature buffers." variable="" />	  	        
+      </outputs>            
+    </operation>
+    <operation name="Clip_analysis" id="3" title="道路湖泊叠加" abstract="道路湖泊叠加" color="" icon="4" x="30" y="50" size="16">
+      <inputs>  
+		<input name="in_features" type="String" title="Input Features" abstract="The features to be clipped." option="false" variable="" />	  
+		<input name="clip_features" type="String" title="Clip Features" abstract="The features used to clip the input features." option="false" variable="" />
+		<input name="out_feature_class" type="String" title="Output Featureclass" abstract="The feature class to be created." option="false" variable="" />
+		<input name="cluster_tolerance" type="String" title="XY Tolerance" abstract="The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both). Set the value to be higher for data with less coordinate accuracy and lower for data with extremely high accuracy." option="false" variable="" />
+      </inputs>
+      <outputs>    
+		<output name="out_feature_class" type="String" title="Output Feature Class" abstract="The feature class to be created." variable="" />	  	        	  
+      </outputs>
+    </operation>     
+    <end id="4" name="end" title="结束" icon="6" x="50" y="70" size="16" />
+
+    <links>
+      <link from="1" to="2" />
+      <link from="2" to="3" >
+		<assign>
+            <from>out_feature_class</from>
+            <to>in_features</to>
+        </assign>
+	  </link>
+      <link from="3" to="4" /> 			  
+    </links>
+  </flow>
+</process>

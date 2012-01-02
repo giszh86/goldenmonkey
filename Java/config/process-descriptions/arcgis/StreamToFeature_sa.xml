@@ -1,0 +1,78 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Stream to Feature (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a raster representing a linear network to features representing the linear network.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Catchment</keyword><keyword>Convert</keyword><keyword>Flow</keyword><keyword>Raster Linear Network</keyword><keyword>Streamline</keyword><keyword>Surface Water</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="StreamToFeature" displayname="Stream to Feature (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Converts a raster representing a linear network to features representing the linear network.</para>
+			
+		</summary><alink_name>StreamToFeature_sa</alink_name><parameters><param sync="true" name="in_stream_raster" displayname="Input stream raster" datatype="Raster Layer" direction="Input" expression="in_stream_raster" type="Required"><pythonReference>
+						<para>An input raster that represents a linear stream network.</para></pythonReference><dialogReference>
+						<para>An input raster that represents a linear stream network.</para></dialogReference></param><param sync="true" name="in_flow_direction_raster" displayname="Input flow direction raster" datatype="Raster Layer" direction="Input" expression="in_flow_direction_raster" type="Required"><pythonReference>
+						<para>The input raster that shows the direction of flow out of each cell.</para><para>The flow direction raster can be created using the Flow Direction tool.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster that shows the direction of flow out of each cell.</para><para>The flow direction raster can be created using the Flow Direction tool.</para>
+					</dialogReference></param><param sync="true" name="out_polyline_features" displayname="Output polyline features" datatype="Feature Class" direction="Output" expression="out_polyline_features" type="Required"><pythonReference>
+						<para>Output feature class that will hold the converted streams.</para>
+					</pythonReference><dialogReference>
+						<para>Output feature class that will hold the converted streams.</para>
+					</dialogReference></param><param sync="true" name="simplify" displayname="Simplify polylines" datatype="Boolean" direction="Input" expression="simplify" type="Optional"><pythonReference>
+						<para>Specifies whether weeding is used.</para>
+						<bulletList><bullet_item>SIMPLIFY — The feature is weeded to reduce the number of vertices. The Douglas-Puecker algorithm for line generalization is used with a tolerance of sqrt(0.5) * cell size.</bullet_item><bullet_item>NO_SIMPLIFY — No weeding is applied.</bullet_item></bulletList>
+						<para>By default, weeding is applied.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies whether weeding is used.</para>
+						<bulletList>
+							<bullet_item>Checked—The feature is weeded to reduce the number of vertices. The Douglas-Puecker algorithm for line generalization is used with a tolerance of sqrt(0.5) * cell size.</bullet_item>
+							<bullet_item>UnChecked—No weeding is applied.</bullet_item>
+						</bulletList>
+						<para>By default, weeding is applied.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input stream raster linear network should be represented as values greater than or equal to one on a background of NoData.</para>
+			</bullet_item><bullet_item>
+				<para>The results of the Flow Accumulation tool can be used to create a raster stream network by applying a threshold value to select cells with a high accumulated flow. For example, cells that have more than 100 cells flowing into them are used to define the stream network. Use the Con or Set Null tool to create a stream network raster where flow accumulation values of 100 or greater go to one, and the remainder are put to the background (NoData). The resulting stream network can be used in Stream Link and Stream to Feature.</para><para>An analytical method for determining an appropriate threshold value for stream network delineation is presented in Tarboton, et al. (1991).</para></bullet_item><bullet_item>
+				<para>There should be contiguous features with the same value, such as the results of the Stream Order or Stream Link tool. Stream to Feature should not be used on a raster in which there are few adjacent cells of the same value.</para>
+			</bullet_item><bullet_item>
+				<para>The direction of the output features will point downstream.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>StreamToFeature example 1 (Python window)</title>
+					<para>This example converts a raster representing a linear network to features.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+StreamToFeature("stream", "flowdir", "c:/sapyexamples/output/outstrm01.shp", 
+                "NO_SIMPLIFY")
+                    </code></scriptExample><scriptExample><title>StreamToFeature example 2 (stand-alone script)</title>
+					<para>This example converts a raster representing a linear network to features.</para><code xml:space="preserve"># Name: _Ex_02.py
+# Description: 
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inStreamRaster = "stream"
+inFlowDir = "flowdir"
+outStreamFeats = "c:/sapyexamples/output.gdb/outstrm02"
+
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute 
+StreamToFeature(inStreamRaster, inFlowDir, outStreamFeats,
+                 "NO_SIMPLIFY")
+                    </code></scriptExample></scriptExamples></tool></metadata>

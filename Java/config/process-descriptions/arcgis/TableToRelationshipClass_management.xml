@@ -1,0 +1,123 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Table To Relationship Class (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates an attributed relationship class from the origin, destination, and relationship tables.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Associate</keyword><keyword>Attributed</keyword><keyword>Cardinality</keyword><keyword>Complex</keyword><keyword>Composite</keyword><keyword>Connect</keyword><keyword>Destination</keyword><keyword>Feature</keyword><keyword>Geodatabase</keyword><keyword>Join</keyword><keyword>Key</keyword><keyword>Link</keyword><keyword>Many</keyword><keyword>One</keyword><keyword>Origin</keyword><keyword>Path</keyword><keyword>Peer</keyword><keyword>Relate</keyword><keyword>Rule</keyword><keyword>Simple</keyword><keyword>Table</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TableToRelationshipClass" displayname="Table To Relationship Class (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates an attributed relationship class from the origin, destination, and relationship tables.</para>
+		</summary><alink_name>TableToRelationshipClass_management</alink_name><parameters><param sync="true" name="origin_table" displayname="Origin Table" datatype="Table View" direction="Input" expression="origin_table" type="Required"><pythonReference>
+						<para>The table or feature class that will be associated to the destination table.</para>
+					</pythonReference><dialogReference>
+						<para>The table or feature class that will be associated to the destination table.</para>
+					</dialogReference></param><param sync="true" name="destination_table" displayname="Destination Table" datatype="Table View" direction="Input" expression="destination_table" type="Required"><pythonReference>
+						<para>The table or feature class that will be associated to the origin table.</para>
+					</pythonReference><dialogReference>
+						<para>The table or feature class that will be associated to the origin table.</para>
+					</dialogReference></param><param sync="true" name="out_relationship_class" displayname="Output Relationship Class" datatype="Relationship Class" direction="Output" expression="out_relationship_class" type="Required"><pythonReference>
+						<para>The relationship class that will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The relationship class that will be created.</para>
+					</dialogReference></param><param sync="true" name="relationship_type" displayname="Relationship Type" datatype="String" direction="Input" expression="relationship_type" type="Required"><pythonReference>
+						<para>The type of association to create between the origin and destination tables.</para>
+						<bulletList><bullet_item>SIMPLE—An association where each object is independent of each other (a parent-to-parent relationship). This is the default. </bullet_item><bullet_item>COMPOSITE—An association where the lifetime of one object controls the lifetime of its related object (a parent-child relationship). </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of association to create between the origin and destination tables.</para>
+						<bulletList><bullet_item>SIMPLE—An association where each object is independent of each other (a parent-to-parent relationship). This is the default. </bullet_item><bullet_item>COMPOSITE—An association where the lifetime of one object controls the lifetime of its related object (a parent-child relationship). </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="forward_label" displayname="Forward Path Label" datatype="String" direction="Input" expression="forward_label" type="Required"><pythonReference>
+						<para>A label describing the relationship as it is traversed from the origin table/feature class to the destination table/feature class.</para>
+					</pythonReference><dialogReference>
+						<para>A label describing the relationship as it is traversed from the origin table/feature class to the destination table/feature class.</para>
+					</dialogReference></param><param sync="true" name="backward_label" displayname="Backward Path Label" datatype="String" direction="Input" expression="backward_label" type="Required"><pythonReference>
+						<para>A label describing the relationship as it is traversed from the destination table/feature class to the origin table/feature class.</para>
+					</pythonReference><dialogReference>
+						<para>A label describing the relationship as it is traversed from the destination table/feature class to the origin table/feature class.</para>
+					</dialogReference></param><param sync="true" name="message_direction" displayname="Message Direction" datatype="String" direction="Input" expression="message_direction" type="Required"><pythonReference>
+						<para>The direction messages will be propagated between the objects in the relationship. For example, in a relationship between poles and transformers, when the pole is deleted, it sends a message to its related transformer objects informing them it was deleted.</para>
+						<bulletList><bullet_item>NONE—No messages propagated. This is the default. </bullet_item><bullet_item>FORWARD—Messages propagated from the origin to the destination. </bullet_item><bullet_item>BACKWARD—Messages propagated from the destination to the origin. </bullet_item><bullet_item>BOTH—Messages propagated from the origin to the destination and from the destination to the origin. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The direction messages will be propagated between the objects in the relationship. For example, in a relationship between poles and transformers, when the pole is deleted, it sends a message to its related transformer objects informing them it was deleted.</para>
+						<bulletList><bullet_item>NONE—No messages propagated. This is the default. </bullet_item><bullet_item>FORWARD—Messages propagated from the origin to the destination. </bullet_item><bullet_item>BACKWARD—Messages propagated from the destination to the origin. </bullet_item><bullet_item>BOTH—Messages propagated from the origin to the destination and from the destination to the origin. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="cardinality" displayname="Cardinality" datatype="String" direction="Input" expression="cardinality" type="Required"><pythonReference>
+						<para>The cardinality of the relationship between the origin and destination.</para>
+						<bulletList><bullet_item>ONE_TO_ONE—Each object of the origin table/feature class can be related to zero or one object of the destination table/feature class. This is the default. </bullet_item><bullet_item>ONE_TO_MANY—Each object of the origin table/feature class can be related to multiple objects in the destination table/feature class. </bullet_item><bullet_item>MANY_TO_MANY—Multiple objects of the origin table/feature class can be related to multiple objects in the destination table/feature class. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The cardinality of the relationship between the origin and destination.</para>
+						<bulletList><bullet_item>ONE_TO_ONE—Each object of the origin table/feature class can be related to zero or one object of the destination table/feature class. This is the default. </bullet_item><bullet_item>ONE_TO_MANY—Each object of the origin table/feature class can be related to multiple objects in the destination table/feature class. </bullet_item><bullet_item>MANY_TO_MANY—Multiple objects of the origin table/feature class can be related to multiple objects in the destination table/feature class. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="relationship_table" displayname="Relationship Table" datatype="Table View" direction="Input" expression="relationship_table" type="Required"><pythonReference>
+						<para>The table containing attributes that will be added to the relationship class.</para>
+					</pythonReference><dialogReference>
+						<para>The table containing attributes that will be added to the relationship class.</para>
+					</dialogReference></param><param sync="true" name="attribute_fields" displayname="Attribute Fields" datatype="Field" direction="Input" expression="[attribute_fields,...]" type="Required"><pythonReference><para>The fields containing attribute values that will be added to the relationship class.</para></pythonReference><dialogReference>
+						<para>The fields containing attribute values that will be added to the relationship class.</para>
+						<para>The Add Field button, which is used only in ModelBuilder, allows you to add expected field(s) so you can complete the dialog and continue to build your model.</para>
+					</dialogReference></param><param sync="true" name="origin_primary_key" displayname="Origin Primary Key" datatype="String" direction="Input" expression="origin_primary_key" type="Required"><pythonReference>
+						<para>The field in the origin table that will be used to create the relationship. Generally, this is the object identifier field.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the origin table that will be used to create the relationship. Generally, this is the object identifier field.</para>
+					</dialogReference></param><param sync="true" name="origin_foreign_key" displayname="Origin Foreign Key" datatype="String" direction="Input" expression="origin_foreign_key" type="Required"><pythonReference>
+						<para>The name of the Foreign Key field in the relationship table that refers to the Primary Key field in the origin table/feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the Foreign Key field in the relationship table that refers to the Primary Key field in the origin table/feature class.</para>
+					</dialogReference></param><param sync="true" name="destination_primary_key" displayname="Destination Primary Key" datatype="String" direction="Input" expression="destination_primary_key" type="Required"><pythonReference>
+						<para>The field in the destination table that will be used to create the relationship. Generally, this is the object identifier field.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the destination table that will be used to create the relationship. Generally, this is the object identifier field.</para>
+					</dialogReference></param><param sync="true" name="destination_foreign_key" displayname="Destination Foreign Key" datatype="String" direction="Input" expression="destination_foreign_key" type="Required"><pythonReference>
+						<para>The field in the relationship table that refers to the Primary Key field in the destination table.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the relationship table that refers to the Primary Key field in the destination table.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool creates a table in the database containing the selected attribute fields of the relationship table. These fields are used to store attributes of the relationship itself that are not attributed to either the origin or destination class. For example, in a parcel database, you may have a relationship class between parcels and owners in which owners "own" parcels and parcels are "owned by" owners. An attribute of that relationship may be percentage ownership.</para>
+			</bullet_item><bullet_item>
+				<para>Simple or peer-to-peer relationships are relationships between two or more objects in the database that exist independently of each other. For example, in a railroad network, you may have railroad crossings that have one or more related signal lamps. However, a railroad crossing can exist without a signal lamp, and signal lamps exist on the railroad network where there are no railroad crossings. Simple relationships can have one-to-one, one-to-many, or many-to-many cardinality.</para>
+			</bullet_item><bullet_item>
+				<para>A composite relationship is a relationship in which the lifetime of one object controls the lifetime of its related objects. For example, power poles support transformers and transformers are mounted on poles. Once a pole is deleted, a delete message is propagated to its related transformers, which are deleted from the transformers' feature class. Composite relationships are always one-to-many.</para>
+			</bullet_item><bullet_item>
+				<para>Forward and backward path labels describe the relationship when navigating from one object to another. The forward path label describes the relationship navigated from the origin class to the destination class. In the pole-transformer example, a forward path label might be: Poles support transformers. The backward path label describes the relationship navigated from the destination to the origin class. In the pole-transformer example, a backward path label might be: Transformers are mounted on poles.</para>
+			</bullet_item><bullet_item>
+				<para>Relationship classes can also be created in ArcCatalog. Select the menu item New
+						Relationship Class from the context menu of a geodatabase.</para>
+			</bullet_item><bullet_item>
+				<para>The Attribute Fields parameter's Add Field button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run, or its derived data does not exist, the Attribute Fields parameter may not be populated with field names. The Add Field button allows you to add expected field(s) so you can complete the Table To Relationship Class dialog box and continue to build your model.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TableToRelationshipClass Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the TableToRelationshipClass tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data/Montgomery.gdb"
+arcpy.TableToRelationshipClass_management("owners", "Parcels", "ownersParcels_RelClass", "SIMPLE", "Owns", "Is Owned By", "BACKWARD", "MANY_TO_MANY", "owners", ["OWNER_PERCENT", "DEED_DATE"], "OBJECTID", "owner_id", "OBJECTID", "parcel_id")
+                    </code></scriptExample><scriptExample><title>TableToRelationshipClass Example (Stand-alone script)</title>
+					<para>Create an attributed relationship class between parcel feature class and table with owner information.</para>
+				<code xml:space="preserve"># Name: TableToRelationshipClass.py
+# Description: Create an attributed relationship class between parcels
+#                    feature class and table with owner information
+# Author: ESRI
+
+# import system modules 
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Copy owners.dat to file gdb table, since both tables to be related
+# must be in the same database
+ownerDat = "owners.dat"
+ownerTbl = "Montgomery.gdb/owners"
+arcpy.CopyRows_management(ownerDat, ownerTbl)
+
+# Create attributed relationship class between 'parcel' parcel layer
+# and 'owner' table with additional parcel owner information
+parcel = "Montgomery.gdb/Parcels"
+relClass = "Montgomery.gdb/parcelowners_RelClass"
+forLabel = "Owns"
+backLabel = "Is Owned By"
+attributeFields = ["OWNER_PERCENT", "DEED_DATE"]
+originPK = "OBJECTID"
+originFK = "owner_ID"
+destinationPK = "OBJECTID"
+destinationFK = "parcel_ID"
+arcpy.TableToRelationshipClass_management(ownerTbl, parcel, relClass, "SIMPLE", forLabel, 
+						backLabel, "BACKWARD", "MANY_TO_MANY", 
+						ownerTbl, attributeFields, originPK, originFK, 
+						destinationPK, destinationFK)
+                    </code></scriptExample></scriptExamples></tool></metadata>

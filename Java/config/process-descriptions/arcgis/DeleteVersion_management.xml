@@ -1,0 +1,42 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Delete Version (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Deletes the specified version from the input workspace.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alternative</keyword><keyword>Erase</keyword><keyword>Geodatabase</keyword><keyword>Multiple</keyword><keyword>Owner</keyword><keyword>Remove</keyword><keyword>Sde</keyword><keyword>State</keyword><keyword>User</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DeleteVersion" displayname="Delete Version (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Deletes the specified version from the input workspace.</para>
+		</summary><alink_name>DeleteVersion_management</alink_name><parameters><param sync="true" name="in_workspace" displayname="Input Workspace" datatype="Workspace" direction="Input" expression="in_workspace" type="Required"><pythonReference>
+						<para>The ArcSDE geodatabase containing the version to be deleted. The default is to use the workspace defined in the Current Workspace environment.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcSDE geodatabase containing the version to be deleted.</para>
+					</dialogReference></param><param sync="true" name="version_name" displayname="Version Name" datatype="String" direction="Input" expression="version_name" type="Required"><pythonReference>
+						<para>The name of the version to be deleted.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the version to be deleted.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Only the version's owner can rename, delete, or alter the version.</para>
+			</bullet_item><bullet_item>
+				<para>A parent version cannot be deleted until all dependent child versions are deleted.</para>
+			</bullet_item><bullet_item>
+				<para>Versions are not affected by changes occurring in other versions of the database.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DeleteVersion example (stand-alone script)</title>
+					<para>
+ The following stand-alone script demonstrates how use the DeleteVersion tool to delete a version.
+</para>
+				<code xml:space="preserve"># Name: DeleteVersion_Example.py
+# Description: Deletes a version
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+inWorkspace = "Database Connections/ninefour@gdb.sde"
+newName = "myVersion2"
+
+# Execute DeleteVersion
+arcpy.DeleteVersion_management(inWorkspace, newName)
+                    </code></scriptExample></scriptExamples></tool></metadata>

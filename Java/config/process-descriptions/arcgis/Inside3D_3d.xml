@@ -1,0 +1,67 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Inside 3D  (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Tests each feature to determine if it falls inside a multipatch. If it falls inside a multipatch feature, it writes an entry to a new table indicating which feature it fell within.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Analysis</keyword><keyword>3D Features</keyword><keyword>3D Geometry</keyword><keyword>3D Set Operators</keyword><keyword>Closed Multipatch</keyword><keyword>Multipatch</keyword><keyword>Set Operators</keyword><keyword>Solids</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" Inside3D " displayname=" Inside 3D  (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para> Tests each feature to determine if it falls inside a multipatch. If it falls inside a multipatch feature, it writes an entry to a new table indicating which feature it fell within.</para>
+			
+		</summary><alink_name> Inside3D _3d</alink_name><parameters><param sync="true" name="in_target_feature_class" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_target_feature_class" type="Required"><pythonReference>
+						<para>The z-enabled point, line, polygon, or multipatch features. </para>
+					</pythonReference><dialogReference>
+						<para>The z-enabled point, line, polygon, or multipatch features. </para>
+					</dialogReference></param><param sync="true" name="in_container_feature_class" displayname="Input Multipatch Features" datatype="Feature Layer" direction="Input" expression="in_container_feature_class" type="Required"><pythonReference>
+						<para>The multipatch features.  The multipatches must be closed.  Use the Is Closed 3D tool to determine if the multipatches are closed. </para>
+					</pythonReference><dialogReference>
+						<para>The multipatch features.  The multipatches must be closed.  Use the Is Closed 3D tool to determine if the multipatches are closed. </para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>The output table providing a list of  3D Input Features that are inside or partially inside    the Input Multipatch Features which are closed.    The output table contains an OID (object ID), Target_ID, and Status.  The Status will state if the input feature (Target_ID) is within or partially within a  multipatch.  </para>
+					</pythonReference><dialogReference>
+						<para>The output table providing a list of  3D Input Features that are inside or partially inside    the Input Multipatch Features which are closed.    The output table contains an OID (object ID), Target_ID, and Status.  The Status will state if the input feature (Target_ID) is within or partially within a  multipatch.  </para>
+					</dialogReference></param><param sync="true" name="complex_output" displayname="Complex Output Table" datatype="Boolean" direction="Output" expression="complex_output" type="Optional"><pythonReference>
+						<para> The Complex Output Table option modifies the output table to include information about the relationship between the Input Features and the Input Multipatch Features.  This allows you to identify which features fell inside or partially inside specific closed multipatches.    When it's checked on, then the output table will have an  extra Container_ID displayed, along with the Target_ID information.   This Container_ID represents the exact multipatch which the input features (Target_ID) are   inside or partially. </para>
+					</pythonReference><dialogReference>
+						<para> The Complex Output Table option modifies the output table to include information about the relationship between the Input Features and the Input Multipatch Features.  This allows you to identify which features fell inside or partially inside specific closed multipatches.    When it's checked on, then the output table will have an  extra Container_ID displayed, along with the Target_ID information.   This Container_ID represents the exact multipatch which the input features (Target_ID) are   inside or partially. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para> Requires input features, which must have closed multipatch geometry.</para>
+			</bullet_item><bullet_item>
+				<para>Only closed multipatches will be used in the test process. </para>
+			</bullet_item><bullet_item>
+				<para>A feature may fall within multiple closed multipatch features and have multiple entries in the output table. </para>
+			</bullet_item><bullet_item><para>Inside 3D is a 3D set operator as part of the  3D Features toolset. See  for more information on what set operators are and how to use them.</para></bullet_item></usage><scriptExamples><scriptExample><title>Inside 3D Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Inside 3D
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.Inside3D_3d("inFeature.shp", "sample.gdb/multipatch", "sample.gdb/output_table")
+
+                    </code></scriptExample><scriptExample><title>Inside 3D Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Inside 3D
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: Inside3D Example
+# Description: The following stand-alone script demonstrates how to use the
+#              Inside3D tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+inFC = "Points_3D.shp" # the input feature
+inMP = "Buildings.shp" # the input multi-patch
+# Ensure output has a unique name
+outTbl = arcpy.CreateUniqueName("Output_Table.dbf")
+
+# Execute Inside 3D
+arcpy.Inside3D_3d(inFC, inMP, outTbl)
+
+del arcpy, inFC, inMP, outTbl
+                    </code></scriptExample></scriptExamples></tool></metadata>

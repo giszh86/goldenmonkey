@@ -1,0 +1,214 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make Vehicle Routing Problem Layer (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Makes a vehicle routing problem (VRP) network analysis layer and sets its analysis properties. A vehicle routing problem analysis layer is useful for optimizing a set of routes using a fleet of vehicles.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alter</keyword><keyword>Altered</keyword><keyword>Layer</keyword><keyword>Network Analyst Layer</keyword><keyword>Route</keyword><keyword>Route Layer</keyword><keyword>Vrp</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeVehicleRoutingProblemLayer" displayname="Make Vehicle Routing Problem Layer (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Makes a vehicle routing problem (VRP) network analysis layer and sets its analysis properties. A vehicle routing problem analysis layer is useful for optimizing a set of routes using a fleet of vehicles.</para>
+		</summary><alink_name>MakeVehicleRoutingProblemLayer_na</alink_name><parameters><param sync="true" name="in_network_dataset" displayname="Input analysis network" datatype="Network Dataset Layer" direction="Input" expression="in_network_dataset" type="Required"><pythonReference>
+						<para>The network dataset on which the vehicle routing problem analysis will be performed. The network dataset must have a time based cost attribute since the VRP solver minimizes time.</para>
+					</pythonReference><dialogReference>
+						<para>The network dataset on which the vehicle routing problem analysis will be performed. The network dataset must have a time based cost attribute since the VRP solver minimizes time.</para>
+					</dialogReference></param><param sync="true" name="out_network_analysis_layer" displayname="Output layer name" datatype="String" direction="Output" expression="out_network_analysis_layer" type="Required"><pythonReference>
+						<para>Name of the vehicle routing problem network analysis layer to create.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the vehicle routing problem network analysis layer to create.</para>
+					</dialogReference></param><param sync="true" name="time_impedance" displayname="Time Attribute" datatype="String" direction="Input" expression="time_impedance" type="Required"><pythonReference>
+						<para> The time cost attribute used to define the traversal time along the elements of the network. The time cost attribute is required, since the vehicle routing problem solver minimizes time.</para>
+					</pythonReference><dialogReference>
+						<para> The time cost attribute used to define the traversal time along the elements of the network. The time cost attribute is required, since the vehicle routing problem solver minimizes time.</para>
+					</dialogReference></param><param sync="true" name="distance_impedance" displayname="Distance Attribute" datatype="String" direction="Input" expression="distance_impedance" type="Optional"><pythonReference>
+						<para> The distance cost attribute used to define the length along the elements of the network. The distance cost attribute is optional.</para>
+					</pythonReference><dialogReference>
+						<para> The distance cost attribute used to define the length along the elements of the network. The distance cost attribute is optional.</para>
+					</dialogReference></param><param sync="true" name="time_units" displayname="Time Field Units" datatype="String" direction="Input" expression="time_units" type="Optional"><pythonReference>
+						<para>The time units used by the temporal fields of the analysis layer's sublayers and tables (network analysis classes). This does not have to be the same as the units of the time cost attribute.</para>
+					</pythonReference><dialogReference>
+						<para>The time units used by the temporal fields of the analysis layer's sublayers and tables (network analysis classes). This does not have to be the same as the units of the time cost attribute.</para>
+					</dialogReference></param><param sync="true" name="distance_units" displayname="Distance Field Units" datatype="String" direction="Input" expression="distance_units" type="Optional"><pythonReference>
+						<para> The distance units used by distance fields of the analysis layer's sublayers and tables (network analysis classes). This does not have to be the same as the units of the optional distance cost attribute.</para>
+					</pythonReference><dialogReference>
+						<para> The distance units used by distance fields of the analysis layer's sublayers and tables (network analysis classes). This does not have to be the same as the units of the optional distance cost attribute.</para>
+					</dialogReference></param><param sync="true" name="default_date" displayname="Default Date" datatype="Date" direction="Input" expression="default_date" type="Optional"><pythonReference>
+						
+						<para>The implied date for time field values that don't have a date specified with the time. If a time field for an order object, such as TimeWindowStart1, has a time-only value, the date is assumed to be the Default Date. For example, if an order has a TimeWindowStart1 value of 9:00 AM and the Default Date is March 6, 2011, then the entire time value for the field is 9:00 A.M., March 6, 2011. The default date has no effect on time field values that already have a date.</para>
+						<para>The day of the week can also be specified as the Default Date using the following dates. <bulletList>
+								<bullet_item>Today -- 12/30/1899</bullet_item>
+								<bullet_item>Sunday -- 12/31/1899</bullet_item>
+								<bullet_item>Monday -- 1/1/1900</bullet_item>
+								<bullet_item>Tuesday -- 1/2/1900</bullet_item>
+								<bullet_item>Wednesday -- 1/3/1900</bullet_item>
+								<bullet_item>Thursday -- 1/4/1900</bullet_item>
+								<bullet_item>Friday -- 1/5/1900</bullet_item>
+								<bullet_item>Saturday -- 1/6/1900</bullet_item>
+							</bulletList>For example, to specify that the implied date for time field values should be Tuesday, specify the parameter value as 1/2/1900.</para>
+						<para>If your network dataset includes historical traffic data, the results of the analysis could change depending on the date that you specify here. For example, if your routes start at 8:00 a.m. on Sunday, when there is not much traffic, versus 8:00 a.m. on Monday, during rush hour, the Monday route would take longer. Furthermore, the best path could change depending on traffic conditions.</para></pythonReference><dialogReference>
+						
+						<para>The implied date for time field values that don't have a date specified with the time. If a time field for an order object, such as TimeWindowStart1, has a time-only value, the date is assumed to be the Default Date. For example, if an order has a TimeWindowStart1 value of 9:00 AM and the Default Date is March 6, 2011, then the entire time value for the field is 9:00 A.M., March 6, 2011. The default date has no effect on time field values that already have a date.</para>
+						<para>The day of the week can also be specified as the Default Date using the following dates. <bulletList>
+								<bullet_item>Today -- 12/30/1899</bullet_item>
+								<bullet_item>Sunday -- 12/31/1899</bullet_item>
+								<bullet_item>Monday -- 1/1/1900</bullet_item>
+								<bullet_item>Tuesday -- 1/2/1900</bullet_item>
+								<bullet_item>Wednesday -- 1/3/1900</bullet_item>
+								<bullet_item>Thursday -- 1/4/1900</bullet_item>
+								<bullet_item>Friday -- 1/5/1900</bullet_item>
+								<bullet_item>Saturday -- 1/6/1900</bullet_item>
+							</bulletList>For example, to specify that the implied date for time field values should be Tuesday, specify the parameter value as 1/2/1900.</para>
+						<para>If your network dataset includes historical traffic data, the results of the analysis could change depending on the date that you specify here. For example, if your routes start at 8:00 a.m. on Sunday, when there is not much traffic, versus 8:00 a.m. on Monday, during rush hour, the Monday route would take longer. Furthermore, the best path could change depending on traffic conditions.</para></dialogReference></param><param sync="true" name="capacity_count" displayname="Capacity Count" datatype="String" direction="Input" expression="capacity_count" type="Optional"><pythonReference>
+						
+						<para>The number of capacity constraint dimensions required to describe the relevant limits of the vehicles. In an order delivery case, each vehicle may have a limited amount of weight and volume it can carry at one time based on physical and legal limitations. In this case, if you track the weight and volume on the orders, you can use these two capacities to prevent the vehicles from getting overloaded. The capacity count for this scenario is two (weight and volume). Depending on the problem, you may need to track different types or amounts of capacities. The capacities entered into the capacity fields (DeliveryQuantities and PickupQuantities for the Orders class and Capacities for the Routes class) are space-delimited strings of numbers, which can hold up to the number of values specified in Capacity Count. Each capacity dimension should appear in the same positional order for all capacity field values in the same VRP analysis layer. The capacities themselves are unnamed, so to avoid accidentally transposing capacity dimensions, ensure that the space-delimited capacity lists are always entered in the same order for all capacity field values.</para>
+					</pythonReference><dialogReference>
+						
+						<para>The number of capacity constraint dimensions required to describe the relevant limits of the vehicles. In an order delivery case, each vehicle may have a limited amount of weight and volume it can carry at one time based on physical and legal limitations. In this case, if you track the weight and volume on the orders, you can use these two capacities to prevent the vehicles from getting overloaded. The capacity count for this scenario is two (weight and volume). Depending on the problem, you may need to track different types or amounts of capacities. The capacities entered into the capacity fields (DeliveryQuantities and PickupQuantities for the Orders class and Capacities for the Routes class) are space-delimited strings of numbers, which can hold up to the number of values specified in Capacity Count. Each capacity dimension should appear in the same positional order for all capacity field values in the same VRP analysis layer. The capacities themselves are unnamed, so to avoid accidentally transposing capacity dimensions, ensure that the space-delimited capacity lists are always entered in the same order for all capacity field values.</para>
+					</dialogReference></param><param sync="true" name="time_window_factor" displayname="Time Window Violation Importance" datatype="String" direction="Input" expression="time_window_factor" type="Optional"><pythonReference>
+						<para>This parameter allows you to rate the importance of honoring time windows without causing violations. A time window violation occurs when a route arrives at an order, depot, or break after a time window has closed. The violation is the interval between the end of the time window and the arrival time of a route.</para>
+						<para>The VRP solution can change according to the value you choose for the Time Window Violation Importance parameter. The following list describes what the values mean and how the resulting VRP solution can vary:</para>
+						<bulletList><bullet_item>High—The solver tries to find a solution that minimizes time window violations at the expense of increasing the overall travel time. Choose High if arriving on time at orders is more important to you than minimizing your overall solution cost. This may be the case if you are meeting customers at your orders and you don't want to inconvenience them with tardy arrivals (another option is to use hard time windows that can't be violated at all).Given other constraints of a vehicle routing problem, it may be impossible to visit all the orders within their time windows. In this case, even a High setting might produce violations.</bullet_item><bullet_item>Medium—This is the default setting. The solver looks for a balance between meeting time windows and reducing the overall solution cost.</bullet_item><bullet_item>Low—The solver tries to find a solution that minimizes overall travel time, regardless of time windows. Choose Low if respecting time windows is less important than reducing your overall solution cost. You may want to use this setting if you have a growing backlog of service requests. For the purpose of servicing more orders in a day and reducing the backlog, you can choose Low even though customers will be inconvenienced with your fleet's late arrivals.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>This parameter allows you to rate the importance of honoring time windows without causing violations. A time window violation occurs when a route arrives at an order, depot, or break after a time window has closed. The violation is the interval between the end of the time window and the arrival time of a route.</para>
+						<para>The VRP solution can change according to the value you choose for the Time Window Violation Importance parameter. The following list describes what the values mean and how the resulting VRP solution can vary:</para>
+						<bulletList><bullet_item>High—The solver tries to find a solution that minimizes time window violations at the expense of increasing the overall travel time. Choose High if arriving on time at orders is more important to you than minimizing your overall solution cost. This may be the case if you are meeting customers at your orders and you don't want to inconvenience them with tardy arrivals (another option is to use hard time windows that can't be violated at all).Given other constraints of a vehicle routing problem, it may be impossible to visit all the orders within their time windows. In this case, even a High setting might produce violations.</bullet_item><bullet_item>Medium—This is the default setting. The solver looks for a balance between meeting time windows and reducing the overall solution cost.</bullet_item><bullet_item>Low—The solver tries to find a solution that minimizes overall travel time, regardless of time windows. Choose Low if respecting time windows is less important than reducing your overall solution cost. You may want to use this setting if you have a growing backlog of service requests. For the purpose of servicing more orders in a day and reducing the backlog, you can choose Low even though customers will be inconvenienced with your fleet's late arrivals.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="excess_transit_factor" displayname="Excess Transit Time Importance" datatype="String" direction="Input" expression="excess_transit_factor" type="Optional"><pythonReference>
+						<para>This parameter allows you to rate the importance of reducing excess transit time. Excess transit time is the amount of time exceeding the time required to travel directly between the paired orders. The excess time results from breaks or travel to other orders or depots between visits to the paired orders.</para>
+						<para>The VRP solution can change according to the value you choose for the Excess Transit Time Importance. The following list describes what the values mean and how the resulting VRP solution can vary:</para>
+						<bulletList><bullet_item>High—The solver tries to find a solution with less excess transit time between paired orders at the expense of increasing the overall travel costs. It makes sense to use this setting if you are transporting people between paired orders and you want to shorten their ride time. This is characteristic of taxi services.</bullet_item><bullet_item>Medium—This is the default setting. The solver looks for a balance between reducing excess transit time and reducing the overall solution cost.</bullet_item><bullet_item>Low—The solver tries to find a solution that minimizes overall solution cost, regardless of excess transit time. This setting is commonly used with courier services. Since couriers transport packages as opposed to people, they don't need to worry about ride time. Using Low allows the couriers to service paired orders in the proper sequence and minimize the overall solution cost.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>This parameter allows you to rate the importance of reducing excess transit time. Excess transit time is the amount of time exceeding the time required to travel directly between the paired orders. The excess time results from breaks or travel to other orders or depots between visits to the paired orders.</para>
+						<para>The VRP solution can change according to the value you choose for the Excess Transit Time Importance. The following list describes what the values mean and how the resulting VRP solution can vary:</para>
+						<bulletList><bullet_item>High—The solver tries to find a solution with less excess transit time between paired orders at the expense of increasing the overall travel costs. It makes sense to use this setting if you are transporting people between paired orders and you want to shorten their ride time. This is characteristic of taxi services.</bullet_item><bullet_item>Medium—This is the default setting. The solver looks for a balance between reducing excess transit time and reducing the overall solution cost.</bullet_item><bullet_item>Low—The solver tries to find a solution that minimizes overall solution cost, regardless of excess transit time. This setting is commonly used with courier services. Since couriers transport packages as opposed to people, they don't need to worry about ride time. Using Low allows the couriers to service paired orders in the proper sequence and minimize the overall solution cost.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="UTurn_policy" displayname="U-Turn policy" datatype="String" direction="Input" expression="UTurn_policy" type="Optional"><pythonReference>
+						<para>Restrict or permit U-turns at junctions that could occur during network traversal between stops.</para>
+						<bulletList><bullet_item>ALLOW_UTURNS—U-turns are permitted at junctions with any number of adjacent edges.</bullet_item><bullet_item>NO_UTURNS—U-turns are prohibited at all junctions. Note, however, that U-turns are still permitted at network locations even when this setting is chosen; however, you can set the individual network locations' CurbApproach property to prohibit U-turns.</bullet_item><bullet_item>ALLOW_DEAD_ENDS_ONLY—U-turns are prohibited at all junctions, except those that have only one adjacent edge (a dead end). </bullet_item><bullet_item>ALLOW_DEAD_ENDS_AND_INTERSECTIONS_ONLY—U-turns are prohibited at junctions where exactly two adjacent edges meet but are permitted at intersections (any junction with three or more adjacent edges) or dead ends. (junctions with exactly one adjacent edge) </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Restrict or permit U-turns at junctions that could occur during network traversal between stops.</para>
+						<bulletList><bullet_item>ALLOW_UTURNS—U-turns are permitted at junctions with any number of adjacent edges.</bullet_item><bullet_item>NO_UTURNS—U-turns are prohibited at all junctions. Note, however, that U-turns are still permitted at network locations even when this setting is chosen; however, you can set the individual network locations' CurbApproach property to prohibit U-turns.</bullet_item><bullet_item>ALLOW_DEAD_ENDS_ONLY—U-turns are prohibited at all junctions, except those that have only one adjacent edge (a dead end). </bullet_item><bullet_item>ALLOW_DEAD_ENDS_AND_INTERSECTIONS_ONLY—U-turns are prohibited at junctions where exactly two adjacent edges meet but are permitted at intersections (any junction with three or more adjacent edges) or dead ends. (junctions with exactly one adjacent edge) </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="restriction_attribute_name" displayname="Restrictions" datatype="String" direction="Input" expression="[restriction_attribute_name,...]" type="Optional"><pythonReference>
+						<para>List of restriction attributes to apply during the analysis.</para>
+					</pythonReference><dialogReference>
+						<para>List of restriction attributes to apply during the analysis.</para>
+					</dialogReference></param><param sync="true" name="hierarchy" displayname="Use Hierarchy in analysis" datatype="Boolean" direction="Input" expression="hierarchy" type="Optional"><pythonReference>
+						<bulletList><bullet_item>USE_HIERARCHY— Use the hierarchy attribute for the analysis. Using a hierarchy results in the solver preferring higher-order edges to lower-order edges. Hierarchical solves are faster, and they can be used to simulate the preference of a driver who chooses to travel on freeways over local roads when possible—even if that means a longer trip. This option is valid only if the input network dataset has a hierarchy attribute.</bullet_item><bullet_item>NO_HIERARCHY—Do not use the hierarchy attribute for the analysis. Not using a hierarchy yields an exact route for the network dataset.</bullet_item></bulletList>
+						<para>The parameter is not used if a hierarchy attribute is not defined on the network dataset used to perform the analysis. In such cases, use "#" as the parameter value. </para></pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked -- Use the hierarchy attribute for the analysis. Using a hierarchy results in the solver preferring higher-order edges to lower-order edges. Hierarchical solves are faster, and they can be used to simulate the preference of a driver who chooses to travel on freeways over local roads when possible—even if that means a longer trip. This option is enabled only if the input network dataset has a hierarchy attribute.</bullet_item>
+							<bullet_item>Unchecked -- Do not use the hierarchy attribute for the analysis. Not using a hierarchy yields an exact route for the network dataset.</bullet_item>
+						</bulletList>
+						<para>The parameter is disabled if a hierarchy attribute is not defined on the network dataset used to perform the analysis.</para></dialogReference></param><param sync="true" name="hierarchy_settings" displayname="Hierarchy rank settings" datatype="Network Analyst Hierarchy Settings" direction="Input" expression="hierarchy_settings" type="Optional"><pythonReference>
+						<para>
+							
+								<para>Prior to version 10, this parameter allowed you to change the hierarchy ranges for your analysis from the default hierarchy ranges established in the network dataset. At version 10, this parameter is no longer supported and should be specified as an empty string. If you wish to change the hierarchy ranges for your analysis, update the default hierarchy ranges in the network dataset.</para>
+							
+						</para>
+					</pythonReference><dialogReference>
+						<para>
+							
+								<para>Prior to version 10, this parameter allowed you to change the hierarchy ranges for your analysis from the default hierarchy ranges established in the network dataset. At version 10, this parameter is no longer supported. If you wish to change the hierarchy ranges for your analysis, update the default hierarchy ranges in the network dataset. </para>
+							
+						</para>
+					</dialogReference></param><param sync="true" name="output_path_shape" displayname="Output path shape" datatype="String" direction="Input" expression="output_path_shape" type="Optional"><pythonReference>
+						<bulletList><bullet_item>TRUE_LINES_WITH_MEASURES—The output routes will have the exact shape of the underlying network sources. Furthermore, the output includes route measurements for linear referencing. The measurements increase from the first stop and record the cumulative impedance to reach a given position.</bullet_item><bullet_item>TRUE_LINES_WITHOUT_MEASURES—The output routes will have the exact shape of the underlying network sources.</bullet_item><bullet_item>STRAIGHT_LINES—The output route shape will be straight lines connecting orders and depot visits as per the route sequence. </bullet_item><bullet_item>NO_LINES—No shape will be generated for the output routes. You will also not be able to generate driving directions. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList><bullet_item>TRUE_LINES_WITH_MEASURES—The output routes will have the exact shape of the underlying network sources. Furthermore, the output includes route measurements for linear referencing. The measurements increase from the first stop and record the cumulative impedance to reach a given position.</bullet_item><bullet_item>TRUE_LINES_WITHOUT_MEASURES—The output routes will have the exact shape of the underlying network sources.</bullet_item><bullet_item>STRAIGHT_LINES—The output route shape will be straight lines connecting orders and depot visits as per the route sequence. </bullet_item><bullet_item>NO_LINES—No shape will be generated for the output routes. You will also not be able to generate driving directions. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item><para>After creating the analysis layer with this tool, you can add network analysis objects to it using the  tool, solve the analysis using the  tool, and save the results on disk using  tool. </para></bullet_item><bullet_item>
+				<para>When using this tool in geoprocessing models, if the model is run as a tool, the output network analysis layer must be made  a model parameter. Otherwise the output layer is not added to the table of contents in ArcMap.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeVehicleRoutingProblemLayer example 1 (Python window)</title>
+					<para>Execute the tool using only the required parameters</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.MakeVehicleRoutingProblemLayer_na("Transportation/Streets_ND",
+                                        "DeliveryRoutes","Minutes")
+
+                    </code></scriptExample><scriptExample><title>MakeVehicleRoutingProblemLayer example 2 (Python window)</title>
+					<para>Execute the tool using all parameters </para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.MakeVehicleRoutingProblemLayer_na("Transportation/Streets_ND",
+                                        "FridayRoutes","Minutes","Meters",
+                                        "Minutes","Miles", "1/2/1900", "1",
+                                        "High","Medium","ALLOW_DEAD_ENDS_ONLY",
+                                        ["Oneway"],"USE_HIERARCHY","",
+                                        "TRUE_LINES_WITHOUT_MEASURES")
+
+                    </code></scriptExample><scriptExample><title>MakeVehicleRoutingProblemLayer example 3 (workflow)</title>
+					<para>The following stand-alone Python script demonstrates how the MakeVehicleRoutingProblemLayer tool can be used for servicing a set of orders with a fleet of vehicles.</para>
+				<code xml:space="preserve"># Name: MakeVehicleRoutingProblemLayer_Workflow.py
+# Description: Find the best routes for a fleet of vehicles, which is operated 
+#              by a distribution company, to deliver goods from a main 
+#              distribution center to a set of grocery stores.
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+try:
+    #Check out the Network Analyst extension license
+    arcpy.CheckOutExtension("Network")
+
+    #Set environment settings
+    env.workspace = "C:/data/SanFrancisco.gdb"
+    env.overwriteOutput = True
+    
+    #Set local variables
+    inNetworkDataset = "Transportation/Streets_ND"
+    outNALayer = "StoreDeliveryRoute"
+    impedanceAttribute = "TravelTime"
+    distanceAttribute = "Meters"
+    timeUntis = "Minutes"
+    distanceUntis = "Miles"
+    inOrders = "Analysis/Stores"
+    inDepots = "Analysis/DistributionCenter"
+    inRoutes = "RoutesTable"
+    orderFieldMappings = "Name Name #; ServiceTime ServiceTime #; " + \
+                       "TimeWindowStart1 TimeStart1 #; " + \
+                       "TimeWindowEnd1 TimeEnd1 #; MaxViolationTime1 # 0; " + \
+                       "DeliveryQuantities Demand #"
+    depotFieldMappings = "Name Name #; TimeWindowStart1 # 8 AM; " + \
+                       "TimeWindowEnd1 # 5 PM"
+    outLayerFile = "C:/data/output" + "/" + outNALayer + ".lyr"
+    
+    #Create a new Vehicle routing problem (VRP) layer. Since the time-based 
+    #attributes such as ServiceTime on orders and CostPerUnitTime on routes is 
+    #recorded in minutes, we use minutes for time_units parameter. As we are 
+    #using cost per unti distance in routes, we have to specify a 
+    #distance attribute. The values for CostPerUnitDistance are in miles, so we 
+    #specify miles for distance units parameter.
+    arcpy.MakeVehicleRoutingProblemLayer_na(inNetworkDataset,outNALayer,
+                                            impedanceAttribute,distanceAttribute,
+                                            timeUntis, distanceUntis, "", 1, 
+                                            UTurn_policy="NO_UTURNS", 
+                                            output_path_shape="STRAIGHT_LINES")
+    
+    #Load the store locations as orders. Using field mappings we map the Name, 
+    #ServiceTime, TimeWindowStart1, TimeWindowEnd1 and DeliveryQuantities 
+    #properties for Orders from the fields of store features and assign a value
+    #of 0 to MaxViolationTime1 property
+    arcpy.AddLocations_na(outNALayer, "Orders", inOrders, orderFieldMappings,"")
+    
+    #Load the depots from the distribution center features. Using field mappings
+    #we map the Name properties for Depots from the fields of distribution 
+    #center features and assign a value of 8 AM for TimeWindowStart1 and a value
+    #of 5PM for TimeWindowEnd2 properties
+    arcpy.AddLocations_na(outNALayer, "Depots", inDepots, depotFieldMappings,"")
+    
+    #Load the routes from a table containing information about routes
+    #In this case, since the fields on the table and property names for Routes
+    #are same, we will just use the default field mappings
+    arcpy.AddLocations_na(outNALayer, "Routes", inRoutes, "", "")
+    
+    #Solve the VRP layer
+    arcpy.Solve_na(outNALayer)
+    
+    #Save the solved VRP layer as a layer file on disk with relative paths
+    arcpy.SaveToLayerFile_management(outNALayer,outLayerFile,"RELATIVE")
+    
+    print "Script completed successfully"
+
+except Exception as e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "An error occured on line %i" % tb.tb_lineno
+    print str(e)
+                    </code></scriptExample></scriptExamples></tool></metadata>

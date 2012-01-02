@@ -1,0 +1,50 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make Raster Layer (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a raster layer from an input raster dataset or layer file. The layer that is created by the tool is temporary and will not persist after the session ends unless the layer is saved to disk or the map document is saved.</para><para>This tool can be used to make a temporary layer, so you can work with a specified subset of bands within a raster dataset.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Create</keyword><keyword>Image</keyword><keyword>Memory</keyword><keyword>Query</keyword><keyword>Sql</keyword><keyword>Subset</keyword><keyword>Surface</keyword><keyword>Temporary</keyword><keyword>Where Clause</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeRasterLayer" displayname="Make Raster Layer (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a raster layer from an input raster dataset or layer file. The layer that is created by the tool is temporary and will not persist after the session ends unless the layer is saved to disk or the map document is saved.</para><para>This tool can be used to make a temporary layer, so you can work with a specified subset of bands within a raster dataset.</para></summary><alink_name>MakeRasterLayer_management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster" datatype="Composite Geodataset" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The path and name of the input raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The path and name of the input raster dataset.</para>
+					</dialogReference></param><param sync="true" name="out_rasterlayer" displayname="Output Raster Layer Name" datatype="Raster Layer" direction="Output" expression="out_rasterlayer" type="Required"><pythonReference>
+						<para>The name of the temporary output raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the temporary output raster dataset.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Where Clause" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>A query statement using the fields and values of the raster dataset.</para>
+						<para>To add this variable, press F8, or right-click and click Insert Variable.</para>
+					</pythonReference><dialogReference>
+						<para>A query statement using the fields and values of the raster dataset.</para>
+					</dialogReference></param><param sync="true" name="envelope" displayname="Envelope" datatype="Envelope" direction="Input" expression="envelope" type="Optional"><pythonReference>
+						<para>Using the min x, min y, max x, or max y, you can specify the extents of the raster layer.</para>
+						<para>To add this variable, press F8, or right-click and click Insert Variable.</para>
+					</pythonReference><dialogReference>
+						<para>Using the min x, min y, max x, or max y, you can specify the extents of the raster layer.</para>
+					</dialogReference></param><param sync="true" name="band_index" displayname="Bands" datatype="Value Table" direction="Input" expression="ID" type="Optional"><pythonReference>
+						<para>Choose which bands to export for the layer. If no bands are specified, then all the bands will be used in the output.</para>
+					</pythonReference><dialogReference>
+						<para>Choose which bands to export for the layer. If no bands are specified, then all the bands will be used in the output.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>To make your layer permanent, right-click the layer in the table of contents and click Save As Layer File, or use the .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeRasterLayer example 1 (Python window)</title>
+					<para>This is a Python sample for MakeRasterLayer.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.MakeRasterLayer_management("c:/workspace/image.tif", "rdlayer", "#", "feature.shp", "1")
+                    </code></scriptExample><scriptExample><title>MakeRasterLayer example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for MakeRasterLayer.</para>
+				<code xml:space="preserve">##====================================
+##Make Raster Layer
+##Usage: MakeRasterLayer_management in_raster out_rasterlayer {where_clause} {envelope}
+##                                  {Index;Index...}
+    
+try:
+    import arcpy
+    
+    arcpy.env.workspace = r"C:/Workspace"
+    
+    ##Create raster layer from single raster dataset with clipping feature
+    arcpy.MakeRasterLayer_management("image.tif", "rdlayer", "#", "feature.shp", "1")   
+    
+    print arcpy.GetMessages()
+except:
+    print "Make Raster Layer example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,86 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Extract by Points (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Extracts the cells of a raster based on a set of coordinate points.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coordinate</keyword><keyword>Sample</keyword><keyword>Select</keyword><keyword>Subset</keyword><keyword>Xy</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExtractByPoints" displayname="Extract by Points (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Extracts the cells of a raster based on a set of coordinate points.</para>
+		</summary><alink_name>ExtractByPoints_sa</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster from which cells will be extracted.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster from which cells will be extracted.</para>
+					</dialogReference></param><param sync="true" name="points" displayname="Input points" datatype="Point" direction="Input" expression="[point,...]" type="Required"><pythonReference>
+						<para>A Python list of Point class objects denote the locations where values will be extracted from the raster.</para>
+						<para>The point objects are specified in a list of x,y coordinate pairs. The form of the object is:</para><bulletList><bullet_item>[point(x1,y1), point(x2,y2),...]</bullet_item></bulletList>
+						<para>The points are in the same map units as in_raster.</para>
+					</pythonReference><dialogReference>
+						<para>The points where values will be extracted from the raster.</para>
+						<para>The points are specified as x,y coordinate pairs.</para>
+						<para>The points are in the same map units as the input raster.</para>
+					</dialogReference></param><param sync="true" name="extraction_area" displayname="Extraction area" datatype="String" direction="Input" expression="extraction_area" type="Optional"><pythonReference>
+						<para>Identifies whether to extract cells based on the specified point locations (inside) or outside the point locations (outside) .</para>
+						<bulletList><bullet_item>INSIDE — A keyword specifying that the cell in which the selected point falls will be written to the output raster. All cells outside the box will receive NoData on the output raster.</bullet_item><bullet_item>OUTSIDE — A keyword specifying that the cells outside the input points should be selected and written to the output raster.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Identifies whether to extract cells based on the specified point locations (inside) or outside the point locations (outside) .</para>
+						<bulletList><bullet_item>INSIDE — A keyword specifying that the cell in which the selected point falls will be written to the output raster. All cells outside the box will receive NoData on the output raster.</bullet_item><bullet_item>OUTSIDE — A keyword specifying that the cells outside the input points should be selected and written to the output raster.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster containing the cell values extracted from the input raster.</para></pythonReference><dialogReference>
+							<para>The output raster containing the cell values extracted from the input raster.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Cell locations that are not selected are assigned a value of NoData.</para>
+			</bullet_item><bullet_item>
+				<para>When a  is specified as input, a new multiband raster will be created as output. Each individual band in the input multiband raster will be analyzed accordingly.</para><para>The default output format is an . Note that the name of an ESRI grid stack cannot start with a number, use spaces, or be more than 9 characters in length.</para>
+			</bullet_item><bullet_item>
+				<para>If the input is a layer created from a multiband raster with more than three bands, the extraction operation will only consider the bands that were loaded (symbolized) by the layer. As a result, the output multiband raster can only have three bands, corresponding to those used in the display of the input layer.</para></bullet_item><bullet_item>
+				<para>If the input raster is integer, the output raster will be integer. If the input is floating point, the output will be floating point.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ExtractByPoints example 1 (Python window)</title>
+					<para>This example extracts cells from a raster based on the specified point coordinates.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+pointList = [arcpy.Point(743050, 4321275), arcpy.Point(743100, 4321200),
+             arcpy.Point(734500,4322000)]
+outPointExtract = ExtractByPoints("soil", pointList,"INSIDE")
+outPointExtract.save("c:/sapyexamples/output/pntextract")
+                    </code></scriptExample><scriptExample><title>ExtractByPoints example 2 (stand-alone script)</title>
+					<para>This example extracts cells from a raster based on the specified point coordinates.</para>
+				<code xml:space="preserve"># Name: ExtractByPoints_Ex_02.py
+# Description: Extracts the cells of a raster based on a set of points.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "soil"
+pointList = [arcpy.Point(743050, 4321275), 
+             arcpy.Point(743100, 4321200), 
+             arcpy.Point(743500, 4322000),
+             arcpy.Point(742900, 4321800)]
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ExtractByPoints
+outPointExtract = ExtractByPoints("soil", pointList,"INSIDE")
+
+# Save the output 
+outPointExtract.save("c:/sapyexamples/output/pntext")
+                    </code></scriptExample></scriptExamples></tool></metadata>

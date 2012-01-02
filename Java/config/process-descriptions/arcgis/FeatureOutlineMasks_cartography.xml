@@ -1,0 +1,100 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Feature Outline Masks (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates mask polygons at a specified distance and shape around the symbolized features in the input layer. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Annotation</keyword><keyword>Cartography</keyword><keyword>Hide</keyword><keyword>Masking</keyword><keyword>Variable Depth Masking</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FeatureOutlineMasks" displayname="Feature Outline Masks (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Creates mask polygons at a specified distance and shape around the symbolized features in the input layer. </para>
+		</summary><alink_name>FeatureOutlineMasks_cartography</alink_name><parameters><param sync="true" name="input_layer" displayname="Input Layer" datatype="Layer" direction="Input" expression="input_layer" type="Required"><pythonReference>
+						<para>The symbolized input layer from which the masks will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The symbolized input layer from which the masks will be created.</para>
+					</dialogReference></param><param sync="true" name="output_fc" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="output_fc" type="Required"><pythonReference>
+						<para>The feature class that will contain the mask features.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class that will contain the mask features.</para>
+					</dialogReference></param><param sync="true" name="reference_scale" displayname="Reference Scale" datatype="Double" direction="Input" expression="reference_scale" type="Required"><pythonReference>
+						<para>The reference scale used for calculating the masking geometry when masks are specified in page units. This is typically the reference scale of the map.</para>
+					</pythonReference><dialogReference>
+						<para>The reference scale used for calculating the masking geometry when masks are specified in page units. This is typically the reference scale of the map.</para>
+					</dialogReference></param><param sync="true" name="spatial_reference" displayname="Calculation coordinate system" datatype="Spatial Reference" direction="Input" expression="spatial_reference" type="Required"><pythonReference>
+						<para>The spatial reference for which the masking polygons will be created. This is not the spatial reference that will be assigned to the output feature class. It is the spatial reference of the map in which the masking polygons will be used since the position of symbology may change when features are projected.</para>
+					</pythonReference><dialogReference>
+						<para>The spatial reference for which the masking polygons will be created. This is not the spatial reference that will be assigned to the output feature class. It is the spatial reference of the map in which the masking polygons will be used since the position of symbology may change when features are projected.</para>
+					</dialogReference></param><param sync="true" name="margin" displayname="Margin" datatype="Linear unit" direction="Input" expression="margin" type="Required"><pythonReference>
+						<para>The space in page units surrounding the symbolized input features used to create the mask polygon. Typically, masking polygons are created with a small margin around the symbol to improve visual appearance. Margin values are specified in either page units or map units. Most of the time you will want to specify your margin distance value in page units.</para>
+						<para>Margin value units are interpreted differently depending on which units you choose. If you choose points, inches, millimeters, or centimeters, then masks are created using the margin distance as calculated in page space (you can think of the margin as a distance measured on the paper). The reference scale parameter value is accounted for in this calculation.</para>
+						<para>If you choose any other units for your margin, then masks are created using the margin distance as calculated in map space (you can think of the margin as a real-world distance measure on the earth). Also, in this case, the reference scale parameter value is not used as part of the calculation.</para>
+					</pythonReference><dialogReference>
+						<para>The space in page units surrounding the symbolized input features used to create the mask polygon. Typically, masking polygons are created with a small margin around the symbol to improve visual appearance. Margin values are specified in either page units or map units. Most of the time you will want to specify your margin distance value in page units.</para>
+						<para>Margin value units are interpreted differently depending on which units you choose. If you choose points, inches, millimeters, or centimeters, then masks are created using the margin distance as calculated in page space (you can think of the margin as a distance measured on the paper). The reference scale parameter value is accounted for in this calculation.</para>
+						<para>If you choose any other units for your margin, then masks are created using the margin distance as calculated in map space (you can think of the margin as a real-world distance measure on the earth). Also, in this case, the reference scale parameter value is not used as part of the calculation.</para>
+					</dialogReference></param><param sync="true" name="method" displayname="Mask Kind" datatype="String" direction="Input" expression="method" type="Required"><pythonReference>
+						<para>The type of masking geometry created. There are four types:</para>
+						<bulletList><bullet_item>BOX—A polygon representing the extent of the symbolized feature. </bullet_item><bullet_item>CONVEX_HULL—The convex hull of the symbolized geometry of the feature. This is the default. </bullet_item><bullet_item>EXACT_SIMPLIFIED—A generalized polygon representing the exact shape of the symbolized feature. Polygons created with this method will have a significantly smaller number of vertices compared to polygons created with the EXACT method. </bullet_item><bullet_item>EXACT—A polygon representing the exact shape of the symbolized feature. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of masking geometry created. There are four types:</para>
+						<bulletList><bullet_item>BOX—A polygon representing the extent of the symbolized feature. </bullet_item><bullet_item>CONVEX_HULL—The convex hull of the symbolized geometry of the feature. This is the default. </bullet_item><bullet_item>EXACT_SIMPLIFIED—A generalized polygon representing the exact shape of the symbolized feature. Polygons created with this method will have a significantly smaller number of vertices compared to polygons created with the EXACT method. </bullet_item><bullet_item>EXACT—A polygon representing the exact shape of the symbolized feature. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="mask_for_non_placed_anno" displayname="Create masks for unplaced annotation" datatype="String" direction="Input" expression="mask_for_non_placed_anno" type="Required"><pythonReference>
+						<para>Specifies whether to create masks for unplaced annotation. This option is only used when masking geodatabase annotation layers.</para>
+						<bulletList><bullet_item>ALL_FEATURES —Creates masks for all the annotation features.</bullet_item><bullet_item>ONLY_PLACED —Only creates masks for features with a status of placed.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether to create masks for unplaced annotation. This option is only used when masking geodatabase annotation layers.</para>
+						<bulletList><bullet_item>ALL_FEATURES —Creates masks for all the annotation features.</bullet_item><bullet_item>ONLY_PLACED —Only creates masks for features with a status of placed.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="attributes" displayname="Transfer Attributes" datatype="String" direction="Input" expression="attributes" type="Optional"><pythonReference>
+						<para>Determines which attributes will be transferred from the input features to the output features.</para>
+						<bulletList><bullet_item>ONLY_FID—Only the FID field from the input features will be transferred to the output features. This is the default. </bullet_item><bullet_item>NO_FID—All the attributes except the FID from the input features will be transferred to the output features.</bullet_item><bullet_item>ALL— All the attributes from the input features will be transferred to the output features.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines which attributes will be transferred from the input features to the output features.</para>
+						<bulletList><bullet_item>ONLY_FID—Only the FID field from the input features will be transferred to the output features. This is the default. </bullet_item><bullet_item>NO_FID—All the attributes except the FID from the input features will be transferred to the output features.</bullet_item><bullet_item>ALL— All the attributes from the input features will be transferred to the output features.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cartographic_coordinate_system" label="Cartographic coordinate system">
+						
+					</environment><environment name="Reference_scale" label="Reference scale">
+						
+					</environment></environments><usage><bullet_item><para>This tool accepts point, line, and polygon feature layers as well as geodatabase annotation layers as input.</para></bullet_item><bullet_item>
+				<para>When creating masks, it is important to know that adding masks to maps adds complexity that will slow map drawing and affect map printing and exporting. Generally, there are three things to consider when creating masks for a map: (1) the number of masks, (2) the complexity of the masks, and (3) whether the masks will be used to mask polygon features filled with marker or line symbols. An increase in the number of masks, having more complex masks, and/or masking against marker or polygon fill symbols will result in slower drawing on your screen. In addition, printing and exporting performance can be poor and even fail to produce valid output, first, because of the large amount of processing required to print and export maps with masks, and second, because of known limitations in how graphic file formats store map export results that have many complicated masks.</para>
+			</bullet_item><bullet_item>
+				<para>When seeking to improve drawing performance as well as printing and exporting performance and reliability, the most important guideline to follow is to use the simplest masks necessary for the purposes of your map. In particular, when masking annotation text, you will find that CONVEX_HULL type masks are sufficient for many map purposes. If you need more detailed text masks, then use the EXACT_SIMPLIFIED type. Generally, when masking much text on a relatively large map, avoid using the EXACT type mask because it will create too many complicated masks to produce valid output efficiently.</para>
+			</bullet_item><bullet_item>
+				<para>Margin values are specified in either page units or map units. Most of the time you will want to specify your margin distance value in page units.</para>
+				<para>Margin value units are interpreted differently depending on which units you choose. If you choose points, inches, millimeters, or centimeters, then masks are created using the margin distance as calculated in page space (you can think of the margin as a distance measured on the paper). The reference scale parameter value is accounted for in this calculation.</para>
+				<para>If you choose any other units for your margin, then masks are created using the margin distance as calculated in map space (you can think of the margin as a real-world distance measure on the earth). Also, in this case, the reference scale parameter value is not used as part of the calculation.</para>
+			</bullet_item><bullet_item>
+				<para>Masks will be created if the margin distance is 0 or negative. A margin size of 0 will create a polygon that represents the exact shape of the symbolized feature. A negative margin will result in a polygon smaller than the symbolized feature. Generally, a margin value larger than 0 will be specified to produce the desired masking effect.</para>
+			</bullet_item><bullet_item>
+				<para>If the input layer is an annotation layer, the reference scale will be automatically set to the reference scale of the layer's feature class to ensure accurate calculation of the mask.</para>
+			</bullet_item><bullet_item>
+				<para>When masking annotation projected on the fly, masks should be created using the map's spatial reference by properly setting it in the spatial reference parameter. Readability is preserved when text is projected on the fly, which is why there may be differences in the spatial area that text occupies in different projections.</para>
+			</bullet_item><bullet_item>
+				<para>Masks of annotation features are font specific. When using masks with text, it is important to ensure that the same font is used onscreen as in the output. To do this, choose to embed fonts in vector output or download SoftFonts to printers or plotters.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FeatureOutlineMasks tool Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the FeatureOutlineMasks tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.FeatureOutlineMasks_cartography("C:/data/cartography.gdb/transportation/roads",
+                                "C:/data/cartography.gdb/transportation/fom_polys",
+                                "25000", "", "5 meters", "", "EXACT_SIMPLIFIED", "ALL")
+                    </code></scriptExample><scriptExample><title>FeatureOutlineMasks tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the FeatureOutlineMasks tool.</para>
+				<code xml:space="preserve"># Name: FeatureOutlineMasks_standalone_script.py
+# Description: Creates mask polygons at a specified distance and shape around symbolized features. 
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+input_layer = "C:/data/cartography.gdb/transportation/roads"
+outpuf_fc = "C:/data/cartography.gdb/transportation/fom_polys"
+reference_scale = "25000"
+spatial_reference = ""
+margin = "5 meters"
+mask_for_non_placed_anno = ""
+method = "EXACT_SIMPLIFIED"
+attributes = "ALL"
+
+# Execute Feature Outline Masks
+arcpy.FeatureOutlineMasks_cartography(input_layer, output_fc, reference_scale, spatial_reference, margin, mask_for_non_placed_anno, method, attributes)
+                    </code></scriptExample></scriptExamples></tool></metadata>

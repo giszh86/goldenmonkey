@@ -1,0 +1,49 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Colormap (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds a color map to a raster dataset if it does not already exist or replaces a color map with the one specified.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Act</keyword><keyword>Change</keyword><keyword>Copy</keyword><keyword>Imitate</keyword><keyword>Indexed Color</keyword><keyword>Look Up Table</keyword><keyword>Lut</keyword><keyword>Properties</keyword><keyword>Pseudo Color</keyword><keyword>Symbology</keyword><keyword>Update</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddColormap" displayname="Add Colormap (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Adds a color map to a raster dataset if it does not already exist or replaces a color map with the one specified.</para>
+		</summary><alink_name>AddColormap_management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster Dataset." datatype="Raster layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset to which you want to add a color map.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster dataset to which you want to add a color map.</para>
+					</dialogReference></param><param sync="true" name="in_template_raster" displayname="Input Template Raster Dataset" datatype="Raster layer" direction="Input" expression="in_template_raster" type="Optional"><pythonReference>
+						<para>The raster dataset with a color map, that will be applied to the input raster dataset. If this is entered the in_template_raster cannot be specified.</para>
+					</pythonReference><dialogReference>
+						<para>The raster dataset with a color map, that will be applied to the input raster dataset. Selecting a file causes the Input .clr or .act File to be greyed out, and vice versa.</para>
+					</dialogReference></param><param sync="true" name="input_CLR_file" displayname="Input .clr or .act File" datatype="Raster layer" direction="Input" expression="input_CLR_file" type="Optional"><pythonReference>
+						<para> The .clr or .act file, which will be used as the template color map for the input raster dataset. If this is entered the input_CLR_file cannot be specified.</para>
+					</pythonReference><dialogReference>
+						<para> The .clr or .act file, which will be used as the template color map for the input raster dataset. Selecting a file causes the Input Template Raster Dataset to be greyed out, and vice versa.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The color map applied to the input raster dataset can originate from a raster dataset that already has a color map, a .CLR file, or an .ACT file.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will not work when the color map is internally stored in the attribute table of an IMG or TIFF dataset. If the attribute table contains the fields "Red", "Green", and "Blue", that means this tool cannot be used.</para>
+			</bullet_item><bullet_item>
+				<para>The input raster dataset must be a single band raster dataset with integer values. Color maps can only be created for single-band raster datasets with a pixel depth of 16-bit unsigned or fewer. Certain formats cannot have a color map associated with them; please consult the  section.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AddColormap example (Python window)</title>
+					<para>This is a Python sample for AddColormap.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.AddColormap_management("c:/data/nocolormap.img", "#", \
+                             "colormap_file.clr")
+                    </code></scriptExample><scriptExample><title>AddColormap example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for AddColormap.</para>
+				<code xml:space="preserve">##====================================
+##Add Colormap
+##Usage: AddColormap_management in_raster {in_template_raster} {input_CLR_file}
+
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:/Workspace"
+    
+    ##Assign colormap using template image
+    arcpy.AddColormap_management("nocolormap.img", "colormap.tif", "#")
+    
+    ##Assign colormap using clr file
+    arcpy.AddColormap_management("nocolormap.img", "#", "colormap_file.clr")
+
+except:
+    print "Add Colormap example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,104 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Generate Exclude Area  (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Allows you to set the exclude area, based on color mask or histogram percentage. The output of this tool can then be used within the Color Balance Mosaic Dataset tool.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Creat Mask For Color Balancing</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" GenerateExcludeArea" displayname=" Generate Exclude Area  (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Allows you to set the exclude area, based on color mask or histogram percentage. The output of this tool can then be used within the Color Balance Mosaic Dataset tool.</para>
+		</summary><alink_name> GenerateExcludeArea_management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster" datatype="Mosaic Dataset; Composite Layer; Raster Dataset; Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para> The file path and file name of the input raster. Valid inputs include raster layers and mosaic datasets layers. </para>
+					</pythonReference><dialogReference>
+						<para> The file path and file name of the input raster. Valid inputs include raster layers and mosaic datasets layers. </para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output Raster Dataset" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Required"><pythonReference>
+						<para> The file path and file name of the input raster. The output will be a raster dataset. </para>
+						<para>The output can then be used as the Exclude Area Raster parameter within the Color Balance Mosaic Dataset tool.</para>
+					</pythonReference><dialogReference>
+						<para> The file path and file name of the input raster. The output will be a raster dataset. </para>
+						<para>The output can then be used as the Exclude Area Raster parameter within the Color Balance Mosaic Dataset tool.</para>
+					</dialogReference></param><param sync="true" name="pixel_type" displayname="Pixel Type" datatype="String" direction="Input" expression="pixel_type" type="Optional"><pythonReference>
+						<para> Choose the pixel depth of your input raster dataset. This parameter is important, since any pixel depth above 8-bit will need to have the color mask and histogram values adjusted.</para>
+						<bulletList><bullet_item>8_BIT—Your input raster dataset has values from 0 to 255. This is the default.</bullet_item><bullet_item>11_BIT—Your input raster dataset has values from 0 to 2047.</bullet_item><bullet_item>12_BIT—Your input raster dataset has values from 0 to 4095.</bullet_item><bullet_item>16_BIT—Your input raster dataset has values from 0 to 65535.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Choose the pixel depth of your input raster dataset. This parameter is important, since any pixel depth above 8-bit will need to have the color mask and histogram values adjusted.</para>
+						<bulletList><bullet_item>8_BIT—Your input raster dataset has values from 0 to 255. This is the default.</bullet_item><bullet_item>11_BIT—Your input raster dataset has values from 0 to 2047.</bullet_item><bullet_item>12_BIT—Your input raster dataset has values from 0 to 4095.</bullet_item><bullet_item>16_BIT—Your input raster dataset has values from 0 to 65535.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="generate_method" displayname="Generate Method" datatype="String" direction="Input" expression="generate_method" type="Optional"><pythonReference>
+						<para> Choose which method you want to use to exclude areas of your input. </para>
+						<bulletList><bullet_item>COLOR_MASK—Allows you to set the maximum color values to exclude in the output. This is the default.</bullet_item><bullet_item>HISTOGRAM_PERCENTAGE—Allows you to set the minimum and maximum histogram percentage of pixels.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Choose which method you want to use to exclude areas of your input. </para>
+						<bulletList><bullet_item>COLOR_MASK—Allows you to set the maximum color values to exclude in the output. This is the default.</bullet_item><bullet_item>HISTOGRAM_PERCENTAGE—Allows you to set the minimum and maximum histogram percentage of pixels.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="max_red" displayname="Maximum Red" datatype="Double" direction="Input" expression="max_red" type="Optional"><pythonReference>
+						<para> This is the maximum red value to exclude. The default is 255.</para>
+					</pythonReference><dialogReference>
+						<para> This is the maximum red value to exclude. The default is 255.</para>
+					</dialogReference></param><param sync="true" name="max_green" displayname="Maximum Green" datatype="Double" direction="Input" expression="max_green" type="Optional"><pythonReference>
+						<para> This is the maximum green value to exclude. The default is 255.</para>
+					</pythonReference><dialogReference>
+						<para> This is the maximum green value to exclude. The default is 255.</para>
+					</dialogReference></param><param sync="true" name="max_blue" displayname="Maximum Blue" datatype="Double" direction="Input" expression="max_blue" type="Optional"><pythonReference>
+						<para> This is the maximum blue value to exclude. The default is 255.</para>
+					</pythonReference><dialogReference>
+						<para> This is the maximum blue value to exclude. The default is 255.</para>
+					</dialogReference></param><param sync="true" name="max_white" displayname="Maximum White" datatype="Double" direction="Input" expression="max_white" type="Optional"><pythonReference>
+						<para> This is the maximum white value to exclude. The default is 255.</para>
+					</pythonReference><dialogReference>
+						<para> This is the maximum white value to exclude. The default is 255.</para>
+					</dialogReference></param><param sync="true" name="max_black" displayname="Maximum Black" datatype="Double" direction="Input" expression="max_black" type="Optional"><pythonReference>
+						<para> This is the maximum black value to exclude. The default is 0.</para>
+					</pythonReference><dialogReference>
+						<para> This is the maximum black value to exclude. The default is 0.</para>
+					</dialogReference></param><param sync="true" name="max_magenta" displayname="Maximum Magenta" datatype="Double" direction="Input" expression="max_magenta" type="Optional"><pythonReference>
+						<para> This is the maximum magenta value to exclude. The default is 255.</para>
+					</pythonReference><dialogReference>
+						<para> This is the maximum magenta value to exclude. The default is 255.</para>
+					</dialogReference></param><param sync="true" name="max_cyan" displayname="Maximum Cyan" datatype="Double" direction="Input" expression="max_cyan" type="Optional"><pythonReference>
+						<para> This is the maximum cyan value to exclude. The default is 255.</para>
+					</pythonReference><dialogReference>
+						<para> This is the maximum cyan value to exclude. The default is 255.</para>
+					</dialogReference></param><param sync="true" name="max_yellow" displayname="Maximum Yellow" datatype="Double" direction="Input" expression="max_yellow" type="Optional"><pythonReference>
+						<para> This is the maximum yellow value to exclude. The default is 255.</para>
+					</pythonReference><dialogReference>
+						<para> This is the maximum yellow value to exclude. The default is 255.</para>
+					</dialogReference></param><param sync="true" name="percentage_low" displayname="Low Percentage" datatype="Double" direction="Input" expression="percentage_low" type="Optional"><pythonReference>
+						<para> This is the minimum percentage of the histogram to exclude. The default is 0.</para>
+					</pythonReference><dialogReference>
+						<para> This is the minimum percentage of the histogram to exclude. The default is 0.</para>
+					</dialogReference></param><param sync="true" name="percentage_high" displayname="High Percentage" datatype="Double" direction="Input" expression="percentage_high" type="Optional"><pythonReference>
+						<para>This is the maximum percentage of the histogram to exclude. The default is 100.</para>
+					</pythonReference><dialogReference>
+						<para>This is the maximum percentage of the histogram to exclude. The default is 100.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Output_coordinate_system" label="Output coordinate system"></environment><environment name="Output_extent" label="Output extent"></environment><environment name="Output_Config_Keyword" label="Output Config Keyword"></environment><environment name="Compression" label="Compression"></environment><environment name="Tile_size" label="Tile size"></environment><environment name="Pyramid" label="Pyramid"></environment><environment name="Raster_statistics" label="Raster statistics"></environment></environments><usage><bullet_item><para>This tool is used to exclude areas that will be difficult to color correct, such as water, clouds, and anomalous areas.</para></bullet_item><bullet_item><para>The output of this tool can be used in the Color Balance Mosaic Dataset tool.</para></bullet_item></usage><scriptExamples><scriptExample><title>GenerateExcludeArea example 1 (Python window)</title>
+					<para>This is a Python sample for GenerateExcludeArea.</para>
+				<code xml:space="preserve">import arcpy
+GenerateExcludeArea_management("C:/workspace/fgdb.gdb/mosdata",\
+                               "C:/workspace/excludeArea.tif","8_BIT",\
+                               "COLOR_MASK","255","255","255","255","15",\
+                               "255","255","255","0","100")
+                    </code></scriptExample><scriptExample><title>GenerateExcludeArea example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for GenerateExcludeArea.</para>
+				<code xml:space="preserve">##===========================
+##Generate Exclude Area
+##Usage: GenerateExcludeArea_management in_raster out_raster 8_BIT | 11_BIT | 
+##                                      12_BIT | 16_BIT COLOR_MASK | HISTOGRAM_PERCENTAGE
+##                                      {max_red} {max_green} {max_blue} {max_white} 
+##                                      {max_black} {max_magenta} {max_cyan}
+##                                      {max_yellow} {percentage_low} {percentage_high}
+
+try:
+    import arcpy
+    arcpy.env.workspace = "c:/workspace"
+    
+    # Generate exclude area dataset from raster dataset with Histogram
+    arcpy.GenerateExcludeArea_management("srcimage.tif", "exarea.tif", "8_BIT", \
+                                         "HISTOGRAM_PERCENTAGE", "", "", "", "", \
+                                         "", "", "", "", "10", "100")                                      
+    
+    # Generate exclude area dataset from mosaic dataset with Color Mask
+    arcpy.GenerateExcludeArea_management("CC.gdb/srcmd", "exarea.tif", "8_BIT", \
+                                         "COLOR_MASK", "255", "200", "50", "255", \
+                                         "10", "210", "100", "255", "", "") 
+    
+    
+except:
+    print "Generate Exclude Area example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

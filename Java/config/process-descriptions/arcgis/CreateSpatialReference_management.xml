@@ -1,0 +1,86 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Spatial Reference (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a spatial reference object for use in ModelBuilder and scripting.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coordinate</keyword><keyword>Datum</keyword><keyword>Domain</keyword><keyword>Latitude</keyword><keyword>Longitude</keyword><keyword>Make</keyword><keyword>New</keyword><keyword>Object</keyword><keyword>Precision</keyword><keyword>Prj</keyword><keyword>Reference</keyword><keyword>Spatial</keyword><keyword>System</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateSpatialReference" displayname="Create Spatial Reference (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a spatial reference object for use in ModelBuilder and scripting.</para>
+		</summary><alink_name>CreateSpatialReference_management</alink_name><parameters><param sync="true" name="spatial_reference" displayname="Spatial Reference" datatype="Spatial Reference" direction="Input" expression="spatial_reference" type="Optional"><pythonReference>
+						<para>Name of the the spatial reference object to be created.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the the spatial reference object to be created.</para>
+					</dialogReference></param><param sync="true" name="spatial_reference_template" displayname="Spatial Reference Template" datatype="Feature Layer" direction="Input" expression="spatial_reference_template" type="Optional"><pythonReference>
+						<para>The feature class or layer to be used as a template to set the value for the spatial reference.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class or layer to be used as a template to set the value for the spatial reference.</para>
+					</dialogReference></param><param sync="true" name="xy_domain" displayname="XY Domain" datatype="Envelope" direction="Input" expression="xy_domain" type="Optional"><pythonReference>
+						<para>Allowable coordinate range for x,y coordinates.</para>
+					</pythonReference><dialogReference>
+						<para>Allowable coordinate range for x,y coordinates.</para>
+					</dialogReference></param><param sync="true" name="z_domain" displayname="Z Domain (min max)" datatype="String" direction="Input" expression="z_domain" type="Optional"><pythonReference>
+						<para>Allowable coordinate range for z values.</para>
+					</pythonReference><dialogReference>
+						<para>Allowable coordinate range for z values.</para>
+					</dialogReference></param><param sync="true" name="m_domain" displayname="M Domain (min max)" datatype="String" direction="Input" expression="m_domain" type="Optional"><pythonReference>
+						<para>Allowable coordinate range for m values.</para>
+					</pythonReference><dialogReference>
+						<para>Allowable coordinate range for m values.</para>
+					</dialogReference></param><param sync="true" name="template" displayname="Template XYDomains" datatype="Feature Layer" direction="Input" expression="[template,...]" type="Optional"><pythonReference>
+						<para>Feature classes or layers that can be used to define the XY Domain.</para>
+					</pythonReference><dialogReference>
+						<para>Feature classes or layers that can be used to define the XY Domain.</para>
+					</dialogReference></param><param sync="true" name="expand_ratio" displayname="Grow XYDomain By Percentage" datatype="Double" direction="Input" expression="expand_ratio" type="Optional"><pythonReference>
+						<para>Percentage by which the XY Domain will be expanded.</para>
+					</pythonReference><dialogReference>
+						<para>Percentage by which the XY Domain will be expanded.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>You can  create a spatial reference object with set coordinate system, spatial domains, and precision. The spatial domains and precision of the output spatial reference can be further modified using XY Domain, Z Domain, M Domain, Template XYDomains, and Grow XYDomain By Percentage parameters.</para>
+				</bullet_item><bullet_item>
+				<para>Template XYDomains does not have to be in the same coordinate system as that specified in Spatial Reference or Spatial Reference Template. If they are different, the extents will be projected to match.</para>
+			</bullet_item><bullet_item>
+				<para>If the Spatial Reference and Spatial Reference Template parameters are both set, spatial reference parameter will take priority.</para>
+			</bullet_item><bullet_item>
+				<para>All the parameters of the tool are optional. If no parameters are specified, the spatial reference will be defined as 'Unknown' and the XYDomain will assume standard defaults.</para>
+			</bullet_item><bullet_item>
+				<para>In ModelBuilder, the output of this tool  can be used as input to tools with a spatial reference parameter (e.g., , , ).</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Create Spatial Reference Example (Stand-alone Script)</title>
+					<para>The following stand-alone script uses the CreateSpatialReference function as part of a workflow that loops through a folder and finds all shapefiles that end in "ST", create spatial references, and append them into a geodatabase feature class.</para>
+				<code xml:space="preserve"># Name: findSTshp.py
+# Purpose: Loops through a folder and finds all shapefiles that end with "ST"
+# (all the street shapefiles), creates a geodatabase feature class, 
+# and appends all the shapefiles into it.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+import os
+from arcpy import env
+ 
+try:
+    #Set the workspace
+    env.workspace = "c:\data"
+
+    fds = arcpy.ListWorkspaces()
+    print fds    
+    fcList = []
+    
+    for fd in fds:
+        env.workspace = fd
+        fcs = arcpy.ListFeatureClasses("*ST")         
+        for fc in fcs:
+            fcList.append(fd + os.sep + fc)
+            fc1 = fcList[0]
+                                   
+    print fc1
+    print fcList
+ 
+    sr = arcpy.CreateSpatialReference_management("",fc1,"","","",fcList)
+    outFC = arcpy.CreateFeatureclass_management ('c:/data/gdb.mdb', 'gdt2', 'polyline',fc1, "","", sr)
+    arcpy.Append_management(fcList, outFC, 'no_test')
+ 
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+ 
+print "FINISHED"
+                    </code></scriptExample></scriptExamples></tool></metadata>

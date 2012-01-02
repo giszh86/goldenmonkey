@@ -1,0 +1,96 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Popularity (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Determines the value in an argument list that is at a certain level of popularity on a cell-by-cell basis. The particular level of popularity (the number of occurrences of each value) is specified by the first argument.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>By Cell</keyword><keyword>For Each</keyword><keyword>Number Of Occurrences</keyword><keyword>Per Cell</keyword><keyword>Pixel</keyword><keyword>Rank</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Popularity" displayname="Popularity (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Determines the value in an argument list that is at a certain level of popularity on a cell-by-cell basis. The particular level of popularity (the number of occurrences of each value) is specified by the first argument.</para>
+		</summary><alink_name>Popularity_sa</alink_name><toolIllust type="illustration" src="Popularity_sa_h.png" alt="Popularity illustration" /><parameters><param sync="true" name="in_popularity_raster_or_constant" displayname="Input popularity raster or constant value" datatype="Raster Layer | Constant" direction="Input" expression="in_popularity_raster_or_constant" type="Required"><pythonReference>
+						<para>The input raster defining the popularity position to be returned.</para>
+						<para>
+A number can be used as an input; however, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster defining the popularity position to be returned.</para>
+						<para>
+A number can be used as an input; however, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="in_rasters" displayname="Input rasters" datatype="Raster Layer" direction="Input" expression="[in_raster,...]" type="Required"><pythonReference>
+						<para>The list of input rasters used to evaluate the popularity of the values for each cell location.</para>
+					</pythonReference><dialogReference>
+						<para>The list of input rasters used to evaluate the popularity of the values for each cell location.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>Each cell in the output raster represents the value from the same location of input rasters that meets the input popularity value.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>Each cell in the output raster represents the value from the same location of input rasters that meets the input popularity value.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The tool evaluates the number of occurrences of the input raster values for each location and ranks them on an ordinal scale—that is, the most popular, second most popular, and so on. It will return the value of the specified nth most popular value defined by the popularity raster value.</para>
+				<para></para>
+			</bullet_item><bullet_item>
+				<para>In the list of input rasters, the order is irrelevant. However, the raster that defines the popularity position must precede these.</para>
+			</bullet_item><bullet_item>
+				<para>An arbitrary number of rasters can be specified in the input rasters list.</para>
+			</bullet_item><bullet_item>
+				<para>If the input values are the same for any cell location, regardless of the specified popularity, the output value will be the same as the input for that cell location.</para>
+			</bullet_item><bullet_item>
+				<para>If a cell location contains NoData on any of the input rasters, that location will be assigned NoData on the output.</para>
+			</bullet_item><bullet_item>
+				<para>If there is no single value found to be the nth most popular, NoData will be assigned to the location on the output raster. This situation occurs when all input raster values at a location are different or when two or more input raster values have the same number of occurrences and that number is the nth most popular. Returning one of the input raster values, such as the first one encountered in the scan process, would be deceptive. You would not know whether the value is truly the nth most popular value.</para>
+			</bullet_item><bullet_item>
+				<para>If the popularity value is greater than the number of input rasters, each cell location on the output will be assigned NoData.</para>
+			</bullet_item><bullet_item>
+				<para>If 0 is specified as the popularity value, the output value will be NoData.</para>
+			</bullet_item><bullet_item>
+				<para>A popularity level of 1 is the majority value, similar to the Majority option of Cell Statistics.</para>
+			</bullet_item><bullet_item>
+				<para>If any of the input rasters are floating point, the output is floating point; otherwise, it is integer.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Popularity example 1 (Python window)</title>
+					<para>This example performs a popularity operation on several input rasters and outputs the result as an IMG raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outPopularity = Popularity("cost", ["degs", "negs", "fourgrd"])
+outPopularity.save("C:/sapyexamples/output/outpop.img")
+                    </code></scriptExample><scriptExample><title>Popularity example 2 (stand-alone script)</title>
+					<para>This example performs a popularity operation on several input rasters and outputs the result as a GRID raster.</para>
+				<code xml:space="preserve"># Name: Popularity_Ex_02.py
+# Description: Determines the value in an argument list that is
+#              at a certain level of popularity 
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inPopularityRaster = "cost"
+inRaster01 = "degs"
+inRaster02 = "negs"
+inRaster03 = "fourgrd"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Popularity
+outPopularity = Popularity(inPopularityRaster, [inRaster01, inRaster02, inRaster03])
+
+# Save the output 
+outPopularity.save("C:/sapyexamples/output/outpop")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,77 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Less Than Frequency (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Evaluates on a cell-by-cell basis the number of times a set of rasters is less than another raster.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>By Cell</keyword><keyword>Compare</keyword><keyword>For Each</keyword><keyword>Number Of Times</keyword><keyword>Occurrence</keyword><keyword>Per Cell</keyword><keyword>Pixel</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="LessThanFrequency" displayname="Less Than Frequency (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Evaluates on a cell-by-cell basis the number of times a set of rasters is less than another raster.</para>
+		</summary><alink_name>LessThanFrequency_sa</alink_name><toolIllust type="illustration" src="LessThanFrequency_sa_h.png" alt="Less Than Frequency illustration" /><parameters><param sync="true" name="in_value_raster" displayname="Input value raster" datatype="Raster Layer" direction="Input" expression="in_value_raster" type="Required"><pythonReference>
+						<para>For each cell location in the input value raster, the number of occurrences (frequency) where a raster in the input list has a lesser value is counted.</para></pythonReference><dialogReference>
+						<para>For each cell location in the input value raster, the number of occurrences (frequency) where a raster in the input list has a lesser value is counted.</para></dialogReference></param><param sync="true" name="in_rasters" displayname="Input rasters" datatype="Raster Layer" direction="Input" expression="[in_raster,...]" type="Required"><pythonReference>
+						<para>
+The list of rasters that will be compared against the value raster.</para>
+					</pythonReference><dialogReference>
+						<para>
+The list of rasters that will be compared against the value raster.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>For each cell in the output raster, the value represents the number of times that the corresponding cells in the list of rasters is less than the value raster.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>For each cell in the output raster, the value represents the number of times that the corresponding cells in the list of rasters is less than the value raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>An arbitrary number of rasters can be specified in the input rasters list.</para>
+			</bullet_item><bullet_item>
+				<para>If a cell location contains NoData on any of the input rasters, that location will be assigned NoData on the output.</para>
+			</bullet_item><bullet_item>
+				<para>The output raster is always of integer type.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>LessThanFrequency example 1 (Python window)</title>
+					<para>This example evaluates the number of times a set of input GRID rasters is less than another raster and outputs the result as an IMG raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outLTF = LessThanFrequency("cost", ["degs", "negs", "fourgrd"])
+outLTF.save("C:/sapyexamples/output/outltf.img")
+                    </code></scriptExample><scriptExample><title>LessThanFrequency example 2 (stand-alone script)</title>
+					<para>This example evaluates the number of times a set of input GRID rasters is less than another raster and outputs the result as an IMG raster.</para>
+				<code xml:space="preserve"># Name: LessThanFrequency_Ex_02.py
+# Description: Evaluates the number of times a set of rasters is
+#              less than another raster
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inValueRaster = "cost"
+inRaster01 = "degs"
+inRaster02 = "negs"
+inRaster03 = "fourgrd"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute LessThanFrequency
+outLTF = LessThanFrequency(inValueRaster, [inRaster01, inRaster02, inRaster03])
+
+# Save the output 
+outLTF.save("C:/sapyexamples/output/outltf")
+                    </code></scriptExample></scriptExamples></tool></metadata>

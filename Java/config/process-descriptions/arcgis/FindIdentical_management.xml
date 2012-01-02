@@ -1,0 +1,62 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Find Identical (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Reports any records in a feature class or table that have identical values in a list of fields, and generates a table listing these identical records. If the field 'Shape' is selected, feature geometries are compared.</para>
+			<para>The Delete Identical tool can be used to find and delete identical records.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Check</keyword><keyword>Duplicate</keyword><keyword>Feature</keyword><keyword>Field</keyword><keyword>Geometry</keyword><keyword>Identical</keyword><keyword>Record</keyword><keyword>Redundant</keyword><keyword>Report</keyword><keyword>Row</keyword><keyword>Same</keyword><keyword>Search</keyword><keyword>Shape</keyword><keyword>Table</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FindIdentical" displayname="Find Identical (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Reports any records in a feature class or table that have identical values in a list of fields, and generates a table listing these identical records. If the field 'Shape' is selected, feature geometries are compared.</para>
+			<para>The Delete Identical tool can be used to find and delete identical records.</para></summary><alink_name>FindIdentical_management</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/FindIdentical_management_v.png" alt="Find Identical illustration" /><toolIllust type="illustration" src="FindIdentical_management_h.png" alt="Find Identical illustration" /><parameters><param sync="true" name="in_dataset" displayname="Input Dataset" datatype="Table View" direction="Input" expression="in_dataset" type="Required"><pythonReference>
+						<para>The table or feature class for which identical records will be found.</para>
+					</pythonReference><dialogReference>
+						<para>The table or feature class for which identical records will be found.</para>
+					</dialogReference></param><param sync="true" name="out_dataset" displayname="Output Dataset" datatype="Table View" direction="Output" expression="out_dataset" type="Required"><pythonReference>
+						<para>The output table reporting any identical records. This table will have the same number of records as the input dataset and will contain two fields: IN_FID and FEAT_SEQ. Identical records have the same FEAT_SEQ value.</para>
+					</pythonReference><dialogReference>
+						<para>The output table reporting any identical records. This table will have the same number of records as the input dataset and will contain two fields: IN_FID and FEAT_SEQ. Identical records have the same FEAT_SEQ value.</para>
+					</dialogReference></param><param sync="true" name="fields" displayname="Field(s)" datatype="Field" direction="Input" expression="[fields,...]" type="Required"><pythonReference><para>The field(s) whose values will be compared to find identical records.</para></pythonReference><dialogReference>
+						<para>The field(s) whose values will be compared to find identical records.</para>
+						<para>The Add Field button, which is used only in ModelBuilder, allows you to add expected fields so that you can complete the dialog box and continue to build your model.</para></dialogReference></param><param sync="true" name="xy_tolerance" displayname="XY Tolerance" datatype="Linear Unit" direction="Input" expression="xy_tolerance" type="Optional"><pythonReference>
+						<para>The xy tolerance which will be applied to each vertex when evaluating if there is an identical vertex in another feature. This parameter is enabled only when 'Shape' is selected as one of the fields.</para>
+					</pythonReference><dialogReference>
+						<para>The xy tolerance which will be applied to each vertex when evaluating if there is an identical vertex in another feature. This parameter is enabled only when 'Shape' is selected as one of the fields.</para>
+					</dialogReference></param><param sync="true" name="z_tolerance" displayname="Z Tolerance" datatype="Linear Unit" direction="Input" expression="z_tolerance" type="Optional"><pythonReference>
+						<para>The z tolerance which will be applied to each vertex when evaluating if there is an identical vertex in another feature. This parameter is enabled only when 'Shape' is selected as one of the fields.</para>
+					</pythonReference><dialogReference>
+						<para>The z tolerance which will be applied to each vertex when evaluating if there is an identical vertex in another feature. This parameter is enabled only when 'Shape' is selected as one of the fields.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>This tool finds identical records based on input field values. The values from multiple fields in the input dataset can be compared. If more than one field is specified, records are matched by the values in the first field, then by the values of the second field, and so on.</para>
+			</bullet_item><bullet_item>
+				<para>The output table will have the same number of records as the input dataset and will contain two fields: IN_FID and FEAT_SEQ. Identical records have the same FEAT_SEQ value. FEAT_SEQ values are generated by this tool—they have no relationship to object IDs.  The IN_FID field can be used to join the output table to the input dataset based on FID.</para>
+			</bullet_item><bullet_item>
+				<para>With feature class or feature layer input, select the field 'Shape' in the Field(s) parameter to compare feature geometries to find identical features by location.  The XY Tolerance and Z Tolerance parameters are only valid when 'Shape' is selected as one of the input fields.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FindIdentical Example 1 (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the FindIdentical function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+
+# Find identical records based on a text field and a numeric field.
+arcpy.FindIdentical_management("C:/data/fireincidents.shp", "C:/output/duplicate_incidents.dbf", ["ZONE", "INTENSITY"])
+                    </code></scriptExample><scriptExample><title>FindIdentical Example 2 (Stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the FindIdentical to identify duplicate records of a table or feature class.</para>
+				<code xml:space="preserve"># Name: FindIdentical_Example2.py
+# Description: Finds duplicate features in a dataset based on location (Shape field) and fire intensity
+# Author: ESRI
+
+import arcpy
+from arcpy import env
+
+env.overwriteOutput = True
+
+# Set workspace environment
+env.workspace = "C:/data/findidentical.gdb"
+
+# Set input feature class
+in_dataset = "fireincidents"
+
+# Set the fields upon which the matches are found
+fields = ["Shape", "INTENSITY"]
+
+# Set xy tolerance
+xy_tol = ".02 Meters"
+
+out_table = "duplicate_incidents"
+
+# Execute Find Identical 
+arcpy.FindIdentical_management(in_dataset, fields, out_table, xy_tol)
+                    </code></scriptExample></scriptExamples></tool></metadata>

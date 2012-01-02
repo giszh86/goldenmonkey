@@ -1,0 +1,55 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Build Network (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Reconstructs the network connectivity and attribute information of a network dataset. The network dataset needs to be rebuilt after making edits to the attributes or the features of a participating source feature class. After the source features are edited, the tool establishes the network connectivity only in the areas that have been edited to speed up the build process; however, when the network attributes are edited, the entire extent of the network dataset is rebuilt. This may be a slow operation on a large network dataset. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Analysis</keyword><keyword>Attribute</keyword><keyword>Build Network</keyword><keyword>Connectivity</keyword><keyword>Dataset</keyword><keyword>Layer</keyword><keyword>Network</keyword><keyword>Network Analyst</keyword><keyword>Network Analyst Layer</keyword><keyword>Network Connectivity</keyword><keyword>Network Dataset</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BuildNetwork" displayname="Build Network (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Reconstructs the network connectivity and attribute information of a network dataset. The network dataset needs to be rebuilt after making edits to the attributes or the features of a participating source feature class. After the source features are edited, the tool establishes the network connectivity only in the areas that have been edited to speed up the build process; however, when the network attributes are edited, the entire extent of the network dataset is rebuilt. This may be a slow operation on a large network dataset. </para>
+		</summary><alink_name>BuildNetwork_na</alink_name><parameters><param sync="true" name="in_network_dataset" displayname="Input network dataset" datatype="Network Dataset Layer" direction="Input" expression="in_network_dataset" type="Required"><pythonReference>
+						<para>The network dataset to be built.</para>
+					</pythonReference><dialogReference>
+						<para>The network dataset to be built.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item> Before building a network dataset, an exclusive schema lock is required on the network dataset and the participating source feature classes. This means that you (or anyone else) cannot be editing the participating feature classes. You will receive an error if an exclusive schema lock cannot be obtained.</bullet_item><bullet_item>
+				<para>An SDC network dataset cannot be built as it is read only.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>BuildNetwork example 1 (Python window)</title>
+					<para>Execute the tool using all parameters </para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/Paris.gdb"
+arcpy.BuildNetwork_na("Transportation/ParisMultimodal_ND")
+
+                    </code></scriptExample><scriptExample><title>BuildNetwork example 2 (stand-alone Python script)</title>
+					<para>The following Python script demonstrates how to use the BuildNetwork tool in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: BuildNetwork_ex02.py
+# Description: Build a network dataset.
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+import sys
+import os
+import shutil
+
+#Check out the Network Analyst extension license
+arcpy.CheckOutExtension("Network")
+
+#Set environment settings
+env.workspace = "C:/data/SanFrancisco.gdb"
+
+#Set local variables
+inNetworkDataset = "Transportation/Streets_ND"
+
+#Build the network dataset
+arcpy.BuildNetwork_na(inNetworkDataset)
+
+#If there are any build errors, they are recorded in a BuildErrors.txt file
+#present in the system temp directory. So copy this file to the directory
+#containing this script
+
+#First get the path to the system temp directory
+tempDir = os.environ.get("TEMP")
+if tempDir:
+    shutil.copy2(os.path.join(tempDir,"BuildErrors.txt"),sys.path[0])
+
+print "Script completed successfully."
+                    </code></scriptExample></scriptExamples></tool></metadata>

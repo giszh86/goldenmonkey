@@ -1,0 +1,126 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Split (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Clips portions of the input coverage into multiple coverages.</para>
+			<para>Each new output coverage contains only those portions of the input coverage features overlapped by the split coverage polygons. The unique values in the Split Item are used to name the output coverages. The number of output coverages is determined by the number of unique values in the Split Item.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coverage</keyword><keyword>Split</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Split" displayname="Split (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Clips portions of the input coverage into multiple coverages.</para>
+			<para>Each new output coverage contains only those portions of the input coverage features overlapped by the split coverage polygons. The unique values in the Split Item are used to name the output coverages. The number of output coverages is determined by the number of unique values in the Split Item.</para>
+			
+		</summary><alink_name>Split_arc</alink_name><toolIllust type="illustration" src="Split_arc_h.gif" alt="Split illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage to be split.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage to be split.</para>
+					</dialogReference></param><param sync="true" name="split_cover" displayname="Split Coverage" datatype="Coverage" direction="Input" expression="split_cover" type="Required"><pythonReference>
+						<para>The coverage used to split the input coverage.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage used to split the input coverage.</para>
+					</dialogReference></param><param sync="true" name="split_item" displayname="Split Item" datatype="ArcInfo Item" direction="Input" expression="split_item" type="Required"><pythonReference>
+						<para>The item in the split coverage that will be used to split the input coverage. The unique values in the Split Item are used to name the output coverages. The number of output coverages is determined by the number of unique values in the Split Item.</para>
+					</pythonReference><dialogReference>
+						<para>The item in the split coverage that will be used to split the input coverage. The unique values in the Split Item are used to name the output coverages. The number of output coverages is determined by the number of unique values in the Split Item.</para>
+					</dialogReference></param><param sync="true" name="path" displayname="Output Workspace" datatype="Folder ; Workspace" direction="Output" expression="path" type="Optional"><pythonReference>
+						<para>The workspace in which the output coverage will be maintained.</para>
+					</pythonReference><dialogReference>
+						<para>The workspace in which the output coverage will be maintained.</para>
+					</dialogReference></param><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Optional"><pythonReference>
+						<para>The feature classes to be split:</para>
+						<bulletList><bullet_item>POLY—Polygons will be split. This is the default option. </bullet_item><bullet_item>LINE—Arcs will be split. </bullet_item><bullet_item>POINT—Points will be split. </bullet_item><bullet_item>NET—Polygons and lines will be split. </bullet_item><bullet_item>LINK—Points and lines will be split. </bullet_item><bullet_item>RAW—Arcs, data points, and annotation in a coverage that does not have topology (no attribute files) will be split. Attributes are ignored. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The feature classes to be split:</para>
+						<bulletList><bullet_item>POLY—Polygons will be split. This is the default option. </bullet_item><bullet_item>LINE—Arcs will be split. </bullet_item><bullet_item>POINT—Points will be split. </bullet_item><bullet_item>NET—Polygons and lines will be split. </bullet_item><bullet_item>LINK—Points and lines will be split. </bullet_item><bullet_item>RAW—Arcs, data points, and annotation in a coverage that does not have topology (no attribute files) will be split. Attributes are ignored. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="fuzzy_tolerance" displayname="Fuzzy Tolerance" datatype="Double" direction="Input" expression="fuzzy_tolerance" type="Optional"><pythonReference>
+						<para>The minimum distance between coordinates in each output coverage. By default, the minimum fuzzy tolerance value from the input coverage and split coverage is used.</para>
+						
+					</pythonReference><dialogReference>
+						<para>The minimum distance between coordinates in each output coverage. By default, the minimum fuzzy tolerance value from the input coverage and split coverage is used.</para>
+						
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Values in the Split Item must be unique.</para>
+			</bullet_item><bullet_item>
+				<para>The Split Item data type must be character.</para>
+			</bullet_item><bullet_item>
+				<para>The output coverages will be named for Split Item values; therefore, they must start with a valid character.</para>
+			</bullet_item><bullet_item>
+				<para>Split Item values must be 13 characters or less.</para>
+			</bullet_item><bullet_item>
+				<para>The split coverage must have polygon topology.</para>
+			</bullet_item><bullet_item>
+				<para>Topology is maintained in the output coverages.</para>
+			</bullet_item><bullet_item>
+				<para>The number of output coverages is dictated by the Split Item of the split coverage. The maximum number of output coverages equals the total number of unique values in the Split Item.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Workspace in which each output coverage is created must contain an INFO directory before running Split. Split will stop if it cannot find the INFO directory.</para>
+			</bullet_item><bullet_item>
+				<para>Annotation is copied when its lower left starting point falls within a new output coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Polygon topology is rebuilt for each output coverage. Each polygon User-ID is set equal to the old input coverage polygon User-ID. New label point positions are only generated when the original input coverage label point position is clipped by the split coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Empty output coverages can be created by Split for split coverage areas in which no input coverage features are located.</para>
+			</bullet_item><bullet_item>
+				<para>If the input coverage contains a node feature class with attributes, then each of the output coverages will contain nodes that fall within the appropriate split coverage. New NAT records will be created as required by the Split operation.</para>
+			</bullet_item><bullet_item>
+				<para>Attributes for new nodes are set to zero.</para>
+			</bullet_item><bullet_item>
+				<para>Region subclasses in the input coverage are maintained.</para>
+			</bullet_item><bullet_item>
+				<para>Empty region subclasses are created if the regions that make up the subclass are not in the output coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Region subclasses are maintained as empty subclasses when all the regions are removed.</para>
+			</bullet_item><bullet_item>
+				<para>Route systems will be maintained. Route systems will be duplicated for arcs split into multiple pieces. Each resultant coverage will have a complete set of route system subclasses containing only those route systems attached to arcs within that coverage (empty route system files will be created if necessary).</para>
+			</bullet_item><bullet_item>
+				<para>Route systems are copied when their arcs are split into multiple pieces and dropped for arcs that are removed.</para>
+			</bullet_item><bullet_item>
+				<para>Routes and sections on the arcs will be carried over and maintained. Route systems will be split at their intersections. Split maintains all route system subclasses.</para>
+			</bullet_item><bullet_item>
+				<para>Split treats route systems as if it were performing repeated . Each output coverage from Split contains the route systems within that particular split polygon and the parts of those that pass though that polygon. Routes retain their User-IDs across split coverages so that  can reassemble them. Split sections will have new section measures interpolated at their split ends.</para>
+			</bullet_item><bullet_item>
+				<para>Four new tic locations are generated for each output coverage at the corners of the split coverage BND. No existing tics are retained.</para>
+			</bullet_item><bullet_item>
+				<para>The feature attribute table for each output coverage contains the same items as the input coverage feature attribute table.</para>
+			</bullet_item><bullet_item>
+				<para>Split will distribute all annotation subclasses present in the input coverage to all of the output coverages based on the split coverage polygon in which the lower left starting point falls for each annotation string. If a particular subclass has no actual annotation within a particular output coverage, it is still created.</para>
+			</bullet_item><bullet_item>
+				<para>The input coverages projection file (PRJ) will be copied to each output coverage.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of each output coverage is determined by the current processing rule as set by the  environment setting. If the processing rule has not been established during the current session, then the output coverages will be in the same precision as the input coverage.</para>
+			</bullet_item><bullet_item>
+				<para>When the input coverage contains linear data belonging to different planar graphs, the data will be maintained in the output coverage. For example, with coincident or colinear arcs such as arcs representing utility cables at different levels or a road following a stream, the coincident and colinear line segments will be preserved. However, additional vertices may be inserted. In the case of intersecting arcs such as a road passing over a stream, nodes will not be inserted at the apparent intersection.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Split example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to split one coverage into multiple output coverages.
+
+					</para>
+				<code xml:space="preserve"># Name: Split_Example.py
+# Description: Splits one coverage into multiple output coverages.
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "county"
+splitCover = "citylim"
+splitItem = "citycode"
+path = "C:/output/city"
+featureType = "LINE"
+
+# Execute split
+arcpy.Split_arc(inCover, splitCover, splitItem, path, featureType, "")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

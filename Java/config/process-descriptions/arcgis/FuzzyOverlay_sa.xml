@@ -1,0 +1,76 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Fuzzy Overlay (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Combine fuzzy membership rasters data together, based on selected overlay type.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Combine</keyword><keyword>Fuzzification</keyword><keyword>Logic</keyword><keyword>Operators</keyword><keyword>Set Theory</keyword><keyword>Site Selection</keyword><keyword>Siting</keyword><keyword>Suitability</keyword><keyword>Suitability Modeling</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FuzzyOverlay" displayname=" Fuzzy Overlay (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para> Combine fuzzy membership rasters data together, based on selected overlay type.</para>
+			</summary><alink_name>FuzzyOverlay_sa</alink_name><parameters><param sync="true" name="in_rasters" displayname="Input rasters" datatype="Raster Layer" direction="Input" expression="[in_raster,...]" type="Required"><pythonReference>
+						<para> A list of input membership rasters to be combined in the overlay.</para>
+					</pythonReference><dialogReference>
+						<para> A list of input membership rasters to be combined in the overlay.</para>
+					</dialogReference></param><param sync="true" name="overlay_type" displayname="Overlay type" datatype="String" direction="Input" expression="overlay_type" type="Optional"><pythonReference>
+						<para> Specifies the method used to combine two or more membership data.</para>
+						<bulletList><bullet_item>AND—The minimum of the fuzzy memberships from the input fuzzy rasters.</bullet_item><bullet_item>OR—The maximum of the fuzzy memberships from the input rasters.</bullet_item><bullet_item>PRODUCT— A decreasive function. Use this when the combination of multiple evidence is less important or smaller than any of the inputs alone.</bullet_item><bullet_item>SUM—An increasive function. Use this when the combination of multiple evidence is more important or larger than any of the inputs alone.</bullet_item><bullet_item>GAMMA— The algebraic product of the Fuzzy Sum and Fuzzy Product, both raised to the power of gamma.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Specifies the method used to combine two or more membership data.</para>
+						<bulletList><bullet_item>AND—The minimum of the fuzzy memberships from the input fuzzy rasters.</bullet_item><bullet_item>OR—The maximum of the fuzzy memberships from the input rasters.</bullet_item><bullet_item>PRODUCT— A decreasive function. Use this when the combination of multiple evidence is less important or smaller than any of the inputs alone.</bullet_item><bullet_item>SUM—An increasive function. Use this when the combination of multiple evidence is more important or larger than any of the inputs alone.</bullet_item><bullet_item>GAMMA— The algebraic product of the Fuzzy Sum and Fuzzy Product, both raised to the power of gamma.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="gamma" displayname="Gamma" datatype="Double" direction="Input" expression="gamma" type="Optional"><pythonReference>
+						<para> The gamma value to be used.   This is only when the Overlay type is set to GAMMA.</para><para>Default value is 0.9.</para>
+					</pythonReference><dialogReference>
+						<para> The gamma value to be used.   This is only when the Overlay type is set to GAMMA.</para><para>Default value is 0.9.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para> The output raster which is the results of applying the fuzzy operator.</para><para>This output will always have a value between 0 and 1.</para>
+						</pythonReference><dialogReference>
+							<para> The output raster which is the results of applying the fuzzy operator.</para><para>This output will always have a value between 0 and 1.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment></environments><usage><bullet_item>
+				<para> This tool is recommended for the use with the result of fuzzy membership tool.  It is meant to be applied to rasters with values that range between 0 and 1.</para>
+			</bullet_item><bullet_item><para>The following lists the appropriate Overlay type to use for certain conditions.<bulletList><bullet_item>Use OR when any of the input evidence rasters can have a high value in order for the output to be a high value.</bullet_item><bullet_item>Use AND when all of the input evidence rasters must have a high value in order for the output to be a high value.</bullet_item><bullet_item>Use PRODUCT when the combined evidence is less important than any single evidence.</bullet_item><bullet_item>Use SUM when the combined evidence is more important than any single evidence.</bullet_item></bulletList></para></bullet_item><bullet_item><para>The GAMMA Overlay type is typically used to combine fuzzy combinations of more basic data. When Gamma is 1 the result is the same as Fuzzy Sum. When Gamma is 0 the result is the same as Fuzzy Product. Values in between allow the user to combine evidence between these two extremes and possibly different than Fuzzy And or Fuzzy Or.</para></bullet_item></usage><scriptExamples><scriptExample><title>FuzzyOverlay example 1 (Python window)</title>
+					<para>This example combines the input membership rasters with the AND overlay type to identify the minium membership value between them.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy.sa import *
+from arcpy import env
+env.workspace = "c:/sapyexamples/data"
+outFzyOverlay = FuzzyOverlay(["fzymembout1", "fzymembout2"], "AND")
+outFzyOverlay.save("c:/sapexamples/output/fuzzover.tif")
+                    </code></scriptExample><scriptExample><title>FuzzyOverlay example 2 (stand-alone script)</title>
+					<para>This example combines the input membership rasters with a GAMMA overlay type.</para>
+				<code xml:space="preserve"># Name: FuzzyOverlay_Ex_02.py
+# Description: Combine fuzzy membership rasters data together based on 
+#    selected overlay type ("GAMMA" in this case). 
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRasterList = ["fzymembout1", "fzymembout2"]
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute FuzzyMembership
+outFzyOverlay = FuzzyOverlay(inRasterList, "GAMMA", 0.9)
+
+# Save the output
+outFzyOverlay.save("c:/sapexamples/output/fuzzoverlay")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

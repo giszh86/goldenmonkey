@@ -1,0 +1,163 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Copy Raster (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Makes a copy of a raster dataset or loads raster datasets into a raster catalog.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Back Up</keyword><keyword>Backup</keyword><keyword>Bil</keyword><keyword>Bip</keyword><keyword>Bit Depth</keyword><keyword>Bmp</keyword><keyword>Bsq</keyword><keyword>Convert</keyword><keyword>Duplicate</keyword><keyword>Envi Dat</keyword><keyword>Erdas Imagine</keyword><keyword>Geodatabase</keyword><keyword>Gif</keyword><keyword>Grid</keyword><keyword>Img</keyword><keyword>Jp2</keyword><keyword>Jpeg</keyword><keyword>Jpg</keyword><keyword>Load</keyword><keyword>New</keyword><keyword>Paste</keyword><keyword>Pixel Depth</keyword><keyword>Png</keyword><keyword>Reproduce</keyword><keyword>Tif</keyword><keyword>Tiff</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CopyRaster" displayname="Copy Raster (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Makes a copy of a raster dataset or loads raster datasets into a raster catalog.</para>
+		</summary><alink_name>CopyRaster_management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster" datatype="Raster layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The name and location of the raster dataset to be copied.</para>
+					</pythonReference><dialogReference>
+						<para>The name and location of the raster dataset to be copied.</para>
+					</dialogReference></param><param sync="true" name="out_rasterdataset" displayname="Output Raster Dataset" datatype="Raster Dataset ; Raster Catalog" direction="Output" expression="out_rasterdataset" type="Required"><pythonReference>
+						<para>The name and location of the raster dataset to be created.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</pythonReference><dialogReference>
+						<para>The name and location of the raster dataset to be created.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="Configuration Keyword" datatype="String" direction="Input" expression="config_keyword" type="Optional"><pythonReference>
+						<para>Specifies the storage parameters (configuration) for a file geodatabase and an ArcSDE geodatabase. Personal geodatabases do not use configuration keywords.</para>
+						<para>ArcSDE configuration keywords are set up by your database administrator.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the storage parameters (configuration) for a file geodatabase and an ArcSDE geodatabase. Personal geodatabases do not use configuration keywords.</para>
+						<para>ArcSDE configuration keywords are set up by your database administrator.</para>
+					</dialogReference></param><param sync="true" name="background_value" displayname="Ignore Background Value" datatype="Double" direction="Input" expression="background_value" type="Optional"><pythonReference>
+						<para>Use this option to remove the unwanted values created around the raster data. The value specified will be distinguished from other valuable data in the raster dataset. For example, a value of zero along the raster dataset's borders will be distinguished from zero values within the raster dataset.</para>
+						<para>The pixel value specified will be set to NoData in the output raster dataset.</para>
+						<para>For file-based rasters and personal geodatabase rasters, the Ignore Background Value must be set to the same value as NoData in order for the background value to be ignored. ArcSDE and file geodatabase rasters will work without this extra step.</para>
+					</pythonReference><dialogReference>
+						<para>Use this option to remove the unwanted values created around the raster data. The value specified will be distinguished from other valuable data in the raster dataset. For example, a value of zero along the raster dataset's borders will be distinguished from zero values within the raster dataset.</para>
+						<para>The pixel value specified will be set to NoData in the output raster dataset.</para>
+						<para>For file-based rasters and personal geodatabase rasters, the Ignore Background Value must be set to the same value as NoData in order for the background value to be ignored. ArcSDE and file geodatabase rasters will work without this extra step.</para>
+					</dialogReference></param><param sync="true" name="nodata_value" displayname="NoData Value" datatype="Double" direction="Input" expression="nodata_value" type="Optional"><pythonReference>
+						<para>All the pixels with the specified value will be set to NoData in the output raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>All the pixels with the specified value will be set to NoData in the output raster dataset.</para>
+					</dialogReference></param><param sync="true" name="onebit_to_eightbit" displayname="Convert 1 bit data to 8 bit" datatype="Boolean" direction="Input" expression="onebit_to_eightbit" type="Optional"><pythonReference>
+						<para>Choose whether the input 1-bit raster dataset will be converted to an 8-bit raster dataset. In this conversion the value 1 in the input raster dataset will be changed to 255 in the output raster dataset. This is useful when importing a 1-bit raster dataset to ArcSDE. One-bit raster dataset have 8-bit pyramid layers when stored in a file system, but in ArcSDE, 1-bit raster datasets can only have 1-bit pyramid layers, which makes the display unpleasant. By converting the data to 8-bit in ArcSDE, the pyramid layers are built as 8-bit instead of 1-bit, resulting in a proper raster dataset in the display.</para>
+						<bulletList><bullet_item>NONE—No conversion will be done. This is the default. </bullet_item><bullet_item>OneBitTo8Bit—The input raster will be converted.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose whether the input 1-bit raster dataset will be converted to an 8-bit raster dataset. In this conversion the value 1 in the input raster dataset will be changed to 255 in the output raster dataset. This is useful when importing a 1-bit raster dataset to ArcSDE. One-bit raster dataset have 8-bit pyramid layers when stored in a file system, but in ArcSDE, 1-bit raster datasets can only have 1-bit pyramid layers, which makes the display unpleasant. By converting the data to 8-bit in ArcSDE, the pyramid layers are built as 8-bit instead of 1-bit, resulting in a proper raster dataset in the display.</para>
+						<bulletList>
+							<bullet_item>Unchecked—No conversion will be done. This is the default.</bullet_item>
+							<bullet_item>Checked—The input raster will be converted.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="colormap_to_RGB" displayname="Colormap to RGB" datatype="Boolean" direction="Input" expression="colormap_to_RGB" type="Optional"><pythonReference>
+						<para>If the input raster dataset has a colormap, the output raster dataset can be converted to a three-band output raster dataset. This is useful when mosaicking rasters with different colormaps.</para>
+						<bulletList><bullet_item>NONE—No conversion will occur. This is the default.</bullet_item><bullet_item>ColormapToRGB—The input dataset will be converted.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>If the input raster dataset has a colormap, the output raster dataset can be converted to a three-band output raster dataset. This is useful when mosaicking rasters with different colormaps.</para>
+						<bulletList>
+							<bullet_item>Unchecked—No conversion will occur. This is the default.</bullet_item>
+							<bullet_item>Checked—The input dataset will be converted. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="pixel_type" displayname="Pixel type" datatype="String" direction="Output" expression="pixel_type" type="Optional"><pythonReference>
+						<para>Determines the bit depth of the output raster dataset. If left unspecified, the output bit depth will be the same as the input.</para>
+						<para>There will be no rescaling of the raster values when a different pixel type is chosen. If the pixel type is demoted (lowered), the raster values outside the valid range for that pixel depth will be truncated and lost.</para>
+						<bulletList><bullet_item>1_BIT—A 1-bit unsigned integer. The values can be 0 or 1. </bullet_item><bullet_item>2_BIT—A 2-bit unsigned integer. The values supported can be from 0 to 3. </bullet_item><bullet_item>4_BIT—A 4-bit unsigned integer. The values supported can be from 0 to 15. </bullet_item><bullet_item>8_BIT_UNSIGNED—An unsigned 8-bit data type. The values supported can be from 0 to 255.</bullet_item><bullet_item>8_BIT_SIGNED—A signed 8-bit data type. The values supported can be from -128 to 127.</bullet_item><bullet_item>16_BIT_UNSIGNED—A 16-bit unsigned data type. The values can range from 0 to 65,535.</bullet_item><bullet_item>16_BIT_SIGNED—A 16-bit signed data type. The values can range from -32,768 to 32,767.</bullet_item><bullet_item>32_BIT_UNSIGNED—A 32-bit unsigned data type. The values can range from 0 to 4,294,967,295. </bullet_item><bullet_item>32_BIT_SIGNED—A 32-bit signed data type. The values can range from -2,147,483,648 to 2,147,483,647.</bullet_item><bullet_item>32_BIT_FLOAT—A 32-bit data type supporting decimals. </bullet_item><bullet_item>64_BIT—A 64-bit data type supporting decimals.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines the bit depth of the output raster dataset. If left unspecified, the output bit depth will be the same as the input.</para>
+						<para>There will be no rescaling of the raster values when a different pixel type is chosen. If the pixel type is demoted (lowered), the raster values outside the valid range for that pixel depth will be truncated and lost.</para>
+						<bulletList><bullet_item>1_BIT—A 1-bit unsigned integer. The values can be 0 or 1. </bullet_item><bullet_item>2_BIT—A 2-bit unsigned integer. The values supported can be from 0 to 3. </bullet_item><bullet_item>4_BIT—A 4-bit unsigned integer. The values supported can be from 0 to 15. </bullet_item><bullet_item>8_BIT_UNSIGNED—An unsigned 8-bit data type. The values supported can be from 0 to 255.</bullet_item><bullet_item>8_BIT_SIGNED—A signed 8-bit data type. The values supported can be from -128 to 127.</bullet_item><bullet_item>16_BIT_UNSIGNED—A 16-bit unsigned data type. The values can range from 0 to 65,535.</bullet_item><bullet_item>16_BIT_SIGNED—A 16-bit signed data type. The values can range from -32,768 to 32,767.</bullet_item><bullet_item>32_BIT_UNSIGNED—A 32-bit unsigned data type. The values can range from 0 to 4,294,967,295. </bullet_item><bullet_item>32_BIT_SIGNED—A 32-bit signed data type. The values can range from -2,147,483,648 to 2,147,483,647.</bullet_item><bullet_item>32_BIT_FLOAT—A 32-bit data type supporting decimals. </bullet_item><bullet_item>64_BIT—A 64-bit data type supporting decimals.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Pyramid" label="Pyramid">
+						
+					</environment><environment name="Raster_statistics" label="Raster statistics">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword"></environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Tile_size" label="Tile size">
+						
+					</environment></environments><usage><bullet_item>
+				<para>You can save your output to BIL, BIP, BMP, BSQ, DAT, GIF, GRID, IMG, JPEG, JPEG 2000, PNG, TIFF, or any geodatabase raster dataset. </para>
+			</bullet_item><bullet_item>
+				<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset. When storing the raster dataset in a file format, you need to specify the file extension: <bulletList>
+						<bullet_item>.bil for ESRI BIL</bullet_item>
+						<bullet_item>.bip for ESRI BIP</bullet_item>
+						<bullet_item>.bmp for BMP</bullet_item>
+						<bullet_item>.bsq for ESRI BSQ</bullet_item>
+						<bullet_item>.dat for ENVI DAT</bullet_item>
+						<bullet_item>.gif for GIF</bullet_item>
+						<bullet_item>.img for ERDAS IMAGINE</bullet_item>
+						<bullet_item>.jpg for JPEG</bullet_item>
+						<bullet_item>.jp2 for JPEG 2000</bullet_item>
+						<bullet_item>.png for PNG</bullet_item>
+						<bullet_item>.tif for TIFF</bullet_item>
+						<bullet_item>no extension for GRID</bullet_item>
+					</bulletList></para>
+			</bullet_item><bullet_item>
+				<para>The output of this tool is always a raster dataset, even if the raster datasets are being loaded into a raster catalog. This tool will accept a mosaic dataset as the input, but the output will still be a raster dataset—the contents of the mosaic dataset will be mosaicked to create a raster dataset.</para>
+			</bullet_item><bullet_item>
+				<para>This tool can be used to load raster datasets into a raster catalog. If you want to load raster datasets into a raster catalog, you will need to type out the full path of the raster catalog as the output location or drag the raster catalog into the output text box.</para>
+			</bullet_item><bullet_item>
+				<para>If this tool is used to load raster datasets into a raster catalog, then the  will need to be run after the loading is completed. </para>
+				<para>.</para>
+			</bullet_item><bullet_item>
+				<para>For file-based rasters and personal geodatabase rasters, the Ignore Background Value must be set to the same value as NoData in order for the background value to be ignored. File geodatabase rasters and ArcSDE rasters will simply work without this extra step.</para>
+			</bullet_item><bullet_item>
+				<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, or a geodatabase, you can specify a Compression type and Compression Quality within the Environment Settings.</para>
+			</bullet_item><bullet_item>
+				<para>The GIF format only supports single-band raster datasets.</para>
+			</bullet_item><bullet_item>
+				<para>The pixel type parameter determines the bit depth of the output raster dataset. There is rescaling of the raster values when a different pixel type is chosen. If the pixel type is demoted (lowered), the raster values outside the valid range for that pixel depth will be truncated and lost. To learn about the bit depth capacity for supported export formats, see </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CopyRaster example 1 (Python window)</title>
+					<para>This is a Python sample for the CopyRaster tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.CopyRaster_management("c:/data/background.tif",\
+                           "c:/fdgb/CpRaster.gdb/fgdbRD","DEFAULTS",\
+                           "0","9","","","8_BIT_UNSIGNED")
+                    </code></scriptExample><scriptExample><title>CopyRaster example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for the CopyRaster tool.</para>
+				<code xml:space="preserve">##====================================
+##Copy Raster
+##Usage: CopyRaster_management in_raster out_rasterdataset {config_keyword} {background_value} {nodata_value} {NONE | OneBitTo8Bit} 
+##                             {NONE | ColormapToRGB} {1_BIT | 2_BIT | 4_BIT | 8_BIT_UNSIGNED | 8_BIT_SIGNED | 16_BIT_UNSIGNED 
+##                             | 16_BIT_SIGNED | 32_BIT_UNSIGNED | 32_BIT_SIGNED | 32_BIT_FLOAT | 64_BIT}
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:\PrjWorkspace"
+    ##Copy File RasterDataset to GDB Dataset with Background and Nodata setting
+    arcpy.CopyRaster_management("background.tif","CpRaster.gdb\\background","DEFAULTS","0","9","","","8_BIT_UNSIGNED")
+    ##Copy 1 BIT 
+    arcpy.CopyRaster_management("1bit.tif","SDE94.sde\\bit8","DEFAULTS","","","OneBitTo8Bit","","")
+except:
+    print "Copy Raster example failed."
+    print arcpy.GetMessages()
+    
+                    </code></scriptExample></scriptExamples></tool></metadata>

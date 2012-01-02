@@ -1,0 +1,60 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make Raster Catalog Layer (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a raster catalog layer from an input raster catalog. The layer that is created by the tool is temporary and will not persist after the session ends unless the layer is saved to disk or the map document is saved.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Copy</keyword><keyword>Create</keyword><keyword>Image</keyword><keyword>Managed</keyword><keyword>Memory</keyword><keyword>Query</keyword><keyword>Sql</keyword><keyword>Surface</keyword><keyword>Temporary</keyword><keyword>Unmanaged</keyword><keyword>Where Clause</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeRasterCatalogLayer" displayname="Make Raster Catalog Layer (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a raster catalog layer from an input raster catalog. The layer that is created by the tool is temporary and will not persist after the session ends unless the layer is saved to disk or the map document is saved.</para></summary><alink_name>MakeRasterCatalogLayer_management</alink_name><parameters><param sync="true" name="in_raster_catalog" displayname="Raster Catalog" datatype="Raster Catalog Layer" direction="Input" expression="in_raster_catalog" type="Required"><pythonReference>
+						<para>The raster catalog containing one or more raster catalog items (raster datasets).</para>
+					</pythonReference><dialogReference>
+						<para>The raster catalog containing one or more raster catalog items (raster datasets).</para>
+					</dialogReference></param><param sync="true" name="layer_name" displayname="Layer Name or Table View" datatype="Raster Catalog Layer" direction="Output" expression="layer_name" type="Required"><pythonReference>
+						<para>Name of the temporary raster catalog layer.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the temporary raster catalog layer.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Expression" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>An SQL expression used to select a subset of raster catalog items.</para>
+						<para>The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, enclose field names in double quotes:</para>
+						<para>"MY_FIELD"</para>
+						<para>If you're querying personal geodatabases, enclose fields in square brackets:</para>
+						<para>[MY_FIELD].</para>
+					</pythonReference><dialogReference>
+						<para>An SQL expression used to select a subset of raster catalog items.</para>
+						<para>The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, enclose field names in double quotes:</para>
+						<para>"MY_FIELD"</para>
+						<para>If you're querying personal geodatabases, enclose fields in square brackets:</para>
+						<para>[MY_FIELD].</para>
+					</dialogReference></param><param sync="true" name="workspace" displayname="Workspace" datatype="Workspace" direction="Input" expression="workspace" type="Optional"><pythonReference>
+						<para>The input workspace used to validate the field names. If the input is from a file or personal geodatabase and the output workspace is an ArcSDE geodatabase, the field names may be truncated, since some database fields can only have names with ten characters or less. The new names may be reviewed and altered using the Field Info parameter.</para>
+					</pythonReference><dialogReference>
+						<para>The input workspace used to validate the field names. If the input is from a file or personal geodatabase and the output workspace is an ArcSDE geodatabase, the field names may be truncated, since some database fields can only have names with ten characters or less. The new names may be reviewed and altered using the Field Info parameter.</para>
+					</dialogReference></param><param sync="true" name="field_info" displayname="Field Info" datatype="Field Info" direction="Input" expression="field_info" type="Optional"><pythonReference>
+						<para>Specifies which fields from the input table to rename and make visible in the output table view.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies which fields from the input table to rename and make visible in the output table view.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>To make your layer permanent, right-click the layer in the ArcMap table of contents and click Save As Layer File, or use the .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeRasterCatalogLayer example 1 (Python window)</title>
+					<para>This is a Python sample for MakeRasterCatalogLayer.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.MakeRasterCatalogLayer_management("c:/data/fgdb.gdb/catalog", "catlayer",\
+                                        "OBJECTID&lt;3", "SDE94.sde", "#")
+                    </code></scriptExample><scriptExample><title>MakeRasterCatalogLayer example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for MakeRasterCatalogLayer.</para>
+				<code xml:space="preserve">##====================================
+##Make Raster Catalog Layer
+##Usage: MakeRasterCatalogLayer_management in_raster_catalog layer_name {where_clause} 
+##                                         {workspace} {field_info}
+    
+try:
+    import arcpy
+    
+    arcpy.env.workspace = r"C:/Workspace"
+    
+    ##Create raster catalog layer from unmanaged raster catalog
+    ##Use SDE workspace to validate the field
+    arcpy.MakeRasterCatalogLayer_management("fgdb.gdb/catalog", "catlayer", "OBJECTID&lt;3",\
+                                            "SDE94.sde", "#")   
+    
+    print arcpy.GetMessages()
+    
+except:
+    print "Make Raster Catalog Layer example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

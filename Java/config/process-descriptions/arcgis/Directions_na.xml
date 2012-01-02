@@ -1,0 +1,118 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Directions (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Generates direction information from a network analysis layer with routes. The direction information is written to a file in either XML or text format.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Al</keyword><keyword>Alter</keyword><keyword>Altered</keyword><keyword>Directions</keyword><keyword>Layer</keyword><keyword>Network Analyst Layer</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Directions" displayname="Directions (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Generates direction information from a network analysis layer with routes. The direction information is written to a file in either XML or text format.</para>
+		</summary><alink_name>Directions_na</alink_name><parameters><param sync="true" name="in_network_analysis_layer" displayname="Input network analysis layer" datatype="Network Analyst Layer" direction="Input" expression="in_network_analysis_layer" type="Required"><pythonReference>
+						<para>Network analysis layer from which directions will be generated. Directions can be generated only for the Route, Closest Facility, and Vehicle Routing Problem network analysis layers.</para>
+					</pythonReference><dialogReference>
+						<para>Network analysis layer from which directions will be generated. Directions can be generated only for the Route, Closest Facility, and Vehicle Routing Problem network analysis layers.</para>
+					</dialogReference></param><param sync="true" name="file_type" displayname="Output file type" datatype="String" direction="Input" expression="file_type" type="Required"><pythonReference>
+						<para>The format of the output directions file.</para>
+						<bulletList><bullet_item>XML—The output directions file will be generated as an XML file. Apart from direction strings and the length and time information for the routes, the file will also contain information about the maneuver type and the turn angle for each direction. You should use XML format if you wish to apply your own formatting to display the directions.</bullet_item><bullet_item>TEXT—The output directions file will be generated as a simple TEXT file containing the direction strings, the length and, optionally, the time information for the routes.</bullet_item></bulletList>
+						
+						
+					</pythonReference><dialogReference>
+						<para>The format of the output directions file.</para>
+						<bulletList><bullet_item>XML—The output directions file will be generated as an XML file. Apart from direction strings and the length and time information for the routes, the file will also contain information about the maneuver type and the turn angle for each direction. You should use XML format if you wish to apply your own formatting to display the directions.</bullet_item><bullet_item>TEXT—The output directions file will be generated as a simple TEXT file containing the direction strings, the length and, optionally, the time information for the routes.</bullet_item></bulletList>
+						
+						
+					</dialogReference></param><param sync="true" name="out_directions_file" displayname="Output directions file" datatype="File" direction="Output" expression="out_directions_file" type="Required"><pythonReference>
+						<para>The full pathname to the directions file that will be written.</para>
+					</pythonReference><dialogReference>
+						<para>The full pathname to the directions file that will be written.</para>
+					</dialogReference></param><param sync="true" name="report_units" displayname="Report length in these units" datatype="String" direction="Input" expression="report_units" type="Required"><pythonReference>
+						<para>Specifies the linear units in which the length information will be reported in the directions file. For example, even though your impedance was in meters, you can show directions in miles. </para>
+						
+						
+					</pythonReference><dialogReference>
+						<para>Specifies the linear units in which the length information will be reported in the directions file. For example, even though your impedance was in meters, you can show directions in miles. </para>
+						
+						
+					</dialogReference></param><param sync="true" name="report_time" displayname="Report travel time" datatype="Boolean" direction="Input" expression="report_time" type="Optional"><pythonReference>
+						<bulletList><bullet_item>NO_REPORT_TIME—Do not report travel times in the directions file. </bullet_item><bullet_item>REPORT_TIME—Report travel times in the directions file. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked—Do not report travel times in the directions file. </bullet_item>
+							<bullet_item>Unchecked—Report travel times in the directions file.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="time_attribute" displayname="Time Attribute" datatype="String" direction="Input" expression="time_attribute" type="Optional"><pythonReference>
+						<para>The time-based cost attribute providing the travel times in the directions. The cost attribute must exist on the network dataset used by the input network analysis layer.</para>
+					</pythonReference><dialogReference>
+						<para>The time-based cost attribute providing the travel times in the directions. The cost attribute must exist on the network dataset used by the input network analysis layer.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The tool solves the network analysis layer if it does not have a valid result. So it is not required to solve the network analysis layer before generating directions.</para>
+			</bullet_item><bullet_item>
+				<para>The output XML file containing directions can be converted into a properly formatted HTML file using the style sheets available in the ArcGIS installation folder. For example, the directions output in XML format can be converted into an HTML file or a Text file using the style sheet Dir2WebDocument.xsl or Dir2PlainText.xsl, respectively (usually found at C:\Program Files\ArcGIS\Desktop10.0\NetworkAnalyst\Directions\Styles). Note that you will need a custom tool that transforms an XML file into an HTML file using the style sheets.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Directions example 1 (Python window)</title>
+					<para>Execute the Directions tool with all the parameters.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.Directions_na("Route","TEXT","C:/temp/Route_Directions.txt","Miles",
+                    "REPORT_TIME","Minutes")
+
+                    </code></scriptExample><scriptExample><title>Directions example 2 (workflow)</title><para>The following stand-alone Python script demonstrates how the Directions tool can be used to generate driving directions in a text file for a route. </para><code xml:space="preserve"># Name: Directions_Workflow.py
+# Description: Generate driving directions in a text file for a route that 
+#              visits the store locations in the best sequence that minimizes 
+#              the total travel time
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+try:
+    #Check out the Network Analyst extension license
+    arcpy.CheckOutExtension("Network")
+
+    #Set environment settings
+    env.workspace = "C:/data/SanFrancisco.gdb"
+    env.overwriteOutput = True
+    
+    #Set local variables
+    inNetworkDataset = "Transportation/Streets_ND"
+    outNALayer = "StoreRoute"
+    impedanceAttribute = "TravelTime"
+    startLocation = "Analysis/DistributionCenter"
+    storeLocations = "Analysis/Stores"
+    fieldMappings = "Name Name #; Attr_TravelTime ServiceTime #"
+    outDirectionsFile = "C:/data/output" + "/" + outNALayer + "Directions.txt"
+    outLayerFile = "C:/data/output" + "/" + outNALayer + ".lyr"
+    
+    #Create a new route layer. The route starts at the distribution center and 
+    #takes the best sequence to visit the store locations.
+    arcpy.MakeRouteLayer_na(inNetworkDataset,outNALayer,impedanceAttribute,
+                            "FIND_BEST_ORDER","PRESERVE_FIRST","",['Meters'],
+                            "NO_UTURNS",start_date_time="8 AM")
+    
+    #Load the distribution center as the start location using default field 
+    #mappings and search tolerance
+    arcpy.AddLocations_na(outNALayer,"Stops",startLocation,"","")
+    
+    #Load the store locations as stops. Make sure the store locations are 
+    #appended to the Stops sublayer which already contains the distribution 
+    #center location. Map the Attr_TravelTime property from the ServiceTime 
+    #field so that the total travel time for the route will also contain the 
+    #service time
+    arcpy.AddLocations_na(outNALayer,"Stops",storeLocations,fieldMappings,"","",
+                          "","","APPEND")
+    
+    #Generate driving directions in a text file
+    arcpy.Directions_na(outNALayer,"TEXT",outDirectionsFile,"Miles",
+                        "REPORT_TIME","TravelTime")
+    
+    #Save the solved na layer as a layer file on disk using relative paths
+    arcpy.SaveToLayerFile_management(outNALayer,outLayerFile,"RELATIVE")
+    
+    print "Script completed successfully"
+
+except Exception as e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "An error occured on line %i" % tb.tb_lineno
+    print str(e)
+    
+    
+                    </code></scriptExample></scriptExamples></tool></metadata>

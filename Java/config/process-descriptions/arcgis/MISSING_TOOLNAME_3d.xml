@@ -1,0 +1,32 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs><para>Adds the values of two rasters on a cell-by-cell basis within the Analysis window.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="" displayname=" (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary><para>Adds the values of two rasters on a cell-by-cell basis within the Analysis window.</para></summary><alink_name>_3d</alink_name><toolIllust type="illustration" src="MISSING_TOOLNAME_3d_h.png" alt="+ (Plus) illustration" /><parameters><param sync="true" name="in_raster_or_constant1" displayname="Input raster or constant value 1" datatype="Composite Geodataset" direction="Input" expression="in_raster_or_constant1" type="Required"><pythonReference><para>The input raster or constant value to be added to.</para></pythonReference><dialogReference><para>The input raster or constant value to be added to.</para></dialogReference></param><param sync="true" name="in_raster_or_constant2" displayname="Input raster or constant value 2" datatype="Composite Geodataset" direction="Input" expression="in_raster_or_constant2" type="Required"><pythonReference><para>The input raster or constant value to add.</para></pythonReference><dialogReference><para>The input raster or constant value to add.</para></dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference><para>The output raster.</para><para>The cell values are the sum of the first input added to the second.</para></pythonReference><dialogReference><para>The output raster.</para><para>The cell values are the sum of the first input added to the second.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment label="Cell size" name="Cell_size"></environment><environment label="Current workspace" name="Current_workspace"></environment><environment label="Mask" name="Mask"></environment><environment label="Output coordinate system" name="Output_coordinate_system"></environment><environment label="Output extent" name="Output_extent"></environment><environment label="Scratch workspace" name="Scratch_workspace"></environment><environment label="Snap raster" name="Snap_raster"></environment></environments><usage><bullet_item><para>The order of input is irrelevant in the addition expression.</para></bullet_item><bullet_item><para>If both input values are integers, the output raster will be an integer; otherwise, it will be a floating-point value.</para></bullet_item><bullet_item><para>A number can be used as an input; however, the cell size and extent must first be set in the environment.</para></bullet_item></usage><scriptExamples><scriptExample><title>Plus interactive window example</title><para>This sample adds two Grid rasters and outputs the result as an IMG raster.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outPlus = Plus("degs", "negs")
+outPlus.save("C:/sapyexamples/output/outplus.img")
+                    </code></scriptExample><scriptExample><title>Plus script example</title><para>This sample adds two Grid rasters and outputs the result as a Grid raster.</para><code xml:space="preserve"># Name: Plus_Ex_02.py
+# Description: Adds the values of two rasters on a cell-by-cell basis.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster1 = "cost"
+inRaster2 = "degs"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Plus
+outPlus = Plus(inRaster1, inRaster2)
+
+# Save the output 
+outPlus.save("C:/sapyexamples/output/outplus")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,115 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Union (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Computes a geometric intersection of the Input Features. All features will be written to the Output Feature Class with the attributes from the Input Features, which it overlaps.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Aggregate</keyword><keyword>All</keyword><keyword>Combine</keyword><keyword>Cover</keyword><keyword>Inside</keyword><keyword>Inside Either</keyword><keyword>Intersect</keyword><keyword>Join</keyword><keyword>Keep</keyword><keyword>Merge</keyword><keyword>On Top Of</keyword><keyword>Outside</keyword><keyword>Overlap</keyword><keyword>Retain</keyword><keyword>Spatial Relationship</keyword><keyword>Superimpose</keyword><keyword>Together</keyword><keyword>Topological Set</keyword><keyword>Topology</keyword><keyword>Within Either</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Union" displayname="Union (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Computes a geometric intersection of the Input Features. All features will be written to the Output Feature Class with the attributes from the Input Features, which it overlaps.</para>
+			
+		</summary><alink_name>Union_analysis</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/Union_analysis_v.gif" alt="Union illustration" /><toolIllust type="illustration" src="Union_analysis_h.gif" alt="Union illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Value Table" direction="Input" expression="[[in_features, {Rank}],...]" type="Required"><pythonReference>
+						<para>A list of the input feature classes or layers. When the distance between features is less than the cluster tolerance, the features with the lower rank will snap to the feature with the higher rank. The highest rank is one. All of the Input Features must be polygons. </para>
+					</pythonReference><dialogReference>
+						<para>A list of the input feature classes or layers. When the distance between features is less than the cluster tolerance, the features with the lower rank will snap to the feature with the higher rank. The highest rank is one. All of the Input Features must be polygons. </para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The feature class that will contain the results.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class that will contain the results.</para>
+					</dialogReference></param><param sync="true" name="join_attributes" displayname="Join Attributes" datatype="String" direction="Input" expression="join_attributes" type="Optional"><pythonReference>
+						<para>Determines which attributes from the Input Features will be transferred to the Output Feature Class.</para>
+						<bulletList><bullet_item>ALL—All of the attributes from the Input Features will be transferred to the Output Feature Class. This is the default. </bullet_item><bullet_item>NO_FID—All of the attributes except the FID from the Input Features will be transferred to the Output Feature Class. </bullet_item><bullet_item>ONLY_FID—Only the FID field from the Input Features will be transferred to the Output Feature Class. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines which attributes from the Input Features will be transferred to the Output Feature Class.</para>
+						<bulletList><bullet_item>ALL—All of the attributes from the Input Features will be transferred to the Output Feature Class. This is the default. </bullet_item><bullet_item>NO_FID—All of the attributes except the FID from the Input Features will be transferred to the Output Feature Class. </bullet_item><bullet_item>ONLY_FID—Only the FID field from the Input Features will be transferred to the Output Feature Class. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="cluster_tolerance" displayname="XY Tolerance" datatype="Linear unit" direction="Input" expression="cluster_tolerance" type="Optional"><pythonReference>
+						<para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both).</para>
+					</pythonReference><dialogReference>
+						<para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both).</para>
+					</dialogReference></param><param sync="true" name="gaps" displayname="Gaps Allowed" datatype="Boolean" direction="Input" expression="gaps" type="Optional"><pythonReference>
+						<para>Gaps are areas in the output feature class that are completely enclosed by other polygons. This is not invalid, but it may be desirable to identify these for analysis. To find the gaps in the output, set this option to NO_GAPS, and a feature will be created in these areas. To select these features, query the output feature class based on all the input feature's FID values being equal to -1.</para>
+						<bulletList><bullet_item>GAPS—No feature will be created for areas in the output that are completely enclosed by polygons. This is the default. </bullet_item><bullet_item>NO_GAPS—A feature will be created for the areas in the output that are completely enclosed by polygons. This feature will have blank attributes. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Gaps are areas in the output feature class that are completely enclosed by other polygons. This is not invalid, but it may be desirable to identify these for analysis. To find the gaps in the output, set this option to NO_GAPS, and a feature will be created in these areas. To select these features, query the output feature class based on all the input feature's FID values being equal to -1.</para>
+						<bulletList>
+							<bullet_item>Checked—No feature will be created for areas in the output that are completely enclosed by polygons. This is the default.</bullet_item>
+							<bullet_item>Unchecked—A feature will be created for the areas in the output that are completely enclosed by polygons. This feature will have blank attributes.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Qualified_field_names" label="Qualified field names">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3"></environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>All input feature classes and feature layers must have polygon geometry.</para>
+			</bullet_item><bullet_item>
+				<para>The Allow Gaps parameter can be used with the ALL or ONLY_FID settings on the Join Attribute parameter. This allows for identification of resulting areas that are completely enclosed by the resulting polygons. The FID attributes for these GAP features will all be -1.</para>
+			</bullet_item><bullet_item>
+				<para>Attribute values from the input feature class(es) will be copied to the output feature class.  However, if the input is a layer(s) created by the  tool and a field's "Use Ratio Policy" is checked, then a ratio of the input attribute value is calculated for the output attribute value.    When "Use Ratio Policy" is enabled, whenever a feature in an overlay operation is split, the attributes of the resulting features are a ratio of the attribute value of the input feature. The output value  is based on the ratio in which the input feature  geometry was divided. For example, If the input geometry was divided equally, each new feature's attribute value is assigned one-half of the value of the input feature's attribute value. "Use Ratio Policy" only applies to numeric field types. </para><para>Geoprocessing tools do not honor geodatabase feature class or table field split policies.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will use a tiling process to handle very large datasets for better performance and scalability. For more details, see .</para>
+			</bullet_item><bullet_item>
+				<para>This tool may generate multipart features in the output even if all inputs were single part. If multipart features are not desired, use the  on the output feature class.</para>
+			</bullet_item><bullet_item>
+				
+					<para>With ArcView and Editor licenses, the number of input feature classes or layers is limited to two.</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>Union Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the Union function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/data/gdb"
+arcpy.Union_analysis (["well_buff50", "stream_buff200", "waterbody_buff500"], "water_buffers", "NO_FID", 0.0003)
+arcpy.Union_analysis ([["counties", 2],["parcels", 1],["state", 2]], "state_landinfo")
+                    </code></scriptExample><scriptExample><title>Union Example 2 (Stand-alone Script)</title>
+					<para>The following stand-alone script shows two ways to apply the Union function in scripting.</para>
+				<code xml:space="preserve"># unions.py
+# Purpose: union 3 feature classes
+# Author: ESRI
+
+# Import the system modules
+import arcpy
+from arcpy import env
+ 
+# Set the current workspace 
+# (to avoid having to specify the full path to the feature classes each time)
+env.workspace = "c:/data/data.gdb"
+ 
+
+# Union 3 feature classes but only carry the FID attributes to the output
+inFeatures = ["well_buff50", "stream_buff200", "waterbody_buff500"]
+outFeatures = "water_buffers"
+clusterTol = 0.0003
+arcpy.Union_analysis (inFeatures, outFeatures, "ONLY_FID", clusterTol)
+
+# Union 3 other feature classes, but specify some ranks for each 
+# since parcels has better spatial accuracy
+inFeatures = [["counties", 2],["parcels", 1],["state", 2]]
+outFeatures = "state_landinfo" 
+arcpy.Union_analysis (inFeatures, outFeatures)
+                    </code></scriptExample></scriptExamples></tool></metadata>

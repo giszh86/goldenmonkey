@@ -1,0 +1,43 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Rebuild Address Locator (Geocoding)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Rebuilds an address locator to update the locator with the current reference data. Since an address locator contains a snapshot of the reference data when it was created, it will not geocode addresses against the updated data  when the geometry and attributes of the reference data are changed.  To geocode addresses against the current version of the
+reference data, the address locator must be rebuilt if you want to
+update the changes in the locator.
+</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Address</keyword><keyword>Address Locator</keyword><keyword>Address Matching</keyword><keyword>Edit</keyword><keyword>Geocode</keyword><keyword>Geocoding</keyword><keyword>Index</keyword><keyword>Loc</keyword><keyword>Locator</keyword><keyword>Lox</keyword><keyword>Match Rate</keyword><keyword>Matching</keyword><keyword>Rebuild</keyword><keyword>Reference Data</keyword><keyword>Refresh</keyword><keyword>Relative Path</keyword><keyword>Update</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RebuildAddressLocator" displayname="Rebuild Address Locator (Geocoding)" toolboxalias="geocoding" softwarerestriction="none"><summary>
+			<para>Rebuilds an address locator to update the locator with the current reference data. Since an address locator contains a snapshot of the reference data when it was created, it will not geocode addresses against the updated data  when the geometry and attributes of the reference data are changed.  To geocode addresses against the current version of the
+reference data, the address locator must be rebuilt if you want to
+update the changes in the locator.
+</para>
+			</summary><alink_name>RebuildAddressLocator_geocoding</alink_name><parameters><param sync="true" name="in_address_locator" displayname="Input Address Locator" datatype="Address Locator" direction="Input" expression="in_address_locator" type="Required"><pythonReference>
+						<para>The address locator to rebuild.</para>
+					</pythonReference><dialogReference>
+						<para>The address locator to rebuild.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>You must have write privileges to the address locator to use this tool.</para>
+			</bullet_item><bullet_item>
+				<para>In order to rebuild an address locator, all the referenced feature classes and tables need to exist. Rebuilding the locator will fail If you have moved your reference data to another location since the last time the locator was created.   You may  by updating the locations of the reference data  in ArcGIS Desktop.    As an alternative, you can re-create an address locator using the  tool. </para>
+			</bullet_item><bullet_item>
+				<para>Address locators based on a versioned geodatabase will be rebuilt with the same version used when the locator was created.</para>
+			</bullet_item><bullet_item>
+				<para>Composite address locators cannot be rebuilt using this tool. The best practice for managing composite locators is to create a composite locator using the  tool in a geoprocessing model. In ModelBuilder, you can also chain the tool with the  tool  to use  its outputs as the inputs to the composite locator and manage the entire process of creating or updating a composite address locator.</para>
+			</bullet_item><bullet_item>
+				
+					<para>Address locators created prior to ArcGIS version 9.2 cannot be rebuilt.</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>RebuildAddressLocator Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the RebuildAddressLocator function in immediate mode. </para>
+				<code xml:space="preserve">
+# Import system modules
+import arcpy
+from arcpy import env
+env.workspace = "C:/ArcTutor/Geocoding/atlanta.gdb" 
+
+# Set local variables:
+address_locator = "Atlanta_AddressLocator"
+
+arcpy.RebuildAddressLocator_geocoding(address_locator)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

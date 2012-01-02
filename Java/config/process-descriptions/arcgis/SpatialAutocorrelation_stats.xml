@@ -1,0 +1,145 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Spatial Autocorrelation (Global Moran's I) (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Measures spatial autocorrelation based on feature locations and attribute values using the Global Moran's I statistic.  Results are accessible from the Results window.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cluster</keyword><keyword>Covariance</keyword><keyword>Dependency</keyword><keyword>Disperse</keyword><keyword>Distribution</keyword><keyword>Geographic</keyword><keyword>Global</keyword><keyword>Like</keyword><keyword>Point Pattern Analysis</keyword><keyword>Random</keyword><keyword>Residual</keyword><keyword>Similar</keyword><keyword>Tobler</keyword><keyword>Value</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SpatialAutocorrelation" displayname="Spatial Autocorrelation (Global Moran's I) (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Measures spatial autocorrelation based on feature locations and attribute values using the Global Moran's I statistic.  Results are accessible from the Results window.</para>
+			
+		</summary><alink_name>SpatialAutocorrelation_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/SpatialAutocorrelation_stats_v.gif" alt="Global Moran's I illustration" /><toolIllust type="illustration" src="SpatialAutocorrelation_stats_h.gif" alt="Global Moran's I illustration" /><parameters><param sync="true" name="Input_Feature_Class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="Input_Feature_Class" type="Required"><pythonReference>
+						<para>The feature class for which spatial autocorrelation will be calculated.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class for which spatial autocorrelation will be calculated.</para>
+					</dialogReference></param><param sync="true" name="Input_Field" displayname="Input Field" datatype="Field" direction="Input" expression="Input_Field" type="Required"><pythonReference>
+						<para>The numeric field used in assessing spatial autocorrelation.</para>
+					</pythonReference><dialogReference>
+						<para>The numeric field used in assessing spatial autocorrelation.</para>
+					</dialogReference></param><param sync="true" name="Generate_Report" displayname="Generate_Report" datatype="Boolean" direction="Input" expression="Generate_Report" type="Required"><pythonReference>
+						<bulletList><bullet_item>NO_REPORT—No graphical summary will be created (default).</bullet_item><bullet_item>GENERATE_REPORT—A graphical summary will be created as an HTML file.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether the tool will create a graphical summary of results.</para>
+						<bulletList>
+							<bullet_item>Checked—A graphical summary will be created as an HTML file. </bullet_item>
+							<bullet_item>Unchecked—No graphial summary will be created.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="Conceptualization_of_Spatial_Relationships" displayname="Conceptualization of Spatial Relationships" datatype="String" direction="Input" expression="Conceptualization_of_Spatial_Relationships" type="Required"><pythonReference>
+						<para>Specifies how spatial relationships among features are conceptualized.</para>
+						<bulletList><bullet_item>INVERSE_DISTANCE—Nearby neighboring features have a larger influence  on the  computations for a target feature than features that are far away.</bullet_item><bullet_item>INVERSE_DISTANCE_SQUARED—Same as INVERSE_DISTANCE except that the slope is sharper so influence drops off more quickly and only a target feature's closest neighbors will exert substantial influence on  computations for that feature. </bullet_item><bullet_item>FIXED_DISTANCE_BAND—Each feature is analyzed within the context of neighboring features.  Neighboring features inside the specified critical distance receive a weight of 1,  and exert influence on computations for the target feature.  Neighboring features outside the critical distance receive a weight of zero and have no  influence on a target feature's computations. </bullet_item><bullet_item>ZONE_OF_INDIFFERENCE—Features within the specified critical distance of a target feature receive a weight of 1 and influence computations for that feature. Once the critical distance is exceeded, weights (and the influence a neighboring feature has on target feature computations) diminish with distance. </bullet_item><bullet_item>POLYGON_CONTIGUITY_(FIRST_ORDER)—Only neighboring polygon features that share a boundary will influence computations for the target polygon feature. (Requires an ArcInfo license) </bullet_item><bullet_item>GET_SPATIAL_WEIGHTS_FROM_FILE—Spatial relationships are defined in a spatial weights file. The path to the spatial weights file is specified in the Weights Matrix File parameter. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how spatial relationships among features are conceptualized.</para>
+						<bulletList><bullet_item>INVERSE_DISTANCE—Nearby neighboring features have a larger influence  on the  computations for a target feature than features that are far away.</bullet_item><bullet_item>INVERSE_DISTANCE_SQUARED—Same as INVERSE_DISTANCE except that the slope is sharper so influence drops off more quickly and only a target feature's closest neighbors will exert substantial influence on  computations for that feature. </bullet_item><bullet_item>FIXED_DISTANCE_BAND—Each feature is analyzed within the context of neighboring features.  Neighboring features inside the specified critical distance receive a weight of 1,  and exert influence on computations for the target feature.  Neighboring features outside the critical distance receive a weight of zero and have no  influence on a target feature's computations. </bullet_item><bullet_item>ZONE_OF_INDIFFERENCE—Features within the specified critical distance of a target feature receive a weight of 1 and influence computations for that feature. Once the critical distance is exceeded, weights (and the influence a neighboring feature has on target feature computations) diminish with distance. </bullet_item><bullet_item>POLYGON_CONTIGUITY_(FIRST_ORDER)—Only neighboring polygon features that share a boundary will influence computations for the target polygon feature. (Requires an ArcInfo license) </bullet_item><bullet_item>GET_SPATIAL_WEIGHTS_FROM_FILE—Spatial relationships are defined in a spatial weights file. The path to the spatial weights file is specified in the Weights Matrix File parameter. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Distance_Method" displayname="Distance Method" datatype="String" direction="Input" expression="Distance_Method" type="Required"><pythonReference>
+						<para>Specifies how distances are calculated from each feature to neighboring features.</para>
+						<bulletList><bullet_item>EUCLIDEAN_DISTANCE—The straight-line distance between two points (as the crow flies) </bullet_item><bullet_item>MANHATTAN_DISTANCE—The distance between two points measured along axes at right angles (city block); calculated by summing the (absolute) difference between the x- and y-coordinates </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how distances are calculated from each feature to neighboring features.</para>
+						<bulletList><bullet_item>EUCLIDEAN_DISTANCE—The straight-line distance between two points (as the crow flies) </bullet_item><bullet_item>MANHATTAN_DISTANCE—The distance between two points measured along axes at right angles (city block); calculated by summing the (absolute) difference between the x- and y-coordinates </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Standardization" displayname="Standardization" datatype="String" direction="Input" expression="Standardization" type="Required"><pythonReference>
+						<para>Row standardization is recommended whenever the distribution of your features is potentially biased due to sampling design or an imposed aggregation scheme.</para>
+						<bulletList><bullet_item>NONE—No standardization of spatial weights is applied. </bullet_item><bullet_item>ROW—Spatial weights are standardized; each weight is divided by its row sum (the sum of the weights of all neighboring features). </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Row standardization is recommended whenever the distribution of your features is potentially biased due to sampling design or an imposed aggregation scheme.</para>
+						<bulletList><bullet_item>NONE—No standardization of spatial weights is applied. </bullet_item><bullet_item>ROW—Spatial weights are standardized; each weight is divided by its row sum (the sum of the weights of all neighboring features). </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Distance_Band_or_Threshold_Distance" displayname="Distance Band or Threshold Distance" datatype="Double" direction="Input" expression="Distance_Band_or_Threshold_Distance" type="Required"><pythonReference>
+						<para>Specifies a cutoff distance for Inverse Distance and Fixed Distance options. Features outside the specified cutoff for a target feature are ignored in analyses for that feature. However, for Zone of Indifference, the influence of features outside the given distance is reduced with distance, while those inside the distance threshold are equally considered. The value entered should match that of the output coordinate system.</para>
+						<para>For the Inverse Distance conceptualizations of spatial relationships, a value of 0 indicates that no threshold distance is applied; when this parameter is left blank, a default threshold value is computed and applied.    This default value is the Euclidean distance that ensures every feature has at least one neighbor.</para>
+						<para>This parameter has no effect when Polygon Contiguity or Get Spatial Weights From File spatial conceptualizations are selected.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies a cutoff distance for Inverse Distance and Fixed Distance options. Features outside the specified cutoff for a target feature are ignored in analyses for that feature. However, for Zone of Indifference, the influence of features outside the given distance is reduced with distance, while those inside the distance threshold are equally considered. The value entered should match that of the output coordinate system.</para>
+						<para>For the Inverse Distance conceptualizations of spatial relationships, a value of 0 indicates that no threshold distance is applied; when this parameter is left blank, a default threshold value is computed and applied.    This default value is the Euclidean distance that ensures every feature has at least one neighbor.</para>
+						<para>This parameter has no effect when Polygon Contiguity or Get Spatial Weights From File spatial conceptualizations are selected.</para>
+					</dialogReference></param><param sync="true" name="Weights_Matrix_File" displayname="Weights Matrix File" datatype="File" direction="Input" expression="Weights_Matrix_File" type="Optional"><pythonReference>
+						<para>The path to a file containing spatial weights that define spatial relationships among features.</para>
+					</pythonReference><dialogReference>
+						<para>The path to a file containing spatial weights that define spatial relationships among features.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Output_coordinate_system" label="Output coordinate system">Feature geometry is projected to the Output Coordinate Systemprior to analysis. All mathematical computations are based on the Output Coordinate System spatial reference.</environment></environments><usage><bullet_item>
+				<para>The Spatial Autocorrelation tool returns five values: the Moran's I Index, Expected Index, Variance, z-score, and p-value. These values are accessible from the  and are also passed as derived output values for potential use in models or scripts. Optionally, this tool will create an HTML file with a graphical summary of results. Double-clicking on the HTML file in the Results window will open the HTML file in the default Internet browser.  Right-clicking on the  in the Results window and selecting <bold>View</bold> will display the results in a <bold>Message dialog box</bold>.  If you execute this tool in the , output values will also be displayed in the <bold>progress dialog box</bold>. <para><bulletList><bullet_item>If this tool is part of a custom model tool, the HTML link will only appear in the Results window if it is set as a  prior to running the tool. </bullet_item><bullet_item>For best display of HTML graphics, ensure your monitor is set for 96 DPI.</bullet_item></bulletList></para></para>
+			</bullet_item><bullet_item>
+				<para>Given a set of features and an associated attribute, the Spatial Autocorrelation tool evaluates whether the pattern expressed is clustered, dispersed, or random. When the z-score or p-value indicates statistical significance, a positive Moran's I index value indicates tendency toward clustering while a negative Moran's I index value indicates tendency toward dispersion.</para>
+			</bullet_item><bullet_item>
+				<para>The Global Moran's I tool calculates a z-score and p-value to indicate whether or not you can reject the null hypothesis. In this case, the null hypothesis states that feature values are randomly distributed across the study area.</para>
+			</bullet_item><bullet_item>
+				<para>The z-score is based on the randomization null hypothesis computation. For more information on z-scores, see </para>
+			</bullet_item><bullet_item>
+				<para>The Input Field should contain a variety of values. The math for this statistic requires some variation in the variable being analyzed; it cannot solve if all input values are 1, for example. If you want to use this tool to analyze the spatial pattern of incident data, consider .</para>
+			</bullet_item><bullet_item>
+				<para>Calculations based on either Euclidean or Manhattan distance require  to accurately measure distances.</para>
+			</bullet_item><bullet_item>
+				<para>In ArcGIS 10, optional graphical output is no longer displayed automatically.  Instead, an HTML file summarizing results is created.  To view results, double-click on the HTML file in the .  Custom scripts or model tools created prior to ArcGIS 10 that use this tool may need to be rebuilt.  To rebuild these custom tools, open them, remove the <bold>Display Results Graphically</bold> parameter, then re-save.</para>
+			</bullet_item><bullet_item>
+				<para>For line and polygon features, feature centroids are used in distance computations. For multipoints, polylines, or polygons with multiple parts, the centroid is computed using the weighted mean center of all feature parts. The weighting for point features is 1, for line features is length, and for polygon features is area.</para>
+			</bullet_item><bullet_item>
+				<para>Your choice for the Conceptualization of Spatial Relationships parameter should reflect inherent relationships among the features you are analyzing. The more realistically you can model how features interact with each other in space, the more accurate your results are. . Here are some additional tips: <bulletList>
+						<bullet_item>
+							FIXED_DISTANCE_BAND<para> The default value for the Distance Band or Threshold Distance parameter ensures that each feature has at least one neighbor, and this is important. But often, this default will <bold>not</bold> be the most  to use for your analysis.             </para><para> to learn more about the Distance Band or Threshold Distance parameter.</para>
+						</bullet_item>
+						<bullet_item>INVERSE_DISTANCE or INVERSE_DISTANCE_SQUARED<para>When 0 is entered for the Distance Band or Threshold Distance parameter, all features are considered neighbors of all other features; when this parameter is left blank, the default threshold distance is applied. </para><para>Weights for distances less than 1 become unstable. The weighting for features separated by less than one unit of distance (common with  projections) is 1. 
+									<para>Analysis on features with a  projection is not recommended when you select any of the inverse distance-based spatial conceptualization methods (INVERSE_DISTANCE, INVERSE_DISTANCE_SQUARED, or ZONE_OF_INDIFFERENCE).</para>
+								</para><para>For these Inverse Distance options, any two points that are coincident are given a weight of 1 to avoid zero division. This ensures features are not excluded from analysis.</para></bullet_item>
+					</bulletList></para>
+			</bullet_item><bullet_item>
+				<para>Additional options for the Conceptualization of Spatial Relationships parameter are available using the  or  tools.  To take advantage of these additional options, use one of these tools to construct the  prior to analysis; select GET_SPATIAL_WEIGHTS_FROM_FILE for the Conceptualization of Spatial Relationships parameter; and, for the Weights Matrix File parameter, specify the path to the spatial weights file you created.</para>
+			</bullet_item><bullet_item>
+				<para>Map layers can be used to define the Input Feature Class. When using a layer with a selection, only the selected features are included in the analysis.</para>
+			</bullet_item><bullet_item><para><para><bulletList><bullet_item>If this tool is part of a custom model tool, the HTML link will only appear in the Results window if it is set as a  prior to running the tool. </bullet_item><bullet_item>For best display of HTML graphics, ensure your monitor is set for 96 DPI.</bullet_item></bulletList></para></para><para>If you provide a Weights Matrix File with a .SWM or .swm extension, this tool is expecting a spatial weights matrix file created using either the  or  tools.  Otherwise this tool is expecting an . In some cases, behavior is different depending on which type of spatial weights matrix file you use:<bulletList><bullet_item>ASCII formatted spatial weights matrix files:Weights are used "as is".  Missing feature-to-feature relationships are treated as zeros.If the weights are row standardized, results will likely be incorrect for analyses on selection sets.  If you need to run your analysis on a selection set, convert the ASCII spatial weights file to a .swm file by reading the ASCII data into a table, then using the CONVERT_TABLE option with the  tool.</bullet_item><bullet_item>.SWM formatted spatial weights matrix fileIf the weights are row standardized, they will be restandardized for selection sets.  Otherwise weights are used "as is".</bullet_item></bulletList></para></bullet_item><bullet_item><para>Running your analysis with an  is memory intensive.  For analyses on more than about 5000 features, consider converting your ASCII formatted spatial weights matrix file into a .  First put your ASCII weights into a  table (using Excel, for example).  Next run the   tool using CONVERT_TABLE for the Conceptualization of Spatial Relationships parameter.  The output will be a .swm formatted spatial weights matrix file. </para></bullet_item><bullet_item><para>For polygon features, you will almost <italics>always</italics> want to choose <bold>Row</bold> for the Standardization parameter.   mitigates bias when the number of neighbors each feature has is a function of the aggregation scheme or sampling process, rather than reflecting the actual spatial distribution of the variable you are analyzing.</para></bullet_item><bullet_item>
+				<para>The  help topic provides additional information about this tool's parameters.</para>
+			</bullet_item><bullet_item>
+				
+					<para>When using shapefiles, keep in mind that they cannot store null values. Tools or other procedures that create shapefiles from non-shapefile inputs may store or interpret null values as zero. This can lead to unexpected results.  See also .</para>
+				
+			</bullet_item><bullet_item>
+				<para>
+					
+						<para>In ArcGIS version 9.2, the "Global" standardization option was removed. Global standardization returns the same results as no standardization. Models built with previous versions of ArcGIS that use the Global standardization option may need to be rebuilt.</para>
+					
+				</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SpatialAutocorrelation Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the SpatialAutocorrelation tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = r"c:\data"
+arcpy.SpatialAutocorrelation_stats("olsResults.shp", "Residual","NO_REPORT", "GET_SPATIAL_WEIGHTS_FROM_FILE","EUCLIDEAN DISTANCE", "NONE", "#","euclidean6Neighs.swm")
+                    </code></scriptExample><scriptExample><title>SpatialAutocorrelation Example (stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the SpatialAutocorrelation tool.</para>
+				<code xml:space="preserve"># Analyze the growth of regional per capita incomes in US
+# Counties from 1969 -- 2002 using Ordinary Least Squares Regression
+
+# Import system modules
+import arcpy
+
+# Set the geoprocessor object property to overwrite existing outputs
+arcpy.gp.overwriteOutput = True
+
+# Local variables...
+workspace = r"C:\Data"
+
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.workspace = workspace
+
+    # Growth as a function of {log of starting income, dummy for South
+    # counties, interaction term for South counties, population density}
+    # Process: Ordinary Least Squares... 
+    ols = arcpy.OrdinaryLeastSquares_stats("USCounties.shp", "MYID", 
+                        "olsResults.shp", "GROWTH",
+                        "LOGPCR69;SOUTH;LPCR_SOUTH;PopDen69",
+                        "olsCoefTab.dbf",
+                        "olsDiagTab.dbf")
+
+    # Create Spatial Weights Matrix (Can be based off input or output FC)
+    # Process: Generate Spatial Weights Matrix... 
+    swm = arcpy.GenerateSpatialWeightsMatrix_stats("USCounties.shp", "MYID",
+                        "euclidean6Neighs.swm",
+                        "K_NEAREST_NEIGHBORS",
+                        "#", "#", "#", 6) 
+                        
+
+    # Calculate Moran's I Index of Spatial Autocorrelation for 
+    # OLS Residuals using a SWM File.  
+    # Process: Spatial Autocorrelation (Morans I)...      
+    moransI = arcpy.SpatialAutocorrelation_stats("olsResults.shp", "Residual",
+                        "NO_REPORT", "GET_SPATIAL_WEIGHTS_FROM_FILE", 
+                        "EUCLIDEAN_DISTANCE", "NONE", "#", 
+                        "euclidean6Neighs.swm")
+
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

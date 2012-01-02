@@ -1,0 +1,131 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Export To VPF (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a coverage into either a Vector Product Format (VPF) Coverage or VPF Tile.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Ccf</keyword><keyword>Conversion Control File</keyword><keyword>Conversion Tools</keyword><keyword>Coverage Tools</keyword><keyword>From Coverage</keyword><keyword>Nonstandard Vpf Tables</keyword><keyword>Tile</keyword><keyword>Vpf</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="VPFExport" displayname="Export To VPF (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Converts a coverage into either a Vector Product Format (VPF) Coverage or VPF Tile.</para>
+			
+		</summary><alink_name>VPFExport_arc</alink_name><parameters><param sync="true" name="in_cover" displayname="Input Coverage or Table" datatype="Coverage;ArcInfo Table" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The input coverage that will be converted to VPF format.</para>
+					</pythonReference><dialogReference>
+						<para>The input coverage that will be converted to VPF format.</para>
+					</dialogReference></param><param sync="true" name="out_file" displayname="Output VPF Coverage or Table" datatype="File" direction="Output" expression="out_file" type="Required"><pythonReference>
+						<para>The name of the VPF coverage or table to be created. The full pathname must be specified.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the VPF coverage or table to be created. The full pathname must be specified.</para>
+					</dialogReference></param><param sync="true" name="tile_name" displayname="Tile Name" datatype="String" direction="Input" expression="tile_name" type="Optional"><pythonReference>
+						<para>The name of the VPF tile to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the VPF tile to be created.</para>
+					</dialogReference></param><param sync="true" name="control_file" displayname="Conversion Control File" datatype="File" direction="Input" expression="control_file" type="Optional"><pythonReference>
+						<para>A file that can be used to drop, add, change, or ignore items and other information during translation. The name of this file is defined by the user. Polycov.ccf, poly_cov_con, and conversionfile are all acceptable names.</para>
+						<para>An input coverage defines feature translations for specified feature classes as well as specifies feature classes to be ignored. It can also be used to determine which values are to be filled in the database and library header files at creation.</para>
+					</pythonReference><dialogReference>
+						<para>A file that can be used to drop, add, change, or ignore items and other information during translation. The name of this file is defined by the user. Polycov.ccf, poly_cov_con, and conversionfile are all acceptable names.</para>
+						<para>An input coverage defines feature translations for specified feature classes as well as specifies feature classes to be ignored. It can also be used to determine which values are to be filled in the database and library header files at creation.</para>
+					</dialogReference></param><param sync="true" name="standard_table" displayname="Nonstandard ArcInfo tables will be converted" datatype="Boolean" direction="Input" expression="standard_table" type="Optional"><pythonReference>
+						<para>Specifies whether nonstandard ARC/INFO tables will be converted.</para>
+						<bulletList><bullet_item>EXTRA—Translates all ArcInfo files to VPF. This option only needs to be used if the data being translated to VPF will be converted back to ArcInfo using the Import From VPF tool. This is the default option. </bullet_item><bullet_item>NO_EXTRA—Prevents VPFEXPORT from creating extra tables when creating a VPF coverage. This option should only be used if the exported coverage will not be imported back to ArcInfo using the Import From VPF tool. VPFEXPORT considers files such as TIC and LAB to be extra files. These files are not necessary to create a VPF coverage. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether nonstandard ArcInfo tables will be converted.</para>
+						<bulletList>
+							<bullet_item>Checked—Translates all ArcInfo files to VPF. This option only needs to be used if the data being translated to VPF will be converted back to ArcInfo using the Import From VPF tool. This is the default option.</bullet_item>
+							<bullet_item>Unchecked—Prevents Export To VPF from creating extra tables when creating a VPF coverage. This option should only be used if the exported coverage will not be imported back to ArcInfo using the Import From VPF tool. Export To VPF considers files such as TIC and LAB to be extra files. These files are not necessary to create a VPF coverage.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="index_table" displayname="Create feature index table" datatype="Boolean" direction="Input" expression="index_table" type="Optional"><pythonReference>
+						<para>Specifies whether to create a feature index table (FIT).</para>
+						<bulletList><bullet_item>NO_FIT—Do not create a feature index table. </bullet_item><bullet_item>FIT—Create a feature index table. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether to create a feature index table (FIT).</para>
+						<bulletList>
+							<bullet_item>Unchecked—Do not create a feature index table.</bullet_item>
+							<bullet_item>Checked—Create a feature index table.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The coverage must not have a mask file. Use the  tool to remove mask files.</para>
+			</bullet_item><bullet_item>
+				<para>The coverage must have a projection defined or it will not be converted. The Arc/Info coverage must not have a mask file. Only Clean coverages will export.</para>
+			</bullet_item><bullet_item>
+				<para>A full VPF pathname must be specified with Output VPF Coverage or Table.</para>
+			</bullet_item><bullet_item>
+				<para>Pathnames are specified as vpfDatabase\vpfLibrary\vpfCoverage when the Input Coverage or Table type is set to Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Pathnames are specified as vpfDatabase\vpfLibrary\vpfTable when the Input Coverage or Table type is set to Table.</para>
+			</bullet_item><bullet_item>
+				<para>If the vpfDatabase or the vpfLibrary directories do not exist; they will be created.</para>
+			</bullet_item><bullet_item>
+				<para>The Output VPF tile will be appended to vvpfDatabase\vpfLibrary\vpfCoverage\ specified by the Output VPF Coverage or Table and is only valid when the Input Coverage or Table type is set to Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Projections must match between the library and the coverage being created.</para>
+			</bullet_item><bullet_item>
+				<para>The VPF standard specifies only coverages in geographic coordinates. Using units of Decimal Degrees, on the WGS 1984 datum, you cannot clean a coverage that has units in Decimal Degrees. You should build the coverage in this case, or understand how cleaning will affect your coverage.</para>
+			</bullet_item><bullet_item>
+				<para> In the default translation of a coverage to a VPF coverage, arcs become edges, polygons become faces, and nodes remain nodes. Feature attribute tables become feature tables with a 1:1 relationship with primitive tables. One exception is the annotation TAT, which becomes one primitive table plus as many feature tables as there are annotation subclasses in the coverage. Route and Section tables become unconnected "extra" tables. </para>
+				<para> Other coverage tables are translated to VPF as extra tables, meaning that the tables are not needed to make up VPF coverages but should be maintained for the VPF to Coverage tool to translate all of the coverage information back to ArcInfo. If there are no VPF tiles, the extra tables are located at the coverage level; otherwise, they are located at the tile level. Extra tables that may be generated by the tool are TIC, SEC, RAT, LNK, TRN, ADD, and ADDRESS.LST. The naming convention is X_TIC, X_SEC, X_RAT, and so on.</para>
+			</bullet_item><bullet_item>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>VPFExport example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to create a VPF coverage using an ArcInfo coverage. </para>
+				<code xml:space="preserve"># Name: VPFExport_Example.py
+# Description: Creates a VPF coverage from an ArcInfo coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "caligrat"
+outFile = "C:/output/caligrat"
+standardTable = "NO_EXTRA"
+indexTable = "NO_FIT"
+
+# Execute VPFExport
+arcpy.VPFExport_arc (inCover, outFile, "" , "" , standardTable, indexTable)
+
+
+                    </code></scriptExample><scriptExample><title>VPFExport example 2 (stand-alone script)</title><para>The following stand-alone script demonstrates how to export two coverages to VPF and then create cross-tile topology for the VPF covereages.</para>
+				<code xml:space="preserve"># Name: VPFTile_Example.py
+# Description: Exports two coverages to VPF format then builds tile topology
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover1 = "coastb"
+inCover2 = "coastc"
+outFile1 = "C:/output/vpfdb/wlib/coast2"
+outFile2 = "C:/output/vpfdb/wlib/coast3"
+
+vpfLibrary = "C:/output/vpfdb"
+vpfStandard = 96
+specCover = "ALL"
+
+# Execute VPFExport
+arcpy.VPFExport_arc(inCover1, outFile1)
+arcpy.VPFExport_arc(inCover2, outFile2)
+
+# Execute VPFTile
+arcpy.VPFTile_arc(vpfLibrary, "", vpfStandard, specCover)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

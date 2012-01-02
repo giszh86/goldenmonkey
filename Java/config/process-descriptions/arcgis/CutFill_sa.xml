@@ -1,0 +1,90 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Cut Fill (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the volume change between two surfaces. This is typically used for cut and fill operations.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Added</keyword><keyword>Cut</keyword><keyword>Cutfill</keyword><keyword>Dem</keyword><keyword>Deposition</keyword><keyword>Digital Elevation Model</keyword><keyword>Elevation</keyword><keyword>Erosion</keyword><keyword>Fill</keyword><keyword>Landfill</keyword><keyword>Removed</keyword><keyword>Volume</keyword><keyword>Z-Factor</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CutFill" displayname="Cut Fill (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates the volume change between two surfaces. This is typically used for cut and fill operations.</para>
+			
+		</summary><alink_name>CutFill_sa</alink_name><toolIllust type="illustration" src="CutFill_sa_h.gif" alt="Cut Fill illustration" /><parameters><param sync="true" name="in_before_surface" displayname="Input before raster surface" datatype="Raster Layer" direction="Input" expression="in_before_surface" type="Required"><pythonReference>
+						<para>The input representing the surface before the cut or fill operation.</para>
+					</pythonReference><dialogReference>
+						<para>The input representing the surface before the cut or fill operation.</para>
+					</dialogReference></param><param sync="true" name="in_after_surface" displayname="The input representing the surface after the cut or fill operation." datatype="Raster Layer" direction="Input" expression="in_after_surface" type="Required"><pythonReference>
+						<para>The input representing the surface after the cut or fill operation.</para>
+					</pythonReference><dialogReference>
+						<para>The input representing the surface after the cut or fill operation.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>Number of ground x,y units in one surface z unit.</para>
+						<para>The z-factor adjusts the units of measure for the z units when they are different from the x,y units of the input surface. The z-values of the input surface are multiplied by the z-factor when calculating the final output surface.</para>
+						<para>If the x,y units and z units are in the same units of measure, the z-factor is 1. This is the default.</para>
+						<para>If the x,y units and z units are in different units of measure, the z-factor must be set to the appropriate factor, or the results will be incorrect. For example, if your z units are feet and your x,y units are meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</pythonReference><dialogReference>
+						<para>Number of ground x,y units in one surface z unit.</para>
+						<para>The z-factor adjusts the units of measure for the z units when they are different from the x,y units of the input surface. The z-values of the input surface are multiplied by the z-factor when calculating the final output surface.</para>
+						<para>If the x,y units and z units are in the same units of measure, the z-factor is 1. This is the default.</para>
+						<para>If the x,y units and z units are in different units of measure, the z-factor must be set to the appropriate factor, or the results will be incorrect. For example, if your z units are feet and your x,y units are meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster defining regions of cut and of fill.</para><para>The values show the locations and amounts where the surface has been added to or removed from.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster defining regions of cut and of fill.</para><para>The values show the locations and amounts where the surface has been added to or removed from.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Cut Fill tool enables you to create a map based on two input surfaces—before and after—displaying the areas and volumes of surface materials that have been modified by the removal or addition of surface material.</para>
+			</bullet_item><bullet_item>
+				<para>Both the input raster surfaces must be coincident. That is, they must have a common origin, the same number of rows and columns of cells, and the same cell size.</para>
+			</bullet_item><bullet_item>
+				<para>For accurate results, the z-units should be the same as the x,y ground units. This ensures that the resulting volumes are meaningful cubic measures (i.e., cubic meters). If they are not the same, use a z-factor to convert z units to x,y units. For example, if your x,y units are meters and your z units are feet, you could specify a z-factor of 0.3048 to convert feet to meters.</para>
+				<para>Alternatively, use the  math tool to create a surface raster in which the z-values have been adjusted to correspond to the ground units.</para>
+			</bullet_item><bullet_item>
+				<para>The attribute table of the output raster presents the changes in the surface volumes following the cut/fill operation. Positive values for the volume difference indicate regions of the before raster surface that have been cut (material removed). Negative values indicate areas that have been filled (material added). See  for more details on how the results are calculated.</para>
+			</bullet_item><bullet_item>
+				<para>When the cut/fill operation is performed from the tool, by default a specialized renderer is applied that highlights the locations of cut and of fill. The renderer draws areas that have been cut in blue, and areas that have been filled in red. Areas that have not changed are displayed in grey.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CutFill example 1 (Python window)</title>
+					<para>This example calculates the volume and area of cut and fill locations and outputs the result as a GRID raster.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outCutFill = CutFill("elevation01", "elevation02", 1)
+outCutFill.save("C:/sapyexamples/output/outcutfill01")
+
+                    </code></scriptExample><scriptExample><title>CutFill example 2 (stand-alone script)</title>
+					<para>This example calculates the volume and area of cut and fill locations and outputs the result as a GRID raster.</para><code xml:space="preserve"># Name: Cutfill_Ex_02.py
+# Description: Calculates the volume and area of cut and 
+# fill locations.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inBeforeRaster = "elevation01"
+inAfterRaster =  "elevation02"
+zFactor = 0.5
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute CutFill
+outCutFill = CutFill(inBeforeRaster, inAfterRaster, zFactor)
+
+# Save the output 
+outCutFill.save("C:/sapyexamples/output/outcutfill02")
+                    </code></scriptExample></scriptExamples></tool></metadata>

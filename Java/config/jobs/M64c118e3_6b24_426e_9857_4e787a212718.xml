@@ -1,0 +1,54 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?> 
+<!--
+  domain(type)={"FFD","WPS","GPW"}
+--> 
+<process type="FFD"
+         stepByStep="false"         
+         >
+	
+	<head>
+		<Identifier>getModels</Identifier>
+		<Title>模型列表</Title>
+		<Abstract>获取所有模型的列表</Abstract>
+		<!--
+		<input></input>
+		-->
+		<DataInputs>		
+		</DataInputs>
+		<ProcessOutputs>
+	    </ProcessOutputs>
+	 
+	</head>
+	
+	
+
+  <flow>   
+    <start id="1" />    
+    <operation name="ProcessGetBaseDirectory" id="2">
+      <inputs>       
+      </inputs>
+      <output>      
+      </output>            
+    </operation>
+    <operation name="ProcessModelList" id="3">
+      <inputs>      
+      </inputs>
+      <output>        
+      </output>
+    </operation>  
+    <end id="4" />
+
+    <links>
+      <link from="1" to="2" />
+      <link from="2" to="3" >
+	   <assign>
+            <from>BaseDir</from>
+            <to>BaseDir</to>
+        </assign>
+	  </link>
+      <link from="3" to="4" />     
+    </links>
+	
+	<reply name="ModelList" operation="ProcessModelList" id="3" variable="Models"/> 
+  </flow>
+</process>

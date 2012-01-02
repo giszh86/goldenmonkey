@@ -1,0 +1,70 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">ZScore Rendering (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Applies a cold (blue) to hot (red) color rendering scheme for a field of z-scores.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Apply</keyword><keyword>Change</keyword><keyword>Cold</keyword><keyword>Color</keyword><keyword>Display</keyword><keyword>Graduate</keyword><keyword>Hot</keyword><keyword>Layer</keyword><keyword>Lyr</keyword><keyword>Standard Deviation</keyword><keyword>Symbol</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ZRenderer" displayname="ZScore Rendering (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Applies a cold (blue) to hot (red) color rendering scheme for a field of z-scores.</para>
+		</summary><alink_name>ZRenderer_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/ZRenderer_stats_v.gif" alt="Z-score Rendering illustration" /><toolIllust type="illustration" src="ZRenderer_stats_h.gif" alt="Z-score Rendering illustration" /><parameters><param sync="true" name="Input_Feature_Class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="Input_Feature_Class" type="Required"><pythonReference>
+						<para>The feature class containing a field with standardized z-scores.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class containing a field with standardized z-scores.</para>
+					</dialogReference></param><param sync="true" name="Field_to_Render" displayname="Field to Render" datatype="Field" direction="Input" expression="Field_to_Render" type="Required"><pythonReference>
+						<para>The name of the field containing the z-scores.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the field containing the z-scores.</para>
+					</dialogReference></param><param sync="true" name="Output_Layer_File" displayname="Output Layer File" datatype="Layer File" direction="Output" expression="Output_Layer_File" type="Required"><pythonReference>
+						<para>The new output layer file to store rendering information. You must include the .lyr extension as part of the file name.</para>
+					</pythonReference><dialogReference>
+						<para>The new output layer file to store rendering information. You must include the .lyr extension as part of the file name.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>The Z Renderer creates a new layer file (.lyr) with z-scores rendered in the following manner:</para>
+				<bulletList>
+					<bullet_item>Z-scores below –2 standard deviations are rendered dark blue.</bullet_item>
+					<bullet_item>Z-scores between –2 and –1 standard deviations are light blue.</bullet_item>
+					<bullet_item>Z-scores between –1 and +1 standard deviations are neutral.</bullet_item>
+					<bullet_item>Z-scores between 1 and 2 standard deviations are pink.</bullet_item>
+					<bullet_item>Z-scores above 2 standard deviations are bright red.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>The Z Renderer is appropriate for symbolizing standard deviations including the output from both the  and  tools.</para>
+			</bullet_item><bullet_item><para>Beginning with the ArcGIS 10 release, this tool is a built-in tool (rather than a Visual Basic executable).  While every effort was made not to break custom model and script tools developed prior to ArcGIS 10, there may be cases where older models that use this tool must be rebuilt in order for the model to run.</para></bullet_item><bullet_item>
+				<para>Map layers can be used to define the Input Feature Class. When using a layer with a selection, only the selected features are included in the analysis.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ZScore Rendering Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the ZScore Rendering tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = r"C:\data"
+arcpy.ZRenderer_stats("hotspot_output.shp", "GiInvDst", "hotspot_output_rendered.lyr")
+                    </code></scriptExample><scriptExample><title>ZScore Rendering Example (stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the ZScore Rendering tool.</para>
+				<code xml:space="preserve"># Perform Hot Spot Analysis for assault incidents
+ 
+# Import system modules
+import arcpy
+ 
+# Local variables...
+workspace = r"C:\data"
+input = "assaults.shp"
+collect_output = "collect_output.shp"
+collect_count_field = "Count"
+hotspot_output = "hotspot_output.shp"
+hotspot_output_rendered = "hotspot_output_rendered.lyr"
+z_score_field_name = "GiInvDst"
+ 
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.env.workspace = workspace
+ 
+    # Convert assault incidents into weighted point data
+    # Process: Collect Events...
+    arcpy.CollectEvents_stats(input, collect_output)
+ 
+    # Calculate Getis-Ord Gi* statistic
+    # Process: Hot Spot Analysis (Getis-Ord Gi*)...
+    arcpy.HotSpots_stats(collect_output, collect_count_field, hotspot_output, "INVERSE_DISTANCE", "EUCLIDEAN_DISTANCE", "NONE", "#", "#", "#")
+ 
+    # Render hot spot analysis
+    # Process: ZScore Rendering...
+    arcpy.ZRenderer_stats(hotspot_output, z_score_field_name, hotspot_output_rendered)
+ 
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages(2)
+                    </code></scriptExample></scriptExamples></tool></metadata>

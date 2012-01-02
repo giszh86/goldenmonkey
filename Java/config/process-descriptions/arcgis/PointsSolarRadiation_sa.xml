@@ -1,0 +1,287 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Points Solar Radiation (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Derives incoming solar radiation for specific locations in a point feature class or location table.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Atmosphere</keyword><keyword>Diffuse</keyword><keyword>Duration</keyword><keyword>Energy</keyword><keyword>Exposure</keyword><keyword>Global</keyword><keyword>Hemisphere</keyword><keyword>Horizon</keyword><keyword>Insolation</keyword><keyword>Solar Analyst</keyword><keyword>Sun</keyword><keyword>Surface</keyword><keyword>Time Configuration</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PointsSolarRadiation" displayname="Points Solar Radiation (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Derives incoming solar radiation for specific locations in a point feature class or location table.</para>
+			</summary><alink_name>PointsSolarRadiation_sa</alink_name><parameters><param sync="true" name="in_surface_raster" displayname="Input surface raster" datatype="Raster Layer" direction="Input" expression="in_surface_raster" type="Required"><pythonReference>
+						<para>Input elevation surface raster.</para>
+					</pythonReference><dialogReference>
+						<para>Input elevation surface raster.</para>
+					</dialogReference></param><param sync="true" name="in_points_feature_or_table" displayname="Input points feature or table" datatype="Feature Layer | Table View" direction="Input" expression="in_points_feature_or_table" type="Required"><pythonReference>
+						<para>The input point feature class or table specifying the locations to analyze solar radiation.</para>
+					</pythonReference><dialogReference>
+						<para>The input point feature class or table specifying the locations to analyze solar radiation.</para>
+					</dialogReference></param><param sync="true" name="out_global_radiation_features" displayname="Output global radiation features" datatype="Feature Class" direction="Output" expression="out_global_radiation_features" type="Required"><pythonReference>
+						<para>The output feature class representing the global radiation or amount of incoming solar insolation (direct + diffuse) calculated for each location.</para>
+						<para>The output has units of watt hours per square meter (WH/m2).</para></pythonReference><dialogReference>
+						<para>The output feature class representing the global radiation or amount of incoming solar insolation (direct + diffuse) calculated for each location.</para>
+						<para>The output has units of watt hours per square meter (WH/m2).</para></dialogReference></param><param sync="true" name="height_offset" displayname="Height offset" datatype="Double" direction="Input" expression="height_offset" type="Optional"><pythonReference>
+						<para>The height (in meters) above the DEM surface for which calculations are to be performed.</para>
+						<para>The height offset will be applied to all input locations.</para>
+					</pythonReference><dialogReference>
+						<para>The height (in meters) above the DEM surface for which calculations are to be performed.</para>
+						<para>The height offset will be applied to all input locations.</para>
+					</dialogReference></param><param sync="true" name="latitude" displayname="Latitude" datatype="Double" direction="Input" expression="latitude" type="Optional"><pythonReference>
+						<para>The latitude for the site area. The units are decimal degrees, with positive values for the northern hemisphere and negative for the southern.</para>
+						<para>For input surface rasters containing a spatial reference, the mean latitude is automatically calculated; otherwise, latitude will default to 45 degrees.</para>
+					</pythonReference><dialogReference>
+						<para>The latitude for the site area. The units are decimal degrees, with positive values for the northern hemisphere and negative for the southern.</para>
+						<para>For input surface rasters containing a spatial reference, the mean latitude is automatically calculated; otherwise, latitude will default to 45 degrees.</para>
+					</dialogReference></param><param sync="true" name="sky_size" displayname="Sky size / Resolution" datatype="Long" direction="Input" expression="sky_size" type="Optional"><pythonReference>
+						<para>The resolution or sky size for the viewshed, sky map, and sun map grids. The units are cells.</para>
+						<para>The default creates a raster of 200 x 200 cells.</para>
+					</pythonReference><dialogReference>
+						<para>The resolution or sky size for the viewshed, sky map, and sun map grids. The units are cells.</para>
+						<para>The default creates a raster of 200 x 200 cells.</para>
+					</dialogReference></param><param sync="true" name="time_configuration" displayname="Time configuration" datatype="Time configuration" direction="Input" expression="time_configuration" type="Optional"><pythonReference>
+						<para>Specifies the time configuration (period) used for calculating solar radiation.</para><para>The  Time class objects are  used to specify the time configuration.</para><para>The different types of time configurations available are TimeWithinDay, TimeMultiDays,  TimeSpecialDays, and TimeWholeYear.</para>
+						<para>The following are the forms:</para>
+						<bulletList>
+							<bullet_item>TimeWithinDay({day},{start_time},{end_time})</bullet_item>
+							<bullet_item>TimeMultiDays({year},{start_day},{end_day})</bullet_item>
+							<bullet_item>TimeSpecialDays()</bullet_item>
+							<bullet_item>TimeWholeYear({year})</bullet_item>
+						</bulletList>
+						<para>The default time_configuration is TimeMultiDays with the start_day of 5 and end_day of 160, for the current Julian year.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the time period to use for the calculations.</para>
+						<bulletList>
+							<bullet_item>Special days—Calculates solar insolation for summer solstice/equinox/winter solstice days.</bullet_item><bullet_item>Within a day—Performs calculations for a specified time period within one single day.<para>Select the Julian Day, then enter the start and end times. When the start time and the end time are the same, instantaneous insolation will be calculated. When the start time is before sunrise and the end time is after sunset, insolation will be calculated for the whole day.</para>
+								<bulletList><bullet_item>To facilitate entering the correct day, you can use the calendar button to open the Calendar dialog box.</bullet_item><bullet_item>To set start and end times, you can use the  clock button to open the Time Conversion dialog box.  Here you can enter the local solar time, or the local standard time while correcting for your degree of longitude and time zone.</bullet_item></bulletList></bullet_item>
+							<bullet_item>Multiple days in a year—Performs calculations for a specific multiple-day period within a year.<para>Specify the start year, start day, and end day. When the end day is smaller than the start day, the end day is considered to be in the following year. The default time configuration starts on day 5 and ends on  day 160 of the current Julian year.</para><bulletList><bullet_item>To facilitate entering the correct days, you can use the calendar button to open the Calendar dialog box.</bullet_item></bulletList></bullet_item>
+							<bullet_item>Whole year with monthly interval—Performs calculations for an entire year using monthly intervals for calculations.<para>If the Create outputs for each interval option is checked, output files will be created for each month; otherwise, a single output will be created for the whole year.</para></bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="day_interval" displayname="Day interval" datatype="Long" direction="Input" expression="day_interval" type="Optional"><pythonReference>
+						<para>The time interval through the year (units: days) used for calculation of sky sectors for the sun map.</para>
+						<para>The default value is 14 (biweekly).</para>
+					</pythonReference><dialogReference>
+						<para>The time interval through the year (units: days) used for calculation of sky sectors for the sun map.</para>
+						<para>The default value is 14 (biweekly).</para>
+					</dialogReference></param><param sync="true" name="hour_interval" displayname="Hour interval" datatype="Double" direction="Input" expression="hour_interval" type="Optional"><pythonReference>
+						<para>Time interval through the day (units: hours) used for calculation of sky sectors for sun maps.</para>
+						<para>The default value is 0.5.</para>
+					</pythonReference><dialogReference>
+						<para>Time interval through the day (units: hours) used for calculation of sky sectors for sun maps.</para>
+						<para>The default value is 0.5.</para>
+					</dialogReference></param><param sync="true" name="each_interval" displayname="Create outputs for each interval" datatype="Boolean" direction="Input" expression="each_interval" type="Optional"><pythonReference>
+						<para>Specifies whether to calculate a single total insolation value for all locations or multiple values for the specified hour and day interval.</para>
+						<bulletList><bullet_item>NOINTERVAL—A single total radiation value will be calculated for the entire time configuration. This is default.</bullet_item><bullet_item>INTERVAL—Multiple radiation values will be calculated for each time interval over the entire time configuration. The number of outputs will depend on the hour or day interval. For example, for a whole year with monthly intervals, the result will contain 12 output radiation values for each location.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether to calculate a single total insolation value for all locations or multiple values for the specified interval.</para>
+						<bulletList>
+							<bullet_item>Unchecked—A single total radiation value will be calculated for the entire time configuration. This is default.</bullet_item>
+							<bullet_item>Checked—Multiple radiation values will be calculated for each time interval over the entire time configuration. The number of outputs will depend on the hour or day interval. For example, for a whole year with monthly intervals, the result will contain 12 output radiation values for each location.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>The number of ground x,y units in one surface z unit.</para>
+						<para>The z-factor adjusts the units of measure for the z units when they are different from the x,y units of the input surface. The z-values of the input surface are multiplied by the z-factor when calculating the final output surface.</para>
+						<para>If the x,y units and z units are in the same units of measure, the z-factor is 1. This is the default.</para>
+						<para>If the x,y units and z units are in different units of measure, the z-factor must be set to the appropriate factor, or the results will be incorrect.</para>
+						<para>For example, if your z units are feet and your x,y units are meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</pythonReference><dialogReference>
+						<para>The number of ground x,y units in one surface z unit.</para>
+						<para>The z-factor adjusts the units of measure for the z units when they are different from the x,y units of the input surface. The z-values of the input surface are multiplied by the z-factor when calculating the final output surface.</para>
+						<para>If the x,y units and z units are in the same units of measure, the z-factor is 1. This is the default.</para>
+						<para>If the x,y units and z units are in different units of measure, the z-factor must be set to the appropriate factor, or the results will be incorrect.</para>
+						<para>For example, if your z units are feet and your x,y units are meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</dialogReference></param><param sync="true" name="slope_aspect_input_type" displayname="Slope and aspect input type" datatype="String" direction="Input" expression="slope_aspect_input_type" type="Optional"><pythonReference>
+						<para>How slope and aspect information are derived for analysis.</para><bulletList><bullet_item>FROM_DEM — The slope and aspect grids are calculated from the input surface raster. This is the default.</bullet_item><bullet_item>FLAT_SURFACE — Constant values of zero are used for slope and aspect.</bullet_item><bullet_item>FROM_POINTS_TABLE — Values for slope and aspect can be specified along with the x,y coordinates in the locations file.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>How slope and aspect information are derived for analysis.</para><bulletList><bullet_item>FROM_DEM — The slope and aspect grids are calculated from the input surface raster. This is the default.</bullet_item><bullet_item>FLAT_SURFACE — Constant values of zero are used for slope and aspect.</bullet_item><bullet_item>FROM_POINTS_TABLE — Values for slope and aspect can be specified along with the x,y coordinates in the locations file.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="calculation_directions" displayname="Calculation directions" datatype="Long" direction="Input" expression="calculation_directions" type="Optional"><pythonReference>
+						<para>The number of azimuth directions used when calculating the viewshed.</para>
+						<para>Valid values must be multiples of 8 (8, 16, 24, 32, and so on). The default value is 32 directions, which is adequate for complex topography.</para>
+					</pythonReference><dialogReference>
+						<para>The number of azimuth directions used when calculating the viewshed.</para>
+						<para>Valid values must be multiples of 8 (8, 16, 24, 32, and so on). The default value is 32 directions, which is adequate for complex topography.</para>
+					</dialogReference></param><param sync="true" name="zenith_divisions" displayname="Zenith divisions" datatype="Long" direction="Input" expression="zenith_divisions" type="Optional"><pythonReference>
+						<para>The number of divisions used to create sky sectors in the sky map.</para>
+						<para>The default is eight divisions (relative to zenith). Values must be greater than zero and less than half the sky size value.</para>
+					</pythonReference><dialogReference>
+						<para>The number of divisions used to create sky sectors in the sky map.</para>
+						<para>The default is eight divisions (relative to zenith). Values must be greater than zero and less than half the sky size value.</para>
+					</dialogReference></param><param sync="true" name="azimuth_divisions" displayname="Azimuth divisions" datatype="Long" direction="Input" expression="azimuth_divisions" type="Optional"><pythonReference>
+						<para>The number of divisions used to create sky sectors in the sky map.</para>
+						<para>The default is eight divisions (relative to north). Valid values must be multiples of 8. Values must be greater than zero and less than 160.</para>
+					</pythonReference><dialogReference>
+						<para>The number of divisions used to create sky sectors in the sky map.</para>
+						<para>The default is eight divisions (relative to north). Valid values must be multiples of 8. Values must be greater than zero and less than 160.</para>
+					</dialogReference></param><param sync="true" name="diffuse_model_type" displayname="Diffuse model type" datatype="String" direction="Input" expression="diffuse_model_type" type="Optional"><pythonReference>
+						<para>Type of diffuse radiation model.</para>
+						<bulletList><bullet_item>UNIFORM_SKY — Uniform diffuse model. The incoming diffuse radiation is the same from all sky directions. This is the default.</bullet_item><bullet_item>STANDARD_OVERCAST_SKY — Standard overcast diffuse model. The incoming diffuse radiation flux varies with zenith angle.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Type of diffuse radiation model.</para>
+						<bulletList><bullet_item>UNIFORM_SKY — Uniform diffuse model. The incoming diffuse radiation is the same from all sky directions. This is the default.</bullet_item><bullet_item>STANDARD_OVERCAST_SKY — Standard overcast diffuse model. The incoming diffuse radiation flux varies with zenith angle.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="diffuse_proportion" displayname="Diffuse proportion" datatype="Double" direction="Input" expression="diffuse_proportion" type="Optional"><pythonReference>
+						<para>The proportion of global normal radiation flux that is diffuse. Values range from 0 to 1.</para>
+						<para>This value should be set according to atmospheric conditions. The default value is 0.3 for generally clear sky conditions.</para>
+					</pythonReference><dialogReference>
+						<para>The proportion of global normal radiation flux that is diffuse. Values range from 0 to 1.</para>
+						<para>This value should be set according to atmospheric conditions. The default value is 0.3 for generally clear sky conditions.</para>
+					</dialogReference></param><param sync="true" name="transmittivity" displayname="Transmittivity" datatype="Double" direction="Input" expression="transmittivity" type="Optional"><pythonReference>
+						<para>The fraction of radiation that passes through the atmosphere (averaged over all wavelengths). Values range from 0 (no transmission) to 1 (all transmission).</para>
+						<para>The default is 0.5 for a generally clear sky.</para>
+					</pythonReference><dialogReference>
+						<para>The fraction of radiation that passes through the atmosphere (averaged over all wavelengths). Values range from 0 (no transmission) to 1 (all transmission).</para>
+						<para>The default is 0.5 for a generally clear sky.</para>
+					</dialogReference></param><param sync="true" name="out_direct_radiation_features" displayname="Output direct radiation features" datatype="Feature Class" direction="Output" expression="out_direct_radiation_features" type="Optional"><pythonReference>
+						<para>The output feature class representing the direct incoming solar radiation for each location.</para>
+						<para>The output has units of watt hours per square meter (WH/m2).</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class representing the direct incoming solar radiation for each location.</para>
+						<para>The output has units of watt hours per square meter (WH/m2).</para>
+					</dialogReference></param><param sync="true" name="out_diffuse_radiation_features" displayname="Output diffuse radiation features" datatype="Feature Class" direction="Output" expression="out_diffuse_radiation_features" type="Optional"><pythonReference>
+						<para>The output feature class representing the incoming solar radiation for each location that is diffuse.</para>
+						<para>The output has units of watt hours per square meter (WH/m2).</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class representing the incoming solar radiation for each location that is diffuse.</para>
+						<para>The output has units of watt hours per square meter (WH/m2).</para>
+					</dialogReference></param><param sync="true" name="out_direct_duration_features" displayname="Output direct duration features" datatype="Feature Class" direction="Output" expression="out_direct_duration_features" type="Optional"><pythonReference>
+						<para>The output feature class representing the duration of direct incoming solar radiation.</para>
+						<para>The output has units of hours.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class representing the duration of direct incoming solar radiation.</para>
+						<para>The output has units of hours.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input locations can be a feature class or table. The table can be an INFO table, a .dbf file, an Access table, or a text table file.</para>
+			</bullet_item><bullet_item>
+				<para>When inputting locations by table, a list of locations must be specified with an x,y coordinate. Using a coordinate file, each line should contain an x,y pair separated by a space or tab. The following is an example:</para>
+				    X                Y
+    325541.218750    4314768.5
+    325169.250000    4313907.0
+    325874.031250    4313134.0
+    325825.093750    4314181.5
+				<para>Alternatively, you may specify slope (degrees) and aspect in the location table. Along with the x,y coordinate, the file should contain the slope and aspect value for each location. The following is an example:</para>    x                y            slope          aspect
+    325541.218750    4314768.5    15.84516716    310.2363586
+    325169.250000    4313907.0    39.39801788      2.03503442
+    325874.031250    4313134.0    16.10847282    223.8308563
+    325825.093750    4314181.5     8.89850712    205.2011261</bullet_item><bullet_item>
+				<para>For multi-day time configurations, the maximum range of days is a total of one year (365 days, or 366 days for leap years). If the start day is greater than the end day, the time calculations will proceed into the following year.</para>
+				<para>For example, [start day, end day] = [365, 31], represents December 31 to January 31 of the following year. The example of [1, 2], the time is inclusive for the first day from 0:00 hours (January 1) to 0:00 (January 2). The start day and end day cannot be equal.</para>
+			</bullet_item><bullet_item>
+				<para>For within-day time configurations, the maximum range of time is one day (24 hours). Calculations will not be performed across days (for instance, from 12:00 p.m. to 12:00 p.m. the next day). The start time must be less than the end time.</para>
+			</bullet_item><bullet_item>
+				<para>The use of a z-factor is essential for correcting calculations when the surface z units are expressed in units different from the ground x,y units. To get accurate results, the z units should be the same as the x,y ground units. If they are not the same, use a z-factor to convert z units to x,y units. For example, if your x,y units are meters and your z units are feet, you could specify a z-factor of 0.3048 to convert feet to meters.</para>
+			</bullet_item><bullet_item>
+				<para>It is recommended to have your data in a projection coordinate system (units meters). However, if you choose to run the analysis with a spherical coordinate system you will need to specify an appropriate z-factor for that latitude. If your x,y units are decimal degrees and your z units are meters, some appropriate z-factors for particular latitudes are:</para>
+				    Latitude     Z-factor
+       0         0.00000898
+      10         0.00000912
+      20         0.00000956
+      30         0.00001036
+      40         0.00001171
+      50         0.00001395
+      60         0.00001792
+      70         0.00002619
+      80         0.00005156
+			</bullet_item><bullet_item>
+				<para>The height offset should only be specified in meters.</para>
+			</bullet_item><bullet_item>
+				<para>The latitude for the site area (units: decimal degree, positive for the north hemisphere and negative for the south hemisphere) is used in calculations such as solar declination and solar position. Because the solar analysis is designed for landscape scales and local scales, it is acceptable to use one latitude value for the whole DEM. For broader geographic regions, it is necessary to divide the study area into zones with different latitudes.</para>
+			</bullet_item><bullet_item>
+				<para>For input surface rasters containing a spatial reference, the mean latitude is automatically calculated; otherwise, latitude will default to 45 degrees. When using an input layer, the spatial reference of the data frame is used.</para>
+			</bullet_item><bullet_item>
+				<para>Sky size is the resolution of the viewshed, sky map, and sun map rasters which are used in the radiation calculations (units: cells per side). These are upward-looking, hemispherical raster representations of the sky and do not have a geographic coordinate system. These grids are square (equal number of rows and columns).</para>
+				<para>Increasing the sky size increases calculation accuracy but also increases calculation time considerably.</para></bullet_item><bullet_item>
+				<para>When the "day interval" setting is small (e.g., &lt; 14 days) a larger sky size should be used. During analysis the sun map (determined by the sky size) is used to represent sun positions (tracks) for particular time periods to calculate direct radiation. With smaller day intervals, if the sky size resolution is not large enough, sun tracks may overlap, resulting in zero or lower radiation values for that track. Increasing the resolution provides a more accurate result.</para>
+			</bullet_item><bullet_item>
+				<para>The maximum sky size value is 4000. A value of 200 is default and is sufficient for whole DEMs with large day intervals (e.g., &gt; 14 days). A sky size value of 512 is sufficient for calculations at point locations where calculation time is less of an issue. At smaller day intervals (e.g., &lt; 14 days), it is recommended to use higher values. For example, to calculate insolation for a location at the equator with day interval = 1, it is recommended to use a sky size of 2800 or more.</para>
+			</bullet_item><bullet_item>
+				<para>Day intervals greater than 3 are recommended as sun tracks within three days typically overlap, depending on sky size and time of year. For calculations of the whole year with monthly interval, day interval is disabled and the program internally uses calendar month intervals. The default value is 14.</para>
+			</bullet_item><bullet_item>
+				<para>Because the viewshed calculation can be highly intensive, horizon angles are only traced for the number of calculation directions specified. Valid values must be multiples of 8 (8, 16, 24, 32, and so on). Typically, a value of 8 or 16 is adequate for areas with gentle topography, whereas a value of 32 is adequate for complex topography. The default value is 32.</para>
+			</bullet_item><bullet_item>
+				<para>The number of calculation directions needed is related to the resolution of the input DEM. Natural terrain at 30m resolution is usually quite smooth so fewer directions are sufficient for most situations (16 or 32). With finer DEMs, and particularly with man-made structures incorporated in the DEMs, the number of directions needs to increase. Increasing the number of directions will increase accuracy but will also increase calculation time.</para>
+			</bullet_item><bullet_item>
+				<para>The Create outputs for each interval check box provides the flexibility to calculate insolation integrated over a specified time period or insolation "for each interval" in a time series. For example, for the within-day time period with an hour interval of one, checking this box will create hourly insolation values; otherwise, insolation integrated for the entire day is calculated.</para>
+			</bullet_item><bullet_item>
+				<para>The For each interval check box affects the number of attributes for output features. When checked for point radiation analysis, the output feature class includes additional attributes (t0, t1, t2, and so on), which indicate radiation or duration values for each time interval (hour interval when time configuration is less than one day, or day interval when multiple days).</para>
+			</bullet_item><bullet_item>
+				<para>The amount of  solar radiation that is received by the surface is only a portion of what would be received outside the atmosphere.  Transmittivity is a property of the atmosphere and is the ratio of the energy received at the upper edge of the atmosphere to that reaching the earths's surface by the shortest path (in the direction of the zenith), averaged over all wavelengths. Values range from 0 (no transmission) to 1 (complete transmission). Typically observed values are 0.6 or 0.7 for very clear sky conditions and 0.5 for only a generally clear sky.</para><para>Because the algorithms  corrects for elevation effects, transmittivity should always be given for sea level. Transmittivity has an inverse relation with the diffuse proportion parameter.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>PointsSolarRadiation example 1 (Python window)</title>
+					<para>The following Python Window script demonstrates how to use the PointsSolarRadiation tool.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+PointsSolarRadiation("elevation", "observers.shp", 
+                     "c:/sapyexamples/output/outglobalrad1.shp", "", 35, 200, 
+                     TimeMultipleDays(2009, 91, 212), 14, 0.5,"NOINTERVAL", 
+                     1, "FROM_DEM", 32, 8, 8,"STANDARD_OVERCAST_SKY", 0.3, 0.5, 
+                     "c:/sapyexamples/output/outdirectrad1.shp", 
+                     "c:/sapyexamples/output/outdiffuserad1.shp", 
+                     "c:/sapyexamples/output/outduration1.shp")
+                    </code></scriptExample><scriptExample><title>PointsSolarRadiation example 2 (stand-alone script)</title>
+					<para>Calculate the amount of incoming solar radiation for specific point locations.</para>
+				<code xml:space="preserve"># PointsSolarRadiation_Example02.py
+# Description: For all point locations, calculates total global, direct,
+#    diffuse and direct duration solar radiation for a whole year.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Set local variables
+inRaster = "elevation"
+inPntFC = "observers.shp"
+outFeatures = "c:/sapyexamples/output/outglobal1.shp"
+latitude = 35.75
+skySize = 200
+timeConfig = TimeMultipleDays(2009, 91, 212)
+dayInterval = 14
+hourInterval = 0.5
+zFactor = 0.3048
+calcDirections = 32
+zenithDivisions = 8
+azimuthDivisions = 8
+diffuseProp = 0.3
+transmittivity = 0.5
+outDirectRad = "C:/sapyexamples/output/outdirectrad1.shp"
+outDiffuseRad = "C:/sapyexamples/output/outdiffuserad1.shp"
+outDirectDur = "C:/sapyexamples/output/outduration1.shp"
+
+# Execute PointsSolarRadiation...
+PointsSolarRadiation(inRaster, inPntFC, outFeatures, "", latitude, skySize, 
+                     timeConfig, dayInterval, hourInterval, "INTERVAL", 
+                     zFactor, "FROM_DEM", calcDirections, zenithDivisions, 
+                     azimuthDivisions,"STANDARD_OVERCAST_SKY", diffuseProp, 
+                     transmittivity, outDirectRad, outDiffuseRad, outDirectDur)
+                    </code></scriptExample></scriptExamples></tool></metadata>

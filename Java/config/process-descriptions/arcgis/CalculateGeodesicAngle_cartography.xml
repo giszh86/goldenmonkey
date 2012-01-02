@@ -1,0 +1,53 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate Geodesic Angle (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates geodesic angles for the input features according to the defined coordinate system, and assigns the angle values to the specified field in the feature class that contains the input features.</para>
+				<para>This tool has been deprecated and replaced by the Calculate_Grid_Convergence_Angle tool. </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateGeodesicAngle" displayname="Calculate Geodesic Angle (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Calculates geodesic angles for the input features according to the defined coordinate system, and assigns the angle values to the specified field in the feature class that contains the input features.</para>
+				<para>This tool has been deprecated and replaced by the Calculate_Grid_Convergence_Angle tool. </para>
+			
+		</summary><alink_name>CalculateGeodesicAngle_cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input features for which geodesic angles will be computed.</para>
+					</pythonReference><dialogReference>
+						<para>The input features for which geodesic angles will be computed.</para>
+					</dialogReference></param><param sync="true" name="angle_field" displayname="Angle Field" datatype="Field" direction="Input" expression="angle_field" type="Required"><pythonReference>
+						<para>The field that will be updated with the geodesic angle values in decimal degrees.</para>
+					</pythonReference><dialogReference>
+						<para>The field that will be updated with the geodesic angle values in decimal degrees.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cartographic_coordinate_system" label="Cartographic coordinate system">
+						
+					</environment><environment name="Reference_scale" label="Reference scale">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Angles are calculated according to the coordinate system of the active data frame of the current map document or the Coordinate System geoprocessing environment variable, if it is set. This environment setting must be set to execute the tool from ArcCatalog.</para>
+			</bullet_item><bullet_item>
+				<para>The input features can be points, lines, or polygons. For a point feature, the point location will be used to calculate the geodesic angle. For a line or polygon feature, the center point (centroid) of geometry will be used to calculate the geodesic angle.</para>
+			</bullet_item><bullet_item>
+				<para>A field must be present in the input feature attribute table to store the calculated angles. The stored angles are in decimal degrees.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CalculateGeodesicAngle tool Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the CalculateGeodesicAngle tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:\data"
+
+arcpy.CalculateGeodesicAngle_cartography("cities", "city_angle")
+                    </code></scriptExample><scriptExample><title>CalculateGeodesicAngle tool Example (Stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the CalculateGeodesicAngle tool.</para>
+				<code xml:space="preserve"># Name: CalculateGeodeisAngle_standalone_script.py
+# Description: calculates a geodesic angle for a polygon
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+in_features = "cities"
+angle_field = "city_angle"
+
+# Execute Calculate Geodesic Angle
+arcpy.CalculateGeodesicAngle_cartography((in_features, angle_field)
+                    </code></scriptExample></scriptExamples></tool></metadata>

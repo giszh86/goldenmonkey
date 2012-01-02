@@ -1,0 +1,128 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">IDW (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Interpolates a raster surface from points using an inverse distance weighted (IDW) technique.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Barrier</keyword><keyword>Breakline</keyword><keyword>Estimate</keyword><keyword>Faulted</keyword><keyword>Interpolate</keyword><keyword>Interpolation</keyword><keyword>Interpolator</keyword><keyword>Inverse Distance Weighting</keyword><keyword>Predict</keyword><keyword>Raster</keyword><keyword>Surface</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Idw" displayname="IDW (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Interpolates a raster surface from points using an inverse distance weighted (IDW) technique.</para>
+			
+		</summary><alink_name>Idw_3d</alink_name><parameters><param sync="true" name="in_point_features" displayname="Input point features" datatype="Feature Layer" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para>The input point features containing the z-values to be interpolated into a surface raster.</para>
+					</pythonReference><dialogReference>
+						<para>The input point features containing the z-values to be interpolated into a surface raster.</para>
+					</dialogReference></param><param sync="true" name="z_field" displayname="Z value field" datatype="Field" direction="Input" expression="z_field" type="Required"><pythonReference>
+						<para>The field that holds a height or magnitude value for each point.</para><para>This can be a numeric field or the Shape field if the input point features contain z-values.</para>
+					</pythonReference><dialogReference>
+						<para>The field that holds a height or magnitude value for each point.</para><para>This can be a numeric field or the Shape field if the input point features contain z-values.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Layer" direction="Output" expression="out_raster" type="Required"><pythonReference>
+						<para>The output interpolated surface raster.</para>
+					</pythonReference><dialogReference>
+						<para>The output interpolated surface raster.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size at which the output raster will be created.</para><para>This will be the value in the environment if it is explicitly set;  otherwise, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size at which the output raster will be created.</para><para>This will be the value in the environment if it is explicitly set;  otherwise, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="power" displayname="Power" datatype="Double" direction="Input" expression="power" type="Optional"><pythonReference>
+						<para>The exponent of distance.</para>
+						<para>Controls the significance of surrounding points on the interpolated value. A higher power results in less influence from distant points. It can be any real number greater than 0, but the most reasonable results will be obtained using values from 0.5 to 3. The default is 2.</para>
+					</pythonReference><dialogReference>
+						<para>The exponent of distance.</para>
+						<para>Controls the significance of surrounding points on the interpolated value. A higher power results in less influence from distant points. It can be any real number greater than 0, but the most reasonable results will be obtained using values from 0.5 to 3. The default is 2.</para>
+					</dialogReference></param><param sync="true" name="search_radius" displayname="Search radius" datatype="Radius" direction="Input" expression="search_radius" type="Optional"><pythonReference><para>Defines which of the input points will be used to interpolate the value for each cell in the output raster.</para>
+						<para>There are two ways to specify the specify the searching neighborhood: Variable and Fixed.</para><para>Variable uses a variable search radius in order to find a specified number of input sample points for the interpolation. Fixed  uses a specified fixed distance within which all input points will be used. Variable is the default.</para><para>The syntax for these parameters are:</para>
+						<bulletList><bullet_item>Variable, number_of_points, maximum_distance, where:<bulletList><bullet_item>number_of_points—An integer value specifying the number of nearest input sample points to be used to perform interpolation. The default is 12 points.</bullet_item><bullet_item>maximum_distance—Specifies the distance, in map units, by which to limit the search for the nearest input sample points. The default value is the length of the extent's diagonal.</bullet_item></bulletList></bullet_item></bulletList><bulletList>
+							<bullet_item>
+								Fixed, distance, minimum_number_of_points, where:<bulletList><bullet_item>distance—Specifies the distance as a radius within which input sample points will be used to perform the interpolation. The value of the radius is expressed in map units. The default radius is five times the cell size of the output raster.</bullet_item><bullet_item>minimum_number_of_points—An integer defining the minimum number of points to be used for interpolation. The default value is 0.</bullet_item></bulletList>
+							</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>Defines which of the input points will be used to interpolate the value for each cell in the output raster.</para>
+						<para>There are two options: Variable and Fixed. Variable is the default.</para><bulletList>
+							<bullet_item>
+								Variable<para>Uses a variable search radius in order to find a specified number of input sample points for the interpolation.</para>
+								<bulletList>
+									<bullet_item>Number of points—An integer value specifying the number of nearest input sample points to be used to perform interpolation. The default is 12 points.</bullet_item>
+									<bullet_item>Maximum distance—Specifies the distance, in map units, by which to limit the search for the nearest input sample points. The default value is the length of the extent's diagonal.</bullet_item>
+								</bulletList>
+							</bullet_item>
+						</bulletList>
+						<bulletList>
+							<bullet_item>
+								Fixed<para>Uses a specified fixed distance within which all input points will be used for the interpolation.</para>
+								<bulletList>
+									<bullet_item>Distance—Specifies the distance as a radius within which input sample points will be used to perform the interpolation. <para>The value of the radius is expressed in map units. The default radius is five times the cell size of the output raster.</para></bullet_item>
+									<bullet_item>Minimum number of points—An integer defining the minimum number of points to be used for interpolation. The default value is 0.</bullet_item>
+								</bulletList>
+							</bullet_item>
+						</bulletList></dialogReference></param><param sync="true" name="in_barrier_polyline_features" displayname="Input barrier polyline features" datatype="Feature Layer" direction="Input" expression="in_barrier_polyline_features" type="Optional"><pythonReference>
+						<para>Polyline features to be used as a break or limit in searching for the input sample points.</para>
+					</pythonReference><dialogReference>
+						<para>Polyline features to be used as a break or limit in searching for the input sample points.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The output value for a cell using inverse distance weighting (IDW) is limited to the range of the values used to interpolate. Because IDW is a weighted distance average, the average cannot be greater than the highest or less than the lowest input. Therefore, it cannot create ridges or valleys if these extremes have not already been sampled (Watson and Philip 1985).</para>
+			</bullet_item><bullet_item>
+				<para>The best results from IDW are obtained when sampling is sufficiently dense with regard to the local variation you are attempting to simulate. If the sampling of input points is sparse or uneven, the results may not sufficiently represent the desired surface (Watson and Philip 1985).</para>
+			</bullet_item><bullet_item>
+				<para>The influence of an input point on an interpolated value is isotropic. Since the influence of an input point on an interpolated value is distance related, IDW is not "ridge preserving" (Philip and Watson 1982).</para>
+			</bullet_item><bullet_item>
+				<para>Some input datasets may have several points with the same x,y coordinates. If the values of the points at the common location are the same, they are considered duplicates and have no affect on the output. If the values are different, they are considered 'coincident' points.</para><para>The various interpolation tools may handle this data condition differently. For example, in some cases the first coincident point encountered is used for the calculation; in other cases the last point encountered is used.  This may cause some locations in the output raster to have different values than what you might expect. The solution is to prepare your data by removing these coincident points. The  tool in the Spatial Statistics toolbox is useful for identifying any coincident points in your data.</para></bullet_item><bullet_item>
+				<para>The barriers option is used to specify the location of linear features known to interrupt the surface continuity. These features do not have z-values. Cliffs, faults, and embankments are typical examples of barriers. Barriers limit the selected set of the input sample points used to interpolate output z-values to those samples on the same side of the barrier as the current processing cell. Separation by a barrier is determined by line-of-sight analysis between each pair of points. This means that topological separation is not required for two points to be excluded from each other's region of influence. Input sample points that lie exactly on the barrier line will be included in the selected sample set for both sides of the barrier.</para>
+			</bullet_item><bullet_item>
+				<para>Barrier features are input as polyline features. IDW only uses the x,y coordinates for the linear feature; therefore, it is not necessary to provide z-values for the left and right sides of the barrier. Any z-values provided will be ignored.</para>
+			</bullet_item><bullet_item>
+				<para>Using barriers will significantly extend the processing time.</para>
+			</bullet_item><bullet_item>
+				<para>This tool has a limit of approximately 45 million input points. If your input feature class contains more than 45 million points, the tool may fail to create a result. You can avoid this limit by interpolating your study area in several pieces, making sure there is some overlap in the edges, then mosaicking the results to create a single large raster dataset. Alternatively, you can use a  to store and visualize points and surfaces comprised of billions of measurement points.</para><para>If you have the Geostatistical Analyst extension, you may be able to process larger datasets.</para>
+			</bullet_item><bullet_item>
+				<para>The input feature data must contain at least one valid field.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>IDW example 1 (Python window)</title>
+					
+					<para>This example inputs a point shapefile and interpolates the output surface as a TIFF raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env  
+env.workspace = "C:/data"
+arcpy.Idw_3d("ozone_pts.shp", "ozone", "C:/output/idwout.tif", 2000, 2, 10)
+
+                    </code></scriptExample><scriptExample><title>IDW example 2 (stand-alone script)</title>
+					
+					<para>This example inputs a point shapefile and interpolates the output surface as a GRID raster.</para>
+				<code xml:space="preserve"># Name: IDW_3d_Ex_02.py
+# Description: Interpolate a series of point features onto a
+#    rectangular raster using Inverse Distance Weighting (IDW).
+# Requirements: 3D Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inPointFeatures = "ca_ozone_pts.shp"
+zField = "ozone"
+outRaster = "C:/output/idwout01"
+cellSize = 2000.0
+power = 2
+searchRadius = 150000
+
+# Check out the ArcGIS 3D Analyst extension license
+arcpy.CheckOutExtension("3D")
+
+# Execute IDW
+arcpy.Idw_3d(inPointFeatures, zField, outRaster, cellSize, 
+             power, searchRadius)
+                    </code></scriptExample></scriptExamples></tool></metadata>

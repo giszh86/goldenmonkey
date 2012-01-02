@@ -1,0 +1,61 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate Central Meridian And Parallels (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Calculates the central meridian and optional standard parallels based on the center point of a feature's extent; stores this coordinate system as a spatial reference string in a specified text field and repeats this for a set, or subset, of features. </para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Atlas</keyword><keyword>Cartography</keyword><keyword>Coordinate System</keyword><keyword>Data Driven Pages</keyword><keyword>Graticule</keyword><keyword>Grid</keyword><keyword>Index</keyword><keyword>Index Layer</keyword><keyword>Layout</keyword><keyword>Map Book</keyword><keyword>Mapbook</keyword><keyword>Multi-Page Layout</keyword><keyword>Multiple Page</keyword><keyword>Projection</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateCentralMeridianAndParallels" displayname="Calculate Central Meridian And Parallels (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para> Calculates the central meridian and optional standard parallels based on the center point of a feature's extent; stores this coordinate system as a spatial reference string in a specified text field and repeats this for a set, or subset, of features. </para>
+			</summary><alink_name>CalculateCentralMeridianAndParallels_cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para> Input feature layer.</para>
+					</pythonReference><dialogReference>
+						<para> Input feature layer.</para>
+					</dialogReference></param><param sync="true" name="in_field" displayname="Coordinate System Field" datatype="Field" direction="Input" expression="in_field" type="Required"><pythonReference>
+						<para>Text field to store the coordinate system string.</para>
+					</pythonReference><dialogReference>
+						<para>Text field to store the coordinate system string.</para>
+					</dialogReference></param><param sync="true" name="standard_offset" displayname="Standard Parallel Offset" datatype="Double" direction="Input" expression="standard_offset" type="Optional"><pythonReference>
+						<para> Percentage of the height of the input feature used to offset the standard parallels from the center latitude of the input feature. The default is 25% or 0.25.</para>
+					</pythonReference><dialogReference>
+						<para> Percentage of the height of the input feature used to offset the standard parallels from the center latitude of the input feature. The default is 25% or 0.25.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para> Input features can be points, lines, or polygons</para>
+			</bullet_item><bullet_item>
+				<para> Running this tool directly against a feature class that does not have a projection results in an error. The feature class must be projected.</para>
+			</bullet_item><bullet_item>
+				<para> If you are using the tool while ArcMap is open, the resulting spatial reference string will be based on the current projection of the active data frame. The data frame must be in a projected coordinate system for the tool to work;otherwise, you will receive an error message. Input features can be projected on the fly.</para>
+				</bullet_item><bullet_item>
+				<para> Data Driven Pages can use this string field to update the data frame coordinate system for each page.</para>
+			</bullet_item><bullet_item>
+				<para> The Coordinate System Field must be a text field and should have a length of 600 characters or more. Coordinate system strings vary in length but are usually quite long, and you need to ensure that the field has enough space. The tool will issue a warning if the coordinate system string has been truncated because the field length is not long enough. If you get this warning, it is likely that some of the coordinate system strings generated may have been truncated making them useless. When receiving the warning you should delete your results, create a new field of a sufficient length (&gt; 600 characters) and rerun the tool.</para>
+			</bullet_item><bullet_item>
+				<para> Use geodatabase feature classes. In most cases, the field size limitation of shapefiles makes it likely that PE strings will be truncated if you run this tool on a shapefile.</para>
+			</bullet_item><bullet_item>
+				<para> The Standard Parallel Offset is a percentage of the latitudinal height extent of the input feature. The offset from the latitude of the center of the input feature is calculated using this percentage. A Standard Parallel Offset value of 0 results in parallel values equal to the latitude of the input feature latitudinal center. A value of 0.5 (50%) results in parallels approximate to the latitudinal height, with parallels at the top and the bottom, of the feature. Values greater than 0.5 will place the parallels outside the latitudinal bounds of the input feature. The default value is 0.25. This places the parallels approximately halfway from the latitudinal center of the feature and its latitudinal edges.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CalculateCentralMeridianAndParallels tool Example (Python Window)</title>
+					<para>Calculates the central meridian and optional standard parallels for a set of features.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.env.workspace = "C:\Data\ProjectData.gdb"
+arcpy.CalculateCentralMeridianAndParallels_cartography("US_states", "CentralMeridian", 0.25)
+                    </code></scriptExample><scriptExample><title>CalculateCentralMeridianAndParallels tool Example (Stand-alone Python script)</title>
+					<para>Calculates the central meridian and optional standard parallels for a set of features.</para>
+				<code xml:space="preserve"># Name: calculatecentralmeridianandparallels_example.py
+# Description: Calculates the central meridian and optional standard parallels
+# for a set of features
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+arcpy.env.workspace = "C:\Data\ProjectData.gdb"
+
+# Set local variables
+inFeatures = "US_states"
+coordsysField = "CentralMeridian"
+standardOffset = 0.25
+
+# Execute CalculateAdjacentFields
+arcpy.CalculateCentralMeridianAndParallels_cartography(inFeatures,
+                                                       coordsysField,
+                                                       standardOffset)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

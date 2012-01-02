@@ -1,0 +1,44 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Make Graph  (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Creates a graph as a visual output using a graph template or an existing graph.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeGraph" displayname=" Make Graph  (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Creates a graph as a visual output using a graph template or an existing graph.</para>
+		</summary><alink_name>MakeGraph_management</alink_name><parameters><param sync="true" name="in_graph_template_source" displayname="Input graph template or graph" datatype="Graph ; File" direction="Input" expression="in_graph_template_source" type="Required"><pythonReference>
+						<para> The input graph template (.tee) or graph file (.grf).</para>
+					</pythonReference><dialogReference>
+						<para> The input graph template (.tee) or graph file (.grf).</para>
+					</dialogReference></param><param sync="true" name="in_datasets" displayname="Input series" datatype="Graph Data Table" direction="Input" expression="in_datasets" type="Required"><pythonReference><para> The input data for individual series in the graph. The input data varies based on the graph type. To facilitate populating the parameters used for creating the graph series from Python, you can use the Graph class.</para>
+					</pythonReference><dialogReference>
+						<para> The input data for individual series in the graph. The input data varies based on the graph type.</para>
+					</dialogReference></param><param sync="true" name="out_graph_name" displayname="Output graph name" datatype="Graph" direction="Input" expression="out_graph_name" type="Required"><pythonReference>
+						<para> The name of the graph to be created.</para>
+					</pythonReference><dialogReference>
+						<para> The name of the graph to be created.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>To use this tool, you first need to create a graph (.grf) or a graph template (.tee), which is used as a template for creating the output graph. This can be done using the Graphing Wizard (found on the ArcMap View menu). The graph or the graph template has all the information about your graph: number of series, functions, axes information, title, and so on. </bullet_item><bullet_item>The output graph is an in-memory graph that can be added to the host ArcGIS application or can be saved using the  tool.</bullet_item><bullet_item>Make Graph can be used on a Windows platform only.</bullet_item></usage><scriptExamples><scriptExample><title>MakeGraph example (stand-alone script)</title>
+					<para>Create a vertical bar graph using an existing graph or graph template.</para>
+				<code xml:space="preserve"># Name: MakeGraph_ExampleVerticalBar.py
+# Description: Creates a graph based on an existing graph or graph template
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "c:/data"
+
+# Set local variables
+graph_grf = "input_VerticalBar.grf"
+
+# Execute MakeGraph to create a Vertical Bar graph
+arcpy.MakeGraph_management(graph_grf,"SERIES=bar:vertical " + \
+                           "DATA=c:/data.gdb/DischargeLevels " + \
+                           "X=Hours Y=Flow LABEL=Hours SORT=ASC;" + \
+                           "GRAPH=general TITLE=Discharge FOOTER=Station;" + \
+                           "LEGEND=general TITLE=Discharge;" + \
+                           "AXIS=left TITLE=Discharge;AXIS=right;" + \
+                           "AXIS=bottom TITLE=Hours;AXIS=top",
+                           "outgraph_Discharge")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

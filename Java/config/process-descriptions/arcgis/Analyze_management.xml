@@ -1,0 +1,33 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Analyze (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Updates database statistics of business tables, feature tables, and delta tables, along with the statistics of those tables' indexes.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Business</keyword><keyword>Database</keyword><keyword>Db2</keyword><keyword>Delta</keyword><keyword>Index</keyword><keyword>Informix</keyword><keyword>Oracle</keyword><keyword>Rdbms</keyword><keyword>Relational</keyword><keyword>Sql</keyword><keyword>Statistics</keyword><keyword>System</keyword><keyword>Tbl</keyword><keyword>Update</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Analyze" displayname="Analyze (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Updates database statistics of business tables, feature tables, and delta tables, along with the statistics of those tables' indexes.</para>
+		</summary><alink_name>Analyze_management</alink_name><parameters><param sync="true" name="in_dataset" displayname="Input Dataset" datatype="Layer; Table View ; Dataset" direction="Input" expression="in_dataset" type="Required"><pythonReference>
+						<para>The table or feature class to be analyzed.</para>
+					</pythonReference><dialogReference>
+						<para>The table or feature class to be analyzed.</para>
+					</dialogReference></param><param sync="true" name="components" displayname="Components to Analyze" datatype="String" direction="Input" expression="components" type="Required"><pythonReference>
+						<para>The component type to be analyzed.</para>
+						<bulletList><bullet_item>BUSINESS—Updates business rules statistics. </bullet_item><bullet_item>FEATURE—Updates feature statistics. </bullet_item><bullet_item>RASTER—Updates statistics on raster tables. </bullet_item><bullet_item>ADDS—Updates statistics on added datasets. </bullet_item><bullet_item>DELETES—Updates statistics on deleted datasets.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The component type to be analyzed.</para>
+						<bulletList><bullet_item>BUSINESS—Updates business rules statistics. </bullet_item><bullet_item>FEATURE—Updates feature statistics. </bullet_item><bullet_item>RASTER—Updates statistics on raster tables. </bullet_item><bullet_item>ADDS—Updates statistics on added datasets. </bullet_item><bullet_item>DELETES—Updates statistics on deleted datasets.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>After data loading, deleting, updating, and compressing operations, it is important to update RDBMS statistics in Oracle, SQL Server, DB2, or Informix databases.</para>
+			</bullet_item><bullet_item>
+				<para>This tool updates the statistics of business tables, feature tables, raster tables, adds table, and deletes table, along with the statistics on those tables' indexes.</para>
+			</bullet_item><bullet_item>
+				<para>The Components to Analyze parameter's Add Value button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run, or its derived data does not exist, the Components to Analyze parameter may not be populated with values. The Add Value button allows you to add expected value(s) so you can complete the Analyze dialog box and continue to build your model.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><para>This stand-alone Python script uses the Analyze tool to gather statistics for the indexes on the buisness table of the input dataset.</para><code xml:space="preserve"># Name: Analyze_Example.py
+# Description: Gathers statistics for the indexes on the buisness table of the input dataset
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+inDataset = "Database Connections/ninefour@gdb.sde/GDB.ctgPrimaryFeature"
+
+# Execute AlterVersion
+arcpy.Analyze_management( inDataset,"BUSINESS")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,90 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">TIN Edge (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Extracts triangle edges from an input TIN into an output feature class.</para>
+			<para>Produces a 3D line feature class whose lines are extracted edges of the input TIN.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Convert</keyword><keyword>Edge</keyword><keyword>Tin</keyword><keyword>Triangle</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TinEdge" displayname="TIN Edge (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Extracts triangle edges from an input TIN into an output feature class.</para>
+			<para>Produces a 3D line feature class whose lines are extracted edges of the input TIN.</para>
+			
+		</summary><alink_name>TinEdge_3d</alink_name><toolIllust type="illustration" src="TinEdge_3d_h.gif" alt="TIN Edge illustration" /><parameters><param sync="true" name="in_tin" displayname="Input TIN" datatype="Tin Layer" direction="Input" expression="in_tin" type="Required"><pythonReference>
+						<para>The input TIN.</para>
+					</pythonReference><dialogReference>
+						<para>The input TIN.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output polyline feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output polyline feature class.</para>
+					</dialogReference></param><param sync="true" name="edge_type" displayname="Triangle Edge Type" datatype="String" direction="Input" expression="edge_type" type="Optional"><pythonReference>
+						<para>The type of triangle edge to be extracted.</para>
+					</pythonReference><dialogReference>
+						<para>The type of triangle edge to be extracted.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Use the optional {edge_type} argument to extract a specific type of triangle edge.</para>
+			</bullet_item><bullet_item><para>Writes edge codes to attributs.</para></bullet_item></usage><scriptExamples><scriptExample><title>TIN Edge Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the TIN Edge
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.TinEdge_3d("tin", "tin_edge.shp", "ENFORCED")
+                    </code></scriptExample><scriptExample><title>TIN Edge Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the TIN Edge
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: TinEdge Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              TinEdge tool to extract all triangle edges of each TIN in the 
+#              target workspace.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data" # the target workspace
+
+try:
+    # Create list of TINs
+    TINList = arcpy.ListDatasets("*", "Tin")
+    # Verify the presence of TINs in the list
+    if len(TINList) &gt; 0:
+        # Iterate through the list of TINs
+        for dataset in TINList:
+            # Set Local Variables
+            EdgeType = "ALL"
+            outFC = dataset + "_domain.shp"
+            #Execute TinEdge
+            arcpy.TinEdge_3d(dataset, outFC, EdgeType)
+        print "Finished."
+    else:
+        print "There are no TIN(s) in the " + env.workspace + " directory."
+        
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

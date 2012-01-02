@@ -1,0 +1,97 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Write Features to Text File (Samples)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Writes feature coordinates to a text file.</para>
+			This tool has been deprecated. For more information, see  An overview of the Samples toolbox.</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coordinates</keyword><keyword>Datasets</keyword><keyword>Features</keyword><keyword>Text File</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="WriteFeaturesToTextFile" displayname="Write Features to Text File (Samples)" toolboxalias="samples" softwarerestriction="none"><summary>
+			<para>Writes feature coordinates to a text file.</para>
+			This tool has been deprecated. For more information, see  An overview of the Samples toolbox.</summary><alink_name>WriteFeaturesToTextFile_samples</alink_name><parameters><param sync="true" name="input_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="input_features" type="Required"><pythonReference>
+						<para>The input features to be written to a text file.</para>
+					</pythonReference><dialogReference>
+						<para>The input features to be written to a text file.</para>
+					</dialogReference></param><param sync="true" name="output_text_file" displayname="Output Text File" datatype="Text File" direction="Output" expression="output_text_file" type="Required"><pythonReference>
+						<para>The output text file.</para>
+					</pythonReference><dialogReference>
+						<para>The output text file.</para>
+					</dialogReference></param><param sync="true" name="decimal_separator_character" displayname="Decimal Separator Character" datatype="String" direction="Input" expression="decimal_separator_character" type="Required"><pythonReference>
+						<para>The character that will separate the whole number from the decimal.</para>
+						<bulletList><bullet_item>locale decimal point—The system decimal point will be inserted. This is the default. </bullet_item><bullet_item>default python output—The default Python separator will be inserted. </bullet_item><bullet_item>comma—A comma separator will be inserted. </bullet_item><bullet_item>period—A period separator will be inserted. </bullet_item><bullet_item>$SEP$—The $SEP$ string will be inserted. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The character that will separate the whole number from the decimal.</para>
+						<bulletList><bullet_item>locale decimal point—The system decimal point will be inserted. This is the default. </bullet_item><bullet_item>default python output—The default Python separator will be inserted. </bullet_item><bullet_item>comma—A comma separator will be inserted. </bullet_item><bullet_item>period—A period separator will be inserted. </bullet_item><bullet_item>$SEP$—The $SEP$ string will be inserted. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>Output from this tool is in the same format as described for the input to the Create Features From Text File tool.</para>
+			</bullet_item><bullet_item>
+				<para>Output coordinates are space delimited with the decimal separator of your choice.</para>
+			</bullet_item><bullet_item>
+				<para>Outputs with null values for z or m will have the value 1.#QNAN for those positions.</para>
+			</bullet_item><bullet_item>
+				<para>Selecting the locale decimal point option will result in the output being separated by whatever the system decimal point is set to. If the system is on a German locale, the output will take the form 1234,5. If the system is on a United States locale, the output will take the form 1234.5</para>
+			</bullet_item><bullet_item>
+				<para>Selecting the default Python output option will result in the output being separated by whatever Python is using for a decimal point. This is usually a period.</para>
+			</bullet_item><bullet_item>
+				<para>Point features will be output to the following format:</para>
+				
+					Point
+id x y z m
+id x y z m
+...
+END
+				
+			</bullet_item><bullet_item>
+				<para>Multipoint features will be output to the following format:</para>
+				
+					Multipoint
+multipoint_id 0
+pnt_id x y z m
+pnt_id x y z m
+...
+multipoint_id 0
+pnt_id x y z m
+...
+END
+				
+			</bullet_item><bullet_item>
+				<para>Line features will be output to the following format:</para>
+				
+					Polyline
+line_id part_number
+pnt_id x y z m
+pnt_id x y z m
+...
+line_id part_number
+pnt_id x y z m
+pnt_id x y z m
+...
+END
+				
+			</bullet_item><bullet_item>
+				<para>Polygon features will be output to the following format:</para>
+				
+					Polygon
+polygon_id part_number
+pnt_id x y z m
+pnt_id x y z m
+...
+InteriorRing
+pnt_id x y z m
+pnt_id x y z m
+...
+polygon_id part_number
+pnt_id x y z m
+pnt_id x y z m
+...
+END
+				
+			</bullet_item><bullet_item>
+				<para>No environment settings affect this tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><code xml:space="preserve">
+# Create geoprocessing dispatch object
+import arcgisscripting
+gp = arcgisscripting.create()
+ 
+# Set up inputs to tool
+inFC= r"C:\temp\routes.txt"
+TxtCoords = r"C:\temp\RteCoords.shp"
+sep = "locale decimal point"
+ 
+# Run tool
+gp.WriteFeaturesToTextFile(inFC, TxtCoords, sep)
+                    </code></scriptExample></scriptExamples></tool></metadata>

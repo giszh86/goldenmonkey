@@ -1,0 +1,80 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Extract by Mask (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Extracts the cells of a raster that correspond to the areas defined by a mask.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Clip</keyword><keyword>Sample</keyword><keyword>Select</keyword><keyword>Subset</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExtractByMask" displayname=" Extract by Mask (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Extracts the cells of a raster that correspond to the areas defined by a mask.</para>
+		</summary><alink_name>ExtractByMask_sa</alink_name><toolIllust type="illustration" src="ExtractByMask_sa_h.png" alt="Extract by Mask illustration" /><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster from which cells will be extracted.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster from which cells will be extracted.</para>
+					</dialogReference></param><param sync="true" name="in_mask_data" displayname="Input raster or feature mask data" datatype="Raster Layer | Feature Layer" direction="Input" expression="in_mask_data" type="Required"><pythonReference>
+						<para>Input mask data defining areas to extract.</para>
+						<para>This is a raster or feature dataset.</para>
+						<para>When the input mask data is a raster, NoData cells on the mask will be assigned NoData values on the output raster.</para>
+					</pythonReference><dialogReference>
+						<para>Input mask data defining areas to extract.</para>
+						<para>This is a raster or feature dataset.</para>
+						<para>When the input mask data is a raster, NoData cells on the mask will be assigned NoData values on the output raster.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster containing the cell values extracted from the input raster.</para></pythonReference><dialogReference>
+							<para>The output raster containing the cell values extracted from the input raster.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Extract by Mask tool is similar to setting the  environment, except that the input mask is only used on the immediate instance, while a mask set in the environment is applied to all tools until it is changed or disabled.</para>
+			</bullet_item><bullet_item>
+				<para>When a  is specified as input, a new multiband raster will be created as output. Each individual band in the input multiband raster will be analyzed accordingly.</para><para>The default output format is an . Note that the name of an ESRI grid stack cannot start with a number, use spaces, or be more than 9 characters in length.</para>
+			</bullet_item><bullet_item>
+				<para>If the input is a layer created from a multiband raster with more than three bands, the extraction operation will only consider the bands that were loaded (symbolized) by the layer. As a result, the output multiband raster can only have three bands, corresponding to those used in the display of the input layer.</para>
+			</bullet_item><bullet_item>
+				<para>If the input mask is raster, the values for non-NoData input cell locations are copied to the output raster. Tools that can create the mask raster include , , and other tools in the  extraction toolset.</para>
+			</bullet_item><bullet_item>
+				<para>When a multiband raster is specified for the input raster mask, only the first band will be used in the operation.</para>
+			</bullet_item><bullet_item>
+				<para>If the input raster is integer, the output raster will be integer. If the input is floating point, the output will be floating point.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ExtractByMask example 1 (Python window)</title>
+					<para>This example extracts cells from a raster within a mask defined by an input polygon shapefile feature class.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outExtractByMask = ExtractByMask("elevation", "mask.shp")
+outExtractByMask.save("C:/sapyexamples/output/maskextract")
+                    </code></scriptExample><scriptExample><title>ExtractByMask example 2 (stand-alone script)</title>
+					<para>This example extracts cells from a raster within a mask defined by an input polygon shapefile feature class.</para><code xml:space="preserve"># Name: ExtractByMask_Ex_02.py
+# Description: Extracts the cells of a raster that correspond with the areas
+#    defined by a mask.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "elevation"
+inMaskData = "mask.shp"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ExtractByMask
+outExtractByMask = ExtractByMask(inRaster, inMaskData)
+
+# Save the output 
+outExtractByMask.save("C:/sapyexamples/output/extractmask")
+                    </code></scriptExample></scriptExamples></tool></metadata>

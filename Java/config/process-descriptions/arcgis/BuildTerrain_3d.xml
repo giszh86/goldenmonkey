@@ -1,0 +1,123 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Build Terrain (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs the necessary steps to make a terrain dataset usable after it's initially defined. It's also used to bring a terrain up to date after it's been modified.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Build</keyword><keyword>Create</keyword><keyword>Display</keyword><keyword>Edit</keyword><keyword>Generate</keyword><keyword>Lidar</keyword><keyword>Masspoints</keyword><keyword>Multipoints</keyword><keyword>Multiresolution Surface</keyword><keyword>Re-Build Terrain</keyword><keyword>Surface</keyword><keyword>Terrain</keyword><keyword>Terrain Dataset</keyword><keyword>Terrains</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BuildTerrain" displayname="Build Terrain (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Performs the necessary steps to make a terrain dataset usable after it's initially defined. It's also used to bring a terrain up to date after it's been modified.</para>
+		</summary><alink_name>BuildTerrain_3d</alink_name><parameters><param sync="true" name="in_terrain" displayname="Input Terrain" datatype="Terrain Layer" direction="Input" expression="in_terrain" type="Required"><pythonReference>
+						<para>The terrain dataset to be built.</para>
+					</pythonReference><dialogReference>
+						<para>The terrain dataset to be built.</para>
+					</dialogReference></param><param sync="true" name="update_extent" displayname="Update Extent" datatype="String" direction="Input" expression="update_extent" type="Optional"><pythonReference>
+						<para>
+							Update Extent is used to recalculate the data extent for a window size
+based terrain dataset when the data area has been reduced through
+editing.   It is not  needed if the data extent has increased or if the terrain dataset is z-tolerance based.   It will scan through all the terrain data to determine the new
+extent. If the
+terrain is large it may be expensive in terms of I/O to run this option.</para>
+						<bulletList><bullet_item>NO_UPDATE_EXTENT— The extent of the terrain dataset will not be recalculated.  This is the default.</bullet_item><bullet_item>UPDATE_EXTENT— The extent of the terrain dataset will be recalculated.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>
+							Update Extent is used to recalculate the data extent for a window size
+based terrain dataset when the data area has been reduced through
+editing.   It is not  needed if the data extent has increased or if the terrain dataset is z-tolerance based.  It will scan through all the terrain data to determine the new
+extent. If the
+terrain is large it may be expensive in terms of I/O to run this option.</para>
+						<bulletList>
+							<bullet_item> NO_UPDATE_EXTENT—  The extent of the terrain dataset will not be recalculated.  This is the default.</bullet_item><bullet_item> UPDATE_EXTENT—The extent of the terrain dataset will be recalculated. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Build Terrain will perform the work necessary to update the terrain relative to any edits. These include modifications to terrain schema (i.e., feature class participation, pyramid definition) or to geometry in associated feature classes. It's more efficient to make a collection of edits followed by one build rather than running a build after each individual edit.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Build Terrain Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Build Terrain
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.BuildTerrain_3d("C:/data/terrain.gdb/terrainFDS/terrain1")
+                    </code></scriptExample><scriptExample><title>Build Terrain Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Build Terrain
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: BuildTerrain Example
+# Description: The following stand-alone script demonstrates how to create a
+#              terrain dataset from a TIN. The TinDomain, TinLine, and TinNode 
+#              tools are used to extract the features from the TIN, and the 
+#              CreateTerrain, AddTerrainPyramidLevel, AddFeatureClassToTerrain, 
+#              and BuildTerrain tools are used to construct the terrain. This 
+#              process is helpful in situations where the data used in
+#              making the TIN is no longer available.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension('3D')
+
+# Set environment settings
+env.workspace = 'C:/data'
+
+try:
+    # Set Local Variables
+    sourceTIN = 'elevation'
+    newFGDB = 'sample.gdb' # name of the file geodatabase that will be created
+    newFD = 'data_from_TIN' # name of the feature dataset that will be created
+    # os.sep is used to denote the separator (e.g. '/')
+    # The clip polygon that will be extracted from the TIN
+    TIN_domain = newFGDB + os.sep + newFD + os.sep + 'boundary'
+    # The elevation points that will be extracted from the TIN
+    TIN_nodes = newFGDB + os.sep + newFD + os.sep + 'mass_points'
+    # The breaklines that will be extracted from the TIN
+    TIN_lines = newFGDB + os.sep + newFD + os.sep + 'breaklines'
+    # Name of the terrain that will be created
+    terrain = 'terrain_from_tin'
+    # Pyramid levels for the terrain
+    pyramids = '20 5000;25 10000;35 25000;50 50000'
+    # Properties for the terrain surfaces
+    PolyParams = TIN_domain + \
+               ' Shape softclip 1 0 10 true false boundary_embed &lt;None&gt; false'
+    PtParams = TIN_nodes + \
+             ' Shape masspoints 1 0 50 true false points_embed &lt;None&gt; false'
+    LineParams = TIN_lines + \
+               ' Shape softline 1 0 25 false false lines_embed &lt;None&gt; false'
+    arcpy.AddMessage('Creating file geodatabase...')
+    # Execute CreateFileGDB
+    arcpy.CreateFileGDB_management(env.workspace, newFGDB)
+    arcpy.AddMessage('Creating feature dataset...')
+    # Execute CreateFeatureDataset
+    arcpy.CreateFeatureDataset_management(newFGDB, newFD, sourceTIN)
+    arcpy.AddMessage('Exporting TIN footprint...')
+    # Execute TinDomain
+    arcpy.TinDomain_3d(sourceTIN, TIN_domain, 'POLYGON')
+    arcpy.AddMessage('Exporting TIN lines...')
+    # Execute TinLine
+    arcpy.TinLine_3d(sourceTIN, TIN_edges, 'Code')
+    arcpy.AddMessage('Exporting TIN nodes...')
+    # Execute TinNode
+    arcpy.TinNode_3d(sourceTIN, TIN_nodes)
+    # Execute CreateTerrain
+    arcpy.CreateTerrain_3d(newFGDB + os.sep + newFD, terrain, 10, 50000, '', \
+                           'WINDOWSIZE', 'ZMEAN', 'NONE', 1)
+    # Execute AddTerrainPyramidLevel
+    arcpy.AddTerrainPyramidLevel_3d(newFGDB + os.sep + newFD + os.sep + terrain,\
+                                    '', pyramids)
+    # Execute AddFeatureClassToTerrain
+    arcpy.AddFeatureClassToTerrain_3d(newFGDB + os.sep + newFD + os.sep + terrain,\
+                                      PolyParams + ';' + PtParams + ';' + LineParams) 
+    # Execute BuildTerrain
+    arcpy.BuildTerrain_3d(newFGDB + os.sep + newFD + os.sep + terrain, 'NO_UPDATE_EXTENT')
+except:
+    # Returns any other error messages
+    print arcpy.GetMessages(2)
+
+del arcpy, sourceTIN, newFGDB, newFD, TIN_domain, TIN_lines, TIN_nodes, terrain, \
+    pyramids, PolyParams, PtParams, LineParams
+                    </code></scriptExample></scriptExamples></tool></metadata>

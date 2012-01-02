@@ -1,0 +1,63 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Replace Terrain Points (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Adds points and multipoints to the collection of data used by the terrain dataset, replacing data that had previously been used.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Edit</keyword><keyword>Lidar</keyword><keyword>Masspoints</keyword><keyword>Modify</keyword><keyword>Points</keyword><keyword>Remove</keyword><keyword>Replace</keyword><keyword>Terrain</keyword><keyword>Terrain</keyword><keyword>Terrain Dataset</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" ReplaceTerrainPoints " displayname=" Replace Terrain Points (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para> Adds points and multipoints to the collection of data used by the terrain dataset, replacing data that had previously been used.</para>
+		</summary><alink_name> ReplaceTerrainPoints _3d</alink_name><parameters><param sync="true" name="in_terrain" displayname="Input Terrain" datatype="Terrain Layer" direction="Input" expression="in_terrain" type="Required"><pythonReference>
+						<para> The input terrain dataset for which the points or multipoints will be replaced.</para>
+					</pythonReference><dialogReference>
+						<para> The input terrain dataset for which the points or multipoints will be replaced.</para>
+					</dialogReference></param><param sync="true" name="terrain_feature_class" displayname="Input Terrain Data Source" datatype="Feature Layer" direction="Input" expression="terrain_feature_class" type="Required"><pythonReference>
+						<para> The feature class that contributes to the terrain dataset in which the points or multipoints will be replaced.</para>
+					</pythonReference><dialogReference>
+						<para> The feature class that contributes to the terrain dataset in which the points or multipoints will be replaced.</para>
+					</dialogReference></param><param sync="true" name="in_point_features" displayname="Input Points" datatype="Feature Layer" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para> The feature class of points or multipoints to add as an additional data source to replace current points contributing to the terrain dataset.</para>
+					</pythonReference><dialogReference>
+						<para> The feature class of points or multipoints to add as an additional data source to replace current points contributing to the terrain dataset.</para>
+					</dialogReference></param><param sync="true" name="polygon_features_or_extent" displayname="Area of Interest" datatype="Feature Layer or Extent" direction="Input" expression="polygon_features_or_extent" type="Optional"><pythonReference>
+						<para> The area of interest to use to replace the points or multipoints.   The default is blank.</para>
+					</pythonReference><dialogReference>
+						<para> The area of interest to use to replace the points or multipoints.   The default is blank.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para> Replacing points in a terrain dataset will invalidate it. Run  after adding points or multipoints.</para>
+			</bullet_item><bullet_item><para>If the terrain is in SDE it must be registered as versioned.</para></bullet_item></usage><scriptExamples><scriptExample><title>Replace Terrain Points Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Replace Terrain Points
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.ReplaceTerrainPoints_3d("sample.gdb/featuredataset/terrain", "points_old", "sample.gdb/featuredataset/terrain/pts_new")
+                    </code></scriptExample><scriptExample><title>Replace Terrain Points Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Replace Terrain Points
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: ReplaceTerrainPoints Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              ReplaceTerrainPoints tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+InTerrain = "sample.gdb/featuredataset/terrain"
+TerrainFCl = "points_old"
+InPoints = "sample.gdb/featuredataset/terrain/pts_new"
+
+#Execute ReplaceTerrainPoints
+arcpy.ReplaceTerrainPoints_3d(InTerrain, TerrainFCl, InPoints)
+
+del arcpy, interrain, TerrainFCl, InPoints
+                    </code></scriptExample></scriptExamples></tool></metadata>

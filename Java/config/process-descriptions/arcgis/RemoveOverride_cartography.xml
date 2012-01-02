@@ -1,0 +1,51 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Remove Override (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Removes geometry and/or property representation overrides from features participating in a feature class representation.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cartography</keyword><keyword>Delete</keyword><keyword>Override</keyword><keyword>Representation</keyword><keyword>Symbology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RemoveOverride" displayname="Remove Override (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Removes geometry and/or property representation overrides from features participating in a feature class representation.</para>
+			
+		</summary><alink_name>RemoveOverride_cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature layer containing at least one representation.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature layer containing at least one representation.</para>
+					</dialogReference></param><param sync="true" name="representation" displayname="Representation" datatype="String" direction="Input" expression="representation" type="Required"><pythonReference>
+						<para>The representation from which representation overrides will be removed.</para>
+					</pythonReference><dialogReference>
+						<para>The representation from which representation overrides will be removed.</para>
+					</dialogReference></param><param sync="true" name="remove_option" displayname="Remove Option" datatype="String" direction="Input" expression="remove_option" type="Required"><pythonReference>
+						<para>Specifies which types of overrides will be removed.</para>
+						<bulletList><bullet_item>BOTH—Remove both geometry and property representation overrides. This is the default. </bullet_item><bullet_item>GEOMETRY_OVERRIDE—Remove representation geometry overrides only. </bullet_item><bullet_item>REPRESENTATION_PROPERTY_OVERRIDE—Remove representation property overrides only. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies which types of overrides will be removed.</para>
+						<bulletList><bullet_item>BOTH—Remove both geometry and property representation overrides. This is the default. </bullet_item><bullet_item>GEOMETRY_OVERRIDE—Remove representation geometry overrides only. </bullet_item><bullet_item>REPRESENTATION_PROPERTY_OVERRIDE—Remove representation property overrides only. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>Features will not be deleted, just representation overrides.</para>
+			</bullet_item><bullet_item>
+				<para>The Remove Option parameter specifies which type of representation override will be removed. <bulletList><bullet_item>Removing geometry overrides reassociates a feature with the geometry stored in its Shape field. The alternate representation geometry will be deleted. Geometry overrides are sometimes called shape overrides.</bullet_item><bullet_item>Removing property overrides removes all feature-specific property overrides and reverts the feature back to following the native representation rule. </bullet_item></bulletList></para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RemoveOverride tool Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the RemoveOverride tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.RemoveOverride_cartography("footprints.lyr", "footprints_Rep", "BOTH")
+                    </code></scriptExample><scriptExample><title>RemoveOverride tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the RemoveOverride tool.</para>
+				<code xml:space="preserve"># Name: RemoveOverride_standalone_script.py
+# Description: Removes geometry and/or property representation overrides from features participating in a feature class representation.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+in_features = "footprints.lyr"
+representation = "footprints_Rep"
+remove_option = "BOTH"
+
+# Execute Remove Override
+arcpy.RemoveOverride_cartography(in_features, representation, remove_option)
+                    </code></scriptExample></scriptExamples></tool></metadata>

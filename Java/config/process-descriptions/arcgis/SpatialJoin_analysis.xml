@@ -1,0 +1,163 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Spatial Join (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Transfers the attributes from one feature class to another feature class, based on the spatial relationships between the features in the two feature classes.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Append</keyword><keyword>Attribute</keyword><keyword>By Location</keyword><keyword>Closest</keyword><keyword>Combine</keyword><keyword>Common</keyword><keyword>Contain</keyword><keyword>Count</keyword><keyword>Cover</keyword><keyword>Distance</keyword><keyword>Inside</keyword><keyword>Intersect</keyword><keyword>Join</keyword><keyword>Match</keyword><keyword>Move</keyword><keyword>Near</keyword><keyword>Number</keyword><keyword>On Top Of</keyword><keyword>Outside</keyword><keyword>Overlap</keyword><keyword>Spatial Relationship</keyword><keyword>Superimpose</keyword><keyword>Topological Set</keyword><keyword>Topology</keyword><keyword>Transfer</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SpatialJoin" displayname="Spatial Join (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Transfers the attributes from one feature class to another feature class, based on the spatial relationships between the features in the two feature classes.</para>
+		</summary><alink_name>SpatialJoin_analysis</alink_name><parameters><param sync="true" name="target_features" displayname="Target Features" datatype="Feature Layer" direction="Input" expression="target_features" type="Required"><pythonReference>
+						<para>The attributes from the Join Features are transferred to the Target Features whenever a specified spatial relationship (or Match Option) is found. The Target Features can be any spatial data source supported by ArcGIS.</para>
+					</pythonReference><dialogReference>
+						<para>The attributes from the Join Features are transferred to the Target Features whenever a specified spatial relationship (or Match Option) is found. The Target Features can be any spatial data source supported by ArcGIS.</para>
+					</dialogReference></param><param sync="true" name="join_features" displayname="Join Features" datatype="Feature Layer" direction="Input" expression="join_features" type="Required"><pythonReference>
+						<para>The attributes from the Join Features are transferred to the Target Features whenever a specified spatial relationship (or Match Option) is found. The Join Features can be any spatial data source supported by ArcGIS.</para>
+					</pythonReference><dialogReference>
+						<para>The attributes from the Join Features are transferred to the Target Features whenever a specified spatial relationship (or Match Option) is found. The Join Features can be any spatial data source supported by ArcGIS.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>A new feature class containing the attributes of the Join Features joined to the Target Features.</para>
+					</pythonReference><dialogReference>
+						<para>A new feature class containing the attributes of the Join Features joined to the Target Features.</para>
+					</dialogReference></param><param sync="true" name="join_operation" displayname="Join Operation" datatype="String" direction="Input" expression="join_operation" type="Optional"><pythonReference>
+						<para>Determines how joins between the Target Features and Join Features will be handled in the output feature class if multiple Join Features are found that have the same spatial relationship with a single Target Feature. For example, if a single point Target Feature is found within two separate polygon Join Features, should the attributes of both polygons be aggregated using a Field Map merge rule (JOIN_ONE_TO_ONE), or should the output contain two instances of the Target Feature: one instance with the attributes of one polygon, and one instance with the attributes of the other polygon (JOIN_ONE_TO_MANY).</para>
+						<bulletList><bullet_item>JOIN_ONE_TO_ONE—If multiple Join Features are found that have the same spatial relationship with a single Target Feature, the attributes from the multiple Join Features will be aggregated using a Field Map merge rule. For example, if a single point Target Feature is found within two separate polygon Join Features, the attributes from the two polygons will be aggregated before being transferred to the output feature class. If one polygon has an attribute value of 3 and the other has a value of 7, and a Sum merge rule is specified, the aggregated value in the output feature class will be 10. The JOIN_ONE_TO_ONE option is the default.</bullet_item><bullet_item>JOIN_ONE_TO_MANY—If multiple Join Features are found that have the same spatial relationship with a single Target Feature, the output feature class will contain multiple instances of the Target Feature. For example, if a single point Target Feature is found within two separate polygon Join Features, the output feature class will contain two instances of the Target Feature: one instance with the attributes of one polygon, and one instance with the attributes of the other polygon.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines how joins between the Target Features and Join Features will be handled in the output feature class if multiple Join Features are found that have the same spatial relationship with a single Target Feature. For example, if a single point Target Feature is found within two separate polygon Join Features, should the attributes of both polygons be aggregated using a Field Map merge rule (JOIN_ONE_TO_ONE), or should the output contain two instances of the Target Feature: one instance with the attributes of one polygon, and one instance with the attributes of the other polygon (JOIN_ONE_TO_MANY).</para>
+						<bulletList><bullet_item>JOIN_ONE_TO_ONE—If multiple Join Features are found that have the same spatial relationship with a single Target Feature, the attributes from the multiple Join Features will be aggregated using a Field Map merge rule. For example, if a single point Target Feature is found within two separate polygon Join Features, the attributes from the two polygons will be aggregated before being transferred to the output feature class. If one polygon has an attribute value of 3 and the other has a value of 7, and a Sum merge rule is specified, the aggregated value in the output feature class will be 10. The JOIN_ONE_TO_ONE option is the default.</bullet_item><bullet_item>JOIN_ONE_TO_MANY—If multiple Join Features are found that have the same spatial relationship with a single Target Feature, the output feature class will contain multiple instances of the Target Feature. For example, if a single point Target Feature is found within two separate polygon Join Features, the output feature class will contain two instances of the Target Feature: one instance with the attributes of one polygon, and one instance with the attributes of the other polygon.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="join_type" displayname="Keep All Target Features" datatype="Boolean" direction="Input" expression="join_type" type="Optional"><pythonReference>
+						<para>Determines if all Taget Features will be maintained in the output feature class (outer join), or only those that have the specified spatial relationship with the Join Features (inner join).</para>
+						<bulletList><bullet_item>KEEP_ALL—All Target Features will be maintained in the output (outer join). This is the default.</bullet_item><bullet_item>KEEP_COMMON— Only those Target Features that have the specified spatial relationship with the Join Features will be maintained in the output feature class (inner join). For example, if a point feature class is specified for the Target Features, and a polygon feature class is specified for the Join Features, with a    Match Option of "WITHIN", the output feature class will only contain those Target Features that are within a polygon Join Feature; any Target Features not within a Join Feature will be excluded from the output.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines if all Taget Features will be maintained in the output feature class (outer join), or only those that have the specified spatial relationship with the Join Features (inner join).</para>
+						<bulletList>
+							<bullet_item>Checked—All Target Features will be maintained in the output (outer join). This is the default.</bullet_item>
+							<bullet_item>Unchecked—Only those Target Features that have the specified spatial relationship with the Join Features will be maintained in the output feature class (inner join). For example, if a point feature class is specified for the Target Features, and a polygon feature class is specified for the Join Features, with a    Match Option of "WITHIN", the output feature class will only contain those Target Features that are within a polygon Join Feature; any Target Features not within a Join Feature will be excluded from the output. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="field_mapping" displayname="Field Map of Join Features" datatype="Field Mappings" direction="Input" expression="field_mapping" type="Optional"><pythonReference>
+						<para>Controls what attribute fields will be in the output feature class. Fields can be added, deleted, renamed, or have their properties changed. The initial list contains fields from both the Target Features and the Join Features.</para>
+					</pythonReference><dialogReference>
+						<para>Controls what attribute fields will be in the output feature class. Fields can be added, deleted, renamed, or have their properties changed. The initial list contains fields from both the Target Features and the Join Features.</para>
+					</dialogReference></param><param sync="true" name="match_option" displayname="Match Option" datatype="String" direction="Input" expression="match_option" type="Optional"><pythonReference>
+						<para>Defines the criteria used to match rows. The attributes from the Join Features are transferred to the Target Features whenever this spatial relationship (or Match Option) is found. The match options are:</para>
+						<bulletList>
+							<bullet_item>INTERSECT: If a Target Feature intersects a Join Feature, transfer the attributes of the Join Feature to the Target Feature.</bullet_item>
+							<bullet_item>CONTAINS: If a Target Feature contains a Join Feature, transfer the attributes of the Join Feature to the Target Feature. For this option, the Target Features cannot be points, and the Join Features can only be polygons when the Target Features are also polygons.</bullet_item>
+							<bullet_item>WITHIN: If  a Target Feature is within a Join Feature, transfer the attributes of the Join Feature to the Target Feature. For this option, the Join Features cannot be points, and the Target Features can only be polygons when the Join Features are also polygons.</bullet_item>
+							<bullet_item>CLOSEST: The attributes of the closest Join Feature will be transferred to a Target Feature.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>Defines the criteria used to match rows. The attributes from the Join Features are transferred to the Target Features whenever this spatial relationship (or Match Option) is found. The match options are:</para>
+						<bulletList>
+							<bullet_item>INTERSECT: If a Target Feature intersects a Join Feature, transfer the attributes of the Join Feature to the Target Feature.</bullet_item>
+							<bullet_item>CONTAINS: If a Target Feature contains a Join Feature, transfer the attributes of the Join Feature to the Target Feature. For this option, the Target Features cannot be points, and the Join Features can only be polygons when the Target Features are also polygons.</bullet_item>
+							<bullet_item>WITHIN: If  a Target Feature is within a Join Feature, transfer the attributes of the Join Feature to the Target Feature. For this option, the Join Features cannot be points, and the Target Features can only be polygons when the Join Features are also polygons.</bullet_item>
+							<bullet_item>CLOSEST: The attributes of the closest Join Feature will be transferred to a Target Feature.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="search_radius" displayname="Search Radius" datatype="Linear unit" direction="Input" expression="search_radius" type="Optional"><pythonReference>
+						<para>Join Features within this distance of a Target Feature will be considered for the spatial join. Search Radius is only valid when the spatial relationship (or Match Option) INTERSECT or CLOSEST is specified. Using a search radius of 100 meters with the spatial relationship INTERSECT is the equivalent of saying: If a Join Feature is within 100 meters of a Target Feature, transfer the Join Feature attributes to the Target Feature. Using a search radius of 100 meters with the spatial relationship CLOSEST is the equivalent of saying: If a Join Feature is within 100 meters of a Target Feature, and is the closest Join Feature to that Target Feature, transfer the Join Feature attribtures to that Target Feature. </para>
+					</pythonReference><dialogReference>
+						<para>Join Features within this distance of a Target Feature will be considered for the spatial join. Search Radius is only valid when the spatial relationship (or Match Option) INTERSECT or CLOSEST is specified. Using a search radius of 100 meters with the spatial relationship INTERSECT is the equivalent of saying: If a Join Feature is within 100 meters of a Target Feature, transfer the Join Feature attributes to the Target Feature. Using a search radius of 100 meters with the spatial relationship CLOSEST is the equivalent of saying: If a Join Feature is within 100 meters of a Target Feature, and is the closest Join Feature to that Target Feature, transfer the Join Feature attribtures to that Target Feature. </para>
+					</dialogReference></param><param sync="true" name="distance_field_name" displayname="Distance Field Name" datatype="String" direction="Input" expression="distance_field_name" type="Optional"><pythonReference>
+						<para>The name of a field to be added to  the output feature class, which contains the distance between the Target Feature and the closest Join Feature. This option is only valid when the spatial relationship (or Match Option) CLOSEST is specified. If no field name is specified, the field will not be added to the output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The name of a field to be added to  the output feature class, which contains the distance between the Target Feature and the closest Join Feature. This option is only valid when the spatial relationship (or Match Option) CLOSEST is specified. If no field name is specified, the field will not be added to the output feature class.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item><para>This tool is used to transfer attribute fields between feature classes. The attributes from the Join Features are added to the Target Features whenever a specified spatial relationship (or Match Option) is found. For example, if a point feature class is specified for the Target Features, and a polygon feature class is specified for the Join Features, with a    Match Option of WITHIN, each output point feature will have, in addition to its own original attributes, the attributes of the polygon that it is within.</para></bullet_item><bullet_item>
+				<para>By default, all input Target Features will be maintained in the output feature class, even if no spatial relationships were found between the Join Features and a target feature. This is considered an outer join. If the output feature class should only contain Target Features that have a spatial relationship with one or more Join Features (an inner join), set the Keep All Target Features parameter to KEEP_COMMON (unchecked).</para>
+			</bullet_item><bullet_item>
+				<para>Merge rules in the Field Map of Join Features parameter  only apply to fields from the Join Features and only when a Join Operation of JOIN_ONE_TO_ONE is used. The merge rule is ignored when applied to fields from the Target Features or when the Join Operation is JOIN_ONE_TO_MANY.</para>
+			</bullet_item><bullet_item>
+				<para>A new field named Join_Count is always added to the output feature class. This field indicates how many Join Features were joined to each input Target Feature.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SpatialJoin Example 1 (Python Window)</title>
+					<para>The following script demonstrates how to use the SpatialJoin function in a Python window.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.SpatialJoin_analysis("C:/data/usa.gdb/states', "C:/data/usa.gdb/cities", "C:/data/usa.gdb/states_cities")
+
+                    </code></scriptExample><scriptExample><title>SpatialJoin Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use SpatialJoin to join attributes of cities to states.</para>
+				<code xml:space="preserve"># Name: SpatialJoin_Example2.py
+# Description: Join attributes of cities to states based on spatial relationships.
+# Requirements: os module
+# Author: ESRI
+
+# Import system modules
+import arcpy
+import os
+
+# Set local variables
+workspace = r"C:\gpqa\mytools\spatialjoin\usa.gdb"
+outWorkspace = r"C:\gpqa\mytools\spatialjoin\output.gdb"
+ 
+# Want to join USA cities to states and calculate the mean city population
+# for each state
+targetFeatures = os.path.join(workspace, "states")
+joinFeatures = os.path.join(workspace, "cities")
+ 
+# Output will be the target features, states, with a mean city population field (mcp)
+outfc = os.path.join(outWorkspace, "states_mcp2")
+ 
+# Create a new fieldmappings and add the two input feature classes.
+fieldmappings = arcpy.FieldMappings()
+fieldmappings.addTable(targetFeatures)
+fieldmappings.addTable(joinFeatures)
+ 
+# First get the POP1990 fieldmap. POP1990 is a field in the cities feature class.
+# The output will have the states with the attributes of the cities. Setting the
+# field's merge rule to mean will aggregate the values for all of the cities for
+# each state into an average value. The field is also renamed to be more appropriate
+# for the output.
+pop1990FieldIndex = fieldmappings.findFieldMapIndex("POP1990")
+fieldmap = fieldmappings.getFieldMap(pop1990FieldIndex)
+ 
+# Get the output field's properties as a field object
+field = fieldmap.outputField
+ 
+# Rename the field and pass the updated field object back into the field map
+field.name = "mean_city_pop"
+field.aliasName = "mean_city_pop"
+fieldmap.outputField = field
+ 
+# Set the merge rule to mean and then replace the old fieldmap in the mappings object
+# with the updated one
+fieldmap.mergeRule = "mean"
+fieldmappings.replaceFieldMap(pop1990FieldIndex, fieldmap)
+ 
+# Delete fields that are no longer applicable, such as city CITY_NAME and CITY_FIPS
+# as only the first value will be used by default
+x = fieldmappings.findFieldMapIndex("CITY_NAME")
+fieldmappings.removeFieldMap(x)
+y = fieldmappings.findFieldMapIndex("CITY_FIPS")
+fieldmappings.removeFieldMap(y)
+ 
+#Run the Spatial Join tool, using the defaults for the join operation and join type
+arcpy.SpatialJoin_analysis(targetFeatures, joinFeatures, outfc, "#", "#", fieldmappings)
+                    </code></scriptExample></scriptExamples></tool></metadata>
