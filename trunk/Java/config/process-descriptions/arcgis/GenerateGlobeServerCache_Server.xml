@@ -1,0 +1,54 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Generate Globe Server Cache (Server)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Generates Globe data Caches based on ArcGlobe’s Data tiling scheme. Use this tool to generate a globe data cache using the specified globe server object.</para>
+			<para>This is a deprecated tool. Use Manage Globe Server Cache Tiles instead.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GenerateGlobeServerCache" displayname="Generate Globe Server Cache (Server)" toolboxalias="Server" softwarerestriction="none"><summary>
+			<para>Generates Globe data Caches based on ArcGlobe’s Data tiling scheme. Use this tool to generate a globe data cache using the specified globe server object.</para>
+			<para>This is a deprecated tool. Use Manage Globe Server Cache Tiles instead.</para></summary><alink_name>GenerateGlobeServerCache_Server</alink_name><parameters><param sync="true" name="server_name" displayname="Host" datatype="String" direction="Input" expression="server_name" type="Required"><pythonReference>
+						<para>The host name of the ArcGIS Server Object Manager (SOM) that will be used to generate the cache.</para>
+					</pythonReference><dialogReference>
+						<para>The host name of the ArcGIS Server Object Manager (SOM) that will be used to generate the cache.</para>
+					</dialogReference></param><param sync="true" name="object_name" displayname="Globe Server Object" datatype="String" direction="Input" expression="object_name" type="Required"><pythonReference>
+						<para>The name of the Globe Server configuration that will be used to generate the cache.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the Globe Server configuration that will be used to generate the cache.</para>
+					</dialogReference></param><param sync="true" name="out_folder" displayname="Server Cache Directory" datatype="String" direction="Output" expression="out_folder" type="Required"><pythonReference>
+						<para>The parent directory for this Globe Service where the data cache will reside for. The server cache directory must be registered with the server before running this tool. This directory must be read/write accessible to the ArcGIS Server Object Container account user on each SOC machine in the ArcGIS Server.</para>
+					</pythonReference><dialogReference>
+						<para>The parent directory for this Globe Service where the data cache will reside for. The server cache directory must be registered with the server before running this tool. This directory must be read/write accessible to the ArcGIS Server Object Container account user on each SOC machine in the ArcGIS Server.</para>
+					</dialogReference></param><param sync="true" name="lod_from" displayname="From Level of Detail" datatype="String" direction="Input" expression="lod_from" type="Required"><pythonReference>
+						<para>Select the level-of-detail scale you would like to begin caching the layer. If the smallest and largest level-of-detail scales are used for the minimum and maximum, a full cache will be built for the layer.</para>
+					</pythonReference><dialogReference>
+						<para>Select the level-of-detail scale you would like to begin caching the layer. If the smallest and largest level-of-detail scales are used for the minimum and maximum, a full cache will be built for the layer.</para>
+					</dialogReference></param><param sync="true" name="lod_to" displayname="To Level of Detail" datatype="String" direction="Input" expression="lod_to" type="Required"><pythonReference>
+						<para>Select the level-of-detail scale you would like to begin caching the layer. If the smallest and largest level-of-detail scales are used for the minimum and maximum, a full cache will be built for the layer.</para>
+					</pythonReference><dialogReference>
+						<para>Select the level-of-detail scale you would like to begin caching the layer. If the smallest and largest level-of-detail scales are used for the minimum and maximum, a full cache will be built for the layer.</para>
+					</dialogReference></param><param sync="true" name="thread_count" displayname="Number of Globe Server Instances" datatype="Long" direction="Input" expression="thread_count" type="Optional"><pythonReference>
+						<para>The specified number of threads to attempt to create on the client. Each thread, in turn, will try to create a server context on the globe server object to generate the cache.</para>
+					</pythonReference><dialogReference>
+						<para>The specified number of threads to attempt to create on the client. Each thread, in turn, will try to create a server context on the globe server object to generate the cache.</para>
+					</dialogReference></param><param sync="true" name="Layer" displayname="Input Layers" datatype="String" direction="Input" expression="Layer;Layer..." type="Required"><pythonReference>
+						<para>Select the layers to include in the layer cache.</para>
+					</pythonReference><dialogReference>
+						<para>Select the layers to include in the layer cache.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>This tool is used to create a globe cache from an existing a Globe Server Object. To build a cache using the server object, specify the Globe server host. The tool will automatically list all server objects available on that server.</para>
+			</bullet_item><bullet_item>
+				<para>You are able to generate data cache for all the layers contained in the server object or for a single layer.</para>
+			</bullet_item><bullet_item>
+				<para>The data caching scheme is already pre defined. Hence, as a user, all you need to specify is the ‘from’ and ‘To’ Levels of detail. The From Level of Detail defines the lowest level of detail you would want your data cache to begin with. The To Level of detail defines the highest resolution you would want your data caching to have.</para>
+			</bullet_item><bullet_item>
+				<para>Each data cache generation thread on the client must have access to the data, otherwise that thread will not be able to be used in the generation of the cache.</para>
+			</bullet_item><bullet_item>
+				<para>This tool does not accept any Environment Settings that have been specified.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><code xml:space="preserve">
+# Importing standard library modules
+import os, arcgisscripting
+ 
+# Create the geoprocessing object
+gp = arcgisscripting.create()
+ 
+gp.GenerateGlobeServerCache("myglobeserver","Boundaries","Globe - 
+       1:10000000","Countries - 1:2500000", 4,"'ESRI Countries (Small 
+       Scale)';'ESRI Countries (Medium Scale)';LargeProvinces;'ESRI AWS 
+       Boundaries';'AND Countries'")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,167 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Pan-Sharpened Raster Dataset (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Fuses a high-resolution panchromatic raster dataset with a lower-resolution multiband raster dataset to create a red-green-blue (RGB) raster with the resolution of the panchromatic raster.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Brovey</keyword><keyword>Combine</keyword><keyword>High Resolution</keyword><keyword>Ihs</keyword><keyword>Improve</keyword><keyword>Multiband</keyword><keyword>Panchromatic</keyword><keyword>Preparation</keyword><keyword>Processing</keyword><keyword>Quality</keyword><keyword>Rgb</keyword><keyword>Sharpen</keyword><keyword>Simple Mean</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreatePansharpenedRasterDataset" displayname="Create Pan-Sharpened Raster Dataset (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Fuses a high-resolution panchromatic raster dataset with a lower-resolution multiband raster dataset to create a red-green-blue (RGB) raster with the resolution of the panchromatic raster.</para>
+			
+		</summary><alink_name>CreatePansharpenedRasterDataset_management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster Dataset" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset that you want to pan-sharpen. </para><para>Typically, this is a low-resolution multiband raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster dataset that you want to pan-sharpen. </para><para>Typically, this is a low-resolution multiband raster dataset.</para>
+					</dialogReference></param><param sync="true" name="red_channel" displayname="Red Channel" datatype="Long" direction="Input" expression="red_channel" type="Optional"><pythonReference>
+						<para>The input raster band that you want to display with the red color gun.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster band that you want to display with the red color gun.</para>
+					</dialogReference></param><param sync="true" name="green_channel" displayname="Green Channel" datatype="Long" direction="Input" expression="green_channel" type="Optional"><pythonReference>
+						<para>The input raster band that you want to display with the green color gun.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster band that you want to display with the green color gun.</para>
+					</dialogReference></param><param sync="true" name="blue_channel" displayname="Blue Channel" datatype="Long" direction="Input" expression="blue_channel" type="Optional"><pythonReference>
+						<para>The input raster band that you want to display with the blue color gun.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster band that you want to display with the blue color gun.</para>
+					</dialogReference></param><param sync="true" name="infrared_channel" displayname="Infrared Channel" datatype="Long" direction="Input" expression="infrared_channel" type="Optional"><pythonReference>
+						<para>The input infrared raster band. An infrared band does not exist for every raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input infrared raster band. An infrared band does not exist for every raster dataset.</para>
+					</dialogReference></param><param sync="true" name="out_raster_dataset" displayname="Output Raster Dataset" datatype="Raster Dataset" direction="Output" expression="out_raster_dataset" type="Required"><pythonReference>
+						<para>The output raster dataset.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</pythonReference><dialogReference>
+						<para>The output raster dataset.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</dialogReference></param><param sync="true" name="in_panchromatic_image" displayname="Panchromatic Image" datatype="Raster Dataset" direction="Input" expression="in_panchromatic_image" type="Required"><pythonReference>
+						<para>The panchromatic raster dataset. Typically, this is a high-resolution grayscale image.</para>
+					</pythonReference><dialogReference>
+						<para>The panchromatic raster dataset. Typically, this is a high-resolution grayscale image.</para>
+					</dialogReference></param><param sync="true" name="pansharpening_type" displayname="Pan-sharpening Type" datatype="String" direction="Input" expression="pansharpening_type" type="Required"><pythonReference>
+						<para>The pan-sharpening method:</para>
+						<bulletList><bullet_item>IHS—Uses Intensity, Hue, and Saturation color space for data fusion. </bullet_item><bullet_item>Brovey—Uses the Brovey algorithm based on spectral modeling for data fusion. </bullet_item><bullet_item>ESRI—Uses the ESRI algorithm based on spectral modeling for data fusion. </bullet_item><bullet_item>Simple_Mean—Uses the averaged value between the red, green, and blue values and the panchromatic pixel value. </bullet_item></bulletList>
+						<para> Older scripts and models may use still the old keyword. With the ArcGIS 10.0 release, this keyword was replaced with "Simple_Mean". Both keywords will continue to work,  but for clarity it may be worthwhile to update it to the new keyword.</para></pythonReference><dialogReference>
+						<para>The pan-sharpening method:</para>
+						<bulletList><bullet_item>IHS—Uses Intensity, Hue, and Saturation color space for data fusion. </bullet_item><bullet_item>Brovey—Uses the Brovey algorithm based on spectral modeling for data fusion. </bullet_item><bullet_item>ESRI—Uses the ESRI algorithm based on spectral modeling for data fusion. </bullet_item><bullet_item>Simple_Mean—Uses the averaged value between the red, green, and blue values and the panchromatic pixel value. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="red_weight" displayname="Red Weight" datatype="Double" direction="Input" expression="red_weight" type="Optional"><pythonReference>
+						<para>The weight value for the red band.</para>
+						<para>All the weight values (red, green, blue, and infrared) should equal a sum of one.</para>
+					</pythonReference><dialogReference>
+						<para>The weight value for the red band.</para>
+						<para>All the weight values (red, green, blue, and infrared) should equal a sum of one.</para>
+					</dialogReference></param><param sync="true" name="green_weight" displayname="Green Weight" datatype="Double" direction="Input" expression="green_weight" type="Optional"><pythonReference>
+						<para>The weight value for the green band.</para>
+						<para>All the weight values (red, green, blue, and infrared) should equal a sum of one.</para>
+					</pythonReference><dialogReference>
+						<para>The weight value for the green band.</para>
+						<para>All the weight values (red, green, blue, and infrared) should equal a sum of one.</para>
+					</dialogReference></param><param sync="true" name="blue_weight" displayname="Blue Weight" datatype="Double" direction="Input" expression="blue_weight" type="Optional"><pythonReference>
+						<para>The weight value for the blue band.</para>
+						<para>All the weight values (red, green, blue, and infrared) should equal a sum of one.</para>
+					</pythonReference><dialogReference>
+						<para>The weight value for the blue band.</para>
+						<para>All the weight values (red, green, blue, and infrared) should equal a sum of one.</para>
+					</dialogReference></param><param sync="true" name="infrared_weight" displayname="Infrared Weight" datatype="Double" direction="Input" expression="infrared_weight" type="Optional"><pythonReference>
+						<para>The weight value for the infrared band. This parameter is only valid if an infrared band exists and the infrared option is used.</para>
+						<para>All the weight values (red, green, blue, and infrared) should equal a sum of one.</para>
+					</pythonReference><dialogReference>
+						<para>The weight value for the infrared band. This parameter is only valid if an infrared band exists and the infrared option is used.</para>
+						<para>All the weight values (red, green, blue, and infrared) should equal a sum of one.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Pyramid" label="Pyramid">
+						
+					</environment><environment name="Raster_statistics" label="Raster statistics">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Tile_size" label="Tile size">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Only the areas that fully overlap will be affected by this tool.</para>
+			</bullet_item><bullet_item>
+				<para>You can save your output to BIL, BIP, BMP, BSQ, DAT, GIF, GRID, IMG, JPEG, JPEG 2000, PNG, TIFF, or any geodatabase raster dataset. </para>
+			</bullet_item><bullet_item>
+				<para>IHS uses Intensity, Hue, and Saturation color space for data fusion. Brovey and ESRI use an algorithm based on spectral modeling for data fusion.</para>
+			</bullet_item><bullet_item>
+				<para>The Simple Mean method uses the averaged pixel value between the original red, green, and blue values and the panchromatic pixel value. This is done for each of the colors (red, green, and blue).</para>
+				<bulletList>
+					<bullet_item>
+						NewRedValue = ((OldRedValue + PanValue) / 2)
+					</bullet_item>
+					<bullet_item>
+						NewGreenValue = ((OldGreenValue + PanValue) / 2)
+					</bullet_item>
+					<bullet_item>
+						NewBlueValue = ((OldBlueValue + PanValue) / 2)
+					</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>The four weight values allow you to adjust the pan-sharpening algorithms. All weights when summed should equal a total of one.</para>
+			</bullet_item><bullet_item>
+				<para>Pan-sharpening that is performed on a three-band raster dataset will produce a raster dataset that has three bands.</para>
+				<para>Pan-sharpening that is performed on a four-band raster dataset will produce a raster dataset that has four bands (three bands that have been pan-sharpened and the infrared band).</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreatePansharpenedRasterDataset example 1 (Python window)</title>
+					<para>This is a Python sample for the CreatePansharpenedRasterDataset tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.CreatePansharpenedRasterDataset_management("c:/data/rgba.img","3","2","1",\
+                                                 "4","output\\rgba_pan.tif",\
+                                                 "pan4.img","ESRI","0.16",\
+                                                 "0.16","0.16","0.52")
+                    </code></scriptExample><scriptExample><title>CreatePansharpenedRasterDataset example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for the CreatePansharpenedRasterDataset tool.</para>
+				<code xml:space="preserve">##====================================
+##Create Pan-sharpened Raster Dataset
+##Usage: CreatePansharpenedRasterDataset in_raster red_channel green_channel blue_channel {infrared_channel} 
+##                                       out_raster_dataset in_panchromatic_image ESRI | IHS | Brovey | 
+##                                       Simple_Mean {red_weight} {green_weight} {blue_weight} {infrared_weight}
+try:
+    import arcpy
+    arcpy.env.workspace = r"\\MyMachine\PrjWorkspace\RasGP"
+    ##3 Band RGB Pansharpen with Brovey algorithm
+    arcpy.CreatePansharpenedRasterDataset_management("rgb.img","3","2","1","1","output\\rgb_pan.img","pan.img","Brovey")
+    ##4 Band Infrared Image Pansharpen with Customized ESRI algorithm
+    arcpy.CreatePansharpenedRasterDataset_management("rgba.img","3","2","1","4","output\\rgba_pan.tif","pan4.img","ESRI","0.16","0.16","0.16","0.52")
+except:
+    print "Create Pan-sharpened Raster Dataset example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

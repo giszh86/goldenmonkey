@@ -1,0 +1,68 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?> 
+<!--
+  domain(type)={"FFD","WPS","GPW"}
+--> 
+<process type="FFD"
+         stepByStep="false" title="模型" abstract="获取给定名称的模型的描述">
+	
+	<head>
+		<Identifier>getModel</Identifier>
+		<Title>模型</Title>
+		<Abstract>获取给定名称的模型的描述</Abstract>		
+		<DataInputs>		
+			<Input>
+				<Identifier>Name</Identifier>
+				<Title>模型名称</Title>
+				<Abstract>给定的模型名称</Abstract>
+				<DataType>string</DataType>
+				<Option>false</Option>
+				<Reference id="3" name="Name" />
+			</Input>
+		</DataInputs>
+		<ProcessOutputs>	
+			<Output>
+				<Identifier>Model</Identifier>
+				<Title>模型描述</Title>
+				<Abstract>给定名称模型的描述</Abstract>
+				<DataType>string</DataType>
+				<Reference id="3" name="Model" />
+			</Output>		
+	    </ProcessOutputs>	 
+	</head>
+	
+	
+
+  <flow>   
+    <start id="1" name="start" title="开始" icon="2" x="10" y="10" siz="16" />    
+    <operation name="ProcessGetBaseDirectory" id="2" title="应用程序文件夹" abstract="获取应用程序所在的根目录文件夹" color="" icon="3" x="20" y="30" size="16" >
+      <inputs>       
+      </inputs>
+      <outputs> 
+	    <output name="BaseDir" type="String" title="文件夹" abstract="文件夹" />	  
+      </outputs>            
+    </operation>
+    <operation name="ProcessModelDescription" id="3" title="获取模型" color="" icon="4" x="30" y="50" size="16">
+      <inputs>  
+	    <input name="BaseDir" type="String" title="文件夹" abstract="文件夹" option="false" variable="" />	  
+		<input name="Name" type="String" title="模型名称" abstract="给定的模型名称" option="false" variable="ref:Name" />	  
+      </inputs>
+      <outputs>    
+        <output name="Model" type="String" title="模型描述" abstract="模型描述" />	  	  
+      </outputs>
+    </operation>  
+    <end id="4" name="end" title="结束" icon="6" x="50" y="70" size="16" />
+
+    <links>
+      <link from="1" to="2" />
+      <link from="2" to="3" >
+	   <assign>
+            <from>BaseDir</from>
+            <to>BaseDir</to>
+        </assign>
+	  </link>
+      <link from="3" to="4" />     
+    </links>
+	
+	<reply name="Model" kind="Model" operation="ProcessModelDescription" id="3" variable="Model"/> 
+  </flow>
+</process>

@@ -1,0 +1,101 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Thin (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Thins rasterized linear features by reducing the number of cells representing the width of the features.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Clean</keyword><keyword>Contour</keyword><keyword>Generalize</keyword><keyword>Image Processing</keyword><keyword>Linear</keyword><keyword>Raster</keyword><keyword>Reduce Thickness</keyword><keyword>Reduce Width</keyword><keyword>Simplify</keyword><keyword>Skeleton</keyword><keyword>Stream</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Thin" displayname="Thin (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Thins rasterized linear features by reducing the number of cells representing the width of the features.</para>
+		</summary><alink_name>Thin_sa</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster to be thinned.</para>
+						<para>It must be of integer type.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster to be thinned.</para>
+						<para>It must be of integer type.</para>
+					</dialogReference></param><param sync="true" name="background_value" displayname="Background value" datatype="String" direction="Input" expression="background_value" type="Optional"><pythonReference>
+						<para>Specifies the cell value that will identify the background cells. The linear features are formed from the foreground cells.</para>
+						<bulletList><bullet_item>ZERO — The background is composed of cells of 0 or less, or NoData. All cells whose value is greater than 0 are the foreground.</bullet_item><bullet_item>NODATA — The background is composed of NoData cells. All cells with valid values belong to the foreground.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the cell value that will identify the background cells. The linear features are formed from the foreground cells.</para>
+						<bulletList><bullet_item>ZERO — The background is composed of cells of 0 or less, or NoData. All cells whose value is greater than 0 are the foreground.</bullet_item><bullet_item>NODATA — The background is composed of NoData cells. All cells with valid values belong to the foreground.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="filter" displayname="Filter input first" datatype="Boolean" direction="Input" expression="filter" type="Optional"><pythonReference>
+						<para>Specifies whether a filter will be applied as the first phase of thinning.</para>
+						<bulletList><bullet_item>NOFILTER — No filter will be applied.
+This is the default.</bullet_item><bullet_item>FILTER — The raster will be filtered to smooth the boundaries between foreground and background cells. This option will eliminate minor irregularities from the output raster.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether a filter will be applied as the first phase of thinning.</para>
+						<bulletList>
+							<bullet_item>Unchecked—No filter will be applied. This is the default.</bullet_item>
+							<bullet_item>Checked—The raster will be filtered to smooth the boundaries between foreground and background cells. This option will eliminate minor irregularities from the output raster.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="corners" displayname="Shape for corners" datatype="String" direction="Input" expression="corners" type="Optional"><pythonReference>
+						<para>Specifies whether round or sharp turns will be made at turns or junctions.</para>
+						<para>It is also used during the vector conversion process to spline curves or create sharp intersections and corners.</para>
+						<bulletList><bullet_item>ROUND — Attempts to smooth corners and junctions. This is best for vectorizing natural features, such as contours or streams.</bullet_item><bullet_item>SHARP — Attempts to preserve rectangular corners and junctions. This is best for vectorizing man-made features such as streets.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether round or sharp turns will be made at turns or junctions.</para>
+						<para>It is also used during the vector conversion process to spline curves or create sharp intersections and corners.</para>
+						<bulletList><bullet_item>ROUND — Attempts to smooth corners and junctions. This is best for vectorizing natural features, such as contours or streams.</bullet_item><bullet_item>SHARP — Attempts to preserve rectangular corners and junctions. This is best for vectorizing man-made features such as streets.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="maximum_thickness" displayname="Maximum thickness of input linear features" datatype="Double" direction="Input" expression="maximum_thickness" type="Optional"><pythonReference>
+						<para>The maximum thickness, in map units, of linear features in the input raster.</para>
+						<para>The default thickness is ten times the cell size.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum thickness, in map units, of linear features in the input raster.</para>
+						<para>The default thickness is ten times the cell size.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output thinned raster.</para>
+						</pythonReference><dialogReference>
+							<para>The output thinned raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para>A typical application for the Thin tool is for processing a scanned elevation contour map. Because of the resolution of the scanner and the width of the lines on the original map, the contours are respresented in the resulting raster as linear elements from five to ten cells wide.  After running Thin, each contour will be represented as a linear feature of a single cell width.</para></bullet_item><bullet_item>
+				<para>The FILTER option uses the same filtering algorithm as Boundary Clean to remove short linear features extending from the major branch. It can also remove features narrower than three cells.</para>
+			</bullet_item><bullet_item>
+				<para>Specifying the maximum thickness of input linear features is essential for thinning rasters where the thickness of linear features may exceed or stay below the default maximum thickness value. The best results can be expected when the maximum thickness fits the thickest linear features to be thinned.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Thin example 1 (Python window)</title>
+					<para>This example thins a raster where the background values are NoData, and smooths the boundaries while attempting to preserve corners and junctions.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+thinOut = Thin("land","NODATA", "FILTER", "SHARP", 300)
+thinOut.save("c:/sapyexamples/output/thinout")
+                    </code></scriptExample><scriptExample><title>Thin example 2 (stand-alone script)</title>
+					<para>This example thins a raster where the background values are NoData, and smooths the boundaries while attempting to preserve corners and junctions.</para>
+				<code xml:space="preserve"># Name: Thin_Ex_02.py
+# Description: Thins rasterized linear features by 
+#              reducing the number of cells 
+#              representing the width of the features.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "land"
+tolerance = 300
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Thin
+thinOut = Thin(inRaster, "NODATA", "FILTER", "SHARP", 
+               tolerance)
+
+# Save the output 
+thinOut.save("c:/sapyexamples/output/thinoutput")
+                    </code></scriptExample></scriptExamples></tool></metadata>

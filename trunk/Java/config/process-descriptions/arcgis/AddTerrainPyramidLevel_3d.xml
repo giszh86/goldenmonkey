@@ -1,0 +1,119 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Terrain Pyramid Level (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds new pyramid level(s) to an existing terrain dataset.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Edit</keyword><keyword>Lidar</keyword><keyword>Masspoints</keyword><keyword>Modify</keyword><keyword>Multipoints</keyword><keyword>Multiresolution Surface</keyword><keyword>Pyramid Level</keyword><keyword>Surface</keyword><keyword>Terrain</keyword><keyword>Terrain Dataset</keyword><keyword>Terrain Pyramids</keyword><keyword>Terrains</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddTerrainPyramidLevel" displayname="Add Terrain Pyramid Level (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Adds new pyramid level(s) to an existing terrain dataset.</para>
+			
+		</summary><alink_name>AddTerrainPyramidLevel_3d</alink_name><parameters><param sync="true" name="in_terrain" displayname="Input Terrain" datatype="Terrain Layer" direction="Input" expression="in_terrain" type="Required"><pythonReference>
+						<para>The terrain to which you want to add a pyramid level.</para>
+					</pythonReference><dialogReference>
+						<para>The terrain to which you want to add a pyramid level.</para>
+					</dialogReference></param><param sync="true" name="pyramid_level_definition" displayname="Pyramid Levels Definition" datatype="String" direction="Input" expression="pyramid_level_definition" type="Required"><pythonReference>
+						<para>The z-tolerance or window size and reference scale of one or more pyramid levels that will be added to the terrain. The values are given in space delimited pairs; one pair for each level. The pyramid type (z-tolerance or window size) can be specified as a floating point value. The reference scale must be provided as a whole number (e.g., a value of 24000 represents a scale of 1:24000).</para>
+					</pythonReference><dialogReference>
+						<para>The z-tolerance or window size and reference scale of one or more pyramid levels that will be added to the terrain. The values are given in space delimited pairs; one pair for each level.</para>
+						<para>The z-tolerance pyramid type for a pyramid level represents the approximate amount the surface representation for that level can deviate, in vertical units, from the highest resolution data. The window size pyramid type defines the surface for each pyramid level by partitioning the data into equal areas (windows) and selecting just one or two points from each area as representatives.</para>
+						<para>The pyramid type can be specified as a floating point value.</para>
+						<para>The reference scale represents the largest display map scale used by a pyramid level. Display scales larger than this will switch to the next highest pyramid level. The reference scale must be provided as a whole number (e.g., a value of 24000 represents a scale of 1:24000).</para>
+						<para>For example, a level with a z-tolerance of 2.5 and a scale threshold of 1:24000 would be specified as: 2.5 24000. Further information can be found by selecting "Learn more about how Terrain Pyramid Level Definition (3D Analyst™) works" from the geoprocessing tool's documentation.</para>
+					</dialogReference></param><param sync="true" name="pyramid_type" displayname="Pyramid Type" datatype="String" direction="Input" expression="pyramid_type" type="Required"><pythonReference>
+						<para>The type of pyramid methodology. This parameter has no value with ArcGIS 9.3 and beyond and may be omitted. The purpose of this parameter is to ensure compatibility with scripts and models written using ArcGIS 9.2.</para>
+					</pythonReference><dialogReference>
+						<para>The type of pyramid methodology. This parameter has no value with ArcGIS 9.3 and beyond and may be omitted. The purpose of this parameter is to ensure compatibility with scripts and models written using ArcGIS 9.2.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Adding a new pyramid level to a terrain invalidates it. Use the  tool after adding a pyramid level.</para>
+			</bullet_item><bullet_item>
+				<para>When used in an SDE database, the input terrain cannot be registered as versioned.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Add Terrain Pyramid Level Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Add Terrain Pyramid Level
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.AddTerrainPyramidLevel_3d("C:/data/terrain.gdb/terrainFDS/terrain1", "ZTOLERANCE", "10 50000")
+                    </code></scriptExample><scriptExample><title>Add Terrain Pyramid Level Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Add Terrain Pyramid Level
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: AddTerrainPyramidLevel Example
+# Description: The following stand-alone script demonstrates how to create a
+#              terrain dataset from a TIN. The TinDomain, TinLine, and TinNode 
+#              tools are used to extract the features from the TIN, and the 
+#              CreateTerrain, AddTerrainPyramidLevel, AddFeatureClassToTerrain, 
+#              and BuildTerrain tools are used to construct the terrain. This 
+#              process is helpful in situations where the data used in
+#              making the TIN is no longer available.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension('3D')
+
+# Set environment settings
+env.workspace = 'C:/data'
+
+try:
+    # Set Local Variables
+    sourceTIN = 'elevation'
+    newFGDB = 'sample.gdb' # name of the file geodatabase that will be created
+    newFD = 'data_from_TIN' # name of the feature dataset that will be created
+    # os.sep is used to denote the separator (e.g. '/')
+    # The clip polygon that will be extracted from the TIN
+    TIN_domain = newFGDB + os.sep + newFD + os.sep + 'boundary'
+    # The elevation points that will be extracted from the TIN
+    TIN_nodes = newFGDB + os.sep + newFD + os.sep + 'mass_points'
+    # The breaklines that will be extracted from the TIN
+    TIN_lines = newFGDB + os.sep + newFD + os.sep + 'breaklines'
+    # Name of the terrain that will be created
+    terrain = 'terrain_from_tin'
+    # Pyramid levels for the terrain
+    pyramids = '20 5000;25 10000;35 25000;50 50000'
+    # Properties for the terrain surfaces
+    PolyParams = TIN_domain + \
+               ' Shape softclip 1 0 10 true false boundary_embed &lt;None&gt; false'
+    PtParams = TIN_nodes + \
+             ' Shape masspoints 1 0 50 true false points_embed &lt;None&gt; false'
+    LineParams = TIN_lines + \
+               ' Shape softline 1 0 25 false false lines_embed &lt;None&gt; false'
+    arcpy.AddMessage('Creating file geodatabase...')
+    # Execute CreateFileGDB
+    arcpy.CreateFileGDB_management(env.workspace, newFGDB)
+    arcpy.AddMessage('Creating feature dataset...')
+    # Execute CreateFeatureDataset
+    arcpy.CreateFeatureDataset_management(newFGDB, newFD, sourceTIN)
+    arcpy.AddMessage('Exporting TIN footprint...')
+    # Execute TinDomain
+    arcpy.TinDomain_3d(sourceTIN, TIN_domain, 'POLYGON')
+    arcpy.AddMessage('Exporting TIN lines...')
+    # Execute TinLine
+    arcpy.TinLine_3d(sourceTIN, TIN_edges, 'Code')
+    arcpy.AddMessage('Exporting TIN nodes...')
+    # Execute TinNode
+    arcpy.TinNode_3d(sourceTIN, TIN_nodes)
+    # Execute CreateTerrain
+    arcpy.CreateTerrain_3d(newFGDB + os.sep + newFD, terrain, 10, 50000, '', \
+                           'WINDOWSIZE', 'ZMEAN', 'NONE', 1)
+    # Execute AddTerrainPyramidLevel
+    arcpy.AddTerrainPyramidLevel_3d(newFGDB + os.sep + newFD + os.sep + terrain,\
+                                    '', pyramids)
+    # Execute AddFeatureClassToTerrain
+    arcpy.AddFeatureClassToTerrain_3d(newFGDB + os.sep + newFD + os.sep + terrain,\
+                                      PolyParams + ';' + PtParams + ';' + LineParams) 
+    # Execute BuildTerrain
+    arcpy.BuildTerrain_3d(newFGDB + os.sep + newFD + os.sep + terrain, 'NO_UPDATE_EXTENT')
+except:
+    # Returns any other error messages
+    print arcpy.GetMessages(2)
+
+del arcpy, sourceTIN, newFGDB, newFD, TIN_domain, TIN_lines, TIN_nodes, terrain, \
+    pyramids, PolyParams, PtParams, LineParams
+                    </code></scriptExample></scriptExamples></tool></metadata>

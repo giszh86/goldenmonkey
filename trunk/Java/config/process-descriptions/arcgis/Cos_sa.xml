@@ -1,0 +1,69 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Cos (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the cosine of cells in a raster.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cosine</keyword><keyword>Math</keyword><keyword>Trig</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Cos" displayname="Cos (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates the cosine of cells in a raster.</para>
+		</summary><alink_name>Cos_sa</alink_name><toolIllust type="illustration" src="Cos_sa_h.png" alt="Cos illustration" /><parameters><param sync="true" name="in_raster_or_constant" displayname="Input raster or constant value" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant" type="Required"><pythonReference>
+						<para>The input for which to calculate the cosine values.</para>
+						<para>
+In order to use a number as an input for this parameter, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The input for which to calculate the cosine values.</para>
+						<para>
+In order to use a number as an input for this parameter, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>The values are the cosine of the input values.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>The values are the cosine of the input values.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para>In mathematics, all Trigonometric functions have a defined range of valid input values, called the domain. The output values from each function also has a defined range. For this tool:</para><bulletList><bullet_item><para>The Domain is : -∞ &lt; [in_value] &lt; ∞ </para></bullet_item><bullet_item><para>The Range is : -1 ≤ [out_value] ≤ 1 </para></bullet_item></bulletList><para>Note that here -∞ and ∞ represent the smallest negative and largest positive value supported by the particular raster format, respectively.</para></bullet_item><bullet_item><para>The input values for this tool are interpreted to be in radians. If the input you wish to use is in degrees, the values must first be divided by the radians-to-degrees conversion factor of 180/pi, or approximately 57.296.</para><para>See  for examples of converting input values that are in degrees to the expected units of radians.</para></bullet_item><bullet_item>
+				<para>The output values from Cos are interpreted as unitless.</para>
+			</bullet_item><bullet_item><para>Output values are always floating point, regardless of the input data type.</para></bullet_item><bullet_item><para>Due to the range of values, applying a linear stretch renderer can be useful to better see the results.</para></bullet_item></usage><scriptExamples><scriptExample><title>Cos example 1 (Python window)</title>
+					<para>This example calculates the cosine of the values in the input GRID raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outCos = Cos("degs")
+outCos.save("C:/sapyexamples/output/outcos")
+                    </code></scriptExample><scriptExample><title>Cos example 2 (stand-alone script)</title>
+					<para>This example calculates the cosine of the values in the input GRID raster and outputs a TIFF raster.</para>
+				<code xml:space="preserve"># Name: Cos_Ex_02.py
+# Description: Calculates the cosine of cells in a raster
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "degs"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Cos
+outCos = Cos(inRaster)
+
+# Save the output 
+outCos.save("C:/sapyexamples/output/outcos.tif")
+                    </code></scriptExample></scriptExamples></tool></metadata>

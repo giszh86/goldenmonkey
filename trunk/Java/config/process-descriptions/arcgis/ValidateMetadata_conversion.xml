@@ -1,0 +1,65 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Validate Metadata  (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Exports metadata to a standard metadata format then validates the exported file. </para>
+			<para>ArcGIS metadata can't be directly validated against a metadata standard's XML schema. This tool validates ArcGIS metadata by first exporting it to an XML file that is formatted to follow a metadata standard's XML schema using Export Metadata, then validating the exported file using XML Schema Validation.</para>
+			<para>Any validation errors and warnings will be reported in the tool's messages. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>19139</keyword><keyword>Change</keyword><keyword>Check</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>Format</keyword><keyword>Import</keyword><keyword>Iso</keyword><keyword>Make</keyword><keyword>Parse</keyword><keyword>Save</keyword><keyword>Schema</keyword><keyword>Standard</keyword><keyword>Style</keyword><keyword>Test</keyword><keyword>Transfer</keyword><keyword>Translate</keyword><keyword>Turn</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" ValidateMetadata " displayname=" Validate Metadata  (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para> Exports metadata to a standard metadata format then validates the exported file. </para>
+			<para>ArcGIS metadata can't be directly validated against a metadata standard's XML schema. This tool validates ArcGIS metadata by first exporting it to an XML file that is formatted to follow a metadata standard's XML schema using Export Metadata, then validating the exported file using XML Schema Validation.</para>
+			<para>Any validation errors and warnings will be reported in the tool's messages. </para>
+		</summary><alink_name> ValidateMetadata _conversion</alink_name><parameters><param sync="true" name="Source_Metadata" displayname="Source Metadata" datatype="Data Element; Layer" direction="Input" expression="Source_Metadata" type="Required"><pythonReference>
+						<para>The item whose metadata will be validated, or a stand-alone XML file that will be validated.</para>
+					</pythonReference><dialogReference>
+						<para>The item whose metadata will be validated, or a stand-alone XML file that will be validated.</para>
+					</dialogReference></param><param sync="true" name="Translator" displayname="Translation" datatype="File" direction="Input" expression="Translator" type="Required"><pythonReference>
+						<para>An XML file that defines the conversion that will be performed. </para>
+						<para>The translator files provided with ArcGIS Desktop can be found in the &lt;ArcGIS Install Location&gt;\Metadata\Translator folder. The following conversions are supported:</para>
+						<bulletList>
+							<bullet_item>ArcGIS to ISO 19139 (ESRI_ISO2ISO19139.xml)</bullet_item>
+							<bullet_item>FGDC to ArcGIS (FGDC2ESRI_ISO.xml)</bullet_item>
+							<bullet_item>FGDC to ISO 19139 (FGDC2ISO19139.xml)</bullet_item>
+							<bullet_item>ISO 19139 to ArcGIS (ISO19139_2ESRI_ISO.xml)</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>An XML file that defines the conversion that will be performed. </para>
+						<para>The translator files provided with ArcGIS Desktop can be found in the &lt;ArcGIS Install Location&gt;\Metadata\Translator folder. The following conversions are supported:</para>
+						<bulletList>
+							<bullet_item>ArcGIS to ISO 19139 (ESRI_ISO2ISO19139.xml)</bullet_item>
+							<bullet_item>FGDC to ArcGIS (FGDC2ESRI_ISO.xml)</bullet_item>
+							<bullet_item>FGDC to ISO 19139 (FGDC2ISO19139.xml)</bullet_item>
+							<bullet_item>ISO 19139 to ArcGIS (ISO19139_2ESRI_ISO.xml)</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="Schema_URL" displayname="Schema URL" datatype="String" direction="Input" expression="Schema_URL" type="Required"><pythonReference>
+						<para>The XML Schema or XML DTD that describes the structure and content of a valid XML document. </para>
+					</pythonReference><dialogReference>
+						<para>The XML Schema or XML DTD that describes the structure and content of a valid XML document. </para>
+					</dialogReference></param><param sync="true" name="Namespace_URI" displayname="Namespace URI" datatype="String" direction="Input" expression="Namespace_URI" type="Optional"><pythonReference>
+						<para>The XML namespace that will be validated. </para>
+						<para>If Schema URL identifies a DTD this value won't be used; provide # instead of a namespace URI.</para>
+					</pythonReference><dialogReference>
+						<para>The XML namespace that will be validated. </para>
+						<para>If Schema URL identifies a DTD this value won't be used.</para>
+					</dialogReference></param><param sync="true" name="Output_File" displayname="Output File" datatype="File" direction="Output" expression="Output_File" type="Optional"><pythonReference>
+						<para>A stand-alone XML file that will be created containing the converted metadata.</para>
+					</pythonReference><dialogReference>
+						<para>A stand-alone XML file that will be created containing the converted metadata.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item><para>Some XML Schemas require you to specify the XML namespace you want to validate, while others do not.</para></bullet_item><bullet_item>
+				<para>Specify an output file if you want to keep the exported metadata file. For example, after checking that the exported file validated successfully you might publish it to a metadata catalog. </para>
+			</bullet_item><bullet_item>
+				<para>The output files produced by this tool can't be stored in a geodatabase. If the  environment is set to a geodatabase the output files will be stored in a different location, as described below.</para>
+				<bulletList>
+					<bullet_item>If the  set to a file or personal geodatabase the output files will be stored in the folder in which the geodatabase is stored.</bullet_item>
+					<bullet_item>If the  is set to an enterprise or workgroup geodatabase the output files will be stored in the location defined by the system TEMP environment variable. </bullet_item>
+				</bulletList>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Validate metadata for an ArcGIS item</title>
+					<para>Exports ArcGIS metadata to an XML file and validates the exported file using an XML Schema.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+#set local variables
+dir = arcpy.GetInstallInfo("desktop")["InstallDir"]
+translator = dir + "Metadata/Translator/ESRI_ISO2ISO19139.xml"
+schema = "http://www.isotc211.org/schemas/2005/gmd/metadataEntity.xsd"
+namespace = "http://www.isotc211.org/2005/gmd"
+arcpy.ValidateMetadata_conversion ("vegtype.dbf", translator, schema,
+    namespace, "vegtype_19139.xml")
+                    </code></scriptExample></scriptExamples></tool></metadata>

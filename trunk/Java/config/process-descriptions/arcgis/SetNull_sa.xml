@@ -1,0 +1,85 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Set Null (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Set Null sets identified cell locations to NoData based on a specified criteria.  It returns NoData if a conditional evaluation is true, and returns the value specified by another raster if it is false.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Case</keyword><keyword>Condition</keyword><keyword>Evaluate</keyword><keyword>Expression</keyword><keyword>False</keyword><keyword>Logical</keyword><keyword>Nodata</keyword><keyword>Query</keyword><keyword>True</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SetNull" displayname="Set Null (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Set Null sets identified cell locations to NoData based on a specified criteria.  It returns NoData if a conditional evaluation is true, and returns the value specified by another raster if it is false.</para>
+			
+		</summary><alink_name>SetNull_sa</alink_name><toolIllust type="illustration" src="SetNull_sa_h.png" alt="Set Null illustration" /><parameters><param sync="true" name="in_conditional_raster" displayname="Input conditional raster" datatype="Raster Layer" direction="Input" expression="in_conditional_raster" type="Required"><pythonReference>
+						<para>Input raster representing the true or false result of the desired condition.</para>
+					</pythonReference><dialogReference>
+						<para>Input raster representing the true or false result of the desired condition.</para>
+					</dialogReference></param><param sync="true" name="in_false_raster_or_constant" displayname="Input false raster or constant value" datatype="Raster Layer | Constant" direction="Input" expression="in_false_raster_or_constant" type="Required"><pythonReference>
+						<para>The input whose values will be used as the output cell values if the condition is false.</para>
+						<para>It can be an integer or a floating point raster, or a constant value.</para>
+					</pythonReference><dialogReference>
+						<para>The input whose values will be used as the output cell values if the condition is false.</para>
+						<para>It can be an integer or a floating point raster, or a constant value.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Where clause" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference><para>A logical expression that determines which of the input cells are to be true or false.</para><para>The expression follows the general form of an SQL expression.</para><para>Consult the documentation for more information on the SQL reference for query expressions used in ArcGIS and specifying a query in Python.</para></pythonReference><dialogReference><para>A logical expression that determines which of the input cells are to be true or false.</para><para>The expression follows the general form of an SQL expression. It can be entered directly into the Where clause, for example, "VALUE" &gt; 100. It can also be created in the Query Builder dialog box. </para><para>Consult the documentation for more information on building a query expression and the SQL reference for query expressions used in ArcGIS.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>If the conditional evaluation is true, NoData is returned. If false, the value of the second input raster is returned.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>If the conditional evaluation is true, NoData is returned. If false, the value of the second input raster is returned.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If the evaluation of the where clause is true, the cell location on the output raster will be assigned NoData. If the evaluation is false, the output raster will be defined by the input false raster or constant value.</para>
+			</bullet_item><bullet_item>
+				<para>If no where clause is specified, the output raster will have NoData wherever the conditional raster is not 0.</para>
+			</bullet_item><bullet_item>
+				<para>The input conditional raster does not affect whether the output data type is integer or floating point. If the input false raster (or constant value) contains floating-point values, the output raster will be floating point. If it contains all integer values, the output will be an integer raster.</para>
+			</bullet_item><bullet_item>
+				<para>The maximum length of the logical expression is 4,096 characters.</para>
+			</bullet_item><bullet_item>
+				<para>In Python, the {where_clause} should be enclosed in quotes, for example, "Value &gt; 5".</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SetNull example 1 (Python window)</title>
+					<para>In this example, any input cell with a value less than 0 will be set to NoData in the output raster, and the remaining cells will retain their original value.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outSetNull = SetNull("elevation", "elevation", "VALUE &lt; 0")
+outSetNull.save("C:/sapyexamples/output/outsetnull.img")
+                    </code></scriptExample><scriptExample><title>SetNull example 2 (stand-alone script)</title><para>In this example, any input cell with a value other than 7 will be set to NoData, and cells that are 7 will be set to value 1 on the output.</para>
+				<code xml:space="preserve"># Name: SetNull_Ex_02.py
+# Description: Returns NoData if a conditional evaluation is 
+#              true and returns the value specified by another
+#              raster if it is false, on a cell-by-cell basis.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "landclass"
+inFalseRaster = 1
+whereClause = "VALUE &lt;&gt; 7"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute SetNull
+outSetNull = SetNull(inRaster, inFalseRaster, whereClause)
+
+# Save the output 
+outSetNull.save("C:/sapyexamples/output/outsetnull")
+                    </code></scriptExample></scriptExamples></tool></metadata>

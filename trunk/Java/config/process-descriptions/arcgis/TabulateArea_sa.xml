@@ -1,0 +1,111 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Tabulate Area (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates cross-tabulated areas between two datasets and outputs a table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Class</keyword><keyword>Cross Tabulate</keyword><keyword>Value</keyword><keyword>Zone</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TabulateArea" displayname="Tabulate Area (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates cross-tabulated areas between two datasets and outputs a table.</para>
+		</summary><alink_name>TabulateArea_sa</alink_name><toolIllust type="illustration" src="TabulateArea_sa_h.gif" alt="Tabulate Area illustration" /><parameters><param sync="true" name="in_zone_data" displayname="Input raster or feature zone data" datatype="Raster Layer | Feature Layer" direction="Input" expression="in_zone_data" type="Required"><pythonReference>
+						<para>Dataset that defines the zones.</para>
+						<para>The zones can be defined by an integer raster or a feature layer.</para></pythonReference><dialogReference>
+						<para>Dataset that defines the zones.</para>
+						<para>The zones can be defined by an integer raster or a feature layer.</para></dialogReference></param><param sync="true" name="zone_field" displayname="Zone field" datatype="Field" direction="Input" expression="zone_field" type="Required"><pythonReference><para>
+Field that holds the values that define each zone.</para><para>It can be an integer or a string field of the zone dataset.</para>
+					</pythonReference><dialogReference><para>
+Field that holds the values that define each zone.</para><para>It can be an integer or a string field of the zone dataset.</para>
+					</dialogReference></param><param sync="true" name="in_class_data" displayname="Input raster or feature class data" datatype="Raster Layer | Feature Layer" direction="Input" expression="in_class_data" type="Required"><pythonReference>
+						<para>The dataset that defines the classes that will have their area summarized within each zone.</para>
+						<para>The class input can be an integer raster layer or a feature layer.</para>
+					</pythonReference><dialogReference>
+						<para>The dataset that defines the classes that will have their area summarized within each zone.</para>
+						<para>The class input can be an integer raster layer or a feature layer.</para>
+					</dialogReference></param><param sync="true" name="class_field" displayname="Class field" datatype="Field" direction="Input" expression="class_field" type="Required"><pythonReference>
+						<para>The field that holds the class values.</para>
+						<para>It can be an integer or a string field of the input class data.</para>
+					</pythonReference><dialogReference>
+						<para>The field that holds the class values.</para>
+						<para>It can be an integer or a string field of the input class data.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>Output table that will contain the summary of the area of each class in each zone.</para>
+					</pythonReference><dialogReference>
+						<para>Output table that will contain the summary of the area of each class in each zone.</para>
+					</dialogReference></param><param sync="true" name="processing_cell_size" displayname="Processing cell size" datatype="Analysis cell size" direction="Input" expression="processing_cell_size" type="Optional"><pythonReference>
+						<para>The processing cell size for the zonal  operation.</para><para>This is the value in the environment if specifically set.  If the environment is not set, the default for the cell size is determined by the type of the zone data as follows:<bulletList><bullet_item>If the zone dataset is a raster, the cell size is the same as the zone raster.</bullet_item><bullet_item>  If zone dataset is feature, the cell size is the shorter of the width or height of the extent of zone feature dataset in the output spatial reference, divided by 250.</bullet_item></bulletList></para>
+					</pythonReference><dialogReference>
+						<para>The processing cell size for the zonal  operation.</para><para>This is the value in the environment if specifically set.  If the environment is not set, the default for the cell size is determined by the type of the zone data as follows:<bulletList><bullet_item>If the zone dataset is a raster, the cell size is the same as the zone raster.</bullet_item><bullet_item>  If zone dataset is feature, the cell size is the shorter of the width or height of the extent of zone feature dataset in the output spatial reference, divided by 250.</bullet_item></bulletList></para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>A zone is defined as all areas in the input that have the same value.  The areas do not have to be contiguous.  Both raster and feature datasets can be used for the zone input.</para></bullet_item><bullet_item>
+				<para>When the zone and class inputs are both rasters of the same resolution, they will be used directly.</para>
+				<para>If the resolutions are different, an internal resampling is applied to make them match before the zonal operation is performed.</para>
+			</bullet_item><bullet_item>
+				<para>If the zone input is a raster dataset, it must have an attribute table. The attribute table is usually created automatically for integer rasters, but may not be under certain circumstances. You can use  to create one.</para>
+			</bullet_item><bullet_item>
+				<para>If the zone input is feature dataset, a vector-to-raster conversion will be internally applied to it.</para>
+				<para>To ensure that the results of the conversion will align properly with a class raster input, it is recommended that you check that the extent and snap raster are set appropriately in the environment settings and the raster settings.</para>
+			</bullet_item><bullet_item>
+				<para>If the class input is feature dataset, a vector-to-raster conversion will also be internally applied to it. The conditions listed in the previous tip for a feature zone input also apply to a feature class input.</para>
+			</bullet_item><bullet_item>
+				<para>It is recommended to only use rasters as the zone and class inputs, as it offers you greater control over the vector-to-raster conversion. This will help ensure you consistently get the expected results.</para>
+			</bullet_item><bullet_item>
+				<para>If a point or line dataset is used as the class data, the area intersected by those features will be reported.</para>
+			</bullet_item><bullet_item>
+				<para>There will be a field in the output table for each unique value of the zone dataset.</para>
+			</bullet_item><bullet_item>
+				<para>There will be a record in the output table for each unique value of the class dataset.</para>
+			</bullet_item><bullet_item>
+				<para>Each record in the output table will store the area of each class within each zone.</para>
+			</bullet_item><bullet_item>
+				<para>The output of the Tabulate Area tool is a table.</para>
+			</bullet_item><bullet_item>
+				<para>See  for explanations of certain issues that may be encountered with this tool and suggestions on how to work around them.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TabluateArea example 1 (Python window)</title>
+					<para>This example returns a table with the area of each class value that is contained within each zone.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+TabulateArea("zonedata.shp", "IDStr", "valueraster", "VALUE",
+             "C:/sapyexamples/output/areatable.dbf", 2)
+                    </code></scriptExample><scriptExample><title>TabulateArea example 2 (stand-alone script)</title>
+					<para>This example returns a table with the area of each class value that is contained within each zone.</para>
+				<code xml:space="preserve"># Name: TabulateArea_Ex_02.py
+# Description: Calculates cross tabulated areas between two datasets.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+env.extent = "classgrid"
+env.snapRaster = "classgrid"
+
+# Set local variables
+inZoneData = "zonedata.shp"
+zoneField = "IDStr"
+inClassData = "valueraster"
+classField = "VALUE"
+outTable = "C:/sapyexamples/output/areatable02.dbf"
+processingCellSize = 2
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute TabulateArea
+TabulateArea(inZoneData, zoneField, inClassData, classField, outTable,
+             processingCellSize)
+                    </code></scriptExample></scriptExamples></tool></metadata>

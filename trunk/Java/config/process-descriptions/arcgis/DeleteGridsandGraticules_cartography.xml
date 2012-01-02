@@ -1,0 +1,43 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Delete Grids And Graticules (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Deletes all the features associated with one or more selected grid and graticule layers from a feature dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Border</keyword><keyword>Coordinate Labels</keyword><keyword>Layout</keyword><keyword>Projection</keyword><keyword>Remove</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" DeleteGridsAndGraticules" displayname=" Delete Grids And Graticules (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para> Deletes all the features associated with one or more selected grid and graticule layers from a feature dataset.</para>
+		</summary><alink_name> DeleteGridsAndGraticules_cartography</alink_name><parameters><param sync="true" name="in_grid_dataset" displayname="Input Grid Dataset" datatype="Feature Dataset" direction="Input" expression="in_grid_dataset" type="Required"><pythonReference>
+						<para> The feature dataset location where the grid and graticule layers that can be deleted are stored.</para>
+					</pythonReference><dialogReference>
+						<para> The feature dataset location where the grid and graticule layers that can be deleted are stored.</para>
+					</dialogReference></param><param sync="true" name="grid_name" displayname="Grid Name" datatype="String" direction="Input" expression="[grid_name,...]" type="Required"><pythonReference>
+						<para> Lists the grid and graticule layers in the feature dataset that can be deleted. </para>
+					</pythonReference><dialogReference>
+						<para> Lists the grid and graticule layers in the feature dataset that can be deleted. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para> You can select all the grid and graticule layers for deletion or specify only the ones you want deleted from the Grid Name list.</para>
+			</bullet_item><bullet_item>
+				<para> You can unselect all previously selected grid and graticule layers to prevent deletion of any grid and graticule layers or unselect only specific ones not to delete.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DeleteGridsAndGraticules tool Example (Python Window)</title>
+					<para>Deletes grid and graticule layers from a feature dataset.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/Python_Output"
+arcpy.DeleteGridsAndGraticules_cartography("C:/Python_Output/grid_layers.gdb/QUAD_24K", 
+"Plaza Washington (Quad_24K_NAD83)")
+                    </code></scriptExample><scriptExample><title>DeleteGridsAndGraticules tool Example (Stand-alone Python script)</title>
+					<para>Deletes grid and graticule layers from a feature dataset.</para>
+				<code xml:space="preserve"> # Name: DeleteGridsAndGraticules.py 
+# Description: Delete grid(s) from a feature dataset. 
+# Author: ESRI 
+
+# Import system module 
+import arcpy 
+
+# Enabling logging of the results 
+arcpy.logHistory = True
+ 
+# Set the values of the tool's parameters 
+input_grid_dataset = "C:/Python_Output/grid_layers.gdb/QUAD_24K" 
+grid_name = ['Plaza Washington (Quad_24K_NAD83)','Swift Minnesota (Quad_24K_NAD83)'] 
+
+# Process: Delete Grids and Graticules 
+arcpy.DeleteGridsAndGraticules_cartography(input_grid_dataset, grid_name) 
+print "Grids and Graticules features deletion successful"
+                    </code></scriptExample></scriptExamples></tool></metadata>

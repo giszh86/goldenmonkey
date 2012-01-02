@@ -1,0 +1,82 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Median Center (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Identifies the location that minimizes overall Euclidean distance to the features in a dataset.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Accessible</keyword><keyword>Best</keyword><keyword>Central</keyword><keyword>Central Tendency</keyword><keyword>Change</keyword><keyword>Concentrate</keyword><keyword>Concentration</keyword><keyword>Coordinate</keyword><keyword>Disperse</keyword><keyword>Distance</keyword><keyword>Location</keyword><keyword>Min</keyword><keyword>Other</keyword><keyword>Pattern</keyword><keyword>Point Pattern Analysis</keyword><keyword>Shortest</keyword><keyword>Summary</keyword><keyword>Total</keyword><keyword>X</keyword><keyword>Y</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MedianCenter" displayname="Median Center (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Identifies the location that minimizes overall Euclidean distance to the features in a dataset.</para>
+			
+		</summary><alink_name>MedianCenter_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/MedianCenter_stats_v.gif" alt="Median Center illustration" /><toolIllust type="illustration" src="MedianCenter_stats_h.gif" alt="Median Center illustration" /><parameters><param sync="true" name="Input_Feature_Class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="Input_Feature_Class" type="Required"><pythonReference>
+						<para>A feature class for which the median center will be calculated.</para>
+					</pythonReference><dialogReference>
+						<para>A feature class for which the median center will be calculated.</para>
+					</dialogReference></param><param sync="true" name="Output_Feature_Class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="Output_Feature_Class" type="Required"><pythonReference>
+						<para>A point feature class that will contain the features representing the median centers of the input feature class.</para>
+					</pythonReference><dialogReference>
+						<para>A point feature class that will contain the features representing the median centers of the input feature class.</para>
+					</dialogReference></param><param sync="true" name="Weight_Field" displayname="Weight Field" datatype="Field" direction="Input" expression="Weight_Field" type="Optional"><pythonReference>
+						<para>The numeric field used to create a weighted median center.</para>
+					</pythonReference><dialogReference>
+						<para>The numeric field used to create a weighted median center.</para>
+					</dialogReference></param><param sync="true" name="Case_Field" displayname="Case Field" datatype="Field" direction="Input" expression="Case_Field" type="Optional"><pythonReference>
+						<para>Field used to group features for separate median center calculations. The case field can be of integer, date, or string type.</para>
+					</pythonReference><dialogReference>
+						<para>Field used to group features for separate median center calculations. The case field can be of integer, date, or string type.</para>
+					</dialogReference></param><param sync="true" name="Attribute_Field" displayname="Attribute Field(s)" datatype="Field" direction="Input" expression="Attribute_Field" type="Optional"><pythonReference>
+						<para>Numeric field(s) for which the data median value will be computed.</para>
+					</pythonReference><dialogReference>
+						<para>Numeric field(s) for which the data median value will be computed.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_coordinate_system" label="Output coordinate system">Feature geometry is projected to the Output Coordinate System prior to analysis. All mathematical computations are based on the Output Coordinate System spatial reference.</environment><environment name="Current_workspace" label="Current workspace"></environment><environment name="Qualified_field_names" label="Qualified field names"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Output_has_M_values" label="Output has M values"></environment><environment name="Output_has_Z_values" label="Output has Z values"></environment><environment name="Default_output_Z_value" label="Default output Z value"></environment></environments><usage><bullet_item>
+				<para>While the  tool returns a point at the average X and average Y coordinate for all feature centroids, the median center uses an iterative algorithm to find the point that minimizes Euclidean distance to all features in the dataset.</para>
+			</bullet_item><bullet_item>
+				<para>Both the  and Median Center are measures of central tendency. The algorithm for the Median Center tool is less influenced by data outliers.</para>
+			</bullet_item><bullet_item><para>Calculations based on feature distances require  to accurately measure distances.</para></bullet_item><bullet_item>
+				<para>For line and polygon features, feature centroids are used in distance computations. For multipoints, polylines, or polygons with multiple parts, the centroid is computed using the weighted mean center of all feature parts. The weighting for point features is 1, for line features is length, and for polygon features is area.</para>
+			</bullet_item><bullet_item>
+				<para>The Case Field is used to group features for separate median center computations.  When a Case Field is specified, the input features are first grouped according to case field values, and then a median center is calculated for each group.  The case field can be of integer, date, or string type, and will appear as an attribute in the Output Feature Class.</para>
+			</bullet_item><bullet_item>
+				<para>The x and y values for the median center feature(s) are attributes in the output feature class. The values are stored in the fields XCOORD and YCOORD.</para>
+			</bullet_item><bullet_item>
+				<para>The data median will be computed for all fields specified in the Attribute Field(s) parameter.</para>
+			</bullet_item><bullet_item>
+				<para>Map layers can be used to define the Input Feature Class. When using a layer with a selection, only the selected features are included in the analysis.</para>
+			</bullet_item><bullet_item>
+				
+					<para>When using shapefiles, keep in mind that they cannot store null values. Tools or other procedures that create shapefiles from non-shapefile inputs may store or interpret null values as zero. This can lead to unexpected results.  See also .</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>MedianCenter Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the MedianCenter tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = r"C:\data"
+arcpy.MedianCenter_stats("coffee_shops.shp", "coffee_MEDIANCENTER.shp", "NUM_EMP", "#", "#")
+                    </code></scriptExample><scriptExample><title>MedianCenter Example (Stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the MedianCenter tool.</para>
+				<code xml:space="preserve">
+# Measure geographic distribution characteristics of coffee house locations weighted by the number of employees
+ 
+# Import system modules
+import arcpy
+ 
+# Local variables...
+workspace = "C:/data"
+input_FC = "coffee_shops.shp"
+CF_output = "coffee_CENTRALFEATURE.shp"
+MEAN_output = "coffee_MEANCENTER.shp"
+MED_output = "coffee_MEDIANCENTER.shp"
+weight_field = "NUM_EMP"
+ 
+try:
+    # Set the workspace to avoid having to type out full path names
+    arcpy.env.workspace = workspace
+ 
+    # Process: Central Feature...
+    arcpy.CentralFeature_stats(input_FC, CF_output, "Euclidean Distance", weight_field, "#", "#")
+ 
+    # Process: Mean Center...
+    arcpy.MeanCenter_stats(input_FC, MEAN_output, weight_field, "#", "#")
+
+    # Process: Median Center...
+    arcpy.MedianCenter_stats(input_FC, MED_output, weight_field, "#", "#")
+ 
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

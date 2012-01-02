@@ -1,0 +1,107 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Update (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Replaces the input coverage areas with the update coverage polygons using a cut and paste operation.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Coverage</keyword><keyword>Overlay</keyword><keyword>Update</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Update" displayname="Update (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Replaces the input coverage areas with the update coverage polygons using a cut and paste operation.</para>
+			
+		</summary><alink_name>Update_arc</alink_name><toolIllust type="illustration" src="Update_arc_h.gif" alt="Update illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage containing polygons to be updated.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage containing polygons to be updated.</para>
+					</dialogReference></param><param sync="true" name="update_cover" displayname="Update Coverage" datatype="Coverage" direction="Input" expression="update_cover" type="Required"><pythonReference>
+						<para>The coverage whose polygons will replace input coverage areas.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage whose polygons will replace input coverage areas.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The coverage to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage to be created.</para>
+					</dialogReference></param><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Optional"><pythonReference>
+						<para>The set of feature classes to be updated.</para>
+						<bulletList><bullet_item>POLY—Polygons and PAT values are updated. This is the default option. </bullet_item><bullet_item>NET—Polygons and arcs, as well as PAT and AAT values, are updated. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The set of feature classes to be updated.</para>
+						<bulletList><bullet_item>POLY—Polygons and PAT values are updated. This is the default option. </bullet_item><bullet_item>NET—Polygons and arcs, as well as PAT and AAT values, are updated. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="fuzzy_tolerance" displayname="Fuzzy Tolerance" datatype="Double" direction="Input" expression="fuzzy_tolerance" type="Optional"><pythonReference>
+						<para>The minimum distance between coordinates in the output coverage. By default, the minimum fuzzy tolerance value from the input and erase coverages is used.</para>
+						
+					</pythonReference><dialogReference>
+						<para>The minimum distance between coordinates in the output coverage. By default, the minimum fuzzy tolerance value from the input and erase coverages is used.</para>
+						
+					</dialogReference></param><param sync="true" name="keep_border" displayname="Keep outside border of update features in the output" datatype="Boolean" direction="Input" expression="keep_border" type="Optional"><pythonReference>
+						<para>Specifies whether the outside border of the update coverage will be kept after it is inserted into the input coverage.</para>
+						<bulletList><bullet_item>KEEP_BORDER—The outside border of the update coverage will be kept in the output coverage. This is the default option. </bullet_item><bullet_item>DROP_BORDER—The outside border of the update coverage is dropped after the update coverage is inserted into the input coverage. Item values of the update polygons take precedence over input coverage item values in the output coverage. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether the outside border of the update coverage will be kept after it is inserted into the input coverage.</para>
+						<bulletList>
+							<bullet_item>Checked—The outside border of the update coverage will be kept in the output coverage. This is the default option. </bullet_item>
+							<bullet_item>Unchecked—The outside border of the update coverage is dropped after the update coverage is inserted into the input coverage. Item values of the update polygons take precedence over input coverage item values in the output coverage. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Before using UPDATE, the following conditions must be met:<bulletList>
+						<bullet_item>Item definitions past the User-ID must be the same for the input and update coverages. This includes redefined items.</bullet_item>
+						<bullet_item>Annotation subclasses and their attribute definitions must be identical. Blank annotation subclasses are ignored.</bullet_item>
+						<bullet_item>Section subclasses and their attribute definitions must be identical.</bullet_item>
+						<bullet_item>Region subclasses with the same name must have the same attribute definitions.</bullet_item>
+					</bulletList></para>
+			</bullet_item><bullet_item>
+				<para>The input coverage and the update coverage must have polygon topology.</para>
+			</bullet_item><bullet_item>
+				<para>The item definitions for items past the User-ID in the input coverage and update coverage feature attribute tables must match exactly, including redefined items. The input coverage and update coverage items are joined to the output coverage attribute table using the old polygon internal number as the relate item.</para>
+			</bullet_item><bullet_item>
+				<para>New label point positions are only generated for the output coverage polygons when necessary. The User-ID for each polygon is equal to its old input coverage User-ID (the update coverage User-ID for updated polygons). Thus, you should attempt to make the User-ID values in the input coverage different from User-ID values in the update coverage to avoid having duplicate User-IDs in the output coverage.</para>
+			</bullet_item><bullet_item>
+				<para>UPDATE maintains all route system subclasses. If a Section (SEC) subclass is present on either coverage, then it must be present on both, and it must have identical item definitions. Route systems attached to update arcs are retained. Route systems attached to input arcs are retained if they survive. UPDATE manages route systems like an , followed by an , then a .</para>
+			</bullet_item><bullet_item>
+				<para>If DROP_BORDER is used, polygon boundaries along the outer edge of the update coverage are dropped. Even though the outer boundaries of some update polygons are dropped, the item values for the update polygons that overlap input coverage polygons will be assigned to the polygons in the output coverage. The DROP_BORDER option is not recommended for region coverages because of the possibility that some output regions may not be maintained.</para>
+			</bullet_item><bullet_item>
+				<para>Annotation features are updated by identifying and deleting the set of input coverage annotation whose lower left starting points fall within an update coverage polygon. Update coverage annotation is then appended for all annotation subclasses present in the output coverage. Both coverages must have identical sets of annotation subclasses with the exception of blank annotation classes, which can be either present or absent. Where subclasses have attributes, they must have identical attribute definitions.</para>
+			</bullet_item><bullet_item>
+				<para>If the update coverage contains nodes on its border that are coincident with nodes in the input coverage, the update coverage nodes are maintained. The only exception is if the input coverage node contains data in the NAT and the update coverage node does not have an NAT.</para>
+			</bullet_item><bullet_item>
+				<para>Region subclasses are updated with both the POLY and NET options. All regions are maintained with the KEEP_BORDER option only. The DROP_BORDER option does not maintain all regions and, therefore, is not recommended when updating region coverages.</para>
+			</bullet_item><bullet_item>
+				<para>The input coverage and update coverage region subclasses may be the same or different. When the subclasses are the same, they must have the same item definitions.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of the output coverage is determined by the  environment.</para>
+			</bullet_item><bullet_item>
+				<para>Projection files will be compared for similarity using the level of comparison specified in the  environment.</para>
+			</bullet_item><bullet_item>
+				<para>The output coverage inherits the items from the point attribute table, tics, and the projection file data model contents from the input coverage.</para>
+			</bullet_item><bullet_item>
+				<para>When the input coverage contains linear data belonging to different planar graphs, the data will be maintained in the output coverage. For example, with coincident or colinear arcs such as arcs representing utility cables at different levels or a road following a stream, the coincident and colinear line segments will be preserved. However, additional vertices may be inserted. In the case of intersecting arcs such as a road passing over a stream, nodes will not be inserted at the apparent intersection.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Update example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the Update tool.</para>
+				<code xml:space="preserve"># Name: Update_Example.py
+# Description: Updates a coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "c3zone4"
+updateCover = "newsub"
+outCover = "C:/output/newc3zone4"
+featureType = "POLY"
+
+# Execute Update
+arcpy.Update_arc(inCover, updateCover, outCover, featureType, "", "")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,87 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Polygon Volume (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the volumetric and surface area between polygons of an input feature class and a terrain dataset or TIN surface.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D</keyword><keyword>Points</keyword><keyword>Surface</keyword><keyword>Surface Analysis</keyword><keyword>Surface Area</keyword><keyword>Terrain Dataset</keyword><keyword>Terrains</keyword><keyword>Tin</keyword><keyword>Volume</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PolygonVolume" displayname="Polygon Volume (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Calculates the volumetric and surface area between polygons of an input feature class and a terrain dataset or TIN surface.</para>
+			
+		</summary><alink_name>PolygonVolume_3d</alink_name><parameters><param sync="true" name="in_surface" displayname="Input Surface" datatype="Tin Layer | Terrain Layer" direction="Input" expression="in_surface" type="Required"><pythonReference>
+						<para>The input Terrain dataset or TIN surface.</para>
+					</pythonReference><dialogReference>
+						<para>The input Terrain dataset or TIN surface.</para>
+					</dialogReference></param><param sync="true" name="in_feature_class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_feature_class" type="Required"><pythonReference>
+						<para>The input polygon feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The input polygon feature class.</para>
+					</dialogReference></param><param sync="true" name="in_height_field" displayname="Height Field" datatype="String" direction="Input" expression="in_height_field" type="Required"><pythonReference>
+						<para>The name of the field containing polygon reference plane heights.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the field containing polygon reference plane heights.</para>
+					</dialogReference></param><param sync="true" name="reference_plane" displayname="Reference Plane" datatype="String" direction="Output" expression="reference_plane" type="Optional"><pythonReference>
+						<para>The keyword used to indicate whether volume and surface area are calculated ABOVE the reference plane height of the polygons, or BELOW. The default is BELOW.</para>
+					</pythonReference><dialogReference>
+						<para>The keyword used to indicate whether volume and surface area are calculated ABOVE the reference plane height of the polygons, or BELOW. The default is BELOW.</para>
+					</dialogReference></param><param sync="true" name="out_volume_field" displayname="Volume Field" datatype="String" direction="Output" expression="out_volume_field" type="Optional"><pythonReference>
+						<para>The name of the output field used to store the volume result. The default is Volume.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output field used to store the volume result. The default is Volume.</para>
+					</dialogReference></param><param sync="true" name="surface_area_field" displayname="Surface Area Field" datatype="String" direction="Output" expression="surface_area_field" type="Optional"><pythonReference>
+						<para>The name of the output field used to store the surface area result. The default is SArea.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output field used to store the surface area result. The default is SArea.</para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Double" direction="Input" expression="pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The pyramid level resolution of the terrain dataset to use for interpolation. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The pyramid level resolution of the terrain dataset to use for interpolation. The default is 0, full resolution.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input polygons and the TIN or terrain dataset surface need to overlap in horizontal extent in order for surface area or volume to be calculated.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Polygon Volume Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Polygon Volume
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.PolygonVolume_3d("sample.gdb/featuredataset/terrain", "polygon.shp", "&lt;None&gt;", "ABOVE", "Volume", "SArea", "5")
+                    </code></scriptExample><scriptExample><title>Polygon Volume Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Polygon Volume
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: PolygonVolume Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              PolygonVolume tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Set Local Variables
+    inSurface = "sample.gdb/featuredataset/terrain"
+    inPoly = "floodplain_100.shp"
+    zField = "Height"
+    refPlane = "BELOW"
+    volFld = "Volume"
+    sAreaFld = "SArea"
+    
+    #Execute PolygonVolume
+    arcpy.PolygonVolume_3d(inSurface, inPoly, zField, refPlane, 
+                           volFld, sAreaFld)
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

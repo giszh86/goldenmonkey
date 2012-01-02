@@ -1,0 +1,192 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Update Diagram (Schematics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Updates a schematic diagram. Depending on the schematic builder, the diagram update can be based on feature layers, feature classes, object tables, a solved network analysis, or an XML file.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Diagram</keyword><keyword>Rebuild</keyword><keyword>Refresh</keyword><keyword>Schema</keyword><keyword>Schematic</keyword><keyword>Synchronize</keyword><keyword>Update</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="UpdateDiagram" displayname="Update Diagram (Schematics)" toolboxalias="schematics" softwarerestriction="none"><summary>
+			<para>Updates a schematic diagram. Depending on the schematic builder, the diagram update can be based on feature layers, feature classes, object tables, a solved network analysis, or an XML file.</para>
+		</summary><alink_name>UpdateDiagram_schematics</alink_name><parameters><param sync="true" name="in_diagram" displayname="Input Schematic Diagram" datatype="Schematic Diagram; Schematic Layer" direction="Input" expression="in_diagram" type="Required"><pythonReference>
+						<para> The schematic diagram to be updated. </para>
+					</pythonReference><dialogReference>
+						<para> The schematic diagram to be updated. </para>
+					</dialogReference></param><param sync="true" name="in_data" displayname="Input Data" datatype="TableView; Layer; Data Element" direction="Input" expression="[in_data,...]" type="Optional"><pythonReference>
+						<para> The input data on which the diagram update will be based. </para>
+						<para>The Input Data parameter is not required for all predefined builders; it's an optional parameter: <bulletList>
+								<bullet_item>For diagram templates that work with the Standard builder configured to operate from custom queries, no input tables must be set.</bullet_item>
+								<bullet_item>For diagram templates that work with the XML builder, the Input Data parameter must reference an XML file.</bullet_item>
+								<bullet_item>For diagram templates that work with the Network Dataset builder, the input data must be specified. It must reference a unique network analyst layer. If the related network analysis is not  performed, Schematics tries to perform it before using the solved analysis layer as input.</bullet_item>
+								<bullet_item>For diagram templates that work with the Standard builder configured to operate from geometric networks, when the Input Data parameter is not specified, the Update Diagram tool works from the initial set of features/objects used to generate the diagram or from the updated trace result based on the trace parameters that persisted in the schematic database if the diagram was generated from a highlighted trace. When the Input Data parameter is specified, it must reference at least a feature layer, feature class, or object table so the update operates on this data according to the Builder Options value.</bullet_item>
+							</bulletList></para>
+					</pythonReference><dialogReference>
+						<para> The input data on which the diagram update will be based. </para>
+						<para>The Input Data parameter is not required for all predefined builders; it's an optional parameter: <bulletList>
+								<bullet_item>For diagram templates that work with the Standard builder configured to operate from custom queries, no input tables must be set.</bullet_item>
+								<bullet_item>For diagram templates that work with the XML builder, the Input Data parameter must reference an XML file.</bullet_item>
+								<bullet_item>For diagram templates that work with the Network Dataset builder, the input data must be specified. It must reference a unique network analyst layer. If the related network analysis is not  performed, Schematics tries to perform it before using the solved analysis layer as input.</bullet_item>
+								<bullet_item>For diagram templates that work with the Standard builder configured to operate from geometric networks, when the Input Data parameter is not specified, the Update Diagram tool works from the initial set of features/objects used to generate the diagram or from the updated trace result based on the trace parameters that persisted in the schematic database if the diagram was generated from a highlighted trace. When the Input Data parameter is specified, it must reference at least a feature layer, feature class, or object table so the update operates on this data according to the Builder Options value.</bullet_item>
+							</bulletList></para>
+					</dialogReference></param><param sync="true" name="builder_options" displayname="Builder Options" datatype="String" direction="Input" expression="[builder_options,...]" type="Optional"><pythonReference>
+						<para> The schematic builder update options. Update options are optional. They depend on the builder related to the diagram template that implements the specified schematic diagram.</para>
+						<para>Diagrams generated from custom queries (Standard builder):  KEEP_MANUAL_MODIF or NO_KEEP_MANUAL_MODIF.</para>
+						<para>Diagrams generated from XML data (XML builder):  KEEP_MANUAL_MODIF or NO_KEEP_MANUAL_MODIF. </para>
+						<para>Diagrams generated from  solver results on network datasets (Network Dataset builder): MERGE_NODES or NO_MERGE_NODES,  KEEP_MANUAL_MODIF or NO_KEEP_MANUAL_MODIF</para>
+						<para>Diagrams generated from features organized into a geometric network (Standard builder): REBUILD or APPEND,  KEEP_MANUAL_MODIF or NO_KEEP_MANUAL_MODIF. </para>
+						<bulletList><bullet_item>KEEP_MANUAL_MODIF—Default option. Use this if you want the schematic features that have been removed/reduced from the diagram to not reappear and the edited connections to be kept in the updated diagram.</bullet_item><bullet_item>NO_KEEP_MANUAL_MODIF—Use this if you want those removed/reduced schematic features and the reconnected schematic feature links to be restored after the update.</bullet_item><bullet_item>NO_MERGE_NODES—Default option for diagrams based on the Network Dataset builder. Use it so no schematic feature node is merged in the updated diagram. </bullet_item><bullet_item>MERGE_NODES—Option available for diagrams based on the Network Dataset builder. Use it so network element junctions that occur several times along the resultant route of a route analysis can be represented by a single schematic feature node in the updated schematic diagram. This option also allows you to merge midspan junction elements when they are at the same position in the case of a service area analysis.</bullet_item><bullet_item>REBUILD—Default option available for diagrams based on the Standard builder when input data is set. Use this option if you want the specified schematic diagram to be completely rebuilt according to the specified input feature layers, feature classes, or object tables.</bullet_item><bullet_item>APPEND—Option available for diagrams based on the Standard builder when input data is set. Use this option if you want to keep all the schematic features that have been initially used to generate the specified schematic diagram; add schematic objects associated with the specified input feature layers, feature classes, or object tables; and update all the diagram content </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> The schematic builder update options. Update options are optional. They depend on the builder related to the diagram template that implements the specified schematic diagram.</para>
+						<para>Diagrams generated from custom queries (Standard builder):  KEEP_MANUAL_MODIF or NO_KEEP_MANUAL_MODIF.</para>
+						<para>Diagrams generated from XML data (XML builder):  KEEP_MANUAL_MODIF or NO_KEEP_MANUAL_MODIF. </para>
+						<para>Diagrams generated from  solver results on network datasets (Network Dataset builder): MERGE_NODES or NO_MERGE_NODES,  KEEP_MANUAL_MODIF or NO_KEEP_MANUAL_MODIF</para>
+						<para>Diagrams generated from features organized into a geometric network (Standard builder): REBUILD or APPEND,  KEEP_MANUAL_MODIF or NO_KEEP_MANUAL_MODIF. </para>
+						<bulletList><bullet_item>KEEP_MANUAL_MODIF—Default option. Use this if you want the schematic features that have been removed/reduced from the diagram to not reappear and the edited connections to be kept in the updated diagram.</bullet_item><bullet_item>NO_KEEP_MANUAL_MODIF—Use this if you want those removed/reduced schematic features and the reconnected schematic feature links to be restored after the update.</bullet_item><bullet_item>NO_MERGE_NODES—Default option for diagrams based on the Network Dataset builder. Use it so no schematic feature node is merged in the updated diagram. </bullet_item><bullet_item>MERGE_NODES—Option available for diagrams based on the Network Dataset builder. Use it so network element junctions that occur several times along the resultant route of a route analysis can be represented by a single schematic feature node in the updated schematic diagram. This option also allows you to merge midspan junction elements when they are at the same position in the case of a service area analysis.</bullet_item><bullet_item>REBUILD—Default option available for diagrams based on the Standard builder when input data is set. Use this option if you want the specified schematic diagram to be completely rebuilt according to the specified input feature layers, feature classes, or object tables.</bullet_item><bullet_item>APPEND—Option available for diagrams based on the Standard builder when input data is set. Use this option if you want to keep all the schematic features that have been initially used to generate the specified schematic diagram; add schematic objects associated with the specified input feature layers, feature classes, or object tables; and update all the diagram content </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>The Input Data parameter is mandatory for diagrams working with the  and . It is optional for diagrams working with the . It must not be specified for diagrams that work with the .</para>
+			</bullet_item><bullet_item>
+				<para>When using the Update Diagram tool on diagrams implemented by the  that have been generated from a trace, the update operates from the updated trace result based on the trace parameters that persisted in the schematic dataset the first time the diagram was generated from a highlighted trace.</para>
+			</bullet_item><bullet_item>
+				<para>When the update must operate from features that compose a geometric network, it is not necessary to specify all the feature layers in the Input Data parameter. If the Add connected nodes option is specified for the Standard builder properties, only the feature layers related to edge features can be specified, even if all the feature layers related to the geometric network (junctions and edges) will be used for update.</para>
+			</bullet_item><bullet_item>
+				<para>If a particular layout was saved for the specified schematic diagram, the schematic features that were in the diagram before updating are displayed according to their last saved position, and new schematic features that may have been introduced during the update are positioned at their geographic coordinates.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Sample 1: UpdateDiagram and Standard builder working from custom queries</title>
+					<para>Update a schematic diagram entirely built from custom queries. In this case, only the diagram name parameter is required.</para>
+				<code xml:space="preserve"># Name: UpdateDiagramCustomQuery.py
+# Description: Update a schematic diagram entirely built from custom queries
+# Author: ESRI
+
+# import system modules
+import arcpy
+msgNoLicenseAvailable = "Schematics license required"
+
+try:
+	# Check out the ArcGIS Schematic extension license
+	if arcpy.CheckExtension("Schematics") == "Available":
+		arcpy.CheckOutExtension("Schematics")
+	else:
+		raise Exception(msgNoLicenseAvailable)
+	
+	# Set environment settings
+	arcpy.OverWriteOutput = True
+	arcpy.env.workspace = "C:\ArcGIS\ArcTutor\Schematics\Schematics_In_ArcMap\ElecDemo.gdb"
+
+	#Process: Update the 'Substation 08' schematic diagram.
+	arcpy.UpdateDiagram_schematics("ElecDemo\Inside Plants\Substation 08")
+
+	# Returns the schematic license
+	arcpy.CheckInExtension("Schematics")
+
+except Exception as exc:
+		print exc
+                    </code></scriptExample><scriptExample><title>Sample 2: UpdateDiagram and Standard builder working on geometric network data</title>
+					<para>Update schematic diagrams built from features organized into a geometric network.</para>
+				<code xml:space="preserve"># Name: UpdateDiagramStd.py
+# Description: Update schematic diagrams built from features organized into a geometric network
+# Author: ESRI
+
+# import system modules
+import arcpy
+msgNoLicenseAvailable = "Schematics license required"
+
+try:
+	# Check out the ArcGIS Schematic extension license
+	if arcpy.CheckExtension("Schematics") == "Available":
+		arcpy.CheckOutExtension("Schematics")
+	else:
+		raise Exception(msgNoLicenseAvailable)
+	
+	# Set environment settings
+	arcpy.OverWriteOutput = True
+	arcpy.env.workspace = "C:\ArcGIS\ArcTutor\Schematics\Schematics_In_ArcMap\ElecDemo.gdb"
+
+	#Process: CreateDiagram from the Feeder feature class: A diagram containing schematic features associated with each GIS feature stored in that feature class will be created.
+	arcpy.CreateDiagram_schematics("ElecDemo", "FeederDiagram", "GeoSchematic", "ElectricNetwork\Feeder")
+
+	#Process: CreateDiagram based on all the edge feature classes contained in a geometric network. A diagram containing schematic features associated with all the GIS features in that geometric network will be created.
+	arcpy.CreateDiagram_schematics("ElecDemo", "ElectricNetworkDiagram", "GeoSchematic", "ElectricNetwork\PrimaryLine;ElectricNetwork\SecondaryLine")
+
+	#Process: CreateDiagram based on all primary lines Phase ABC
+	# 1) Create a layer with the selection 
+	InputLayer = arcpy.MakeFeatureLayer_management(r'ElectricNetwork\PrimaryLine',"PrimaryLineLayer", "[PHASECODE] =135")
+	# 2) Use the layer as input of CreateDiagram
+	arcpy.CreateDiagram_schematics("ElecDemo", "ElectricMainNetworkDiagram", "GeoSchematic", InputLayer)
+
+	#Process: Updating the FeederDiagram diagram without optional parameter: the update operates from the initial feature set used to initially generate the specified schematic diagram or from the updated trace result based on the trace parameters that were persisted in the schematic database if the diagram was generated from an highlighted trace.
+	arcpy.UpdateDiagram_schematics("ElecDemo\FeederDiagram")
+
+	#Process: Update the ElectricNetworkDiagram-With Removed diagram with the KEEP_MANUAL_MODIF optional parameter: the update operates from the initial feature set used to initially generate the specified schematic diagram or from the updated trace result based on the trace parameters that persisted in the schematic database if the diagram was generated from an highlighted trace, schematic features that have been manually reduced or removed, and schematic feature links that have been reconnected in the diagram after its generation being kept as removed/reduced/reconnected schematic features.
+	arcpy.UpdateDiagram_schematics("ElecDemo\ElectricNetworkDiagram-WithRemoved", "#", "KEEP_MANUAL_MODIF")
+
+	#Process: Update the ElectricNetworkDiagram diagram using a set of feature classes to rebuild it.
+	arcpy.UpdateDiagram_schematics("ElecDemo\ElectricNetworkDiagram", "ElectricNetwork\PrimaryLine;ElectricNetwork\SecondaryLine", "REBUILD")
+
+	#Process: UpdateDiagram on the FeederDiagramBIS diagram by appending new features
+	arcpy.UpdateDiagram_schematics("ElecDemo\FeederDiagramBIS", "ElectricNetwork\Substation", "APPEND")
+
+	#Process: Update the ElectricMainNetworkDiagram diagram using an updated selection of features
+	InputLayer = arcpy.MakeFeatureLayer_management(r'ElectricNetwork\PrimaryLine',"PrimaryLineLayer", "[PHASECODE] =135")
+	arcpy.UpdateDiagram_schematics("ElecDemo\ElectricMainNetworkDiagram", InputLayer, "REBUILD")
+	
+	# Returns the schematic license
+	arcpy.CheckInExtension("Schematics")
+
+except Exception as exc:
+		print exc
+                    </code></scriptExample><scriptExample><title>Sample 3: UpdateDiagram and XML builder</title>
+					<para>Update a schematic diagram based on the XML builder.</para>
+				<code xml:space="preserve"># Name: UpdateDiagramXML.py
+# Description: Update schematic diagrams based on the XML builder
+# Author: ESRI
+
+# import system modules
+import arcpy
+msgNoLicenseAvailable = "Schematics license required"
+
+try:
+	# Check out the ArcGIS Schematic extension license
+	if arcpy.CheckExtension("Schematics") == "Available":
+		arcpy.CheckOutExtension("Schematics")
+	else:
+		raise Exception(msgNoLicenseAvailable)
+	
+	# Set environment settings
+	arcpy.OverWriteOutput = True
+	arcpy.env.workspace = "C:\ArcGIS\ArcTutor\Schematics\Schematics_Configuration\XML_Data\GISDatabaseForXML.gdb"
+
+	#Process: Update the XMLDiagramSample diagram from the SampleTutorialData.xml file based on the XMLBuilderDiagram XML Schema file
+	arcpy.UpdateDiagram_schematics("XMLSampleSchDataset\XMLDiagramSample", "C:\ArcGIS\ArcTutor\Schematics\Schematics_Configuration\XML_Data\SampleNetworkUpdatedFeeder1.xml")
+
+	# Returns the schematic license
+	arcpy.CheckInExtension("Schematics")
+
+	# Returns the schematic license
+	arcpy.CheckInExtension("Schematics")
+
+except Exception as exc:
+		print exc
+                    </code></scriptExample><scriptExample><title>Sample 4: UpdateDiagram and Network Dataset builder</title>
+					<para>Update schematic diagrams based on the Network Dataset builder.</para>
+				<code xml:space="preserve"># Name: UpdateDiagramNDS.py
+# Description: Update schematic diagrams based on the Network Dataset builder
+# Author: ESRI
+
+# import system modules
+import arcpy
+msgNoLicenseAvailable = "Schematics license required"
+
+try:
+	# Check out the ArcGIS Schematic extension license
+	if arcpy.CheckExtension("Schematics") == "Available":
+		arcpy.CheckOutExtension("Schematics")
+	else:
+		raise Exception(msgNoLicenseAvailable)
+	
+	# Set environment settings
+	arcpy.OverWriteOutput = True
+	arcpy.env.workspace = "C:\ArcGIS\ArcTutor\Schematics\Schematics_Configuration\Network_Dataset\NetworkAnalyst_Schematics.gdb"
+
+	#Solving the Route network analysis layer
+	arcpy.solve("Route", "HALT")
+
+	#Process: Update the DiagramRoute1_MERGED and DiagramRoute1_NOTMERGED diagrams from the solved Route network analysis layer
+	arcpy.UpdateDiagram_schematics("NA_SchematicDataset\DiagramRoute1_MERGED", "Route", "MERGE_NODES")
+	arcpy.UpdateDiagram_schematics("NA_SchematicDataset\DiagramRoute1_NOTMERGED", "Route", "NO_MERGE_NODES")
+
+except Exception as exc:
+		print exc
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Bitwise Not (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs a Bitwise Not (complement) operation on the binary value of an input raster.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Binary</keyword><keyword>Binary Representation</keyword><keyword>Complement</keyword><keyword>Flags</keyword><keyword>Math</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BitwiseNot" displayname="Bitwise Not (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Performs a Bitwise Not (complement) operation on the binary value of an input raster.</para>
+			
+		</summary><alink_name>BitwiseNot_sa</alink_name><toolIllust type="illustration" src="BitwiseNot_sa_h.png" alt="Bitwise Not illustration" /><parameters><param sync="true" name="in_raster_or_constant" displayname="Input raster or constant value" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant" type="Required"><pythonReference><para>The input raster on which to perform the Bitwise Not (complement) operation.</para><para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference><para>The input raster on which to perform the Bitwise Not (complement) operation.</para><para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>The cell values are the result of a Bitwise Not operation on the input.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>The cell values are the result of a Bitwise Not operation on the input.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para>If an input is floating-point, the values are converted to integer values through truncation before the bitwise operation is performed.</para></bullet_item><bullet_item><para>In bitwise operations:<bulletList><bullet_item>Binary values are stored in two's complement.</bullet_item><bullet_item>The tools work on 32-bit integers.</bullet_item><bullet_item>The leftmost bit position is reserved for the sign (positive or negative) of the value. If the integer is positive, the bit position is 0; if it's negative, the bit position is 1.</bullet_item></bulletList></para></bullet_item><bullet_item>
+				<para>The Bitwise Not operation treats the sign bit as it would any other bit. If the input for a cell location is negative, the output is negative; if the input is positive, the output is positive.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>BitwiseNot example 1 (Python window)</title>
+					<para>This example performs a Bitwise Not operation on an input GRID raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outBitwiseNot = BitwiseNot("degs")
+outBitwiseNot.save("C:/sapyexamples/output/outbitn")
+                    </code></scriptExample><scriptExample><title>BitwiseNot example 2 (stand-alone script)</title>
+					<para>This example performs a Bitwise Not operation on an input GRID raster.</para>
+				<code xml:space="preserve"># Name: BitwiseNot_Ex_02.py
+# Description: Performs a Bitwise Complement operation on the
+#              binary value of an input raster
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "degs"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute BitwiseNot
+outBitwiseNot = BitwiseNot(inRaster)
+
+# Save the output 
+outBitwiseNot.save("C:/sapyexamples/output/outbitnot")
+                    </code></scriptExample></scriptExamples></tool></metadata>

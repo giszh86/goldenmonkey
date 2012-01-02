@@ -1,0 +1,83 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Nibble (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Replaces cells of a raster corresponding to a mask with the values of the nearest neighbors.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Clean</keyword><keyword>Erroneous</keyword><keyword>Generalize</keyword><keyword>Image Processing</keyword><keyword>Mask</keyword><keyword>Nearest</keyword><keyword>Neighbor</keyword><keyword>Nodata</keyword><keyword>Remove</keyword><keyword>Salt And Pepper</keyword><keyword>Simplify</keyword><keyword>Speckle</keyword><keyword>Zone</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Nibble" displayname="Nibble (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Replaces cells of a raster corresponding to a mask with the values of the nearest neighbors.</para>
+			
+		</summary><alink_name>Nibble_sa</alink_name><toolIllust type="illustration" src="Nibble_sa_h.png" alt="Nibble illustration" /><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster that will be nibbled.</para>
+						<para>It must be of integer type.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster that will be nibbled.</para>
+						<para>It must be of integer type.</para>
+					</dialogReference></param><param sync="true" name="in_mask_raster" displayname="Input raster mask" datatype="Raster Layer" direction="Input" expression="in_mask_raster" type="Required"><pythonReference>
+						<para>The raster used as the mask.</para>
+						<para>It must be of integer type.</para><para>Cells with NoData as their value will be nibbled in the in_raster.</para>
+					</pythonReference><dialogReference>
+						<para>The raster used as the mask.</para>
+						<para>It must be of integer type.</para><para>Cells with NoData as their value will be nibbled in the Input raster.</para></dialogReference></param><param sync="true" name="nibble_values" displayname="Use NoData values if they are the nearest neighbor" datatype="Boolean" direction="Input" expression="nibble_values" type="Optional"><pythonReference>
+						<para>Keywords defining if NoData values in the in_raster are allowed to nibble into the area defined by the in_mask_raster.</para>
+						<bulletList><bullet_item>ALL_VALUES — Specifies that the nearest neighbor value will be used whether it is NoData or another data value in the input raster. NoData values in the input raster are free to nibble into areas defined in the mask if they are the nearest neighbor.</bullet_item><bullet_item>DATA_ONLY —Specifies that only data values are free to nibble into areas defined in the mask raster. NoData values in the input raster  are not allowed to nibble into areas defined in the mask raster even if they are the nearest neighbor.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Defines if NoData values in the Input raster are allowed to nibble into the area defined by the Input raster mask.</para>
+						<bulletList>
+							<bullet_item>Checked—Specifies that the nearest neighbor value will be used whether it is NoData or another data value in the input raster. NoData values in the input raster are free to nibble into areas defined in the mask if they are the nearest neighbor.</bullet_item>
+							<bullet_item>Unchecked—Specifies that only data values are free to nibble into areas defined in the mask raster. NoData values in the input raster  are not allowed to nibble into areas defined in the mask raster even if they are the nearest neighbor.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output nibbled raster.</para><para>The identified input cells will be  replaced with the values of their nearest neighbors.</para>
+						</pythonReference><dialogReference>
+							<para>The output nibbled raster.</para><para>The identified input cells will be  replaced with the values of their nearest neighbors.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Cells in the input raster containing NoData are not nibbled. To nibble NoData, first convert it to another value.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Nibble example 1 (Python window)</title>
+					<para>This example replaces cells identified by the mask input with values determined by the nearest neighbors of the input raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+nibbleOut = Nibble("land", "snow", "DATA_ONLY")
+nibbleOut.save("C:/sapyexamples/output/nibbleout")
+                    </code></scriptExample><scriptExample><title>Nibble example 2 (stand-alone script)</title>
+					<para>This example replaces cells identified by the mask input with values determined by the nearest neighbors of the input raster.</para>
+				<code xml:space="preserve"># Name: Nibble_Ex_02.py
+# Description: Replaces cells of a raster corresponding to a mask 
+#              with the values of the nearest neighbors.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "land"
+inMask = "snow"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Nibble
+nibbleOut = Nibble(inRaster, inMask, "ALL_VALUES")
+
+# Save the output 
+nibbleOut.save("C:/sapyexamples/output/outnibble")
+                    </code></scriptExample></scriptExamples></tool></metadata>

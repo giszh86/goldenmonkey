@@ -1,0 +1,59 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Export To S57 (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts ArcC/Info coverages to S-57 object files.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc_S57Arc</keyword><keyword>Conversion Tools</keyword><keyword>Coverage</keyword><keyword>From Coverage</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ArcS57" displayname="Export To S57 (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Converts ArcC/Info coverages to S-57 object files.</para>
+		</summary><alink_name>ArcS57_arc</alink_name><parameters><param sync="true" name="in_workspace" displayname="Input Workspace" datatype="Folder ; Workspace" direction="Input" expression="in_workspace" type="Required"><pythonReference>
+						<para>The workspace containing the coverage to be converted (exported).</para>
+					</pythonReference><dialogReference>
+						<para>The workspace containing the coverage to be converted (exported).</para>
+					</dialogReference></param><param sync="true" name="log_file" displayname="Output Log File" datatype="File" direction="Output" expression="log_file" type="Required"><pythonReference>
+						<para>Contains the report of the export process.</para>
+					</pythonReference><dialogReference>
+						<para>Contains the report of the export process.</para>
+					</dialogReference></param><param sync="true" name="out_workspace" displayname="Output Workspace" datatype="Folder; Workspace" direction="Output" expression="out_workspace" type="Optional"><pythonReference>
+						<para>The folder that will contain the S-57 object files.</para>
+					</pythonReference><dialogReference>
+						<para>The folder that will contain the S-57 object files.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>S-57 is a data standard developed by the International Hydrographic Organization (IHO) to be used for the exchange of digital hydrographic data.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Log File will be created in the process and then holds the report of the export.</para>
+			</bullet_item><bullet_item>
+				<para>The Input Workspace in which the S-57 files are located must contain coverages or the directory cannot be selected.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ArcS57 example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to export a coverage to S-57 format.
+
+					</para>
+				<code xml:space="preserve"># Name: ArcS57_Example.py
+# Description: Export a coverage to S-57 format
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+input = "tongass1"
+logFile = "ArcS57_log.txt"
+outWorkspace = "C:/output/tongass_s57"
+
+# Execute ArcS57
+arcpy.ArcS57_arc(input, logFile, outWorkspace)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

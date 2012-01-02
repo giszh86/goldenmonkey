@@ -1,0 +1,97 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Moving Window Kriging (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Recalculates the Range, Nugget, and Partial Sill semivariogram parameters based on a smaller neighborhood, moving through all location points.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Esda</keyword><keyword>Estimate</keyword><keyword>Geostatistical Analyst</keyword><keyword>Geostatistics</keyword><keyword>Kriging</keyword><keyword>Moving Window Kriging</keyword><keyword>Predict</keyword><keyword>Window Kriging</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GAMovingWindowKriging" displayname="Moving Window Kriging (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Recalculates the Range, Nugget, and Partial Sill semivariogram parameters based on a smaller neighborhood, moving through all location points.</para>
+			</summary><alink_name>GAMovingWindowKriging_ga</alink_name><parameters><param sync="true" name="in_ga_model_source" displayname="Geostatistical model source" datatype="Geostatistical Layer ; Geostatistical Model" direction="Input" expression="in_ga_model_source" type="Required"><pythonReference>
+						<para>The geostatistical model source to be analyzed.</para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical model source to be analyzed.</para>
+					</dialogReference></param><param sync="true" name="in_datasets" displayname="Input dataset(s)" datatype="Geostatistical Value Table" direction="Input" expression="[in_dataset,...]" type="Required"><pythonReference>
+						<para>Input dataset(s) displays two pieces:</para>
+						<bulletList>
+							<bullet_item>Dataset — The path and the name of the input data.</bullet_item>
+							<bullet_item>Field — The name of the required field.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>The name of the input dataset(s) and field name(s) used in the creation of the output layer.</bullet_item>
+						</bulletList>
+						<bulletList>
+							<bullet_item> When checked, the  Always reset input datasets when the geostatistical model source changes parameter ensures when a different geostatistical model source is specified its associated dataset(s) are automatically inserted into the tool. If unchecked and the geostatistical model source is changed, the displayed input dataset(s) remain unchanged. This can lead to problems if the model is incompatible with the dataset, for example, a model was created to predict temperature and a new dataset with rainfall data is specified.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="in_locations" displayname="Point observation locations" datatype="Feature Layer" direction="Input" expression="in_locations" type="Required"><pythonReference>
+						<para>Point  locations where predictions or validations will be performed.</para>
+					</pythonReference><dialogReference>
+						<para>Point  locations where predictions or validations will be performed.</para>
+					</dialogReference></param><param sync="true" name="neighbors_max" displayname="Neighbors to include" datatype="Long" direction="Input" expression="neighbors_max" type="Required"><pythonReference>
+						<para>Number of neighbors to use in the moving window.</para>
+					</pythonReference><dialogReference>
+						<para>Number of neighbors to use in the moving window.</para>
+					</dialogReference></param><param sync="true" name="out_featureclass" displayname="Output feature class" datatype="Feature Class" direction="Output" expression="out_featureclass" type="Required"><pythonReference>
+						<para>Feature class storing the results.</para>
+					</pythonReference><dialogReference>
+						<para>Feature class storing the results.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="out_surface_grid" displayname="Output surface raster" datatype="Raster Dataset" direction="Output" expression="out_surface_grid" type="Optional"><pythonReference>
+						<para>The Prediction values in the output feature class are interpolated onto a raster using the Local Polynomial Interpolation method.</para>
+					</pythonReference><dialogReference>
+						<para>The Prediction values in the output feature class are interpolated onto a raster using the Local Polynomial Interpolation method.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The geostatistical model source is either a geostatistical layer or a geostatistical model (XML).</para>
+			</bullet_item><bullet_item>
+				<para>The input dataset must have more than 10 points. However, it is recommended that it be used with large datasets that have nonstationary trends.</para>
+			</bullet_item><bullet_item>
+				<para>For data formats that support Null values, such as file and personal geodatabase feature classes, a Null value will be used to indicate that a prediction could not be made for that location or that the value showed be ignored when used as input. For data formats that do not support Null values, such as shapefiles, the value of  -1.7976931348623158e+308 is used (this is the negative of the C++ defined constant DBL_MAX)  to indicate that a prediction could not be made for that location.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MovingWindowKriging example 1 (Python window)</title>
+					<para>Predict values at select point locations.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapyexamples/data"
+arcpy.GAMovingWindowKriging_ga("C:/gapyexamples/data/kriging.lyr", "C:/gapyexamples/data/ca_ozone_pts.shp OZONE",
+                               "C:/gapyexamples/data/obs_pts.shp", "10", "C:/gapyexamples/output/outMWK", "", "")
+
+                    </code></scriptExample><scriptExample><title>MovingWindowKriging example 2 (stand-alone script)</title>
+					<para>Predict values at select point locations.</para>
+				<code xml:space="preserve"># Name: MovingWindowKriging_Example_02.py
+# Description: The kriging model is automatically estimated for each neighborhood
+#   as the kriging interpolation moves through all the location points.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inLayer = "C:/gapyexamples/data/kriging.lyr"
+inPoints = "C:/gapyexamples/data/ca_ozone_pts.shp OZONE"
+obsPoints = "C:/gapyexamples/data/obs_pts.shp"
+maxNeighbors = 10
+outPoints = "C:/gapyexamples/output/outMWK"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute MovingWindowKriging
+arcpy.GAMovingWindowKriging_ga(inLayer, inPoints, obsPoints, maxNeighbors,
+                               outPoints)
+
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

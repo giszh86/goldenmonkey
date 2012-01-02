@@ -1,0 +1,181 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Project Raster (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Transforms the raster dataset from one projection to another.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alter</keyword><keyword>Change</keyword><keyword>Conformal</keyword><keyword>Coordinate</keyword><keyword>Datum</keyword><keyword>Distance</keyword><keyword>Equal Area</keyword><keyword>Equidistant</keyword><keyword>Gcs</keyword><keyword>Geographic</keyword><keyword>Georeference</keyword><keyword>Image</keyword><keyword>Latitude</keyword><keyword>Longitude</keyword><keyword>Orient</keyword><keyword>Origin</keyword><keyword>Planar</keyword><keyword>Projected</keyword><keyword>Reference</keyword><keyword>Registration</keyword><keyword>Reorient</keyword><keyword>Reproject</keyword><keyword>Shape</keyword><keyword>Size</keyword><keyword>Spatial</keyword><keyword>System</keyword><keyword>Utm</keyword><keyword>Wgs</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ProjectRaster" displayname="Project Raster (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Transforms the raster dataset from one projection to another.</para>
+			
+		</summary><alink_name>ProjectRaster_management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster dataset.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output Raster Dataset" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Required"><pythonReference>
+						<para>The output raster dataset to be created.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</pythonReference><dialogReference>
+						<para>The output raster dataset to be created.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</dialogReference></param><param sync="true" name="out_coor_system" displayname="Output Coordinate System" datatype="Coordinate System" direction="Input" expression="out_coor_system" type="Required"><pythonReference>
+						<para>The coordinate system to which the input raster will be projected. The default value is set based on the Output Coordinate System environment setting.</para>
+						<para>Valid values for this parameter are<bulletList>
+								<bullet_item>A file with the ".prj" extension (the prj files which ship with ArcGIS can be found in "C:\Program Files\ArcGIS\Coordinate Systems").</bullet_item>
+								<bullet_item>An existing feature class, feature dataset, raster catalog (basically anything with a coordinate system).</bullet_item>
+								<bullet_item>The string representation of a coordinate system. These lengthy strings can be generated by adding a coordinate system variable to ModelBuilder, setting the variable's value as desired, then exporting the model to a Python script.</bullet_item>
+							</bulletList></para>
+					</pythonReference><dialogReference>
+						<para>The coordinate system to which the input raster will be projected. The default value is set based on the Output Coordinate System environment setting.</para>
+					</dialogReference></param><param sync="true" name="resampling_type" displayname="Resampling Technique" datatype="String" direction="Input" expression="resampling_type" type="Optional"><pythonReference>
+						<para>The resampling algorithm to be used. The default is NEAREST.</para>
+						<bulletList><bullet_item>NEAREST—Nearest neighbor assignment </bullet_item><bullet_item>BILINEAR—Bilinear interpolation </bullet_item><bullet_item>CUBIC—Cubic convolution </bullet_item><bullet_item>MAJORITY—Majority resampling </bullet_item></bulletList>
+						<para>The NEAREST and MAJORITY options are used for categorical data, such as a land use classification. The NEAREST option is the default since it is the quickest and also because it will not change the cell values. Do not use NEAREST or MAJORITY for continuous data, such as elevation surfaces.</para>
+						<para>The BILINEAR option and the CUBIC option are most appropriate for continuous data. It is not recommended that BILINEAR or CUBIC be used with categorical data because the cell values may be altered.</para>
+					</pythonReference><dialogReference>
+						<para>The resampling algorithm to be used. The default is NEAREST.</para>
+						<bulletList><bullet_item>NEAREST—Nearest neighbor assignment </bullet_item><bullet_item>BILINEAR—Bilinear interpolation </bullet_item><bullet_item>CUBIC—Cubic convolution </bullet_item><bullet_item>MAJORITY—Majority resampling </bullet_item></bulletList>
+						<para>The NEAREST and MAJORITY options are used for categorical data, such as a land use classification. The NEAREST option is the default since it is the quickest and also because it will not change the cell values. Do not use NEAREST or MAJORITY for continuous data, such as elevation surfaces.</para>
+						<para>The BILINEAR option and the CUBIC option are most appropriate for continuous data. It is not recommended that BILINEAR or CUBIC be used with categorical data because the cell values may be altered.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output Cell Size" datatype="Analysis Cell Size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size for the new raster dataset.</para>
+						<para>The default cell size is the cell size of the selected raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size for the new raster dataset.</para>
+						<para>The default cell size is the cell size of the selected raster dataset.</para>
+					</dialogReference></param><param sync="true" name="geographic_transform" displayname="Geographic Transformation" datatype="String" direction="Input" expression="geographic_transform" type="Optional"><pythonReference>
+						<para>The transformation method used between two geographic systems or datums.</para>
+						<para>The geographic transformation is optional when the input and output coordinate systems have the same datum. If the input and output datum are different, a geographic transformation needs to be specified.</para>
+						<para>For information on each supported geographic (datum) transformations, see the geographic_transformations.pdf located in &lt;install location&gt;\ArcGIS\Desktop10.0\Documentation.</para>
+					</pythonReference><dialogReference>
+						<para>The transformation method used between two geographic systems or datums.</para>
+						<para>The geographic transformation is optional when the input and output coordinate systems have the same datum. If the input and output datum are different, a geographic transformation needs to be specified.</para>
+						<para>For information on each supported geographic (datum) transformations, see the geographic_transformations.pdf located in &lt;install location&gt;\ArcGIS\Desktop10.0\Documentation.</para>
+					</dialogReference></param><param sync="true" name="Registration_Point" displayname="Registration Point" datatype="Point" direction="Input" expression="Registration_Point" type="Optional"><pythonReference>
+						<para>The x and y coordinates (in the output space) used for pixel alignment.</para>
+						<para>The registration point works similar to the concept of snap raster. Instead of snapping the output to an existing raster cell alignment, the registration point allows you to specify the origin point for anchoring the output cells. All output cells will be an interval of the cell size away from this point. This point does not have to be a corner coordinate or fall within the raster dataset.</para>
+						<para>The Snap Raster environment setting will take priority over the Registration Point parameter. Therefore, if you want to set the registration point, make sure that Snap Raster is not set.</para>
+					</pythonReference><dialogReference>
+						<para>The x and y coordinates (in the output space) used for pixel alignment.</para>
+						<para>The registration point works similar to the concept of snap raster. Instead of snapping the output to an existing raster cell alignment, the registration point allows you to specify the origin point for anchoring the output cells. All output cells will be an interval of the cell size away from this point. This point does not have to be a corner coordinate or fall within the raster dataset.</para>
+						<para>The Snap Raster environment setting will take priority over the Registration Point parameter. Therefore, if you want to set the registration point, make sure that Snap Raster is not set.</para>
+					</dialogReference></param><param sync="true" name="in_coor_system" displayname="Input Coordinate System" datatype="Coordinate System" direction="Input" expression="in_coor_system" type="Optional"><pythonReference>
+						<para>The coordinate system of the input raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The coordinate system of the input raster dataset.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system"></environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Pyramid" label="Pyramid">
+						
+					</environment><environment name="Raster_statistics" label="Raster statistics">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Tile_size" label="Tile size">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The coordinate system defines how your raster data is projected.</para>
+			</bullet_item><bullet_item>
+				<para>This tool guarantees that the error is less than half a pixel.</para>
+			</bullet_item><bullet_item>
+				<para>You are able to choose a preexisting spatial reference, import it from another dataset, or create a new one.</para>
+			</bullet_item><bullet_item>
+				<para>You may want to change the coordinate system so your data is all in the same projection.</para>
+			</bullet_item><bullet_item>
+				<para>This tool can only output a square cell size.</para>
+			</bullet_item><bullet_item>
+				<para>You can save your output to BIL, BIP, BMP, BSQ, DAT, GIF, GRID, IMG, JPEG, JPEG 2000, PNG, TIFF, or any geodatabase raster dataset. </para>
+			</bullet_item><bullet_item>
+				<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, or a geodatabase, you can specify a Compression type and Compression Quality within the Environment Settings.</para>
+			</bullet_item><bullet_item>
+				<para>Projects a raster dataset into a new spatial reference using a bilinear interpolation approximation method, which projects pixels on a coarse mesh grid and uses bilinear interpolation between the pixels.</para>
+			</bullet_item><bullet_item>
+				<para>The NEAREST option, which performs a nearest neighbor assignment, is the fastest of the four interpolation methods. It is primarily used for categorical data, such as a land use classification, because it will not change the cell values. It is not recommended that NEAREST be used for continuous data, such as elevation surfaces.</para>
+			</bullet_item><bullet_item>
+				<para>The BILINEAR option, bilinear interpolation, determines the new value of a cell based on a weighted distance average of surrounding cells. The CUBIC option, cubic convolution, determines the new cell value by fitting a smooth curve through the surrounding points. These are most appropriate for continuous data and may cause some smoothing; also, cubic convolution may result in the output raster containing values outside the range of the input raster. It is not recommended that BILINEAR or CUBIC be used with categorical data because the cell values may be altered.</para>
+			</bullet_item><bullet_item>
+				<para>The cells of the raster dataset will be square and of equal area in map coordinate space, although the shape and area a cell represents on the surface of the earth will never be constant across a raster. This is because no map projection can preserve both shape and area simultaneously. The area represented by the cells will vary across the raster. Therefore, the cell size and the number of rows and columns in the output raster may change.</para>
+			</bullet_item><bullet_item>
+				<para>Always specify an output cell size, unless you are projecting between spherical (latitude–longitude) coordinates and a planar coordinate system where you don't know what an appropriate cell size would be.</para>
+			</bullet_item><bullet_item>
+				<para>The default cell size of the output raster is determined from the projected cell size at the center of the output raster. This is also (usually) the intersection of the central meridian and latitude of true scale and is the area of least distortion. The boundary of the input raster is projected, and the minimum and maximum extents dictate the size of the output raster. Each cell is projected back to the input coordinate system to determine the cell's value.</para>
+			</bullet_item><bullet_item>
+				<para>The geographic transformation is an optional parameter when the input and output coordinate systems have the same datum. If the input and output datum are different, a geographic transformation needs to be specified.</para>
+			</bullet_item><bullet_item>
+				<para>The registration point allows you to specify the origin point for anchoring the output cells. All output cells will be an interval of the cell size away from this point. This point does not have to be a corner coordinate or fall within the raster dataset. If a Snap Raster is set in the Environment Settings, the registration point will be ignored.</para>
+			</bullet_item><bullet_item>
+				<para>CLARKE 1866 is the default spheroid if it is not inherent to the projection (such as NEWZEALAND_GRID) or another is specified with the SPHEROID subcommand.</para>
+			</bullet_item><bullet_item>
+				<para>The snap raster setting will take priority over the registration point, if both are set.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ProjectRaster example 1 (Python window)</title>
+					<para>This is a Python sample for the ProjectRaster tool.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.ProjectRaster_management("c:/data/image.tif", "c:/output/reproject.tif",\
+                               "World_Mercator.prj", "BILINEAR", "5",\
+                               "NAD_1983_To_WGS_1984_5", "#", "#")
+                    </code></scriptExample><scriptExample><title>ProjectRaster example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for the ProjectRaster tool.</para>
+				<code xml:space="preserve">##====================================
+##Project Raster
+##Usage: ProjectRaster_management in_raster out_raster out_coor_system {NEAREST | BILINEAR 
+##                                | CUBIC | MAJORITY} {cell_size} {geographic_transform;
+##                                geographic_transform...} {Registration_Point} {in_coor_system}
+    
+try:
+    import arcpy
+    
+    arcpy.env.workspace = r"C:/Workspace"
+    
+    ##Reproject a TIFF image with Datumn transfer
+    arcpy.ProjectRaster_management("image.tif", "reproject.tif", "World_Mercator.prj",\
+                                   "BILINEAR", "5", "NAD_1983_To_WGS_1984_5", "#", "#")
+    
+    ##Reproject a TIFF image that does not have a spatial reference
+    ##Set snapping point to the top left of the original image
+    snapping_pnt = "1942602 304176"
+    
+    arcpy.ProjectRaster_management("nosr.tif", "project.tif", "World_Mercator.prj", "BILINEAR",\
+                                   "5", "NAD_1983_To_WGS_1984_6", snapping_pnt,\
+                                   "NAD_1983_StatePlane_Washington_North.prj")
+    
+except:
+    print "Project Raster example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,83 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Extrude Between (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts polygons into multipatches by extruding them between two input TINs. The output multipatches are written to a new feature class.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D</keyword><keyword>Difference</keyword><keyword>Model Surface</keyword><keyword>Multipatch</keyword><keyword>Points</keyword><keyword>Surface</keyword><keyword>Surface Analysis</keyword><keyword>Tin</keyword><keyword>Volume</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExtrudeBetween" displayname="Extrude Between (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Converts polygons into multipatches by extruding them between two input TINs. The output multipatches are written to a new feature class.</para>
+			</summary><alink_name>ExtrudeBetween_3d</alink_name><toolIllust type="illustration" src="ExtrudeBetween_3d_h.gif" alt="ExtrudeBetween illustration" /><parameters><param sync="true" name="in_tin1" displayname="Input TIN" datatype="TIN Layer" direction="Input" expression="in_tin1" type="Required"><pythonReference>
+						<para>The first input TIN.</para>
+					</pythonReference><dialogReference>
+						<para>The first input TIN.</para>
+					</dialogReference></param><param sync="true" name="in_tin2" displayname="Input TIN" datatype="TIN Layer" direction="Input" expression="in_tin2" type="Required"><pythonReference>
+						<para>The second input TIN.</para>
+					</pythonReference><dialogReference>
+						<para>The second input TIN.</para>
+					</dialogReference></param><param sync="true" name="in_feature_class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_feature_class" type="Required"><pythonReference>
+						<para>The input polygon feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The input polygon feature class.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output multipatch feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output multipatch feature class.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input TINs and polygons must all overlap in horizontal extent in order to produce any output.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Extrude Between Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Extrude Between
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.ExtrudeBetween_3d("tin1", "tin2", "study_area.shp", "extrusion.shp")
+                    </code></scriptExample><scriptExample><title>Extrude Between Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Extrude Between
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: ExtrudeBetween Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              ExtrudeBetween tool.
+#              
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Set Local Variables
+    inTIN1 = "ceiling"
+    inTIN2 = "floor"
+    inPoly = "study_area.shp"
+    # Ensure output has a unique name
+    outMP = arcpy.CreateUniqueName("extrusion.shp")
+    
+    #Execute ExtrudeBetween
+    arcpy.ExtrudeBetween_3d(inTIN1, inTIN2, inPoly, outMP)
+
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

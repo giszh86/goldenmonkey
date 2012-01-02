@@ -1,0 +1,87 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Coded Value To Domain (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds a value to a domain's coded value list.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Constrain</keyword><keyword>Down</keyword><keyword>Drop</keyword><keyword>Field</keyword><keyword>Integrity</keyword><keyword>Limit</keyword><keyword>List</keyword><keyword>Restrict</keyword><keyword>Set</keyword><keyword>Specify</keyword><keyword>Subtype</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddCodedValueToDomain" displayname="Add Coded Value To Domain (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Adds a value to a domain's coded value list.</para>
+		</summary><alink_name>AddCodedValueToDomain_management</alink_name><parameters><param sync="true" name="in_workspace" displayname="Input Workspace" datatype="Workspace" direction="Input" expression="in_workspace" type="Required"><pythonReference>
+						<para>The geodatabase containing the domain to be updated.</para>
+					</pythonReference><dialogReference>
+						<para>The geodatabase containing the domain to be updated.</para>
+					</dialogReference></param><param sync="true" name="domain_name" displayname="Domain Name" datatype="String" direction="Input" expression="domain_name" type="Required"><pythonReference>
+						<para>The name of the attribute domain that will have a value added to its coded value list.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the attribute domain that will have a value added to its coded value list.</para>
+					</dialogReference></param><param sync="true" name="code" displayname="Code Value" datatype="String" direction="Input" expression="code" type="Required"><pythonReference>
+						<para>The value to be added to the specified domain's coded value list.</para>
+					</pythonReference><dialogReference>
+						<para>The value to be added to the specified domain's coded value list.</para>
+					</dialogReference></param><param sync="true" name="code_description" displayname="Code Description" datatype="String" direction="Input" expression="code_description" type="Required"><pythonReference>
+						<para>A description of what the coded value represents.</para>
+					</pythonReference><dialogReference>
+						<para>A description of what the coded value represents.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Auto_commit" label="Auto commit">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Domain management involves the following steps:</para>
+				
+					<bullet_item>Create the domain using the  tool.</bullet_item>
+					<bullet_item>Add values to or set the range of values for the domain using this tool or the  tool.</bullet_item>
+					<bullet_item>Associate the domain with a feature class using the  tool.</bullet_item>
+				
+			</bullet_item><bullet_item>
+				<para>The coded value domain includes both the actual value that is stored in the database (for example, 1 for pavement) and a description of what the code value means (for example, pavement).</para>
+			</bullet_item><bullet_item>
+				<para>A coded value domain which specifies a valid set of values for an attribute can apply to any type of attribute—text, numeric, date, and so on. For example, a coded value list for a text attribute might include valid pipe material values: CL - cast iron pipe; DL - ductile iron pipe; ACP - asbestos concrete pipe, or a coded value list might include the numeric values representing valid pipe diameters: .75–3/4"; 2–2"; 24–24"; and 30–30".</para>
+			</bullet_item><bullet_item>
+				<para>Workspace domains can also be managed in ArcCatalog or the Catalog window. Domains can be created and modified through the Domains tab on the Database Properties dialog box.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AddCodedValueToDomain Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the AddCodedValueToDomain function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.AddCodedValueToDomain_management("montgomery.gdb", "material", "1", "PVC")
+                    </code></scriptExample><scriptExample><title>AddCodedValueToDomain Example 2 (stand-alone script)</title>
+					<para>This stand-alone script uses the AddCodedValueToDomain function as part of a workflow to create an attribute domain and give it values.</para>
+				<code xml:space="preserve"># Name: MakeDomain.py
+# Description: Create an attribute domain to constrain pipe material values
+# Author: ESRI
+
+ 
+#Import system modules
+import arcpy
+from arcpy import env
+ 
+try:
+    # Set the workspace (to avoid having to type in the full path to the data every time)
+    env.workspace = "C:/data"
+ 
+    # Set local parameters
+    domName = "Material4"
+    gdb = "montgomery.gdb"
+    inFeatures = "Montgomery.gdb/Water/Distribmains"
+    inField = "Material"
+ 
+    # Process: Create the coded value domain
+    arcpy.CreateDomain_management("montgomery.gdb", domName, "Valid pipe materials", "TEXT", "CODED")
+    
+    #Store all the domain values in a dictionary with the domain code as the "key" and the 
+    #domain description as the "value" (domDict[code])
+    domDict = {"CI":"Cast iron", "DI": "Ductile iron", "PVC": "PVC", \
+                "ACP": "Asbestos concrete", "COP": "Copper"}
+    
+    # Process: Add valid material types to the domain
+    #use a for loop to cycle through all the domain codes in the dictionary
+    for code in domDict:        
+        arcpy.AddCodedValueToDomain_management(gdb, domName, code, domDict[code])
+    
+    # Process: Constrain the material value of distribution mains
+    arcpy.AssignDomainToField_management(inFeatures, inField, domName)
+ 
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

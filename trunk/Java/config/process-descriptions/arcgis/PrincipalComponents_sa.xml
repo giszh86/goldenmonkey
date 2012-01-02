@@ -1,0 +1,87 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Principal Components (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs Principal Component Analysis (PCA) on a set of raster bands and generates a single multiband raster as output.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Axes</keyword><keyword>Classification</keyword><keyword>Covariance Matrix</keyword><keyword>Eigenvalue</keyword><keyword>Eigenvector</keyword><keyword>Eliminate Redundancy</keyword><keyword>Ellipse</keyword><keyword>Image Processing</keyword><keyword>Magnitude</keyword><keyword>Multiband</keyword><keyword>Multivariate Statistics</keyword><keyword>Pca</keyword><keyword>Remote Sensing</keyword><keyword>Transform</keyword><keyword>Variance</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PrincipalComponents" displayname="Principal Components (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Performs Principal Component Analysis (PCA) on a set of raster bands and generates a single multiband raster as output.</para>
+			
+		</summary><alink_name>PrincipalComponents_sa</alink_name><parameters><param sync="true" name="in_raster_bands" displayname="Input raster bands" datatype="Raster Layer" direction="Input" expression="[in_raster_band,...]" type="Required"><pythonReference>
+						<para>The input raster bands.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster bands.</para>
+					</dialogReference></param><param sync="true" name="number_components" displayname="Number of Principal components" datatype="Long" direction="Input" expression="number_components" type="Optional"><pythonReference>
+						<para>Number of principal components.</para>
+						<para>The number must be greater than zero and less than or equal to the total number of input raster bands.</para>
+						<para>The default is the total number of rasters in the input.</para>
+					</pythonReference><dialogReference>
+						<para>Number of principal components.</para>
+						<para>The number must be greater than zero and less than or equal to the total number of input raster bands.</para>
+						<para>The default is the total number of rasters in the input.</para>
+					</dialogReference></param><param sync="true" name="out_data_file" displayname="Output data file" datatype="File" direction="Output" expression="out_data_file" type="Optional"><pythonReference>
+						<para>Output ASCII data file storing principal component parameters.</para>
+						<para>The extension for the output file can be .txt or .asc.</para>
+					</pythonReference><dialogReference>
+						<para>Output ASCII data file storing principal component parameters.</para>
+						<para>The extension for the output file can be .txt or .asc.</para>
+					</dialogReference></param><param sync="true" name="out_multiband_raster" displayname="Output multiband raster" datatype="Raster" direction="Output" expression="out_multiband_raster" type="Required"><pythonReference>
+							<para>The output multiband raster dataset.</para>
+							<para>If the output is an ESRI GRID raster, the name must have less than 10 characters.</para>
+						</pythonReference><dialogReference>
+							<para>The output multiband raster dataset.</para>
+							<para>If the output is an ESRI GRID raster, the name must have less than 10 characters.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The value specified for the number of principal components determines the number of principal component bands in the output multiband raster. The number must not be larger than the total number of raster bands in the input.</para>
+			</bullet_item><bullet_item>
+				<para>If the input is a layer created from a multiband raster with more than three bands, the operation will  consider all the bands associated with the source dataset, not just the three bands that were loaded (symbolized) by the layer. If you want to process a subset of the bands in the source dataset, you can  use the  tool to create an input layer containing the desired bands.</para>
+			</bullet_item><bullet_item>
+				<para>The raster bands must have a common intersection. If there is none, an error occurs and no output is created.</para>
+			</bullet_item><bullet_item>
+				<para>With the output data file name specified, the correlation and covariance matrices, as well as the eigenvalues and eigenvectors, will be stored in an ASCII file.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>PrincipalComponents example 1 (Python window)</title>
+					<para>This example performs Principal Component Analysis (PCA) on an input multiband raster and generates a multiband raster output.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outPrincipalComp = PrincipalComponents(["redlands"], 4,"pcdata.txt")
+outPrincipalComp.save("C:/sapyexamples/output/outpc01")
+                    </code></scriptExample><scriptExample><title>PrincipalComponents example 2 (stand-alone script) </title>
+					<para>This example performs Principal Component Analysis (PCA) on an input multiband raster and generates a multiband raster output.</para>
+				<code xml:space="preserve"># Name: PrincipalComponents_Ex_02.py
+# Description: Performs principal components analysis on a set of raster bands.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRasterBand1 = "redlands/redlandsc1"
+inRasterBand2 = "redlands/redlandsc3"
+numberComponents = 2
+outDataFile = "C:/sapyexamples/output/pcdatafile.txt"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.checkOutExtension("Spatial")
+
+# Execute PrincipalComponents
+outPrincipalComp = PrincipalComponents([inRasterBand1, inRasterBand2], 2,
+                                       outDataFile)
+
+# Save the output 
+outPrincipalComp.save("C:/sapyexamples/output/outpc01")
+                    </code></scriptExample></scriptExamples></tool></metadata>

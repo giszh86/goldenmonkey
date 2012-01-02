@@ -1,0 +1,89 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make NetCDF Raster Layer (Multidimension)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Makes a raster layer from a netCDF file.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Climate</keyword><keyword>Climatology</keyword><keyword>Dimension</keyword><keyword>Meteorology</keyword><keyword>Oceanography</keyword><keyword>Scientific</keyword><keyword>Weather</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeNetCDFRasterLayer" displayname="Make NetCDF Raster Layer (Multidimension)" toolboxalias="md" softwarerestriction="none"><summary>
+			<para>Makes a raster layer from a netCDF file.</para>
+		</summary><alink_name>MakeNetCDFRasterLayer_md</alink_name><parameters><param sync="true" name="in_netcdf_file" displayname="Input NetCDF File" datatype="File" direction="Input" expression="in_netcdf_file" type="Required"><pythonReference>
+						<para>The input netCDF file.</para>
+					</pythonReference><dialogReference>
+						<para>The input netCDF file.</para>
+					</dialogReference></param><param sync="true" name="variable" displayname="Variable" datatype="String" direction="Input" expression="variable" type="Required"><pythonReference>
+						<para>The variable of the netCDF file used to assign cell values to the output raster. This is the variable that will be displayed, such as temperature or rainfall.</para>
+					</pythonReference><dialogReference>
+						<para>The variable of the netCDF file used to assign cell values to the output raster. This is the variable that will be displayed, such as temperature or rainfall.</para>
+					</dialogReference></param><param sync="true" name="x_dimension" displayname="X Dimension" datatype="String" direction="Input" expression="x_dimension" type="Required"><pythonReference>
+						<para>A netCDF dimension used to define the x, or longitude coordinates of the output layer.</para>
+					</pythonReference><dialogReference>
+						<para>A netCDF dimension used to define the x, or longitude coordinates of the output layer.</para>
+					</dialogReference></param><param sync="true" name="y_dimension" displayname="Y dimension" datatype="String" direction="Input" expression="y_dimension" type="Required"><pythonReference>
+						<para>A netCDF dimension used to define the y, or latitude coordinates of the output layer.</para>
+					</pythonReference><dialogReference>
+						<para>A netCDF dimension used to define the y, or latitude coordinates of the output layer.</para>
+					</dialogReference></param><param sync="true" name="out_raster_layer" displayname="Output Raster Layer" datatype="Raster Layer" direction="Output" expression="out_raster_layer" type="Required"><pythonReference>
+						<para>The name of the output raster layer.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output raster layer.</para>
+					</dialogReference></param><param sync="true" name="band_dimension" displayname="Band Dimension" datatype="String" direction="Input" expression="band_dimension" type="Optional"><pythonReference>
+						<para>A netCDF dimension used to create bands in the output raster. Set this dimension if a multiband raster layer is required. For instance, altitude might be set as the band dimension to create a multiband raster where each band represents temperature at that altitude.</para>
+					</pythonReference><dialogReference>
+						<para>A netCDF dimension used to create bands in the output raster. Set this dimension if a multiband raster layer is required. For instance, altitude might be set as the band dimension to create a multiband raster where each band represents temperature at that altitude.</para>
+					</dialogReference></param><param sync="true" name="dimension_values" displayname="Dimension Values" datatype="Value Table" direction="Input" expression="[[dimension, {value}],...]" type="Optional"><pythonReference>
+						<para>The value (such as 01/30/05) of the dimension (such as Time) or dimensions to use when displaying the variable in the output layer. By default, the first value of the dimension or dimensions will be used. This default value can also be altered on the netCDF tab of the Layer Properties dialog box.</para>
+					</pythonReference><dialogReference>
+						<para>The value (such as 01/30/05) of the dimension (such as Time) or dimensions to use when displaying the variable in the output layer. By default, the first value of the dimension or dimensions will be used. This default value can also be altered on the netCDF tab of the Layer Properties dialog box.</para>
+					</dialogReference></param><param sync="true" name="value_selection_method" displayname="Value Selection Method" datatype="String" direction="Input" expression="value_selection_method" type="Optional"><pythonReference>
+						<para>Specifies the dimension value selection method.</para>
+						<bulletList><bullet_item>BY_VALUE—The input value is matched with the actual dimension value. </bullet_item><bullet_item>BY_INDEX—The input value is matched with the position or index of a dimension value. The index is 0 based, that is, the position starts at 0.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the dimension value selection method.</para>
+						<bulletList><bullet_item>BY_VALUE—The input value is matched with the actual dimension value. </bullet_item><bullet_item>BY_INDEX—The input value is matched with the position or index of a dimension value. The index is 0 based, that is, the position starts at 0.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>To create a netCDF raster layer from a netCDF variable, the spacing between x-coordinates must be equal and the spacing between y-coordinates must be equal. If the coordinates are unequally spaced, create a netCDF feature layer, then interpolate to raster.</para>
+			</bullet_item><bullet_item>
+				<para>The output raster layer type is either float or integer based on the netCDF variable type.</para>
+			</bullet_item><bullet_item>
+				<para>The first variable in the netCDF file suitable for creating a raster is selected as the default variable.</para>
+			</bullet_item><bullet_item>
+				<para>Auxiliary coordinate variables are listed in the X Dimension and Y Dimension drop-down lists and used during execution if specified. They are not listed in the Dimension Values parameter drop-down list and cannot be set as the value of this parameter in a script.</para>
+			</bullet_item><bullet_item>
+				<para>Band dimension is specified to create a multiband raster.</para>
+			</bullet_item><bullet_item>
+				<para>The first value of a nonspatial dimension is used to create a default view of a multidimensional variable.</para>
+			</bullet_item><bullet_item>
+				<para>To save the output layer, right-click the layer in the ArcMap table of contents and click Save As Layer File, or use the Save To Layer File tool.</para>
+			</bullet_item><bullet_item>
+				<para>The calender attribute values noleap and 365_day, assigned to the time coordinate variable of the netCDF file, are not honored in ArcGIS.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeNetCDFRasterLayer example 1 (Python window)</title>
+					<para>Creates a raster layer from a netCDF file.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.MakeNetCDFRasterLayer_md("C:/data/netcdf/rainfall.nc","pptx",
+                         "lon","lat","rainfall")
+                    </code></scriptExample><scriptExample><title>MakeNetCDFRasterLayer example 2 (stand-alone script)</title>
+					<para>Creates a raster layer from a netCDF file.</para>
+				<code xml:space="preserve"># Name: MakeNetCDFRasterLayer_Ex_02.py
+# Description: Create a raster layer from a netCDF file.
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+
+# Set local variables
+inNetCDFFile = "C:/data/netcdf/rainfall.nc"
+variable = "pptx"
+XDimension = "lon"
+YDimension = "lat"
+outRasterLayer = "c:/output/rainfall"
+bandDimmension = ""
+dimensionValues = ""
+valueSelectionMethod = ""
+
+# Execute MakeNetCDFRasterLayer
+arcpy.MakeNetCDFRasterLayer_md(inNetCDFFile, variable, XDimension, YDimension,
+                               outRasterLayer, bandDimmension, dimensionValues, 
+                               valueSelectionMethod)
+                    </code></scriptExample></scriptExamples></tool></metadata>

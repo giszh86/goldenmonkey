@@ -1,0 +1,113 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Copy TIN  (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool copies a triangulated irregular network (TIN) in a specified version to another location.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Copy</keyword><keyword>Delaunay</keyword><keyword>Edit</keyword><keyword>Move</keyword><keyword>Tin</keyword><keyword>Triangulated Irregular Network</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" CopyTIN" displayname=" Copy TIN  (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool copies a triangulated irregular network (TIN) in a specified version to another location.</para>
+		</summary><alink_name> CopyTIN_3d</alink_name><parameters><param sync="true" name="in_tin" displayname="Input TIN" datatype="TIN Layer" direction="Input" expression="in_tin" type="Required"><pythonReference>
+						<para> The input TIN to be copied.</para>
+					</pythonReference><dialogReference>
+						<para> The input TIN to be copied.</para>
+					</dialogReference></param><param sync="true" name="out_tin" displayname="Output TIN" datatype="TIN" direction="Output" expression="out_tin" type="Required"><pythonReference>
+						<para> The output TIN.</para>
+					</pythonReference><dialogReference>
+						<para> The output TIN.</para>
+					</dialogReference></param><param sync="true" name="version" displayname="Version" datatype="String" direction="Input" expression="version" type="Optional"><pythonReference>
+						<para> The TIN version to be copied.</para>
+						<bulletList><bullet_item> CURRENT—The currrent TIN version at ArcGIS 10.0 is a constrained Delaunay triangulation. This is the default.</bullet_item><bullet_item>PRE_10.0—The TIN version will be Delaunay conforming triangulations to support older versions of ArcGIS.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> The TIN version to be copied.</para>
+						<bulletList>
+							<bullet_item>CURRENT—The currrent TIN version at ArcGIS 10.0 is a constrained Delaunay triangulation. This is the default.</bullet_item>
+							<bullet_item>PRE_10.0—The TIN version will be delaunay conforming triangulations to support older versions of ArcGIS.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage></usage><scriptExamples><scriptExample><title>Copy TIN Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Copy TIN 
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.CopyTin_3d("elevation", "elevation_copy", "CURRENT")
+                    </code></scriptExample><scriptExample><title>Copy TIN Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Copy TIN 
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: CopyTin Example
+# Description: The following stand-alone script demonstrates how to create a TIN
+#              from Lidar files in a workspace. A SearchCursor is applied to the 
+#              PointFileInformation tool's output to obtain the smallest average 
+#              point spacing value, which is used as an input for LASToMultipoint
+#              to create the points that are used as inputs for CreateTIN. The
+#              resulting TIN is copied, then used as input to the DelineateTinDataArea 
+#              tool to limit the TIN's triangulation within the area of the points.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+import math
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/Data/LAS"
+
+try:
+    # Set Local Variables
+    LASInfo = "LASInfo.shp"
+    inFormat = "LAS"
+    fileSuffix = "las"
+    prj = 'Coordinate Systems/Projected Coordinate Systems/UTM/NAD 1983/'+\
+        'NAD 1983 UTM Zone 17N.prj'
+    folderRecursion = False
+    sumClass = False
+    extrude = False
+    decSep = "DECIMAL_POINT"
+    outputFC = "Lidar_Multipoint.shp"
+    class_code = "2" # Identifies all ground returns
+    zfactor = "0.3048" # Convert feet to meters
+    TIN_name = "Elevation"
+    Delaunay = "constrained_delaunay"
+    # Use the ListFiles method to identify all LAS files in the workspace
+    LidarList = arcpy.ListFiles("*.las")
+    if len(LidarList) &gt; 0:
+        # Execute PointFileInformation
+        arcpy.PointFileInformation_3d(LidarList, LASInfo, inFormat, fileSuffix, 
+                                      prj, folderRecursion, extrude, decSep, sumClass)
+        # Create SearchCursor and sort Pt_Spacing field in ascending order
+        LAScursor = arcpy.SearchCursor(LASInfo, "", "", "Pt_Spacing", "Pt_Spacing A")
+        for row in LAScursor:
+            # Gets the value in the Pt_Spacing field
+            ptSpacing = row.getValue("Pt_Spacing")
+            # Stop the for loop from looping for each row
+            break
+        MaxCursor
+        # Execute LASToMultipoint
+        print "Creating multipoint dataset."
+        arcpy.LASToMultipoint_3d(LidarList, outputFC, ptSpacing, class_code, 
+                                 "ANY_RETURNS", "", prj, inFormat, zfactor)
+        # Execute CreateTin
+        print "Creating TIN dataset."
+        arcpy.CreateTin_3d(TIN_name, prj, outputFC + " Shape.Z masspoints", Delaunay)
+        # Execute CopyTin
+        print "Copying TIN."
+        arcpy.CopyTin_3d(TIN_name, TIN_name + "_delineated", "CURRENT")
+        # Execute DelineateTinDataArea
+        MaxEdge = ptSpacing * 4
+        print "Delineating TIN boundary."
+        arcpy.DelineateTinDataArea_3d(TIN_name + "_delineated", MaxEdge, 
+                                      "PERIMETER_ONLY")
+        print "Finished"
+    else:
+        print "There are no LAS files in the " + env.workspace + " directory."    
+        
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

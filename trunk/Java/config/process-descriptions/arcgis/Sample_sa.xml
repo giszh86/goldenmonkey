@@ -1,0 +1,89 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Sample (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a table that shows the values of cells from a raster, or set of rasters, for defined locations. The locations are defined by raster cells or by a set of points.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coordinate</keyword><keyword>Extract</keyword><keyword>Sample</keyword><keyword>Select</keyword><keyword>Subset</keyword><keyword>Table</keyword><keyword>X And Y</keyword><keyword>Xy</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Sample" displayname="Sample (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Creates a table that shows the values of cells from a raster, or set of rasters, for defined locations. The locations are defined by raster cells or by a set of points.</para>
+			
+		</summary><alink_name>Sample_sa</alink_name><parameters><param sync="true" name="in_rasters" displayname="Input rasters" datatype="Raster Layer" direction="Input" expression="[in_raster,...]" type="Required"><pythonReference>
+						<para>The list of rasters whose values will be sampled based on the input location data.</para>
+					</pythonReference><dialogReference>
+						<para>The rasters whose values will be sampled based on the input location data.</para>
+					</dialogReference></param><param sync="true" name="in_location_data" displayname="Input location raster or point features" datatype="Raster Layer | Feature Layer" direction="Input" expression="in_location_data" type="Required"><pythonReference>
+						<para>Data identifying positions at which you want a sample taken.</para>
+						<para>This can be a raster or a point feature dataset.</para>
+					</pythonReference><dialogReference>
+						<para>Data identifying positions at which you want a sample taken.</para>
+						<para>This can be a raster or a point feature dataset.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>Output table holding the sampled cell values.</para>
+					</pythonReference><dialogReference>
+						<para>Output table holding the sampled cell values.</para>
+					</dialogReference></param><param sync="true" name="resampling_type" displayname="Resampling technique" datatype="String" direction="Input" expression="resampling_type" type="Optional"><pythonReference>
+						<para>Resampling algorithm used when sampling a raster.</para>
+						<bulletList><bullet_item>NEAREST — Nearest neighbor assignment.</bullet_item><bullet_item>BILINEAR — Bilinear interpolation.</bullet_item><bullet_item>CUBIC — Cubic convolution.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Resampling algorithm used when sampling a raster.</para>
+						<bulletList><bullet_item>NEAREST — Nearest neighbor assignment.</bullet_item><bullet_item>BILINEAR — Bilinear interpolation.</bullet_item><bullet_item>CUBIC — Cubic convolution.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>When the input location is a raster, the set of location cells consists of all cell that have a value of zero or greater. Cells that have NoData values are not included in the location set. A location raster can be easily created using the extraction tools.</para>
+			</bullet_item><bullet_item>
+				<para>Locations that sample NoData cells in the input raster(s) will be given a NULL Value. For shapefiles, NULL is not supported and a value of 0 (zero) will be given.</para>
+			</bullet_item><bullet_item>
+				<para>The values of the cells will remain integers for the rasters in input rasters that are integer, even if the Bilinear or Cubic options are selected for the resampling technique.</para>
+			</bullet_item><bullet_item>
+				<para>The cell size and registration of the input rasters and the location raster should be the same.</para>
+			</bullet_item><bullet_item>
+				<para>The output from the tool is a table.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Sample example 1 (Python window)</title>
+					<para>Extract the cell values from multiple rasters to a table based on input locations.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+Sample(["elevation", "costraster"], "observers.shp",
+       "c:/sapyexamples/output/samptable","NEAREST")
+                    </code></scriptExample><scriptExample><title>Sample example 2 (stand-alone script)</title>
+					<para>Extract the cell values from multiple rasters to a table based on input locations.</para>
+				<code xml:space="preserve"># Name: Sample_Ex_02.py
+# Description: Creates a table that shows the values of cells from 
+#              a raster, or set of rasters, for defined locations. 
+#              The locations are defined by raster cells or by a set 
+#              of points.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRasters = ["elevation",
+             "costraster"]
+locations = "observers.shp"
+outTable = "c:/sapyexamples/output/samptable02"
+sampMethod = "NEAREST"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Sample
+Sample(inRasters, locations, outTable, sampMethod)
+                    </code></scriptExample></scriptExamples></tool></metadata>

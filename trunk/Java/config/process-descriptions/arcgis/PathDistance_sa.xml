@@ -1,0 +1,230 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Path Distance (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates, for each cell, the least accumulative cost distance to the nearest source, while accounting for surface distance and horizontal and vertical cost factors.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Accumulative</keyword><keyword>Cost</keyword><keyword>Pathdistancefull</keyword><keyword>Surface</keyword><keyword>Travel Cost</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PathDistance" displayname="Path Distance (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates, for each cell, the least accumulative cost distance to the nearest source, while accounting for surface distance and horizontal and vertical cost factors.</para>
+			
+		</summary><alink_name>PathDistance_sa</alink_name><parameters><param sync="true" name="in_source_data" displayname="Input raster or feature source data" datatype="Raster Layer | Feature Layer" direction="Input" expression="in_source_data" type="Required"><pythonReference>
+						<para>The input source locations.</para><para>This is a raster or feature dataset that identifies the cells or locations to which the least accumulated cost distance for every output cell location is calculated.</para>
+						<para>For rasters, the input type can be integer or floating point.</para>
+					</pythonReference><dialogReference>
+						<para>The input source locations.</para><para>This is a raster or feature dataset that identifies the cells or locations to which the least accumulated cost distance for every output cell location is calculated.</para>
+						<para>For rasters, the input type can be integer or floating point.</para>
+					</dialogReference></param><param sync="true" name="in_cost_raster" displayname="Input cost raster" datatype="Raster Layer" direction="Input" expression="in_cost_raster" type="Optional"><pythonReference>
+						<para>A raster defining the impedance or cost to move planimetrically through each cell.</para>
+						<para>The value at each cell location represents the cost per unit distance for moving through the cell. Each cell location value is multiplied by the cell resolution while also compensating for diagonal movement to obtain the total cost of passing through the cell.</para><para>The values of the cost raster can be integer or floating point, but they cannot be negative or zero (you cannot have a negative or zero cost).</para>
+					</pythonReference><dialogReference>
+						<para>A raster defining the impedance or cost to move planimetrically through each cell.</para>
+						<para>The value at each cell location represents the cost per unit distance for moving through the cell. Each cell location value is multiplied by the cell resolution while also compensating for diagonal movement to obtain the total cost of passing through the cell.</para><para>The values of the cost raster can be integer or floating point, but they cannot be negative or zero (you cannot have a negative or zero cost).</para>
+					</dialogReference></param><param sync="true" name="in_surface_raster" displayname="Input surface raster" datatype="Raster Layer" direction="Input" expression="in_surface_raster" type="Optional"><pythonReference>
+						<para>A raster defining the elevation values at each cell location.</para>
+						<para>The values are used to calculate the actual surface distance covered when passing between cells.</para>
+					</pythonReference><dialogReference>
+						<para>A raster defining the elevation values at each cell location.</para>
+						<para>The values are used to calculate the actual surface distance covered when passing between cells.</para>
+					</dialogReference></param><param sync="true" name="in_horizontal_raster" displayname="Input horizontal raster" datatype="Raster Layer" direction="Input" expression="in_horizontal_raster" type="Optional"><pythonReference>
+						<para>A raster defining the horizontal direction at each cell.</para>
+						<para>The values on the raster must be integers ranging from 0 to 360 with 0 degrees being north, or toward the top of the screen, and increasing clockwise. Flat areas should be given a value of -1. The values at each location will be used in conjunction with the {horizontal_factor} to determine the horizontal cost incurred when moving from a cell to its neighbors.</para>
+					</pythonReference><dialogReference>
+						<para>A raster defining the horizontal direction at each cell.</para>
+						<para>The values on the raster must be integers ranging from 0 to 360 with 0 degrees being north, or toward the top of the screen, and increasing clockwise. Flat areas should be given a value of -1. The values at each location will be used in conjunction with the Horizontal factor to determine the horizontal cost incurred when moving from a cell to its neighbors.</para>
+					</dialogReference></param><param sync="true" name="horizontal_factor" displayname="Horizontal factor" datatype="Horizontal factor" direction="Input" expression="horizontal_factor" type="Optional"><pythonReference>
+						<para>The Horizontal Factor object defines the relationship between the horizontal cost factor and the horizontal relative moving angle.</para>
+						<para>There are several factors with modifiers from which to select that identify a defined horizontal factor graph. Additionally, a table can be used to create a custom graph. The graphs are used to identify the horizontal factor used in calculating the total cost of moving into a neighboring cell.</para>
+						<para>In the explanations below, two acronyms are used: 'HF' stands for horizontal factor, which defines the horizontal difficulty encountered when moving from one cell to the next; and 'HRMA' stands for horizontal relative moving angle, which identifies the angle between the horizontal direction from a cell and the moving direction.</para>
+						<para>The  object comes in the following forms:<bulletList><bullet_item>HfBinary, HfForward, HfLinear, HfInverseLinear, and HfTable.</bullet_item></bulletList></para><para>The definitions and parameters of these are:<bulletList><bullet_item>HfBinary({zero_factor},{cut_angle})<para>Indicates that if the HRMA is less than the cut angle, the HF is set to the value associated with the zero factor; otherwise, it is infinity.</para></bullet_item><bullet_item>HfForward({zero_factor},{side_value})<para>Establishes that only forward movement is allowed. The HRMA must be greater or equal to 0 and less than 90 (0 &lt;= HRMA &lt; 90). If the HRMA is greater than 0 and less than 45 degrees, the HF for the cell is set to the value associated with the zero factor. If the HRMA is greater than or equal to 45 degrees, then the side value modifier value is used. The HF for any HRMA equal to or greater than 90 degrees is set to infinity.</para></bullet_item><bullet_item>HfLinear({zero_factor},{cut_angle},{slope})<para>Specifies that the HF is a linear function of the HRMA.</para></bullet_item><bullet_item>HfInverseLinear({zero_factor},{cut_angle},{slope})<para>Specifies that the HF is an inverse linear function of the HRMA.</para></bullet_item><bullet_item>HfTable(in_table)<para>Identifies that a table file will be used to define the horizontal factor graph used to determine the HFs.</para></bullet_item></bulletList></para>
+						<para>The Modifiers to the horizontal keywords are:<bulletList>
+								<bullet_item>{zero_factor}—Establishes the horizontal factor used when the HRMA is 0. This factor positions the y intercept for any of the horizontal factor functions.</bullet_item>
+								<bullet_item>{cut_angle}—Defines the HRMA angle beyond which the HF will be set to infinity.</bullet_item>
+								<bullet_item>{slope}—Establishes the slope of the straight line used with the LINEAR and INVERSE_LINEAR horizontal-factor keywords. The slope is specified as a fraction of rise over run (for example, 45 percent slope is 1/45, which is input as 0.02222).</bullet_item>
+								<bullet_item>{side_value}—Establishes the HF when the HRMA is greater than or equal to 45 degrees and less than 90 degrees when the FORWARD horizontal-factor keyword is specified.</bullet_item>
+								<bullet_item>in_table—Identifies the name of the table defining the HF.</bullet_item>
+							</bulletList></para>
+					</pythonReference><dialogReference>
+						<para>Defines the relationship between the horizontal cost factor and the horizontal relative moving angle (HRMA).</para>
+						<para>There are several factors with modifiers from which to select that identify a defined horizontal factor graph. Additionally, a table can be used to create a custom graph. The graphs are used to identify the horizontal factor used in calculating the total cost for moving into a neighboring cell.</para>
+						<para>In the explanations below, two acronyms are used: 'HF' stands for horizontal factor, which defines the horizontal difficulty encountered when moving from one cell to the next; and 'HRMA' stands for horizontal relative moving angle, which identifies the angle between the horizontal direction from a cell and the moving direction.</para>
+						<para>Horizontal factor types:</para>
+						<bulletList>
+							<bullet_item>Binary—Indicates that if the HRMA is less than the cut angle, the HF is set to the value associated with the zero factor; otherwise, it is infinity.</bullet_item>
+							<bullet_item>Forward—Establishes that only forward movement is allowed. The HRMA must be greater or equal to 0 and less than 90 degrees (0 &lt;= HRMA &lt; 90). If the HRMA is greater than 0 and less than 45 degrees, the HF for the cell is set to the value associated with the zero factor. If the HRMA is greater than or equal to 45 degrees, the side value modifier value is used. The HF for any HRMA equal to or greater than 90 degrees is set to infinity.</bullet_item>
+							<bullet_item>Linear—Specifies that the HF is a linear function of the HRMA.</bullet_item>
+							<bullet_item>Inverse Linear—Specifies that the HF is an inverse linear function of the HRMA.</bullet_item>
+							<bullet_item>Table—Identifies that a table file will be used to define the horizontal factor graph used to determine the HFs.</bullet_item>
+						</bulletList><para>Modifiers to the horizontal factors:</para>
+						<bulletList>
+							<bullet_item>Zero factor—Establishes the horizontal factor to be used when the HRMA is zero. This factor positions the y-intercept for any of the horizontal factor functions.</bullet_item>
+							<bullet_item>Cut angle—Defines the HRMA angle beyond which the HF will be set to infinity.</bullet_item>
+							<bullet_item>Slope—Establishes the slope of the straight line used with the LINEAR and INVERSE_LINEAR horizontal factor keywords. The slope is specified as a fraction of rise over run (for example, 45 percent slope is 1/45, which is input as 0.02222).</bullet_item>
+							<bullet_item>Side value—Establishes the HF when the HRMA is greater than or equal to 45 degrees and less than 90 degrees when the FORWARD horizontal factor keyword is specified.</bullet_item>
+							<bullet_item>Table name—Identifies the name of the table defining the HF.</bullet_item>
+						</bulletList></dialogReference></param><param sync="true" name="in_vertical_raster" displayname="Input vertical raster" datatype="Raster Layer" direction="Input" expression="in_vertical_raster" type="Optional"><pythonReference>
+						<para>A raster defining the z-values for each cell location.</para>
+						<para>The values are used for calculating the slope used to identify the vertical factor incurred when moving from one cell to another.</para>
+					</pythonReference><dialogReference>
+						<para>A raster defining the z-values for each cell location.</para>
+						<para>The values are used for calculating the slope used to identify the vertical factor incurred when moving from one cell to another.</para>
+					</dialogReference></param><param sync="true" name="vertical_factor" displayname="Vertical factor" datatype="Vertical factor" direction="Input" expression="vertical_factor" type="Optional"><pythonReference>
+						<para>The Vertical factor object defines the relationship between the vertical cost factor and the vertical relative moving angle (VRMA).</para>
+						<para>There are several factors with modifiers from which to select that identify a defined vertical factor graph. Additionally, a table can be used to create a custom graph. The graphs are used to identify the vertical factor used in calculating the total cost for moving into a neighboring cell.</para>
+						<para>In the explanations below, two acronyms are used: 'VF' stands for vertical factor, which defines the vertical difficulty encountered in moving from one cell to the next; and 'VRMA' stands for vertical relative moving angle, which identifies the slope angle between the FROM or processing cell and the TO cell.</para>
+						<para>The  object comes in the following forms:<bulletList><bullet_item>VfBinary, VfLinear, VfInverseLinear, VfSymLinear, VfSymInverseLinear, VfCos, VfSec, VfSec, VfCosSec, VfSecCos, VfTable.</bullet_item></bulletList></para><para>The definitions and parameters of these are:</para>
+						<bulletList>
+							<bullet_item>VfBinary({zero_factor},{low_cut_angle},{high_cut_angle})<para>Specifies that if the VRMA is greater than the low-cut angle and less than the high-cut angle, the VF is set to the value associated with the zero factor; otherwise, it is infinity.</para></bullet_item>
+							<bullet_item>VfLinear({zero_factor},{low_cut_angle},{high_cut_angle},{slope})<para>Indicates that the VF is a linear function of the VRMA.</para></bullet_item>
+							<bullet_item>VfInverseLinear({zero_factor},{low_cut_angle},{high_cut_angle},{slope})<para>Indicates that the VF is an inverse linear function of the VRMA.</para></bullet_item>
+							<bullet_item>VfSymLinear({zero_factor},{low_cut_angle},{high_cut_angle},{slope})<para>Specifies that the VF is a linear function of the VRMA in either the negative or positive side of the VRMA, respectively, and the two linear functions are symmetrical with respect to the VF (y) axis.</para></bullet_item>
+							<bullet_item>VfSymInverseLinear({zero_factor},{low_cut_angle},{high_cut_angle},{slope})<para>Specifies that the VF is an inverse linear function of the VRMA in either the negative or positive side of the VRMA, respectively, and the two linear functions are symmetrical with respect to the VF (y) axis.</para></bullet_item>
+							<bullet_item>VfCos({low_cut_angle},{high_cut_angle},{cos_power})<para>Identifies the VF as the cosine-based function of the VRMA.</para></bullet_item>
+							<bullet_item>VfSec({low_cut_angle},{high_cut_angle},{sec_power})<para>Identifies the VF as the secant-based function of the VRMA.</para></bullet_item>
+							<bullet_item>VfCosSec({low_cut_angle},{high_cut_angle},{cos_power},{sec_power})<para>Indicates that the VF is the cosine-based function of the VRMA when the VRMA is negative and the secant-based function of the VRMA when the VRMA is nonnegative.</para></bullet_item>
+							<bullet_item>VfSecCos({low_cut_angle},{high_cut_angle},{sec_power},{cos_power})<para>Specifies that the VF is the secant-based function of the VRMA when the VRMA is negative and the cosine-based function of the VRMA when the VRMA is nonnegative.</para></bullet_item>
+							<bullet_item>VfTable(in_table)<para>Identifies that a table file will be used to define the vertical-factor graph used to determine the VFs.</para></bullet_item>
+						</bulletList>
+						<para>The Modifiers to the vertical parameters are:</para>
+						<bulletList>
+							<bullet_item>{zero_factor}—Establishes the vertical factor used when the VRMA is zero. This factor positions the y-intercept of the specified function. By definition, the zero factor is not applicable to any of the trigonometric vertical functions (Cos, Sec, Cos_Sec, or Sec_Cos). The y-intercept is defined by these functions.</bullet_item>
+							<bullet_item>{low_cut_angle}—Defines the VRMA angle below which the VF will be set to infinity.</bullet_item>
+							<bullet_item>{high_cut_angle}—Defines the VRMA angle above which the VF will be set to infinity.</bullet_item>
+							<bullet_item>{slope}—Establishes the slope of the straight line used with the VfLinear and VfInverseLinear parameters. The slope is specified as a fraction of rise over run (for example, 45 percent slope is 1/45, which is input as 0.02222).</bullet_item>
+							<bullet_item>in_table—Identifies the name of the table defining the VF.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>Defines the relationship between the vertical cost factor and the vertical relative moving angle (VRMA).</para>
+						<para>There are several factors with modifiers from which to select that identify a defined vertical factor graph. Additionally, a table can be used to create a custom graph. The graphs are used to identify the vertical factor used in calculating the total cost for moving into a neighboring cell.</para>
+						<para>In the explanations below, two acronyms are used: 'VF' stands for vertical factor, which defines the vertical difficulty encountered in moving from one cell to the next; and 'VRMA' stands for vertical relative moving angle, which identifies the slope angle between the FROM or processing cell and the TO cell.</para>
+						<para>Vertical factor types:</para>
+						<bulletList>
+							<bullet_item>Binary—Specifies that if the VRMA is greater than the low-cut angle and less than the high-cut angle, the VF is set to the value associated with the zero factor; otherwise, it is infinity.</bullet_item>
+							<bullet_item>Linear—Indicates that the VF is a linear function of the VRMA.</bullet_item>
+							<bullet_item>Symmetric Linear—Specifies that the VF is a linear function of the VRMA in either the negative or positive side of the VRMA, respectively, and the two linear functions are symmetrical with respect to the VF (y) axis.</bullet_item>
+							<bullet_item>Inverse Linear—Indicates that the VF is an inverse linear function of the VRMA.</bullet_item>
+							<bullet_item>Symmetric Inverse Linear—Specifies that the VF is an inverse linear function of the VRMA in either the negative or positive side of the VRMA, respectively, and the two linear functions are symmetrical with respect to the VF (y) axis.</bullet_item>
+							<bullet_item>Cos—Identifies the VF as the cosine-based function of the VRMA.</bullet_item>
+							<bullet_item>Sec—Identifies the VF as the secant-based function of the VRMA.</bullet_item>
+							<bullet_item>Cos-Sec—Specifies that the VF is the cosine-based function of the VRMA when the VRMA is negative and the secant-based function of the VRMA when the VRMA is nonnegative.</bullet_item>
+							<bullet_item>Sec-Cos—Specifies that the VF is the secant-based function of the VRMA when the VRMA is negative and the cosine-based function of the VRMA when the VRMA is nonnegative.</bullet_item>
+							<bullet_item>Table—Identifies that a table file will be used to define the vertical-factor graph used to determine the VFs.</bullet_item>
+						</bulletList>
+						<para>Modifiers to the vertical keywords:</para>
+						<bulletList>
+							<bullet_item>Zero factor—Establishes the vertical factor used when the VRMA is zero. This factor positions the y-intercept of the specified function. By definition, the zero factor is not applicable to any of the trigonometric vertical functions (COS, SEC, COS_SEC, or SEC_COS). The y-intercept is defined by these functions.</bullet_item>
+							<bullet_item>
+								Low Cut angle—Defines the VRMA angle below which the VF will be set to infinity.</bullet_item>
+							<bullet_item>High Cut angle—Defines the VRMA angle above which the VF will be set to infinity.</bullet_item>
+							<bullet_item>Slope—Establishes the slope of the straight line used with the LINEAR and INVERSE_LINEAR vertical-factor keywords. The slope is specified as a fraction of rise over run (for example, 45 percent slope is 1/45, which is input as 0.02222).</bullet_item>
+							<bullet_item>Table name—Identifies the name of the table defining the VF.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="maximum_distance" displayname="Maximum distance" datatype="Double" direction="Input" expression="maximum_distance" type="Optional"><pythonReference><para>Defines the threshold that the accumulative cost values cannot exceed.</para>
+						<para>If an accumulative cost distance value exceeds this value, the output value for the cell location will be NoData. The maximum distance defines the extent for which the accumulative cost distances are calculated.</para><para>The default distance is to the edge of the output raster.</para></pythonReference><dialogReference><para>Defines the threshold that the accumulative cost values cannot exceed.</para>
+						<para>If an accumulative cost distance value exceeds this value, the output value for the cell location will be NoData. The maximum distance defines the extent for which the accumulative cost distances are calculated.</para><para>The default distance is to the edge of the output raster.</para></dialogReference></param><param sync="true" name="out_backlink_raster" displayname="Output backlink raster" datatype="Raster Dataset" direction="Output" expression="out_backlink_raster" type="Optional"><pythonReference>
+							<para>The output cost back-link raster.</para>
+							<para>The back-link raster contains values of 0 through 8, which define the direction or identify the next neighboring cell (the succeeding cell) along the least accumulative cost path from a cell to reach its least cost source, while accounting for surface distance as well as horizontal and vertical surface factors.</para>
+							<para>If the path is to pass into the right neighbor, the cell will be assigned the value 1, 2 for the lower right diagonal cell, and continuing clockwise. The value 0 is reserved for source cells.</para>
+							
+								
+								
+							</pythonReference><dialogReference>
+							<para>The output cost back-link raster.</para>
+							<para>The back-link raster contains values of 0 through 8, which define the direction or identify the next neighboring cell (the succeeding cell) along the least accumulative cost path from a cell to reach its least cost source, while accounting for surface distance as well as horizontal and vertical surface factors.</para>
+							<para>If the path is to pass into the right neighbor, the cell will be assigned the value 1, 2 for the lower right diagonal cell, and continuing clockwise. The value 0 is reserved for source cells.</para>
+							
+								
+								
+							</dialogReference></param><param sync="true" name="out_distance_raster" displayname="Output distance raster" datatype="Raster" direction="Output" expression="out_distance_raster" type="Required"><pythonReference>
+							<para>The output path distance raster.</para>
+							<para>The output path distance raster identifies, for each cell, the least accumulative cost distance, over a cost surface to the identified source locations, while accounting for surface distance as well as horizontal and vertical surface factors.</para><para>A source can be a cell, a set of cells, or one or more feature locations.</para>
+							<para>The output raster is of floating point type.</para></pythonReference><dialogReference>
+							<para>The output path distance raster.</para>
+							<para>The output path distance raster identifies, for each cell, the least accumulative cost distance, over a cost surface to the identified source locations, while accounting for surface distance as well as horizontal and vertical surface factors.</para><para>A source can be a cell, a set of cells, or one or more feature locations.</para>
+							<para>The output raster is of floating point type.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para>The Path Distance tools are comparable to the Cost Distance tools in that both determine the minimum accumulative travel cost from a source to each location on a raster surface. However, the Path Distance tools  to the analysis by being able to accommodate for the actual surface distance as well as other .</para></bullet_item><bullet_item><para>The input source data can be a feature class or raster.</para>
+			</bullet_item><bullet_item><para>When the input source data is a raster, the set of source cells consists of all cells in the source raster that have valid values. Cells that have NoData values are not included in the source set. The value 0 is considered a legitimate source. A source raster can be easily created using the .</para>
+			</bullet_item><bullet_item><para>Cells with NoData act as barriers in the Path Distance tools. The cost distance for cells behind NoData values is calculated by the accumulative cost necessary to move around the NoData barrier. Any cell location that is assigned NoData on any one of the input rasters will receive NoData on all output rasters.</para></bullet_item><bullet_item><para>If the input source data and the cost raster are different extents, the default output extent is the intersection of the two. To get a cost distance surface for the entire extent, choose the Union of Inputs option on the output  environment settings.</para>
+			</bullet_item><bullet_item><para>If a  has been set in the environment, all masked cells will be treated as NoData values.</para><para>When a mask has been defined in the Raster Analysis window and the cells to be masked will mask a source, the calculations will occur on the remaining source cells. The source cells that are masked will not be considered in the computations. These cell locations will be assigned NoData on all outputs (distance, allocation, and back link) rasters.</para></bullet_item><bullet_item><para>The output of the  tool can be used as input for the Input horizontal raster.</para></bullet_item><bullet_item><para>The Maximum distance is specified in the same cost units as those on the cost raster.</para>
+			</bullet_item><bullet_item>
+				<para>For the output distance raster, the least-cost distance (or minimum accumulative cost distance) of a cell to a set of source locations is the lower bound of the least-cost distances from the cell to all source locations.</para></bullet_item><bullet_item>
+				<para>The default values for the Horizontal factor modifiers are:</para>
+				Keywords         Zero factor   Cut angle     Slope   Side value
+--------------   -----------   -----------   -----   ---------
+Binary           1.0            45           ~       ~
+Forward          0.5            45 (fixed)   ~       1.0
+Linear           0.5           181            1/90   ~
+Inverse linear   2.0           180           -1/90   ~
+			</bullet_item><bullet_item>
+				<para>The default values for the Vertical factor modifiers are:</para>
+				Keyword                   Zero factor  Low cut  Height cut  Slope  Power  Cos    Sec
+                                       angle    angle                     power  power            
+------------------------  -----------  -------  ----------  -----  -----  -----  -----
+Binary                    1.0          -30      30          ~      ~      ~      ~
+Linear                    1.0          -90      90           1/90  ~      ~      ~
+Symmetric linear          1.0          -90      90           1/90  ~      ~      ~
+Inverse linear            1.0          -45      45          -1/45  ~      ~      ~
+Symmetric inverse linear  1.0          -45      45          -1/45  ~      ~      ~
+Cos                       ~            -90      90          ~      1.0    ~      ~
+Sec                       ~            -90      90          ~      1.0    ~      ~
+Cos_sec                   ~            -90      90          ~      ~      1.0    1.0
+Sec_cos                   ~            -90      90          ~      ~      1.0    1.0
+			</bullet_item></usage><scriptExamples><scriptExample><title>PathDistance example 1 (Python window)</title>
+					<para>The following Python Window script demonstrates how to use the PathDistance tool.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outPathDist = PathDistance("observers", "costraster", "elevation", "backlink2",
+                            2, "focalcost.tif", 1, 50000, 
+                            "c:/sapyexamples/output/backlinkpath")
+outPathDist.save("c:/sapyexamples/output/pathdistout")
+                    </code></scriptExample><scriptExample><title>PathDistance example 2 (stand-alone script)</title>
+					<para>Calculates, for each cell, the least accumulative cost distance to the nearest source, while accounting for surface distance and horizontal and vertical cost factors.</para>
+				<code xml:space="preserve"># Name: PathDistance_Ex_02.py
+# Description: Calculates, for each cell, the least accumulative 
+#              cost distance to the nearest source, while accounting 
+#              for surface distance and horizontal and vertical 
+#              cost factors.  
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inSource = "observers.shp"
+inCostRast = "costraster"
+inElev = "elevation"
+inHoriz = "backlink2"
+inHorizFact = 2
+inVertical = "focalcost.tif"
+inVertFact = 1
+maxDist = 50000
+optBacklinkOut = "c:/sapyexamples/output/pathbacklink"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute PathDistance
+outPathDist = PathDistance(inSource, inCostRast, inElev, inHoriz, 
+                           inHorizFact, inVertical, inVertFact, 
+                           maxDist, optBacklinkOut)
+
+# Save the output 
+outPathDist.save("c:/sapyexamples/output/pathdistout02")
+                    </code></scriptExample></scriptExamples></tool></metadata>

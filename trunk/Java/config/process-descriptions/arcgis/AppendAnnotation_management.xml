@@ -1,0 +1,121 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Append Annotation Feature Classes (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a new geodatabase annotation feature class or appends to an existing annotation feature class by combining annotation from multiple input geodatabase annotation feature classes into a single feature class with annotation classes.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Combine</keyword><keyword>Label</keyword><keyword>Merge</keyword><keyword>New</keyword><keyword>Text</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AppendAnnotation" displayname="Append Annotation Feature Classes (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a new geodatabase annotation feature class or appends to an existing annotation feature class by combining annotation from multiple input geodatabase annotation feature classes into a single feature class with annotation classes.</para>
+		</summary><alink_name>AppendAnnotation_management</alink_name><parameters><param sync="true" name="input_features" displayname="Input features" datatype="Feature layer" direction="Input" expression="[input_features,...]" type="Required"><pythonReference>
+						<para>Input annotation features that will form an annotation class in the output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>Input annotation features that will form an annotation class in the output feature class.</para>
+					</dialogReference></param><param sync="true" name="output_featureclass" displayname="Output feature class" datatype="Feature class" direction="Output" expression="output_featureclass" type="Required"><pythonReference>
+						<para>New annotation feature class that contains an annotation class for each input annotation feature class.</para>
+					</pythonReference><dialogReference>
+						<para>New annotation feature class that contains an annotation class for each input annotation feature class.</para>
+					</dialogReference></param><param sync="true" name="reference_scale" displayname="Reference scale" datatype="Double" direction="Input" expression="reference_scale" type="Required"><pythonReference>
+						<para>Reference scale set in the output feature class. Input features created at a different reference scale will be transformed to match this output reference scale.</para>
+					</pythonReference><dialogReference>
+						<para>Reference scale set in the output feature class. Input features created at a different reference scale will be transformed to match this output reference scale.</para>
+					</dialogReference></param><param sync="true" name="create_single_class" displayname="Creates a single annotation class" datatype="Boolean" direction="Input" expression="create_single_class" type="Optional"><pythonReference>
+						<para>Specifies how annotation features will be added to the output feature class.</para>
+						<bulletList><bullet_item>ONE_CLASS_ONLY—All annotation features will be aggregated into one annotation class within the output feature class.</bullet_item><bullet_item>CREATE_CLASSES—Separate annotation classes will be created for each input annotation class within the output feature class.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how annotation features will be added to the output feature class.</para>
+						<bulletList>
+							<bullet_item>Checked—All annotation features will be aggregated into one annotation class within the output feature class.</bullet_item>
+							<bullet_item>Unchecked—Separate annotation classes will be created for each input annotation class within the output feature class. This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="require_symbol_from_table" displayname="Require symbols to be selected from the symbol table" datatype="Boolean" direction="Input" expression="require_symbol_from_table" type="Optional"><pythonReference>
+						<para>Specifies how symbols can be selected for newly created annotation features.</para>
+						<bulletList><bullet_item>REQUIRE_SYMBOL—Restricts the creation of annotation features to the list of symbols in the symbol collection of the output feature class</bullet_item><bullet_item>NO_SYMBOL_REQUIRED—Allows annotation features to be created with any symbology</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how symbols can be selected for newly created annotation features.</para>
+						<bulletList>
+							<bullet_item>Checked—Restricts the creation of annotation features to the list of symbols in the symbol collection of the output feature class.</bullet_item>
+							<bullet_item>Unchecked—Allows annotation features to be created with any symbology. This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="create_annotation_when_feature_added" displayname="Create annotation when new features are added (Feature-linked only)" datatype="Boolean" direction="Input" expression="create_annotation_when_feature_added" type="Optional"><pythonReference>
+						
+							<para>This parameter is only available with ArcEditor and ArcInfo licenses.</para>
+						
+						<para>Specifies if feature-linked annotation is created when a feature is added.</para>
+						<bulletList><bullet_item>AUTO_CREATE—Use the label engine to place feature-linked annotation when a linked feature is created.</bullet_item><bullet_item>NO_AUTO_CREATE—Do not place feature-linked annotation when a feature is created.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						
+							<para>This parameter is only available with ArcEditor and ArcInfo licenses.</para>
+						
+						<para>Specifies if feature-linked annotation is created when a feature is added.</para>
+						<bulletList>
+							<bullet_item>Checked—Use the label engine to place feature-linked annotation when a linked feature is created. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Do not place feature-linked annotation when a feature is created.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="update_annotation_when_feature_modified" displayname="Update annotation when the shape of the linked feature is modified (Feature-linked only)" datatype="Boolean" direction="Input" expression="update_annotation_when_feature_modified" type="Optional"><pythonReference>
+						
+							<para>This parameter is only available with ArcEditor and ArcInfo licenses.</para>
+						
+						<para>Specifies if feature-linked annotation is updated when a linked feature changes.</para>
+						<bulletList><bullet_item>AUTO_UPDATE—Use the label engine to update feature-linked annotation when a linked feature changes.</bullet_item><bullet_item>NO_AUTO_UPDATE—Do not update feature-linked annotation when a linked feature changes.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						
+							<para>This parameter is only available with ArcEditor and ArcInfo licenses.</para>
+						
+						<para>Specifies if feature-linked annotation is updated when a linked feature changes.</para>
+						<bulletList>
+							<bullet_item>Checked—Use the label engine to update feature-linked annotation when a linked feature changes. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Do not update feature-linked annotation when a linked feature changes.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+						</environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Auto_commit" label="Auto commit"></environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3"></environment></environments><usage><bullet_item>
+				<para>When appending multiple annotation feature classes into a new annotation feature class, the input annotation feature classes must reside in the same database.</para>
+			</bullet_item><bullet_item>
+				<para>The output geodatabase annotation feature class cannot be registered as versioned.</para>
+			</bullet_item><bullet_item>
+				<para>If you select geodatabase annotation features in ArcMap or build a definition query, only those features will be appended to the output feature class.</para>
+			</bullet_item><bullet_item>
+				<para>When appending feature-linked annotation feature classes, all the input annotation feature classes must be linked to the same feature class.</para>
+			</bullet_item><bullet_item>
+				<para>If you select an output annotation feature class that already exists, the features will be appended to that feature class and the tool will project the annotation features in the destination spatial reference.</para>
+			</bullet_item><bullet_item>
+				<para>An ArcEditor or ArcInfo license is required to create an output annotation feature class that is feature-linked.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AppendAnnotation example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the AppendAnnotation tool in immediate mode:</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data/Cobourg.gdb"
+arcpy.AppendAnnotation_management("highways;roads", "transport_anno", 1200, "CREATE_CLASSES", "NO_SYMBOL_REQUIRED", "AUTO_CREATE", "AUTO_UPDATE")
+
+
+                    </code></scriptExample><scriptExample><title>AppendAnnotation example (Stand-alone Python script)</title>
+					<para>The following stand-alone script demonstrates how to use the AppendAnnotation tool:</para>
+				<code xml:space="preserve"># Name: AppendAnnotation_Example.py
+# Description: Use AppendAnnotation to append annotation feature classes in a geodatabase
+# Author: ESRI
+
+# import system modules 
+import arcpy, os
+from arcpy import env
+
+# Set environment settings - user specified
+# User input geodatabase for annotation location - eg. C:/data/roads.gdb
+env.workspace = raw_input('Location of geodatabase annotation: ')
+
+# Create list of annotation feature classes within the geodatabase
+fcList = arcpy.ListFeatureClasses("", "ANNOTATION")
+
+# Set variables
+# User input output feature class name - eg. appendedroadsAnno
+outFeatureClass = env.workspace + os.sep + raw_input('Output annotation feature class name: ')
+refScale = 1200
+createClasses = "CREATE_CLASSES"
+symbolReq = "NO_SYMBOL_REQUIRED"
+autoCreate = "AUTO_CREATE"
+autoUpdate = "AUTO_UPDATE"
+
+try:
+    # Process: Append the annotation feature classes
+    print "Appending annotation feature classes..."
+    arcpy.AppendAnnotation_management(fcList, outFeatureClass, refScale, createClasses, symbolReq, autoCreate, autoUpdate)
+except:
+    # If an error occurred while running a tool print the messages
+    print arcpy.GetMessages()
+
+print "Annotation feature classes in " + env.workspace + " have been appended into " + outFeatureClass
+                    </code></scriptExample></scriptExamples></tool></metadata>

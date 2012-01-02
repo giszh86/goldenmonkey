@@ -1,0 +1,107 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Aggregate Polygons (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Combines polygons within a specified distance to each other into new polygons.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Aggregate Polygons</keyword><keyword>Aggregation</keyword><keyword>Area Aggregation</keyword><keyword>Cartography</keyword><keyword>Combine Polygons</keyword><keyword>Contextual</keyword><keyword>Generalisation</keyword><keyword>Generalise</keyword><keyword>Generalization</keyword><keyword>Generalize</keyword><keyword>Merge</keyword><keyword>Orthogonal</keyword><keyword>Scale Change</keyword><keyword>Shared Edge</keyword><keyword>Simplification</keyword><keyword>Simplify</keyword><keyword>Small Scale</keyword><keyword>Typification</keyword><keyword>Typify</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AggregatePolygons" displayname="Aggregate Polygons (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Combines polygons within a specified distance to each other into new polygons.</para>
+		</summary><alink_name>AggregatePolygons_cartography</alink_name><toolIllust type="illustration" src="AggregatePolygons_cartography_h.gif" alt="Aggregate Polygons illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The polygon features to be aggregated.</para>
+					</pythonReference><dialogReference>
+						<para>The polygon features to be aggregated.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class to be created.</para>
+					</dialogReference></param><param sync="true" name="aggregation_distance" displayname="Aggregation Distance" datatype="Linear Unit" direction="Input" expression="aggregation_distance" type="Required"><pythonReference>
+						<para>The distance to be satisfied between polygon boundaries for aggregation to happen. A distance must be specified, and it must be greater than zero. You can choose a preferred unit; the default is the feature unit.</para>
+					</pythonReference><dialogReference>
+						<para>The distance to be satisfied between polygon boundaries for aggregation to happen. A distance must be specified, and it must be greater than zero. You can choose a preferred unit; the default is the feature unit.</para>
+					</dialogReference></param><param sync="true" name="minimum_area" displayname="Minimum Area" datatype="Areal Unit" direction="Input" expression="minimum_area" type="Optional"><pythonReference>
+						<para>The minimum area for an aggregated polygon to be retained. The default value is zero, that is, to keep all polygons. You can specify a preferred unit; the default is the feature unit.</para>
+					</pythonReference><dialogReference>
+						<para>The minimum area for an aggregated polygon to be retained. The default value is zero, that is, to keep all polygons. You can specify a preferred unit; the default is the feature unit.</para>
+					</dialogReference></param><param sync="true" name="minimum_hole_size" displayname="Minimum Hole Size" datatype="Areal Unit" direction="Input" expression="minimum_hole_size" type="Optional"><pythonReference>
+						<para>The minimum size of a polygon hole to be retained. The default value is zero, that is, to keep all polygon holes. You can specify a preferred unit; the default is the feature unit.</para>
+					</pythonReference><dialogReference>
+						<para>The minimum size of a polygon hole to be retained. The default value is zero, that is, to keep all polygon holes. You can specify a preferred unit; the default is the feature unit.</para>
+					</dialogReference></param><param sync="true" name="orthogonality_option" displayname="Preserve orthogonal shape" datatype="Boolean" direction="Input" expression="orthogonality_option" type="Optional"><pythonReference>
+						<para>Specifies the characteristic of the input features that will be preserved when constructing the aggregated boundaries.</para>
+						<bulletList><bullet_item>NON_ORTHOGONAL—Specifies natural features, such as vegetation or soil polygons, for which the non_orthogonal shapes will be preserved and constructed. This is the default. </bullet_item><bullet_item>ORTHOGONAL—Specifies building-like features for which orthogonal shapes will be preserved and constructed. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the characteristic of the input features that will be preserved when constructing the aggregated boundaries.</para>
+						<bulletList>
+							<bullet_item>Unchecked--Specifies natural features, such as vegetation or soil polygons, for which the non_orthogonal shapes will be preserved and constructed. This is the default.</bullet_item>
+							<bullet_item>Checked--Specifies building-like features for which orthogonal shapes will be preserved and constructed.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is intended for moderate scale reduction and aggregation, when input features can no longer be represented individually due to the limited map space or the required data resolution. Aggregation will only happen where two polygon boundaries are within the specified aggregation distance to each other. There will be no self-aggregation, meaning no aggregation within an input polygon feature itself along its boundary, and no aggregation between any parts of a multipart polygon feature.</para>
+			</bullet_item><bullet_item>
+				<para>The output feature class will not contain any geographic attributes from the input features. A one-to-many relationship table with the name of output_feature_class_Tbl will be created that links the aggregated polygons to their source polygons. This table will contain two fields, OUTPUT_FID and INPUT_FID, storing the aggregated feature IDs and their source feature IDs, respectively. The link can become incorrect when any of the input or output features are modified. With this link, you can derive necessary attributes for the output features from their source features using appropriate geoprocessing tools. An example script for aggregating residential houses into built-up areas and then deriving the total population for the built-up areas is given in the Script Example session below.</para>
+			</bullet_item><bullet_item>
+				<para>Some connecting zones (where features are joined) may be too narrow, as a result of connecting narrow features or as a result of constructing squared shapes for the ORTHOGONAL option; therefore, further inspection and editing may be necessary.</para>
+			</bullet_item><bullet_item>
+				<para>The larger the aggregation distance is for the ORTHOGONAL option, the more chance it may result in overlapping features, or cartographically unpleasant shapes. During the process, if an invalid geometry (such as a self-intersecting polygon) is created and the situation cannot be resolved automatically, a repaired valid geometry will be written out, and a warning message will be printed indicating that a visually self intersecting geometry was created for that feature. Post inspection and editing may be necessary.</para>
+			</bullet_item><bullet_item>
+				<para>If the input features contain Z values, the Z values can be preserved if specified in the environment settings. Where the output vertices are not changed, the input Z values will be carried over to the output vertices; otherwise, a Z value will be derived for  new vertices, either from existing Z values or through interpolation.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AggregatePolygons tool Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the AggregatePolygons tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+import arcpy.cartography as CA
+env.workspace = "C:/data"
+CA.AggregatePolygons("buildings.shp", "C:/output/output.gdb/aggregated_buildings", 10)
+                    </code></scriptExample><scriptExample><title>AggregatePolygons tool Example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the AggregatePolygons function.</para>
+				<code xml:space="preserve"># Name: AggregatePolygons_Example2.py
+# Description: Aggregate grass features and then transfer attributes
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+import arcpy.cartography as CA
+import arcpy.management as DM
+import arcpy.analysis as AN
+  
+# Set environment settings
+env.workspace = "C:/data/Portland.gdb/Vegetation"
+ 
+# Set local variables
+inGrassFeatures = "grass"
+aggregatedFeatures = "C:/data/PortlandOutput.gdb/grassland"
+aggregatedTable = "C:/data/PortlandOutput.gdb/grassland_Tbl"
+frequencyTable = "C:/data/PortlandOutput.gdb/frequency_Tbl"
+
+# Aggregate grass polygons.
+CA.AggregatePolygons(inGrassFeatures, aggregatedFeatures, 50, 300, 300, "NON_ORTHOGONAL")
+ 
+# Join the aggregatedTable with input and
+# transfer the COUNT field to aggregatedTable.
+DM.JoinField(aggregatedTable, "INPUT_FID", inGrassFeatures, "OBJECTID", "COUNT")
+ 
+# Use Frequency on aggregatedTable and
+# obtain sum for COUNT.
+AN.Frequency(aggregatedTable, frequencyTable, "OUTPUT_FID", "COUNT")
+
+# Join the aggregatedFeatures with frequencyTable
+# and transfer the COUNT field to aggregatedFeatures.
+DM.JoinField(aggregatedFeatures, "OBJECTID", frequencyTable, "OUTPUT_FID", "COUNT")
+                    </code></scriptExample></scriptExamples></tool></metadata>

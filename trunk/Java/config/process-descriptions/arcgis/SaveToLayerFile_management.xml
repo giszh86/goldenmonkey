@@ -1,0 +1,67 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Save To Layer File (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates an output layer file (.lyr) that references geographic data stored on disk.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Classified</keyword><keyword>Color</keyword><keyword>Disk</keyword><keyword>Legend</keyword><keyword>Lyr</keyword><keyword>Memory</keyword><keyword>Symbol</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SaveToLayerFile" displayname="Save To Layer File (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates an output layer file (.lyr) that references geographic data stored on disk.</para>
+		</summary><alink_name>SaveToLayerFile_management</alink_name><parameters><param sync="true" name="in_layer" displayname="Input Layer" datatype="Layer" direction="Input" expression="in_layer" type="Required"><pythonReference>
+						<para>The in-memory layer, layer file stored on disk, or feature layer in ArcMap to be saved to disk as a layer file (.lyr).</para>
+					</pythonReference><dialogReference>
+						<para>The in-memory layer, layer file stored on disk, or feature layer in ArcMap to be saved to disk as a layer file (.lyr).</para>
+					</dialogReference></param><param sync="true" name="out_layer" displayname="Output Layer" datatype="Layer File" direction="Output" expression="out_layer" type="Required"><pythonReference>
+						<para>The output layer file (.lyr) to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The output layer file (.lyr) to be created.</para>
+					</dialogReference></param><param sync="true" name="is_relative_path" displayname="Store Relative Path" datatype="Boolean" direction="Input" expression="is_relative_path" type="Optional"><pythonReference>
+						<para>
+Determines if the output layer  file (.lyr) will store a relative path to the source data stored on disk, or an absolute path.
+</para>
+						<bulletList><bullet_item>ABSOLUTE—The output layer file will store an absolute path to the source data stored on disk. This is the default.</bullet_item><bullet_item>RELATIVE—The output layer file will store a relative path to the source data stored on disk. If the output layer file is moved, its source path will update to where the source data should be in relation to the new path.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>
+Determines if the output layer  file (.lyr) will store a relative path to the source data stored on disk, or an absolute path.
+</para>
+						<bulletList><bullet_item>Unchecked—The output layer file will store an absolute path to the source data stored on disk. This is the default.</bullet_item><bullet_item>Checked—The output layer file will store a relative path to the source data stored on disk. If the output layer file is moved, its source path will update to where the source data should be in relation to the new path.</bullet_item></bulletList></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>This tool is used to save an in-memory layer, a layer file stored on disk, or a feature layer in ArcMap to a layer file (.lyr) that references geographic data stored on disk.</para>
+			</bullet_item><bullet_item>
+				<para>This  tool accepts as input  feature layers created by tools such as  or .</para>
+			</bullet_item><bullet_item>
+				<para>If the input layer has a selection applied to it, the output layer file will maintain this selection.</para>
+			</bullet_item><bullet_item>
+				<para>If the created layer file does not immediately show up in ArcCatalog, refresh the catalog tree.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SaveToLayerFile Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the SaveToLayerFile tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data"
+arcpy.SaveToLayerFile_management("studyquadsLyr", "C:/output/studyquadsLyr.lyr", "ABSOLUTE")
+                    </code></scriptExample><scriptExample><title>SaveToLayerFile Example (stand-alone Python script)</title>
+					<para>The following Python script demonstrates how to use the SaveToLayerFile tool in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: SaveToLayerFile_Example2.py
+# Description: Saves an inMemory layer to a file on disk
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/data"
+
+# Set local variables
+in_layer = "studyquadsLyr"
+out_layer = "studyquadsLyr.lyr"
+
+#MakeFeatureLayer variables
+in_features = "study_quads.shp"
+out_layer0 = "studyquadsLyr"
+where_clause = '"NAME" = 'LA MESA''
+workspace = "C:/output"
+
+try:
+    # Execute MakeFeatureLayer
+    arcpy.MakeFeatureLayer_management(in_features, out_layer0, where_clause, workspace)
+
+    # Execute SaveToLayerFile
+    arcpy.SaveToLayerFile_management(in_layer, out_layer, "ABSOLUTE")
+except:
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

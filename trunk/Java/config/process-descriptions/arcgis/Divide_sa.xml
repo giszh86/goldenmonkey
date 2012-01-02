@@ -1,0 +1,80 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Divide (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Divides the values of two rasters on a cell-by-cell basis.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>/</keyword><keyword>Div</keyword><keyword>Division</keyword><keyword>Ratio</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Divide" displayname="Divide (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Divides the values of two rasters on a cell-by-cell basis.</para>
+		</summary><alink_name>Divide_sa</alink_name><toolIllust type="illustration" src="Divide_sa_h.png" alt="Divide illustration" /><parameters><param sync="true" name="in_raster_or_constant1" displayname="Input raster or constant value 1" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant1" type="Required"><pythonReference>
+						<para>The input whose values will be divided by the second input.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The input whose values will be divided by the second input.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="in_raster_or_constant2" displayname="Input raster or constant value 2" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant2" type="Required"><pythonReference>
+						<para>The input whose values the first input are to be divided by.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The input whose values the first input are to be divided by.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>The cell values are the quotient of the first input raster (dividend) divided by the second input (divisor).</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>The cell values are the quotient of the first input raster (dividend) divided by the second input (divisor).</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The order of inputs is relevant for this tool.</para>
+			</bullet_item><bullet_item>
+				<para>When a number is divided by zero, the output result is NoData.</para>
+			</bullet_item><bullet_item>
+				<para>The data types of the inputs to determine the data type of the output:<bulletList><bullet_item>If both inputs are integers, an integer division is performed, and the output result is an integer. For example, if 3 is divided by 2, the output is 1.</bullet_item><bullet_item>If either input is floating-point, a floating-point division is performed, and the output result is a floating-point value. For example, if 3 is divided by 2.0, the output is 1.5.</bullet_item></bulletList></para>
+			</bullet_item><bullet_item>
+				<para>In Map Algebra, the equivalent  symbol for this tool is "/" ().</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Divide example 1 (Python window)</title>
+					<para>This example divides the values of the first input raster by the second.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outDivide = Divide("degs", "negs")
+outDivide.save("C:/sapyexamples/output/outdivide2")
+                    </code></scriptExample><scriptExample><title>Divide example 2 (stand-alone script)</title>
+					<para>This example divides the values of the first input raster by the second.</para>
+				<code xml:space="preserve"># Name: Divide_Ex_02.py
+# Description: Divides the values of two rasters on a cell-by-cell basis
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster01 = "elevation"
+inRaster02 = "landuse"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Divide
+outDivide = Divide(inRaster01, inRaster02)
+
+# Save the output 
+outDivide.save("C:/sapyexamples/output/outdivide")
+                    </code></scriptExample></scriptExamples></tool></metadata>

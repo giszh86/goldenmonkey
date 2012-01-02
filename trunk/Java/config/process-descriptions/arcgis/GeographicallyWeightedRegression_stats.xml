@@ -1,0 +1,151 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Geographically Weighted Regression (GWR) (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs Geographically Weighted Regression (GWR), a local form of linear regression used to model spatially varying relationships. </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cause</keyword><keyword>Coefficient</keyword><keyword>Correlation</keyword><keyword>Dependent</keyword><keyword>Effect</keyword><keyword>Gwr</keyword><keyword>Local</keyword><keyword>Multiple</keyword><keyword>Negative</keyword><keyword>Positive</keyword><keyword>Predict</keyword><keyword>R Squared</keyword><keyword>Regional Variation</keyword><keyword>Relate</keyword><keyword>Square</keyword><keyword>Stationarity</keyword><keyword>Value</keyword><keyword>Variable</keyword><keyword>Vary</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GeographicallyWeightedRegression" displayname="Geographically Weighted Regression (GWR) (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Performs Geographically Weighted Regression (GWR), a local form of linear regression used to model spatially varying relationships. </para>
+			
+		</summary><alink_name>GeographicallyWeightedRegression_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/GeographicallyWeightedRegression_stats_v.png" alt="Geographically Weighted Regression" /><toolIllust type="illustration" src="GeographicallyWeightedRegression_stats_h.png" alt="Geographically Weighted Regression" /><parameters><param sync="true" name="in_features" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The feature class containing the dependent and independent variables.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class containing the dependent and independent variables.</para>
+					</dialogReference></param><param sync="true" name="dependent_field" displayname="Dependent Variable" datatype="Field" direction="Input" expression="dependent_field" type="Required"><pythonReference>
+						<para>The numeric field containing values for what you are trying to model.</para>
+					</pythonReference><dialogReference>
+						<para>The numeric field containing values for what you are trying to model.</para>
+					</dialogReference></param><param sync="true" name="explanatory_field" displayname="Explanatory Variable(s)" datatype="Field" direction="Input" expression="[explanatory_field,...]" type="Required"><pythonReference>
+						<para>A list of fields representing independent explanatory variables in your regression model.</para>
+					</pythonReference><dialogReference>
+						<para>A list of fields representing independent explanatory variables in your regression model.</para>
+					</dialogReference></param><param sync="true" name="out_featureclass" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_featureclass" type="Required"><pythonReference>
+						<para>The output feature class to receive dependent variable estimates and residuals.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class to receive dependent variable estimates and residuals.</para>
+					</dialogReference></param><param sync="true" name="kernel_type" displayname="Kernel Type" datatype="String" direction="Input" expression="kernel_type" type="Required"><pythonReference>
+						<para>Specifies if the kernel is constructed as a fixed distance,  or if it is allowed to vary in extent as a function of feature density.</para>
+						<bulletList><bullet_item>FIXED—The spatial context (the Gaussian kernel) used to solve each local regression analysis is a fixed distance.</bullet_item><bullet_item>ADAPTIVE —The spatial context (the Gaussian kernel) is a function of a specified number of neighbors. Where feature distribution is dense, the spatial context is smaller; where feature distribution is sparse, the spatial context is larger.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies if the kernel is constructed as a fixed distance,  or if it is allowed to vary in extent as a function of feature density.</para>
+						<bulletList><bullet_item>FIXED—The spatial context (the Gaussian kernel) used to solve each local regression analysis is a fixed distance.</bullet_item><bullet_item>ADAPTIVE —The spatial context (the Gaussian kernel) is a function of a specified number of neighbors. Where feature distribution is dense, the spatial context is smaller; where feature distribution is sparse, the spatial context is larger.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Bandwidth_method" displayname="Bandwidth Method" datatype="String" direction="Input" expression="Bandwidth_method" type="Required"><pythonReference>
+						<para>Specifies how the extent of the kernel should be determined. When AICc or CV are selected, the tool will find the optimal distance/neighbor parameter for you.</para>
+						<bulletList><bullet_item>AICc—The extent of the kernel is determined using the Akaike Information Criterion (AICc).</bullet_item><bullet_item>CV—The extent of the kernel is determined using Cross Validation.</bullet_item><bullet_item>BANDWIDTH PARAMETER—The extent of the kernel is determined by a fixed distance or a fixed number of neighbors.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>Specifies how the extent of the kernel should be determined. When AICc or CV are selected, the tool will find the optimal distance/neighbor parameter for you.</para>
+						<bulletList><bullet_item>AICc—The extent of the kernel is determined using the Akaike Information Criterion (AICc).</bullet_item><bullet_item>CV—The extent of the kernel is determined using Cross Validation.</bullet_item><bullet_item>BANDWIDTH PARAMETER—The extent of the kernel is determined by a fixed distance or a fixed number of neighbors.</bullet_item></bulletList></dialogReference></param><param sync="true" name="Distance" displayname="Distance" datatype="Double" direction="Input" expression="Distance" type="Optional"><pythonReference>
+						<para>Specifies a fixed bandwidth extent or distance whenever the kernel type is FIXED and the bandwidth method is BANDWIDTH PARAMETER.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies a fixed bandwidth extent or distance whenever the kernel type is FIXED and the bandwidth method is BANDWIDTH PARAMETER.</para>
+					</dialogReference></param><param sync="true" name="number_of_neighbors" displayname="Number of neighbors" datatype="Integer" direction="Input" expression="number_of_neighbors" type="Optional"><pythonReference>
+						<para>An integer reflecting the exact number of neighbors to include in the local bandwidth of the Gaussian kernel whenever the kernel type is ADAPTIVE and the bandwidth method is BANDWIDTH PARAMETER.</para>
+					</pythonReference><dialogReference>
+						<para>An integer reflecting the exact number of neighbors to include in the local bandwidth of the Gaussian kernel whenever the kernel type is ADAPTIVE and the bandwidth method is BANDWIDTH PARAMETER.</para>
+					</dialogReference></param><param sync="true" name="weight_field" displayname="Weights" datatype="Field" direction="Input" expression="weight_field" type="Optional"><pythonReference>
+						<para>The numeric field containing a spatial weighting for individual features. This weight field allows some features to be more important in the model calibration process than others.  Primarily useful when the number of samples taken at different locations varies, values for the dependent and independent variables are averaged, and places with more samples are more reliable (should be weighted higher).  If you have an average of 25 different samples for one location, but an average of only 2 samples for another location, you can use the number of samples as your weight field so that locations with more samples have a larger influence on model calibration that locations with few samples.</para>
+					</pythonReference><dialogReference>
+						<para>The numeric field containing a spatial weighting for individual features. This weight field allows some features to be more important in the model calibration process than others.  Primarily useful when the number of samples taken at different locations varies, values for the dependent and independent variables are averaged, and places with more samples are more reliable (should be weighted higher).  If you have an average of 25 different samples for one location, but an average of only 2 samples for another location, you can use the number of samples as your weight field so that locations with more samples have a larger influence on model calibration that locations with few samples.</para>
+					</dialogReference></param><param sync="true" name="Coefficient_raster_workspace" displayname="Coefficient raster workspace" datatype="Workspace" direction="Input" expression="Coefficient_raster_workspace" type="Optional"><pythonReference>
+						<para>A full pathname to the workspace where all of the coefficient rasters will be created. When this workspace is provided, rasters are created for the intercept and every explanatory variable.</para>
+					</pythonReference><dialogReference>
+						<para>A full pathname to the workspace where all of the coefficient rasters will be created. When this workspace is provided, rasters are created for the intercept and every explanatory variable.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis Cell Size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size (a number) or reference to the cell size (a pathname to a raster dataset) to use when creating the coefficient rasters.</para>
+						<para>The default cell size is the shortest of the width or height of the extent specified in the Environment output coordinate system, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size (a number) or reference to the cell size (a pathname to a raster dataset) to use when creating the coefficient rasters.</para>
+						<para>The default cell size is the shortest of the width or height of the extent specified in the Environment output coordinate system, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="in_prediction_locations" displayname="Prediction locations" datatype="Feature Layer" direction="Input" expression="in_prediction_locations" type="Optional"><pythonReference>
+						<para>A feature class containing features representing locations where estimates should be computed. Each feature in this dataset should contain values for all of the explanatory variables specified; the dependent variable for these features will be estimated using the model calibrated for the input feature class data.</para>
+					</pythonReference><dialogReference>
+						<para>A feature class containing features representing locations where estimates should be computed. Each feature in this dataset should contain values for all of the explanatory variables specified; the dependent variable for these features will be estimated using the model calibrated for the input feature class data.</para>
+					</dialogReference></param><param sync="true" name="prediction_explanatory_field" displayname="Prediction explanatory variable(s)" datatype="Field" direction="Input" expression="[prediction_explanatory_field,...]" type="Optional"><pythonReference>
+						<para>A list of fields representing explanatory variables in the Prediction Locations feature class. These field names should be provided in the same order (a one-to-one correspondance) as those listed for the input feature class Explanatory variables parameter. If no prediction explanatory variables are given, the output prediction feature class will only contain computed coefficient values for each prediction location.</para>
+					</pythonReference><dialogReference>
+						<para>A list of fields representing explanatory variables in the Prediction Locations feature class. These field names should be provided in the same order (a one-to-one correspondance) as those listed for the input feature class Explanatory variables parameter. If no prediction explanatory variables are given, the output prediction feature class will only contain computed coefficient values for each prediction location.</para>
+					</dialogReference></param><param sync="true" name="Out_prediction_featureclass" displayname="Output prediction feature class" datatype="Feature Class" direction="Output" expression="Out_prediction_featureclass" type="Optional"><pythonReference>
+						<para>The output feature class to receive dependent variable estimates for each feature in the Prediction locations feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class to receive dependent variable estimates for each feature in the Prediction locations feature class.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_coordinate_system" label="Output coordinate system">Feature geometry is projected to the Output Coordinate System  after analysis is complete. Consequently, the value entered for the Distance parameter should be specified in the same units as the Input feature class. Values entered for the Output cell size should be specified in the same units as the Output Coordinate System.</environment><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>GWR constructs a separate equation for every feature in the dataset incorporating the dependent and explanatory variables of features falling within the bandwidth of each target feature. The shape and extent of the bandwidth is dependent on user input for the Kernel type, Bandwidth method, Distance, and Number of neighbors parameters with one restriction: when the number of neighboring features would exceed 1000, only the closest 1000 are incorporated into each local equation.</para>
+			</bullet_item><bullet_item>
+				<para>GWR should be applied to datasets with several hundred features for best results. It is not an appropriate method for small datasets. The tool does not work with multipoint data.</para>
+			</bullet_item><bullet_item>
+				<para><para>The GWR tool produces a variety of different outputs.  Right-clicking on the  in the  and selecting <bold>View</bold> will display a  GWR tool execution summary report .</para> The GWR tool also produces an Output feature class and a table with the tool execution summary report diagnostic values.  The name of this table is automatically generated using the output feature class name and "_supp" suffix. The Output feature class is automatically added to the table of contents with a hot/cold rendering scheme applied to model .  A full explanation of each output is provided in .</para>
+			</bullet_item><bullet_item>
+				<para>Using projected data is always recommended; it is especially important whenever distance is a component of the analysis, as it is for GWR when you select <bold>FIXED</bold> for Kernel type. It is strongly recommended that your data is projected using a  (rather than a ).</para>
+			</bullet_item><bullet_item>
+				<para>Some of the computations done by the GWR tool take advantage of multiple CPUs in order to increase performance and will automatically use up to 8 threads/CPUs for processing.</para>
+			</bullet_item><bullet_item><para>You should always begin regression analysis with  regression.  First find a , then use the same explanatory variables to run GWR (excluding any "dummy" explanatory variables representing different spatial regimes).    </para></bullet_item><bullet_item>
+				<para>Dependent and Explanatory variables should be numeric fields containing a variety of values. Linear regression methods, like GWR, are not appropriate for predicting binary outcomes (e.g., all of the values for the dependent variable are either 1 or 0).</para>
+			</bullet_item><bullet_item>
+				<para>In global regression models, such as , results are unreliable when two or more variables exhibit multicollinearity (when two or more variables are redundant or together tell the same "story"). GWR builds a local regression equation for each feature in the dataset. When the values for a particular explanatory variable cluster spatially, you will very likely have problems with local . The <bold>condition number</bold> in the output feature class indicates when results are unstable due to local multicollinearity. As a rule of thumb, do not trust results for features with a condition number larger than 30, equal to Null or, for shapefiles, equal to -1.7976931348623158e+308.</para>
+			</bullet_item><bullet_item>
+				<para>Caution should be used when including nominal/categorical data in a GWR model. Where categories cluster spatially, there is strong risk of encountering local multicollinearity issues. The condition number included in the GWR output indicates when local collinearity is a problem (a condition number less than zero, greater than 30, or set to Null). Results in the presence of local multicollinearity are unstable.</para>
+			</bullet_item><bullet_item>
+				<para>Do not use "dummy" explanatory variables to represent different spatial regimes in a GWR model (e.g., census tracts outside the urban core are assigned a value of 1, while all others are assigned a value of 0). Because GWR allows explanatory variable coefficients to vary, these spatial regime explanatory variables are unnecessary, and if included, will create problems with local .  </para>
+			</bullet_item><bullet_item>
+				<para>To better understand regional variation among the coefficients of your explanatory variables, examine the optional raster coefficient surfaces created by GWR.  These raster surfaces are created in the Coefficient raster workspace, if you specify one. For polygon data, you can use graduated color or cold-to-hot rendering on each coefficient field in the Output feature class to examine changes across your study area.</para>
+			</bullet_item><bullet_item><para>You may use GWR for prediction by supplying a Predictions locations feature class (often this feature class is the same as the Input feature class), the Prediction explanatory variables, and an Output prediction feature class.  There must be a one to one correspondence between the fields used to calibrate the regression model (the values entered for the Explanatory variables field) and the fields used for prediction (the values entered for the Prediction explanatory variables field).  The order of these variables must be the same.  Suppose, for example, you are modeling traffic accidents as a function of speed limits, road conditions, number of lanes, and number of cars.  You can predict the impact that changing speed limits or improving roads might have on traffic accidents by creating a new variables with  the amended speed limits and road conditions.  The existing variables would be used to calibrate the regression model and would be used for the   Explanatory variables parameter. The amended variables would be used for predictions and would be entered as your Prediction explanatory variables.</para></bullet_item><bullet_item>
+				<para>If a Prediction locations feature class is provided, but no Prediction explanatory variables are specified, the Output prediction feature class is created with computed coefficients for each location only (no predictions).</para>
+			</bullet_item><bullet_item>
+				<para>A regression model is misspecified if it is missing a key explanatory variable. Statistically significant spatial autocorrelation of the regression residuals and/or unexpected spatial variation among the coefficients of one or more explanatory variables suggests that your model is misspecified. You should make every effort (through OLS residual analysis and GWR coefficient variation analysis, for example) to discover what these key missing variables are so they may be included in the model.</para>
+			</bullet_item><bullet_item>
+				<para>Always question whether or not it makes sense for an explanatory variable to be nonstationary. For example, suppose you are modeling the density of a particular plant species as a function of several variables including ASPECT. If you find that the coefficient for the ASPECT variable changes across the study area, you are likely seeing evidence of a key missing explanatory variable (perhaps prevalence of competing vegetation, for example). You should make every effort to include all key explanatory variables in your regression model.</para>
+			</bullet_item><bullet_item>
+				<para>Whenever using shapefiles, keep in mind that they cannot store null values. Tools or other procedures that create shapefiles from nonshapefile inputs may, consequently, store null values as zero or as some very small negative number (-DBL_MAX = -1.7976931348623158e+308). This can lead to unexpected results.  See also: .</para>
+			</bullet_item><bullet_item>
+				<para>When the result of a computation is infinity or undefined, the result for nonshapefiles will be Null; for shapefiles the result will be -DBL_MAX = -1.7976931348623158e+308.</para>
+			</bullet_item><bullet_item><para>When you select either the AICc or CV Bandwidth Method, GWR will find the optimal distance (for FIXED kernel) or optimal number of neighbors (for ADAPTIVE kernel).  Problems with local multicollinearity, however, will prevent both the AICc and CV Bandwidth methods from resolving an optimal distance/number of neighbors. If you get an error indicating <bold>severe model design</bold> problems, try specifying a particular distance or neighbor count, then examining the condition numbers in the output feature class to see which features are associated with local collinearity problems</para></bullet_item><bullet_item>
+				<para>Problems with local collinearity will prevent both the AICc and CV Bandwidth methods from resolving an optimal distance/number of neighbors. If you get an error indicating severe model design problems, try specifying a particular distance or neighbor count, then examining the condition numbers in the Output feature class to see which features are associated with local multicollinearity problems.</para>
+			</bullet_item><bullet_item>
+				<para><bold>Severe model design</bold> errors, or errors indicating local equations do not include enough neighbors, often indicate a problem with global or local multicollinearity. To determine where the problem is, run your model using  and examine the  for each explanatory variable. If some of the VIF values are large (above 7.5, for example), global multicollinearity is preventing GWR from solving. More likely, however, local multicollinearity is the problem. Try creating a thematic map for each explanatory variable. If the map reveals spatial clustering of identical values, consider removing those variables from the model or combining those variables with other explanatory variables in order to increase value variation. If, for example, you are modeling home values and have variables for both bedrooms and bathrooms, you may want to combine these to increase value variation, or to represent them as bathroom/bedroom square footage. Avoid using spatial regime dummy variables, spatially clustering categorical/nominal variables, or variables with very few possible values when constructing GWR models.</para>
+			</bullet_item><bullet_item>
+				<para>GWR is a linear model subject to the same requirements as OLS. Review the section titled "" in the  document as a check that your GWR model is properly specified.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>GeographicallyWeightedRegression Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the GeographicallyWeightedRegression tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "c:/data"
+arcpy.GeographicallyWeightedRegression_stats("CallData.shp", "Calls","BUS_COUNT;RENTROCC00;NoHSDip","CallsGWR.shp", "ADAPTIVE", "BANDWIDTH PARAMETER","#", "25", "#","CoefRasters", "135", "PredictionPoints", "#", "GWRCallPredictions.shp")
+                    </code></scriptExample><scriptExample><title>GeographicallyWeightedRegression Example (stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the GeographicallyWeightedRegression tool.</para>
+				<code xml:space="preserve"># Model 911 emergency calls using GWR
+
+# Import system modules
+import arcpy
+
+# Set the geoprocessor object property to overwrite existing outputs
+arcpy.gp.overwriteOutput = True
+
+# Local variables...
+workspace = r"C:\Data"
+
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.env.workspace = workspace
+
+    # 911 Calls as a function of {number of businesses, number of rental units,
+    # number of adults who didn't finish high school}
+    # Process: Geographically Weighted Regression... 
+    gwr = arcpy.GeographicallyWeightedRegression_stats("CallData.shp", "Calls", 
+                        "BUS_COUNT;RENTROCC00;NoHSDip",
+                        "CallsGWR.shp", "ADAPTIVE", "BANDWIDTH PARAMETER","#", "25", "#",
+                        "CoefRasters", "135", "PredictionPoints", "#", "GWRCallPredictions.shp")
+
+    # Create Spatial Weights Matrix to use with Global Moran's I tool
+    # Process: Generate Spatial Weights Matrix... 
+    swm = arcpy.GenerateSpatialWeightsMatrix_stats("CallsGWR.shp", "UniqID",
+                        "CallData25Neighs.swm",
+                        "K_NEAREST_NEIGHBORS",
+                        "#", "#", "#", 25) 
+                        
+    # Calculate Moran's Index of Spatial Autocorrelation for 
+    # OLS Residuals using a SWM File.  
+    # Process: Spatial Autocorrelation (Morans I)...      
+    moransI = arcpy.SpatialAutocorrelation_stats("CallsGWR.shp", "StdResid",
+                        "NO_REPORT", "GET_SPATIAL_WEIGHTS_FROM_FILE", 
+                        "EUCLIDEAN_DISTANCE", "NONE", "#", 
+                        "CallData25Neighs.swm")
+
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

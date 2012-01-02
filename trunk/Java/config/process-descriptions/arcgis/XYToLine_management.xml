@@ -1,0 +1,102 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">XY To Line (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a new feature class containing geodetic two-point polyline features from a table of start and end points.
+</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Endpoint</keyword><keyword>Geodesic</keyword><keyword>Geodesy</keyword><keyword>Geometry</keyword><keyword>Great Circle</keyword><keyword>Loxodrome</keyword><keyword>Normal Section</keyword><keyword>Rhumb</keyword><keyword>Start Point</keyword><keyword>True Earth</keyword><keyword>Vector</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="&#xA;XYToLine" displayname="XY To Line (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a new feature class containing geodetic two-point polyline features from a table of start and end points.
+</para>
+		</summary><alink_name>
+XYToLine_management</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>
+Table with fields for starting and ending X and Y coordinates.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Table with fields for starting and ending X and Y coordinates.
+</para>
+					</dialogReference></param><param sync="true" name="out_featureclass" displayname="Output Feature Class" datatype="Feature Class" direction="Input" expression="out_featureclass" type="Required"><pythonReference>
+						<para>
+Feature class that will contain the output lines.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Feature class that will contain the output lines.
+</para>
+					</dialogReference></param><param sync="true" name="startx_field" displayname="Start X FIeld" datatype="Field" direction="Input" expression="startx_field" type="Required"><pythonReference>
+						<para>
+Starting point's  X coordinate field.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Starting point's  X coordinate field.
+</para>
+					</dialogReference></param><param sync="true" name="starty_field" displayname="Start Y Field" datatype="Field" direction="Input" expression="starty_field" type="Required"><pythonReference>
+						<para>
+Starting point's Y coordinate field.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Starting point's Y coordinate field.
+</para>
+					</dialogReference></param><param sync="true" name="endx_field" displayname="End X Field" datatype="Field" direction="Input" expression="endx_field" type="Required"><pythonReference>
+						<para>
+Ending point's X coordinate field.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Ending point's X coordinate field.
+</para>
+					</dialogReference></param><param sync="true" name="endy_field" displayname="End Y Field" datatype="Field" direction="Input" expression="endy_field" type="Required"><pythonReference>
+						<para>
+Ending point's Y coordinate field.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Ending point's Y coordinate field.
+</para>
+					</dialogReference></param><param sync="true" name="line_type" displayname="Line Type" datatype="String" direction="Input" expression="line_type" type="Optional"><pythonReference>
+						<para>
+ Type of two-point lines to construct. Default line type is GEODESIC.
+</para>
+						<bulletList><bullet_item>GEODESIC—Straight line based on a spheroid.</bullet_item><bullet_item>GREAT_CIRCLE—Straight line on a sphere.</bullet_item><bullet_item>RHUMB_LINE—Line of constant bearing (direction).</bullet_item><bullet_item>NORMAL_SECTION—Straight line on a spheroid.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>
+ Type of two-point lines to construct. Default line type is GEODESIC.
+</para>
+						<bulletList><bullet_item>GEODESIC—Straight line based on a spheroid.</bullet_item><bullet_item>GREAT_CIRCLE—Straight line on a sphere.</bullet_item><bullet_item>RHUMB_LINE—Line of constant bearing (direction).</bullet_item><bullet_item>NORMAL_SECTION—Straight line on a spheroid.</bullet_item></bulletList></dialogReference></param><param sync="true" name="id_field" displayname="ID" datatype="Field" direction="Input" expression="id_field" type="Optional"><pythonReference>
+						<para>
+ID field from the input table. This may be used to join the output features back to the input table.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+ID field from the input table. This may be used to join the output features back to the input table.
+</para>
+					</dialogReference></param><param sync="true" name="spatial_reference" displayname="Spatial Reference" datatype="Spatial Reference" direction="Input" expression="spatial_reference" type="Optional"><pythonReference>
+						<para>
+Spatial Reference of the input coordinates. Default is GCS_WGS_1984.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Spatial Reference of the input coordinates. Default is GCS_WGS_1984.
+</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>
+Each row in the input table creates an individual two-point polyline in the output feature class.
+</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>XYToLine example (stand-alone script)</title>
+					<para>This sample converts a DBF table to two-point Geodesic lines.</para>
+				<code xml:space="preserve">
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set local variables
+input_table = r"c:\workspace\city2city.dbf"
+out_lines = r"c:\workspace\flt4421.gdb\routing001"
+
+#XY To Line
+arcpy.XYToLine_management(input_table,out_lines,
+																									"LOND1","LATD1","LOND2",
+																									"LATD2","GEODESIC","idnum")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

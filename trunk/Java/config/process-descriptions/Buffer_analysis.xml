@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ProcessDescription processVersion="2" >
+  <!---toolName + "_" + functionFactoryAlias
+  toolBoxName = "dftoolbox.tbx";
+			functionFactoryAlias = "dffunctionfactory";
+    -->
+  <Identifier>Buffer_analysis</Identifier>
+  <Title>Buffer Analysis</Title>
+  <Abstract>Creates buffer polygons around input features to a specified distance. An optional dissolve can be performed to combine overlapping buffers.</Abstract>
+  <DataInputs>
+	<Input>
+      <Identifier>in_features</Identifier>
+      <Title>Input Features</Title>
+      <Abstract>The input point, line, or polygon features to be buffered.</Abstract>
+      <DataType>string</DataType>
+	  <Option>false</Option>
+    </Input>
+	<Input>
+      <Identifier>out_feature_class</Identifier>
+      <Title>Output Feature Class</Title>
+      <Abstract>The feature class containing the output feature buffers.</Abstract>
+      <DataType>string</DataType>
+	  <Option>false</Option>
+    </Input>
+	<Input>
+      <Identifier>buffer_distance_or_field</Identifier>
+      <Title>Distance [value or field]</Title>
+      <Abstract>The distance around the input features in which buffer zones are created. Distances can be provided as either a value representing a linear distance or as a numeric field from the input features that contains the linear distances to buffer each feature.If the Distance linear units are not specified or are entered as Unknown, the linear unit of the input features' spatial reference is used.</Abstract>
+      <DataType>string</DataType>
+	  <Option>false</Option>
+    </Input>
+	<Input>
+      <Identifier>line_side</Identifier>
+      <Title>Side Type</Title>
+      <Abstract>The side(s) of the input features that will be buffered.FULL—For line input features, buffers will be generated on both sides of the line. For polygon input features, buffers will be generated around the polygon and will contain and overlap the area of the input features. For point input features, buffers will be generated around the point. This is the default. LEFT—For line input features, buffers will be generated on the topological left of the line. This option is not valid for polygon input features.RIGHT—For line input features, buffers will be generated on the topological right of the line. This option is not valid for polygon input features.OUTSIDE_ONLY—For polygon input features, buffers will be generated only outside the input polygon (the area inside the input polygon will be erased from the output buffer). This option is not valid for line input features.</Abstract>
+      <DataType>string</DataType>
+	  <Option>true</Option>
+    </Input>
+	<Input>
+      <Identifier>line_end_type</Identifier>
+      <Title>End Type</Title>
+      <Abstract>The shape of the buffer at the end of line input features. This parameter is not valid for polygon input features.</Abstract>
+      <DataType>string</DataType>
+	  <Option>true</Option>
+    </Input>
+	<Input>
+      <Identifier>dissolve_option</Identifier>
+      <Title>Dissolve Type</Title>
+      <Abstract>Specifies the dissolve to be performed to remove output buffer overlap.</Abstract>
+      <DataType>string</DataType>
+	  <Option>true</Option>
+    </Input>
+	<Input>
+      <Identifier>dissolve_field</Identifier>
+      <Title>Dissolve Field(s)</Title>
+      <Abstract>The list of field(s) from the input features on which to dissolve the output buffers. Any buffers sharing attribute values in the listed fields (carried over from the input features) are dissolved.</Abstract>
+      <DataType>string</DataType>
+	  <Option>true</Option>
+    </Input>
+  </DataInputs>
+  <ProcessOutputs>
+	<Output>
+	  <Identifier>out_feature_class</Identifier>
+      <Title>Output Feature Class</Title>
+      <Abstract>The feature class containing the output feature buffers.</Abstract>
+      <DataType>string</DataType>
+	</Output>
+  </ProcessOutputs>
+</ProcessDescription>

@@ -1,0 +1,158 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make Closest Facility Layer (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Makes a closest facility network analysis layer and sets its analysis properties. A closest facility analysis layer is useful in determining the closest facility or facilities to an incident based on a specified network cost.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alter</keyword><keyword>Altered</keyword><keyword>Closest Facitlity</keyword><keyword>Closest Facitlity Layer</keyword><keyword>Facility</keyword><keyword>Facility Layer</keyword><keyword>Layer</keyword><keyword>Navigation Properties</keyword><keyword>Near</keyword><keyword>Network Analyst Layer</keyword><keyword>Proximity</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeClosestFacilityLayer" displayname="Make Closest Facility Layer (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Makes a closest facility network analysis layer and sets its analysis properties. A closest facility analysis layer is useful in determining the closest facility or facilities to an incident based on a specified network cost.</para>
+		</summary><alink_name>MakeClosestFacilityLayer_na</alink_name><parameters><param sync="true" name="in_network_dataset" displayname="Input analysis network" datatype="Network Dataset Layer" direction="Input" expression="in_network_dataset" type="Required"><pythonReference>
+						<para>The network dataset on which the closest facility analysis will be performed.</para>
+					</pythonReference><dialogReference>
+						<para>The network dataset on which the closest facility analysis will be performed.</para>
+					</dialogReference></param><param sync="true" name="out_network_analysis_layer" displayname="Output layer name" datatype="String" direction="Output" expression="out_network_analysis_layer" type="Required"><pythonReference>
+						<para>Name of the closest facility network analysis layer to create.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the closest facility network analysis layer to create.</para>
+					</dialogReference></param><param sync="true" name="impedance_attribute" displayname="Impedance attribute" datatype="String" direction="Input" expression="impedance_attribute" type="Required"><pythonReference>
+						<para>The cost attribute to be used as impedance in the analysis.</para>
+					</pythonReference><dialogReference>
+						<para>The cost attribute to be used as impedance in the analysis.</para>
+					</dialogReference></param><param sync="true" name="travel_from_to" displayname="Travel from or to facility" datatype="String" direction="Input" expression="travel_from_to" type="Optional"><pythonReference>
+						<para>Specifies the direction of travel between facilities and incidents.</para>
+						<bulletList><bullet_item>TRAVEL_FROM—Direction of travel is from facilities to incidents </bullet_item><bullet_item>TRAVEL_TO—Direction of travel is  from incidents to facilities </bullet_item></bulletList>
+						<para>Using this option can find different facilities on a network with one-way restrictions and different impedances based on direction of travel. For instance, a facility may be a 10-minute drive from the incident while traveling from the incident to the facility, but while traveling from the facility to the incident, it may be a 15-minute journey because of different travel time in that direction.</para><para>Fire departments commonly use the TRAVEL_FROM setting since they are concerned with the time it takes to travel from the fire station (facility) to the location of the emergency (incident). A retail store (facility) is more concerned with the time it takes the shoppers (incidents) to reach the store; therefore, stores commonly use the TRAVEL_TO option.</para>
+						</pythonReference><dialogReference>
+						<para>Specifies the direction of travel between facilities and incidents.</para>
+						<bulletList><bullet_item>TRAVEL_FROM—Direction of travel is from facilities to incidents </bullet_item><bullet_item>TRAVEL_TO—Direction of travel is  from incidents to facilities </bullet_item></bulletList>
+						<para>Using this option can find different facilities on a network with one-way restrictions and different impedances based on direction of travel. For instance, a facility may be a 10-minute drive from the incident while traveling from the incident to the facility, but while traveling from the facility to the incident, it may be a 15-minute journey because of different travel time in that direction.</para><para>Fire departments commonly use the TRAVEL_FROM setting since they are concerned with the time it takes to travel from the fire station (facility) to the location of the emergency (incident). A retail store (facility) is more concerned with the time it takes the shoppers (incidents) to reach the store; therefore, stores commonly use the TRAVEL_TO option.</para>
+						</dialogReference></param><param sync="true" name="default_cutoff" displayname="Default cutoff" datatype="Double" direction="Input" expression="default_cutoff" type="Optional"><pythonReference>
+						<para>Default impedance value at which to stop searching for facilities for a given incident. The default can be overridden by specifying the cutoff value on incidents when TRAVEL_TO option is used or by specifying the cutoff value on facilities when TRAVEL_FROM option is used.</para>
+					</pythonReference><dialogReference>
+						<para>Default impedance value at which to stop searching for facilities for a given incident. The default can be overridden by specifying the cutoff value on incidents when TRAVEL_TO option is used or by specifying the cutoff value on facilities when TRAVEL_FROM option is used.</para>
+					</dialogReference></param><param sync="true" name="default_number_facilities_to_find" displayname="Number of facilities to find" datatype="Long" direction="Input" expression="default_number_facilities_to_find" type="Optional"><pythonReference>
+						<para>Default number of closest facilities to find per incident. The default can be overridden by specifying a value for the TargetFacilityCount property on the incidents.</para>
+					</pythonReference><dialogReference>
+						<para>Default number of closest facilities to find per incident. The default can be overridden by specifying a value for the TargetFacilityCount property on the incidents.</para>
+					</dialogReference></param><param sync="true" name="accumulate_attribute_name" displayname="Accumulators" datatype="String" direction="Input" expression="[accumulate_attribute_name,...]" type="Optional"><pythonReference>
+						<para>List of cost attributes to be accumulated during analysis. These accumulation attributes are purely for reference; the solver only uses the cost attribute specified by the Impedance attribute parameter  to calculate the route.</para>
+						<para>For each cost attribute that is accumulated, a Total_[Impedance] property is added to the routes that are output by the solver.</para>
+					</pythonReference><dialogReference>
+						<para>List of cost attributes to be accumulated during analysis. These accumulation attributes are purely for reference; the solver only uses the cost attribute specified by the Impedance attribute parameter  to calculate the route.</para>
+						<para>For each cost attribute that is accumulated, a Total_[Impedance] property is added to the routes that are output by the solver.</para>
+					</dialogReference></param><param sync="true" name="UTurn_policy" displayname="U-Turn policy" datatype="String" direction="Input" expression="UTurn_policy" type="Optional"><pythonReference>
+						<para>Restrict or permit U-turns at junctions that could occur during network traversal between stops.</para>
+						<bulletList><bullet_item>ALLOW_UTURNS—U-turns are permitted at junctions with any number of adjacent edges.</bullet_item><bullet_item>NO_UTURNS—U-turns are prohibited at all junctions. Note, however, that U-turns are still permitted at network locations even when this setting is chosen; however, you can set the individual network locations' CurbApproach property to prohibit U-turns.</bullet_item><bullet_item>ALLOW_DEAD_ENDS_ONLY—U-turns are prohibited at all junctions, except those that have only one adjacent edge (a dead end). </bullet_item><bullet_item>ALLOW_DEAD_ENDS_AND_INTERSECTIONS_ONLY—U-turns are prohibited at junctions where exactly two adjacent edges meet but are permitted at intersections (any junction with three or more adjacent edges) or dead ends. (junctions with exactly one adjacent edge) </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Restrict or permit U-turns at junctions that could occur during network traversal between stops.</para>
+						<bulletList><bullet_item>ALLOW_UTURNS—U-turns are permitted at junctions with any number of adjacent edges.</bullet_item><bullet_item>NO_UTURNS—U-turns are prohibited at all junctions. Note, however, that U-turns are still permitted at network locations even when this setting is chosen; however, you can set the individual network locations' CurbApproach property to prohibit U-turns.</bullet_item><bullet_item>ALLOW_DEAD_ENDS_ONLY—U-turns are prohibited at all junctions, except those that have only one adjacent edge (a dead end). </bullet_item><bullet_item>ALLOW_DEAD_ENDS_AND_INTERSECTIONS_ONLY—U-turns are prohibited at junctions where exactly two adjacent edges meet but are permitted at intersections (any junction with three or more adjacent edges) or dead ends. (junctions with exactly one adjacent edge) </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="restriction_attribute_name" displayname="Restrictions" datatype="String" direction="Input" expression="[restriction_attribute_name,...]" type="Optional"><pythonReference>
+						<para>List of restriction attributes to apply during the analysis.</para>
+					</pythonReference><dialogReference>
+						<para>List of restriction attributes to apply during the analysis.</para>
+					</dialogReference></param><param sync="true" name="hierarchy" displayname="Use Hierarchy in analysis" datatype="Boolean" direction="Input" expression="hierarchy" type="Optional"><pythonReference>
+						<bulletList><bullet_item>USE_HIERARCHY— Use the hierarchy attribute for the analysis. Using a hierarchy results in the solver preferring higher-order edges to lower-order edges. Hierarchical solves are faster, and they can be used to simulate the preference of a driver who chooses to travel on freeways over local roads when possible—even if that means a longer trip. This option is valid only if the input network dataset has a hierarchy attribute.</bullet_item><bullet_item>NO_HIERARCHY—Do not use the hierarchy attribute for the analysis. Not using a hierarchy yields an exact route for the network dataset.</bullet_item></bulletList>
+						<para>The parameter is not used if a hierarchy attribute is not defined on the network dataset used to perform the analysis. In such cases, use "#" as the parameter value. </para></pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked -- Use the hierarchy attribute for the analysis. Using a hierarchy results in the solver preferring higher-order edges to lower-order edges. Hierarchical solves are faster, and they can be used to simulate the preference of a driver who chooses to travel on freeways over local roads when possible—even if that means a longer trip. This option is enabled only if the input network dataset has a hierarchy attribute.</bullet_item>
+							<bullet_item>Unchecked -- Do not use the hierarchy attribute for the analysis. Not using a hierarchy yields an exact route for the network dataset.</bullet_item>
+						</bulletList>
+						<para>The parameter is disabled if a hierarchy attribute is not defined on the network dataset used to perform the analysis.</para></dialogReference></param><param sync="true" name="hierarchy_settings" displayname="Hierarchy rank settings" datatype="Network Analyst Hierarchy Settings" direction="Input" expression="hierarchy_settings" type="Optional"><pythonReference>
+						<para>
+							
+								<para>Prior to version 10, this parameter allowed you to change the hierarchy ranges for your analysis from the default hierarchy ranges established in the network dataset. At version 10, this parameter is no longer supported and should be specified as an empty string. If you wish to change the hierarchy ranges for your analysis, update the default hierarchy ranges in the network dataset.</para>
+							
+						</para>
+					</pythonReference><dialogReference>
+						<para>
+							
+								<para>Prior to version 10, this parameter allowed you to change the hierarchy ranges for your analysis from the default hierarchy ranges established in the network dataset. At version 10, this parameter is no longer supported. If you wish to change the hierarchy ranges for your analysis, update the default hierarchy ranges in the network dataset. </para>
+							
+						</para>
+					</dialogReference></param><param sync="true" name="output_path_shape" displayname="Output path shape" datatype="String" direction="Input" expression="output_path_shape" type="Optional"><pythonReference>
+						<para>Specifies the shape type for the route features that are output by the analysis.</para>
+						<bulletList><bullet_item>TRUE_LINES_WITH_MEASURES—The output routes will have the exact shape of the underlying network sources. Furthermore, the output includes route measurements for linear referencing. The measurements increase from the first stop and record the cumulative impedance to reach a given position.</bullet_item><bullet_item>TRUE_LINES_WITHOUT_MEASURES—The output routes will have the exact shape of the underlying network sources.</bullet_item><bullet_item>STRAIGHT_LINES—The output route shape will be a single straight line between each of the incident-facility pair. </bullet_item><bullet_item>NO_LINES—No shape will be generated for the output routes. </bullet_item></bulletList>
+						<para>No matter which output shape type is chosen, the best route is always determined by the network impedance, never Euclidean distance. This means only the route shapes are different, not the underlying traversal of the network.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the shape type for the route features that are output by the analysis.</para>
+						<bulletList><bullet_item>TRUE_LINES_WITH_MEASURES—The output routes will have the exact shape of the underlying network sources. Furthermore, the output includes route measurements for linear referencing. The measurements increase from the first stop and record the cumulative impedance to reach a given position.</bullet_item><bullet_item>TRUE_LINES_WITHOUT_MEASURES—The output routes will have the exact shape of the underlying network sources.</bullet_item><bullet_item>STRAIGHT_LINES—The output route shape will be a single straight line between each of the incident-facility pair. </bullet_item><bullet_item>NO_LINES—No shape will be generated for the output routes. </bullet_item></bulletList>
+						<para>No matter which output shape type is chosen, the best route is always determined by the network impedance, never Euclidean distance. This means only the route shapes are different, not the underlying traversal of the network.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>After creating the analysis layer with this tool, you can add network analysis objects to it using the  tool, solve the analysis using the  tool, and save the results on disk using  tool. </para>
+			</bullet_item><bullet_item>
+				<para>When using this tool in geoprocessing models, if the model is run as a tool, the output network analysis layer must be made  a model parameter. Otherwise the output layer is not added to the table of contents in ArcMap.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeClosestFacilityLayer example 1 (Python window)</title>
+					<para>Execute the tool using only the required parameters</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.MakeClosestFacilityLayer_na("Transportation/Streets_ND",
+                                  "ClosestFireStations","Minutes")
+
+                    </code></scriptExample><scriptExample><title>MakeClosestFacilityLayer example 2 (Python window)</title>
+					<para>Execute the tool using all parameters </para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.MakeClosestFacilityLayer_na("Transportation/Streets_ND",
+                                  "ClosestHospitals","Minutes","TRAVEL_TO",5,3,
+                                  ["Meters","Minutes"],"ALLOW_UTURNS",
+                                  ["Oneway"],"USE_HIERARCHY","",
+                                  "TRUE_LINES_WITH_MEASURES")
+
+                    </code></scriptExample><scriptExample><title>MakeClosestFacilityLayer example 3 (workflow)</title>
+					<para>The following stand-alone Python script demonstrates how the MakeClosestFacilityLayer tool can be used to find the closest warehouse from the store locations.</para>
+				<code xml:space="preserve"># Name: MakeClosestFacilityLayer_Workflow.py
+# Description: Find the closest warehouse from the store locations and save the 
+#              results to a layer file on disk.
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+try:
+    #Check out the Network Analyst extension license
+    arcpy.CheckOutExtension("Network")
+
+    #Set environment settings
+    env.workspace = "C:/data/Paris.gdb"
+    env.overwriteOutput = True
+    
+    #Set local variables
+    inNetworkDataset = "Transportation/ParisMultimodal_ND"
+    outNALayer = "ClosestWarehouse"
+    impedanceAttribute = "Drivetime"
+    accumulateAttributeName = ["Meters"]
+    inFacilities = "Analysis/Warehouses"
+    inIncidents = "Analysis/Stores"
+    fieldMappings = "Name NOM #"
+    outLayerFile = "C:/data/output" + "/" + outNALayer + ".lyr"
+    
+    #Create a new closest facility analysis layer. Apart from finding the drive 
+    #time to the closest warehouse, we also want to find the total distance. So
+    #we will accumulate the "Meters" impedance attribute.
+    arcpy.MakeClosestFacilityLayer_na(inNetworkDataset,outNALayer,
+                                      impedanceAttribute,"TRAVEL_TO","",1,
+                                      accumulateAttributeName,"NO_UTURNS")
+    
+    #Load the warehouses as Facilities using the default field mappings and 
+    #search tolerance
+    arcpy.AddLocations_na(outNALayer,"Facilities",inFacilities,"","")
+    
+    #Load the Stores as Incidents. Map the Name property from the NOM field
+    arcpy.AddLocations_na(outNALayer,"Incidents",inIncidents,fieldMappings,"")
+    
+    #Solve the closest facility layer
+    arcpy.Solve_na(outNALayer)
+    
+    #Save the solved closest facility layer as a layer file on disk with 
+    #relative paths
+    arcpy.SaveToLayerFile_management(outNALayer,outLayerFile,"RELATIVE")
+    
+    print "Script completed successfully"
+
+except Exception as e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "An error occured on line %i" % tb.tb_lineno
+    print str(e)
+                    </code></scriptExample></scriptExamples></tool></metadata>

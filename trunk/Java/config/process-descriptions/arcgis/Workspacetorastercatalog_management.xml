@@ -1,0 +1,69 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Workspace To Raster Catalog (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Loads all the raster datasets stored in the same workspace into an existing raster catalog.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Batch Load</keyword><keyword>Collection</keyword><keyword>Contain</keyword><keyword>Directory</keyword><keyword>Footprint</keyword><keyword>Gdb</keyword><keyword>Geodatabase</keyword><keyword>Image Catalog</keyword><keyword>Load</keyword><keyword>Manage</keyword><keyword>Overlap</keyword><keyword>Raster Dataset</keyword><keyword>Subdirectory</keyword><keyword>Unmanage</keyword><keyword>Wire Frame</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="WorkspaceToRasterCatalog" displayname="Workspace To Raster Catalog (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Loads all the raster datasets stored in the same workspace into an existing raster catalog.</para>
+		</summary><alink_name>WorkspaceToRasterCatalog_management</alink_name><parameters><param sync="true" name="in_workspace" displayname="Input Workspace" datatype="Workspace" direction="Input" expression="in_workspace" type="Required"><pythonReference>
+						<para>The workspace that contains all the raster datasets to be loaded into the raster catalog.</para>
+					</pythonReference><dialogReference>
+						<para>The workspace that contains all the raster datasets to be loaded into the raster catalog.</para>
+					</dialogReference></param><param sync="true" name="in_raster_catalog" displayname="Target Raster Catalog" datatype="Raster catalog" direction="Input" expression="in_raster_catalog" type="Required"><pythonReference>
+						<para>An existing raster catalog that will have all the raster datasets from the workspace loaded into it.</para>
+					</pythonReference><dialogReference>
+						<para>An existing raster catalog that will have all the raster datasets from the workspace loaded into it.</para>
+					</dialogReference></param><param sync="true" name="include_subdirectories" displayname="Include Subdirectories" datatype="Boolean" direction="Input" expression="include_subdirectories" type="Optional"><pythonReference>
+						<para>Specify whether to include subdirectories.</para>
+						<bulletList><bullet_item>NONE—Does not include subdirectories. This is the default. </bullet_item><bullet_item>INCLUDE_SUBDIRECTORIES—Includes all the raster datasets within the subdirectories when loading. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specify whether to include subdirectories.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Does not include subdirectories. This is the default.</bullet_item>
+							<bullet_item>Checked—Includes all the raster datasets within the subdirectories when loading. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="project" displayname="Project on-the-fly" datatype="Boolean" direction="Input" expression="project" type="Optional"><pythonReference>
+						<para>Specify whether to project the raster datasets projected on the fly.</para>
+						<bulletList><bullet_item>NONE—All raster datasets are loaded into the raster catalog with the original spatial reference of the raster dataset. This is the default. </bullet_item><bullet_item>PROJECT_ONFLY—All raster datasets will be projected on the fly (to the coordinate system specified in the raster column) when loaded into the raster catalog. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specify whether to project the raster datasets projected on the fly.</para>
+						<bulletList>
+							<bullet_item>Unchecked—All raster datasets are loaded into the raster catalog with the original spatial reference of the raster dataset. This is the default.</bullet_item>
+							<bullet_item>Checked—All raster datasets will be projected on the fly (to the coordinate system specified in the raster column) when loaded into the raster catalog. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Pyramid" label="Pyramid">
+						
+					</environment><environment name="Raster_statistics" label="Raster statistics">
+						
+					</environment><environment name="Tile_size" label="Tile size">
+						
+					</environment></environments><usage><bullet_item>
+				<para>All raster datasets within the specified workspace will be loaded into the raster catalog.</para>
+			</bullet_item><bullet_item>
+				<para>The raster catalog must already exist for this tool to run.</para>
+			</bullet_item><bullet_item>
+				<para>By default, the spatial reference and geotransformation of the raster datasets are persisted in the raster catalog. If you want to project the raster datasets to the spatial reference of the raster column in the raster catalog during loading, use the Project on-the-fly parameter.</para>
+			</bullet_item><bullet_item>
+				<para>When loading raster datasets into a raster catalog with this tool, the spatial grid index is automatically calculated upon completion of the tool.</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>WorkspaceToRasterCatalog example (Python window)</title>
+					<para>This is a Python sample for the WorkspaceToRaster Catalog tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.WorkspaceToRasterCatalog_management("c:/data", "c:/RC/WS2RC.gdb/emptyRC",\
+                                          "INCLUDE_SUBDIRECTORIES",\
+                                          "PROJECT_ONFLY")
+                    </code></scriptExample><scriptExample><title>WorkspaceToRasterCatalog example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for the WorkspaceToRaster Catalog tool.</para>
+				<code xml:space="preserve">##======================
+##Workspace To Raster Catalog
+##Usage: WorkspaceToRasterCatalog_management in_workspace in_raster_catalog {NONE | INCLUDE_SUBDIRECTORIES} {NONE | PROJECT_ONFLY}
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:\PrjWorkspace"
+    ##Load Workspace to Unmanaged FGDB Raster Catalog
+    arcpy.WorkspaceToRasterCatalog_management("data", "WS2RC.gdb\\Unmanaged", "INCLUDE_SUBDIRECTORIES", "PROJECT_ONFLY")
+except:
+    print "Workspace To Raster Catalog example failed."
+    print arcpy.GetMessages() 
+                    </code></scriptExample></scriptExamples></tool></metadata>

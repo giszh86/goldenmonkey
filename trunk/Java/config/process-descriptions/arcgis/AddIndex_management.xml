@@ -1,0 +1,73 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Attribute Index (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds an attribute index to an existing table, feature class, shapefile, coverage, or attributed relationship class.</para>
+			<para>Attribute indexes are used by ArcGIS to quickly locate records that match an attribute query. For information on attribute indexes in geodatabases, see Creating attribute indexes.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Create</keyword><keyword>Field</keyword><keyword>Improve</keyword><keyword>Locate</keyword><keyword>Optimize</keyword><keyword>Performance</keyword><keyword>Quick</keyword><keyword>Retrieve</keyword><keyword>Search</keyword><keyword>Speed</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddIndex" displayname="Add Attribute Index (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Adds an attribute index to an existing table, feature class, shapefile, coverage, or attributed relationship class.</para>
+			<para>Attribute indexes are used by ArcGIS to quickly locate records that match an attribute query. For information on attribute indexes in geodatabases, see Creating attribute indexes.</para>
+		</summary><alink_name>AddIndex_management</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The table containing the fields to be indexed.</para>
+					</pythonReference><dialogReference>
+						<para>The table containing the fields to be indexed.</para>
+					</dialogReference></param><param sync="true" name="fields" displayname="Fields to Index" datatype="Field" direction="Input" expression="fields" type="Required"><pythonReference>
+						<para>The list of fields that will participate in the index. Any number of fields can be specified.</para>
+					</pythonReference><dialogReference>
+						<para>The list of fields that will participate in the index. Any number of fields can be specified.</para>
+						<para>The Add Field button, which is used only in ModelBuilder, allows you to add expected field(s) so you can complete the dialog box and continue to build your model.</para>
+					</dialogReference></param><param sync="true" name="index_name" displayname="Index Name" datatype="String" direction="Input" expression="index_name" type="Required"><pythonReference>
+						<para>The name of the new index. An index name is necessary when adding an index to geodatabase feature classes and tables. For other data types, such as shapefiles and coverage feature classes, index names cannot be specified.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the new index. An index name is necessary when adding an index to geodatabase feature classes and tables. For other data types, such as shapefiles and coverage feature classes, index names cannot be specified.</para>
+					</dialogReference></param><param sync="true" name="unique" displayname="Unique" datatype="Boolean" direction="Input" expression="unique" type="Optional"><pythonReference>
+						<para>Specifies whether the values in the index are unique.</para>
+						<bulletList><bullet_item>NON_UNIQUE—All values in the index are not unique. This is the default.</bullet_item><bullet_item>UNIQUE—All values in the index are unique. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether the values in the index are unique.<bulletList><bullet_item>Unchecked—All values in the index are not unique. This is the default. </bullet_item><bullet_item>Checked—All values in the index are unique. </bullet_item></bulletList></para>
+					</dialogReference></param><param sync="true" name="ascending" displayname="Ascending" datatype="Boolean" direction="Input" expression="ascending" type="Optional"><pythonReference>
+						<para>Specifies whether values are indexed in ascending order.</para>
+						<bulletList><bullet_item>NON_ASCENDING—Values are not indexed in ascending order. This is the default. </bullet_item><bullet_item>ASCENDING—Values are indexed in ascending order.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether values are indexed in ascending order.<bulletList><bullet_item>Unchecked—Values are not indexed in ascending order. This is the default. </bullet_item><bullet_item>Checked—Values are indexed in ascending order.</bullet_item></bulletList></para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Only feature classes from a file or personal geodatabase or ArcSDE database support more than one attribute index. The Index Name parameter can only be used with these two inputs, along with Unique | Non_unique or Ascending | Non_ascending.</para>
+			</bullet_item><bullet_item>
+				<para>Shapefiles don't support multiple indexes, so additional fields will become part of a composite index (i.e., an index created on multiple fields in a table).</para>
+			</bullet_item><bullet_item>
+				<para>Although multicolumn indexes are not yet implemented in file geodatabases, this tool allows you to specify a multicolumn index for a file geodatabase. If you create such an index, it appears to be a multicolumn index when viewed in the Feature Class or Table Properties dialog box, but it's actually a separate index on each field.</para>
+			</bullet_item><bullet_item>
+				<para>ArcSDE and file or personal geodatabases have a new index added for each unique index name. If an index name already exists, it must be dropped before it can be updated.</para>
+			</bullet_item><bullet_item>
+				<para>Items must be indexed to support native mode reselects against external DBMS tables.</para>
+			</bullet_item><bullet_item>
+				<para>The Fields To Index parameter's Add Field button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run, or its derived data does not exist, the Fields To Index parameter may not be populated with field names. The Add Field button allows you to add expected field(s) so you can complete the Add Attribute Index dialog box and continue to build your model.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AddIndex Example (stand-alone script)</title><code xml:space="preserve">
+# Name: AddAttIndex.py
+# Description: Create an attribute Index for specified fields
+# Author: ESRI
+
+# Import system modules
+import arcpy
+ 
+# Set a default workspace
+arcpy.env.workspace = "c:/data"
+  
+try:
+    # Create an attribute index for the few fields listed in command.
+    arcpy.AddIndex_management ("counties.shp", "NAME;STATE_FIPS;CNTY_FIPS", "#", "NON_UNIQUE", "NON_ASCENDING")
+    arcpy.AddIndex_management ("mexico.mdb/land/lakes", "NAME;geocompID", "NGIndex", "UNIQUE", "ASCENDING")
+ 
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample><scriptExample><title>AddIndex Example (Python Window)</title>
+					<para>The following code demonstrates how to use AddIndex function in a Python interactive window.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data/input/indices.gdb"
+arcpy.AddIndex_management("lakes", "NAME;geocompID", "NGIndex", "UNIQUE", "ASCENDING")
+                    </code></scriptExample></scriptExamples></tool></metadata>

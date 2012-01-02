@@ -1,0 +1,85 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Weighted Sum (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Overlays several rasters, multiplying each by their given weight and summing them together.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Additive</keyword><keyword>Combine</keyword><keyword>Multiple Rasters</keyword><keyword>Reclassify</keyword><keyword>Scale</keyword><keyword>Site Selection</keyword><keyword>Siting</keyword><keyword>Suitability</keyword><keyword>Suitability Modeling</keyword><keyword>Weight</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="WeightedSum" displayname="Weighted Sum (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para> Overlays several rasters, multiplying each by their given weight and summing them together.</para>
+			
+		</summary><alink_name>WeightedSum_sa</alink_name><toolIllust type="illustration" src="WeightedSum_sa_h.gif" alt="Weighted Sum illustration" /><parameters><param sync="true" name="in_rasters" displayname="Input rasters" datatype="WSTable" direction="Input" expression="in_weighted_sum_table" type="Required"><pythonReference>
+						<para>The Weighted Sum tool overlays several rasters, multiplying each by their given weight and summing them together.</para>
+						<para>An Overlay class is used to define the table. The WSTable object is used to specify a Python list of input rasters and weight them accordingly.</para><para>The form of the WSTable object is:<bulletList><bullet_item>WSTable ([[inRaster, field, weight],...])</bullet_item></bulletList></para>
+					</pythonReference><dialogReference>
+						<para>The weighted sum table allows the calculation of several input rasters.</para>
+						<bulletList>
+							<bullet_item>Raster—The raster being weighted.</bullet_item>
+							<bullet_item>Field—The field of the raster to use for weighting.</bullet_item>
+							<bullet_item>Weight—The weight value by which to multiply the raster. It can be any positive or negative decimal value.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para> The output suitability raster.</para><para>It will be of floating point type.</para>
+						</pythonReference><dialogReference>
+							<para> The output suitability raster.</para><para>It will be of floating point type.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment></environments><usage><bullet_item>
+				<para>A useful way to add several rasters together is to input multiple rasters and set all weights equal to 1.</para>
+			</bullet_item><bullet_item>
+				<para>Input rasters can be integer or floating point.</para>
+			</bullet_item><bullet_item>
+				<para>The weight values can be any positive or negative decimal value. It is not restricted to a relative percentage or equal to 1.0.</para>
+			</bullet_item><bullet_item>
+				<para>The weight will be applied to the specified field for the input raster. Fields can be of type short or long integer, double or float.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>WeightedSum example 1 (Python window)</title>
+					<para>This example creates a suitability raster for locating a ski resort by combining multiple rasters together, and applying appropriate weight factors.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env  
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+
+# Execute WeightedSum
+outWeightedSum = WeightedSum(WSTable([["snow", "VALUE", 0.25], ["land", "VALUE",0.25],
+									  ["soil", "VALUE", 0.5]]))
+outWeightedSum.save("C:/sapyexamples/output/outwsum")
+                    </code></scriptExample><scriptExample><title>WeightedSum example 2 (stand-alone script)</title>
+					<para>This example creates a suitability raster for locating a ski resort by combining multiple rasters together, and applying appropriate weight factors.</para>
+				<code xml:space="preserve"># Name: WeightedSum_Ex_02.py
+# Description: Overlays several rasters multiplying each by their given
+#    weight and summing them together.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster1 = "snow"
+inRaster2 = "land"
+inRaster3 = "soil"
+WSumTableObj = WSTable([[inRaster1, "VALUE", 0.25], [inRaster2, "VALUE", 0.25],
+                        [inRaster3, "VALUE", 0.5]])
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute WeightedSum
+outWeightedSum = WeightedSum(WSumTableObj)
+
+# Save the output 
+outWeightedSum.save("C:/sapyexamples/output/weightsumout")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,108 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Surface Difference (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool calculates the volumetric difference between two triangulated irregular networks (TIN), or terrain datasets.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D</keyword><keyword>Change</keyword><keyword>Compare</keyword><keyword>Difference</keyword><keyword>Elevation</keyword><keyword>Points</keyword><keyword>Surface</keyword><keyword>Surface Analysis</keyword><keyword>Terrain Dataset</keyword><keyword>Terrains</keyword><keyword>Tin</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SurfaceDifference" displayname="Surface Difference (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool calculates the volumetric difference between two triangulated irregular networks (TIN), or terrain datasets.</para>
+			
+		</summary><alink_name>SurfaceDifference_3d</alink_name><parameters><param sync="true" name="in_surface" displayname="Input Surface" datatype="TIN Layer; Terrain Layer" direction="Input" expression="in_surface" type="Required"><pythonReference>
+						<para>The input terrain dataset or TIN surface.</para>
+					</pythonReference><dialogReference>
+						<para>The input terrain dataset or TIN surface.</para>
+					</dialogReference></param><param sync="true" name="in_reference_surface" displayname="Input TIN or terrain dataset." datatype="TIN Layer; Terrain Layer" direction="Input" expression="in_reference_surface" type="Required"><pythonReference>
+						<para>The reference TIN or terrain dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The reference TIN or terrain dataset.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output polygon feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output polygon feature class.</para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Double" direction="Input" expression="pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The resolution of the terrain dataset pyramid level to use for the regular terrain dataset. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The resolution of the terrain dataset pyramid level to use for the regular terrain dataset. The default is 0, full resolution.</para>
+					</dialogReference></param><param sync="true" name="reference_pyramid_level_resolution" displayname="Reference Pyramid Level Resolution" datatype="Double" direction="Input" expression="reference_pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The pyramid level resolution of the terrain dataset to use for interpolation. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The pyramid level resolution of the terrain dataset to use for interpolation. The default is 0, full resolution.</para>
+					</dialogReference></param><param sync="true" name="raster_cell_size" displayname="Raster Cell Size" datatype="Double" direction="Input" expression="raster_cell_size" type="Optional"><pythonReference>
+						<para> The cell size of the output raster dataset. </para>
+					</pythonReference><dialogReference>
+						<para> The cell size of the output raster dataset. </para>
+					</dialogReference></param><param sync="true" name="raster_interp_method" displayname="Raster Interpolation Method" datatype="String" direction="Input" expression="raster_interp_method" type="Optional"><pythonReference>
+						<para>The interpolation method to create a differenced raster surface are either LINEAR and NATURAL_NEIGHBORS. LINEAR is the default. The linear option finds the triangle encompassing each cell center and applies a weighted average of the triangle's nodes to interpolate a value. The natural neighbors option uses the Voronoi neighbors of cell centers. </para>
+					</pythonReference><dialogReference>
+						<para>The interpolation method to create a differenced raster surface are either LINEAR and NATURAL_NEIGHBORS. LINEAR is the default. The linear option finds the triangle encompassing each cell center and applies a weighted average of the triangle's nodes to interpolate a value. The natural neighbors option uses the Voronoi neighbors of cell centers. </para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output Raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Optional"><pythonReference>
+						<para> The output raster dataset. </para>
+					</pythonReference><dialogReference>
+						<para> The output raster dataset. </para>
+					</dialogReference></param><param sync="true" name="out_tin_folder" displayname="Output TIN Folder" datatype="Folder" direction="Input" expression="out_tin_folder" type="Optional"><pythonReference>
+						<para> The folder location to write the TIN or TINs. </para>
+					</pythonReference><dialogReference>
+						<para> The folder location to write the TIN or TINs. </para>
+					</dialogReference></param><param sync="true" name="out_tin_basename" displayname="Output TIN base name" datatype="String" direction="Input" expression="out_tin_basename" type="Optional"><pythonReference>
+						<para> The base name given to each output TIN surface.</para>
+					</pythonReference><dialogReference>
+						<para> The base name given to each output TIN surface.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment></environments><usage><bullet_item>
+The input surfaces need to overlap in horizontal extent.
+</bullet_item><bullet_item>
+An output surface can optionally be created displaying the comparison results.  The output surface can be a series of TINs and/or a raster dataset.</bullet_item><bullet_item>
+It's best if the horizontal and vertical coordinate systems of the input surfaces are the same.
+</bullet_item><bullet_item>
+The available interpolation methods to create a differenced raster surface are LINEAR and NATURAL_NEIGHBORS. The linear option finds the triangle encompassing each cell center and applies a weighted average of the triangle's nodes to interpolate a value. The  option uses the Voronoi neighbors of cell centers.
+</bullet_item></usage><scriptExamples><scriptExample><title>Surface Difference Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Surface Difference
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.SurfaceDifference_3d("sample.gdb/featuredataset/terrain", "sample.gdb/featuredataset/terrain2", "surface_diff.shp")
+                    </code></scriptExample><scriptExample><title>Surface Difference Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Surface Difference
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: SurfaceDifference Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              SurfaceDifference tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Set Local Variables
+    inSurface = "flood_tin"
+    inReference = "elev_tin"
+    # Ensure output name is unique
+    outPoly = arcpy.CreateUniqueName("difference.shp")
+    
+    #Execute SurfaceDifference
+    arcpy.SurfaceDifference_3d(inSurface, inReference, outPoly)
+
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

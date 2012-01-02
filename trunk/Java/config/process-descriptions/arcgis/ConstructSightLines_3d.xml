@@ -1,0 +1,94 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Construct Sight Lines  (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Constructs lines between each of the observer points and each of the target features.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Data Creation</keyword><keyword>3D Features</keyword><keyword>3D Geometry</keyword><keyword>3D Lines</keyword><keyword>Line Of Sight</keyword><keyword>Polyline</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" ConstructSightLines " displayname=" Construct Sight Lines  (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para> Constructs lines between each of the observer points and each of the target features.</para>
+		</summary><alink_name> ConstructSightLines _3d</alink_name><parameters><param sync="true" name="in_observer_points" displayname="Observer Points" datatype="Feature Layer" direction="Input" expression="in_observer_points" type="Required"><pythonReference>
+						<para>The observer point(s). </para>
+					</pythonReference><dialogReference>
+						<para>The observer point(s). </para>
+					</dialogReference></param><param sync="true" name="in_target_features" displayname="Target Features" datatype="Feature Layer" direction="Input" expression="in_target_features" type="Required"><pythonReference>
+						<para> The target features (points, multipoints, lines, polygons). </para>
+					</pythonReference><dialogReference>
+						<para> The target features (points, multipoints, lines, polygons). </para>
+					</dialogReference></param><param sync="true" name="out_line_feature_class" displayname="Output" datatype="Feature Layer" direction="Output" expression="out_line_feature_class" type="Required"><pythonReference>
+						<para> The output feature class containing the 2D/3D sight lines. </para>
+					</pythonReference><dialogReference>
+						<para> The output feature class containing the 2D/3D sight lines. </para>
+					</dialogReference></param><param sync="true" name="observer_height_field" displayname="Observer Height Field" datatype="String" direction="Input" expression="observer_height_field" type="Optional"><pythonReference>
+						<para> The height field for the observer.</para><para>A default Observer Height Field field is selected by searching from the list below in that order.  If no suitable height field exists a field value of &lt;None&gt; will be used.  </para><bulletList><bullet_item> Shape.Z </bullet_item><bullet_item>Spot</bullet_item><bullet_item> Z</bullet_item><bullet_item> Z_Value </bullet_item><bullet_item>Height</bullet_item><bullet_item> Elev</bullet_item><bullet_item> Elevation</bullet_item><bullet_item> Contour</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> The height field for the observer.</para><para>A default Observer Height Field field is selected by searching from the list below in that order.  If no suitable height field exists a field value of &lt;None&gt; will be used.  </para><bulletList><bullet_item> Shape.Z </bullet_item><bullet_item>Spot</bullet_item><bullet_item> Z</bullet_item><bullet_item> Z_Value </bullet_item><bullet_item>Height</bullet_item><bullet_item> Elev</bullet_item><bullet_item> Elevation</bullet_item><bullet_item> Contour</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="target_height_field" displayname="Target Height Field" datatype="String" direction="Input" expression="target_height_field" type="Optional"><pythonReference>
+						<para> The height field for the target.    </para><para>A default Target Height Field field is selected by searching from the list below in that order.  If no suitable height field exists a field value of &lt;None&gt; will be used.  </para><bulletList><bullet_item> Shape.Z </bullet_item><bullet_item>Spot</bullet_item><bullet_item> Z</bullet_item><bullet_item> Z_Value </bullet_item><bullet_item>Height</bullet_item><bullet_item> Elev</bullet_item><bullet_item> Elevation</bullet_item><bullet_item> Contour</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> The height field for the target.    </para><para>A default Target Height Field field is selected by searching from the list below in that order.  If no suitable height field exists a field value of &lt;None&gt; will be used.  </para><bulletList><bullet_item> Shape.Z </bullet_item><bullet_item>Spot</bullet_item><bullet_item> Z</bullet_item><bullet_item> Z_Value </bullet_item><bullet_item>Height</bullet_item><bullet_item> Elev</bullet_item><bullet_item> Elevation</bullet_item><bullet_item> Contour</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="join_field" displayname="Join Field" datatype="String" direction="Input" expression="join_field" type="Optional"><pythonReference>
+						<para> The join field is used to match observers to specific targets.   </para>
+					</pythonReference><dialogReference>
+						<para> The join field is used to match observers to specific targets.   </para>
+					</dialogReference></param><param sync="true" name="sample_distance" displayname="Sampling Distance" datatype="String" direction="Input" expression="sample_distance" type="Optional"><pythonReference>
+						<para> The distance between samples when the target is either a line or polygon feature class.   The Sampling Distance units  should be given in x,y units of output feature class.</para>
+					</pythonReference><dialogReference>
+						<para> The distance between samples when the target is either a line or polygon feature class.   The Sampling Distance units  should be given in x,y units of output feature class.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The perimeter is sampled uniformly if the target features are lines or polygons.</para>
+			</bullet_item><bullet_item>
+				<para> The input feature class must be a point feature class. Multipoints are not valid. </para>
+			</bullet_item><bullet_item>
+				<para> The output will consist of 3D lines if a height source has been specified for both the observer and the target. </para>
+			</bullet_item><bullet_item><para>A join field is used to create specific matches between observers and one or more targets that belong to the same class (have identical values in their join field). </para></bullet_item><bullet_item><para>If no join field is used all points will be connected to all targets.   </para></bullet_item><bullet_item><para>The Sampling Distance units  should be given in x,y units of output feature class.</para></bullet_item></usage><scriptExamples><scriptExample><title>Construct Sight Lines Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Construct Sight Lines
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.ConstructSightLines_3d("observer_pt.shp", "skyline_outline_pt.shp", "output.shp")
+                    </code></scriptExample><scriptExample><title>Construct Sight Lines Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Construct Sight Lines
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: ConstructSightLines Example
+# Description: The following stand-alone script demonstrates how to use the
+#              ConstructSightLines tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+Obs_Pts = "Observers.shp"
+TargetFC = "Target_Polygons.shp"
+# Ensure output has a unique name
+OutFC = arcpy.CreateUniqueName("Output_Lines.shp")
+
+# Execute ConstructSightLines
+arcpy.ConstructSightLines_3d(Obs_Pts, TargetFC, OutFC)
+
+del arcpy, Obs_Pts, TargetFC, OutFC
+                    </code></scriptExample></scriptExamples></tool></metadata>

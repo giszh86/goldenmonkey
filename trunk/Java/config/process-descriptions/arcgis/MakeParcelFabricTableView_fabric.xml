@@ -1,0 +1,29 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Make Parcel Fabric Table View (Parcel Fabric)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Creates a table view from an input parcel fabric feature class or table. The table view that is created by the tool is temporary and will not persist after the session ends unless the document is saved. This tool is useful for accessing hidden, nonspatial parcel fabric tables, such as the  Plans table or the Accuracies table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Accuracy</keyword><keyword>Adjustments</keyword><keyword>Cadastral</keyword><keyword>Cadastral Editing</keyword><keyword>Cadastral Fabric</keyword><keyword>Cadastre</keyword><keyword>Control</keyword><keyword>Fabric</keyword><keyword>Jobs</keyword><keyword>Land Records</keyword><keyword>Least Squares</keyword><keyword>Least Squares Adjustment</keyword><keyword>Linepoints</keyword><keyword>Lines</keyword><keyword>Lsa</keyword><keyword>Parcel</keyword><keyword>Parcel Editing</keyword><keyword>Parcel Fabric</keyword><keyword>Parcel Management</keyword><keyword>Parcels</keyword><keyword>Plans</keyword><keyword>Points</keyword><keyword>Survey</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" MakeParcelFabricTableView " displayname=" Make Parcel Fabric Table View (Parcel Fabric)" toolboxalias="fabric" softwarerestriction="none"><summary>
+			<para> Creates a table view from an input parcel fabric feature class or table. The table view that is created by the tool is temporary and will not persist after the session ends unless the document is saved. This tool is useful for accessing hidden, nonspatial parcel fabric tables, such as the  Plans table or the Accuracies table.</para>
+		</summary><alink_name> MakeParcelFabricTableView _fabric</alink_name><parameters><param sync="true" name="in_parcel_fabric" displayname="Target Parcel Fabric" datatype="Parcel Fabric" direction="Input" expression="in_parcel_fabric" type="Required"><pythonReference>
+						<para> The parcel fabric dataset that contains the feature class or table that will be used to create a table view.</para>
+					</pythonReference><dialogReference>
+						<para> The parcel fabric dataset that contains the feature class or table that will be used to create a table view.</para>
+					</dialogReference></param><param sync="true" name="parcel_fabric_table" displayname="Select Parcel Fabric Table" datatype="String" direction="Input" expression="parcel_fabric_table" type="Required"><pythonReference>
+						<para> The parcel fabric feature class or nonspatial table that will be used to create a table view. </para>
+					</pythonReference><dialogReference>
+						<para> The parcel fabric feature class or nonspatial table that will be used to create a table view. </para>
+					</dialogReference></param><param sync="true" name="out_view" displayname="Output Table View" datatype="Table View" direction="Output" expression="out_view" type="Required"><pythonReference>
+						<para> The name of the output table view. </para>
+					</pythonReference><dialogReference>
+						<para> The name of the output table view. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item><para>This tool is commonly used to create a table view with a selected set of attributes or fields.</para></bullet_item><bullet_item>
+				<para>ArcCatalog does not display these table views but they can be used as inputs to other geoprocessing tools in the current ArcGIS session. Once the ArcGIS application is exited, the table views are deleted.</para>
+			</bullet_item><bullet_item><para>Table views created in ArcCatalog cannot be used in ArcMap.</para></bullet_item><bullet_item>
+				<para> Once an input parcel fabric has been specified, a table view can be created from any parcel fabric feature class or nonspatial table. </para>
+			</bullet_item><bullet_item>
+				<para>An existing table view will be overwritten if the same table view name is entered and if you explicitly state that overwriting output is allowed.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeParcelFabricTableView example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the MakeParcelFabricTableView tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/Parcel_Editor_Tutorial/Encinitas_City/Cadastral.gdb"
+arcpy.MakeParcelFabricTableView_fabric("FABRIC", "Accuracy", "FabricAccuraciesTable")
+                    </code></scriptExample></scriptExamples></tool></metadata>

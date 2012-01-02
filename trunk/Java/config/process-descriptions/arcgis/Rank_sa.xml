@@ -1,0 +1,89 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Rank (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>The values from the set of input rasters are ranked on a cell-by-cell basis, and which of these gets returned is determined by the value of the rank input raster.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>By Cell</keyword><keyword>For Each</keyword><keyword>Order</keyword><keyword>Per Cell</keyword><keyword>Pixel</keyword><keyword>Sort</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Rank" displayname="Rank (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>The values from the set of input rasters are ranked on a cell-by-cell basis, and which of these gets returned is determined by the value of the rank input raster.</para>
+		</summary><alink_name>Rank_sa</alink_name><toolIllust type="illustration" src="Rank_sa_h.png" alt="Rank illustration" /><parameters><param sync="true" name="in_rank_raster_or_constant" displayname="Input rank raster or constant value" datatype="Raster Layer | Constant" direction="Input" expression="in_rank_raster_or_constant" type="Required"><pythonReference>
+						<para>The input raster that defines the rank position to be returned.</para>
+						<para>
+A number can be used as an input; however, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster that defines the rank position to be returned.</para>
+						<para>
+A number can be used as an input; however, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="in_rasters" displayname="Input rasters" datatype="Raster Layer" direction="Input" expression="[in_raster,...]" type="Required"><pythonReference>
+						<para>The list of input rasters.</para>
+						<para>The input defines the argument list to identify the value for the rank, defined by the first argument for each cell location.</para>
+					</pythonReference><dialogReference>
+						<para>The list of input rasters.</para>
+						<para>The input defines the argument list to identify the value for the rank, defined by the first argument for each cell location.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>For each cell in the output raster, the values in the input rasters are sorted from lowest to highest, and the input rank raster's value is used to select which will be the output value.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>For each cell in the output raster, the values in the input rasters are sorted from lowest to highest, and the input rank raster's value is used to select which will be the output value.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>In the list of input rasters, the order is irrelevant. However, the Rank input raster must precede these.</para>
+			</bullet_item><bullet_item>
+				<para>An arbitrary number of rasters can be specified in the input rasters list.</para>
+			</bullet_item><bullet_item>
+				<para>If a cell location contains NoData on any of the input rasters, that location will be assigned NoData on the output.</para>
+			</bullet_item><bullet_item>
+				<para>If all of the input values are the same for any cell location, regardless of the specified rank, the output for that cell location will be that value.</para>
+			</bullet_item><bullet_item>
+				<para>If the rank raster value is greater than the number of input rasters, each cell location on the output will be assigned NoData.</para>
+			</bullet_item><bullet_item>
+				<para>If any of the input rasters are floating point, the output is floating point; otherwise, it is integer.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Rank example 1 (Python window)</title>
+					<para>This example performs a rank operation on several input GRID rasters and outputs the result as an TIFF raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outRank = Rank("cost", ["degs", "negs", "fourgrd"])
+outRank.save("C:/sapyexamples/output/outrank.tif")
+                    </code></scriptExample><scriptExample><title>Rank example 2 (stand-alone script)</title>
+					<para>This example performs a rank operation on several input GRID rasters and outputs the result as a GRID raster.</para>
+				<code xml:space="preserve"># Name: Rank_Ex_02.py
+# Description: Returns the value of a set of rasters based on
+#              a rank level specified by another raster 
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRankRaster = "cost"
+inRaster01 = "degs"
+inRaster02 = "negs"
+inRaster03 = "fourgrd"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Rank
+outRank = Rank(inRankRaster, [inRaster01, inRaster02, inRaster03])
+
+# Save the output 
+outRank.save("C:/sapyexamples/output/outrank")
+                    </code></scriptExample></scriptExamples></tool></metadata>

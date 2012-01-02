@@ -1,0 +1,30 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Concatenate Date And Time Fields (Tracking Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Concatenates two separate date and time fields in a feature class or layer into a single field containing both the date and time.</para>
+			<para>Tracking Analyst is designed to work with temporal data containing date and time information in a single field. If your data contains the date and time in two separate fields, this tool can be used to combine the information together into a new field that Tracking Analyst will understand.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ConcatenateDateAndTimeFields" displayname="Concatenate Date And Time Fields (Tracking Analyst)" toolboxalias="TA" softwarerestriction="none"><summary>
+			<para>Concatenates two separate date and time fields in a feature class or layer into a single field containing both the date and time.</para>
+			<para>Tracking Analyst is designed to work with temporal data containing date and time information in a single field. If your data contains the date and time in two separate fields, this tool can be used to combine the information together into a new field that Tracking Analyst will understand.</para>
+		</summary><alink_name>ConcatenateDateAndTimeFields_TA</alink_name><parameters><param sync="true" name="Feature_Class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="Feature_Class" type="Required"><pythonReference>
+						<para>The input feature class or layer.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class or layer.</para>
+					</dialogReference></param><param sync="true" name="DateField" displayname="Date Field" datatype="Field" direction="Input" expression="DateField" type="Required"><pythonReference>
+						<para>The  text field in the input feature layer that contains date values.</para>
+					</pythonReference><dialogReference><para>The  text field in the input feature layer that contains date values. Only fields of field data type text will appear in the drop-down list.</para></dialogReference></param><param sync="true" name="TimeField" displayname="Time Field" datatype="Field" direction="Input" expression="TimeField" type="Required"><pythonReference>
+						<para>The  text field in the input feature layer that contains time values.</para>
+					</pythonReference><dialogReference><para>The  text field in the input feature layer that contains time values. Only fields of field data type text will appear in the drop-down list.</para></dialogReference></param><param sync="true" name="OutputField" displayname="Output Date/Time Field" datatype="String" direction="Input" expression="OutputField" type="Required"><pythonReference>
+						<para>The name of the new concatenated date/time field to be created and added to the input feature layer.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the new concatenated date/time field to be created and added to the input feature layer.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para>The input date and time fields must have a field data type of text.</para>
+			</bullet_item><bullet_item>
+				<para>The new field added to the feature layer by this tool will also have a field data type of text.</para>
+			</bullet_item><bullet_item>
+ If you are working with a shapefile that contains a date field with only date information (i.e., 03/09/2006), you must transfer the date values into a text field before using this tool to concatenate it with a time field.</bullet_item></usage><scriptExamples><scriptExample><title>ConcatenateDateAndTimeFields example (Python window)</title>
+					<para>This sample shows how to run the tool to concatenate the "MY_DATE" and "MY_TIME" fields, creating a new field named "NEW_DATE_TIME".</para>
+				<code xml:space="preserve">import arcpy
+arcpy.CheckOutExtension("tracking")
+inputGDB = "C:/arcgis/ArcTutor/Tracking Analyst/My_Geodatabase.gdb/my_feature_class"
+arcpy.ConcatenateDateAndTimeFields_ta(inputGDB, "MY_DATE", "MY_TIME", "NEW_DATE_TIME")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,123 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Eliminate (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Merges the selected polygons with neighboring polygons if they have the largest shared border or the largest area.</para>
+			<para>Eliminate is often used to remove sliver polygons created during polygon overlay or buffering. With the LINE option, Eliminate merges selected arcs separated by pseudo nodes into single arcs.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Aggregate</keyword><keyword>Combine</keyword><keyword>Dissolve</keyword><keyword>Eliminate</keyword><keyword>Merge</keyword><keyword>Sliver Polygon</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Eliminate" displayname="Eliminate (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Merges the selected polygons with neighboring polygons if they have the largest shared border or the largest area.</para>
+			<para>Eliminate is often used to remove sliver polygons created during polygon overlay or buffering. With the LINE option, Eliminate merges selected arcs separated by pseudo nodes into single arcs.</para>
+			
+		</summary><alink_name>Eliminate_arc</alink_name><toolIllust type="illustration" src="Eliminate_arc_h.gif" alt="Eliminate illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage whose selected polygons or arcs will be merged into neighboring features.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage whose selected polygons or arcs will be merged into neighboring features.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The new coverage with all the selected sliver polygons merged into larger features. There should be a smaller number of polygons than the Input Coverage contains.</para>
+					</pythonReference><dialogReference>
+						<para>The new coverage with all the selected sliver polygons merged into larger features. There should be a smaller number of polygons than the Input Coverage contains.</para>
+					</dialogReference></param><param sync="true" name="info_express" displayname="Info Expression" datatype="ArcInfo Expression" direction="Input" expression="[info_express,...]" type="Required"><pythonReference>
+						<para>An INFO query containing one or more logical expressions to select features from the input coverage.</para>
+						<bulletList>
+							<bullet_item>Reselect—Reduces the selected set of records with a selection expression to those that meet its criteria. If no selection expression follows, the selected set will be empty.</bullet_item>
+							<bullet_item>Aselect—Adds unselected records that meet the selection expression criteria to the currently selected set. If no selection expression follows, the selected set will contain all features.</bullet_item>
+							<bullet_item>Nselect—Reverses the current selection to the unselected set.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>An INFO query containing one or more logical expressions to select features from the input coverage.</para>
+						<bulletList>
+							<bullet_item>Reselect—Reduces the selected set of records with a selection expression to those that meet its criteria. If no selection expression follows, the selected set will be empty.</bullet_item>
+							<bullet_item>Aselect—Adds unselected records that meet the selection expression criteria to the currently selected set. If no selection expression follows, the selected set will contain all features.</bullet_item>
+							<bullet_item>Nselect—Reverses the current selection to the unselected set.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="polygon_boundary" displayname="Keep polygon boundary" datatype="Boolean" direction="Input" expression="polygon_boundary" type="Optional"><pythonReference>
+						<para>Ensures that polygons along the coverage boundary are not altered.</para>
+						<bulletList><bullet_item>NO_KEEP_EDGE—Allows the elimination of outer polygon boundaries. This is the default. </bullet_item><bullet_item>KEEP_EDGE—Is only used with the POLYGON option. Any polygon which is a neighbor of the background polygon will not be eliminated when KEEP_EDGE is specified. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Ensures that polygons along the coverage boundary are not altered.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Allows the elimination of outer polygon boundaries. This is the default.</bullet_item>
+							<bullet_item>Checked—Is only used with the POLYGON option. Any polygon which is a neighbor of the background polygon will not be eliminated. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Optional"><pythonReference>
+						<para>The feature class(es) to be eliminated in the Output Coverage. This parameter is only used for polygon coverages.</para>
+						<bulletList><bullet_item>POLY—Polygon features will be eliminated; an AAT will not be created for the Output Coverage. </bullet_item><bullet_item>LINE—Line features will be eliminated; a PAT will not be created for the Output Coverage. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The feature class(es) to be eliminated in the Output Coverage. This parameter is only used for polygon coverages.</para>
+						<bulletList><bullet_item>POLY—Polygon features will be eliminated; an AAT will not be created for the Output Coverage. </bullet_item><bullet_item>LINE—Line features will be eliminated; a PAT will not be created for the Output Coverage. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="selection_file" displayname="Selection File" datatype="File" direction="Input" expression="selection_file" type="Optional"><pythonReference>
+						<para>A Selection File is a preexisting file that identifies which features will be used.</para>
+					</pythonReference><dialogReference>
+						<para>A Selection File is a preexisting file that identifies which features will be used.</para>
+					</dialogReference></param><param sync="true" name="polygon_option" displayname="Eliminating polygon by border" datatype="String" direction="Input" expression="polygon_option" type="Optional"><pythonReference>
+						<para>Specifies which method will be used for eliminating polygons. This parameter is only used for polygon coverages.</para>
+						<bulletList><bullet_item>BORDER—Merges a selected polygon with a neighboring unselected polygon by dropping an Arc. The neighboring polygon is the one with the longest shared border. This is the default and the way Eliminate worked with the POLY option in all pre-6.1.1 releases. </bullet_item><bullet_item>AREA—Merges a selected polygon with a neighboring unselected polygon by dropping an Arc. The neighboring polygon is the one with the largest area. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies which method will be used for eliminating polygons. This parameter is only used for polygon coverages.</para>
+						<bulletList>
+							<bullet_item>Checked—Merges a selected polygon with a neighboring unselected polygon by dropping an Arc. The neighboring polygon is the one with the longest shared border. This is the default and the way Eliminate worked with the POLY option in all pre-6.1.1 releases.</bullet_item>
+							<bullet_item>Unchecked—Merges a selected polygon with a neighboring unselected polygon by dropping an Arc. The neighboring polygon is the one with the largest area.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Only the selected set of polygons or lines will be eliminated. Polygons that border the background polygon will not be eliminated when KEEP_EDGE is specified.</para>
+			</bullet_item><bullet_item>
+				<para>For the POLY option, an arc with a negative User-ID will never be eliminated, even if it's the longest arc in a selected polygon. When this happens, the next longest arc is eliminated unless it's along the coverage boundary when the Keep polygon boundary option is selected (KEEP_EDGE).</para>
+			</bullet_item><bullet_item>
+				<para>It's possible to eliminate a sliver polygon existing as a neighbor to the background polygon, by not selecting the Keep polygon boundary option (NO_KEEP_EDGE) and still maintain the outer polygon boundary.  the coverage with the LINE option, then  on the cover.AAT using the following logical expression:LPOLY# = 1 OR RPOLY# = 1
+Calculate the cover-id equal to -1. 
+Eliminate will not eliminate an arc with a negative User-ID.</para>
+			</bullet_item><bullet_item>
+				<para>For the feature type POLY option, route systems attached to eliminated arcs will be removed, and ARCLINK# will be renumbered. For the feature type LINE option, route systems belonging to eliminated arcs (whether actually removed or not) will be deleted. Those belonging to arcs that increased in length by absorbing eliminated arcs will have their F-POS and T-POS adjusted so they will occupy the same set of locations as previously.</para>
+			</bullet_item><bullet_item>
+				<para>For the LINE option, all arcs must be split where they intersect other arcs. Eliminate will abort execution if it encounters overlapping arcs.  with LINE can be used to split arcs.</para>
+			</bullet_item><bullet_item>
+				<para>If the Input Coverage has an NAT (node attribute table), it will be maintained in the Output Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Use of indexed items can speed up logical feature selection in Eliminate. See Index Item for details.</para>
+			</bullet_item><bullet_item>
+				<para>Input Coverage annotation is copied to the Output Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>The projection file (PRJ) will be copied to the Output Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>If the Input Coverage has regions, they are maintained in the Output Coverage with the appropriate polygons eliminated from the region subclasses.</para>
+			</bullet_item><bullet_item>
+				<para>
+					
+				</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Eliminate example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to remove sliver polygons from a coverage.
+</para>
+				<code xml:space="preserve"># Name: Eliminate_Example.py
+# Description: Removes sliver polygons from an input coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "txlnd"
+outCover = "C:/output/texout"
+infoExpress = "reselect AREA LE 68000"
+polygonBoundary = "KEEP_EDGE"
+featureType = "POLY"
+polygonOption = "AREA"
+
+# Execute Eliminate
+arcpy.Eliminate_arc(inCover, outCover, infoExpress, polygonBoundary, 
+                    featureType, "", polygonOption)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

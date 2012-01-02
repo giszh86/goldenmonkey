@@ -1,0 +1,108 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Overpass (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Allows intersecting lines to be displayed as overpassing one another by creating bridge parapets and masks to cover the underlying road segment. </para>
+			
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Bridge</keyword><keyword>Cartography</keyword><keyword>Mask</keyword><keyword>Masking</keyword><keyword>Overpass</keyword><keyword>Override</keyword><keyword>Representation</keyword><keyword>Symbol</keyword><keyword>Symbology</keyword><keyword>Tunnel</keyword><keyword>Underpass</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateOverpass" displayname="Create Overpass (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Allows intersecting lines to be displayed as overpassing one another by creating bridge parapets and masks to cover the underlying road segment. </para>
+			
+			
+		</summary><alink_name>CreateOverpass_cartography</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/CreateOverpass_cartography_v.gif" alt="Illustration of Create Overpass tool" /><toolIllust type="illustration" src="CreateOverpass_cartography_h.gif" alt="Illustration of Create Overpass tool" /><parameters><param sync="true" name="in_above_features" displayname="Input Above Features With Representations" datatype="Layer" direction="Input" expression="in_above_features" type="Required"><pythonReference>
+						<para>The input line feature layer containing stroke representations that intersect—and will be symbolized as passing above—stroke representations in the Input Below Features.</para>
+					</pythonReference><dialogReference>
+						<para>The input line feature layer containing stroke representations that intersect—and will be symbolized as passing above—stroke representations in the Input Below Features.</para>
+					</dialogReference></param><param sync="true" name="in_below_features" displayname="Input Below Features with Representations" datatype="Layer" direction="Input" expression="in_below_features" type="Required"><pythonReference>
+						<para>The input line feature layer containing stroke representations that intersect—and will be symbolized as passing below—stroke representations in the Input Above Features. These features will be masked by the polygons created in the Output Overpass feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The input line feature layer containing stroke representations that intersect—and will be symbolized as passing below—stroke representations in the Input Above Features. These features will be masked by the polygons created in the Output Overpass feature class.</para>
+					</dialogReference></param><param sync="true" name="margin_along" displayname="Margin Along" datatype="Linear unit" direction="Input" expression="margin_along" type="Required"><pythonReference>
+						<para>Sets the length of the mask polygons along the Input Above Features by specifying the distance in page units that the mask should extend beyond the width of the stroke symbol of the Input Below Features. The Margin Along must be specified, and it must be greater than or equal to zero. Choose a page unit (points, millimeters, and so on) for the margin; the default is points.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the length of the mask polygons along the Input Above Features by specifying the distance in page units that the mask should extend beyond the width of the stroke symbol of the Input Below Features. The Margin Along must be specified, and it must be greater than or equal to zero. Choose a page unit (points, millimeters, and so on) for the margin; the default is points.</para>
+					</dialogReference></param><param sync="true" name="margin_across" displayname="Margin Across" datatype="Linear unit" direction="Input" expression="margin_across" type="Required"><pythonReference>
+						<para>Sets the width of the mask polygons across the Input Above Features by specifying the distance in page units that the mask should extend beyond the width of the stroke symbol of the Input Below Features. The Margin Across must be specified, and it must be greater than or equal to zero. Choose a page unit (points, millimeters, and so on) for the margin; the default is points.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the width of the mask polygons across the Input Above Features by specifying the distance in page units that the mask should extend beyond the width of the stroke symbol of the Input Below Features. The Margin Across must be specified, and it must be greater than or equal to zero. Choose a page unit (points, millimeters, and so on) for the margin; the default is points.</para>
+					</dialogReference></param><param sync="true" name="out_overpass_feature_class" displayname="Output Mask Feature Class" datatype="Feature Class" direction="Output" expression="out_overpass_feature_class" type="Required"><pythonReference>
+						<para>The output feature class that will be created to store polygons to mask the Input Below features.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class that will be created to store polygons to mask the Input Below features.</para>
+					</dialogReference></param><param sync="true" name="out_mask_relationship_class" displayname="Output Mask Relationship Class" datatype="Relationship Class" direction="Output" expression="out_mask_relationship_class" type="Required"><pythonReference>
+						<para>The output relationship class that will be created to store links between Overpass mask polygons and the stroke representations of the Input Below Features.</para>
+					</pythonReference><dialogReference>
+						<para>The output relationship class that will be created to store links between Overpass mask polygons and the stroke representations of the Input Below Features.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Expression" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference><para>A SQL expression used to select a subset of features in the Input
+Above Features with Representations parameter.
+</para><para>The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para><para>
+							"MY_FIELD"
+						</para><para> If you're querying personal geodatabases, enclose fields in square brackets: </para><para>
+							[MY_FIELD]
+						</para><para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para><para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</pythonReference><dialogReference><para>A SQL expression used to select a subset of features in the Input
+Above Features with Representations parameter.
+</para><para>The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para><para>
+							"MY_FIELD"
+						</para><para> If you're querying personal geodatabases, enclose fields in square brackets: </para><para>
+							[MY_FIELD]
+						</para><para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para><para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</dialogReference></param><param sync="true" name="out_decoration_feature_class" displayname="Output Decoration Feature Class" datatype="Feature Class" direction="Output" expression="out_decoration_feature_class" type="Optional"><pythonReference>
+						<para>The output line feature class that will be created to store parapet features.</para>
+					</pythonReference><dialogReference>
+						<para>The output line feature class that will be created to store parapet features.</para>
+					</dialogReference></param><param sync="true" name="wing_type" displayname="Wing Type" datatype="String" direction="Input" expression="wing_type" type="Optional"><pythonReference>
+						<para>Specifies the wing style of the parapet features.</para>
+						<bulletList><bullet_item>ANGLED—Specifies that the wing tick of the parapet will be angled between the Input Above Features and the Input Below Features. This is the default. </bullet_item><bullet_item>PARALLEL—Specifies that the wing tick of the overpass wing will be parallel to the Input Below Features. </bullet_item><bullet_item>NONE—Specifies that no wing ticks will be created on the parapets. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the wing style of the parapet features.</para>
+						<bulletList><bullet_item>ANGLED—Specifies that the wing tick of the parapet will be angled between the Input Above Features and the Input Below Features. This is the default. </bullet_item><bullet_item>PARALLEL—Specifies that the wing tick of the overpass wing will be parallel to the Input Below Features. </bullet_item><bullet_item>NONE—Specifies that no wing ticks will be created on the parapets. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="wing_tick_length" displayname="Wing Tick Length" datatype="Linear unit" direction="Input" expression="wing_tick_length" type="Optional"><pythonReference>
+						<para>Sets the length of the parapet wings in page units. The length must be greater than or equal to zero; the default length is 1. Choose a page unit (Points, Millimeters, and so on) for the length; the default is Points. This parameter does not apply to the Wing Type - NONE.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the length of the parapet wings in page units. The length must be greater than or equal to zero; the default length is 1. Choose a page unit (Points, Millimeters, and so on) for the length; the default is Points. This parameter does not apply to the Wing Type - NONE.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cartographic_coordinate_system" label="Cartographic coordinate system">
+						
+					</environment><environment name="Reference_scale" label="Reference scale">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Requires intersecting line features symbolized with stroke representations as inputs.</para>
+			</bullet_item><bullet_item>
+				<para>The Input Above Features With Representations layer can be the same as the Input Below Features With Representations layer in the case of self-overlapping features. When Input Above and Input Below representations are the same, an SQL expression is required for further refinement of feature selection.</para>
+			</bullet_item><bullet_item><para>This tool is identical to the  tool except that thewhere_clause parameter selects from the Input Above Features With Representations parameter in this tool, and selects from  the Input Below Features With Representations in the Create Underpass tool.  </para></bullet_item></usage><scriptExamples><scriptExample><title>CreateOverpass tool Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the CreateOverpass tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy inport env
+env.workspace = "C:\data"
+env.referenceScale = "50000"
+arcpy.CreateOverpass_cartography("roads.lyr", "railroads.lyr", "2 Points", "1 Points",
+                                 "cartography.gdb/transportation/over_mask_fc",
+                                 "cartography.gdb/transportation/over_mask_rc", "'Bridge_Category' = 3",
+                                 "cartography.gdb/transportation/bridge", "ANGLED", "1 Points")
+                    </code></scriptExample><scriptExample><title>CreateOverpass tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the CreateOverpass tool.</para>
+				<code xml:space="preserve"># Name: CreateOverpass_standalone_script.py
+# Description: creates a mask where one feature is visually on top of another feature
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+env.referenceScale = "50000"
+
+# Set local variables
+in_above_features = "roads.lyr"
+in_below_features = "railroads.lyr"
+margin_along = "2 Points"
+margin_across = "1 Points"
+out_overpass_feature_class = "cartography.gdb/transportation/over_mask_fc"
+out_mask_relationship_class = "cartography.gdb/transportation/over_mask_rc"
+where_clause = "'Bridge_Category' = 3"
+out_decoration_feature_class = "cartography.gdb/transportation/bridge"
+wing_type = "ANGLED"
+wing_tick_length = "1 Points"
+
+# Execute Create Overpass
+arcpy.CreateOverpass_cartography(in_above_features, in_below_features, margin_along, margin_across, out_overpass_feature_class, out_mask_relationship_class, where_clause, out_decoration_feature_class, wing_type, wing_tick_length)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

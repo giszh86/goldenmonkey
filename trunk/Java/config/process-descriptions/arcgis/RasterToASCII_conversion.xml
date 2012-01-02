@@ -1,0 +1,74 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Raster to ASCII (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a raster dataset to an ASCII text file representing raster data.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>Import</keyword><keyword>Text</keyword><keyword>Txt</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RasterToASCII" displayname="Raster to ASCII (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts a raster dataset to an ASCII text file representing raster data.</para>
+		</summary><alink_name>RasterToASCII_conversion</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset.</para><para>The raster can be integer or floating-point type.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster dataset.</para><para>The raster can be integer or floating-point type.</para>
+					</dialogReference></param><param sync="true" name="out_ascii_file" displayname="Output ASCII raster file" datatype="File" direction="Output" expression="out_ascii_file" type="Required"><pythonReference>
+						<para>The output ASCII raster file.</para>
+					</pythonReference><dialogReference>
+						<para>The output ASCII raster file.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input raster dataset can be any valid raster dataset.</para>
+			</bullet_item><bullet_item>
+				<para>The structure of the ASCII file consists of header information containing a set of keywords, followed by cell values in row-major order.</para><para>The format of the file in general  is:</para>    NCOLS xxx
+    NROWS xxx
+    XLLCORNER xxx
+    YLLCORNER xxx
+    CELLSIZE xxx
+    NODATA_VALUE xxx
+    row 1
+    row 2
+    .
+    .
+    row n
+				<para>The definitions of the keywords are as follows:</para>
+				<bulletList><bullet_item><para>NCOLS and NROWS are the number of columns and rows in the raster defined by the ASCII file.</para></bullet_item><bullet_item><para>XLLCORNER and XLLCORNER are the coordinates of the lower left corner of the lower left cell.</para></bullet_item><bullet_item><para>CELLSIZE is the cell size of the raster.</para></bullet_item><bullet_item><para>NODATA_VALUE is the value that is to represent NoData cells.</para></bullet_item><bullet_item><para>In the data stream of cell values, row 1 of the data is the top of the raster, row 2 is just under row 1, and so on.</para></bullet_item></bulletList></bullet_item><bullet_item><para>An example of an ASCII raster file is:</para>    NCOLS 480
+    NROWS 450
+    XLLCORNER 378922
+    YLLCORNER 4072345
+    CELLSIZE 30
+    NODATA_VALUE -32768
+    43 2 45 7 3 56 2 5 23 65 34 6 32 54 57 34
+    35 45 65 34 2 6 78 4 2 6 89 3 2 7 45 23 5 ...</bullet_item><bullet_item>
+				<para>The NODATA_VALUE is the value in the ASCII file that will  represent cells that are NoData in the input raster. This value is normally reserved for those cells whose true value is unknown.</para>
+			</bullet_item><bullet_item>
+				<para>The end of each row of data from the raster is terminated with a carriage return character in the file.</para>
+			</bullet_item><bullet_item>
+				<para>Both integer and floating point rasters can be converted to an ASCII raster file.</para>
+			</bullet_item><bullet_item><para>This tool only writes the origin as the lower left corner of the lower left cell.  The ASCII to Raster tool also supports the origin as the center of the lower left cell.</para></bullet_item></usage><scriptExamples><scriptExample><title>RasterToASCII example (Python window)</title><para>Converts a raster dataset to an ASCII file representing raster data.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "c:/data"
+arcpy.RasterToASCII_conversion("elevation", "c:/output/sa500.asc")
+                    </code></scriptExample><scriptExample><title>RasterToASCII example (stand-alone script)</title>
+					<para>Converts a raster dataset to an ASCII file representing raster data.</para>
+				<code xml:space="preserve"># Name: RasterToASCII_Ex_02.py
+# Description: Converts a raster dataset to an ASCII file representing 
+#    raster data. 
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inRaster = "elevation"
+outASCII = "c:/output/elevation.asc"
+
+# Execute RasterToASCII
+arcpy.RasterToASCII_conversion(inRaster, outASCII)
+                    </code></scriptExample></scriptExamples></tool></metadata>

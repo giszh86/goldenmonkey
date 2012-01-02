@@ -1,0 +1,42 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Batch Define Coordinate System (Samples)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Records the coordinate system information for the specified input datasets including any associated projection parameters, datum, or spheroid. It creates or modifies the dataset's projection parameters.This tool has been deprecated. For more information, see  An overview of the Samples toolbox.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Datum</keyword><keyword>Geographic</keyword><keyword>Projected</keyword><keyword>Projection</keyword><keyword>Spheriod</keyword><keyword>Transformation</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BatchDefine" displayname="Batch Define Coordinate System (Samples)" toolboxalias="samples" softwarerestriction="none"><summary>
+			<para>Records the coordinate system information for the specified input datasets including any associated projection parameters, datum, or spheroid. It creates or modifies the dataset's projection parameters.This tool has been deprecated. For more information, see  An overview of the Samples toolbox.</para>
+			</summary><alink_name>BatchDefine_samples</alink_name><parameters><param sync="true" name="input_datasets" displayname="Input Datasets" datatype="Geodataset" direction="Input" expression="[input_datasets,...]" type="Required"><pythonReference>
+						<para>Datasets whose projection is to be defined. The datasets can be feature classes, raster datasets, and layers.</para>
+					</pythonReference><dialogReference>
+						<para>Datasets whose projection is to be defined. The datasets can be feature classes, raster datasets, and layers.</para>
+					</dialogReference></param><param sync="true" name="Coordinate_System" displayname="Coordinate System" datatype="Coordinate System" direction="Input" expression="Coordinate_System" type="Optional"><pythonReference>
+						<para>Name of the coordinate system to be applied to the input datasets.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the coordinate system to be applied to the input datasets.</para>
+					</dialogReference></param><param sync="true" name="Template_Dataset" displayname="Template Dataset" datatype="Geodataset" direction="Input" expression="Template_Dataset" type="Optional"><pythonReference>
+						<para>Dataset that will be used to select an existing projection definition to be applied to the input datasets.</para>
+					</pythonReference><dialogReference>
+						<para>Dataset that will be used to select an existing projection definition to be applied to the input datasets.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This command can be used if the input datasets do not have a projection defined. If either of the input datasets has a projection defined, a warning will be raised but the tool will execute successfully.</para>
+			</bullet_item><bullet_item>
+				<para>The input datasets can include feature classes, raster datasets, and layers.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate system information of the input is created or modified by this tool. No separate output feature class will be created.</para>
+			</bullet_item><bullet_item>
+				<para>If the input datasets do not have a projection defined, the coordinate system will be listed as Unknown on the dialog box.</para>
+			</bullet_item><bullet_item>
+				<para>If either of the input datasets has a coordinate system defined, use the Project tool to modify it.</para>
+			</bullet_item><bullet_item>
+				<para>Use the Spatial Reference Properties dialog box to select a coordinate system definition from an existing definition list or dataset, or create a new coordinate system definition.</para>
+			</bullet_item><bullet_item>
+				<para>Use the template parameter to select an existing definition from another dataset to create a new coordinate system definition.</para>
+			</bullet_item><bullet_item>
+				<para>Either a coordinate system or a template dataset must be specified for the tool to execute.</para>
+			</bullet_item><bullet_item>
+				<para>When using this tool in ModelBuilder, the outputs will be two Boolean parameters. One parameter is named Completed and the other is named Error. These parameters are provided to allow chaining in ModelBuilder. Preconditions can be established with other processes. This will allow branching in models. If the tool fails, the model can stop or run another series of processes. If it completes successfully, the model can continue running.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>BatchDefine Example (Standalone Script)</title><code xml:space="preserve">import arcgisscripting
+gp = arcgisscripting.create(9.3)
+ 
+gp.workspace = "c:/Workspace/canada.mdb"
+gp.BatchDefine("rivers;roads", "Coordinate Systems/Geographic Coordinate Systems/North America/North American Datum 1983.prj")
+                    </code></scriptExample></scriptExamples></tool></metadata>

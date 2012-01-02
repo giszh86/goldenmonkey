@@ -1,0 +1,231 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make Route Event Layer (Linear Referencing)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a temporary feature layer using routes and route events.</para>
+			<para>When the temporary layer is used (displayed on a map, or used by another geoprocessing tool), dynamic segmentation is performed.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add Route Events</keyword><keyword>Build</keyword><keyword>Construct</keyword><keyword>Create</keyword><keyword>Display Events</keyword><keyword>Display Route Events</keyword><keyword>Dynamic Segmentation</keyword><keyword>Dynseg</keyword><keyword>Events</keyword><keyword>Generate</keyword><keyword>Produce</keyword><keyword>Route</keyword><keyword>Segment</keyword><keyword>Source</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeRouteEventLayer" displayname="Make Route Event Layer (Linear Referencing)" toolboxalias="lr" softwarerestriction="none"><summary>
+			<para>Creates a temporary feature layer using routes and route events.</para>
+			<para>When the temporary layer is used (displayed on a map, or used by another geoprocessing tool), dynamic segmentation is performed.</para>
+		</summary><alink_name>MakeRouteEventLayer_lr</alink_name><parameters><param sync="true" name="in_routes" displayname="Input Route Features" datatype="Feature Layer" direction="Input" expression="in_routes" type="Required"><pythonReference>
+						<para>The route features upon which events will be located.</para>
+					</pythonReference><dialogReference>
+						<para>The route features upon which events will be located.</para>
+					</dialogReference></param><param sync="true" name="route_id_field" displayname="Route Identifier Field" datatype="Field" direction="Input" expression="route_id_field" type="Required"><pythonReference>
+						<para>The field containing values that uniquely identify each route.</para>
+					</pythonReference><dialogReference>
+						<para>The field containing values that uniquely identify each route.</para>
+					</dialogReference></param><param sync="true" name="in_table" displayname="Input Event Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The table whose rows will be located along routes.</para>
+					</pythonReference><dialogReference>
+						<para>The table whose rows will be located along routes.</para>
+					</dialogReference></param><param sync="true" name="in_event_properties" displayname="Event Table Properties" datatype="Route Measure Event Properties" direction="Input" expression="in_event_properties" type="Required"><pythonReference>
+						<para>Parameter consisting of the route location fields and the type of events in the input event table.</para>
+						<bulletList>
+							<bullet_item>Route Identifier Field—The field containing values that indicate which route each event is along. This field can be numeric or character.</bullet_item>
+							<bullet_item>Event Type—The type of events in the input event table (POINT or LINE).<bulletList>
+									<bullet_item>POINT—Point events occur at a precise location along a route. Only a from-measure field must be specified.</bullet_item>
+									<bullet_item>LINE—Line events define a portion of a route. Both from- and to-measure fields must be specified.</bullet_item>
+								</bulletList></bullet_item>
+							<bullet_item>From-Measure Field—A field containing measure values. This field must be numeric and is required when the event type is POINT or LINE. Note, when the Event Type is POINT the label for this parameter becomes "Measure Field".</bullet_item>
+							<bullet_item>To-Measure Field—A field containing measure values. This field must be numeric and is required when the event type is LINE.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>Parameter consisting of the route location fields and the type of events in the input event table.</para>
+						<bulletList>
+							<bullet_item>Route Identifier Field—The field containing values that indicate which route each event is along. This field can be numeric or character.</bullet_item>
+							<bullet_item>Event Type—The type of events in the input event table (POINT or LINE).<bulletList>
+									<bullet_item>POINT—Point events occur at a precise location along a route. Only a from-measure field must be specified.</bullet_item>
+									<bullet_item>LINE—Line events define a portion of a route. Both from- and to-measure fields must be specified.</bullet_item>
+								</bulletList></bullet_item>
+							<bullet_item>From-Measure Field—A field containing measure values. This field must be numeric and is required when the event type is POINT or LINE. Note, when the Event Type is POINT the label for this parameter becomes "Measure Field".</bullet_item>
+							<bullet_item>To-Measure Field—A field containing measure values. This field must be numeric and is required when the event type is LINE.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_layer" displayname="Layer Name or Table View" datatype="Feature Layer" direction="Output" expression="out_layer" type="Required"><pythonReference>
+						<para>The layer to be created. This layer is stored in memory, so a path is not necessary.</para>
+					</pythonReference><dialogReference>
+						<para>The layer to be created. This layer is stored in memory, so a path is not necessary.</para>
+					</dialogReference></param><param sync="true" name="offset_field" displayname="Offset Field" datatype="Field" direction="Input" expression="offset_field" type="Optional"><pythonReference>
+						<para>The field containing values used to offset events from their underlying route. This field must be numeric.</para>
+					</pythonReference><dialogReference>
+						<para>The field containing values used to offset events from their underlying route. This field must be numeric.</para>
+					</dialogReference></param><param sync="true" name="add_error_field" displayname="Generate a field for locating errors" datatype="Boolean" direction="Input" expression="add_error_field" type="Optional"><pythonReference>
+						<para>Specifies whether a field named LOC_ERROR will be added to the temporary layer that is created.</para>
+						<bulletList><bullet_item>NO_ERROR_FIELD—Do not add a field to store locating errors. This is the default. </bullet_item><bullet_item>ERROR_FIELD—Add a field to store locating errors. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether a field named LOC_ERROR will be added to the temporary layer that is created.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Do not add a field to store locating errors. This is the default. </bullet_item>
+							<bullet_item>Checked—Add a field to store locating errors.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="add_angle_field" displayname="Generate an angle field" datatype="Boolean" direction="Input" expression="add_angle_field" type="Optional"><pythonReference>
+						<para>Specifies whether a field named LOC_ANGLE will be added to the temporary layer that is created. This parameter is only valid when the event type is POINT.</para>
+						<bulletList><bullet_item>NO_ANGLE_FIELD—Do not add a field to store locating angles. This is the default. </bullet_item><bullet_item>ANGLE_FIELD—Add a field to store locating angles. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether a field named LOC_ANGLE will be added to the temporary layer that is created. This parameter is only valid when the event type is POINT.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Do not add a field to store locating angles. This is the default.</bullet_item>
+							<bullet_item>Checked—Add a field to store locating angles.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="angle_type" displayname="Calculated Angle Type" datatype="String" direction="Input" expression="angle_type" type="Optional"><pythonReference>
+						<para>Specifies the type of locating angle that will be calculated. This parameter is only valid if ANGLE_FIELD has been specified.</para>
+						<bulletList><bullet_item>NORMAL—The normal (perpendicular) angle will be calculated. This is the default. </bullet_item><bullet_item>TANGENT—The tangent angle will be calculated. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the type of locating angle that will be calculated. This parameter is only valid if ANGLE_FIELD has been specified.</para>
+						<bulletList><bullet_item>NORMAL—The normal (perpendicular) angle will be calculated. This is the default. </bullet_item><bullet_item>TANGENT—The tangent angle will be calculated. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="complement_angle" displayname="Write the complement of the angle to the angle field" datatype="Boolean" direction="Input" expression="complement_angle" type="Optional"><pythonReference>
+						<para>Specifies whether the complement of the locating angle will be calculated. This parameter is only valid if ANGLE_FIELD has been specified.</para>
+						<bulletList><bullet_item>ANGLE—Do not write the complement of the angle. Write only the calculated angle. This is the default. </bullet_item><bullet_item>COMPLEMENT—Write the complement of the angle. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether the complement of the locating angle will be calculated. This parameter is only valid if ANGLE_FIELD has been specified.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Do not write the complement of the angle. Write only the calculated angle. This is the default.</bullet_item>
+							<bullet_item>Checked—Write the complement of the angle.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="offset_direction" displayname="Events with a positive offset will be placed to the right of the routes" datatype="Boolean" direction="Input" expression="offset_direction" type="Optional"><pythonReference>
+						<para>Specifies the side on which the route events with a positive offset are displayed. This parameter is only valid if an offset field has been specified.</para>
+						<bulletList><bullet_item>LEFT—Events with a positive offset will be displayed to the left of the route. The side of the route is determined by the measures and not necessarily the digitized direction. This is the default. </bullet_item><bullet_item>RIGHT—Events with a positive offset will be displayed to the right of the route. The side of the route is determined by the digitized direction. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the side on which the route events with a positive offset are displayed. This parameter is only valid if an offset field has been specified.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Events with a positive offset will be displayed to the left of the route. The side of the route is determined by the measures and not necessarily the digitized direction. This is the default.</bullet_item>
+							<bullet_item>Checked—Events with a positive offset will be displayed to the right of the route. The side of the route is determined by the digitized direction. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="point_event_type" displayname="Point events will be generated as multipoint features" datatype="Boolean" direction="Input" expression="point_event_type" type="Optional"><pythonReference>
+						<para>Specifies whether point events will be treated as point features or multipoint features.</para>
+						<bulletList><bullet_item>POINT—Point events will be treated as point features. This is the default. </bullet_item><bullet_item>MULTIPOINT—Point events will be treated as multipoint features. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether point events will be treated as point features or multipoint features.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Point events will be treated as point features. This is the default.</bullet_item>
+							<bullet_item>Checked—Point events will be treated as multipoint features.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input table can be any type of table ArcGIS supports.</para>
+			</bullet_item><bullet_item>
+				<para>Use  on the routes and/or  on the events prior to this tool to reduce the number of routes and events that will be processed.</para>
+			</bullet_item><bullet_item>
+				<para>Not all types of tables have an ObjectID field. When such tables are used by this tool the resulting layer will not be selectable and cannot be used effectively by certain geoprocessing operations. Consider using the tool prior to this tool to add a virtual ObjectID field.</para>
+			</bullet_item><bullet_item>
+				<para>Temporary layers are stored in memory and can be used as input to other geoprocessing functions in your current ArcCatalog or ArcMap session.</para>
+			</bullet_item><bullet_item>
+				<para>In ArcMap, temporary feature layers can be displayed if you have indicated that you want to add results of geoprocessing operations to the display under GeoprocessingGeoprocessing Options...Add results of geoprocessing operations to the display.</para>
+			</bullet_item><bullet_item>
+				<para>Once you exit ArcCatalog or ArcMap, temporary feature layers are removed from memory. To persist a temporary layer on disk, use the  or  tools.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeRouteEventLayer Example (Python Window)</title><code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/Data"
+arcpy.MakeRouteEventLayer_lr ("route_hwy.shp", "rkey" , "accident.dbf", "rkey POINT mile", "accident_events", "#", "ERROR_FIELD", "ANGLE_FIELD") 
+
+ 
+
+                    </code></scriptExample><scriptExample><title>MakeRouteEventLayer Example (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the MakeRouteEventLayer function in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name: MakeRouteEventLayer_Example.py
+# Description:  Make a POINT event layer. Routes and events are in a shapefile workspace.
+# An error field and an angle field are added to the new layer. The new layer can be used
+# by other geoprocessing functions.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data"
+
+# Set local variables
+rt = "route_hwy.shp"
+rid = "rkey" 
+tbl = "accident.dbf"
+props = "rkey POINT mile"
+lyr = "accident_events" 
+
+# Execute MakeRouteEventLayer
+arcpy.MakeRouteEventLayer_lr (rt, rid, tbl, props, lyr, "#",  "ERROR_FIELD",  "ANGLE_FIELD") 
+
+ 
+
+                    </code></scriptExample><scriptExample><title>MakeRouteEventLayer Example 2 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the MakeRouteEventLayer function in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name: MakeRouteEventLayer_Example2.py
+# Description:  Make a LINE event layer. Routes and events are in a file geodatabase.
+# An error field is added to the new layer. The new layer can be used by other 
+# geoprocessing functions.
+# Author: ESRI
+
+# Import system modules 
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/pitt.gdb"
+
+# Set local variables
+rt = "roads/hwy"          # the 'hwy' feature class is in the 'roads' feature dataset
+rid = "rkey" 
+tbl = "pavecond"
+props = "rkey LINE fmp tmp"
+lyr = "pave_events" 
+
+# Execute MakeRouteEventLayer
+arcpy.MakeRouteEventLayer_lr (rt, rid, tbl, props, lyr, "#",  "ERROR_FIELD")
+ 
+
+                    </code></scriptExample><scriptExample><title>MakeRouteEventLayer Example 3 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the MakeRouteEventLayer function in a stand-alone Python script using personal geodatabase data.</para>
+				<code xml:space="preserve"># Name: MakeRouteEventLayer_Example3.py
+# Description: Make a LINE event layer. Routes and events are in a personal geodatabase.
+# An error field is added to the new layer. The new layer can be used by other 
+# geoprocessing functions.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/pitt.mdb"
+
+# Set local variables
+rt = "roads/hwy"          # the 'hwy' feature class is in the 'roads' feature dataset
+rid = "rkey" 
+tbl = "pavecond"
+props = "rkey LINE fmp tmp"
+lyr = "pave_events" 
+
+# Execute MakeRouteEventLayer
+arcpy.MakeRouteEventLayer_lr (rt, rid, tbl, props, lyr, "#", "ERROR_FIELD")
+ 
+
+                    </code></scriptExample><scriptExample><title>MakeRouteEventLayer Example 4 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the MakeRouteEventLayer function in a stand-alone Python script using SDE data.</para>
+				<code xml:space="preserve"># Name: MakeRouteEventLayer_Example4.py
+# Description: Make a POINT event layer. Routes and events are in an enterprise geodatabase.
+# The new layer can be used by other geoprocessing functions.
+
+# Import system modules 
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "Database Connections/Connection to Jerry.sde" 
+
+# Set local variables
+ds = gp.QualifyTableName("roads", wkspc)          # the 'roads' feature dataset
+fc = gp.QualifyTableName("hwy", wkspc)            # the 'hwy' feature class 
+rt = ds + "/" + fc #the 'hwy' feature class is in the 'roads' feature dataset
+rid = "rkey" 
+tbl = gp.QualifyTableName("accident", wkspc)
+props = "rkey POINT mile"
+lyr = "accident_events2" 
+
+# Execute MakeRouteEventLayer
+arcpy.MakeRouteEventLayer_lr (rt, rid, tbl, props, lyr) 
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

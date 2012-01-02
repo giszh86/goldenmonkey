@@ -1,0 +1,98 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Raster to TIN (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a raster to a TIN.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D</keyword><keyword>Analyst</keyword><keyword>Convert</keyword><keyword>Create</keyword><keyword>Raster</keyword><keyword>Tin</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RasterTin" displayname="Raster to TIN (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Converts a raster to a TIN.</para>
+			
+		</summary><alink_name>RasterTin_3d</alink_name><toolIllust type="illustration" src="RasterTin_3d_h.gif" alt="Create TIN from Raster illustration" /><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster.</para>
+					</dialogReference></param><param sync="true" name="out_tin" displayname="Output TIN" datatype="TIN" direction="Output" expression="out_tin" type="Required"><pythonReference>
+						<para>The output TIN.</para>
+					</pythonReference><dialogReference>
+						<para>The output TIN.</para>
+					</dialogReference></param><param sync="true" name="z_tolerance" displayname="Z Tolerance" datatype="Double" direction="Input" expression="z_tolerance" type="Optional"><pythonReference>
+						<para>The maximum allowable difference in (z units) between the height of the input raster and the height of the output TIN. By default, the z tolerance is 1/10 of the z range of the input raster.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum allowable difference in (z units) between the height of the input raster and the height of the output TIN. By default, the z tolerance is 1/10 of the z range of the input raster.</para>
+					</dialogReference></param><param sync="true" name="max_points" displayname="Maximum Number of Points" datatype="Long" direction="Input" expression="max_points" type="Optional"><pythonReference>
+						<para>The maximum number of points that will be added to the TIN before the process is terminated. By default, the process will continue until all the points are added.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum number of points that will be added to the TIN before the process is terminated. By default, the process will continue until all the points are added.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>The factor that the heights of the resultant TIN will be multiplied from those of the input raster. Used to convert z units to x and y units.</para>
+					</pythonReference><dialogReference>
+						<para>The factor that the heights of the resultant TIN will be multiplied from those of the input raster. Used to convert z units to x and y units.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment><environment name="Version" label="Version"></environment></environments><usage><bullet_item>
+				<para>Converting a raster to a TIN will not, in and of itself, produce a better surface. You need ancillary data that's compatible with, and improves, the surface definition. Typically, these data would be added to the TIN in a subsequent process.</para>
+			</bullet_item><bullet_item>
+				<para>The default maximum allowable difference between the height of the input raster and the height of the output TIN is 1/10 of the z range of the input raster.</para>
+			</bullet_item><bullet_item>
+				<para>While the maximum size of a TIN that can be used under Win32 is between 15 to 20 million nodes it's recommended to cap the size at a few million. Large input rasters, and small z-tolerance settings, may exceed this. If size is an issue consider processing subsets.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Raster to TIN Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Raster to TIN
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.RasterTin_3d("vermont_ele.tif", "C:/output/TIN_VT", "2", "1000", "1")
+                    </code></scriptExample><scriptExample><title>Raster to TIN Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Raster to TIN
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: RasterTin Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              RasterTin tool to create a TIN for each IMG raster in the 
+#              target workspace.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Create the list of IMG rasters
+    rasterList = arcpy.ListRasters("*", "IMG")
+    # Loop the process for each raster
+    if len(rasterList) &gt; 0:
+        for raster in rasterList:
+            # Set Local Variables
+            zTol = 2
+            maxPts = 1500000
+            zFactor = 1
+            # [:-4] strips the last 4 characters (.img) from the raster name
+            outTin = "C:/Output/TIN_" + raster[:-4] 
+            print "Creating TIN from " + raster + "."
+            #Execute RasterTin
+            arcpy.RasterTin_3d(raster, outTIN, zTol, maxPts, zFactor)
+        print "Finished."
+    else:
+        "There are no IMG rasters in the " + env.workspace + " directory."
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

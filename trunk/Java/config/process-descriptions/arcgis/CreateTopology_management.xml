@@ -1,0 +1,40 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Topology (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a topology. The topology will not contain any feature classes or rules.  </para>
+			<para>Use the Add Feature Class To Topology and the Add Rule To Topology tools to add feature classes and rules to the topology.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coincident</keyword><keyword>Empty</keyword><keyword>Geometry</keyword><keyword>New</keyword><keyword>Relationship</keyword><keyword>Rule</keyword><keyword>Share</keyword><keyword>Spatial</keyword><keyword>Valid</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateTopology" displayname="Create Topology (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a topology. The topology will not contain any feature classes or rules.  </para>
+			<para>Use the Add Feature Class To Topology and the Add Rule To Topology tools to add feature classes and rules to the topology.</para>
+		</summary><alink_name>CreateTopology_management</alink_name><parameters><param sync="true" name="in_dataset" displayname="Input Feature Dataset" datatype="Feature Dataset" direction="Input" expression="in_dataset" type="Required"><pythonReference>
+						<para>The feature dataset in which the  topology will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The feature dataset in which the  topology will be created.</para>
+					</dialogReference></param><param sync="true" name="out_name" displayname="Output Topology" datatype="String" direction="Input" expression="out_name" type="Required"><pythonReference>
+						<para>The name of the topology to be created.  This name must be unique across the entire geodatabase.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the topology to be created.  This name must be unique across the entire geodatabase.</para>
+					</dialogReference></param><param sync="true" name="in_cluster_tolerance" displayname="Cluster Tolerance" datatype="Double" direction="Input" expression="in_cluster_tolerance" type="Optional"><pythonReference>
+						<para>The cluster tolerance to be set on the topology.  The larger the value, the more likely vertices will be to cluster together. </para>
+					</pythonReference><dialogReference>
+						<para>The cluster tolerance to be set on the topology.  The larger the value, the more likely vertices will be to cluster together. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>If the Cluster Tolerance parameter  is blank or set to  0,  the xy tolerance of the feature dataset which contains the topology will be used.</para>
+			</bullet_item><bullet_item>
+				<para>There is a range allowed for the cluster tolerance value, this range is derived from the precision of the spatial  reference     of the feature dataset in which the topology is contained. If the value entered is larger than the maximum cluster tolerance, the maximum value will be used instead. If the value entered is smaller than the minimum, the minimum value will be used.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateTopology stand-alone script</title>
+					<para>The following Stand-alone script demonstrates how to use the CreateTopology function.</para>
+				<code xml:space="preserve">
+
+# Name: CreateTopology_Example.py
+# Description: Creates a new topology (these must reside within a feature dataset)
+# Author: ESRI
+
+# Import system modules
+
+import arcpy
+from arcpy import env
+ 
+env.workspace = "h:/workspace"
+arcpy.CreateTopology_management("d:/landuse.mdb/landuse",  "landuse_Topology")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

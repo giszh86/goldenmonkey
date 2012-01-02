@@ -1,0 +1,117 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Hillshade (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a shaded relief from a surface raster by considering the illumination source angle and shadows.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Altitude</keyword><keyword>Angle</keyword><keyword>Azimuth</keyword><keyword>Dem</keyword><keyword>Digital Elevation Model</keyword><keyword>Elevation</keyword><keyword>Illumination</keyword><keyword>Relief</keyword><keyword>Shaded Relief</keyword><keyword>Shadow</keyword><keyword>Sun</keyword><keyword>Z-Factor</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Hillshade" displayname="Hillshade (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Creates a shaded relief from a surface raster by considering the illumination source angle and shadows.</para>
+			</summary><alink_name>Hillshade_3d</alink_name><toolIllust type="illustration" src="Hillshade_3d_h.png" alt="Hillshade illustration" /><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input surface raster.</para></pythonReference><dialogReference>
+						<para>The input surface raster.</para></dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Required"><pythonReference>
+						<para>The output hillshade raster.</para><para>The hillshade raster has an integer value range of 0 to 255.</para></pythonReference><dialogReference>
+						<para>The output hillshade raster.</para><para>The hillshade raster has an integer value range of 0 to 255.</para></dialogReference></param><param sync="true" name="azimuth" displayname="Azimuth" datatype="Double" direction="Input" expression="azimuth" type="Optional"><pythonReference>
+						<para>Azimuth angle of the light source.</para>
+						<para>The azimuth is expressed in positive degrees from 0 to 360, measured clockwise from north.</para>
+						<para>The default is 315 degrees.</para>
+					</pythonReference><dialogReference>
+						<para>Azimuth angle of the light source.</para>
+						<para>The azimuth is expressed in positive degrees from 0 to 360, measured clockwise from north.</para>
+						<para>The default is 315 degrees.</para>
+					</dialogReference></param><param sync="true" name="altitude" displayname="Altitude" datatype="Double" direction="Input" expression="altitude" type="Optional"><pythonReference>
+						<para>Altitude angle of the light source above the horizon.</para>
+						<para>The altitude is expressed in positive degrees, with 0 degrees at the horizon and 90 degrees directly overhead.</para>
+						<para>The default is 45 degrees.</para>
+					</pythonReference><dialogReference>
+						<para>Altitude angle of the light source above the horizon.</para>
+						<para>The altitude is expressed in positive degrees, with 0 degrees at the horizon and 90 degrees directly overhead.</para>
+						<para>The default is 45 degrees.</para>
+					</dialogReference></param><param sync="true" name="model_shadows" displayname="Model shadows" datatype="Boolean" direction="Input" expression="model_shadows" type="Optional"><pythonReference>
+						<para>Type of shaded relief to be generated.</para>
+						<bulletList><bullet_item>NO_SHADOWS—The output raster only considers local illumination angles; the effects of shadows are not considered.The output values can range from 0 to 255, with 0 representing the darkest areas, and 255 the brightest.</bullet_item><bullet_item>SHADOWS — The output shaded raster considers both local illumination angles and shadows.The output values range from 0 to 255, with 0 representing the shadow areas, and 255 the brightest.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Type of shaded relief to be generated.</para>
+						<bulletList>
+							<bullet_item>Unchecked—The output raster only considers local illumination angles; the effects of shadows are not considered.<para>The output values can range from 0 to 255, with 0 representing the darkest areas, and 255 the brightest.</para></bullet_item>
+							<bullet_item>Checked—The output shaded raster considers both local illumination angles and shadows. <para>The output values range from 0 to 255, with 0 representing the shadow areas, and 255 the brightest.</para></bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>Number of ground x,y units in one surface z unit.</para>
+						<para>The z-factor adjusts the units of measure for the z units when they are different from the x,y units of the input surface. The z-values of the input surface are multiplied by the z-factor when calculating the final output surface.</para>
+						<para>If the x,y units and z units are in the same units of measure, the z-factor is 1. This is the default.</para>
+						<para>If the x,y units and z units are in different units of measure, the z-factor must be set to the appropriate factor, or the results will be incorrect. For example, if your z units are feet and your x,y units are meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</pythonReference><dialogReference>
+						<para>Number of ground x,y units in one surface z unit.</para>
+						<para>The z-factor adjusts the units of measure for the z units when they are different from the x,y units of the input surface. The z-values of the input surface are multiplied by the z-factor when calculating the final output surface.</para>
+						<para>If the x,y units and z units are in the same units of measure, the z-factor is 1. This is the default.</para>
+						<para>If the x,y units and z units are in different units of measure, the z-factor must be set to the appropriate factor, or the results will be incorrect. For example, if your z units are feet and your x,y units are meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Hillshade tool creates a shaded relief raster from a raster. The illumination source is considered to be at infinity.</para>
+			</bullet_item><bullet_item>
+				<para>The hillshade raster has an integer value range of 0 to 255.</para>
+			</bullet_item><bullet_item>
+				<para>Two types of shaded relief rasters can be output. If the Model shadows option is disabled (unchecked), the output raster only considers local illumination angle. If it is enabled (checked), the output raster considers the effects of both local illumination angle and shadow.</para>
+			</bullet_item><bullet_item>
+				<para>The analysis of shadows is done by considering the effects of the local horizon at each cell. Raster cells in shadow are assigned a value of zero.</para>
+			</bullet_item><bullet_item>
+				<para>To create a raster of the shadow areas only, use the Reclassify tool to separate the value zero from the other hillshade values. Hillshade must have had the Model shadows option enabled.</para></bullet_item><bullet_item>
+				<para>If the input raster is in a spherical coordinate system, such as decimal degrees, the resulting hillshade may look peculiar. This is due to the difference in measure between the horizontal ground units and the elevation z units. Since the length of a degree of longitude changes with latitude, you will need to specify an appropriate z-factor for that latitude. If your x,y units are decimal degrees and your z units are meters, some appropriate z-factors for particular latitudes are:
+    Latitude     Z-factor
+     0           0.00000898
+    10           0.00000912
+    20           0.00000956
+    30           0.00001036
+    40           0.00001171
+    50           0.00001395
+    60           0.00001792
+    70           0.00002619
+    80           0.00005156</para>
+			</bullet_item><bullet_item>
+				<para>You can create dramatic three-dimensional views of the hillshaded surface by draping the output raster using ArcGIS ArcScene.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Hillshade example 1 (Python window)</title>
+					
+					<para>This example generates a hillshade raster that includes shadows. Non-default azimuth and altitude angles are set.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.HillShade_3d("elevation", "C:/output/outhillshd01", 180, 75, "SHADOWS", 1)
+                    </code></scriptExample><scriptExample><title>Hillshade example 2 (stand-alone script)</title>
+					
+					<para>This example generates a hillshade raster that includes shadows. Non-default azimuth and altitude angles are set, and a z-factor to convert z units in feet to meters.</para>
+				<code xml:space="preserve"># Name: HillShade_3d_Ex_02.py
+# Description: Computes hillshade values for a raster surface.
+# Requirements: 3D Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "elevation"
+outRaster = "C:/output/outhillshd02"
+azimuth = 180
+altitude = 75
+modelShadows = "SHADOWS"
+zFactor = 0.348
+
+# Check out the ArcGIS 3D Analyst extension license
+arcpy.CheckOutExtension("3D")
+
+# Execute HillShade
+arcpy.HillShade_3d(inRaster, outRaster, azimuth, altitude, modelShadows, 
+                   zFactor)
+                    </code></scriptExample></scriptExamples></tool></metadata>

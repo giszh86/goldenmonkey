@@ -1,0 +1,60 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Re-Export Unacknowledged Messages (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates an output delta file containing unacknowledged replica updates from a one-way or two-way replica geodatabase.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>1 Way</keyword><keyword>2 Way</keyword><keyword>Centralize</keyword><keyword>Check</keyword><keyword>Child</keyword><keyword>Contractor</keyword><keyword>Database</keyword><keyword>Delta</keyword><keyword>Difference</keyword><keyword>Disconnect</keyword><keyword>Edit</keyword><keyword>Gdb</keyword><keyword>Geodata</keyword><keyword>In</keyword><keyword>Mobile</keyword><keyword>One</keyword><keyword>Out</keyword><keyword>Parent</keyword><keyword>Production</keyword><keyword>Publication</keyword><keyword>Replica</keyword><keyword>Replicate</keyword><keyword>Replication</keyword><keyword>Sde</keyword><keyword>Send</keyword><keyword>Service</keyword><keyword>Synchronize</keyword><keyword>Two</keyword><keyword>Update</keyword><keyword>Way</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ReExportUnacknowledgedMessages" displayname="Re-Export Unacknowledged Messages (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates an output delta file containing unacknowledged replica updates from a one-way or two-way replica geodatabase.</para>
+			</summary><alink_name>ReExportUnacknowledgedMessages_management</alink_name><parameters><param sync="true" name="in_geodatabase" displayname="Export From Replica Geodatabase" datatype="Workspace; GeoDataServer" direction="Input" expression="in_geodatabase" type="Required"><pythonReference>
+						<para>Specifies the replica geodatabase from which to reexport the unacknowledged messages. The geodatabase may be a local geodatabase or a geodata service.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the replica geodatabase from which to reexport the unacknowledged messages. The geodatabase may be a local geodatabase or a geodata service.</para>
+					</dialogReference></param><param sync="true" name="output_delta_file" displayname="Export Delta File" datatype="File" direction="Output" expression="output_delta_file" type="Required"><pythonReference>
+						<para>Specifies the delta file in which to reexport data changes.  </para>
+					</pythonReference><dialogReference>
+						<para>Specifies the delta file in which to reexport data changes.  </para>
+					</dialogReference></param><param sync="true" name="in_replica" displayname="Replica" datatype="String" direction="Input" expression="in_replica" type="Required"><pythonReference>
+						<para>The replica from which the unacknowledgement messages will be reexported.</para>
+					</pythonReference><dialogReference>
+						<para>The replica from which the unacknowledgement messages will be reexported.</para>
+					</dialogReference></param><param sync="true" name="in_export_option" displayname="Export Options" datatype="String" direction="Input" expression="in_export_option" type="Required"><pythonReference><bulletList><bullet_item>ALL_UNACKNOWLEDGED—Reexports all changes for which there has been no acknowledgement message received.</bullet_item><bullet_item>MOST_RECENT—Rerexports only those changes since the last set of exported changes was sent.</bullet_item></bulletList>
+					</pythonReference><dialogReference><bulletList><bullet_item>ALL_UNACKNOWLEDGED—Reexports all changes for which there has been no acknowledgement message received.</bullet_item><bullet_item>MOST_RECENT—Rerexports only those changes since the last set of exported changes was sent.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is used when synchronizing replica while disconnected. This is done by first running the  tool which creates a delta file with changes to synchronize. The delta file is then copied to the relative replica and imported using the  tool. If a delta file gets lost and you want to resend, you can use the  tool to regenerate the delta file. After the changes are imported, the relative replica can export an acknowledgement file using the  tool. The acknowledgment file is copied to the replica and imported using the  tool. If an acknowledgement is not received, the next time changes are sent they will include the new changes plus the previously sent changes. </para>
+			</bullet_item><bullet_item>
+				<para>The output delta file can be a delta file geodatabase (.gdb), delta personal geodatabase (.mdb) or a delta XML file (.xml). When specifying the output delta file, you must include the appropriate suffix (.gdb, .mdb or .xml) </para>
+			</bullet_item><bullet_item>
+				<para>This tool cannot be used for check-out replicas.</para>
+			</bullet_item><bullet_item>
+				<para>To synchronize replicas in a connected mode see the  tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Re-ExportUnacknowledgedMessages Example (Python Window)</title>
+					<para>The following Python Window example demonstrates how to use the Re-ExportUnacknowledgedMessages function in the Python window.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace "C:/Data"
+arcpy.ReExportUnacknowledgedMessages_management("MySDEdata.sde", "dataChanges2.gdb", "MyReplica1", "ALL_UNACKNOWLEDGED")
+                    </code></scriptExample><scriptExample><title>Re-ExportUnacknowledgedMessages Example 2 (stand-alone Python script)</title>
+					<para>The following script demonstrates how to use the Re-ExportUnacknowledgedMessages function in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name: ReExportUnacknowledgedMessages_Example2.py
+# Description: ReExports all unacknowledged messages from an SDE replica workspace.
+# Changes are exported to a delta personal geodatabase
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace "C:/Data"
+
+# Set local variables
+replica_gdb = "MySDEdata.sde"
+output_file = "dataChanges2.mdb"
+replica_name = "MyReplica1"
+export_option = "ALL_UNACKNOWLEDGED"
+
+# Execute ReExportUnacknowledgedMessages
+arcpy.ReExportUnacknowledgedMessages_management(replica_gdb, output_file, replica_name, export_option)
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Cluster/Outlier Analysis with Rendering (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Given a set of weighted features, identifies hot spots, cold spots, and spatial outliers using the Anselin Local Moran's I statistic. It then applies cold-to-hot rendering to the z-score results.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ClustersOutliersRendered" displayname="Cluster/Outlier Analysis with Rendering (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Given a set of weighted features, identifies hot spots, cold spots, and spatial outliers using the Anselin Local Moran's I statistic. It then applies cold-to-hot rendering to the z-score results.</para>
+		</summary><alink_name>ClustersOutliersRendered_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/ClustersOutliersRendered_stats_v.png" alt="Cluster and Outlier Analysis illustration" /><toolIllust type="illustration" src="ClustersOutliersRendered_stats_h.png" alt="Cluster and Outlier Analysis illustration" /><parameters><param sync="true" name="Input_Feature_Class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="Input_Feature_Class" type="Required"><pythonReference>
+						<para>The feature class for which cluster analysis will be performed.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class for which cluster analysis will be performed.</para>
+					</dialogReference></param><param sync="true" name="Input_Field" displayname="Input Field" datatype="Field" direction="Input" expression="Input_Field" type="Required"><pythonReference>
+						<para>The field to be evaluated.</para>
+					</pythonReference><dialogReference>
+						<para>The field to be evaluated.</para>
+					</dialogReference></param><param sync="true" name="Output_Layer_File" displayname="Output Layer File" datatype="Layer File" direction="Output" expression="Output_Layer_File" type="Required"><pythonReference>
+						<para>The output layer file to store rendering information.</para>
+					</pythonReference><dialogReference>
+						<para>The output layer file to store rendering information.</para>
+					</dialogReference></param><param sync="true" name="Output_Feature_Class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="Output_Feature_Class" type="Required"><pythonReference>
+						<para>The output feature class to receive the results field, z-score, p-value, and cluster type designation.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class to receive the results field, z-score, p-value, and cluster type designation.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Output_coordinate_system" label="Output coordinate system">Feature geometry is projected to the Output Coordinate System prior to analysis, so values entered for the Distance Band or Threshold Distance parameter should match those specified in the Output Coordinate System. All mathematical computations are based on the spatial reference of the Output Coordinate System.</environment><environment name="Qualified_field_names" label="Qualified field names"></environment><environment name="Output_has_Z_values" label="Output has Z values"></environment><environment name="Default_output_Z_value" label="Default output Z value"></environment><environment name="Output_has_M_values" label="Output has M values"></environment></environments><usage><bullet_item>
+				<para>The Cluster/Outlier Analysis with Rendering tool combines the  and  tools in a model.  The Output Layer File is automatically added to the TOC with hot/cold rendering applied to feature z-scores.</para>
+			</bullet_item><bullet_item><para>Begining with ArcGIS 9.3, output from the  is automatically added to the TOC with default rendering  applied to the <bold>COTYPE</bold> field, showing statistically significant hot spots, cold spots and spatial outliers.</para></bullet_item></usage><scriptExamples><scriptExample><title>Cluster and Outlier Analysis with Rendering Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Cluster and Outlier Analysis with Rendering tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "c:/data/911calls"
+arcpy.ClustersOutliersRendered_stats("911Count.shp", "ICOUNT","911ClusterOutlier_rendered.lyr", "911ClusterOutlier.shp")
+                    </code></scriptExample><scriptExample><title>Cluster and Outlier Analysis with Rendering Example (Stand-alone Python script).</title>
+					<para>The following stand-alone Python script demonstrates how to use the Cluster and Outlier Analysis with Rendering tool.</para>
+				<code xml:space="preserve">
+# Analyze the spatial distribution of 911 calls in a metropolitan area
+# using the Cluster-Outlier Analysis with Rendering Tool (Anselin's Local Moran's I)
+
+# Import system modules
+import arcpy
+
+# Set geoprocessor object property to overwrite outputs if they already exist
+arcpy.gp.OverwriteOutput = True
+
+# Local variables...
+workspace = r"C:\Data\911Calls"
+
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.env.workspace = workspace
+
+    # Copy the input feature class and integrate the points to snap
+    # together at 500 feet
+    # Process: Copy Features and Integrate
+    cf = arcpy.CopyFeatures_management("911Calls.shp", "911Copied.shp",
+                         "#", 0, 0, 0)
+
+    integrate = arcpy.Integrate_management("911Copied.shp #", "500 Feet")
+
+    # Use Collect Events to count the number of calls at each location
+    # Process: Collect Events
+    ce = arcpy.CollectEvents_stats("911Copied.shp", "911Count.shp", "Count", "#")
+
+    # Cluster/Outlier Analysis of 911 Calls
+    # Process: Local Moran's I
+    clusters = arcpy.ClustersOutliersRendered_stats("911Count.shp", "ICOUNT", 
+                        "911ClusterOutlier_rendered.lyr", "911ClusterOutlier.shp")
+
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

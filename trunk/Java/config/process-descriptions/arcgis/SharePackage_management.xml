@@ -1,0 +1,86 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">
+Share Package (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>
+Shares a layer or map package by publishing to ArcGIS online.
+
+ </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="&#xA;SharePackage&#xA;" displayname="&#xA;Share Package (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>
+Shares a layer or map package by publishing to ArcGIS online.
+
+ </para>
+		</summary><alink_name>
+SharePackage
+_management</alink_name><parameters><param sync="true" name="in_package" displayname="Input Package" datatype="File" direction="Input" expression="in_package" type="Required"><pythonReference>
+						<para>
+Input layer (.lpk) or map (.mpk) package file. </para>
+					</pythonReference><dialogReference>
+						<para>
+Input layer (.lpk) or map (.mpk) package file. </para>
+					</dialogReference></param><param sync="true" name="username" displayname="Username" datatype="String" direction="Input" expression="username" type="Required"><pythonReference>
+						<para>
+ESRI global account user name.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+ESRI global account user name.
+</para>
+					</dialogReference></param><param sync="true" name="password" displayname="Password" datatype="Encrypted String" direction="Input" expression="password" type="Required"><pythonReference>
+						<para>
+ESRI global account password.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+ESRI global account password.
+</para>
+					</dialogReference></param><param sync="true" name="summary" displayname="Summary" datatype="String" direction="Input" expression="summary" type="Required"><pythonReference>
+						<para>Summary of  package.  The summary is displayed in the item information of the package on ArcGIS.com.
+</para>
+					</pythonReference><dialogReference>
+						<para>Summary of  package.  The summary is displayed in the item information of the package on ArcGIS.com.
+</para>
+					</dialogReference></param><param sync="true" name="tags" displayname="Tags" datatype="String" direction="Input" expression="tags" type="Required"><pythonReference>
+						<para>
+Tags used to describe and identify the  package.  Individual tags are separated using either  a comma or semicolon.</para>
+					</pythonReference><dialogReference>
+						<para>
+Tags used to describe and identify the  package.  Individual tags are separated using either  a comma or semicolon.</para>
+					</dialogReference></param><param sync="true" name="credits" displayname="Credits" datatype="String" direction="Input" expression="credits" type="Required"><pythonReference>
+						<para>Credits for the package. This is generally the name of the organization that is given credit for authoring and providing the content for the package.</para>
+					</pythonReference><dialogReference>
+						<para>Credits for the package. This is generally the name of the organization that is given credit for authoring and providing the content for the package.</para>
+					</dialogReference></param><param sync="true" name="public" displayname="Everybody" datatype="Boolean" direction="Input" expression="public" type="Required"><pythonReference>
+						<para>Specifies if input package will be shared  and available to everybody. </para>
+						<bulletList><bullet_item>EVERYBODY — Package will be shared with everybody. </bullet_item><bullet_item>MYGROUPS—  Package will be shared with   package owner and any selected group.This is the default.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies if the input package will be shared  and available to everybody.</para>
+						<bulletList>
+							<bullet_item>Checked—Package will be shared with everybody.</bullet_item>
+							<bullet_item>Unchecked—Package will be shared with package   owner and any selected group.  This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="groups" displayname="Groups" datatype="String" direction="Input" expression="[group_name,...]" type="Required"><pythonReference>
+						<para>List of  groups to share package with.</para>
+					</pythonReference><dialogReference>
+						<para>List of  groups to share package with.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>To share a layer or map package on ArcGIS.com, a valid ESRI global account must be used.  To create a new  global account, go to </bullet_item><bullet_item>To share a package online, a summary and one or more tags are required.    The summary and tags, along with package description and credits, will be used when searching for packages online.</bullet_item></usage><scriptExamples><scriptExample><title>SharePackage Example 1 (stand-alone Python script)</title>
+					<para>Find and create individual consolidated folders for each layer file that resides in a specified folder.</para>
+				<code xml:space="preserve">
+# Name: SharePackageEx1.py
+# Description:  Find all the map packages that reside in a specified folder and share them on ArcGIS Online.
+# Author: ESRI
+
+# import system modules
+import arcpy, os
+from arcpy import env
+
+# Set environment settings
+env.overwriteOutput = True
+env.workspace = "C:/data/my_packages" 
+wrksp = env.workspace
+
+# Loop through the workspace, find all the layer and map packages 
+for mpk in arcpy.ListFiles("*.mpk"):
+				arcpy.SharePackage_management(mpk,"username","*****","This is a summary","streams, hydrology, project_name","My optional description","Credit to data provider","MYGROUPS","ProjectGroupName")
+                    </code></scriptExample></scriptExamples></tool></metadata>

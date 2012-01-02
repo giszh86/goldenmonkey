@@ -1,0 +1,77 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">
+Convert Time Zone (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>
+
+Converts time values recorded in a date field from one time zone to another time zone.</para><para>Converting time values from one time zone to another helps normalize temporal data from different time zones. This improves display and query performance for visualizing temporal data from different time zones using the Time Slider.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ConvertTimeZone" displayname="&#xA;Convert Time Zone (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>
+
+Converts time values recorded in a date field from one time zone to another time zone.</para><para>Converting time values from one time zone to another helps normalize temporal data from different time zones. This improves display and query performance for visualizing temporal data from different time zones using the Time Slider.</para></summary><alink_name>ConvertTimeZone_management</alink_name><toolIllust type="illustration" src="ConvertTimeZone_management_h.png" alt="Convert Time Zone illustration" /><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>
+The input feature class or table that contains  the time stamps which will be transformed to a different time zone.</para>
+					</pythonReference><dialogReference>
+						<para>
+The input feature class or table that contains  the time stamps which will be transformed to a different time zone.</para>
+					</dialogReference></param><param sync="true" name="input_time_field" displayname="Input Time Field" datatype="Field" direction="Input" expression="input_time_field" type="Required"><pythonReference>
+						<para>
+The input field that contains the time stamps which will be transformed to a different time zone.</para>
+					</pythonReference><dialogReference>
+						<para>
+The input field that contains the time stamps which will be transformed to a different time zone.</para>
+					</dialogReference></param><param sync="true" name="input_time_zone" displayname="Input Time Zone" datatype="String" direction="Input" expression="input_time_zone" type="Required"><pythonReference>
+						<para>
+The input time zone in which the time stamps were collected.</para>
+					</pythonReference><dialogReference>
+						<para>
+The input time zone in which the time stamps were collected.</para>
+					</dialogReference></param><param sync="true" name="output_time_field" displayname="Output Time Field" datatype="String" direction="Input" expression="output_time_field" type="Required"><pythonReference>
+						<para>
+
+The output field in which the time stamps transformed to the desired output time zone will be stored.</para>
+					</pythonReference><dialogReference>
+						<para>
+
+The output field in which the time stamps transformed to the desired output time zone will be stored.</para>
+					</dialogReference></param><param sync="true" name="output_time_zone" displayname="Output Time Zone" datatype="String" direction="Output" expression="output_time_zone" type="Required"><pythonReference>
+						<para>
+The time zone to which the time stamps will be transformed. By default, the output time zone is the same as the input time zone.</para>
+					</pythonReference><dialogReference>
+						<para>
+The time zone to which the time stamps will be transformed. By default, the output time zone is the same as the input time zone.</para>
+					</dialogReference></param><param sync="true" name="input_dst" displayname="Input time field values are adjusted for Daylight Saving Time" datatype="Boolean" direction="Input" expression="input_dst" type="Optional"><pythonReference><para>Indicates whether the time stamps were collected while observing Daylight Saving Time rules in the input time zone. When reading the time values to convert the time zone, the time values will be adjusted to account for the shift in time during Daylight Saving Time.</para><para>By default, the   input time values are adjusted to account for the shift in time due to the Daylight Saving Time rules in the input time zone.</para><bulletList><bullet_item>INPUT_ADJUSTED_FOR_DST—The input time values are adjusted for Daylight Saving Time.</bullet_item><bullet_item>INPUT_NOT_ADJUSTED_FOR_DST—The input time values are not adjusted for Daylight Saving Time.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>Indicates whether the time stamps were collected while observing Daylight Saving Time rules in the input time zone. When reading the time values to convert the time zone, the time values will be adjusted to account for the shift in time during Daylight Saving Time.</para><para>By default, this option is checked and the   input time values are adjusted to account for the shift in time due to the Daylight Saving Time  rules observed in the input time zone.</para><bulletList><bullet_item>Checked—The input time values are adjusted for Daylight Saving Time.</bullet_item><bullet_item>Unchecked—The input time values are not adjusted for Daylight Saving Time.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="output_dst" displayname="Output time field values are adjusted for Daylight Saving Time" datatype="Boolean" direction="Output" expression="output_dst" type="Optional"><pythonReference><para>Indicates whether the output time values will account for the shift in time due to the  Daylight Saving Time rules observed in the output time zone.
+
+</para><para>By default, the   output time values are adjusted to account for the shift in time due to the Daylight Saving Time rules observed in the output time zone.</para><bulletList><bullet_item>OUTPUT_ADJUSTED_FOR_DST—The output time values will be adjusted for Daylight Saving Time in the out time zone.</bullet_item><bullet_item>OUTPUT_NOT_ADJUSTED_FOR_DST—The output time values will not be adjusted for Daylight Saving Time in the out time zone.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>Indicates whether the output time values will account for the shift in time due to the  Daylight Saving Time rules observed in the output time zone.</para><para>By default, this option is checked and the   output time values are adjusted to account for the shift in time due to the Daylight Saving Time rules observed in the output time zone.</para><bulletList><bullet_item>Checked—The output time values are adjusted for the   Daylight Saving Time in the output time zone.</bullet_item><bullet_item>Unchecked—The output time values are not adjusted for the   Daylight Saving Time in the output time zone.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>
+The input time values to be converted must be stored in a Date field.</para>
+			</bullet_item><bullet_item><para>The added output time field will be a  Date type field.</para></bullet_item><bullet_item><para>If your data was collected in a time zone which observes Daylight Saving, then you should choose the parameters to honor Daylight Saving time in the input and output fields. .</para></bullet_item></usage><scriptExamples><scriptExample><title>ConvertTimeZone example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the
+ConvertTimeZone tool in immediate mode.</para><code xml:space="preserve">import arcpy
+arcpy.ConvertTimeZone_management("C:/Data/TemporalData.gdb/InputData","Input_Time","Pacific_Standard_Time","Output_Time","Eastern_Standard_Time","INPUT_ADJUSTED_FOR_DST","OUTPUT_ADJUSTED_FOR_DST")
+
+                    </code></scriptExample><scriptExample><title>ConvertTimeZone example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the ConvertTimeZone tool.</para>
+				<code xml:space="preserve"># Name: ConvertTimeZone_Ex02.py
+# Description: Convert a time field to another time zone
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+inTable = "C:/Data/TemporalData.gdb/InputData"
+inputTimeField = "Input_Time"
+inputTimeZone = "Pacific_Standard_Time"
+
+outputTimeField = "Output_Time"
+onputTimeZone = "Eastern_Standard_Time"
+inputUseDaylightSaving = "INPUT_ADJUSTED_FOR_DST"
+outputUseDaylightSaving = "OUTPUT_ADJUSTED_FOR_DST"
+
+# Execute CalculateEndDate
+arcpy.ConvertTimeZone_management(inTable, inputTimeField, inputTimeZone, outputTimeField, onputTimeZone, inputUseDaylightSaving, outputUseDaylightSaving)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

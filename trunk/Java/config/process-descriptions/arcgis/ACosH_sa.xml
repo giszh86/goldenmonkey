@@ -1,0 +1,70 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">ACosH (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the inverse hyperbolic cosine of cells in a raster.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Cosine</keyword><keyword>Hyperbolic</keyword><keyword>Inverse</keyword><keyword>Math</keyword><keyword>Trig</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ACosH" displayname="ACosH (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates the inverse hyperbolic cosine of cells in a raster.</para>
+		</summary><alink_name>ACosH_sa</alink_name><toolIllust type="illustration" src="ACosH_sa_h.png" alt="ACosH illustration" /><parameters><param sync="true" name="in_raster_or_constant" displayname="Input raster or constant value" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant" type="Required"><pythonReference>
+						<para>The input for which to calculate the inverse hyperbolic cosine values.</para>
+						<para>
+In order to use a number as an input for this parameter, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The input for which to calculate the inverse hyperbolic cosine values.</para>
+						<para>
+In order to use a number as an input for this parameter, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>The values are the inverse hyperbolic cosine of the input values.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>The values are the inverse hyperbolic cosine of the input values.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para>In mathematics, all Trigonometric functions have a defined range of valid input values, called the domain. The output values from each function also has a defined range. For this tool:</para><bulletList><bullet_item><para>The Domain is : 1 ≤ [in_value] &lt; ∞ </para><para>Note that any input value that is outside this domain will receive NoData on the output raster.</para></bullet_item><bullet_item><para>The Range is : -∞ &lt; [out_value] &lt; ∞ </para></bullet_item></bulletList><para>Note that here -∞ and ∞ represent the smallest negative and largest positive value supported by the particular raster format, respectively.</para></bullet_item><bullet_item>
+				<para>The input and output values in ACosH are interpreted as unitless.</para>
+			</bullet_item><bullet_item><para>Output values are always floating point, regardless of the input data type.</para></bullet_item></usage><scriptExamples><scriptExample><title>ACosH example 1 (Python window)</title>
+					<para>This example calculates the inverse hyperbolic cosine of the values in the input GRID raster and outputs an IMG raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outACosH = ACosH("degs")
+outACosH.save("C:/sapyexamples/output/outacosh.img")
+                    </code></scriptExample><scriptExample><title>ACosH example 2 (stand-alone script)</title>
+					<para>This example calculates the inverse hyperbolic cosine of the values in the input GRID raster.</para>
+				<code xml:space="preserve"># Name: ACosH_Ex_02.py
+# Description: Calculates the inverse hyperbolic cosine of cells
+#              in a raster
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "degs"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ACosH
+outACosH = ACosH(inRaster)
+
+# Save the output 
+outACosH.save("C:/sapyexamples/output/outacosh")
+                    </code></scriptExample></scriptExamples></tool></metadata>

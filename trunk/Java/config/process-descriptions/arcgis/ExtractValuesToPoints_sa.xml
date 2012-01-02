@@ -1,0 +1,109 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Extract Values to Points (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Extracts the cell values of a raster based on a set of point features and records the values in the attribute table of an output feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cell Value</keyword><keyword>Latticespot</keyword><keyword>Sample</keyword><keyword>Select</keyword><keyword>Subset</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExtractValuesToPoints" displayname="Extract Values to Points (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Extracts the cell values of a raster based on a set of point features and records the values in the attribute table of an output feature class.</para>
+		</summary><alink_name>ExtractValuesToPoints_sa</alink_name><parameters><param sync="true" name="in_point_features" displayname="Input point features" datatype="Feature Layer" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para>The input point features defining the locations from which you want to extract the raster cell values.</para>
+					</pythonReference><dialogReference>
+						<para>The input point features defining the locations from which you want to extract the raster cell values.</para>
+					</dialogReference></param><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The raster dataset whose values will be extracted.</para><para>It can be an integer or floating-point type raster.</para>
+					</pythonReference><dialogReference>
+						<para>The raster dataset whose values will be extracted.</para><para>It can be an integer or floating-point type raster.</para>
+					</dialogReference></param><param sync="true" name="out_point_features" displayname="Output point features" datatype="Feature Class" direction="Output" expression="out_point_features" type="Required"><pythonReference>
+						<para>The output point feature dataset containing the extracted raster values.</para>
+					</pythonReference><dialogReference>
+						<para>The output point feature dataset containing the extracted raster values.</para>
+					</dialogReference></param><param sync="true" name="interpolate_values" displayname="Interpolate values at the point locations" datatype="Boolean" direction="Input" expression="interpolate_values" type="Optional"><pythonReference>
+						<para>Specifies whether or not interpolation will be used.</para>
+						<bulletList><bullet_item>NONE — No interpolation will be applied; the value of the cell center will be used.</bullet_item><bullet_item>INTERPOLATE — The value of the cell will be calculated from the adjacent cells with valid values using bilinear interpolation. NoData values will be ignored in the interpolation unless all adjacent cells are NoData.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether or not interpolation will be used.</para><bulletList>
+							<bullet_item>Unchecked—No interpolation will be applied; the value of the cell center will be used.</bullet_item>
+							<bullet_item>Checked—The value of the cell will be calculated from the adjacent cells with valid values using bilinear interpolation. NoData values will be ignored in the interpolation unless all adjacent cells are NoData.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="add_attributes" displayname="Append all the input raster attributes to the output point features" datatype="Boolean" direction="Input" expression="add_attributes" type="Optional"><pythonReference>
+						<para>Determines if the raster attributes are written to the output point feature dataset.</para>
+						<bulletList><bullet_item>VALUE_ONLY — Only the value of the input raster is added to the point attributes. This is the default.</bullet_item><bullet_item>ALL — All the fields from the input raster (except Count) will be added to the point attributes.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines if the raster attributes are written to the output point feature dataset.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Only the value of the input raster is added to the point attributes. This is the default.</bullet_item>
+							<bullet_item>Checked—All the fields from the input raster (except Count) will be added to the point attributes.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Qualified_field_names" label="Qualified field names">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The output shapefile will have, at a new RASTERVALU field, added to the output feature.  This field cannot already exist in the input features; otherwise, an error will be produced.   All fields from the input point feature class will be included in the output point feature class.</para>
+			</bullet_item><bullet_item>
+				<para>When Extract Values to Points is used on a multiband raster, the RASTERVALU field will contain values from the last band of the input raster. To extract values from multiple rasters or a multiband raster dataset, use the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>For the RASTERVALU field of the attribute table, NoData cells in the value raster will be given a value of -9999.</para>
+			</bullet_item><bullet_item>
+				<para> The interpolation option determines how the values will be obtained from the raster. The default option is to use the value at the center of the cell being sampled. The interpolation option will use bilinear interpolation to interpolate a value for the cell center.</para></bullet_item><bullet_item>
+				<para>If the input raster is floating-point type, the resulting output point dataset will only contain attributes from the input feature data and the value of the cell, as determined by the interpolation option.</para>
+			</bullet_item><bullet_item>
+				<para>When adding the attributes from the input raster, if the output point feature dataset is a shapefile, there can be no fields in the input raster with a name more than 10 characters in length. If there are, these fields must be renamed before running the tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ExtractValuesToPoints example 1 (Python window)</title>
+					<para>This example extracts the cell values from a raster based on locations defined by a point shapefile, and creates an output point feature class of those values.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+ExtractValuesToPoints("rec_sites.shp", "elevation",
+                      "C:/sapyexamples/output/outValPnts","INTERPOLATE",
+                      "VALUE_ONLY")
+                    </code></scriptExample><scriptExample><title>ExtractValuesToPoints example 2 (stand-alone script) </title>
+					<para>This example extracts the cell values from a raster based on locations defined by a point shapefile, and creates an output point shapefile of those values.</para>
+				<code xml:space="preserve"># Name: ExtractValuesToPoints_Ex_02.py
+# Description: Extracts the cells of a raster based on a set of points.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inPointFeatures = "rec_sites.shp"
+inRaster = "elevation"
+outPointFeatures = "C:/sapyexamples/output/extractvaluespts.shp"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ExtractValuesToPoints
+ExtractValuesToPoints(inPointFeatures, inRaster, outPointFeatures,
+                      "INTERPOLATE", "VALUE_ONLY")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

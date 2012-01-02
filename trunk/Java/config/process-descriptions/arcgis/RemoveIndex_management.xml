@@ -1,0 +1,50 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Remove Attribute Index (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool deletes an attribute index from an existing table, feature class, shapefile, coverage, or attributed relationship class.</para>
+			<para>Attribute indexes are used by ArcGIS to quickly locate records that match an attribute query. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Delete</keyword><keyword>Field</keyword><keyword>Improve</keyword><keyword>Locate</keyword><keyword>Optimize</keyword><keyword>Performance</keyword><keyword>Quick</keyword><keyword>Retrieve</keyword><keyword>Search</keyword><keyword>Speed</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RemoveIndex" displayname="Remove Attribute Index (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>This tool deletes an attribute index from an existing table, feature class, shapefile, coverage, or attributed relationship class.</para>
+			<para>Attribute indexes are used by ArcGIS to quickly locate records that match an attribute query. </para>
+		</summary><alink_name>RemoveIndex_management</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The table containing the index or indexes to be deleted. Table can refer to an actual table, a feature class attribute table, or an attributed relationship class.</para>
+					</pythonReference><dialogReference>
+						<para>The table containing the index or indexes to be deleted. Table can refer to an actual table, a feature class attribute table, or an attributed relationship class.</para>
+					</dialogReference></param><param sync="true" name="index_name" displayname="Index Name or Indexed Item" datatype="String" direction="Input" expression="[index_name,...]" type="Required"><pythonReference><para>The name of the index or indexes to be deleted.</para></pythonReference><dialogReference>
+						<para>The name of the index or indexes to be deleted.</para>
+						<para>The Add Value button, which is used only in ModelBuilder, allows expected value(s) to be added so you can complete the dialog box and continue to build your model.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Auto_commit" label="Auto commit">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool accepts as input coverage feature classes, shapefiles, file or personal and SDE geodatabase feature classes, and attribute relationship classes.</para>
+			</bullet_item><bullet_item>
+				<para>If the Index Name parameter is empty, there are no attribute  indexes in the dataset.</para>
+			</bullet_item><bullet_item>
+				<para>Only feature classes from a file or personal geodatabase or SDE database support more than one attribute index. Therefore, the index list can contain only one index to delete unless the input table is from a file or personal geodatabase or SDE database.</para>
+			</bullet_item><bullet_item>
+				<para>Once an index has been added, it can be deleted and re-added at any point in the lifetime of the feature class or table.</para>
+			</bullet_item><bullet_item>
+				<para>The Index Name or Indexed Item parameter's Add Value button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run, or its derived data does not exist, the Index Name or Indexed Item parameter may not be populated with values. The Add Value button allows you to add expected value(s) so you can complete the Remove Attribute Index dialog box and continue to build your model.</para>
+			</bullet_item><bullet_item>
+				<para>.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Remove Index Python Example (Python Window)</title>
+					<para>The following code demonstrates how to use RemoveIndex function in a Python interactive window.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data/input/indices.gdb"
+arcpy.RemoveIndex_management("lakes", ["IndexA", "IndexB"])
+                    </code></scriptExample><scriptExample><title>Remove Index Python Example 2 (Stand-alone Script)</title><code xml:space="preserve">import arcpy
+ 
+# Set a default workspace
+arcpy.env.workspace = "c:/data"
+ 
+try:
+    # Remove 2 indexes for the Feature Class below.
+    arcpy.RemoveIndex_management ("/county.gdb/lots", "indexa;indexb")	
+ 
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

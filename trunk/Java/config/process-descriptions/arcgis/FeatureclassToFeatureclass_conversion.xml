@@ -1,0 +1,140 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Feature Class To Feature Class (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a shapefile, coverage feature class, or geodatabase feature class to a shapefile or geodatabase feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cad</keyword><keyword>Change</keyword><keyword>Convert</keyword><keyword>Copy</keyword><keyword>Coverage</keyword><keyword>Dgn</keyword><keyword>Dwg</keyword><keyword>Dxf</keyword><keyword>Export</keyword><keyword>Expression</keyword><keyword>Feature Class</keyword><keyword>Field Map</keyword><keyword>File</keyword><keyword>Format</keyword><keyword>Gdb</keyword><keyword>Import</keyword><keyword>Import From Cad</keyword><keyword>Load</keyword><keyword>Make</keyword><keyword>Migrate</keyword><keyword>Personal</keyword><keyword>Sdc</keyword><keyword>Sde</keyword><keyword>Shapefile</keyword><keyword>Shp</keyword><keyword>Sql</keyword><keyword>Subset</keyword><keyword>Turn</keyword><keyword>Vpf</keyword><keyword>Where Clause</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FeatureClassToFeatureClass" displayname="Feature Class To Feature Class (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts a shapefile, coverage feature class, or geodatabase feature class to a shapefile or geodatabase feature class.</para>
+		</summary><alink_name>FeatureClassToFeatureClass_conversion</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The feature class or feature layer that will be converted.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class or feature layer that will be converted.</para>
+					</dialogReference></param><param sync="true" name="out_path" displayname="out_path" datatype="Workspace;Feature Dataset" direction="Input" expression="out_path" type="Required"><pythonReference>
+						<para>The location in which the Output Feature Class will be created. This can be either a geodatabase or a folder. If the Output Location is a folder, the output will be a shapefile.</para>
+					</pythonReference><dialogReference>
+						<para>The location in which the Output Feature Class will be created. This can be either a geodatabase or a folder. If the Output Location is a folder, the output will be a shapefile.</para>
+					</dialogReference></param><param sync="true" name="out_name" displayname="Output Feature Class" datatype="String" direction="Input" expression="out_name" type="Required"><pythonReference>
+						<para>The name of the output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output feature class.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Expression" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>An SQL expression used to select a subset of features. The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para>
+						<para>
+							"MY_FIELD"
+						</para>
+						<para> If you're querying personal geodatabases, enclose fields in square brackets: </para>
+						<para>
+							[MY_FIELD]
+						</para>
+						<para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para>
+						<para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</pythonReference><dialogReference>
+						<para>An SQL expression used to select a subset of features. The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para>
+						<para>
+							"MY_FIELD"
+						</para>
+						<para> If you're querying personal geodatabases, enclose fields in square brackets: </para>
+						<para>
+							[MY_FIELD]
+						</para>
+						<para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para>
+						<para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</dialogReference></param><param sync="true" name="field_mapping" displayname="Field Map" datatype="Field Mappings" direction="Input" expression="field_mapping" type="Optional"><pythonReference>
+						<para>The fields and field contents chosen from the inputs. Each of the unique input fields will be listed on the Field Map window and when expanded, you will see a list of all the input field occurrences (subfields). New fields can also be added.</para>
+						<para>For each Field Map, you can add, rename, or delete output fields as well as set properties such as data type and merge rule. You can also delete an output field's subfields, and you can format any output field's values if the data type is text.</para>
+						<para>Learn more about choosing and setting the output fields.</para>
+					</pythonReference><dialogReference>
+						<para>The fields and field contents chosen from the inputs. Each of the unique input fields will be listed on the Field Map window and when expanded, you will see a list of all the input field occurrences (subfields). New fields can also be added.</para>
+						<para>For each Field Map, you can add, rename, or delete output fields as well as set properties such as data type and merge rule. You can also delete an output field's subfields, and you can format any output field's values if the data type is text.</para>
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="Config Keyword" datatype="String" direction="Input" expression="config_keyword" type="Optional"><pythonReference>
+						<para>Specifies the storage parameters (configuration) for geodatabases in file and ArcSDE geodatabases. Personal geodatabases do not use configuration keywords.</para>
+						<para>ArcSDE configuration keywords for ArcSDE Enterprise Edition are set up by your database administrator.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the storage parameters (configuration) for geodatabases in file and ArcSDE geodatabases. Personal geodatabases do not use configuration keywords.</para>
+						<para>ArcSDE configuration keywords for ArcSDE Enterprise Edition are set up by your database administrator.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment><environment name="Qualified_field_names" label="Qualified field names">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Field Map parameter controls how the input fields in the Input Features will be written to the Output Features.</para>
+				<para>
+					<bulletList>
+						<bullet_item>To drop fields during the conversion, delete input fields from the Field Map. This will not affect the input feature class.</bullet_item>
+						<bullet_item>A single output field can be generated from multiple input fields. if a new field is created and the contents of the output field are generated from multiple (differently named) fields. </bullet_item>
+						<bullet_item>The data type of an output field will default to the same as the data type of the first input field (of that name) it encounters. The data type may be changed manually at any time to any valid data type. All valid data types will be listed if the tools dialog box is used.</bullet_item>
+						<bullet_item>When using the Merge rule, you can specify your own delimiter such as a space, comma, period, dash, and so on. If you want to use a space, make sure your mouse pointer is at the start of the input box and click the space bar once.</bullet_item>
+						<bullet_item>There are a number of Merge rules available: first, last, join, sum, mean, median, min, max, and standard deviation.</bullet_item>
+						<bullet_item>Format options are only available on input fields of type text (and in conjunction with the Join merge rule). You can specify start point, end point, and so on. Format allows you to apply your changes to the selected input field or to apply them to all occurrences of the same input field.</bullet_item>
+						<bullet_item>Standard deviation should not be performed on a single input because values can't be divided by zero, so standard deviation is not a valid option for single inputs. </bullet_item>
+					</bulletList>
+				</para>
+			</bullet_item><bullet_item>
+				<para>The  tool can also be used to convert a shapefile, coverage feature class, or geodatabase (file, personal, or ArcSDE) feature class to a shapefile or geodatabase (file, personal, or ArcSDE) feature class.</para>
+			</bullet_item><bullet_item>
+				<para>An SQL expression can be used to select a subset of features. For further details on the syntax for the Expression parameter, see  or .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FeatureClassToFeatureClass example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the FeatureClassToFeatureClass tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/GreenvalleyDB.mdb/Public Buildings"
+arcpy.FeatureClassToFeatureClass_conversion("buildings_point", 
+                                            "C:/output/output.gdb", 
+                                            "buildings_point")
+                    </code></scriptExample><scriptExample><title>FeatureClassToFeatureClass example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the FeatureClassToFeatureClass tool.</para>
+				<code xml:space="preserve"># Name: FeatureClassToFeatureClass_Example2.py
+# Description: Use FeatureClassToFeatureClass with an expression to create a subset
+#  of the original feature class.  
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data/GreenvalleyDB.mdb/Public Buildings"
+ 
+# Set local variables
+inFeatures = "buildings_point"
+outLocation = "C:/output/output.gdb"
+outFeatureClass = "postoffices"
+delimitedField = arcpy.AddFieldDelimiters(env.workspace, "NAME")
+expression = delimitedField + " = 'Post Office'"
+ 
+# Execute FeatureClassToFeatureClass
+arcpy.FeatureClassToFeatureClass_conversion(inFeatures, outLocation, 
+                                            outFeatureClass, expression)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,117 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Clean (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Generates a coverage with correct polygon or arc–node topology. To do this, Clean edits and corrects geometric coordinate errors, assembles arcs into polygons, and creates feature attribute information for each polygon or arc (that is, creates a PAT or AAT).</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Clean" displayname="Clean (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Generates a coverage with correct polygon or arc–node topology. To do this, Clean edits and corrects geometric coordinate errors, assembles arcs into polygons, and creates feature attribute information for each polygon or arc (that is, creates a PAT or AAT).</para>
+			
+		</summary><alink_name>Clean_arc</alink_name><toolIllust type="illustration" src="Clean_arc_h.gif" alt="Clean illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage to be cleaned.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage to be cleaned.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Optional"><pythonReference>
+						<para>The coverage created by Clean. If the Input Coverage and the Output Coverage have the same name, the Input Coverage will be replaced. By default, the Input Coverage is replaced.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage created by Clean. If the Input Coverage and the Output Coverage have the same name, the Input Coverage will be replaced. By default, the Input Coverage is replaced.</para>
+					</dialogReference></param><param sync="true" name="dangle_length" displayname="Dangle Length" datatype="Double" direction="Input" expression="dangle_length" type="Optional"><pythonReference>
+						<para>The minimum length allowed for dangling arcs in the Output Coverage. A dangling arc is an arc that has the same polygon internal number on its left and right sides and ends at a dangling node. Dangling arcs are removed for both the POLY and LINE options. If the Dangle Length is not provided, the dangle length is read from the coverage TOL file if the TOL file exists;otherwise, dangle length is set to zero (the default).</para>
+					</pythonReference><dialogReference>
+						<para>The minimum length allowed for dangling arcs in the Output Coverage. A dangling arc is an arc that has the same polygon internal number on its left and right sides and ends at a dangling node. Dangling arcs are removed for both the POLY and LINE options. If the Dangle Length is not provided, the dangle length is read from the coverage TOL file if the TOL file exists;otherwise, dangle length is set to zero (the default).</para>
+					</dialogReference></param><param sync="true" name="fuzzy_tolerance" displayname="Fuzzy Tolerance" datatype="Double" direction="Input" expression="fuzzy_tolerance" type="Optional"><pythonReference>
+						<para>The minimum distance between coordinates in each out_cover.</para>
+						
+					</pythonReference><dialogReference>
+						<para>The minimum distance between coordinates in each Output Coverage.</para>
+					</dialogReference></param><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Optional"><pythonReference>
+						<para>Specifies whether to create polygon topology and a PAT or arc–node topology and an AAT. POLY is the default option. If POLY is used on a coverage that has an existing AAT, Clean will also automatically rebuild the AAT.</para>
+						<bulletList><bullet_item>POLY—Polygon topology and a PAT are created. If POLY is used on a coverage that has an existing AAT, Clean will also automatically rebuild the AAT. POLY is the default option. </bullet_item><bullet_item>LINE—Arc–node topology and an AAT are created. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether to create polygon topology and a PAT or arc–node topology and an AAT. POLY is the default option. If POLY is used on a coverage that has an existing AAT, Clean will also automatically rebuild the AAT.</para>
+						<bulletList><bullet_item>POLY—Polygon topology and a PAT are created. If POLY is used on a coverage that has an existing AAT, Clean will also automatically rebuild the AAT. POLY is the default option. </bullet_item><bullet_item>LINE—Arc–node topology and an AAT are created. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>While processing, Clean:<bulletList>
+						<bullet_item>Finds intersections between arcs, splits the arcs, and codes the intersections as nodes (arc endpoints).</bullet_item>
+						<bullet_item>Merges coordinates within the fuzzy tolerance of each other. Because the fuzzy tolerance actually moves arc vertices, understanding its relationship to coverage resolution is important.</bullet_item>
+						<bullet_item>Creates the list of arcs that defines each polygon's boundary, numbers the nodes, and establishes the From-node and To-node for each arc as well as the internal polygon numbers to the left and right of each arc.</bullet_item>
+						<bullet_item>Deletes dangling arcs that are shorter than the specified dangle length.</bullet_item>
+						<bullet_item>Builds a polygon attribute table (PAT) or an arc attribute table (AAT), depending on the option used. It calculates the area and perimeter for each polygon and stores this information along with the polygon internal number and User-ID in the PAT. If the input coverage already has a PAT, the polygon's original internal number is used to join any additional items in the PAT to the output coverage PAT.</bullet_item>
+					</bulletList></para>
+			</bullet_item><bullet_item>
+				<para>If the Input Coverage has either PAT or AAT feature attribute tables, they are automatically updated in the Output Coverage for the POLY option. Only the AAT will be updated when using the LINE option. The internal number of each Input Coverage feature is used to relate attribute information from the Input Coverage feature attribute table to the Output Coverage to ensure that the attributes are properly joined to the output feature attribute tables. Feature User-IDs do not have to be unique to ensure that each input feature keeps its attributes in the Output Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Do not run Clean on a geographic coverage. Geographic coverages have units in decimal degrees, decimal seconds, radians, and so on. These units are designed to measure angles; they do not measure distances. They represent a spherical coordinate system and should not be confused with a 2D rectilinear coordinate system upon which commands like Clean, , , and other overlay processes are designed to work. You must first  your geographic coverage to a suitable projection to convert your angles of latitude and longitude using angular units to a 2D rectilinear Cartesian coordinate system using rectilinear units of Feet, Meters, Kilometers, and so on.</para>
+			</bullet_item><bullet_item>
+				<para>Clean requires free disk space approximately 13 times the size of your input coverage to create temporary scratch files. These scratch files are created in your current workspace by default. You can override the default and have the scratch files created in another directory by setting the ARCTMPDIR variable. You must have write access to this directory.</para>
+				
+			</bullet_item><bullet_item>
+				<para>Polygon label points are not required by the Clean command but must be used if you want nonzero User-IDs for polygons. Polygons that contain no label points are assigned a User-ID of zero in Clean.</para>
+			</bullet_item><bullet_item>
+				<para>Before Clean , place only one label point in each polygon. If a polygon contains more than one label point, one of the label points in the polygon is arbitrarily chosen to assign the User-ID. Even though one label point is chosen for User-ID assignment, other label points are not removed by Clean.</para>
+			</bullet_item><bullet_item>
+				<para>Clean with the POLY option creates one additional polygon called the background or universe polygon. It is always given polygon internal number 1, and its area is the total sum of the areas of all other polygons in the coverage. It is shown as a negative AREA in the PAT.</para>
+			</bullet_item><bullet_item>
+				<para>The  and  for the Output Coverage are set and verified by Clean.</para>
+			</bullet_item><bullet_item>
+				<para>The  is used by the Clean tool. This is the distance the Clean tool is allowed to move features, to eliminate duplicate nodes, create nodes at intersections of lines, and eliminate duplicate features. The fuzzy tolerance is measured in coverage units. When using the Clean tool it is critical that an appropriate fuzzy tolerance be assigned, so that necessary features are not eliminated by mistake.</para>
+			</bullet_item><bullet_item>
+				<para>The POLY and LINE options with Clean will update the SEC and RAT with adjustments for splitting and arc renumbering. However, any routes or sections attached to arcs merged away by Fuzzy Tolerance are deleted.</para>
+			</bullet_item><bullet_item>
+				<para>Route systems in the Input Coverage will be maintained in the Output Coverage as long as each route has a unique User-ID.</para>
+			</bullet_item><bullet_item>
+				<para>Clean cannot be executed on a region coverage that contains unclosed regions. Clean will stop execution upon detecting the first unclosed region.</para>
+			</bullet_item><bullet_item>
+				<para>Clean with the LINE option does not maintain any region subclass information (topology or attribute). The LINE option deletes the .PAT and the .PATsubclass files.</para>
+			</bullet_item><bullet_item>
+				<para>Clean with the POLY option maintains region topology. If preliminary region topology exists, Clean will create region topology by creating a .PAT and a .PATsubclass.</para>
+			</bullet_item><bullet_item>
+				<para>Clean copies Input Coverage annotation to the Output Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Links are not maintained after Clean has been executed.</para>
+			</bullet_item><bullet_item>
+				<para>Clean will update the NAT if it exists in the Input Coverage. New nodes will have their attributes set to zero.</para>
+			</bullet_item><bullet_item>
+				<para>Clean will update any SECs if they exist in the Input Coverage. Sections on arcs that are split are also split, and the measures on these arcs are updated.</para>
+			</bullet_item><bullet_item>
+				<para>Do not use Clean on a COGO coverage. Any arcs that are split by Clean will not have their COGO attributes updated. For example, an arc with a DISTANCE item value of 100 that is split by Clean will give the two new arcs DISTANCE values of 100. Use the  tool instead and resolve any overlapping arcs in the COGO editing environment.</para>
+			</bullet_item><bullet_item>
+				<para>If you copy a double precision coverage to a single precision coverage, you must Clean the Output Coverage to rebuild polygon topology.</para>
+			</bullet_item><bullet_item>
+				<para>On single precision coverages, Clean calculates a minimum tolerance based on the mathematical precision of the coverage (the width of the BND and the number of decimal places). If the calculated minimum tolerance is greater than the Fuzzy Tolerance entered on the command line, the calculated minimum tolerance is used.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of the Output Coverage is determined by the current processing rule as set by the Precision for  environment setting. If the processing rule has not been established during the current session, then the processing rule will be HIGHEST. This means that Clean will create an Output Coverage in the same precision as the Input Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>The projection file (PRJ) will be copied to the Output Coverage.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Clean example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to clean a coverage for polygon topology. </para>
+				<code xml:space="preserve"># Name: Clean_Example.py
+# Description: Cleans a coverage for polygon topology.
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "zones"
+outCover = "C:/output/zones"
+fuzzyTolerance = 0.25
+featureType = "POLY"
+
+#Execute Clean
+arcpy.Clean_arc(inCover, outCover, "", fuzzyTolerance, featureType)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

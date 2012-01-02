@@ -1,0 +1,95 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Terrain To Points (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool converts a terrain dataset into a new point or multipoint feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Convert</keyword><keyword>Lidar</keyword><keyword>Multipoints</keyword><keyword>Points</keyword><keyword>Terrain</keyword><keyword>Terrain Dataset</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TerrainToPoints" displayname="Terrain To Points (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool converts a terrain dataset into a new point or multipoint feature class.</para>
+		</summary><alink_name>TerrainToPoints_3d</alink_name><parameters><param sync="true" name="in_terrain" displayname="Input Terrain" datatype="Terrain Layer" direction="Input" expression="in_terrain" type="Required"><pythonReference>
+						<para>The input terrain dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input terrain dataset.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output point or multipoint feature class name.</para>
+					</pythonReference><dialogReference>
+						<para>The output point or multipoint feature class name.</para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Double" direction="Input" expression="pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The resolution of the pyramid level to use for conversion. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The resolution of the pyramid level to use for conversion. The default is 0, full resolution.</para>
+					</dialogReference></param><param sync="true" name="source_embedded_feature_class" displayname="Input Embedded Feature Class" datatype="String" direction="Input" expression="source_embedded_feature_class" type="Optional"><pythonReference>
+						<para>The terrain's embedded point feature class to use for output.  </para><para>If the Input Embedded Feature Class  is not specified then the points are taken from all data sources of the terrain.  If the Input Embedded Feature Class is specified the points are only taken from the  embedded source.   All attributes will be output.</para>
+					</pythonReference><dialogReference>
+						<para>The terrain's embedded point feature class to use for output.  </para><para>If the Input Embedded Feature Class  is not specified then the points are taken from all data sources of the terrain.  If the Input Embedded Feature Class is specified the points are only taken from the  embedded source.   All attributes will be output.</para>
+					</dialogReference></param><param sync="true" name="out_geometry_type" displayname="Output Feature Class Type" datatype="String" direction="Input" expression="out_geometry_type" type="Optional"><pythonReference>
+						<para>The type of the output features (multipoints or points).</para>
+						<bulletList><bullet_item>MULTIPOINT—The output point features will be written to a Multipoint Feature Class.  This is the default.</bullet_item><bullet_item>POINT—The output point features will be written to a Point Feature Class. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of the output features (multipoints or points).</para>
+						<bulletList>
+							<bullet_item>MULTIPOINT—The output point features will be written to a Multipoint Feature Class.  This is the default.</bullet_item>
+							<bullet_item>POINT—The output point features will be written to a Point Feature Class. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+The default output shape type is multipoint.
+</bullet_item><bullet_item>
+Points are extracted based on a given area of interest and level of detail.
+</bullet_item><bullet_item><para>  If
+an embedded feature class is not specified,
+the output points will come from all of the feature classes used to define the
+surface for the given extent and pyramid level resolution.</para>
+			</bullet_item><bullet_item> If
+an embedded feature class is specified, the output points will only come from
+the embedded feature class. If that  feature class contains embedded attributes (e.g., lidar class
+code, return) they will be included in the output. If the output
+shape type is MULTIPOINT the attributes will be written into
+terrain BLOBs. If the output shape type is POINT they will be
+placed into standard numerical fields.</bullet_item></usage><scriptExamples><scriptExample><title>Terrain To Points Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Terrain To Points
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.TerrainToPoints_3d("sample.gdb/featuredataset/terrain", "terrain_points.shp", "6", "&lt;NONE&gt;", "POINT")
+                    </code></scriptExample><scriptExample><title>Terrain To Points Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Terrain To Points
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: TerrainToPoints Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              TerrainToPoints tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:    
+    # Set Local Variables
+    inTerrain = "sample.gdb/featuredataset/terrain"
+    outPts = arcpy.CreateUniqueName("Pts_from_Terrain", "sample.gdb")
+    outGeo = "POINT"
+    # Execute TerrainToPoints
+    arcpy.TerrainToPoints_3d(inTerrain, outPts, 6, "&lt;NONE&gt;", outGeo)
+
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

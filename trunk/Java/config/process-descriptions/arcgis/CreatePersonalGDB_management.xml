@@ -1,0 +1,57 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Personal GDB (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a personal geodatabase in a folder.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>9.2</keyword><keyword>9.3</keyword><keyword>Access</keyword><keyword>Create</keyword><keyword>Current</keyword><keyword>Database</keyword><keyword>Empty</keyword><keyword>Engine</keyword><keyword>Geodatabase</keyword><keyword>Jet</keyword><keyword>Location</keyword><keyword>Make</keyword><keyword>Mdb</keyword><keyword>Microsoft</keyword><keyword>New</keyword><keyword>Pgdb</keyword><keyword>Previous</keyword><keyword>Rdbms</keyword><keyword>Relational</keyword><keyword>Release</keyword><keyword>Storage</keyword><keyword>Store</keyword><keyword>Windows</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreatePersonalGDB" displayname="Create Personal GDB (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a personal geodatabase in a folder.</para>
+		</summary><alink_name>CreatePersonalGDB_management</alink_name><parameters><param sync="true" name="out_folder_path" displayname="Output Location" datatype="Folder" direction="Input" expression="out_folder_path" type="Required"><pythonReference>
+						<para>Location (folder) where the personal geodatabase will be created.</para>
+					</pythonReference><dialogReference>
+						<para>Location (folder) where the personal geodatabase will be created.</para>
+					</dialogReference></param><param sync="true" name="out_name" displayname="Output Personal GDB" datatype="String" direction="Input" expression="out_name" type="Required"><pythonReference>
+						<para>Name of the geodatabase to be created.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the geodatabase to be created.</para>
+					</dialogReference></param><param sync="true" name="out_version" displayname="Personal GDB version" datatype="String" direction="Input" expression="out_version" type="Optional"><pythonReference>
+						<para>The ArcGIS version for the geodatabase to be created.  </para>
+						<bulletList><bullet_item>CURRENT—Creates a geodatabase compatible with the currently installed version of ArcGIS</bullet_item><bullet_item>10.0—Creates a geodatabase compatible with ArcGIS version 10</bullet_item><bullet_item>9.3—Creates a geodatabase compatible with ArcGIS version 9.3</bullet_item><bullet_item>9.2—Creates a geodatabase compatible with ArcGIS version 9.2</bullet_item><bullet_item>9.1—Creates a geodatabase compatible with ArcGIS version 9.1</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>The ArcGIS version for the geodatabase to be created.  </para>
+						<bulletList><bullet_item>CURRENT—Creates a geodatabase compatible with the currently installed version of ArcGIS</bullet_item><bullet_item>10.0—Creates a geodatabase compatible with ArcGIS version 10</bullet_item><bullet_item>9.3—Creates a geodatabase compatible with ArcGIS version 9.3</bullet_item><bullet_item>9.2—Creates a geodatabase compatible with ArcGIS version 9.2</bullet_item><bullet_item>9.1—Creates a geodatabase compatible with ArcGIS version 9.1</bullet_item></bulletList></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage></usage><scriptExamples><scriptExample><title>CreatePersonalGDB Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the CreatePersonalGDB function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+arcpy.CreatePersonalGDB_management("C:/output", "pGDB.mdb")
+                    </code></scriptExample><scriptExample><title>CreatePersonalGDB Example 2 (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the CreatePersonalGDB function in immediate mode to create a personal geodatabase 
+corresponding to a previous release of ArcGIS with the optional Personal GDB version parameter.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+arcpy.CreatePersonalGDB_management("C:/output", "pGDB.mdb", "9.2")
+                    </code></scriptExample><scriptExample><title>CreatePersonalGDB Example 3 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the CreatePersonalGDB function in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: CreatePersonalGDB_Example2.py
+# Description: Create a personal GDB
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/data"
+
+# Set local variables
+out_folder_path = "C:/output" 
+out_name = "pGDB.mdb"
+
+# Execute CreatePersonalGDB
+arcpy.CreatePersonalGDB_management(out_folder_path, out_name)
+                    </code></scriptExample></scriptExamples></tool></metadata>

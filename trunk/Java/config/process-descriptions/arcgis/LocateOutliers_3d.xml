@@ -1,0 +1,120 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Locate Outliers  (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Locates points which appear to be anomalies when compared to a surface. These points represent points that may be blunders and may need to be eliminated from the creation of the surface. </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D</keyword><keyword>Anomalies</keyword><keyword>Blunders</keyword><keyword>Lidar</keyword><keyword>Multipoints</keyword><keyword>Outliers</keyword><keyword>Points</keyword><keyword>Surface</keyword><keyword>Surface Analysis</keyword><keyword>Terrain Dataset</keyword><keyword>Terrains</keyword><keyword>Tin</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" LocateOutliers " displayname=" Locate Outliers  (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para> Locates points which appear to be anomalies when compared to a surface. These points represent points that may be blunders and may need to be eliminated from the creation of the surface. </para>
+			
+		</summary><alink_name> LocateOutliers _3d</alink_name><parameters><param sync="true" name="in_surface" displayname="Input Surface" datatype="TIN Layer; Terrain Layer" direction="Input" expression="in_surface" type="Required"><pythonReference>
+						<para>The input TIN or terrain dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input TIN or terrain dataset.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class.</para>
+					</dialogReference></param><param sync="true" name="apply_hard_limit" displayname="Apply Hard Limit" datatype="Boolean" direction="Output" expression="apply_hard_limit" type="Optional"><pythonReference>
+						<para>Whether to use the absolute Z minimum and maximum to find outliers. </para>
+						<bulletList><bullet_item>APPLY_HARD_LIMIT—Use the absolute Z minimum and maximum to find outliers.</bullet_item><bullet_item>NO_APPLY_HARD_LIMIT—Do not use the absolute Z minimum and maximum to find outliers.  This is the default.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Whether to use the absolute Z minimum and maximum to find outliers. </para>
+						<bulletList>
+							<bullet_item>Unchecked—Do not use the absolute Z minimum and maximum to find outliers.  This is the default.</bullet_item>
+							<bullet_item>Checked—Use the absolute Z minimum and maximum to find outliers.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="absolute_z_min" displayname="Absolute Z Minimum" datatype="Linear unit" direction="Input" expression="absolute_z_min" type="Optional"><pythonReference>
+						<para> If hard limits are applied, then any point with an elevation below this value will be considered as being an outlier.  The default is 0.</para>
+					</pythonReference><dialogReference>
+						<para> If hard limits are applied, then any point with an elevation below this value will be considered as being an outlier.  The default is 0.</para>
+					</dialogReference></param><param sync="true" name="absolute_z_max" displayname="Absolute Z Maximum" datatype="Linear unit" direction="Input" expression="absolute_z_max" type="Optional"><pythonReference>
+						<para> If hard limits are applied, then any point with an elevation above this value will be considered as being an outlier.   The default is 0.</para>
+					</pythonReference><dialogReference>
+						<para> If hard limits are applied, then any point with an elevation above this value will be considered as being an outlier.   The default is 0.</para>
+					</dialogReference></param><param sync="true" name="apply_comparison_filter" displayname="Apply Comparison Filter" datatype="Boolean" direction="Input" expression="apply_comparison_filter" type="Optional"><pythonReference>
+						<para> The comparison filter consists of three parameters for assessing the points to determine if they are outliers—whether to use the following three parameters (Z Tolerance, Slope Tolerance, and Exceed Tolerance Ratio) in assessing points.</para>
+						<bulletList><bullet_item>APPLY_COMPARISON_FILTER—Use the following three parameters (Z tolerance, slope tolerance, and exceed tolerance ratio) in assessing points.  This is the default.</bullet_item><bullet_item>NO_APPLY_COMPARISON_FILTER—Do not use the three comparison parameters (Z tolerance, slope tolerance, and exceed tolerance ratio) in assessing points.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> The comparison filter consists of three parameters for assessing the points to determine if they are outliers—whether to use the following three parameters (Z Tolerance, Slope Tolerance, and Exceed Tolerance Ratio)  in assessing points.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Do not use the three comparison parameters (Z tolerance, slope tolerance, and exceed tolerance ratio) in assessing points.</bullet_item>
+							<bullet_item>Checked—Use the three comparison parameters (Z tolerance, slope tolerance, and exceed tolerance ratio) in assessing points.   This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="z_tolerance" displayname="Z Tolerance" datatype="Linear unit" direction="Input" expression="z_tolerance" type="Optional"><pythonReference>
+						<para> Used to compare Z values of neighboring points, if the comparison filter is applied.   The default is 0.</para>
+					</pythonReference><dialogReference>
+						<para> Used to compare Z values of neighboring points, if the comparison filter is applied.   The default is 0.</para>
+					</dialogReference></param><param sync="true" name="slope_tolerance" displayname="Slope Tolerance" datatype="Double" direction="Input" expression="slope_tolerance" type="Optional"><pythonReference>
+						<para> The slope threshold between consecutive points. Expressed as a percentage. The default is 150.</para>
+					</pythonReference><dialogReference>
+						<para> The slope threshold between consecutive points. Expressed as a percentage. The default is 150.</para>
+					</dialogReference></param><param sync="true" name="exceed_tolerance_ratio" displayname="Exceed Tolerance Ratio" datatype="Double" direction="Input" expression="exceed_tolerance_ratio" type="Optional"><pythonReference>
+						<para>  The maximum tolerance. The default is 0.5.</para>
+					</pythonReference><dialogReference>
+						<para>  The maximum tolerance. The default is 0.5.</para>
+					</dialogReference></param><param sync="true" name="outlier_cap" displayname="Outlier Cap" datatype="Long" direction="Input" expression="outlier_cap" type="Optional"><pythonReference>
+						<para> The maximum number of outlier points that have been output. Once this value is reached no further outliers are sought.   The default is 2500.</para>
+					</pythonReference><dialogReference>
+						<para> The maximum number of outlier points that have been output. Once this value is reached no further outliers are sought.   The default is 2500.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item> A feature class is created and populated with copied points that participate in the input surface. These points have been flagged as outliers according to the user-specified criteria. Outliers are points which might appear to have an elevation or cause a slope which is inconsistent with that which is expected.</bullet_item><bullet_item>
+ If the Apply Hard Limit option is selected and not   the Apply Comparison Filter  option, then all points which fall outside of the range specified by the user in   Absolute Z minimum and Absolute Z Maximum will be output.
+</bullet_item><bullet_item> If the Apply Hard Limit option  and also the Apply Comparison Filter  option, then both criteria are applied. </bullet_item><bullet_item>For any given point having n connected points (nodes of a TIN, connected by triangle edges), if the slope from it to a connected point is greater than the Slope Tolerance in m points (where m is n times the Exceed Tolerance Ratio), then the point is written to the output.
+
+</bullet_item><bullet_item>Once the number of points written to the output reaches the Outlier Cap limit, then no more points will be written out.</bullet_item></usage><scriptExamples><scriptExample><title> Locate Outliers  Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the  Locate Outliers 
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.LocateOutliers_3d("tin", "outliers.shp", "NO_APPLY_HARD_LIMIT", "0", "0", "APPLY_COMPARISON_FILTER", '0', 150, 0.5, 2500)
+                    </code></scriptExample><scriptExample><title> Locate Outliers Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the  Locate Outliers 
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: LocateOutliers Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              LocateOutliers tool.
+#              
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Set Local Variables
+    inTIN = "elevation"
+    outPts = arcpy.CreateUniqueName("outliers.shp")
+    hardLim = "NO_APPLY_HARD_LIMIT"
+    compFil = "APPLY_COMPARISON_FILTER"
+    #Execute LocateOutliers
+    arcpy.LocateOutliers_3d(inTIN, outPts, hardLim, 0, 0, compFil, 
+                            '0', 150, 0.5, 2500)
+
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

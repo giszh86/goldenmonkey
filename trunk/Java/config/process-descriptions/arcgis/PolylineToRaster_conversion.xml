@@ -1,0 +1,88 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Polyline to Raster (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts polyline features to a raster dataset.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>Import</keyword><keyword>Rasterize</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PolylineToRaster" displayname="Polyline to Raster (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts polyline features to a raster dataset.</para>
+			
+		</summary><alink_name>PolylineToRaster_conversion</alink_name><parameters><param sync="true" name="in_features" displayname="Input features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The polyline input feature dataset to be converted to a raster.</para>
+					</pythonReference><dialogReference>
+						<para>The polyline input feature dataset to be converted to a raster.</para>
+					</dialogReference></param><param sync="true" name="value_field" displayname="Value field" datatype="Field" direction="Input" expression="value_field" type="Required"><pythonReference>
+						<para>
+The field used to assign values to the output raster.</para><para>It can be any field of the input feature dataset's attribute table.</para>
+					</pythonReference><dialogReference>
+						<para>
+The field used to assign values to the output raster.</para><para>It can be any field of the input feature dataset's attribute table.</para>
+					</dialogReference></param><param sync="true" name="out_raster_dataset" displayname="Output Raster Dataset" datatype="Raster Dataset" direction="Output" expression="out_raster_dataset" type="Required"><pythonReference><para>
+The output raster dataset to be created.</para><para>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for a GRID raster format.</para>
+					</pythonReference><dialogReference><para>
+The output raster dataset to be created.</para><para>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for a GRID raster format.</para>
+					</dialogReference></param><param sync="true" name="cell_assignment" displayname="Cell assignment type" datatype="String" direction="Input" expression="cell_assignment" type="Optional"><pythonReference>
+						<para>The method to determine how the cell will be assigned a value when more than one feature falls within a cell.</para>
+						<bulletList><bullet_item>MAXIMUM_LENGTH—The feature with the longest length that covers the cell will determine the value to assign to the cell. </bullet_item><bullet_item>MAXIMUM_COMBINED_LENGTH—If there is more than one feature in a cell with the same value, the lengths of these features will be combined. The combined feature with the longest length within the cell will determine the value to assign to the cell. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The method to determine how the cell will be assigned a value when more than one feature falls within a cell.</para>
+						<bulletList><bullet_item>MAXIMUM_LENGTH—The feature with the longest length that covers the cell will determine the value to assign to the cell. </bullet_item><bullet_item>MAXIMUM_COMBINED_LENGTH—If there is more than one feature in a cell with the same value, the lengths of these features will be combined. The combined feature with the longest length within the cell will determine the value to assign to the cell. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="priority_field" displayname="Priority field" datatype="Field" direction="Input" expression="priority_field" type="Optional"><pythonReference>
+						<para>This field is used when a feature should take preference over another feature with the same attribute.</para>
+					</pythonReference><dialogReference>
+						<para>This field is used when a feature should take preference over another feature with the same attribute.</para>
+					</dialogReference></param><param sync="true" name="cellsize" displayname="Output cell size" datatype="Analysis Cell Size" direction="Input" expression="cellsize" type="Optional"><pythonReference>
+						<para>
+The cell size for the output raster dataset.</para>
+						<para>The default cell size is the shortest of the width or height of the extent of the input feature dataset, in the output spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>
+The cell size for the output raster dataset.</para>
+						<para>The default cell size is the shortest of the width or height of the extent of the input feature dataset, in the output spatial reference, divided by 250.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Pyramid" label="Pyramid">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Cell_size" label="Cell size"></environment><environment name="Snap_raster" label="Snap raster"></environment></environments><usage><bullet_item>
+				<para>Any feature class (geodatabase, shapefile or coverage) containing polyline features can be converted to a raster dataset.</para></bullet_item><bullet_item>
+				<para>The input field type determines the type of output raster.  If the field is integer, the output raster will be integer; if it is floating-point, the output will be floating-point.</para><para>If the input field contains string values, the output raster will contain an integer value field and a string field.</para></bullet_item><bullet_item>
+				<para>This tool is a complement to the  tool, which convert a raster to a polyline feature class.</para></bullet_item><bullet_item>
+				<para>This tool provides greater control over the assignment of cell values when more than one feature is present in an output cell than the  tool.</para></bullet_item></usage><scriptExamples><scriptExample><title>PolylineToRaster example 1 (Python window)</title>
+					<para>Converts polyline features to a raster dataset.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "c:/data"
+arcpy.PolylineToRaster_conversion("roads.shp", "CLASS", "c:/output/roads.img",
+                                   "MAXIMUM_COMBINED_LENGTH", "LENGTH", 30) 
+                    </code></scriptExample><scriptExample><title>PolylineToRaster example 2 (stand-alone script)</title>
+					<para>Converts polyline features to a raster dataset.</para>
+				<code xml:space="preserve"># Name: PolylineToRaster_Ex_02.py
+# Description: Converts polyline features to a raster dataset.
+# Requirements: ArcInfo
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inFeatures = "roads.shp"
+valField = "CLASS"
+outRaster = "c:/output/roads.tif"
+assignmentType = "MAXIMUM_COMBINED_LENGTH"
+priorityField = "LENGTH"
+cellSize = 30
+
+# Execute PolylineToRaster
+arcpy.PolylineToRaster_conversion(inFeatures, valField, outRaster, assignmentType,
+                                 priorityField, cellSize)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

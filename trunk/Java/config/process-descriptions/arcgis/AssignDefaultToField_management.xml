@@ -1,0 +1,64 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Assign Default To Field (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool will create a default value for a specified field.  Whenever a new row is added to the table or feature class, the specified field will be set to this default value.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Auto</keyword><keyword>Column</keyword><keyword>New</keyword><keyword>Preset</keyword><keyword>Set</keyword><keyword>Value</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AssignDefaultToField" displayname="Assign Default To Field (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>This tool will create a default value for a specified field.  Whenever a new row is added to the table or feature class, the specified field will be set to this default value.</para>
+		</summary><alink_name>AssignDefaultToField_management</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>Input table or feature class that will have a default value added to one of its fields.</para>
+					</pythonReference><dialogReference>
+						<para>Input table or feature class that will have a default value added to one of its fields.</para>
+					</dialogReference></param><param sync="true" name="field_name" displayname="Field Name" datatype="Field" direction="Input" expression="field_name" type="Required"><pythonReference>
+						<para>Field that will have the default value added to it each time a new row is added to the table or feature class.</para>
+					</pythonReference><dialogReference>
+						<para>Field that will have the default value added to it each time a new row is added to the table or feature class.</para>
+					</dialogReference></param><param sync="true" name="default_value" displayname="Default Value" datatype="String" direction="Input" expression="default_value" type="Required"><pythonReference>
+						<para>The string for the default value to be added to each new table or feature class. The field type controls what kind of string can be added.</para>
+					</pythonReference><dialogReference>
+						<para>The string for the default value to be added to each new table or feature class. The field type controls what kind of string can be added.</para>
+					</dialogReference></param><param sync="true" name="subtype_code" displayname="Subtype" datatype="String" direction="Input" expression="[subtype_code,...]" type="Optional"><pythonReference>
+						<para>The subtypes that can participate in the default value. You specify the subtypes to be used.</para>
+					</pythonReference><dialogReference>
+						<para>The subtypes that can participate in the default value. You specify the subtypes to be used.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The default value is dependent on the field type chosen in the Field Name parameter. If you pick a field that is type LONG, the default value has to be type LONG. </para>
+			</bullet_item><bullet_item>
+				<para>Adding subtypes to the default value is optional. If you add a subtype, there must be a subtype field in the feature class or table. You can set the subtype field using the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>The subtypes of a feature class or table can also be managed in the Catalog window. Subtypes can be created and modified using the Subtypes Property page on the dataset Properties dialog box.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AssignDefaultToField example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the AssignDefaultToField tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/Montgomery.gdb/Landbase"
+arcpy.CopyFeatures_management("blocks", "C:/output/output.gdb/blocks")
+arcpy.AssignDefaultToField_management("C:/output/output.gdb/blocks", "Res", 1,
+                                      ["0: Non-Residental", "1: Residental"])
+                    </code></scriptExample><scriptExample><title>AssignDefaultToField example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the AssignDefaultToField tool.</para>
+				<code xml:space="preserve"># Name: AssignDefaultToField_Example2.py
+# Description: Assign a new default to a field along with subtypes
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "c:/data/Montgomery.gdb/Landbase"
+ 
+# Set local variables
+inFeatures = "blocks"
+outFeatureClass = "c:/output/output.gdb/blocks"
+fieldName = "Res"
+defaultValue = 1
+subTypes = ["0: Non-Residental", "1: Residental"]
+ 
+# Execute CopyFeatures to make new copy of the input
+arcpy.CopyFeatures_management(inFeatures, outFeatureClass)
+ 
+# Execute AssignDefaultToField
+arcpy.AssignDefaultToField_management(outFeatureClass, fieldName, 
+                                      defaultValue, subTypes)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

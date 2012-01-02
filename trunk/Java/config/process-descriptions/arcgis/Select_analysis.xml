@@ -1,0 +1,110 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Select (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Extracts features from an input feature class or input feature layer, typically using a select or Structured Query Language [SQL] expression and stores them in an output feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Choose</keyword><keyword>Derive</keyword><keyword>Expression</keyword><keyword>Partition</keyword><keyword>Pick Out</keyword><keyword>Portion</keyword><keyword>Query</keyword><keyword>Set</keyword><keyword>Sql</keyword><keyword>Subset</keyword><keyword>Type</keyword><keyword>Where Clause</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Select" displayname="Select (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Extracts features from an input feature class or input feature layer, typically using a select or Structured Query Language [SQL] expression and stores them in an output feature class.</para>
+		</summary><alink_name>Select_analysis</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature class or layer from which features are selected.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class or layer from which features are selected.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Featureclass" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class to be created. If no expression is used, it contains all input features.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class to be created. If no expression is used, it contains all input features.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Expression" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>An SQL expression used to select a subset of features. The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para>
+						<para>
+							"MY_FIELD"
+						</para>
+						<para> If you're querying personal geodatabases, enclose fields in square brackets: </para>
+						<para>
+							[MY_FIELD]
+						</para>
+						<para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para>
+						<para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</pythonReference><dialogReference>
+						<para>An SQL expression used to select a subset of features. The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para>
+						<para>
+							"MY_FIELD"
+						</para>
+						<para> If you're querying personal geodatabases, enclose fields in square brackets: </para>
+						<para>
+							[MY_FIELD]
+						</para>
+						<para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para>
+						<para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The select or SQL expression gets built with the Query Builder, or is simply typed in. For details on the expression syntax see  or .</para>
+			</bullet_item><bullet_item>
+				<para>If a layer is used for Input Features and no expression is entered, only the selected features are written to the output feature class. If a layer is used for Input
+Features and an expression is entered, the expression is only executed
+against the selected features, and the expression-based subset of
+the selected set is written to the output feature class.</para>
+				
+			</bullet_item><bullet_item>
+				<para>If you want to create a feature class from the selected set of features in a layer, use the  tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Select Example (Python Window)</title><code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "c:/basedata/roads.gdb"
+arcpy.Select_analysis("nfroads", "paved", '[ROAD_CLASS] = "PAVED"')
+                    </code></scriptExample><scriptExample><title>Select Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Select function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/data"
+arcpy.Select_analysis("majorrds.shp", "C:/output/majorrdsClass4.shp", '"CLASS" = '4'')
+                    </code></scriptExample><scriptExample><title>Select Example 2 (stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the Select function in a stand-alone script.</para>
+				<code xml:space="preserve">
+# Name: Select_Example2.py
+# Description: Select roads of Class 4 from major roads tin the gnatcatcher habitat study area
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/data"
+
+# Set local variables
+in_features = "majorrds.shp"
+out_feature_class = "C:/output/majorrdsClass4.shp"
+where_clause = '"CLASS" = '4''
+
+# Execute Select
+arcpy.Select_analysis(in_features, out_feature_class, where_clause)
+                    </code></scriptExample></scriptExamples></tool></metadata>

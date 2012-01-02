@@ -1,0 +1,35 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Post Version (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Posting is the process of applying the current edit session to the reconciled target version during version geodatabase editing. Before a version can be posted, it must be reconciled with a target version and all conflicts must be resolved.</para>
+			
+				<para>This is a deprecated tool. The Reconcile Version GP Tool should be used to post versions following a reconcile. </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PostVersion" displayname="Post Version (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Posting is the process of applying the current edit session to the reconciled target version during version geodatabase editing. Before a version can be posted, it must be reconciled with a target version and all conflicts must be resolved.</para>
+			
+				<para>This is a deprecated tool. The Reconcile Version GP Tool should be used to post versions following a reconcile. </para>
+			
+		</summary><alink_name>PostVersion_management</alink_name><parameters><param sync="true" name="in_workspace" displayname="Input Workspace" datatype="Workspace" direction="Input" expression="in_workspace" type="Required"><pythonReference>
+						<para>The ArcSDE geodatabase containing the edit version to be posted. The default is to use the workspace defined in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcSDE geodatabase containing the edit version to be posted.</para>
+					</dialogReference></param><param sync="true" name="version_name" displayname="Version Name" datatype="String" direction="Input" expression="version_name" type="Required"><pythonReference>
+						<para>Name of the edit version to be posted to the target version.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the edit version to be posted to the target version.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Posting synchronizes the edit version with the reconciled version and saves the data.</para>
+			</bullet_item><bullet_item>
+				<para>Posting can't be undone since you are applying changes to a version that you are not currently editing.</para>
+			</bullet_item><bullet_item>
+				<para>If the reconciled version is modified between reconciling and posting, you will be notified to reconcile again before posting.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><code xml:space="preserve">import arcgisscripting
+gp = arcgisscripting.create()
+ 
+gp.postversion( "Database Connections\Connection to workspace.sde", "housing")
+                    </code></scriptExample></scriptExamples></tool></metadata>

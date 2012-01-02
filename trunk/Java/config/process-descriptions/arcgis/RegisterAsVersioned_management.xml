@@ -1,0 +1,44 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Register As Versioned (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Registers ArcSDE dataset as versioned.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alternative</keyword><keyword>Check</keyword><keyword>Geodatabase</keyword><keyword>Mark</keyword><keyword>Multiple</keyword><keyword>Owner</keyword><keyword>Sde</keyword><keyword>Set</keyword><keyword>State</keyword><keyword>User</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RegisterAsVersioned" displayname="Register As Versioned (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Registers ArcSDE dataset as versioned.</para>
+		</summary><alink_name>RegisterAsVersioned_management</alink_name><parameters><param sync="true" name="in_dataset" displayname="Input Dataset" datatype="Table View; Feature Dataset" direction="Input" expression="in_dataset" type="Required"><pythonReference>
+						<para>Name of the dataset to be registered as versioned.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the dataset to be registered as versioned.</para>
+					</dialogReference></param><param sync="true" name="edit_to_base" displayname="Register the selected objects with the option to move edits to base" datatype="Boolean" direction="Input" expression="edit_to_base" type="Optional"><pythonReference>
+						<para>Determines whether edits to the default version will be moved to the base tables.</para>
+						<bulletList><bullet_item>NO_EDITS_TO_BASE—Dataset will not be versioned with the option to move edits to base. This is the default. </bullet_item><bullet_item>EDITS_TO_BASE—Dataset will be versioned with the option of moving edits to base. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked—Dataset will be versioned with the option of moving edits to base.</bullet_item>
+							<bullet_item>Unchecked—Dataset will be versioned without the option of moving edit to base.This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Versioning tools only work with datasets in an ArcSDE geodatabase.  File and Personal geodatabases don't support versioning. </para>
+			</bullet_item><bullet_item>
+				<para>Registering a feature dataset as versioned registers all feature classes within the feature dataset as versioned.</para>
+			</bullet_item><bullet_item>
+				<para>Versions are not affected by changes occurring in other versions of the geodatabase.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RegisterAsVersioned example (stand-alone script)</title>
+					<para>
+The following stand-alone script demonstrates how to use the RegisterAsVersioned tool to register a dataset as versioned.</para>
+				<code xml:space="preserve"># Name: RegisterAsVersioned_Example.py
+# Description: Registers dataset as versioned
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+datasetName = "Database Connections/ninefour@gdb.sde/ninefour.GDB.ctgFuseFeature"
+
+# Execute RegisterAsVersioned
+arcpy.RegisterAsVersioned_management( datasetName, "NO_EDITS_TO_BASE")
+                    </code></scriptExample></scriptExamples></tool></metadata>

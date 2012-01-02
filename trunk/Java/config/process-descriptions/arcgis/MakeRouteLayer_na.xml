@@ -1,0 +1,194 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make Route Layer (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Makes a route network analysis layer and sets its analysis properties. A route analysis layer is useful for determining the best route between a set of network locations based on a specified network cost.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alter</keyword><keyword>Altered</keyword><keyword>Layer</keyword><keyword>Network Analyst Layer</keyword><keyword>Route</keyword><keyword>Route Layer</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeRouteLayer" displayname="Make Route Layer (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Makes a route network analysis layer and sets its analysis properties. A route analysis layer is useful for determining the best route between a set of network locations based on a specified network cost.</para>
+		</summary><alink_name>MakeRouteLayer_na</alink_name><parameters><param sync="true" name="in_network_dataset" displayname="Input analysis network" datatype="Network Dataset Layer" direction="Input" expression="in_network_dataset" type="Required"><pythonReference>
+						<para>The network dataset on which the route analysis will be performed.</para>
+						</pythonReference><dialogReference>
+						<para>The network dataset on which the route analysis will be performed.</para>
+						</dialogReference></param><param sync="true" name="out_network_analysis_layer" displayname="Output layer name" datatype="String" direction="Output" expression="out_network_analysis_layer" type="Required"><pythonReference>
+						<para>Name of the route network analysis layer to create.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the route network analysis layer to create.</para>
+					</dialogReference></param><param sync="true" name="impedance_attribute" displayname="Impedance attribute" datatype="String" direction="Input" expression="impedance_attribute" type="Required"><pythonReference>
+						<para>The cost attribute to be used as impedance in the analysis.</para>
+					</pythonReference><dialogReference>
+						<para>The cost attribute to be used as impedance in the analysis.</para>
+					</dialogReference></param><param sync="true" name="find_best_order" displayname="Reorder stops to find optimal route" datatype="Boolean" direction="Input" expression="find_best_order" type="Optional"><pythonReference>
+						<bulletList><bullet_item>FIND_BEST_ORDER—The stops will be reordered to find the optimal route. This option changes the route analysis from a shortest-path problem to a traveling salesperson problem (TSP).</bullet_item><bullet_item>USE_INPUT_ORDER—The stops will be visited in the input order. This is the default. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked -- The stops will be reordered to find the optimal route. This option changes the route analysis from a shortest-path problem to a traveling salesperson problem (TSP).</bullet_item>
+							<bullet_item>Unchecked -- The stops will be visited in the input order. This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="ordering_type" displayname="Preserve ordering of stops" datatype="String" direction="Input" expression="ordering_type" type="Optional"><pythonReference>
+						<para>Specifies the ordering of stops when FIND_BEST_ORDER is used.</para>
+						<bulletList><bullet_item>PRESERVE_BOTH—Preserves the first and last stops by input order as the first and last stops in the route. </bullet_item><bullet_item>PRESERVE_FIRST—Preserves the first stop by input order as the first stop in the route, but the last stop is free to be reordered. </bullet_item><bullet_item>PRESERVE_LAST—Preserves the last stop by input order as the last stop in the route, but the first stop is free to be reordered. </bullet_item><bullet_item>PRESERVE_NONE—Frees both the first and last stop to be reordered. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the ordering of stops when Reorder stops to find optimal route parameter is checked.</para>
+						<bulletList><bullet_item>PRESERVE_BOTH—Preserves the first and last stops by input order as the first and last stops in the route. </bullet_item><bullet_item>PRESERVE_FIRST—Preserves the first stop by input order as the first stop in the route, but the last stop is free to be reordered. </bullet_item><bullet_item>PRESERVE_LAST—Preserves the last stop by input order as the last stop in the route, but the first stop is free to be reordered. </bullet_item><bullet_item>PRESERVE_NONE—Frees both the first and last stop to be reordered. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="time_windows" displayname="Use time windows" datatype="Boolean" direction="Input" expression="time_windows" type="Optional"><pythonReference>
+						<para>Specifies if time windows will be used at the stops.</para>
+						<bulletList><bullet_item>USE_TIMEWINDOWS—The route will consider time windows on the stops. If a stop is arrived at before its time window, there will be wait time until the time window starts. If a stop is arrived at after its time window, there will be a time window violation. Total time window violation is balanced against minimum impedance when computing the route. This is a valid option only when the impedance is in time units. </bullet_item><bullet_item>NO_TIMEWINDOWS—The route will ignore time windows on the stops. This is the default. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies if time windows will be used at the stops.</para>
+						<bulletList>
+							<bullet_item>Checked -- The route will consider time windows on the stops. If a stop is arrived at before its time window, there will be wait time until the time window starts. If a stop is arrived at after its time window, there will be a time window violation. Total time window violation is balanced against minimum impedance when computing the route. This option is enabled only when the impedance is in time units.</bullet_item>
+							<bullet_item>Unchecked -- The route will ignore time windows on the stops. This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="accumulate_attribute_name" displayname="Accumulators" datatype="String" direction="Input" expression="[accumulate_attribute_name,...]" type="Optional"><pythonReference>
+						<para>List of cost attributes to be accumulated during analysis. These accumulation attributes are purely for reference; the solver only uses the cost attribute specified by the Impedance attribute parameter  to calculate the route.</para>
+						<para>For each cost attribute that is accumulated, a Total_[Impedance] property is added to the routes that are output by the solver.</para>
+					</pythonReference><dialogReference>
+						<para>List of cost attributes to be accumulated during analysis. These accumulation attributes are purely for reference; the solver only uses the cost attribute specified by the Impedance attribute parameter  to calculate the route.</para>
+						<para>For each cost attribute that is accumulated, a Total_[Impedance] property is added to the routes that are output by the solver.</para>
+					</dialogReference></param><param sync="true" name="UTurn_policy" displayname="U-Turn policy" datatype="String" direction="Input" expression="UTurn_policy" type="Optional"><pythonReference>
+						<para>Restrict or permit U-turns at junctions that could occur during network traversal between stops.</para>
+						<bulletList><bullet_item>ALLOW_UTURNS—U-turns are permitted at junctions with any number of adjacent edges.</bullet_item><bullet_item>NO_UTURNS—U-turns are prohibited at all junctions. Note, however, that U-turns are still permitted at network locations even when this setting is chosen; however, you can set the individual network locations' CurbApproach property to prohibit U-turns.</bullet_item><bullet_item>ALLOW_DEAD_ENDS_ONLY—U-turns are prohibited at all junctions, except those that have only one adjacent edge (a dead end). </bullet_item><bullet_item>ALLOW_DEAD_ENDS_AND_INTERSECTIONS_ONLY—U-turns are prohibited at junctions where exactly two adjacent edges meet but are permitted at intersections (any junction with three or more adjacent edges) or dead ends. (junctions with exactly one adjacent edge) </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Restrict or permit U-turns at junctions that could occur during network traversal between stops.</para>
+						<bulletList><bullet_item>ALLOW_UTURNS—U-turns are permitted at junctions with any number of adjacent edges.</bullet_item><bullet_item>NO_UTURNS—U-turns are prohibited at all junctions. Note, however, that U-turns are still permitted at network locations even when this setting is chosen; however, you can set the individual network locations' CurbApproach property to prohibit U-turns.</bullet_item><bullet_item>ALLOW_DEAD_ENDS_ONLY—U-turns are prohibited at all junctions, except those that have only one adjacent edge (a dead end). </bullet_item><bullet_item>ALLOW_DEAD_ENDS_AND_INTERSECTIONS_ONLY—U-turns are prohibited at junctions where exactly two adjacent edges meet but are permitted at intersections (any junction with three or more adjacent edges) or dead ends. (junctions with exactly one adjacent edge) </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="restriction_attribute_name" displayname="Restrictions" datatype="String" direction="Input" expression="[restriction_attribute_name,...]" type="Optional"><pythonReference>
+						<para>List of restriction attributes to apply during the analysis.</para>
+					</pythonReference><dialogReference>
+						<para>List of restriction attributes to apply during the analysis.</para>
+					</dialogReference></param><param sync="true" name="hierarchy" displayname="Use Hierarchy in analysis" datatype="Boolean" direction="Input" expression="hierarchy" type="Optional"><pythonReference>
+						<bulletList><bullet_item>USE_HIERARCHY— Use the hierarchy attribute for the analysis. Using a hierarchy results in the solver preferring higher-order edges to lower-order edges. Hierarchical solves are faster, and they can be used to simulate the preference of a driver who chooses to travel on freeways over local roads when possible—even if that means a longer trip. This option is valid only if the input network dataset has a hierarchy attribute.</bullet_item><bullet_item>NO_HIERARCHY—Do not use the hierarchy attribute for the analysis. Not using a hierarchy yields an exact route for the network dataset.</bullet_item></bulletList>
+						<para>The parameter is not used if a hierarchy attribute is not defined on the network dataset used to perform the analysis. In such cases, use "#" as the parameter value. </para></pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked -- Use the hierarchy attribute for the analysis. Using a hierarchy results in the solver preferring higher-order edges to lower-order edges. Hierarchical solves are faster, and they can be used to simulate the preference of a driver who chooses to travel on freeways over local roads when possible—even if that means a longer trip. This option is enabled only if the input network dataset has a hierarchy attribute.</bullet_item>
+							<bullet_item>Unchecked -- Do not use the hierarchy attribute for the analysis. Not using a hierarchy yields an exact route for the network dataset.</bullet_item>
+						</bulletList>
+						<para>The parameter is disabled if a hierarchy attribute is not defined on the network dataset used to perform the analysis.</para></dialogReference></param><param sync="true" name="hierarchy_settings" displayname="Hierarchy rank settings" datatype="Network Analyst Hierarchy Settings" direction="Input" expression="hierarchy_settings" type="Optional"><pythonReference>
+						<para>
+							
+								<para>Prior to version 10, this parameter allowed you to change the hierarchy ranges for your analysis from the default hierarchy ranges established in the network dataset. At version 10, this parameter is no longer supported and should be specified as an empty string. If you wish to change the hierarchy ranges for your analysis, update the default hierarchy ranges in the network dataset.</para>
+							
+						</para>
+					</pythonReference><dialogReference>
+						<para>
+							
+								<para>Prior to version 10, this parameter allowed you to change the hierarchy ranges for your analysis from the default hierarchy ranges established in the network dataset. At version 10, this parameter is no longer supported. If you wish to change the hierarchy ranges for your analysis, update the default hierarchy ranges in the network dataset. </para>
+							
+						</para>
+					</dialogReference></param><param sync="true" name="output_path_shape" displayname="Output path shape" datatype="String" direction="Input" expression="output_path_shape" type="Optional"><pythonReference>
+						<para>Specifies the shape type for the route features that are output by the analysis.</para>
+						<bulletList><bullet_item>TRUE_LINES_WITH_MEASURES—The output routes will have the exact shape of the underlying network sources. Furthermore, the output includes route measurements for linear referencing. The measurements increase from the first stop and record the cumulative impedance to reach a given position.</bullet_item><bullet_item>TRUE_LINES_WITHOUT_MEASURES—The output routes will have the exact shape of the underlying network sources.</bullet_item><bullet_item>STRAIGHT_LINES—The output route shape will be a single straight line between the stops.</bullet_item><bullet_item>NO_LINES—No shape will be generated for the output routes. </bullet_item></bulletList>
+						<para>No matter which output shape type is chosen, the best route is always determined by the network impedance, never Euclidean distance. This means only the route shapes are different, not the underlying traversal of the network.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the shape type for the route features that are output by the analysis.</para>
+						<bulletList><bullet_item>TRUE_LINES_WITH_MEASURES—The output routes will have the exact shape of the underlying network sources. Furthermore, the output includes route measurements for linear referencing. The measurements increase from the first stop and record the cumulative impedance to reach a given position.</bullet_item><bullet_item>TRUE_LINES_WITHOUT_MEASURES—The output routes will have the exact shape of the underlying network sources.</bullet_item><bullet_item>STRAIGHT_LINES—The output route shape will be a single straight line between the stops.</bullet_item><bullet_item>NO_LINES—No shape will be generated for the output routes. </bullet_item></bulletList>
+						<para>No matter which output shape type is chosen, the best route is always determined by the network impedance, never Euclidean distance. This means only the route shapes are different, not the underlying traversal of the network.</para>
+					</dialogReference></param><param sync="true" name="start_date_time" displayname="Use start date and time" datatype="Date" direction="Input" expression="start_date_time" type="Optional"><pythonReference>
+						<para>Specifies a start date and time for the route. Route start time is mostly used to find routes based on the impedance attribute that varies with the time of the day. For example, a start time of 9 AM could be used to find a route that considers the rush hour traffic. The default value for this parameter is 8:00 AM. A date and time can be specified as 10/21/05 10:30 AM. If the route spans multiple days, and only the start time is specified, then the current date is used.</para>
+						<para> Instead of using a particular date, a day of the week can be specified using the following dates. <bulletList>
+								<bullet_item>Today -- 12/30/1899</bullet_item>
+								<bullet_item>Sunday -- 12/31/1899</bullet_item>
+								<bullet_item>Monday -- 1/1/1900</bullet_item>
+								<bullet_item>Tuesday -- 1/2/1900</bullet_item>
+								<bullet_item>Wednesday -- 1/3/1900</bullet_item>
+								<bullet_item>Thursday -- 1/4/1900</bullet_item>
+								<bullet_item>Friday -- 1/5/1900</bullet_item>
+								<bullet_item>Saturday -- 1/6/1900</bullet_item>
+							</bulletList>For example, to specify that the route should start at 5:00 PM on Tuesday, specify the parameter value as 1/2/1900 5:00 PM.</para>
+						<para> After the solve, the start and end time of the route are populated in the output routes. These start and end times are also used when directions are generated. </para>
+						<para>This option is only valid when a time based cost attribute has been specified as the impedance attribute. </para>
+					</pythonReference><dialogReference>
+						<para>Specifies a start date and time for the route. Route start time is mostly used to find routes based on the impedance attribute that varies with the time of the day. For example, a start time of 9 AM could be used to find a route that considers the rush hour traffic. The default value for this parameter is 8:00 AM. A date and time can be specified as 10/21/05 10:30 AM. If the route spans multiple days, and only the start time is specified, then the current date is used.</para>
+						<para> Instead of using a particular date, a day of the week can be specified using the following dates. <bulletList>
+								<bullet_item>Today -- 12/30/1899</bullet_item>
+								<bullet_item>Sunday -- 12/31/1899</bullet_item>
+								<bullet_item>Monday -- 1/1/1900</bullet_item>
+								<bullet_item>Tuesday -- 1/2/1900</bullet_item>
+								<bullet_item>Wednesday -- 1/3/1900</bullet_item>
+								<bullet_item>Thursday -- 1/4/1900</bullet_item>
+								<bullet_item>Friday -- 1/5/1900</bullet_item>
+								<bullet_item>Saturday -- 1/6/1900</bullet_item>
+							</bulletList>For example, to specify that the route should start at 5:00 PM on Tuesday, specify the parameter value as 1/2/1900 5:00 PM.</para>
+						<para> After the solve, the start and end time of the route are populated in the output routes. These start and end times are also used when directions are generated. </para>
+						<para>This option is only valid when a time based cost attribute has been specified as the impedance attribute. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>After creating the analysis layer with this tool, you can add network analysis objects to it using the  tool, solve the analysis using the  tool, and save the results on disk using  tool. </para>
+			</bullet_item><bullet_item>
+				<para>When using this tool in geoprocessing models, if the model is run as a tool, the output network analysis layer must be made  a model parameter. Otherwise the output layer is not added to the table of contents in ArcMap.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeRouteLayer example 1 (Python window)</title>
+					<para>Execute the tool using only the required parameters</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.MakeRouteLayer_na("Transportation/Streets_ND","WorkRoute","Minutes")
+
+                    </code></scriptExample><scriptExample><title>MakeRouteLayer example 2 (Python window)</title>
+					<para>Execute the tool using all parameters </para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.MakeRouteLayer_na("Transportation/Streets_ND","InspectionRoute","Minutes",
+                        "FIND_BEST_ORDER","PRESERVE_BOTH","USE_TIMEWINDOWS",
+                        ["Meters","Minutes"],
+                        "ALLOW_DEAD_ENDS_AND_INTERSECTIONS_ONLY",["Oneway"],
+                        "USE_HIERARCHY","","TRUE_LINES_WITH_MEASURES",
+                        "1/1/1900 9:00 AM")
+
+                    </code></scriptExample><scriptExample><title>MakeRouteLayer example 3 (workflow)</title>
+					<para>The following stand-alone Python script demonstrates how the MakeRouteLayer tool can be used to find a best route to visit the geocoded stop locations.</para>
+				<code xml:space="preserve"># Name: MakeRouteLayer_Workflow.py
+# Description: Find a best route to visit the stop locations and save the 
+#              route to a layer file. The stop locations are geocoded from a 
+#              text file containing the addresses.
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+try:
+    #Check out the Network Analyst extension license
+    arcpy.CheckOutExtension("Network")
+
+    #Set environment settings
+    env.workspace = "C:/data/SanFrancisco.gdb"
+    env.overwriteOutput = True
+    
+    #Set local variables
+    inNetworkDataset = "Transportation/Streets_ND"
+    outNALayer = "BestRoute"
+    impedanceAttribute = "TravelTime"
+    inAddressLocator = "SanFranciscoLocator"
+    inAddressTable = "C:/data/StopAddresses.csv"
+    inAddressFields = "Street Address VISIBLE NONE"
+    fieldMappings = "Name Address #"
+    outStops = "GeocodedStops"
+    outLayerFile = "C:/data/output" + "/" + outNALayer + ".lyr"
+    
+    #Create a new Route layer. Once the route layer is created, it can be 
+    #referenced using its name.  
+    arcpy.MakeRouteLayer_na(inNetworkDataset, outNALayer, impedanceAttribute)
+    
+    #Geocode the stop locations from a csv file containing the addresses.
+    #The Geocode Addresses tool can use a text or csv file as input table
+    #as long as the first line in the file contains the field names.
+    arcpy.GeocodeAddresses_geocoding(inAddressTable, inAddressLocator, 
+                                     inAddressFields, outStops)
+    
+    #Load the geocoded address locations as stop smapping the address field from
+    #geocoded stop features as Name property.
+    arcpy.AddLocations_na(outNALayer,"Stops", outStops, fieldMappings, "")
+    
+    #Solve the route layer, ignore any invalid locations such as those that
+    #can not be geocoded
+    arcpy.Solve_na(outNALayer,"SKIP")
+    
+    #Save the solved route layer as a layer file on disk with relative paths
+    arcpy.SaveToLayerFile_management(outNALayer,outLayerFile,"RELATIVE")
+    
+    print "Script completed successfully"
+
+except Exception as e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "An error occured on line %i" % tb.tb_lineno
+    print str(e)
+                    </code></scriptExample></scriptExamples></tool></metadata>

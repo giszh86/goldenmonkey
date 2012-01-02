@@ -1,0 +1,73 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Trim Line (Editing)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Removes portions of a line that extend a specified distance past a line intersection (dangles). Any line that does not touch another line at both endpoints can be trimmed, but only the portion of the line that extends past the intersection by the specified distance will be removed.</para>
+			<para>Tool use is intended for quality control tasks such as cleaning up topology errors in features that were digitized without having set proper snapping environments.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Chop</keyword><keyword>Clean</keyword><keyword>Cut</keyword><keyword>Dangle</keyword><keyword>Decrease</keyword><keyword>Exist</keyword><keyword>Hang</keyword><keyword>Input</keyword><keyword>Intersection</keyword><keyword>Length</keyword><keyword>Magnet</keyword><keyword>Modify</keyword><keyword>Overshoot</keyword><keyword>Past</keyword><keyword>Reduce</keyword><keyword>Shorter</keyword><keyword>Snap</keyword><keyword>Tolerance</keyword><keyword>Update</keyword><keyword>Vertex</keyword><keyword>Vertices</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TrimLine" displayname="Trim Line (Editing)" toolboxalias="edit" softwarerestriction="none"><summary>
+			<para> Removes portions of a line that extend a specified distance past a line intersection (dangles). Any line that does not touch another line at both endpoints can be trimmed, but only the portion of the line that extends past the intersection by the specified distance will be removed.</para>
+			<para>Tool use is intended for quality control tasks such as cleaning up topology errors in features that were digitized without having set proper snapping environments.</para>
+		</summary><alink_name>TrimLine_edit</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/TrimLine_edit_v.png" alt="Trim Line illustration" /><toolIllust type="illustration" src="TrimLine_edit_h.png" alt="Trim Line illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The line input features to be trimmed.</para>
+					</pythonReference><dialogReference>
+						<para>The line input features to be trimmed.</para>
+					</dialogReference></param><param sync="true" name="dangle_length" displayname="Dangle Length" datatype="Linear Unit" direction="Input" expression="dangle_length" type="Optional"><pythonReference>
+						<para>Line segments that are shorter than the specified Dangle Length and do not touch another line at both endpoints (dangles) will be trimmed.</para>
+						<para>If no Dangle Length is specified, all dangling lines (line segments that do not touch another line at both endpoints), regardless of length, will be trimmed back to the point of intersection.</para></pythonReference><dialogReference>
+						<para>Line segments that are shorter than the specified Dangle Length and do not touch another line at both endpoints (dangles) will be trimmed.</para>
+						<para>If no Dangle Length is specified, all dangling lines (line segments that do not touch another line at both endpoints), regardless of length, will be trimmed back to the point of intersection.</para></dialogReference></param><param sync="true" name="delete_shorts" displayname="Delete Short Features" datatype="Boolean" direction="Input" expression="delete_shorts" type="Optional"><pythonReference>
+						<para>Controls whether line segments which are less than the dangle length and are free-standing will be deleted.</para>
+						<bulletList><bullet_item>DELETE_SHORT— Delete short free-standing features. This is the default.</bullet_item><bullet_item>KEEP_SHORT—Do not delete short free-standing features.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Controls whether line segments which are less than the dangle length and are free-standing will be deleted.</para>
+						<bulletList>
+							<bullet_item>Checked -- Delete short free-standing features. This is the default.</bullet_item>
+							<bullet_item>Unchecked -- Do not delete short free-standing features.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				
+					<para>This tool modifies the input data. See  for more information and strategies to avoid undesired data changes.</para>
+				
+			</bullet_item><bullet_item><para> Any line that does not touch another line at both endpoints can be trimmed. There are two types of lines that meet this condition:</para><bulletList><bullet_item>A line dangle. A dangle is that portion of a line
+between the point where it touches or intersects
+another line and its endpoint -- the end of the line that
+does not touch or end on another line.</bullet_item><bullet_item>A free-standing or stand-alone feature. This feature does not touch or intersect any other lines. To delete these features, the  Delete Short Features option must be used.</bullet_item></bulletList></bullet_item><bullet_item>
+				<para>If no Dangle Length is specified, all dangling lines (line segments that do not touch another line at both endpoints), regardless of length, will be trimmed back to the point of intersection.</para>
+			</bullet_item><bullet_item>
+				<para>If the Delete Short Features option is used, any free-standing or stand-alone features with a total length less than or equal to the specified Dangle Length will be deleted. If this option is not used, only dangling line segments will be trimmed.</para>
+			</bullet_item><bullet_item>
+				<para>If a feature layer or feature class with a selection is used as the input, only the selected features will be trimmed. All features within the layer or feature class will be used to assess if a dangle exists and should be deleted, but only the selected features will be modified.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will not change any feature attributes, except the geometry (length) fields in a personal, file, or ArcSDE geodatabase feature class.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Trim Line Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Trim Line tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data"
+arcpy.TrimLine_edit("majorrds.shp", "15 Feet", "DELETE_SHORT")
+                    </code></scriptExample><scriptExample><title>Trim Line Example (Stand-alone script)</title>
+					<para>Clean up street centerlines that were digitized without having set proper snapping environments.</para>
+				<code xml:space="preserve"># Name: ExtendLine.py
+# Description:  Clean up street centerlines that were digitized without 
+#                      having set proper snapping environments
+# Author: ESRI
+
+# import system modules 
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Make backup copy of streets feature class, since modification with 
+#  the Editing tools below is permanent
+streets = "majorrds.shp"
+streetsBackup = "C:/output/Output.gdb/streetsBackup"
+arcpy.CopyFeatures_management(streets, streetsBackup)
+
+# Trim street lines to clean up dangles
+arcpy.TrimLine_edit(streets, "10 Feet", "KEEP_SHORT")
+
+# Extend street lines to clean up dangles
+arcpy.ExtendLine_edit(streets, "15 Feet", "EXTENSION")
+                    </code></scriptExample></scriptExamples></tool></metadata>

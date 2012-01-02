@@ -1,0 +1,47 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Uncompress File Geodatabase Data (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Uncompresses all the contents in a geodatabase, all the contents in a feature
+dataset, or an individual stand-alone feature class or table.
+</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Compact</keyword><keyword>Disk Space</keyword><keyword>Edit</keyword><keyword>Expand</keyword><keyword>Large</keyword><keyword>Read Only</keyword><keyword>Reduce</keyword><keyword>Shrink</keyword><keyword>Size</keyword><keyword>Small</keyword><keyword>Write</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="UncompressFileGeodatabaseData" displayname="Uncompress File Geodatabase Data (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Uncompresses all the contents in a geodatabase, all the contents in a feature
+dataset, or an individual stand-alone feature class or table.
+</para>
+		</summary><alink_name>UncompressFileGeodatabaseData_management</alink_name><parameters><param sync="true" name="in_data" displayname="Input file geodatabase data" datatype="Workspace; Feature Dataset; Table View; Raster Layer" direction="Input" expression="in_data" type="Required"><pythonReference>
+						<para>The geodatabase, feature dataset, feature class, or table to uncompress.</para>
+					</pythonReference><dialogReference>
+						<para>The geodatabase, feature dataset, feature class, or table to uncompress.</para>
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="Configuration keyword" datatype="String" direction="Input" expression="config_keyword" type="Optional"><pythonReference>
+						<para>The configuration keyword defining how the data will store once uncompressed</para>
+					</pythonReference><dialogReference>
+						<para>The configuration keyword defining how the data will store once uncompressed</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para>When you uncompress a geodatabase, all feature classes and tables within it uncompress. </para>
+			</bullet_item><bullet_item><para>When you uncompress a feature dataset, all its feature classes uncompress.</para></bullet_item><bullet_item>
+				<para>You cannot individually compress or uncompress a feature class in a feature dataset to produce a mixed state where some feature classes are compressed and others are not. Compressed feature datasets allow you to add an uncompressed feature class through operations such as creating a new, empty feature class, copying and pasting, and importing. However, you cannot edit the uncompressed feature class if there are compressed feature classes in the same feature dataset. Once you've finished adding one or more uncompressed feature classes, you can recompress or uncompress the feature dataset so all its feature classes are either compressed or uncompressed.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>UncompressFileGeodatabaseData Example (Python Window)</title><para>The following example demonstrates how to use the UncompressFileGeodatabaseData funcion in the python window.</para><code xml:space="preserve"> import arcpy
+arcpy.env.workspace = "C:/data/"
+arcpy.UncompressFileGeodatabaseData_management("london.gdb")
+                    </code></scriptExample><scriptExample><title>UncompressFileGeodatabaseData Example (Stand-alone Python script)</title><para>The following example demonstrates how to use the UncompressFileGeodatabaseData funcion in a standalone python script.</para><code xml:space="preserve"># Name: UncompressFileGeodatabaseData.py
+# Description: Use the UncompressFileGeodatabaseData tool to uncompress a geodatabase
+# Author: ESRI
+
+# import system modules 
+import arcpy, os
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+geodatabase = "london.gdb"
+
+try:
+# Process: Compress the data
+arcpy.UncompressFileGeodatabaseData_management(geodatabase)
+
+except:
+# If an error occurred while running the tool print the messages
+print arcpy.GetMessages()
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

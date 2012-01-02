@@ -1,0 +1,132 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make Query Table (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This  tool applies an SQL query to a database and the results are represented in a layer or table view. The query can be used to join several tables or return a subset of columns or rows from the original data in the database.</para>
+			<para>This tool accepts data from an ArcSDE geodatabase, a file geodatabase, a personal geodatabase, or an OLE DB connection.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Combine</keyword><keyword>Copy</keyword><keyword>Create</keyword><keyword>Criteria</keyword><keyword>Expression</keyword><keyword>Join</keyword><keyword>Meet</keyword><keyword>Memory</keyword><keyword>Select</keyword><keyword>Sql</keyword><keyword>Temporary</keyword><keyword>Where Clause</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeQueryTable" displayname="Make Query Table (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>This  tool applies an SQL query to a database and the results are represented in a layer or table view. The query can be used to join several tables or return a subset of columns or rows from the original data in the database.</para>
+			<para>This tool accepts data from an ArcSDE geodatabase, a file geodatabase, a personal geodatabase, or an OLE DB connection.</para>
+		</summary><alink_name>MakeQueryTable_management</alink_name><parameters><param sync="true" name="in_table" displayname="Input Tables" datatype="Table View;Raster Layer" direction="Input" expression="[in_table,...]" type="Required"><pythonReference>
+						<para>The name of the table or tables to be used in the query. If several tables are listed, the Expression parameter can be used to define how they are to be joined.</para>
+						<para>The input table can be from an ArcSDE geodatabase, a file geodatabase, a personal geodatabase, or an OLE DB connection.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the table or tables to be used in the query. If several tables are listed, the Expression parameter can be used to define how they are to be joined.</para>
+						<para>The input table can be from an ArcSDE geodatabase, a file geodatabase, a personal geodatabase, or an OLE DB connection.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Table Name" datatype="Table View;Raster Layer" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>The name of the layer or table view that will be created by the tool.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the layer or table view that will be created by the tool.</para>
+					</dialogReference></param><param sync="true" name="in_key_field_option" displayname="Key Field Options" datatype="String" direction="Input" expression="in_key_field_option" type="Required"><pythonReference>
+						<para>Indicates how an ObjectID field will be generated, if at all, for the query. The default is USE_KEY_FIELDS.</para>
+						<bulletList><bullet_item>USE_KEY_FIELDS—This indicates that the fields chosen in the key fields list should be used to define the dynamic ObjectID column. If there are no fields chosen in the key fields list, the ADD VIRTUAL_KEY_FIELD option is automatically applied. </bullet_item><bullet_item>ADD_VIRTUAL_KEY_FIELD—This option indicates that no key fields have been chosen, but a dynamic ObjectID column is to be generated. This is done by copying the data to a local, system-managed workspace and adding a field with unique values to the copy. The layer or table view can then access the copy and use the added field as the key field. </bullet_item><bullet_item>NO_KEY_FIELD—This option indicates that no dynamic ObjectID column is to be generated. Choosing this option means that selections will not be supported for the table view. If there is already a column of type ObjectID in the fields list, it will be used as the ObjectID even if this option is chosen. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates how an ObjectID field will be generated, if at all, for the query. The default is USE_KEY_FIELDS.</para>
+						<bulletList><bullet_item>USE_KEY_FIELDS—This indicates that the fields chosen in the key fields list should be used to define the dynamic ObjectID column. If there are no fields chosen in the key fields list, the ADD VIRTUAL_KEY_FIELD option is automatically applied. </bullet_item><bullet_item>ADD_VIRTUAL_KEY_FIELD—This option indicates that no key fields have been chosen, but a dynamic ObjectID column is to be generated. This is done by copying the data to a local, system-managed workspace and adding a field with unique values to the copy. The layer or table view can then access the copy and use the added field as the key field. </bullet_item><bullet_item>NO_KEY_FIELD—This option indicates that no dynamic ObjectID column is to be generated. Choosing this option means that selections will not be supported for the table view. If there is already a column of type ObjectID in the fields list, it will be used as the ObjectID even if this option is chosen. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="in_key_field" displayname="Key Fields" datatype="Field" direction="Input" expression="[in_key_field,...]" type="Optional"><pythonReference>
+						<para>Specifies a field or combination of fields that can be used to uniquely identify a row in the query. This parameter is used only when the USE_KEY_FIELDS option is set.</para>
+						<para>The Add Field button, which is used only in ModelBuilder, allows you to add expected field(s) so you can complete the dialog and continue to build your model.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies a field or combination of fields that can be used to uniquely identify a row in the query. This parameter is used only when the USE_KEY_FIELDS option is set.</para>
+						<para>The Add Field button, which is used only in ModelBuilder, allows you to add expected field(s) so you can complete the dialog and continue to build your model.</para>
+					</dialogReference></param><param sync="true" name="in_field" displayname="Fields" datatype="Value Table" direction="Input" expression="[[Field, {Alias}],...,...]" type="Required"><pythonReference>
+						<para>The fields to include in the layer or table view. If an alias is set for a field, this is the name that appears. If no fields are specified, all fields from all tables are included.</para>
+					</pythonReference><dialogReference>
+						<para>The fields to include in the layer or table view. If an alias is set for a field, this is the name that appears. If no fields are specified, all fields from all tables are included.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Expression" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>An SQL expression used to select a subset of records. The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, coverages, dBase, or INFO tables, enclose field names in double quotes:</para>
+						<para>
+							"MY_FIELD"
+						</para>
+						<para> If you're querying personal geodatabases, enclose fields in square brackets: </para>
+						<para>
+							[MY_FIELD]
+						</para>
+						<para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para>
+						<para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para></pythonReference><dialogReference>
+						<para>An SQL expression used to select a subset of records. The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, coverages, dBase, or INFO tables, enclose field names in double quotes:</para>
+						<para>
+							"MY_FIELD"
+						</para>
+						<para> If you're querying personal geodatabases, enclose fields in square brackets: </para>
+						<para>
+							[MY_FIELD]
+						</para>
+						<para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para>
+						<para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item><para>The layer that is created by the tool is temporary and will not persist after the session ends unless the document is saved.</para></bullet_item><bullet_item>
+				<para>All input feature classes or tables must be from the same input workspace.</para>
+			</bullet_item><bullet_item>
+				<para>If a Shape column is added to the field list, the result is a layer; otherwise, it is a table view.</para>
+			</bullet_item><bullet_item>
+				<para>If the output result is a layer, it may be persisted to a layer file using the  tool or to a feature class using the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>The order of the fields in the field list indicates the order the fields will appear in the output layer or table view.</para>
+			</bullet_item><bullet_item>
+				<para>The tool allows you to provide a key field option and key fields list. This information defines how rows are uniquely identified and is used to add a dynamically generated ObjectID column to the data. Without an ObjectID column, selections will not be supported.</para>
+			</bullet_item><bullet_item>
+				<para>The key fields list lets you choose several columns if the combination of these columns is needed to define unique values.</para>
+			</bullet_item><bullet_item>
+				<para>If an SQL expression is used but returns no matching records, the output feature class will be empty.</para>
+			</bullet_item><bullet_item>
+				<para>Feature classes can be joined, but the fields list must contain at most one field of type geometry. If you add more than one geometry column, the tool will display an error when you click OK and execution will stop.</para>
+			</bullet_item><bullet_item>
+				<para>For details on the syntax for the Expression parameter, see  or .</para>
+			</bullet_item><bullet_item>
+				<para>The Fields and Key Fields parameters' Add Field button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run, or its derived data does not exist, the Fields and Key Fields parameters may not be populated with field names. The Add Field button allows you to add expected field(s) so you can complete the Make Query Table dialog box and continue to build your model.</para>
+			</bullet_item><bullet_item>
+				<para>When input tables are from a file geodatabase, tables generally join in the order listed in the Input Tables parameter. For example, if Table1 is listed before Table2, Table2 will be joined by getting a row from Table1, then getting matching rows from Table2. However, if this would result in querying Table2 on an nonindexed field, and reversing the order would result in querying Table1 on an indexed field, the order will be reversed in an attempt to maximize performance. This is the sole query optimization logic at work when you're using file geodatabase data with this tool. In general, joins in file geodatabases perform best when they are one-to-many and one-to-one.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeQueryTable Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the MakeQueryTable function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/data.gdb"
+arcpy.MakeQueryTable_management (["Counties","codemog"], "queryout","ADD_VIRTUAL_KEY_FIELD", "",
+                   [["Counties.OBJECTID", 'ObjectID'],["Counties.NAME", 'Name'],
+                    ["codemog.Males", 'Males'], ["codemog.Females", 'Females']],
+                   "Counties.FIPS = codemog.Fips and Counties.STATE_NAME = 'California'")
+                    </code></scriptExample><scriptExample><title>MakeQueryTable Example 2 (Stand-alone Script)</title>
+					<para>The following script is an example of how to use the MakeQueryTable tool in the Python scripting environment.</para>
+				<code xml:space="preserve"># MakeQueryTableOLEDB.py
+# Description: Create a query table from two OLE DB tables using a limited set of
+#               fields and establishing an equal join.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+ 
+try:
+    # Local variables...
+    tableList = ["Database Connections/balrog.odc/vtest.COUNTIES",\
+                 "Database Connections/balrog.odc/vtest.CODEMOG"]
+    
+    fieldList = [["vtest.COUNTIES.OBJECTID", 'ObjectID'],["vtest.COUNTIES.NAME", 'Name']\
+                 ["vtest.CODEMOG.Males", 'Males'],["vtest.CODEMOG.Females", 'Females']]
+    whereClause = "vtest.COUNTIES.FIPS = vtest.CODEMOG.Fips" +\
+                  "and vtest.COUNTIES.STATE_NAME = 'California'"
+    keyField = "vtest.COUNTIES.OBJECTID"
+    lyrName = "CountyCombined"
+    # Make Query Table...
+    arcpy.MakeQueryTable_management(tableList, lyrName,"USE_KEY_FIELDS", keyField, fieldList, whereClause)
+ 
+    # Print the total rows
+    print arcpy.GetCount_management(lyrName)
+ 
+    # Print the fields
+    Fields = arcpy.ListFields(lyrName)
+    for field in Fields:
+        print Field.name
+        
+ 
+    # Save as a dBASE file
+    arcpy.CopyRows_management(lyrName, "C:/temp/calinfo.dbf")
+ 
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

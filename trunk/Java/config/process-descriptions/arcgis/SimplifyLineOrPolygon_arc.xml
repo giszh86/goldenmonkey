@@ -1,0 +1,81 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Simplify Line Or Polygon (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Simplifies a line or a polygon boundary by removing small fluctuations or extraneous bends from it while preserving its essential shape.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Area</keyword><keyword>Bend</keyword><keyword>Complex</keyword><keyword>Compress</keyword><keyword>Detail</keyword><keyword>Douglas</keyword><keyword>Fluctuation</keyword><keyword>Generalize</keyword><keyword>Less</keyword><keyword>Peucker</keyword><keyword>Point</keyword><keyword>Preserve</keyword><keyword>Reduce</keyword><keyword>Redundant</keyword><keyword>Remove</keyword><keyword>Scale</keyword><keyword>Shape</keyword><keyword>Straight</keyword><keyword>Vertex</keyword><keyword>Vertices</keyword><keyword>Weed</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SimplifyLineOrPolygon" displayname="Simplify Line Or Polygon (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Simplifies a line or a polygon boundary by removing small fluctuations or extraneous bends from it while preserving its essential shape.</para>
+			
+		</summary><alink_name>SimplifyLineOrPolygon_arc</alink_name><toolIllust type="illustration" src="SimplifyLineOrPolygon_arc_h.gif" alt="Simplify Line or Polygon illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage containing arcs or polygons to be simplified.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage containing arcs or polygons to be simplified.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The coverage to be created. The output coverage name must be different from the input coverage name.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage to be created. The output coverage name must be different from the input coverage name.</para>
+					</dialogReference></param><param sync="true" name="simplification_tolerance" displayname="Simplification Tolerance" datatype="Double" direction="Input" expression="simplification_tolerance" type="Required"><pythonReference>
+						<para>Sets the tolerance in coverage units. A tolerance must be specified and must be greater than zero.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the tolerance in coverage units. A tolerance must be specified and must be greater than zero.</para>
+					</dialogReference></param><param sync="true" name="simplification_operator" displayname="Simplification Operator" datatype="String" direction="Input" expression="simplification_operator" type="Optional"><pythonReference>
+						<para>Specifies the simplification operator.</para>
+						<bulletList><bullet_item>POINT_REMOVE—Uses the Douglas-Peucker algorithm for line simplification with enhancements. This operator is the default. </bullet_item><bullet_item>BEND_SIMPLIFY—Detects and removes extraneous bends from the original line. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the simplification operator.</para>
+						<bulletList><bullet_item>POINT_REMOVE—Uses the Douglas-Peucker algorithm for line simplification with enhancements. This operator is the default. </bullet_item><bullet_item>BEND_SIMPLIFY—Detects and removes extraneous bends from the original line. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="ErrorCheck" displayname="Check for topological errors" datatype="Boolean" direction="Input" expression="ErrorCheck" type="Optional"><pythonReference>
+						<para>Specifies whether to check for topological errors, including line-crossing, line-overlapping, zero-length lines, collapsed polygons, and holes falling outside of polygons.</para>
+						<bulletList><bullet_item>NO_ERROR_CHECK—Specifies to not check for topological errors. This is the default. </bullet_item><bullet_item>ERROR_CHECK—Specifies to check for topological errors. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether to check for topological errors, including line-crossing, line-overlapping, zero-length lines, collapsed polygons, and holes falling outside of polygons.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Specifies to not check for topological errors. This is the default.</bullet_item>
+							<bullet_item>Checked—Specifies to check for topological errors.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If the input coverage already contains intersecting lines, or if you want a quick result and don't care about topological errors in the output coverage, use the default option, which is not to Check for topological errors. Any topological errors introduced by the process will not be checked and corrected. If the input coverage contains intersecting lines, and you choose to Check for topological errors, it will fail at the input data validation, and the program will terminate with a message: "Intersecting lines are found in in_cover. The program is terminated".</para>
+			</bullet_item><bullet_item>
+				<para>If the input coverage contains no intersecting lines, check the Check for topological errors option to find and avoid errors generated by the simplification process. If any topological errors are found, the involved arcs will be regeneralized using a reduced tolerance. The result will be checked for topological errors again. The process iterates until no more errors are found. With this option, the program will run much longer than with the default option.</para>
+			</bullet_item><bullet_item>
+				<para>Unless there is no input_coverage.AAT, the output_coverage.AAT will contain a new item, TOLFLAG, which stores the tolerance in decimal numbers used for each arc. Tolerances smaller than the Simplification Tolerance indicate arcs that are undersimplified to avoid topological errors.</para>
+			</bullet_item><bullet_item>
+				<para>If polygon topology exists for the input coverage, it is not preserved in the output coverage. The coverage PAT, however, is preserved. Build must be used to re-create polygon topology. If labels exit, they will be preserved. If a label falls outside the polygon boundary as the boundary is simplified, it will be moved just inside the nearest line segment of the polygon boundary.</para>
+			</bullet_item><bullet_item>
+				<para>If regions exist in the Input Coverage, regions in the Output Coverage will be preliminary regions. When  is used to re-create the polygon topology, region topology will also be re-created.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of the output coverage is determined by the current processing rule set by the  environment setting. If the processing rule has not been established, the output coverage will be the same precision as the input coverage.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SimplifyLineOrPolygon example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to simplify a lake coverage.</para>
+				<code xml:space="preserve"># Name: SimplifyLineOrPolygon_Example.py
+# Description: Simplifies a lake coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "lakeshore"
+outCover = "C:/output/cartolake"
+simplificationTolerance = 110
+simplificationOperator = "BEND_SIMPLIFY"
+
+# Execute SimplifyLineOrPolygon
+arcpy.SimplifyLineOrPolygon_arc(inCover, outCover, simplificationTolerance,
+                                simplificationOperator, "")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

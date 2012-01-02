@@ -1,0 +1,80 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Table to NetCDF (Multidimension)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a table to a netCDF file.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Climate</keyword><keyword>Climatology</keyword><keyword>Dimension</keyword><keyword>Meteorology</keyword><keyword>Oceanography</keyword><keyword>Scientific</keyword><keyword>Weather</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TableToNetCDF" displayname="Table to NetCDF (Multidimension)" toolboxalias="md" softwarerestriction="none"><summary>
+			<para>Converts a table to a netCDF file.</para>
+		</summary><alink_name>TableToNetCDF_md</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The input table.</para>
+					</pythonReference><dialogReference>
+						<para>The input table.</para>
+					</dialogReference></param><param sync="true" name="fields_to_variables" displayname="Fields to Variables" datatype="Value Table" direction="Input" expression="[[field, {variable}, {units}],...]" type="Required"><pythonReference>
+						<para>The field or fields used to create variables in the netCDF file.</para>
+						<bulletList>
+							<bullet_item>Field—A field in the input table.</bullet_item>
+							<bullet_item>{Variable}—The netCDF variable name.</bullet_item>
+							<bullet_item>{Units}—The units of the data represented by the field.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>The field or fields used to create variables in the netCDF file.</para>
+						<bulletList>
+							<bullet_item>Field—A field in the input table.</bullet_item>
+							<bullet_item>{Variable}—The netCDF variable name.</bullet_item>
+							<bullet_item>{Units}—The units of the data represented by the field.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_netCDF_file" displayname="Output netCDF file" datatype="File" direction="Output" expression="out_netCDF_file" type="Required"><pythonReference>
+						<para>The output netCDF file. The filename must have a .nc extension.</para>
+					</pythonReference><dialogReference>
+						<para>The output netCDF file. The filename must have a .nc extension.</para>
+					</dialogReference></param><param sync="true" name="fields_to_dimensions" displayname="Fields to Dimensions" datatype="Value Table" direction="Input" expression="[[field, {dimension}, {units}],...]" type="Optional"><pythonReference>
+						<para>The field or fields used to create dimensions in the netCDF file.</para>
+						<bulletList>
+							<bullet_item>Field—A field in the input table.</bullet_item>
+							<bullet_item>{Dimension}—The netCDF dimension name.</bullet_item>
+							<bullet_item>{Units}—The units of the data represented by the field.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>The field or fields used to create dimensions in the netCDF file.</para>
+						<bulletList>
+							<bullet_item>Field—A field in the input table.</bullet_item>
+							<bullet_item>{Dimension}—The netCDF dimension name.</bullet_item>
+							<bullet_item>{Units}—The units of the data represented by the field.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The default variable name is the same as the field name specified in the Fields to Variables parameter.</para>
+			</bullet_item><bullet_item>
+				<para>The type of variable is the same as the type of field.</para>
+			</bullet_item><bullet_item>
+				<para>The default dimension name is the same as the field name specified in the Fields to Dimensions parameter.</para>
+			</bullet_item><bullet_item>
+				<para>The size of a dimension equals the number of unique values in the respective field.</para>
+			</bullet_item><bullet_item>
+				<para>If no field is specified as dimension, then a dimension named RecordID is created in the output netCDF file.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TableToNetCDF example 1 (Python window)</title>
+					<para>Converts a table to a netCDF file.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.TableToNetCDF_md("c:/data/netcdfgisdata/rainfall.dbf",
+                       "longitude longitude degree_east;latitude latitude degree_north",
+                       "c:/output/rain.nc","station station")
+                    </code></scriptExample><scriptExample><title>TableToNetCDF example 2(standalone script)</title>
+					<para>Converts a table to a netCDF file.</para>
+				<code xml:space="preserve"># Name: TableToNetCDF_Ex_02.py
+# Description: 
+# Requirements: none
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+inTable = "c:/data/netcdfgisdata/rainfall.dbf"
+fieldVariableUnits = "longitude longitude degree_east;latitude latitude degree_north"
+outNetCDFFile = "c:/output/rain.nc"
+fieldDimensionUnits = "station station"
+
+# Execute SelectByDimension
+import arcpy
+arcpy.TableToNetCDF_md(inTable, fieldVariableUnits, outNetCDFFile, fieldDimensionUnits)
+                    </code></scriptExample></scriptExamples></tool></metadata>

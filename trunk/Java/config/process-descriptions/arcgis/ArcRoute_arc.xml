@@ -1,0 +1,92 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Line Coverage To Route (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a route system by creating whole arc sections for each arc in the input coverage and can also be used to append arcs to an existing route system.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coordinate Priority</keyword><keyword>Coverage Tools</keyword><keyword>Data Management Tools</keyword><keyword>Linear Reference</keyword><keyword>Measure Item</keyword><keyword>Route</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ArcRoute" displayname="Line Coverage To Route (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Creates a route system by creating whole arc sections for each arc in the input coverage and can also be used to append arcs to an existing route system.</para>
+		</summary><alink_name>ArcRoute_arc</alink_name><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage from which the routes are to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage from which the routes are to be created.</para>
+					</dialogReference></param><param sync="true" name="out_route_system" displayname="Output Route System" datatype="String" direction="Input" expression="out_route_system" type="Required"><pythonReference>
+						<para>The name of the route system to be created or appended.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the route system to be created or appended.</para>
+					</dialogReference></param><param sync="true" name="in_route_item" displayname="Input Route Item" datatype="ArcInfo Item" direction="Input" expression="in_route_item" type="Optional"><pythonReference>
+						<para>The name of an item in the arc attribute table used to group arcs into separate routes. A new route is created in the route attribute table for each unique value in this item. The default is to create a route for each topologically connected set of arcs.</para>
+					</pythonReference><dialogReference>
+						<para>The name of an item in the arc attribute table used to group arcs into separate routes. A new route is created in the route attribute table for each unique value in this item. The default is to create a route for each topologically connected set of arcs.</para>
+					</dialogReference></param><param sync="true" name="out_route_item" displayname="Output Route Item" datatype="String" direction="Input" expression="out_route_item" type="Optional"><pythonReference>
+						<para>The name of the new item in the route attribute table that will contain the unique values in the input route item. When appending routes to an existing route system, it is an existing item in the route attribute table used to append routes. The default item is Input Route Item.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the new item in the route attribute table that will contain the unique values in the input route item. When appending routes to an existing route system, it is an existing item in the route attribute table used to append routes. The default item is Input Route Item.</para>
+					</dialogReference></param><param sync="true" name="measure_item" displayname="Measure Item" datatype="ArcInfo Item" direction="Input" expression="measure_item" type="Optional"><pythonReference>
+						<para>An item in the arc attribute table of Input Coverage whose value is accumulated to produce the measure values. The default item is LENGTH.</para>
+					</pythonReference><dialogReference>
+						<para>An item in the arc attribute table of Input Coverage whose value is accumulated to produce the measure values. The default item is LENGTH.</para>
+					</dialogReference></param><param sync="true" name="coordinate_priority" displayname="Coordinate Priority" datatype="String" direction="Input" expression="coordinate_priority" type="Optional"><pythonReference>
+						<para>Determines coordinate priority when choosing a start node for the route.</para>
+						<bulletList><bullet_item>UL—Upper left. This is the default.</bullet_item><bullet_item>UR—Upper right.</bullet_item><bullet_item>LL—Lower left.</bullet_item><bullet_item>LR—Lower right.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines coordinate priority when choosing a start node for the route.</para>
+						<bulletList><bullet_item>UL—Upper left. This is the default.</bullet_item><bullet_item>UR—Upper right.</bullet_item><bullet_item>LL—Lower left.</bullet_item><bullet_item>LR—Lower right.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="use_blanks" displayname="Create route from null values" datatype="Boolean" direction="Input" expression="use_blanks" type="Optional"><pythonReference>
+						<para>Specifies whether arcs having a null or 0 value for the input route item will be used to create a route.</para>
+						<bulletList><bullet_item>BLANK—Arcs having a null or 0 value for the Input Route Item will be used to create routes. This is the default. </bullet_item><bullet_item>NOBLANK—Arcs having a null or 0 value for the Input Route Item will not be used to create routes. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether arcs having a null or 0 value for the input route item will be used to create a route.</para>
+						<bulletList>
+							<bullet_item>Checked—Arcs having a null or 0 value for the Input Route Item will be used to create routes. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Arcs having a null or 0 value for the Input Route Item will not be used to create routes</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Creates a route system from lines or appends lines to a route system. It groups lines that are topologically connected and have unique values for the Input item to create the route system. The unique values of the Input item are always written to the Output item in the route attribute table (RAT); these values help identify routes once they have been created.</para>
+			</bullet_item><bullet_item>
+				<para>When appending routes to an existing route system, the Output Route Item must be the name of an existing item on the route attribute table of the route system. The tool will append a section to an existing route for every input arc having an Input item equal to an Output Route Item in the route attribute table, provided the input arcs are topologically connected to the route being appended. The Measure Item on the original part of the route being appended is updated based on the measures assigned to the new sections and the specified Starting node. For those groups of arcs having values for the Input Route Item not found in the Output Route Item, a new route is created.</para>
+			</bullet_item><bullet_item>
+				<para>Line Coverage To Route groups arcs into routes based on both the unique values in the Input Route Item and the topological connectivity of the arcs. Line Coverage To Route cannot be used to group topologically disjointed sets of arcs into the same route based on the Input Route Item.</para>
+			</bullet_item><bullet_item>
+				<para>If the Input Route Item is a floating point, then it is truncated to integer for building the routes in the new route-system.</para>
+			</bullet_item><bullet_item>
+				<para>Line Coverage To Route will merge two or more routes if they have the same value for the Output Route Item and become connected due to arcs being appended.</para>
+			</bullet_item><bullet_item>
+				<para>Line Coverage To Route will not append a section to an existing route if the existing route contains overlapping sections. The input arcs are assigned to a new route instead.</para>
+			</bullet_item><bullet_item>
+				<para>The unique values in the Input Route Item are always written to the Output Route Item in the route attribute table. Use the values in the Output Route Item to help you identify routes once they have been created.</para>
+			</bullet_item><bullet_item>
+				<para>The Input Cover must have an arc attribute table, and node numbers must exist and be up-to-date. Use  with the LINE option to create or update an arc attribute table. Use  to update node numbers.</para>
+			</bullet_item><bullet_item>
+				<para>When using the Create Route From Null Values, note that the BLANK option is considered to be zero (0.0) or null where the Input Route Item is numeric, and null where the Input Route Item is character. The Create Route From Null ValuesBLANK option is not considered if the Input Route Item is not specified.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ArcRoute example (stand-alone script)</title><para>The following stand-alone script demonstrates how to create a route system for a line coverage that contains road segments.</para><code xml:space="preserve"># Name: ArcRoute_Example.py
+# Description: Adds a route system to a streams coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "stream"
+outRouteSystem = "nstreams"
+inRouteItem = "STREAM_NAME"
+coordinatePriority = "LL"
+useBlanks = "NO_BLANK"
+
+# Execute ArcRoute
+arcpy.ArcRoute_arc(inCover, outRouteSystem, inRouteItem, "", "", 
+                   coordinatePriority, useBlanks)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

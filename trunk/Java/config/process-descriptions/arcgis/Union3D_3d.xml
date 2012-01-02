@@ -1,0 +1,95 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Union 3D  (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Computes the geometric intersection of the patches of overlapping multipatches, then aggregates the multipatches together. How many features are created as output depends on the tool's settings.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Analysis</keyword><keyword>3D Features</keyword><keyword>3D Geometry</keyword><keyword>3D Set Operators</keyword><keyword>Closed Multipatch</keyword><keyword>Multipatch</keyword><keyword>Set Operators</keyword><keyword>Solids</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" Union3D " displayname=" Union 3D  (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para> Computes the geometric intersection of the patches of overlapping multipatches, then aggregates the multipatches together. How many features are created as output depends on the tool's settings.</para>
+			</summary><alink_name> Union3D _3d</alink_name><parameters><param sync="true" name="in_feature_class" displayname="Input Multipatch Features" datatype="Features" direction="Input" expression="in_feature_class" type="Required"><pythonReference>
+						<para> The closed multipatch features to be intersected and aggregated. </para>
+					</pythonReference><dialogReference>
+						<para> The closed multipatch features to be intersected and aggregated. </para>
+					</dialogReference></param><param sync="true" name="group_field" displayname="Grouping Field" datatype="Field" direction="Input" expression="group_field" type="Optional"><pythonReference>
+						<para>
+The field used to group input multipatch features together for aggregation.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The field used to group input multipatch features together for aggregation.
+</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Input" expression="out_feature_class" type="Required"><pythonReference>
+						<para> The multipatch feature class into which the aggregated multipatch(es) will be placed. </para>
+					</pythonReference><dialogReference>
+						<para> The multipatch feature class into which the aggregated multipatch(es) will be placed. </para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Table" datatype="Table" direction="Input" expression="out_table" type="Optional"><pythonReference>
+						<para>
+A many to one table representing the Input Features and the Output Features that they where aggregated in to.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+A many to one table representing the Input Features and the Output Features that they where aggregated in to.
+</para>
+					</dialogReference></param><param sync="true" name="disable_optimization" displayname="Disable Optimization" datatype="Boolean" direction="Input" expression="disable_optimization" type="Optional"><pythonReference>
+						<para>Disables the optimization that automatically determines which multipatch features overlap, and only unions those features with overlaps. </para>
+						<bulletList><bullet_item> DISABLED —No optimization is performed on the input data. Feature will be union according to their grouping field, or all features will be unioned into a single output feature.  This is the default.</bullet_item><bullet_item>  ENABLED—Optimization is performed on the input data. The tool will do some pre-processing to detect which features may overlap, grouping them together, to improve performance and create unique outputs for each set of overlapping features.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Disables the optimization that automatically determines which multipatch features overlap, and unions features with overlaps as separate groups. </para>
+						<bulletList>
+							<bullet_item>Unchecked—Optimization is enabled.  Optimization is performed on the input data. The tool will do some pre-processing to detect which features may overlap, grouping them together, to improve performance and create unique outputs for each set of overlapping features.  This is the default.</bullet_item>
+							<bullet_item>Checked—Optimization is disabled. No optimization is performed on the input data. Feature will be union according to their grouping field, or all features will be unioned into a single output feature.   </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="output_all" displayname="Output All Solids" datatype="Boolean" direction="Input" expression="output_all" type="Optional"><pythonReference>
+						<para>This option forces the tool to write out all input features as output features. Features that have no overlaps are written to the output unmodified. Overlapping features are unioned together, and then written to the output.</para>
+						<bulletList><bullet_item> DISABLED —Only features that are unioned are written as output.</bullet_item><bullet_item>  ENABLED—All input features are written as output.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>This option forces the tool to write out all input features as output features. Features that have no overlaps are written to the output unmodified. Overlapping features are unioned together, and then written to the output.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Only input features that are unioned are written as output.</bullet_item>
+							<bullet_item>Checked—All input features are written as output. This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para> Input feature class or layer must have multipatch geometry. </para>
+			</bullet_item><bullet_item>
+				<para>Only closed multipatches will be processed. All other multipatches will be skipped, and an error written to the geoprocessing log.   Use the Is Closed geoprocessing tool to see if any features are not closed. </para>
+			</bullet_item><bullet_item>
+				<para>Union 3D can create very large and complex features in the output feature class. These features may cause display problems and/or have poor performance when displayed. Use caution when deciding how many features to aggregate together. </para>
+			</bullet_item><bullet_item>
+				<para>The output feature class will not have any of the attributes on the input feature class. An optional table can be created recording which features where unioned together to create a new feature. </para>
+			</bullet_item><bullet_item><para>Union 3D is a 3D set operator as part of the  3D Features toolset. See  for more information on what set operators are and how to use them.</para></bullet_item></usage><scriptExamples><scriptExample><title>Union 3D Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Union 3D
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.Union3D_3d("multipatch.shp", "union_output.shp", "GROUP_FIELD", "DISABLE", "ENABLE", "UnionTable.dbf")
+                    </code></scriptExample><scriptExample><title>Union 3D Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Union 3D
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: Union3D Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              Union3D tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+inMP = "multipatch.shp"
+# Ensure output multipatch has a unique name
+outMP = arcpy.CreateUniqueName("union_output.shp")
+outTbl = arcpy.CreateUniqueName("UnionTable.dbf")
+GroupField = "Type"
+optimize = "DISABLE"
+solids = "ENABLE"
+
+#Execute Union3D
+arcpy.Union3D_3d(inMP, outMP, GroupField, optimize, solids, outTbl)
+
+del inMP, outMP, GroupField, optimize, solids, outTbl, arcpy
+                    </code></scriptExample></scriptExamples></tool></metadata>

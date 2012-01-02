@@ -1,0 +1,103 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Cost Back Link (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Defines the neighbor that is the next cell on the least accumulative cost path to the nearest source.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Accumulative</keyword><keyword>Euclidean</keyword><keyword>Friction</keyword><keyword>Spread</keyword><keyword>Travel Cost</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CostBackLink" displayname="Cost Back Link (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Defines the neighbor that is the next cell on the least accumulative cost path to the nearest source.</para>
+			
+		</summary><alink_name>CostBackLink_sa</alink_name><toolIllust type="illustration" src="CostBackLink_sa_h.png" alt="Cost Back Link illustration" /><parameters><param sync="true" name="in_source_data" displayname="Input raster or feature source data" datatype="Raster Layer | Feature Layer" direction="Input" expression="in_source_data" type="Required"><pythonReference>
+						<para>The input source locations.</para><para>This is a raster or feature dataset that identifies the cells or locations to which the least accumulated cost distance for every output cell location is calculated.</para>
+						<para>For rasters, the input type can be integer or floating point.</para></pythonReference><dialogReference>
+						<para>The input source locations.</para><para>This is a raster or feature dataset that identifies the cells or locations to which the least accumulated cost distance for every output cell location is calculated.</para>
+						<para>For rasters, the input type can be integer or floating point.</para></dialogReference></param><param sync="true" name="in_cost_raster" displayname="Input cost raster" datatype="Raster Layer" direction="Input" expression="in_cost_raster" type="Required"><pythonReference>
+						<para>A raster defining the impedance or cost to move planimetrically through each cell.</para>
+						<para>The value at each cell location represents the cost per unit distance for moving through the cell. Each cell location value is multiplied by the cell resolution while also compensating for diagonal movement to obtain the total cost of passing through the cell.</para><para>The values of the cost raster can be integer or floating point, but they cannot be negative or zero (you cannot have a negative or zero cost).</para>
+					</pythonReference><dialogReference>
+						<para>A raster defining the impedance or cost to move planimetrically through each cell.</para>
+						<para>The value at each cell location represents the cost per unit distance for moving through the cell. Each cell location value is multiplied by the cell resolution while also compensating for diagonal movement to obtain the total cost of passing through the cell.</para><para>The values of the cost raster can be integer or floating point, but they cannot be negative or zero (you cannot have a negative or zero cost).</para>
+					</dialogReference></param><param sync="true" name="maximum_distance" displayname="Maximum distance" datatype="Double" direction="Input" expression="maximum_distance" type="Optional"><pythonReference><para>Defines the threshold that the accumulative cost values cannot exceed.</para>
+						<para>If an accumulative cost distance value exceeds this value, the output value for the cell location will be NoData. The maximum distance defines the extent for which the accumulative cost distances are calculated.</para><para>The default distance is to the edge of the output raster.</para></pythonReference><dialogReference><para>Defines the threshold that the accumulative cost values cannot exceed.</para>
+						<para>If an accumulative cost distance value exceeds this value, the output value for the cell location will be NoData. The maximum distance defines the extent for which the accumulative cost distances are calculated.</para><para>The default distance is to the edge of the output raster.</para></dialogReference></param><param sync="true" name="out_distance_raster" displayname="Output distance raster" datatype="Raster Dataset" direction="Output" expression="out_distance_raster" type="Optional"><pythonReference>
+							<para>The output cost distance raster.</para>
+							<para>The cost distance raster identifies, for each cell, the least accumulative cost distance over a cost surface to the identified source locations.</para><para>A source can be a cell, a set of cells, or one or more feature locations.</para>
+							<para>The output raster is of floating point type.</para></pythonReference><dialogReference>
+							<para>The output cost distance raster.</para>
+							<para>The cost distance raster identifies, for each cell, the least accumulative cost distance over a cost surface to the identified source locations.</para><para>A source can be a cell, a set of cells, or one or more feature locations.</para>
+							<para>The output raster is of floating point type.</para></dialogReference></param><param sync="true" name="out_backlink_raster" displayname="Output backlink raster" datatype="Raster" direction="Output" expression="out_backlink_raster" type="Required"><pythonReference>
+							<para>The output cost back-link raster.</para>
+							<para>The back-link raster contains values of 0 through 8, which define the direction or identify the next neighboring cell (the succeeding cell) along the least accumulative cost path from a cell to reach its least cost source.</para>
+							<para>If the path is to pass into the right neighbor, the cell will be assigned the value 1, 2 for the lower right diagonal cell, and continuing clockwise. The value 0 is reserved for source cells.</para>
+							
+								
+								
+							</pythonReference><dialogReference>
+							<para>The output cost back-link raster.</para>
+							<para>The back-link raster contains values of 0 through 8, which define the direction or identify the next neighboring cell (the succeeding cell) along the least accumulative cost path from a cell to reach its least cost source.</para>
+							<para>If the path is to pass into the right neighbor, the cell will be assigned the value 1, 2 for the lower right diagonal cell, and continuing clockwise. The value 0 is reserved for source cells.</para>
+							
+								
+								
+							</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input source data can be a feature class or raster.</para>
+			</bullet_item><bullet_item>
+				<para>When the input source data is a raster, the set of source cells consists of all cells in the source raster that have valid values. Cells that have NoData values are not included in the source set. The value 0 is considered a legitimate source. A source raster can be easily created using the .</para>
+			</bullet_item><bullet_item>
+				<para>Cell locations with NoData in the Input cost raster act as barriers in the cost surface tools. Any cell location that is assigned NoData on the input cost surface will receive NoData on all output rasters  (cost distance, allocation, and back link).</para>
+			</bullet_item><bullet_item>
+				<para>If the input source data and the cost raster are different extents, the default output extent is the intersection of the two. To get a cost distance surface for the entire extent, choose the Union of Inputs option on the output  environment settings.</para>
+			</bullet_item><bullet_item><para>If a  has been set in the environment, all masked cells will be treated as NoData values.</para><para>When a mask has been defined in the Raster Analysis window and the cells to be masked will mask a source, the calculations will occur on the remaining source cells. The source cells that are masked will not be considered in the computations. These cell locations will be assigned NoData on all outputs (distance, allocation, and back link) rasters.</para></bullet_item><bullet_item>
+				<para>The Maximum distance is specified in the same cost units as those on the cost raster.</para>
+			</bullet_item><bullet_item>
+				<para>For the output distance raster, the least-cost distance (or minimum accumulative cost distance) of a cell to a set of source locations is the lower bound of the least-cost distances from the cell to all source locations.</para></bullet_item></usage><scriptExamples><scriptExample><title>CostBackLink example 1 (Python window)</title>
+					<para>The following Python Window script demonstrates how to use the CostBackLink tool.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outBacklink = CostBackLink("observers","costraster", 100000, 
+                           "c:/sapyexamples/output/distRast")
+outBacklink.save("c:/sapyexamples/output/backlink")
+                    </code></scriptExample><scriptExample><title>CostBackLink example 2 (stand-alone script)</title>
+					<para>Create a back link raster defining the direction of the next cell in least accumulated cost path analysis.</para>
+				<code xml:space="preserve"># Name: CostBackLink_Ex_02.py
+# Description: Defines the neighbor that is the next cell on 
+#              the least accumulative cost path to the nearest 
+#              source.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inSource = "observers.shp"
+inCostRaster = "costraster"
+inMaxDist = 100000
+outDistRast = "c:/sapyexamples/output/distRast"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute CostBackLink
+outBacklink = CostBackLink(inSource,inCostRaster, inMaxDist,
+                           outDistRast)
+
+# Save the output 
+outBacklink.save("c:/sapyexamples/output/backlink.tif")
+                    </code></scriptExample></scriptExamples></tool></metadata>

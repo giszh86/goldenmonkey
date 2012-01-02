@@ -1,0 +1,86 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Build Overviews (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Defines and generates overviews for a mosaic dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Amd</keyword><keyword>Cache</keyword><keyword>Collection</keyword><keyword>Create</keyword><keyword>Display</keyword><keyword>Generate Preview</keyword><keyword>Image Service</keyword><keyword>Make</keyword><keyword>Mosaic Dataset</keyword><keyword>Pyramid</keyword><keyword>Surface</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BuildOverviews" displayname="Build Overviews (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Defines and generates overviews for a mosaic dataset.</para>
+		</summary><alink_name>BuildOverviews_management</alink_name><parameters><param sync="true" name="in_mosaic_dataset" displayname="Mosaic Dataset" datatype="Mosaic Layer" direction="Input" expression="in_mosaic_dataset" type="Required"><pythonReference>
+						<para>Path and name of the mosaic dataset.</para>
+					</pythonReference><dialogReference>
+						<para>Path and name of the mosaic dataset.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Query Definition" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para> Using SQL, you can define a query or use the Query Builder to build a query. </para>
+					</pythonReference><dialogReference>
+						<para> Using SQL, you can define a query or use the Query Builder to build a query. </para>
+					</dialogReference></param><param sync="true" name="define_missing_tiles" displayname="Define Missing Overview Tiles" datatype="Boolean" direction="Input" expression="define_missing_tiles" type="Optional"><pythonReference>
+						<para>Generates overviews if not enough overviews were defined or if new data was added without defining additional overviews. </para>
+						<bulletList><bullet_item>DEFINE_MISSING_TILES—This will automatically identify where overviews are needed and define them. This is the default.</bullet_item><bullet_item>NO_DEFINE_MISSING_TILES— New overviews will not be defined. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Generates overviews if not enough overviews were defined or if new data was added without defining additional overviews. </para>
+						<bulletList>
+							<bullet_item>Checked—This will automatically identify where overviews are needed and define them. This is the default.</bullet_item>
+							<bullet_item>Unchecked—New overviews will not be defined. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="generate_overviews" displayname="Generate Overviews" datatype="Boolean" direction="Input" expression="generate_overviews" type="Optional"><pythonReference>
+						<para> All overviews that need to be created or re-created will be generated. This includes missing overviews and stale overviews. </para>
+						<bulletList><bullet_item>GENERATE_OVERVIEWS— All types and states of overviews will be generated. This is the default.</bullet_item><bullet_item>NO_GENERATE_OVERVIEWS— Only the overviews that have been defined and not generated will be built.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> All overviews that need to be created or re-created will be generated. This includes missing overviews and stale overviews. </para>
+						<bulletList>
+							<bullet_item>Checked—All types and states of overviews will be generated. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Only the overviews that have been defined and not generated will be built.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="generate_missing_images" displayname="Generate Missing Overview Images Only" datatype="Boolean" direction="Input" expression="generate_missing_images" type="Optional"><pythonReference>
+						<para>Use if overviews have been defined but not generated. </para>
+						<bulletList><bullet_item>GENERATE_MISSING_IMAGES—Overviews that have been defined but not generated will be generated. This is the default.</bullet_item><bullet_item>IGNORE_MISSING_IMAGES— Overviews that have been defined but not generated will not be generated. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Use if overviews have been defined but not generated. </para>
+						<bulletList>
+							<bullet_item>Checked—Overviews that have been defined but not generated will be generated. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Overviews that have been defined but not generated will not be generated.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="regenerate_stale_images" displayname="Regenerate Stale Overview Images Only" datatype="Boolean" direction="Input" expression="regenerate_stale_images" type="Optional"><pythonReference>
+						<para> If the underlying raster datasets have changed or had their properties modified, the overviews will be identified as stale. </para>
+						<bulletList><bullet_item>REGENERATE_STALE_IMAGES—Stale overviews will be updated. This is the default.</bullet_item><bullet_item>IGNORE_STALE_IMAGES— Stale overviews will not be updated. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> If the underlying raster datasets have changed or had their properties modified, the overviews will be identified as stale. </para>
+						<bulletList>
+							<bullet_item>Checked—Stale overviews will be updated. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Stale overviews will not be updated.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent"></environment></environments><usage><bullet_item>
+				<para>If you need more control over the definition of the overviews, use the  first.</para>
+			</bullet_item><bullet_item>
+				<para>You cannot build overviews for a referenced mosaic dataset.</para>
+			</bullet_item><bullet_item>
+				<para>By default, the overviews are stored within the geodatabase containing the mosaic dataset. This can be changed by first using the  and specifying a location. </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>BuildOverviews example 1 (Python window)</title>
+					<para>This is a Python sample for BuildOverviews.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.BuildOverviews_management("c:/workspace/fgdb.gdb/md", "OBJECTID&lt;5",\
+                                "DEFINE_MISSING_TILES", "NO_GENERATE_OVERVIEWS",\
+                                "#", "#")
+                    </code></scriptExample><scriptExample><title>BuildOverviews example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for BuildOverviews.</para>
+				<code xml:space="preserve">##===========================
+##Build Overviews
+##Usage: BuildOverviews_management in_mosaic_dataset {where_clause} 
+##                                 {DEFINE_MISSING_TILES | NO_DEFINE_MISSING_TILES}
+##                                 {GENERATE_OVERVIEWS | NO_GENERATE_OVERVIEWS}
+##                                 {GENERATE_MISSING_IMAGES | IGNORE_MISSING_IMAGES}
+##                                 {REGENERATE_STALE_IMAGES | IGNORE_STALE_IMAGES}
+
+try:
+    import arcpy
+    arcpy.env.workspace = "C:/Workspace"
+    # Define Overviews for selected items only
+    arcpy.BuildOverviews_management("Overviews.gdb/md", "OBJECTID&lt;5", "DEFINE_MISSING_TILES",\
+                                    "NO_GENERATE_OVERVIEWS", "#", "#")
+    
+    # Define and Build Overviews for all
+    arcpy.BuildOverviews_management("Overviews.gdb/md", "#", "DEFINE_MISSING_TILES",\
+                                    "GENERATE_OVERVIEWS", "GENERATE_MISSING_IMAGES",\
+                                    "REGENERATE_STALE_IMAGES")
+    
+except:
+    print "Build Overviews example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

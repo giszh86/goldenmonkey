@@ -1,0 +1,105 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Import From SDTS (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates ArcGIS coverages or grids from a Spatial Data Transfer Standard (SDTS) Topological Vector Profile (TVP) or Point Profile Transfer.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Ccf</keyword><keyword>Conversion Control File</keyword><keyword>Conversion Tools</keyword><keyword>Coverage Tools</keyword><keyword>Data Dictionary</keyword><keyword>File Prefix</keyword><keyword>Point Profile</keyword><keyword>Ppv</keyword><keyword>To Coverage</keyword><keyword>Topological Vector</keyword><keyword>Tvp</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SDTSImport" displayname="Import From SDTS (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Creates ArcGIS coverages or grids from a Spatial Data Transfer Standard (SDTS) Topological Vector Profile (TVP) or Point Profile Transfer.</para>
+		</summary><alink_name>SDTSImport_arc</alink_name><parameters><param sync="true" name="in_transfer_prefix" displayname="Input SDTS Transfer File Prefix" datatype="String" direction="Input" expression="in_transfer_prefix" type="Required"><pythonReference>
+						<para>A four-character prefix common to all files in the SDTS transfer. The prefix may include a pathname to a directory. If no directory pathname is given, the files in the transfer will be read from the current workspace.</para>
+					</pythonReference><dialogReference>
+						<para>A four-character prefix common to all files in the SDTS transfer. The prefix may include a pathname to a directory. If no directory pathname is given, the files in the transfer will be read from the current workspace.</para>
+					</dialogReference></param><param sync="true" name="output" displayname="Output Coverage or Grid" datatype="Coverage; Grid" direction="Output" expression="output" type="Required"><pythonReference>
+						<para>The coverage or grid to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage or grid to be created.</para>
+					</dialogReference></param><param sync="true" name="out_point_cover" displayname="Output Point Coverage" datatype="Coverage" direction="Output" expression="out_point_cover" type="Optional"><pythonReference>
+						<para>The name of an optional point coverage to be created when the Topological Vector Profile is converted. This option is ignored if the SDTS dataset is not the Point Profile Transfer.</para>
+					</pythonReference><dialogReference>
+						<para>The name of an optional point coverage to be created when the Topological Vector Profile is converted. This option is ignored if the SDTS dataset is not the Point Profile Transfer.</para>
+					</dialogReference></param><param sync="true" name="layer_name" displayname="SDTS Layer" datatype="String" direction="Input" expression="layer_name" type="Optional"><pythonReference>
+						<para>The name of an aggregated spatial object that represents a single data layer in a transfer. There can be multiple layers in a single transfer. By default, the first layer encountered is the only one that will be converted.</para>
+					</pythonReference><dialogReference>
+						<para>The name of an aggregated spatial object that represents a single data layer in a transfer. There can be multiple layers in a single transfer. By default, the first layer encountered is the only one that will be converted.</para>
+					</dialogReference></param><param sync="true" name="data_dictionary" displayname="Drop data dictionary" datatype="Boolean" direction="Input" expression="data_dictionary" type="Optional"><pythonReference>
+						<para>Option to retain or drop the data dictionary.</para>
+						<bulletList><bullet_item>DD—Retain the data dictionary.</bullet_item><bullet_item>DROP_DD—Discard the data dictionary.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Option to retain or drop the data dictionary.</para>
+						<bulletList>
+							<bullet_item>Checked—Discard the data dictionary.</bullet_item>
+							<bullet_item>Unchecked—Retain the data dictionary.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="convert_void" displayname="Convert void and fill values during raster import" datatype="Boolean" direction="Input" expression="convert_void" type="Optional"><pythonReference>
+						<para>Used to convert or preserve void and fill values in the raster transfer. In the raster profile, NULL values are defined in two general categories: (Undefined, not relevant) or (Relevant but unknown or missing).</para>
+						<bulletList><bullet_item>CONVERT—Convert void and fill values in the raster transfer.</bullet_item><bullet_item>PRESERVE—Preserve void and fill values in the raster transfer.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Used to convert or preserve void and fill values in the raster transfer. In the raster profile, NULL values are defined in two general categories: (Undefined, not relevant) or (Relevant but unknown or missing).</para>
+						<bulletList>
+							<bullet_item>Checked—Convert void and fill values in the raster transfer.</bullet_item>
+							<bullet_item>Unchecked—Preserve void and fill values in the raster transfer.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>SDTS is a large standard composed of smaller, more limited subsets that are federally approved as part of the SDTS FIPS 173 standard. These subsets are called profiles. The Topological Vector Profile (designed specifically for planar vector data with topology), raster, and point profiles are the only profiles supported by Import From SDTS. The type of profile being converted is automatically determined by the tool.</para>
+			</bullet_item><bullet_item>
+				<para>Import From SDTS can read the U.S. Bureau of the Census TIGER, U.S. Geological Survey (USGS) DLG-3 vector data, National Geodetic Survey geodetic control point data, and USGS DEM raster data in SDTS format.</para>
+			</bullet_item><bullet_item>
+				<para>A set of files containing global information about more than one transfer can be external from the transfer but must be under a directory called masterdd located at the same directory level as the transfer directory. If the command is executed from the same directory as the transfer files, specify a path to the prefix so the masterdd is used correctly. For example, ..tvpdata\tr01 would be used as the input prefix if the master data dictionary is at the same level as the tvpdata directory.</para>
+			</bullet_item><bullet_item>
+				<para>Polygon and line topology is generated for TVP data. Point topology is generated for Point Profile data.</para>
+			</bullet_item><bullet_item>
+				<para>Complex spatial object modules in a TVP transfer are converted to either regions or route/sections depending on the spatial object type.</para>
+			</bullet_item><bullet_item>
+				<para>Aggregated spatial object modules or data layers are converted separately by executing Import From SDTS for each layer or raster object record number in the transfer.</para>
+			</bullet_item><bullet_item>
+				<para>The raster profile provides a flexible way to encode raster data. In a raster transfer, there should be one RSDF module, one LDEF module, and one or more cell modules. Each record in the RSDF module denotes one raster object. Each raster object can have multiple layers. Each layer will be encoded as one record in the LDEF module. The actual grid data is stored in the cell module which is referenced by the layer record. A typical USGS DEM dataset will have one RSDF record, one LDEF record, and one cell file. A typical ERDAS image dataset will have one RSDF record, multiple LDEF records, and one or more cell files.</para>
+			</bullet_item><bullet_item>
+				<para>Related attribute tables are written to the output dataset.</para>
+			</bullet_item><bullet_item>
+				<para>The relate environment is stored in Output Dataset.REL and/or Output Point Cover.REL.</para>
+			</bullet_item><bullet_item>
+				<para>An additional cross reference table, Output Dataset.XREF, will be written to store both the from and to table information for all related attribute tables.</para>
+			</bullet_item><bullet_item>
+				<para>Attribute tables will be named with either Output Dataset or Output Point Cover prefix and either APxx or ASxx extensions. Region and Route subclasses will be named with FFxx extensions.</para>
+			</bullet_item><bullet_item>
+				<para>Use the AIDF module when converting an SDTS dataset that was created by the  tool. The module contains information on items and redefined items in INFO.</para>
+			</bullet_item><bullet_item>
+				<para>Information in the CATS module is saved as follows:</para>
+				<bulletList>
+					<bullet_item>CATS-MAP—Saved in &lt;out_dataset&gt;.IDEN as item MAP</bullet_item>
+					<bullet_item>CATS-DOMN—Saved in Output Dataset.IDEN as item MAP</bullet_item>
+					<bullet_item>CATS-THEM—Saved in Output Dataset.IDEN as item THEME</bullet_item>
+					<bullet_item>CATS-AGOB—Saved in Output Dataset.IDEN as item LAYER<para>If the COMT subfield contains valuable information, the NAME and COMT subfields are saved in Output Dataset.CATS as items NAME and COMT.</para></bullet_item>
+				</bulletList>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SDTSImport example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to import a coverage from SDTS format.
+</para>
+				<code xml:space="preserve"># Name: SDTSImport_Example.py
+# Description: Imports a coverage from SDTS format
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = r"C:\data"
+
+# Set local variables
+inTransferPrefix = "UTHY"
+output = "C:/output/uthydro"
+dataDictionary = "DROP_DD"
+
+# Execute SDTSImport
+arcpy.SDTSImport_arc(inTransferPrefix, output, "", "", dataDictionary, "")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

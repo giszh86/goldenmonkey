@@ -1,0 +1,31 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">
+Package Toolbox
+ (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>
+Packages a toolbox and all tool resources into a single compressed .tpk file.
+No datasets will be packaged.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PackageToolbox" displayname="&#xA;Package Toolbox&#xA; (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>
+Packages a toolbox and all tool resources into a single compressed .tpk file.
+No datasets will be packaged.</para>
+		</summary><alink_name>PackageToolbox_management</alink_name><parameters><param sync="true" name="in_toolbox" displayname="Input Toolbox" datatype="Toolbox" direction="Input" expression="in_toolbox" type="Required"><pythonReference>
+						<para>
+The toolbox to package.</para>
+					</pythonReference><dialogReference>
+						<para>
+The toolbox to package.</para>
+					</dialogReference></param><param sync="true" name="output_file" displayname="Output File" datatype="File" direction="Output" expression="output_file" type="Required"><pythonReference>
+						<para> The location and name of the output package file (.tpk) to create. </para>
+					</pythonReference><dialogReference>
+						<para> The location and name of the output package file (.tpk) to create. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>
+The tool resources that are packaged along with your toolbox are models, scripts, map documents, layer files, graphic files, and documentation files. <para>No datasets are packaged.  Use  or  to consolidate data that your tools use.</para></para>
+			</bullet_item><bullet_item><para>Packaged toolboxes are not recursive.  If your model or script tool includes other models or scripts, these embedded models and scripts wil not be included in the toolbox package.  To include  embedded models and scripts; ensure that all referenced models or script reside in the same toolbox that is being packaged.</para></bullet_item><bullet_item><para>Toolbox packages require a description.   Descriptions can be added to a toolbox by editing the toolbox properties or the toolbox item description.</para></bullet_item><bullet_item><para>To unpack a toolbox package, right click the toolbox package and select Unpack.   Unpack will always extract the package into your user profile under: <bulletList><bullet_item><bold>XP</bold> - C:\Documents and Settings\username\My Documents\ArcGIS\Packages</bullet_item><bullet_item><bold>Vista and Windows 7</bold> - C:\Users\username\Documents\ArcGIS\Packages</bullet_item></bulletList>
+				</para></bullet_item></usage><scriptExamples><scriptExample><title>PackageToolbox Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the PackageToolbox tool in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+arcpy.env.workspace = "C:/arcgis/ArcTutor/GP Service Examples/Bufferfeatures" 
+arcpy.PackageToolbox_management('BufferFeatures.tbx', 'BufferFeatures.tpk')
+                    </code></scriptExample></scriptExamples></tool></metadata>

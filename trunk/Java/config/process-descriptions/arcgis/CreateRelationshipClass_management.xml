@@ -1,0 +1,154 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Relationship Class (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool creates a relationship class to store an association between fields or features in the origin table and the destination table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Associate</keyword><keyword>Attributed</keyword><keyword>Cardinality</keyword><keyword>Complex</keyword><keyword>Composite</keyword><keyword>Connect</keyword><keyword>Destination</keyword><keyword>Feature</keyword><keyword>Geodatabase</keyword><keyword>Join</keyword><keyword>Key</keyword><keyword>Link</keyword><keyword>Make</keyword><keyword>Many</keyword><keyword>New</keyword><keyword>One</keyword><keyword>Origin</keyword><keyword>Path</keyword><keyword>Peer</keyword><keyword>Relate</keyword><keyword>Rule</keyword><keyword>Simple</keyword><keyword>Table</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateRelationshipClass" displayname="Create Relationship Class (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>This tool creates a relationship class to store an association between fields or features in the origin table and the destination table.</para>
+		</summary><alink_name>CreateRelationshipClass_management</alink_name><parameters><param sync="true" name="origin_table" displayname="Origin Table" datatype="Table view" direction="Input" expression="origin_table" type="Required"><pythonReference>
+						<para>The table or feature class that is associated to the destination table.</para>
+					</pythonReference><dialogReference>
+						<para>The table or feature class that is associated to the destination table.</para>
+					</dialogReference></param><param sync="true" name="destination_table" displayname="Destination Table" datatype="Table view" direction="Input" expression="destination_table" type="Required"><pythonReference>
+						<para>The table that is associated to the origin table.</para>
+					</pythonReference><dialogReference>
+						<para>The table that is associated to the origin table.</para>
+					</dialogReference></param><param sync="true" name="out_relationship_class" displayname="Output Relationship Class" datatype="Relationship Class" direction="Output" expression="out_relationship_class" type="Required"><pythonReference>
+						<para>The relationship class that is created.</para>
+					</pythonReference><dialogReference>
+						<para>The relationship class that is created.</para>
+					</dialogReference></param><param sync="true" name="relationship_type" displayname="Relationship Type" datatype="String" direction="Input" expression="relationship_type" type="Required"><pythonReference>
+						<para>The type of relationship to create between the origin and destination tables.</para>
+						<bulletList><bullet_item>SIMPLE—A relationship between independent objects (parent to parent). This is the default. </bullet_item><bullet_item>COMPOSITE—A relationship between dependent objects where the lifetime of one object controls the lifetime of the related object (parent to child). </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of relationship to create between the origin and destination tables.</para>
+						<bulletList><bullet_item>SIMPLE—A relationship between independent objects (parent to parent). This is the default. </bullet_item><bullet_item>COMPOSITE—A relationship between dependent objects where the lifetime of one object controls the lifetime of the related object (parent to child). </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="forward_label" displayname="Forward Path Label" datatype="String" direction="Input" expression="forward_label" type="Required"><pythonReference>
+						<para>A name to uniquely identify the relationship when navigating from the origin table to the destination table.</para>
+					</pythonReference><dialogReference>
+						<para>A name to uniquely identify the relationship when navigating from the origin table to the destination table.</para>
+					</dialogReference></param><param sync="true" name="backward_label" displayname="Backward Path label" datatype="String" direction="Input" expression="backward_label" type="Required"><pythonReference>
+						<para>A name to uniquely identify the relationship when navigating from the destination table to the origin table.</para>
+					</pythonReference><dialogReference>
+						<para>A name to uniquely identify the relationship when navigating from the destination table to the origin table.</para>
+					</dialogReference></param><param sync="true" name="message_direction" displayname="Message Direction" datatype="String" direction="Input" expression="message_direction" type="Required"><pythonReference>
+						<para>The direction in which messages are passed between the origin and destination tables. For example, in a relationship between poles and transformers, when the pole is deleted, it sends a message to its related transformer objects informing them it was deleted.</para>
+						<bulletList><bullet_item>FORWARD—Messages are passed from the origin to the destination table. </bullet_item><bullet_item>BACK—Messages are passed from the destination to the origin table. </bullet_item><bullet_item>BOTH—Messages are passed from the origin to the destination table and from the destination to the origin table. </bullet_item><bullet_item>NONE—No messages passed. This is the default. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The direction in which messages are passed between the origin and destination tables. For example, in a relationship between poles and transformers, when the pole is deleted, it sends a message to its related transformer objects informing them it was deleted.</para>
+						<bulletList><bullet_item>FORWARD—Messages are passed from the origin to the destination table. </bullet_item><bullet_item>BACK—Messages are passed from the destination to the origin table. </bullet_item><bullet_item>BOTH—Messages are passed from the origin to the destination table and from the destination to the origin table. </bullet_item><bullet_item>NONE—No messages passed. This is the default. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="cardinality" displayname="Cardinality" datatype="String" direction="Input" expression="cardinality" type="Required"><pythonReference>
+						<para>Determines how many relationships exist between rows or features in the origin and rows or features in the destination table.</para>
+						<bulletList><bullet_item>ONE_TO_ONE—Each row or feature in the origin table can be related to zero or one row or feature in the destination table. This is the default. </bullet_item><bullet_item>ONE_TO_MANY—Each row or feature in the origin table can be related to one or several rows or features in the destination table. </bullet_item><bullet_item>MANY_TO_MANY—Several fields or features in the origin table can be related to one or several rows or features in the destination table. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines how many relationships exist between rows or features in the origin and rows or features in the destination table.</para>
+						<bulletList><bullet_item>ONE_TO_ONE—Each row or feature in the origin table can be related to zero or one row or feature in the destination table. This is the default. </bullet_item><bullet_item>ONE_TO_MANY—Each row or feature in the origin table can be related to one or several rows or features in the destination table. </bullet_item><bullet_item>MANY_TO_MANY—Several fields or features in the origin table can be related to one or several rows or features in the destination table. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="attributed" displayname="Relationship class is attributed" datatype="Boolean" direction="Input" expression="attributed" type="Required"><pythonReference>
+						<para>Specifies if the relationship will have attributes.</para>
+						<bulletList><bullet_item>NONE—Indicates the relationship class will not have attributes. This is the default. </bullet_item><bullet_item>ATTRIBUTED—Indicates the relationship class will have attributes. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies if the relationship will have attributes.</para>
+						<bulletList>
+							<bullet_item>Checked—Indicates the relationship class will have attributes.</bullet_item>
+							<bullet_item>Unchecked—Indicates the relationship class will not have attributes. This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="origin_primary_key" displayname="Origin Primary Key" datatype="String" direction="Input" expression="origin_primary_key" type="Required"><pythonReference>
+						<para>The field in the origin table, typically the OID field, that links it to the Origin Foreign Key field in the relationship class table.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the origin table, typically the OID field, that links it to the Origin Foreign Key field in the relationship class table.</para>
+					</dialogReference></param><param sync="true" name="origin_foreign_key" displayname="Origin Foreign Key" datatype="String" direction="Input" expression="origin_foreign_key" type="Required"><pythonReference>
+						<para>The field in the relationship class table that links it to the Origin Primary Key field in the origin table.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the relationship class table that links it to the Origin Primary Key field in the origin table.</para>
+					</dialogReference></param><param sync="true" name="destination_primary_key" displayname="Destination Primary Key" datatype="String" direction="Input" expression="destination_primary_key" type="Optional"><pythonReference>
+						<para>The field in the destination table, typically the OID field, that links it to the Destination Foreign Key field in the relationship class table.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the destination table, typically the OID field, that links it to the Destination Foreign Key field in the relationship class table.</para>
+					</dialogReference></param><param sync="true" name="destination_foreign_key" displayname="Destination Foreign Key" datatype="String" direction="Input" expression="destination_foreign_key" type="Optional"><pythonReference>
+						<para>The field in the relationship class table that links it to the Destination Primary Key field in the destination table.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the relationship class table that links it to the Destination Primary Key field in the destination table.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Relationships can exist between spatial objects (features in feature classes), nonspatial objects (rows in a table), or spatial and nonspatial objects.</para>
+			</bullet_item><bullet_item>
+				<para>Once created, a relationship class cannot be modified; you can only add, delete, or refine its . Relationship classes can be deleted and renamed using ArcCatalog in the same manner as any other object in the database.</para>
+			</bullet_item><bullet_item>
+				<para>For many-to-many relationship classes, a new table is created in the database to store the foreign keys used to link the origin and destination classes. This table can also have other fields to store attributes of the relationship itself that are not attributed to either the origin or destination class. For example, in a parcel database, you might have a relationship class between parcels and owners in which owners "own" parcels and parcels are "owned by" owners. An attribute of that relationship could be percentage ownership. One-to-one and one-to-many relationship classes can also have attributes; in this case, a table is created to store the relationships.</para>
+			</bullet_item><bullet_item>
+				<para>Simple or peer-to-peer relationships involve two or more objects in the database that exist independently of each other. For example, in a railroad network, you might have railroad crossings that have one or more related signal lamps. However, a railroad crossing can exist without a signal lamp, and signal lamps exist on the railroad network where there are no railroad crossings. Simple relationships can have one-to-one, one-to-many, or many-to-many cardinality.</para>
+			</bullet_item><bullet_item>
+				<para>A composite relationship is one in which the lifetime of one object controls the lifetime of its related objects. For example, power poles support transformers, and transformers are mounted on poles. Once a pole is deleted, a delete message is propagated to its related transformers, which are deleted from the transformers' feature class. Composite relationships are always one-to-many.</para>
+			</bullet_item><bullet_item>
+				<para>Forward and backward path labels describe the relationship when navigating from one object to another. The forward path label describes the relationship navigated from the origin class to the destination class. In the pole-transformer example, a forward path label might be "Poles support transformers." The backward path label describes the relationship navigated from the destination to the origin class. In the pole-transformer example, a backward path label might be"Transformers are mounted on poles."</para>
+			</bullet_item><bullet_item>
+				<para>Relationship classes can also be created in ArcCatalog. Select the command New
+						Relationship Class from the context menu of a geodatabase.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Create Relationship Class example (Python window)</title>
+					<para>The following Python Window script demonstrates how to use the Create Relationship Class tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data/Habitat_Analysis.gdb"
+arcpy.CreateRelationshipClass_management("vegtype", "vegtable", "veg_RelClass", "SIMPLE", "Attributes from vegtable", "Attributes and Features from vegtype", "NONE", "ONE_TO_ONE", "NONE", "HOLLAND95", "HOLLAND95")
+                    </code></scriptExample><scriptExample><title>Create Relationship Class example 1 (Stand-alone script)</title>
+					<para>Create a relationship class between vegetation feature class and table with additional vegetation information.</para>
+				<code xml:space="preserve"># Name: CreateRelationshipClass.py
+# Description: Create a relationship class between vegetation feature
+#                    class and table with additional vegetation information
+# Author: ESRI
+
+# import system modules 
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Copy vegtable.dbf to file gdb table, since both tables to be related
+#  must be in the same database
+vegDbf = "vegtable.dbf"
+vegTbl = "Habitat_Analysis.gdb/vegtable"
+arcpy.CopyRows_management(vegDbf, vegTbl)
+
+# Create simple relationship class between 'vegtype' vegetation layer
+#  and 'vegtable' table with additional vegetation information
+veg = "Habitat_Analysis.gdb/vegtype"
+relClass = "Habitat_Analysis.gdb/veg_RelClass"
+forLabel = "Attributes from vegtable"
+backLabel = "Attributes and Features from vegtype"
+primaryKey = "HOLLAND95"
+foreignKey = "HOLLAND95"
+arcpy.CreateRelationshipClass_management(veg, vegTbl, relClass, "SIMPLE", forLabel, 
+					      backLabel, "NONE", "ONE_TO_ONE", 
+					     "NONE", primaryKey, foreignKey)
+                    </code></scriptExample><scriptExample><title>Create Relationship Class example 2 (Stand-alone script)</title>
+					<para>Create a relationship class between parcel feature class and a table with owner information.</para>
+				<code xml:space="preserve"># Name: CreateRelationshipClass.py
+# Description: Create a relationship class between parcels feature
+#                    class and table with owner information
+# Author: ESRI
+
+# import system modules 
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Copy owners.dat to file gdb table, since both tables to be related
+#  must be in the same database
+ownerDat = "owners.dat"
+ownerTbl = "Montgomery.gdb/owners"
+arcpy.CopyRows_management(ownerDat, ownerTbl)
+
+# Create simple relationship class between 'parcel' parcel layer
+#  and 'owner' table with additional parcel owner information
+parcel = "Montgomery.gdb/Parcels"
+relClass = "Montgomery.gdb/parcelowners_RelClass"
+forLabel = "Owns"
+backLabel = "Is Owned By"
+primaryKey = "PROPERTY_ID"
+foreignKey = "PROPERTY_I"
+arcpy.CreateRelationshipClass_management(ownerTbl, parcel, relClass, "SIMPLE", forLabel, 
+					     backLabel, "BACKWARD", "ONE_TO_MANY", 
+					     "NONE", primaryKey, foreignKey)
+                    </code></scriptExample></scriptExamples></tool></metadata>

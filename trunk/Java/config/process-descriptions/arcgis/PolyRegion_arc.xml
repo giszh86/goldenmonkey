@@ -1,0 +1,64 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Polygon Coverage To Region (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts polygons to regions in a one-to-one mapping in a region subclass.</para>
+			<para>Each polygon in the Input Coverage becomes a region in the Output Subclass. Attributes in the polygon attribute table (PAT) are copied to the corresponding region PATsubclass. The Output Coverage can be the same as the Input Coverage; if so, the Output Subclass is then created in the Input Coverage.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Composite Features</keyword><keyword>Data Management</keyword><keyword>Polgons</keyword><keyword>Polyregion</keyword><keyword>Polyregion_Arc</keyword><keyword>Region Subclass</keyword><keyword>Regions</keyword><keyword>Subclass</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PolyRegion" displayname="Polygon Coverage To Region (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Converts polygons to regions in a one-to-one mapping in a region subclass.</para>
+			<para>Each polygon in the Input Coverage becomes a region in the Output Subclass. Attributes in the polygon attribute table (PAT) are copied to the corresponding region PATsubclass. The Output Coverage can be the same as the Input Coverage; if so, the Output Subclass is then created in the Input Coverage.</para>
+			
+		</summary><alink_name>PolyRegion_arc</alink_name><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The polygon coverage to be converted to a region subclass. Each polygon of the &lt;in_cover&gt; is made into a region.</para>
+					</pythonReference><dialogReference>
+						<para>The polygon coverage to be converted to a region subclass. Each polygon of the Input Coverage is made into a region.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The coverage that will contain the new subclass.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage that will contain the new subclass.</para>
+					</dialogReference></param><param sync="true" name="out_subclass" displayname="Output Subclass" datatype="String" direction="Input" expression="out_subclass" type="Required"><pythonReference>
+						<para>The name of the region subclass that will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the region subclass that will be created.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool can be used on an Input Coverage that does not have arc topology; however, the Input Coverage must have polygon topology.</para>
+			</bullet_item><bullet_item>
+				<para>The tool builds region topology for the Output Subclass. Topology in the Input Coverage is maintained in the Output Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>When the Output Coverage is not the same as the Input Coverage, a new coverage will be created, and the Input Coverage is copied to the Output Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Coverage cannot refer to an existing coverage unless it's the Input Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Polygon attributes are copied to the region subclass.</para>
+			</bullet_item><bullet_item>
+				<para>Region subclass names may be from 1 to 13 characters and cannot start with a numeric character.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>PolyRegion example (stand-alone script)</title><para> The following stand-alone script demonstrates how to create a region coverage from a polygon coverage.</para><code xml:space="preserve"># Name: PolyRegion_Example.py
+# Description: Creates a region coverage from a polygon coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "citylim"
+outCover = "C:/output/cityregions"
+outSubclass = "city"
+
+# Execute PolyRegion
+arcpy.PolyRegion_arc(inCover, outCover, outSubclass)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

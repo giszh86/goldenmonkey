@@ -1,0 +1,92 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Union (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Computes the geometric intersection of two polygon coverages. All polygons from both coverages will be split at their intersections and preserved in the output coverage.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Coverage</keyword><keyword>Merge</keyword><keyword>Overlay</keyword><keyword>Union</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Union" displayname="Union (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Computes the geometric intersection of two polygon coverages. All polygons from both coverages will be split at their intersections and preserved in the output coverage.</para>
+			
+		</summary><alink_name>Union_arc</alink_name><toolIllust type="illustration" src="Union_arc_h.gif" alt="Union Illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage whose polygons will be combined with the union coverage.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage whose polygons will be combined with the union coverage.</para>
+					</dialogReference></param><param sync="true" name="union_cover" displayname="Union Coverage" datatype="Coverage" direction="Input" expression="union_cover" type="Required"><pythonReference>
+						<para>The union coverage whose polygons will be combined with the input coverage.</para>
+					</pythonReference><dialogReference>
+						<para>The union coverage whose polygons will be combined with the input coverage.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The output coverage that will be created containing the results of the operation.</para>
+					</pythonReference><dialogReference>
+						<para>The output coverage that will be created containing the results of the operation.</para>
+					</dialogReference></param><param sync="true" name="fuzzy_tolerance" displayname="Fuzzy Tolerance" datatype="Double" direction="Input" expression="fuzzy_tolerance" type="Optional"><pythonReference>
+						<para>The minimum distance between coordinates in the output coverage. By default, the minimum fuzzy tolerance value from the input and union coverages is used.</para>
+						
+					</pythonReference><dialogReference>
+						<para>The minimum distance between coordinates in the output coverage. By default, the minimum fuzzy tolerance value from the input and union coverages is used.</para>
+						
+					</dialogReference></param><param sync="true" name="join_attributes" displayname="Join Attributes" datatype="Boolean" direction="Input" expression="join_attributes" type="Optional"><pythonReference>
+						<para>Specifies whether all items in both the input and the union coverage will be joined to the output coverage feature attribute table.</para>
+						<bulletList><bullet_item>JOIN—All items from both coverages will appear in the output coverage feature attribute table. If duplicate item names are encountered, the item in the input coverage will be maintained, and the one in the join file will be dropped. This is the default option and is used unless NO_JOIN is specified. </bullet_item><bullet_item>NO_JOIN—Only the feature's internal number (cover#) from the input coverage and the union coverage are joined in the output coverage feature attribute table. This option is useful in reducing the size of the output coverage feature attribute table. The cover# field can then be used in the Add Join tool to link the features in the resulting coverage back to the features in the input or union coverage. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether all items in the input coverage and union coverage will be joined to the output coverage feature attribute table.</para>
+						<bulletList>
+							<bullet_item>Checked—All items from both coverages will appear in the output coverage feature attribute table. If duplicate item names are encountered, the item in the input coverage will be maintained, and the one in the join file will be dropped. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Only the feature's internal number (cover#) from the input coverage and the union coverage are joined in the output coverage feature attribute table. This option is useful in reducing the size of the output coverage feature attribute table. The cover# field can then be used in the Add Join tool to link the features in the resulting coverage back to the features in the input or union coverage.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input coverage and the union coverage must have polygon topology.</para>
+			</bullet_item><bullet_item>
+				<para>Region subclasses in either the input or union coverage are maintained in the output coverage. Subclasses with identical names and attribute schemas are appended.</para>
+			</bullet_item><bullet_item>
+				<para>Label points are generated in each output coverage polygon. The new polygon User-IDs are set equal to the polygon internal number minus one.</para>
+			</bullet_item><bullet_item>
+				<para>The input coverage, union coverage, and output coverage must have different names, even when in different workspaces.</para>
+			</bullet_item><bullet_item>
+				<para>Existing input coverage annotation is copied to the output coverage by UNION.</para>
+			</bullet_item><bullet_item>
+				<para>Route systems in the input coverage will be maintained in the output coverage. However, UNION on routes and sections themselves is not permitted.</para>
+			</bullet_item><bullet_item>
+				<para>Region subclasses from both input coverage and union coverage are maintained. If the same subclass exists in both coverages, the subclass contents are appended. If the same subclass exists in both coverages but the item definitions are different, a message is given and the subclass is not propagated.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of the output coverage is determined by the  environment.</para>
+			</bullet_item><bullet_item>
+				<para>Projection files will be compared for similarity using the level of comparison specified in the  environment.</para>
+			</bullet_item><bullet_item>
+				<para>On single-precision coverages, UNION calculates a minimum tolerance based on the mathematical precision of the coverage (based on the width of the BND and the number of decimal places). If the calculated minimum tolerance is greater than the fuzzy tolerance entered, the calculated minimum tolerance is used.</para>
+			</bullet_item><bullet_item>
+				<para>The output coverage inherits the items from the point attribute table, tics, and the projection file data model contents from the input coverage.</para>
+			</bullet_item><bullet_item>
+				<para>When the input coverage contains linear data belonging to different planar graphs, the data will be maintained in the output coverage. For example, with coincident or colinear arcs such as arcs representing utility cables at different levels or a road following a stream, the coincident and colinear line segments will be preserved. However, additional vertices may be inserted. In the case of intersecting arcs such as a road passing over a stream, nodes will not be inserted at the apparent intersection.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Union example (stand-alone script)</title><para>The following stand-alone script demonstrates how to union two coverages.</para>
+					
+				<code xml:space="preserve"># Name: Union_Example.py
+# Description: Unions two coverages
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "tong_azone"
+unionCover = "tong_flood2"
+outCover = "C:/output/studyarea"
+joinAttributes = "NO_JOIN"
+
+# Execute Union
+arcpy.Union_arc(inCover, unionCover, outCover, "", joinAttributes)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,49 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Reverse Geocode (Geocoding)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Creates addresses from point locations in a feature class. The reverse geocoding process searches for the nearest address or intersection for the point location based on the specified search distance.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Address</keyword><keyword>Address Attribute</keyword><keyword>Address Inspector</keyword><keyword>Address Locator</keyword><keyword>Geocode</keyword><keyword>Geocoding</keyword><keyword>Locator</keyword><keyword>Point Feature Class</keyword><keyword>Reverse</keyword><keyword>Reverse Geocoding</keyword><keyword>Search Tolerance</keyword><keyword>Street Intersection</keyword><keyword>Xy Coordinates</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" ReverseGeocode " displayname=" Reverse Geocode (Geocoding)" toolboxalias="geocoding" softwarerestriction="none"><summary>
+			<para> Creates addresses from point locations in a feature class. The reverse geocoding process searches for the nearest address or intersection for the point location based on the specified search distance.</para>
+		</summary><alink_name> ReverseGeocode _geocoding</alink_name><parameters><param sync="true" name="in_features" displayname="Input Feature Class or layer" datatype="Feature Class" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>A point feature class or layer from which addresses are returned based on the features' point location.</para>
+					</pythonReference><dialogReference>
+						<para>A point feature class or layer from which addresses are returned based on the features' point location.</para>
+					</dialogReference></param><param sync="true" name="in_address_locator" displayname="Input Address Locator" datatype="Address Locator" direction="Input" expression="in_address_locator" type="Required"><pythonReference>
+						<para> The address locator to use to reverse geocode the input feature class. </para>
+					</pythonReference><dialogReference>
+						<para> The address locator to use to reverse geocode the input feature class. </para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para> The output feature class. </para>
+					</pythonReference><dialogReference>
+						<para> The output feature class. </para>
+					</dialogReference></param><param sync="true" name="address_type" displayname="Output Address Type" datatype="String" direction="Input" expression="address_type" type="Optional"><pythonReference>
+						<para> Indicates whether to return addresses for the points as street addresses or intersection addresses if the address locator supports intersection matching. </para>
+						<bulletList><bullet_item>ADDRESS—Returns street addresses or in the format defined by the input address locator. This is the default option. </bullet_item><bullet_item>INTERSECTION—Returns intersection addresses. This option is available if the address locator supports matching intersection addresses.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Indicates whether to return addresses for the points as street addresses or intersection addresses if the address locator supports intersection matching. </para>
+						<bulletList><bullet_item>ADDRESS—Returns street addresses or in the format defined by the input address locator. This is the default option. </bullet_item><bullet_item>INTERSECTION—Returns intersection addresses. This option is available if the address locator supports matching intersection addresses.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="search_distance" displayname="Search Distance" datatype="Linear unit" direction="Input" expression="search_distance" type="Optional"><pythonReference>
+						<para> The distance used to search for the nearest address or intersection for the point location. </para>
+					</pythonReference><dialogReference>
+						<para> The distance used to search for the nearest address or intersection for the point location. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						</environment><environment name="Output_coordinate_system" label="Output coordinate system"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para> The input feature class must contain point shapes with valid XY coordinates. Addresses will not be returned on points with null coordinates. </para>
+			</bullet_item><bullet_item><para>The output feature class will contain the same number of records as in the input feature class. Additional fields containing the result addresses   are added to the feature class. The names  of the fields are prefixed with "REV_".  If an address cannot be found, the fields will contain empty values.</para></bullet_item><bullet_item>
+				<para>If the spatial reference of the input feature class is different from the address locator, the address locator will transform the coordinates on the fly and try to find the match. The output feature class will be saved in the same spatial reference as the input feature class. Changing the spatial reference of the output feature class is possible by setting a different  in the tool's . </para>
+			</bullet_item><bullet_item>
+				<para>If a point in the input feature class fails to return an address,   it means there are no features in the address locator that can be associated with the input point. Here are a few common causes for the unmatched points:<bulletList><bullet_item>The search distance is too small that the point cannot find any nearest features.</bullet_item><bullet_item>The point contains null coordinates.</bullet_item><bullet_item>The point's coordinates are incorrect and cannot be transformed to the spatial reference used in the address locator.</bullet_item><bullet_item>The address locator does not contain reference features in the area that can be associated with the point. </bullet_item></bulletList></para><para>You may increase the search distance so that   the chance to find the nearest address is higher, or use a different address locator that  contains more features or covers a bigger area to match the input points. </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ReverseGeocode Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the ReverseGeocode function in immediate mode. </para>
+				<code xml:space="preserve">
+# Import system modules
+import arcpy
+from arcpy import env
+env.workspace = "C:/data/locations.gdb"
+
+# Set local variables:
+input_feature_class = "customers"
+address_locator = "e:/StreetMap/data/Street_Addresses_US"
+result_feature_class = "customers_with_address"
+
+arcpy.ReverseGeocode_geocoding(input_feature_class, address_locator, result_feature_class, "ADDRESS", "100 Meters")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Compare Replica Schema (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Generates an XML that describes schema differences between a replica geodatabase and the relative replica geodatabase. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>1 Way</keyword><keyword>2 Way</keyword><keyword>Centralize</keyword><keyword>Change</keyword><keyword>Check</keyword><keyword>Child</keyword><keyword>Contractor</keyword><keyword>Contrast</keyword><keyword>Database</keyword><keyword>Definition</keyword><keyword>Differ</keyword><keyword>Find</keyword><keyword>Gdb</keyword><keyword>In</keyword><keyword>Mobile</keyword><keyword>One</keyword><keyword>Out</keyword><keyword>Parent</keyword><keyword>Production</keyword><keyword>Publication</keyword><keyword>Replica</keyword><keyword>Replicate</keyword><keyword>Replication</keyword><keyword>Same</keyword><keyword>Sde</keyword><keyword>Source</keyword><keyword>Synchronize</keyword><keyword>Two</keyword><keyword>Way</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CompareReplicaSchema" displayname="Compare Replica Schema (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Generates an XML that describes schema differences between a replica geodatabase and the relative replica geodatabase. </para>
+		</summary><alink_name>CompareReplicaSchema_management</alink_name><parameters><param sync="true" name="in_geodatabase" displayname="Compare to Replica Geodatabase" datatype="Workspace; GeoDataServer" direction="Input" expression="in_geodatabase" type="Required"><pythonReference>
+						<para>Specifies the replica geodatabase to which the replica schema will be compared. The geodatabase may be a local geodatabase or a geodata service.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the replica geodatabase to which the replica schema will be compared. The geodatabase may be a local geodatabase or a geodata service.</para>
+					</dialogReference></param><param sync="true" name="in_source_file" displayname="Relative Replica Schema File" datatype="File" direction="Input" expression="in_source_file" type="Required"><pythonReference>
+						<para>Specifies the file which contains the relative replica schema to use for the comparison.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the file which contains the relative replica schema to use for the comparison.</para>
+					</dialogReference></param><param sync="true" name="output_replica_schema_changes_file" displayname="Output Replica Schema Changes File" datatype="File" direction="Output" expression="output_replica_schema_changes_file" type="Required"><pythonReference>
+						<para>Specifies the file to contain a description of the schema differences.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the file to contain a description of the schema differences.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The output replica schema changes file must be XML.</para>
+			</bullet_item><bullet_item>
+				<para>This tool is used when synchronizing replica schema. To synchronize replica schema, first run  on the relative replica. The output from export replica schema contains information about the schema of the replica datasets in the relative replica geodatabase. This output is then used with the  to find differences between the replica geodatabases. The output from the  tool can then be used to apply schema differences to the replica geodatabase using the .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CompareReplicaSchema Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the CompareReplicaSchema function in the Python window.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace = "C:/Data"
+arcpy.CompareReplicaSchema_management("MySDEdata.sde", "RelativeReplicaSchema.xml", "SchemaComparison.xml")
+                    </code></scriptExample><scriptExample><title>CompareReplicaSchema Example 2 (stand-alone Python script)</title>
+					<para>The following Python Window script demonstrates how to use the CompareReplicaSchema function in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name CompareReplicaSchema_Example2.py
+# Description: Compares a replica schema (in an SDE workspace) to its relative replicas schema (in an XML file).  
+# The results of the comparison are created in an XML file
+# The relative replicas XML schema file was created using the ExportReplicaSchema tool.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data"
+
+# Set local variables
+in_geodatabase = "MySDEdata.sde"
+in_source_file = "RelativeReplicaSchema.xml"
+output_schema_changes = "outputSchemaChanges.xml"
+
+# Execute CompareReplicaSchema
+arcpy.CompareReplicaSchema_management(in_geodatabase, in_source_file, output_schema_changes)
+                    </code></scriptExample></scriptExamples></tool></metadata>

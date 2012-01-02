@@ -1,0 +1,79 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Boolean Or (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs a Boolean Or operation on the cell values of two input rasters.</para>
+			<para>If one or both input values are true (non-zero), the output value is 1. If both input values are false (zero), the output is 0.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>False</keyword><keyword>Math</keyword><keyword>True</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BooleanOr" displayname="Boolean Or (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Performs a Boolean Or operation on the cell values of two input rasters.</para>
+			<para>If one or both input values are true (non-zero), the output value is 1. If both input values are false (zero), the output is 0.</para>
+			
+		</summary><alink_name>BooleanOr_sa</alink_name><toolIllust type="illustration" src="BooleanOr_sa_h.png" alt="Boolean Or illustration" /><parameters><param sync="true" name="in_raster_or_constant1" displayname="Input raster or constant value 1" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant1" type="Required"><pythonReference>
+						<para>The first input to use in this Boolean operation.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The first input to use in this Boolean operation.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="in_raster_or_constant2" displayname="Input raster or constant value 2" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant2" type="Required"><pythonReference>
+						<para>The second input to use in this Boolean operation.</para><para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The second input to use in this Boolean operation.</para><para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>The output values will be either 0 or 1.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>The output values will be either 0 or 1.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para>The Boolean math tools interpret the inputs as Boolean values, where non-zero values are considered true, and zero is considered false.</para></bullet_item><bullet_item><para>Two inputs are necessary for this Boolean evaluation to take place.</para></bullet_item><bullet_item>
+				<para>The order of inputs is irrelevant for this tool.</para>
+			</bullet_item><bullet_item><para>If the input values are floating point, they are converted to integer values of either 0 or 1 before the operation is performed. If the input value is a floating point 0.0, it is converted to an integer 0. If the input is any value other than 0.0, it is converted to be an integer 1. For example, input float values of 0.6, 32.22 and -4.2 will all be treated as being 1. The output values are always integer.</para></bullet_item><bullet_item>
+				<para>In Map Algebra, the equivalent  symbol for this tool is "|" ().</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>BooleanOr example 1 (Python window)</title>
+					<para>This example performs a Boolean Or operation on two GRID rasters.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outBooleanOr = BooleanOr("degs", "negs")
+outBooleanOr.save("C:/sapyexamples/output/outboolor2")
+                    </code></scriptExample><scriptExample><title>BooleanOr example 2 (stand-alone script)</title>
+					<para>This example performs a Boolean Or operation on two GRID rasters.</para>
+				<code xml:space="preserve"># Name: BooleanOr_Ex_02.py
+# Description: Performs a Boolean Or operation on the cell values of
+#              two input rasters
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster1 = "degs"
+inRaster2 = "negs"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute BooleanOr
+outBooleanOr = BooleanOr(inRaster1, inRaster2)
+
+# Save the output 
+outBooleanOr.save("C:/sapyexamples/output/outboolor")
+                    </code></scriptExample></scriptExamples></tool></metadata>

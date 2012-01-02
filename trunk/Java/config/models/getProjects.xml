@@ -1,0 +1,59 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?> 
+<!--
+  domain(type)={"FFD","WPS","GPW"}
+--> 
+<process type="FFD"
+         stepByStep="false"         
+         >
+	
+	<head>
+		<Identifier>getProjects</Identifier>
+		<Title>获取工程列表</Title>
+		<Abstract>获取所有工程的名称列表</Abstract>	
+		<DataInputs>			
+		</DataInputs>
+		<ProcessOutputs>	
+			<Output>
+				<Identifier>Projects</Identifier>
+				<Title>工程列表</Title>
+				<Abstract>所有工程的名称列表</Abstract>
+				<DataType>string</DataType>
+			</Output>		
+	    </ProcessOutputs>	 
+	</head>
+	
+	
+
+  <flow>   
+    <start id="1" />    
+    <operation name="ProcessGetBaseDirectory" id="2">
+      <inputs>       
+      </inputs>
+      <outputs> 
+		<output name="BaseDir" type="String"/>
+      </outputs>            
+    </operation>
+    <operation name="ProjectList" id="3">
+      <inputs>  
+		<input name="BaseDir" type="String" />	  
+      </inputs>
+      <outputs>  
+		<output name="Projects" type="String" title="工程列表" abstract="所有工程的名称列表" />      
+      </outputs>
+    </operation>  
+    <end id="4" />
+
+    <links>
+      <link from="1" to="2" />
+      <link from="2" to="3" >
+	   <assign>
+            <from>BaseDir</from>
+            <to>BaseDir</to>
+        </assign>
+	  </link>
+      <link from="3" to="4" />     
+    </links>
+	
+	<reply name="ProjectList" kind="ProjectList" operation="ProjectList" id="3" variable="Projects"/> 
+  </flow>
+</process>

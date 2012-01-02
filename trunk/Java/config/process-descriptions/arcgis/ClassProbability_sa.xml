@@ -1,0 +1,100 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Class Probability (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a multiband raster of probability bands, with one band being created for each class represented in the input signature file.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>A Priori</keyword><keyword>Classification</keyword><keyword>Cluster</keyword><keyword>Image Processing</keyword><keyword>Multiband</keyword><keyword>Multivariate Statistics</keyword><keyword>Remote Sensing</keyword><keyword>Signature File</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ClassProbability" displayname="Class Probability (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Creates a multiband raster of probability bands, with one band being created for each class represented in the input signature file.</para>
+			
+		</summary><alink_name>ClassProbability_sa</alink_name><parameters><param sync="true" name="in_raster_bands" displayname="Input raster bands" datatype="Raster Layer" direction="Input" expression="[in_raster_band,...]" type="Required"><pythonReference>
+						<para>The input raster bands.</para><para>Raster bands can be integer or floating point.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster bands.</para><para>Raster bands can be integer or floating point.</para>
+					</dialogReference></param><param sync="true" name="in_signature_file" displayname="Input signature file" datatype="File" direction="Input" expression="in_signature_file" type="Required"><pythonReference>
+						<para>Input signature file whose class signatures are used to generate the a priori probability bands.</para>
+						<para>A .gsg extension is required.</para></pythonReference><dialogReference>
+						<para>Input signature file whose class signatures are used to generate the a priori probability bands.</para>
+						<para>A .gsg extension is required.</para></dialogReference></param><param sync="true" name="maximum_output_value" displayname="Maximum output value" datatype="Long" direction="Input" expression="maximum_output_value" type="Optional"><pythonReference>
+						<para>Factor for scaling the range of values in the output probability bands.</para>
+						<para>By default, the values range from 0 to 100.</para>
+					</pythonReference><dialogReference>
+						<para>Factor for scaling the range of values in the output probability bands.</para>
+						<para>By default, the values range from 0 to 100.</para>
+					</dialogReference></param><param sync="true" name="a_priori_probabilities" displayname="A priori probability weighting" datatype="String" direction="Input" expression="a_priori_probabilities" type="Optional"><pythonReference><para>Specifies how a priori probabilities will be determined.</para>
+						<bulletList><bullet_item>EQUAL — All classes will have the same a priori probability.</bullet_item><bullet_item>SAMPLE — A priori probabilities will be proportional to the number of cells in each class relative to the total number of cells sampled in all classes in the signature file.</bullet_item><bullet_item>FILE —The a priori probabilities will be assigned to each class from an input ASCII a priori probability file.</bullet_item></bulletList>
+					</pythonReference><dialogReference><para>Specifies how a priori probabilities will be determined.</para>
+						<bulletList><bullet_item>EQUAL — All classes will have the same a priori probability.</bullet_item><bullet_item>SAMPLE — A priori probabilities will be proportional to the number of cells in each class relative to the total number of cells sampled in all classes in the signature file.</bullet_item><bullet_item>FILE —The a priori probabilities will be assigned to each class from an input ASCII a priori probability file.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="in_a_priori_file" displayname="Input a priori probability file" datatype="File" direction="Input" expression="in_a_priori_file" type="Optional"><pythonReference><para>A text file containing a priori probabilities for the input signature classes.</para>
+						<para>An input for the a priori probability file is only required when the FILE option is used.</para><para>The extension for the a priori file can be .txt or .asc.</para>
+					</pythonReference><dialogReference><para>A text file containing a priori probabilities for the input signature classes.</para>
+						<para>An input for the a priori probability file is only required when the FILE option is used.</para><para>The extension for the a priori file can be .txt or .asc.</para>
+					</dialogReference></param><param sync="true" name="out_multiband_raster" displayname="Output multiband raster" datatype="Raster" direction="Output" expression="out_multiband_raster" type="Required"><pythonReference>
+							<para>The output multiband raster dataset.</para>
+							<para>If the output is an ESRI GRID, the filename cannot have more than 9 characters.</para>
+						</pythonReference><dialogReference>
+							<para>The output multiband raster dataset.</para>
+							<para>If the output is an ESRI GRID, the filename cannot have more than 9 characters.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Any signature file created by the Create Signature, Edit Signature, or Iso Cluster tools is a valid entry for the input signature file. These will have a .gsg extension.</para>
+			</bullet_item><bullet_item><para>The input a priori probability file must be an ASCII file consisting of two columns. The values in the left column represent class IDs. The values in the right column represent the a priori probabilities for the respective classes. Valid values for class a priori probabilities must be greater than or equal to zero. If zero is specified as a probability, no associated probability band will be created for the class  in the output multiband raster. The sum of the specified a priori probabilities must be less than or equal to one. The format of the file is as follows:</para>
+				    1  .3
+    2  .1
+    4  .0
+    5  .15
+    7  .05
+    8  .2
+				<para>The classes omitted in the file will receive the average a priori probability of the remaining portion of the value of one. In the above example, all classes from 1 to 8 are represented in the signature file. The a priori probabilities of classes 3 and 6 are missing in the input a priori probability file. Since the sum of all probabilities specified in the above file is equal to 0.8, the remaining portion of the probability (0.2) is divided by the number of classes not specified (2). Therefore, classes 3 and 6 will each be assigned a probability of 0.1.</para>
+				<para>The extension for the input a priori probability file can be .txt or .asc.</para>
+			</bullet_item><bullet_item>
+				<para>If the input is a layer created from a multiband raster with more than three bands, the operation will  consider all the bands associated with the source dataset, not just the three bands that were loaded (symbolized) by the layer. If you want to process a subset of the bands in the source dataset, you can  use the  tool to create an input layer containing the desired bands.</para>
+			</bullet_item><bullet_item>
+				<para>The value entered for maximum output value sets the upper range of the values in the output probability bands. The default value of 100 creates a multiband raster with each band containing integer values ranging from 0 to 100. Any integer value greater than zero is valid for maximum output value. Only the value of one for the maximum output value argument will result in bands having floating-point values.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ClassProbability example 1 (Python window)</title>
+					<para>This example creates a multiband raster of probability bands for each class in a signature file.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outClassProbability = ClassProbability("redlands","C:/sapyexamples/data/wedit5.gsg",
+                    100,"EQUAL","")
+outClassProbability.save("c:/sapyexamples/output/classprob")
+                    </code></scriptExample><scriptExample><title>ClassProbability example 2 (stand-alone script)</title>
+					<para>This example creates a multiband raster of probability bands for each class in a signature file.</para>
+				<code xml:space="preserve"># Name: ClassProbability_Ex_02.py
+# Description: Creates probability layers for each class in a signature file.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "redl123"
+inSigFile = "c:/sapyexamples/data/wedit5.gsg"
+maxValue = 100
+aPrioriWeight = "EQUAL"
+aPrioriFile = ""
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ClassProbability
+outClassProbability = ClassProbability(inRaster,inSigFile,
+                    maxValue, aPrioriWeight, aPrioriFile)
+
+# Save the output 
+outClassProbability.save("c:/sapyexamples/output/classprob01")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Export Feature Attribute to ASCII (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Exports feature class coordinates and attribute values to a space, comma, or semi-colon delimited ASCII text file.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Colon</keyword><keyword>Comma</keyword><keyword>Coordinate</keyword><keyword>Copy</keyword><keyword>Delimit</keyword><keyword>File</keyword><keyword>Gdb</keyword><keyword>Generate</keyword><keyword>Geodatabase</keyword><keyword>Personal</keyword><keyword>Save</keyword><keyword>Shapefile</keyword><keyword>Shp</keyword><keyword>Space</keyword><keyword>Text</keyword><keyword>Txt</keyword><keyword>X</keyword><keyword>Y</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExportXYv" displayname="Export Feature Attribute to ASCII (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Exports feature class coordinates and attribute values to a space, comma, or semi-colon delimited ASCII text file.</para>
+		</summary><alink_name>ExportXYv_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/ExportXYv_stats_v.png" alt="Export Feature Attribute to ASCII tool illustration" /><toolIllust type="illustration" src="ExportXYv_stats_h.png" alt="Export Feature Attribute to ASCII tool illustration" /><parameters><param sync="true" name="Input_Feature_Class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="Input_Feature_Class" type="Required"><pythonReference>
+						<para>The feature class from which to export feature coordinates and attribute values.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class from which to export feature coordinates and attribute values.</para>
+					</dialogReference></param><param sync="true" name="Value_Field" displayname="Value Field" datatype="Field" direction="Input" expression="[Value_Field,...]" type="Required"><pythonReference>
+						<para>The field or fields in the input feature class containing the values to export to an ASCII text file.</para>
+					</pythonReference><dialogReference>
+						<para>The field or fields in the input feature class containing the values to export to an ASCII text file.</para>
+					</dialogReference></param><param sync="true" name="Delimiter" displayname="Delimiter" datatype="String" direction="Input" expression="Delimiter" type="Required"><pythonReference>
+						<para>Specifies how feature coordinates and attribute values will be separated in the output ASCII file.</para>
+						<bulletList><bullet_item>SPACE—Feature coordinates and attribute values will be separated by a space in the output. </bullet_item><bullet_item>COMMA—Feature coordinates and attribute values will be separated by a comma in the output. </bullet_item><bullet_item>SEMI-COLON—Feature coordinates and attribute values will be separated by a semicolon in the output. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how feature coordinates and attribute values will be separated in the output ASCII file.</para>
+						<bulletList><bullet_item>SPACE—Feature coordinates and attribute values will be separated by a space in the output. </bullet_item><bullet_item>COMMA—Feature coordinates and attribute values will be separated by a comma in the output. </bullet_item><bullet_item>SEMI-COLON—Feature coordinates and attribute values will be separated by a semicolon in the output. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Output_Ascii_File" displayname="Output Ascii File" datatype="File" direction="Output" expression="Output_Ascii_File" type="Required"><pythonReference>
+						<para>The ASCII text file that will contain the feature coordinate and attribute values.</para>
+					</pythonReference><dialogReference>
+						<para>The ASCII text file that will contain the feature coordinate and attribute values.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Output_coordinate_system" label="Output coordinate system"></environment></environments><usage><bullet_item>
+				<para>This tool may be used to export data for analysis with external software packages.</para>
+			</bullet_item><bullet_item>
+				<para>The X and Y coordinate values are written to the text file with eight significant digits of precision.  Floating point attribute values are written to the text file with six significant digits.</para>
+			</bullet_item><bullet_item><para>If this tool is part of a custom model tool, the output text file will only appear in the Results window if it is set as a  prior to running the tool.</para></bullet_item><bullet_item>
+				
+					<para>When using shapefiles, keep in mind that they cannot store null values. Tools or other procedures that create shapefiles from non-shapefile inputs may store or interpret null values as zero. This can lead to unexpected results.  See also .</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>ExportFeatureAttributeToASCII Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the ExportFeatureAttributeToASCII tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = r"c:\data"
+arcpy.ExportXYv_stats("AidsByCaCnty.shp","HEPRATE", "SPACE","aidsbycacnty.txt")
+                    </code></scriptExample><scriptExample><title>ExportFeatureAttributeToASCII Example (Stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the ExportFeatureAttributeToASCII tool.</para>
+				<code xml:space="preserve"># Export feature locations and attributes to an ASCII text file
+ 
+# Import system modules
+import arcpy
+ 
+# Local variables...
+workspace = "c:/data"
+input_features = "AidsByCaCnty.shp"
+export_ascii = "aidsbycacnty.txt"
+ 
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.env.workspace = workspace
+ 
+    # Process: Export Feature Attribute to Ascii...
+    arcpy.ExportXYv_stats(input_features, "HEPRATE", "SPACE", export_ascii)
+ 
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

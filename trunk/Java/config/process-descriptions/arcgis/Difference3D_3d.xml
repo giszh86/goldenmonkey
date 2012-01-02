@@ -1,0 +1,85 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">
+Difference 3D
+ (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>
+ Computes the geometric intersection of two volumes defined by closed multipatch features, based upon the geometric intersection of their patches. Subtracts all the volumes of one feature class from the other and writes the result to a new output feature class. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Analysis</keyword><keyword>3D Features</keyword><keyword>3D Geometry</keyword><keyword>3D Set Operators</keyword><keyword>Closed Multipatch</keyword><keyword>Multipatch</keyword><keyword>Set Operators</keyword><keyword>Solids</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="&#xA;Difference3D" displayname="&#xA;Difference 3D&#xA; (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>
+ Computes the geometric intersection of two volumes defined by closed multipatch features, based upon the geometric intersection of their patches. Subtracts all the volumes of one feature class from the other and writes the result to a new output feature class. </para>
+		</summary><alink_name>
+Difference3D_3d</alink_name><parameters><param sync="true" name="in_features_minuend" displayname="Input Multipatch Features to be Subtracted from" datatype="Feature Layer" direction="Input" expression="in_features_minuend" type="Required"><pythonReference>
+						<para>The collection of multipatch features from which the subtrahend multipatch features will be removed.
+</para>
+					</pythonReference><dialogReference>
+						<para>The collection of multipatch features from which the subtrahend multipatch features will be removed.
+</para>
+					</dialogReference></param><param sync="true" name="in_features_subtrahend" displayname="Input Multipatch Features to be Subtracted" datatype="Feature Layer" direction="Input" expression="in_features_subtrahend" type="Required"><pythonReference>
+						<para>The collection of multipatch features which will be subtracted from the minuend multipatch features.
+</para>
+					</pythonReference><dialogReference>
+						<para>The collection of multipatch features which will be subtracted from the minuend multipatch features.
+</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>
+The multipatch feature class into which the newly generated
+multipatches will be placed.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The multipatch feature class into which the newly generated
+multipatches will be placed.
+</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>Input feature class or layer must have multipatch geometry.</para>
+			</bullet_item><bullet_item>
+				<para>
+Only closed multipatches will be processed. All other multipatches
+will be skipped and an error written to the geoprocessing log. Use
+the 
+
+Is Closed
+
+3D geoprocessing tool to see if any features are not closed.</para>
+			</bullet_item><bullet_item><para>The output feature class will not have any of the attributes of the
+input feature class.
+If necessary, you can use spatial join to reconnect the attributes from the original input features.</para></bullet_item><bullet_item><para>Difference 3D is a 3D set operator as part of the  3D Features toolset. See  for more information on what set operators are and how to use them.</para></bullet_item></usage><scriptExamples><scriptExample><title>Difference 3D Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Difference 3D
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.Difference3D_3d("input_mp.shp", "erase_mp.shp", "difference_mp.shp")
+                    </code></scriptExample><scriptExample><title>Difference 3D Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Difference 3D
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: Difference3D Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              Difference3D tool.
+#              
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Set Local Variables
+    inMP = "buildings.shp"
+    eraseMP = "bldg_extensions.shp"
+    outMP = arcpy.CreateUniqueName("bldgs_without_extensions.shp") #ensures unique name
+    # Execute Difference3D
+    arcpy.Difference3D_3d(inMP, eraseMP, outMP)
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+
+del arcpy, inMP, eraseMP, outMP
+                    </code></scriptExample></scriptExamples></tool></metadata>

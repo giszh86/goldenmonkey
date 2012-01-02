@@ -1,0 +1,45 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Get Cell Value (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Retrieves the pixel value at a specific x,y coordinate. For multi-band raster datasets you can specify from which bands to retrieve the cell value. If you do not specify any bands, the pixel value for all the bands will be returned for the input location.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Pixel</keyword><keyword>Properties</keyword><keyword>Query</keyword><keyword>Retrieve</keyword><keyword>Value</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GetCellValue" displayname="Get Cell Value (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Retrieves the pixel value at a specific x,y coordinate. For multi-band raster datasets you can specify from which bands to retrieve the cell value. If you do not specify any bands, the pixel value for all the bands will be returned for the input location.</para>
+		</summary><alink_name>GetCellValue_management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster" datatype="Raster Layer; Raster Dataset; Mosaic Dataset; Mosaic Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster dataset.</para>
+					</dialogReference></param><param sync="true" name="location_point" displayname="Location" datatype="Point" direction="Input" expression="location_point" type="Required"><pythonReference>
+						<para>Type the x and y coordinates of the pixel location.</para>
+					</pythonReference><dialogReference>
+						<para>Type the x and y coordinates of the pixel location.</para>
+					</dialogReference></param><param sync="true" name="band_index" displayname="Bands" datatype="Long" direction="Input" expression="[band_index,...]" type="Optional"><pythonReference>
+						<para>Define which bands for which you would like to get the pixel value. If you do not define any bands, a pixel value for all the bands in the x,y location will be returned.</para>
+					</pythonReference><dialogReference>
+						<para>Click to select the bands for which you would like to get the pixel value. If you do not select any bands, the tool will return the pixel value for all the bands in the x,y location.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is used when you need the pixel value for a geoprocessing model. In ArcMap, ArcScene, or ArcGlobe you can use the Identify tool instead.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>GetCellValue example 1 (Python window)</title>
+					<para>This is a Python sample for the GetCellValue tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.GetCellValue_management("c:/data/rgb.img", "480785 3807335", "2;3")
+                    </code></scriptExample><scriptExample><title>GetCellValue example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for the GetCellValue tool.</para>
+				<code xml:space="preserve">##====================================
+##Get Cell Value
+##Usage: GetCellValue_management in_raster location_point {ID;ID...}
+    
+#try:
+    import arcpy
+    arcpy.env.workspace = r"C:/Workspace"
+    
+    ##Get the Band_2 and Band_3 cell value of certain point in a RGB image
+    arcpy.GetCellValue_management("rgb.img", "480785 3807335", "2;3")
+    ##View the result in execution log
+    print arcpy.GetMessages()
+
+except:
+    print "Get Cell Value example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

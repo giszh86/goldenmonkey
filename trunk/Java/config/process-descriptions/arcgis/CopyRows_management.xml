@@ -1,0 +1,70 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Copy Rows (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Writes the rows from an input table, table view, feature class, or feature layer to a new table. If a selection is defined on a feature class or feature layer in ArcMap, only the selected rows are copied out.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Back Up</keyword><keyword>Duplicate</keyword><keyword>New</keyword><keyword>Record</keyword><keyword>Subset</keyword><keyword>Tbl</keyword><keyword>Write</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CopyRows" displayname="Copy Rows (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Writes the rows from an input table, table view, feature class, or feature layer to a new table. If a selection is defined on a feature class or feature layer in ArcMap, only the selected rows are copied out.</para>
+		</summary><alink_name>CopyRows_management</alink_name><parameters><param sync="true" name="in_rows" displayname="Input Rows" datatype="Table View | Raster Layer" direction="Input" expression="in_rows" type="Required"><pythonReference>
+						<para>The rows from a feature class, layer, table, or table view to be copied.</para>
+					</pythonReference><dialogReference>
+						<para>The rows from a feature class, layer, table, or table view to be copied.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Table" datatype="Table" direction="Input" expression="out_table" type="Required"><pythonReference>
+						<para>The table to which the rows will be written. If the output table already exists and the Geoprocessing Option: 'Overwrite the outputs of geoprocessing operations' is checked, it will be overwritten. To prevent overwriting from the tool dialog box, uncheck that option.</para>
+					
+						<para>The table to which the rows will be written. If the output table already exists, it will be overwritten. To prevent overwriting in a script, set the OverwriteOutput property on the geoprocessor object to false or 0.</para>
+					</pythonReference><dialogReference>
+						<para>The table to which the rows will be written. If the output table already exists and the Geoprocessing Option: 'Overwrite the outputs of geoprocessing operations' is checked, it will be overwritten. To prevent overwriting from the tool dialog box, uncheck that option.</para>
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="Config Keyword" datatype="String" direction="Input" expression="config_keyword" type="Optional"><pythonReference>
+						<para>The config keyword specifies the default storage parameters for an ArcSDE geodatabase.</para>
+					</pythonReference><dialogReference>
+						<para>The config keyword specifies the default storage parameters for an ArcSDE geodatabase.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>All rows are copied if the input is a feature class or table. If the input rows are from a layer or table view which has a selection, only the selected features or rows will be used.</para>
+			</bullet_item><bullet_item>
+				<para> If the input rows are a feature class, then only the attributes, and not the geometry, will be copied to the output table.</para>
+			</bullet_item><bullet_item>
+				<para>If the output table already exists and the Geoprocessing Option: 'Overwrite the outputs of geoprocessing operations' is checked, it will be overwritten. To prevent overwriting from the tool dialog, uncheck that option; in a Python script set the OverwriteOutput property on the geoprocessor object to false or 0.</para>
+			</bullet_item><bullet_item>
+				<para>To add or append the copied rows to an existing table, use the Append tool.</para>
+			</bullet_item><bullet_item>
+				<para>The output table can be saved in a dBASE, ArcSDE geodatabase, file geodatabase, or personal geodatabase.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CopyFeatures Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the CopyFeatures function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/data"
+arcpy.CopyRows_management("vegtable.dbf", "C:/output/output.gdb/vegtable")
+                    </code></scriptExample><scriptExample><title>CopyFeatures Example 2 (Stand-alone script)</title>
+					<para>The following Stand-alone script demonstrates how to use CopyRows to copy the tables in a folder to a file geodatabase.</para>
+				<code xml:space="preserve"># Name: CopyRows_Example2.py
+# Description: Convert all dBASE tables in a folder to geodatabase tables
+# Requirement: os module
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+import os
+ 
+# Set environment settings
+env.workspace = "C:/data"
+ 
+# Set local variables
+outWorkspace = "c:/output/output.gdb"
+ 
+# Use ListTables to generate a list of dBASE tables in the
+#  workspace shown above.
+tableList = arcpy.ListTables()
+ 
+# Execute CopyRows for each input table
+for dbaseTable in tableList:
+    # Determine the new output feature class path and name
+    outTable = os.path.join(outWorkspace, dbaseTable.strip(".dbf"))
+    arcpy.CopyRows_management(dbaseTable, outTable)
+                    </code></scriptExample></scriptExamples></tool></metadata>

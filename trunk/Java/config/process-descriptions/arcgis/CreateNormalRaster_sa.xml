@@ -1,0 +1,76 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Normal Raster (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a raster of random values with a normal (gaussian) distribution within the extent and cell size of the analysis window.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Construct</keyword><keyword>Create</keyword><keyword>Generate</keyword><keyword>Make</keyword><keyword>Normal Distribution</keyword><keyword>Raster</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateNormalRaster" displayname="Create Normal Raster (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Creates a raster of random values with a normal (gaussian) distribution within the extent and cell size of the analysis window.</para>
+		</summary><alink_name>CreateNormalRaster_sa</alink_name><toolIllust type="illustration" src="CreateNormalRaster_sa_h.gif" alt="Create Normal Raster illustration" /><parameters><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size for the output raster dataset.</para><para>This is the value in the environment if specifically set. If not specifically set, it is the shorter of the width or height of the environment extent in the output spatial reference, divided by 250.</para></pythonReference><dialogReference>
+						<para>The cell size for the output raster dataset.</para><para>This is the value in the environment if specifically set. If not specifically set, it is the shorter of the width or height of the environment extent in the output spatial reference, divided by 250.</para></dialogReference></param><param sync="true" name="extent" displayname="Output extent" datatype="Envelope" direction="Input" expression="extent" type="Optional"><pythonReference><para>The extent for the output raster dataset.</para><para>The Extent is a Python class.</para><para>  In this tool it is in the form of: Extent(XMin, YMin, XMax, YMax)
+							<bulletList>
+								<bullet_item>where XMin and YMin define the lower-left coordinate of the extent, with XMax and YMax defining the upper-right coordinate.</bullet_item>
+							</bulletList></para><para>The coordinates are specified in the same map units as the in_raster.</para><para>The extent will be the value in the environment if specifically set. If not specifically set, the default is 0, 0, 250, 250.</para></pythonReference><dialogReference>
+						<para>The extent for the output raster dataset.</para><para>The extent will be the value in the environment if specifically set. If not specifically set, the default is 0, 0, 250, 250.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster of normally distributed values with a mean of 0.0 and a standard deviation of 1.0.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster of normally distributed values with a mean of 0.0 and a standard deviation of 1.0.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Create Normal Raster tool generates values for every cell in the output raster.  </para>
+			</bullet_item><bullet_item><para>The output raster from this tool is always floating point.</para></bullet_item><bullet_item><para>The cell values will have up to 7 digits of precision after the decimal point.</para></bullet_item><bullet_item>
+				<para>The output values will have a mean of 0.0 and a standard deviation of 1.0. If a different standard deviation is desired, multiply the output raster by that value. If a different mean is desired, add that value to the raster. For example, to create a raster where the values are characterized by a mean of 39 and a standard deviation of 2.5, multiply the results of Create Normal Raster by 2.5, then add 39.</para><bulletList><bullet_item><para>In Map Algebra, you could do something like:import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/data"
+outNorm = CreateNormalRaster(1, Extent(0, 0, 100, 100)) * 2.5 + 39
+outNorm.save("C:/output/norm2")</para></bullet_item></bulletList>
+			</bullet_item><bullet_item>
+				<para>The random number generator is automatically seeded with the current value of the system clock (seconds since January 1, 1970). Reseeding the Create Random Raster tool also reseeds Create Normal Raster.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateNormalRaster example 1 (Python window)</title>
+					<para>This sample creates an output raster of normally distributed values at the defined cell size and extent.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outNormalRaster = CreateNormalRaster(2, Extent(0, 0, 150, 150))
+outNormalRaster.save("C:/sapyexamples/output/outnormal")
+                    </code></scriptExample><scriptExample><title>CreateNormalRaster example 2 (stand-alone script)</title>
+					<para>This sample creates an output raster of normally distributed values at the defined cell size and extent.</para>
+				<code xml:space="preserve"># Name: CreateNormalRaster_Ex_02.py
+# Description: Creates a raster of random values from a normal distribution
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+cellSize = 2
+extent = Extent(0, 0, 150, 150)
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute CreateNormalRaster
+outNormalRaster = CreateNormalRaster(cellSize, extent) 
+
+# Save the output 
+outNormalRaster.save("C:/sapyexamples/output/outnormraster")
+                    </code></scriptExample></scriptExamples></tool></metadata>

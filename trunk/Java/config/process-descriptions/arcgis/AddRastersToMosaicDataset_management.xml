@@ -1,0 +1,187 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Add Rasters To Mosaic Dataset (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds raster datasets to a mosaic dataset from many sources, including a file, folder, raster catalog, table, or Web service.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Amd</keyword><keyword>Combine</keyword><keyword>Load</keyword><keyword>Mosaic Dataset</keyword><keyword>Raster Type</keyword><keyword>Sensor</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" AddRastersToMosaicDataset" displayname=" Add Rasters To Mosaic Dataset (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Adds raster datasets to a mosaic dataset from many sources, including a file, folder, raster catalog, table, or Web service.</para>
+		</summary><alink_name> AddRastersToMosaicDataset_management</alink_name><parameters><param sync="true" name="in_mosaic_dataset" displayname="Mosaic Dataset" datatype="Mosaic Dataset; Mosaic Layer" direction="Input" expression="in_mosaic_dataset" type="Required"><pythonReference>
+						<para>The path and name of the mosaic dataset to which the raster data will be added.</para>
+					</pythonReference><dialogReference>
+						<para>The path and name of the mosaic dataset to which the raster data will be added.</para>
+					</dialogReference></param><param sync="true" name="raster_type" displayname="Raster Type" datatype="Raster Type" direction="Input" expression="raster_type" type="Required"><pythonReference>
+						<para>The raster type is specific for imagery products. It identifies metadata, such as georeferencing, acquisition date, and sensor type, along with a raster format. </para>
+					</pythonReference><dialogReference>
+						<para>The raster type is specific for imagery products. It identifies metadata, such as georeferencing, acquisition date, and sensor type, along with a raster format. </para>
+					</dialogReference></param><param sync="true" name="input_path" displayname="Input" datatype="File; Workspace; Raster Dataset; Mosaic Dataset; Table; Raster Layer; Raster Catalog Layer; Mosaic Layer; WCS Coverage; Image Service; MapServer" direction="Input" expression="[input_path,...]" type="Required"><pythonReference>
+						<para>Path and name of the file, folder, raster dataset, raster catalog, mosaic dataset, table, or service.</para>
+						<bulletList><bullet_item>File—Allows you to select one or more raster datasets stored in a folder on disk, an image service definition (.ISDef) file, and a raster process definition (.RPDef) file.</bullet_item><bullet_item>Workspace—Allows you to select a folder containing multiple raster datasets. The folder can contain subfolders.This is affected by the Include Sub Folders and Filter parameters.</bullet_item><bullet_item>Dataset—Allows you to select an ArcGIS geographic dataset, such as any raster, raster catalog, or mosaic dataset in a geodatabase, or a table. </bullet_item><bullet_item>Service—Allows you to select a WCS, map, or image service, or a Web service layer file.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Path and name of the file, folder, raster dataset, raster catalog, mosaic dataset, table, or service.</para>
+						<bulletList><bullet_item>File—Allows you to select one or more raster datasets stored in a folder on disk, an image service definition (.ISDef) file, and a raster process definition (.RPDef) file.</bullet_item><bullet_item>Workspace—Allows you to select a folder containing multiple raster datasets. The folder can contain subfolders.This is affected by the Include Sub Folders and Filter parameters.</bullet_item><bullet_item>Dataset—Allows you to select an ArcGIS geographic dataset, such as any raster, raster catalog, or mosaic dataset in a geodatabase, or a table. </bullet_item><bullet_item>Service—Allows you to select a WCS, map, or image service, or a Web service layer file.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="update_cellsize_ranges" displayname="Update Cell Size Ranges" datatype="Boolean" direction="Input" expression="update_cellsize_ranges" type="Optional"><pythonReference>
+						<para>Calculates the cell size ranges of each raster in the mosaic dataset. These values are written to the attribute table within the minPS and maxPS columns.</para>
+						<bulletList><bullet_item>TRUE—The cell size ranges will be calculated for all the rasters in the mosaic dataset. This is the default.</bullet_item><bullet_item>FALSE—The cell size ranges will not be calculated.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Calculates the cell size ranges of each raster in the mosaic dataset. These values are written to the attribute table within the minPS and maxPS columns.</para>
+						<bulletList>
+							<bullet_item>Checked—The cell size ranges will be calculated for all the rasters in the mosaic dataset. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The cell size ranges will not be calculated.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="update_boundary" displayname="Update Boundary" datatype="Boolean" direction="Input" expression="update_boundary" type="Optional"><pythonReference>
+						<para>Generates or updates the boundary polygon of a mosaic dataset. By default, the boundary merges all the footprint polygons to create a single boundary representing the extent of the valid pixels.</para>
+						<bulletList><bullet_item>TRUE—The boundary will be generated or updated. This is the default.</bullet_item><bullet_item>FALSE—The boundary will not be generated or updated.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Generates or updates the boundary polygon of a mosaic dataset. By default, the boundary merges all the footprint polygons to create a single boundary representing the extent of the valid pixels.</para>
+						<bulletList>
+							<bullet_item>Checked—The boundary will be generated or updated. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The boundary will not be generated or updated.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="update_overviews" displayname="Update Overviews" datatype="Boolean" direction="Input" expression="update_overviews" type="Optional"><pythonReference>
+						<para>Defines and generates overviews for a mosaic dataset.</para>
+						<bulletList><bullet_item>TRUE—Overviews will be defined and generated.</bullet_item><bullet_item>FALSE—Overviews will not be defined or generated. This is the default.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Defines and generates overviews for a mosaic dataset.</para>
+						<bulletList>
+							<bullet_item>Checked—Overviews will be defined and generated.</bullet_item>
+							<bullet_item>Unchecked—Overviews will not be defined or generated. This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="maximum_pyramid_levels" displayname="Maximum Levels" datatype="Long" direction="Input" expression="maximum_pyramid_levels" type="Optional"><pythonReference>
+						<para> Defines the maximum number of pyramid levels that will be used in the mosaic dataset. For example, a value of 2 will use only the first two pyramid levels from the source  raster.  Leaving this blank or typing a value of -1 will build pyramids for all levels. </para>
+						<para>This value can affect the display and the number of overviews that will be generated.</para>
+					</pythonReference><dialogReference>
+						<para> Defines the maximum number of pyramid levels that will be used in the mosaic dataset. For example, a value of 2 will use only the first two pyramid levels from the source  raster.  Leaving this blank or typing a value of -1 will build pyramids for all levels. </para>
+						<para>This value can affect the display and the number of overviews that will be generated.</para>
+					</dialogReference></param><param sync="true" name="maximum_cell_size" displayname="Maximum Cell Size" datatype="Double" direction="Input" expression="maximum_cell_size" type="Optional"><pythonReference>
+						<para> Defines the maximum pyramid cell size that will be used in the mosaic dataset.</para>
+					</pythonReference><dialogReference>
+						<para> Defines the maximum pyramid cell size that will be used in the mosaic dataset.</para>
+					</dialogReference></param><param sync="true" name="minimum_dimension" displayname="Minimum Rows Or Columns" datatype="Long" direction="Input" expression="minimum_dimension" type="Optional"><pythonReference>
+						<para> Defines the minimum dimensions of a raster pyramid that will be used in the mosaic dataset.</para>
+					</pythonReference><dialogReference>
+						<para> Defines the minimum dimensions of a raster pyramid that will be used in the mosaic dataset.</para>
+					</dialogReference></param><param sync="true" name="spatial_reference" displayname="Coordinate System For Input Data" datatype="Spatial Reference" direction="Input" expression="spatial_reference" type="Optional"><pythonReference>
+						<para>Spatial reference system of the input data. </para>
+						<para>This should be specified if the data does not have a coordinate system; otherwise, the coordinate system of the mosaic dataset will be used. This can also be used to override the coordinate system of the input data.</para>
+					</pythonReference><dialogReference>
+						<para>Spatial reference system of the input data. </para>
+						<para>This should be specified if the data does not have a coordinate system; otherwise, the coordinate system of the mosaic dataset will be used. This can also be used to override the coordinate system of the input data.</para>
+					</dialogReference></param><param sync="true" name="filter" displayname="File Filter" datatype="String" direction="Input" expression="filter" type="Optional"><pythonReference>
+						<para>A file name filter for the data to be added to the mosaic dataset. The wildcards for the filter can be a simple asterisk before a file extension, or it can be in the form  or PERL syntax. <bulletList><bullet_item>*.TIF</bullet_item><bullet_item><para>
+										<bold>REGEX:</bold>.*1923.*|.*1922.*
+</para>
+								</bullet_item><bullet_item><para>
+										<bold>REGEX:</bold>.*192[34567].*|.*194.*|.*195.*</para>
+								</bullet_item></bulletList>
+						</para>
+					</pythonReference><dialogReference>
+						<para>A file name filter for the data to be added to the mosaic dataset. The wildcards for the filter can be a simple asterisk before a file extension, or it can be in the form  or PERL syntax. <bulletList><bullet_item>*.TIF</bullet_item><bullet_item><para>
+										<bold>REGEX:</bold>.*1923.*|.*1922.*
+</para>
+								</bullet_item><bullet_item><para>
+										<bold>REGEX:</bold>.*192[34567].*|.*194.*|.*195.*</para>
+								</bullet_item></bulletList>
+						</para>
+					</dialogReference></param><param sync="true" name="sub_folder" displayname="Include Sub Folders" datatype="Boolean" direction="Input" expression="sub_folder" type="Optional"><pythonReference>
+						<para>Recursively explores subfolders.</para>
+						<bulletList><bullet_item>TRUE—All subfolders will be explored for data. This is the default.</bullet_item><bullet_item>FALSE—Only the top-level folder will be explored for data.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Recursively explores subfolders.</para>
+						<bulletList>
+							<bullet_item>Checked—All subfolders will be explored for data. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Only the top-level folder will be explored for data.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="duplicate_items_action" displayname="Add New Datasets Only" datatype="Boolean" direction="Input" expression="duplicate_items_action" type="Optional"><pythonReference>
+						<para>A check will be performed to see if each raster has already been added, using the original path and file name. Choose which action to perform when a duplicate path and file name have been found.</para>
+						<bulletList><bullet_item>ALLOW_DUPLICATES—All rasters will be added even if they already exist within the mosaic dataset. This is the default.</bullet_item><bullet_item>EXCLUDE_DUPLICATES—The duplicate raster will not be added.</bullet_item><bullet_item>OVERWRITE_DUPLICATES—The duplicate raster will overwrite the existing one.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>A check will be performed to see if each raster has already been added, using the original path and file name. Choose which action to perform when a duplicate path and file name have been found.</para>
+						<bulletList><bullet_item>ALLOW_DUPLICATES—All rasters will be added even if they already exist within the mosaic dataset. This is the default.</bullet_item><bullet_item>EXCLUDE_DUPLICATES—The duplicate raster will not be added.</bullet_item><bullet_item>OVERWRITE_DUPLICATES—The duplicate raster will overwrite the existing one.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="build_pyramids" displayname="Build Raster Pyramids" datatype="Boolean" direction="Input" expression="build_pyramids" type="Optional"><pythonReference>
+						<para>Builds pyramids for each source raster.</para>
+						<bulletList><bullet_item>FALSE—Pyramids will not be generated. This is the default.</bullet_item><bullet_item>TRUE—Pyramids will be generated.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Build pyramids for each source raster. </para>
+						<bulletList>
+							<bullet_item>Unchecked—Pyramids will not be generated. This is the default.</bullet_item>
+							<bullet_item>Checked—Pyramids will be generated.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="calculate_statistics" displayname="Calculate Statistics" datatype="Boolean" direction="Input" expression="calculate_statistics" type="Optional"><pythonReference>
+						<para> Calculates statistics for each source raster. </para>
+						<bulletList><bullet_item>FALSE—Statistics will not be generated. This is the default.</bullet_item><bullet_item>TRUE—Statistics will be generated.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Calculates statistics for each source raster. </para>
+						<bulletList>
+							<bullet_item>Unchecked—Statistics will not be generated. This is the default.</bullet_item>
+							<bullet_item>Checked—Statistics will be generated.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="build_thumbnails" displayname="Build Thumbnails" datatype="Boolean" direction="Input" expression="build_thumbnails" type="Optional"><pythonReference>
+						<para> Builds thumbnails for each source raster. </para>
+						<bulletList><bullet_item>FALSE—Thumbnails will not be generated. This is the default.</bullet_item><bullet_item>TRUE—Thumbnails will be generated.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Builds thumbnails for each source raster. </para>
+						<bulletList>
+							<bullet_item>Unchecked—Thumbnails will not be generated. This is the default.</bullet_item>
+							<bullet_item>Checked—Thumbnails will be generated.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="operation_description" displayname="Operation Description" datatype="String" direction="Input" expression="operation_description" type="Optional"><dialogReference>
+						<para>A description you want used to represent this operation of adding raster data. It will be added to the raster type table which can be used as part of a search or as a reference at another time.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Output_extent" label="Output extent"></environment><environment name="Pyramid" label="Pyramid"></environment><environment name="Raster_statistics" label="Raster statistics"></environment></environments><usage><bullet_item>
+				<para>Raster data that is added is unmanaged; therefore, if the raster data is deleted or moved the mosaic dataset will be affected.</para>
+			</bullet_item><bullet_item>
+				<para>You can only add rasters to a mosaic dataset contained within a geodatabase. Those created outside a geodatabase can only contain the contents of a raster catalog or previously created mosaic dataset.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AddRastersToMosaicDataset example 1 (Python window)</title>
+					<para>This is a Python sample for the AddRastersToMosaicDataset tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.AddRasters_management("c:/workspace/AddMD.gdb/md01", "Raster Dataset",\
+                            "c:/data", "CALCULATE_CELL_SIZES", "BUILD_BOUNDARY",\                                            "BUILD_OVERVIEWS", "#", "#", "#",\
+                            "World_Mercator.prj", ".tif", "NO_SUBFOLDERS",\
+                            "EXCLUDE_DUPLICATES", "BUILD_PYRAMIDS",\
+                            "CALCULATE_STATISTICS", "NO_THUMBNAILS", "Add Rasters")
+                    </code></scriptExample><scriptExample><title>AddRastersToMosaicDataset example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for the AddRastersToMosaicDataset tool.</para>
+				<code xml:space="preserve">##===========================
+##Add Rasters To Mosaic Dataset
+##Usage: AddRastersToMosaicDataset_management in_mosaic_dataset raster_type input_path 
+##                             {UPDATE_CELL_SIZES | NO_CELL_SIZES} {UPDATE_BOUNDARY
+##                             | NO_BOUNDARY} {NO_OVERVIEWS | UPDATE_OVERVIEWS} 
+##                             {maximum_pyramid_levels} {maximum_cell_size} 
+##                             {minimum_dimension} {spatial_reference} {filter}
+##                             {SUBFOLDERS | NO_SUBFOLDERS} {ALLOW_DUPLICATES
+##                             | EXCLUDE_DUPLICATES | OVERWRITE_DUPLICATES}
+##                             {NO_PYRAMIDS | BUILD_PYRAMIDS}
+##                             {NO_STATISTICS | CALCULATE_STATISTICS} {NO_THUMBNAILS
+##                             | BUILD_THUMBNAILS} {operation_description}
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:\Workspace"
+    ##Add Raster Dataset type Raster to FGDB Mosaic Dataset
+    ##Calculate Cell Size Ranges and Build Boundary
+    ##Build Overviews for Mosaic Dataset upon the 3rd level Raster Dataset pyramid
+    ##Force Spatial Reference to World_Mercator
+    ##Apply TIFF file filter
+    ##Build Pyramids for the source datasets
+    arcpy.AddRastersToMosaicDataset_management("AddMD.gdb/md_rasds", "Raster Dataset", "rasds",\
+                                "UPDATE_CELL_SIZES", "UPDATE_BOUNDARY", "UPDATE_OVERVIEWS",\
+                                "2", "#", "#", "World_Mercator.prj", ".tif", "NO_SUBFOLDERS",\
+                                "EXCLUDE_DUPLICATES", "BUILD_PYRAMIDS", "CALCULATE_STATISTICS",\
+                                "NO_THUMBNAILS", "Add Raster Datasets")
+    
+    ##Add Landsat sensor type data to FGDB Mosaic Dataset
+    ##Specify the Sensor template as Pansharpened
+    ##Use Raster Dataset pyramid up to the cell size of 16
+    ##Force Spatial Reference to GCS_WCS_1984
+    ##Build Thumbnail for the Mosaic Dataset
+    arcpy.AddRastersToMosaicDataset_management("AddMD.gdb/md_landsat","Landsat", "landsat", "UPDATE_CELL_SIZES",\
+                                "UPDATE_BOUNDARY", "NO_OVERVIEWS", "#", "16", "#",\
+                                "GCS_WGS_1984.prj", "#", "SUBFOLDERS", "EXCLUDE_DUPLICATES",\
+                                "NO_PYRAMIDS", "NO_STATISTICS", "BUILD_THUMBNAILS",\
+                                "Add Landsat L1G")
+    ##Create SDE Mosaic Dataset
+    arcpy.AddRastersToMosaicDataset_management("SDE94.sde/TOOLBOX.md_qb","QuickBird", "qb", "UPDATE_CELL_SIZES",\
+                                "UPDATE_BOUNDARY", "NO_OVERVIEWS", "#", "#", "#",\
+                                "GCS_WGS_1984.prj", "#", "SUBFOLDERS", "EXCLUDE_DUPLICATES",\
+                                "NO_PYRAMIDS", "NO_STATISTICS", "BUILD_THUMBNAILS",\
+                                "Add QuickBird")
+except:
+    print "Add Rasters To Mosaic Dataset example failed."
+    print arcpy.GetMessages()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

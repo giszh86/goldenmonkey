@@ -1,0 +1,91 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Extract Subdataset (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Extracts raster datasets stored within a subdataset raster file.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Hdf4</keyword><keyword>Hdf5</keyword><keyword>Hierarchical Data Format</keyword><keyword>Multiple</keyword><keyword>National Imagery Transmission Format</keyword><keyword>Nitf</keyword><keyword>Page</keyword><keyword>Parent</keyword><keyword>Part</keyword><keyword>Preparation</keyword><keyword>Processing</keyword><keyword>Subsample</keyword><keyword>Subset</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExtractSubdataset" displayname="Extract Subdataset (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Extracts raster datasets stored within a subdataset raster file.</para>
+		</summary><alink_name>ExtractSubdataset_management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input subdataset raster format. </para><para>Valid inputs can either be HDF or NITF files.</para>
+					</pythonReference><dialogReference>
+						<para>The input subdataset raster format. </para><para>Valid inputs can either be HDF or NITF files.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output Raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Required"><pythonReference>
+						<para>The name and extension of the raster dataset to be created.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID.</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</pythonReference><dialogReference>
+						<para>The name and extension of the raster dataset to be created.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID.</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</dialogReference></param><param sync="true" name="subdataset_index" displayname="Subdataset ID" datatype="String" direction="Input" expression="[subdataset_index,...]" type="Optional"><pythonReference>
+						<para>Define the subdatasets that you want to extract.</para>
+					</pythonReference><dialogReference>
+						<para>Using the drop-down arrow, click to select the subdatasets that you want to extract.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system"></environment><environment name="Output_extent" label="Output extent"></environment><environment name="Output_Config_Keyword" label="Output Config Keyword"></environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Pyramid" label="Pyramid"></environment><environment name="Raster_statistics" label="Raster statistics"></environment><environment name="Compression" label="Compression"></environment></environments><usage><bullet_item>
+				<para>This tool is useful since ArcCatalog is only able to preview the first subdataset within the parent file.</para>
+			</bullet_item><bullet_item>
+				<para>Subdataset file formats can be either Hierarchical Data Format (HDF) or National Imagery Transmission Format (NITF) files</para>
+			</bullet_item><bullet_item>
+				<para>The data structure allows the file format to consist of multiple datasets in one parent file. In addition, each of the subdatasets can consist of one band or multiple bands.</para>
+			</bullet_item><bullet_item>
+				<para>If you do not choose any subdatasets, the default will be to only return the first subdataset.</para>
+			</bullet_item><bullet_item>
+				<para>When storing your raster dataset to a JPEG or a JPEG 2000 file, you can specify the compression quality within the Raster Storage Settings in the Environment Settings dialog box.</para>
+			</bullet_item><bullet_item>
+				<para>The GIF format does not support multiband; therefore, it is not a valid output format unless your raster dataset is single band.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ExtractSubdataset example 1 (Python window)</title>
+					<para>This is a Python sample for ExtractSubdataset</para>
+				<code xml:space="preserve">import arcpy
+arcpy.ExtractSubDataset_management("c:/data/MyNITF.ntf","extracted.tif", "2")
+                    </code></scriptExample><scriptExample><title>ExtractSubdataset example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for ExtractSubdataset</para>
+				<code xml:space="preserve">##====================================
+##Extract Subdataset
+##Usage: ExtractSubdataset_management in_raster out_raster {ID;ID...}
+
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:/Workspace"
+    
+    ##Extract 3-band subdataset from HDF
+    arcpy.ExtractSubDataset_management("MHDF.hdf", "subds.tif", "5;6;7")
+    
+    ##Extract 1-band subdataset from NITF
+    arcpy.ExtractSubDataset_management("MNITF.ntf","subds_ntf.tif", "2")
+except:
+    print "Extract Subdataset example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

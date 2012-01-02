@@ -1,0 +1,44 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Remove Rule From Topology (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Removes a rule from a topology.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coincident</keyword><keyword>Control</keyword><keyword>Delete</keyword><keyword>Geometry</keyword><keyword>Relationship</keyword><keyword>Rule</keyword><keyword>Share</keyword><keyword>Spatial</keyword><keyword>Valid</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RemoveRuleFromTopology" displayname="Remove Rule From Topology (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Removes a rule from a topology.</para>
+		</summary><alink_name>RemoveRuleFromTopology_management</alink_name><parameters><param sync="true" name="in_topology" displayname="Input Topology" datatype="Topology" direction="Input" expression="in_topology" type="Required"><pythonReference>
+						<para>The topology from which to remove a rule.  This is the full path to the topology layer on disk, NOT the topology layer name in map.</para>
+					</pythonReference><dialogReference>
+						<para>The topology from which to remove a rule.  This is the full path to the topology layer on disk, NOT the topology layer name in map.</para>
+					</dialogReference></param><param sync="true" name="in_rule" displayname="Rule" datatype="String" direction="Input" expression="in_rule" type="Required"><pythonReference>
+						<para>The topology rule to remove from the topology.</para>
+					</pythonReference><dialogReference>
+						<para>The topology rule to remove from the topology.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>When running this tool using scripting, the feature class ObjectClassID involved in the topology rule to be removed must be specified in parentheses after the rule name.  For example<bulletList><bullet_item>Must Not Overlap (2) where "2" is theObjectClassID of the feature class that participates in the Must Not Overlap rule that is to be removed from the topology.</bullet_item><bullet_item>
+							Must Be Properly Inside (78-79) where "78" and "79" are the ObjectClassID of the feature classes that participate in the Must Be Properly Inside  rule that is to be removed from the topology</bullet_item></bulletList> See the tool code samples for an example. If you are using the tool from the tool dialog box the list of rules is presented in a drop-down list.</para>
+				
+				
+			</bullet_item><bullet_item>
+				<para>Removing a rule will require the entire extent of the  topology to be validated.</para>
+			</bullet_item><bullet_item>
+				<para>This tool alters the schema of the topology, therefore it requires an exclusive lock and also requires that the topology not be registerd as versioned.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RemoveRuleFromTopology Python Window example</title>
+					<para>The following script demonstrates how to use the RemoveRuleFromTopology function in the Python Window.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.RemoveRuleFromTopology_management("C:/CityData.mdb/LegalFabric/topology", "Must Not Have Dangles (21)")
+
+                    </code></scriptExample><scriptExample><title>RemoveRuleFromTopology stand-alone script example</title>
+					<para>The following stand-alone script demonstrates how to use the RemoveRuleFromTopology function.</para>
+				<code xml:space="preserve">
+
+# Name: RemoveRuleFromTopology_Example.py
+# Description: Removes a rule from a topology
+# Author: ESRI
+
+# Import system modules
+
+import arcpy
+
+topo = "C:/CityData.mdb/LegalFabric/topology"
+rule = "Must Not Have Dangles (21)"
+arcpy.RemoveRuleFromTopology_management(topo, rule)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

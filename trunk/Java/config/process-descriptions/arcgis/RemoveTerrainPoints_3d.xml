@@ -1,0 +1,44 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Remove Terrain Points (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool removes points within an area of interest from one or more embedded feature classes.</para>
+			
+				<para>This is a deprecated tool.  This functionality has been added to the Delete Terrain Points tool.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RemoveTerrainPoints" displayname="Remove Terrain Points (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool removes points within an area of interest from one or more embedded feature classes.</para>
+			
+				<para>This is a deprecated tool.  This functionality has been added to the Delete Terrain Points tool.</para>
+			</summary><alink_name>RemoveTerrainPoints_3d</alink_name><parameters><param sync="true" name="in_terrain" displayname="Input Terrain" datatype="Terrain layer" direction="Input" expression="in_terrain" type="Required"><pythonReference>
+						<para>The terrain dataset to be modified</para>
+					</pythonReference><dialogReference>
+						<para>The terrain dataset to be modified</para>
+					</dialogReference></param><param sync="true" name="data_source" displayname="Embedded Feature Class" datatype="String" direction="Input" expression="data_source" type="Required"><pythonReference>
+						<para>One or more embedded feature classes from which points will be removed</para>
+					</pythonReference><dialogReference>
+						<para>One or more embedded feature classes from which points will be removed</para>
+					</dialogReference></param><param sync="true" name="aoi_extents" displayname="Area of Interest" datatype="Extent" direction="Input" expression="aoi_extents" type="Required"><pythonReference>
+						<para>The XY extent defining the area from which points will be removed</para>
+					</pythonReference><dialogReference>
+						<para>The XY extent defining the area from which points will be removed</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool functions only on feature classes embedded in a terrain. The terrain and at least one embedded feature class must already exist.</para>
+			</bullet_item><bullet_item>
+				<para>A rectangular area of interest (AOI) is required. This defines the area in the embedded feature class where multipoint vertices will be deleted. If a multipoint crosses the AOI boundary, only those vertices within the boundary will be deleted.</para>
+			</bullet_item><bullet_item>
+				<para>Remove Terrain Points looks for an existing edit session to piggyback on. This supports undo if the edit session was initialized to support undo (for example, using Editor inside ArcMap). If there's no edit session, it starts and stops one itself, in which case there is no chance for an undo.</para>
+			</bullet_item><bullet_item>
+				<para>To use this tool on a terrain inside an ArcSDE database, the terrain needs to be registered as versioned. You do this by registering the feature dataset the terrain resides in as versioned.</para>
+			</bullet_item><bullet_item>
+				<para>Removing points from an embedded feature class will invalidate the terrain. Run  after adding points.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Remove Terrain Points Example (Python window)</title><para>The following Python Window script demonstrates how to use the Remove Terrain Points
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcgisscripting
+gp = arcgisscripting.create()
+
+gp.CheckOutExtension("3D")
+gp.workspace = "C:/data"
+extent = "6442927 2053828 6452927 2065858"
+gp.RemoveTerrainPoints_3d("sample.gdb/featuredataset/terrain", "napa_points", extent)
+                    </code></scriptExample></scriptExamples></tool></metadata>

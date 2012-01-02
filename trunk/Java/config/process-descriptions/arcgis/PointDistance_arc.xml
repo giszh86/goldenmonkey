@@ -1,0 +1,81 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Point Distance (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Computes the point-to-point distance between each point in a coverage to all points in the same or another coverage within a specified search radius.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Analysis</keyword><keyword>Coverage</keyword><keyword>Distance</keyword><keyword>Overlay</keyword><keyword>Pointdistance_Arc</keyword><keyword>Search Radius</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PointDistance" displayname="Point Distance (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Computes the point-to-point distance between each point in a coverage to all points in the same or another coverage within a specified search radius.</para>
+		</summary><alink_name>PointDistance_arc</alink_name><toolIllust type="illustration" src="PointDistance_arc_h.gif" alt="Point Distance illustration" /><parameters><param sync="true" name="from_cover" displayname="From Coverage" datatype="Coverage" direction="Input" expression="from_cover" type="Required"><pythonReference>
+						<para>The point coverage for which distances to another coverage's points are to be computed.</para>
+					</pythonReference><dialogReference>
+						<para>The point coverage for which distances to another coverage's points are to be computed.</para>
+					</dialogReference></param><param sync="true" name="to_cover" displayname="To Coverage" datatype="Coverage" direction="Input" expression="to_cover" type="Required"><pythonReference>
+						<para>The point coverage from which point distances are to be measured. Distances between all points in the same coverage can be calculated by specifying the same coverage name for both &lt;from_cover&gt; and &lt;to_cover&gt; arguments.</para>
+					</pythonReference><dialogReference>
+						<para>The point coverage from which point distances are to be measured. Distances between all points in the same coverage can be calculated by specifying the same coverage name for both From Cover and To Cover arguments.</para>
+					</dialogReference></param><param sync="true" name="out_info_table" displayname="Output Info Table" datatype="ArcInfo Table" direction="Output" expression="out_info_table" type="Required"><pythonReference>
+						<para>The INFO data table created by Point Distance, which holds the distance measurements. The number of records created in &lt;output Info table:&gt; depends on the search radius used, but it can be as large as the number of points in the &lt;from cover&gt; times the number of points in the &lt;to cover:&gt;.</para>
+					</pythonReference><dialogReference>
+						<para>The INFO data table created by Point Distance, which holds the distance measurements. The number of records created in Output Info Table depends on the search radius used, but it can be as large as the number of points in the From Cover times the number of points in the To Cover.</para>
+					</dialogReference></param><param sync="true" name="search_radius" displayname="Search Radius" datatype="Double" direction="Input" expression="search_radius" type="Optional"><pythonReference>
+						<para>The maximum distance in coverage units a feature can be from the current point for consideration as the closest feature. The default value is the diagonal width of the from coverage’s BND.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum distance in coverage units a feature can be from the current point for consideration as the closest feature. The default value is the diagonal width of the from coverage’s BND.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The definition of the distance item in the output INFO file will be the same as the highest precision of the two point coverage inputs.</para>
+			</bullet_item><bullet_item>
+				<para>The search radius is the maximum distance in coverage units a feature can be from the current point for consideration. The diagonal width of the from coverage’s BND will be used as the default if no {search_radius} is specified.</para>
+			</bullet_item><bullet_item>
+				<para>Distance is set to zero when no match is found within the search radius for a particular point. If no matching points are found, the tool gives a warning, and no output info table is created.</para>
+			</bullet_item><bullet_item>
+				<para>Point Distance will not work if either coverage contains more than 130,000 points.</para>
+			</bullet_item><bullet_item>
+				<para>The output INFO table can become very large when both coverages contain many points. Use a smaller search radius to limit the number of combinations.</para>
+			</bullet_item><bullet_item>
+				<para>If Point Distance is used to calculate the distance between other points in a single coverage, the cover# will have an A and a B appended to the item name.</para>
+			</bullet_item><bullet_item>
+				<para>Projection files will be compared for similarity using the level of comparison specified with the Project Compare environment setting. For more information, see .</para>
+			</bullet_item><bullet_item>
+				<para>The results are recorded in an output table containing items for the internal numbers and distance. The input with the highest precision for distance is the one used for the output INFO distance field.</para>
+				
+					COLUMN    ITEM NAME            WIDTH  OUTPUT  TYPE  N.DEC
+     1    &lt;From coverage&gt;#         4       6     B      -
+     5    &lt;To coverage&gt;#           4       6     B      -
+     9    DISTANCE                 4      12     F      3
+                                     (single precision)
+Or
+     9    DISTANCE                 8      18     F      5
+                                     (double precision)
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>PointDistance example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to calculate the distances between points in two coverages.</para>
+					
+				<code xml:space="preserve"># Name: PointDistance_Example.py
+# Description: Calculates the distances between the points in two coverages
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+fromCover = "wells"
+toCover = "trees"
+outInfoTable = "C:/output/distance"
+
+# Execute PointDistance
+arcpy.PointDistance_arc(fromCover, toCover, outInfoTable, "")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

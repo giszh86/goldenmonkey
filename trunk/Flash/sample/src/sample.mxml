@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   minWidth="955" minHeight="600">
+	<fx:Declarations>
+		<fx:XML id="sampleXML" source="com/monkey/assets/xml/sample.xml" />
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.monkey.core.IApplication;
+			import com.monkey.core.IContext;
+			import com.monkey.core.InstanceManager;
+			import com.monkey.process.IPManager;
+			import com.monkey.process.IProcess;
+			import com.monkey.process.ProcessChain;
+			import com.monkey.process.ModelResult;
+			import com.monkey.runner.Runner;
+			import com.monkey.sample.FactorySample;
+			import com.monkey.utils.Initializer;
+			
+			import mx.collections.ArrayList;
+			
+			
+			private function onClick():void{
+				var index:int = 2;
+				switch(index){
+					case 1:
+					{
+						sample1();
+					}
+					break;
+					case 2:
+					{
+						sample2();
+					}
+					break;
+				}
+			}
+			
+			//first--6
+			//second--2
+			//s1--con
+			//s2--cmeu
+			//s3--tent	
+			protected function sample1():void{
+				Initializer.init();
+									
+				var manager:IPManager = InstanceManager.instance.processManager;
+				if (null == manager){
+					return;
+				}
+				manager.register(new FactorySample());
+				
+				var chain:ProcessChain = new ProcessChain();
+				var algebraic:IProcess = chain.addProcess("monkey.Algebraic");				
+				algebraic.setInputValue("first", manager.createObject("number",firstInput.text));
+				algebraic.setInputValue("second", manager.createObject("number",secondInput.text));
+				
+				var combineString:IProcess = chain.addProcess("monkey.CombineString");
+				combineString.setInputValue("s1", s1Input.text);
+				combineString.setInputValue("s2", s2Input.text);
+				combineString.setInputValue("s3", s3Input.text);				
+				
+				var createElement:IProcess = chain.addProcess("monkey.CreateElement");
+				
+				chain.connectProcess(algebraic,createElement,"plus","value");
+				chain.connectProcess(combineString,createElement,"s12","key");
+				chain.connectProcess(combineString,createElement,"s13", "file");
+				if (!chain.execute()){
+					return;
+				}	
+				
+				var x:XML = createElement.getOutputValue("file") as XML;
+				resultInput.text = x.toXMLString();
+			}
+			
+			protected function sample2():void{
+				Initializer.init();
+				var manager:IPManager = InstanceManager.instance.processManager;
+				if (null == manager){
+					return;
+				}
+				manager.register(new FactorySample());
+				
+				var content:String = sampleXML.toXMLString();
+				
+				var args:ArrayList = new ArrayList();
+				args.addItem(firstInput.text);
+				args.addItem(secondInput.text);
+				args.addItem(s1Input.text);
+				args.addItem(s2Input.text);
+				args.addItem(s3Input.text);
+				
+				Runner.instance.dispatchCompleteHandler = runCompleteListener;
+				Runner.instance.runModel(content,args);							
+			}
+			
+			private function runCompleteListener(result:ModelResult):void{
+				var x:XML = result.value  as XML;
+				if (null != x){
+					resultInput.text = x.toXMLString();
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<s:BorderContainer left="50" top="50">		
+		<s:VGroup paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10">				
+		<s:HGroup>		
+			<s:Label id="first" text="first"  width="50" height="25" textAlign="right" />
+			<s:TextInput id="firstInput"  width="150" height="25" textAlign="left" />
+		</s:HGroup>
+		<s:HGroup>		
+			<s:Label id="second" text="second"  width="50" height="25" textAlign="right" />			
+			<s:TextInput id="secondInput"  width="150" height="25" textAlign="left" />			
+		</s:HGroup>
+		<s:HGroup>		
+			<s:Label id="s1" text="s1"  width="50" height="25" textAlign="right" />			
+			<s:TextInput id="s1Input"  width="150" height="25" textAlign="left" />			
+		</s:HGroup>
+		<s:HGroup>		
+			<s:Label id="s2" text="s2"  width="50" height="25" textAlign="right" />			
+			<s:TextInput id="s2Input"  width="150" height="25" textAlign="left" />			
+		</s:HGroup>
+		<s:HGroup>		
+			<s:Label id="s3" text="s3"  width="50" height="25" textAlign="right" />			
+			<s:TextInput id="s3Input"  width="150" height="25" textAlign="left" />			
+		</s:HGroup>
+		<s:HGroup>		
+			<s:Label id="result" text="结果"  width="50" height="25" textAlign="right" />			
+			<s:TextInput id="resultInput"  width="150" height="80" textAlign="left" />			
+		</s:HGroup>
+		<s:Button id="btn" label="确定" click="onClick()"/>
+		</s:VGroup>
+	</s:BorderContainer>	
+</s:Application>

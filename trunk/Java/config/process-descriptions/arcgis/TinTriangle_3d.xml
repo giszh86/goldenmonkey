@@ -1,0 +1,108 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">TIN Triangle (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool extracts triangles as polygons from an input TIN into an output feature class and produces a polygon feature class whose polygons are constructed from the input TIN's triangles.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Convert</keyword><keyword>Tin</keyword><keyword>Triangle</keyword><keyword>Triangle</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TINTriangle" displayname="TIN Triangle (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool extracts triangles as polygons from an input TIN into an output feature class and produces a polygon feature class whose polygons are constructed from the input TIN's triangles.</para>
+			
+		</summary><alink_name>TINTriangle_3d</alink_name><toolIllust type="illustration" src="TINTriangle_3d_h.gif" alt="TIN Triangle illustration" /><parameters><param sync="true" name="in_tin" displayname="Input TIN" datatype="TIN Layer" direction="Input" expression="in_tin" type="Required"><pythonReference>
+						<para>The input TIN.</para>
+					</pythonReference><dialogReference>
+						<para>The input TIN.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class.</para>
+					</dialogReference></param><param sync="true" name="units" displayname="Slope Units" datatype="String" direction="Input" expression="units" type="Optional"><pythonReference>
+						<para>The units of measure to be used in calculating the slope. By default, the units will be degrees.</para>
+					</pythonReference><dialogReference>
+						<para>The units of measure to be used in calculating the slope. By default, the units will be degrees.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>The factor applied to the triangle slope calculation to convert the TIN's z-units to its x- and y-units. By default, the Z factor is 1.</para>
+					</pythonReference><dialogReference>
+						<para>The factor applied to the slope calculation to convert the TIN's z-units to its x- and y-units. By default, the Z factor is 1.</para>
+					</dialogReference></param><param sync="true" name="hillshade" displayname="HILLSHADE azimuth, altitude" datatype="String" direction="Input" expression="hillshade" type="Optional"><pythonReference>
+						<para>Provides hillshading for the feature class and sets the light source's.</para>
+					</pythonReference><dialogReference>
+						<para>Provides hillshading for the feature class and sets the light source's.</para>
+					</dialogReference></param><param sync="true" name="tag_field" displayname="Tag Value Field" datatype="String" direction="Input" expression="tag_field" type="Optional"><pythonReference>
+						<para>The output tag value field name into which the triangle tags will be placed.</para>
+					</pythonReference><dialogReference>
+						<para>The output tag value field name into which the triangle tags will be placed.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item><para>Slope and aspect are calculated based on the plane defined for each
+triangle.
+</para></bullet_item><bullet_item><para>If the TIN has triangle tag values, you can specify an output field
+that will be added to the output feature class to contain these
+values.
+</para></bullet_item></usage><scriptExamples><scriptExample><title>TIN Triangle Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the TIN Triangle
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.Near3D_3d("points_3D.shp", "buildings_multipatch.shp", "30", "LOCATION", "ANGLE", "DELTA")
+                    </code></scriptExample><scriptExample><title>TIN Triangle Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the TIN Triangle
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: Near3D Example
+# Description: The following stand-alone script demonstrates how to use 
+#              the Near3D tool to identify the nearest z-aware features
+#              that satisfy the results from a queried feature.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+inFC = "homes.shp"
+nearFC = "radiotowers.shp"
+
+# Set Script Variables
+# Query the field "MATERIAL" for the string 'Reinforced Concrete'
+SQL_Expression = "'"'MATERIAL'"' = 'Reinforced Concrete'" 
+# See the 'Building an SQL expression' topic for more information
+
+
+try:
+    #Execute Make Feature Layer
+    arcpy.MakeFeatureLayer_management(nearFC, "Near Layer", SQL_Expression)    
+    result = arcpy.GetCount_management("Near Layer")
+    if int(result.getOutput(0)) == 0:
+        print nearFC + " has no features that satisfy the query: " + SQL_Expression
+    else:
+        #Execute Near3D
+        arcpy.Near3D_3d(inFC, "nearLayer", "", "LOCATION", "ANGLE", )
+except:
+    # By default any other errors will be caught here
+    print arcpy.GetMessages(2)
+
+del arcpy, inFC, nearFC, SQL_Expression
+                    </code></scriptExample></scriptExamples></tool></metadata>

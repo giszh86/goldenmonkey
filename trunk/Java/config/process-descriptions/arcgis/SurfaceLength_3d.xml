@@ -1,0 +1,61 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Surface Length (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool calculates the surface length for each polyline or polygon in a feature class based on a raster, triangulated irregular network (TIN), or terrain dataset surface.</para>
+			<para>The surface length information is stored as an attribute of the input feature class.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here to viw archived documentation. This functionality has been added to the Add Surface Information tool.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SurfaceLength" displayname="Surface Length (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool calculates the surface length for each polyline or polygon in a feature class based on a raster, triangulated irregular network (TIN), or terrain dataset surface.</para>
+			<para>The surface length information is stored as an attribute of the input feature class.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here to viw archived documentation. This functionality has been added to the Add Surface Information tool.</para>
+			
+		</summary><alink_name>SurfaceLength_3d</alink_name><parameters><param sync="true" name="in_surface" displayname="Input Surface" datatype="TIN layer; raster layer; terrain lLayer" direction="Input" expression="in_surface" type="Required"><pythonReference>
+						<para>The input raster, TIN, or terrain dataset whose values will be used for interpolation.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster, TIN, or terrain dataset whose values will be used for interpolation.</para>
+					</dialogReference></param><param sync="true" name="in_feature_class" displayname="Input Feature Class" datatype="Feature layer" direction="Input" expression="in_feature_class" type="Required"><pythonReference>
+						<para>The input polygon or polyline feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The input polygon or polyline feature class.</para>
+					</dialogReference></param><param sync="true" name="out_length_field" displayname="Surface Length Field" datatype="String" direction="Input" expression="out_length_field" type="Optional"><pythonReference>
+						<para>The name of the attribute field to contain the surface length.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the attribute field to contain the surface length.</para>
+					</dialogReference></param><param sync="true" name="sample_distance" displayname="Sampling Distance" datatype="Double" direction="Input" expression="sample_distance" type="Optional"><pythonReference>
+						<para>The surface spacing at which the length is calculated. By default, the sampling distance is the natural densification of a TIN or the cell size of a raster.</para>
+					</pythonReference><dialogReference>
+						<para>The surface spacing at which the length is calculated. By default, the sampling distance is the natural densification of a TIN or the cell size of a raster.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>The factor multiplied by input surface values to store new values in the length field. The Z factor is used to convert z-units to match x,y units.</para>
+					</pythonReference><dialogReference>
+						<para>The factor multiplied by input surface values to store new values in the length field. The Z factor is used to convert z-units to match x,y units.</para>
+					</dialogReference></param><param sync="true" name="method" displayname="Method" datatype="String" direction="Input" expression="method" type="Optional"><pythonReference>
+						<para>The interpolation method. For raster surfaces, the only option is BILINEAR. Select LINEAR or NATURAL_NEIGHBORS. </para>
+					</pythonReference><dialogReference>
+						<para>The interpolation method. For raster surfaces, the only option is BILINEAR. Select LINEAR or NATURAL_NEIGHBORS. </para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Double" direction="Input" expression="pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The resolution of the terrain dataset pyramid level to use for geoprocessing. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The resolution of the terrain dataset pyramid level to use for geoprocessing. The default is 0, full resolution.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Use a smaller sampling distance to increase the accuracy of the surface length calculations.</para>
+			</bullet_item><bullet_item>
+				<para>Use {out_length_field} to give the length field a custom name.</para>
+			</bullet_item><bullet_item>
+				<para>Only polyline and polygon feature classes are valid inputs for this tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Surface Length Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Near 3D
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcgisscripting
+gp = arcgisscripting.create()
+
+gp.CheckOutExtension("3D")
+gp.workspace = "C:/data"
+gp.SurfaceLength_3d("elevation_tin", "lines.shp", "Length3D")
+                    </code></scriptExample></scriptExamples></tool></metadata>

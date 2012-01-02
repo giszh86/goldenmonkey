@@ -1,0 +1,96 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Raster to NetCDF (Multidimension)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a raster dataset to a netCDF file.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Climate</keyword><keyword>Climatology</keyword><keyword>Dimension</keyword><keyword>Meteorology</keyword><keyword>Oceanography</keyword><keyword>Scientific</keyword><keyword>Weather</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RasterToNetCDF" displayname="Raster to NetCDF (Multidimension)" toolboxalias="md" softwarerestriction="none"><summary>
+			<para>Converts a raster dataset to a netCDF file.</para>
+		</summary><alink_name>RasterToNetCDF_md</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster" datatype="Raster Layer; Raster Catalog" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset or raster catalog.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster dataset or raster catalog.</para>
+					</dialogReference></param><param sync="true" name="out_netCDF_file" displayname="Output netCDF file" datatype="File" direction="Output" expression="out_netCDF_file" type="Required"><pythonReference>
+						<para>The output netCDF file. The filename must have a .nc extension.</para>
+					</pythonReference><dialogReference>
+						<para>The output netCDF file. The filename must have a .nc extension.</para>
+					</dialogReference></param><param sync="true" name="variable" displayname="Variable" datatype="String" direction="Input" expression="variable" type="Optional"><pythonReference>
+						<para>The netCDF variable name that will be used in the output netCDF file. This variable will contain the values of cells in the input raster.</para>
+					</pythonReference><dialogReference>
+						<para>The netCDF variable name that will be used in the output netCDF file. This variable will contain the values of cells in the input raster.</para>
+					</dialogReference></param><param sync="true" name="variable_units" displayname="Variable Units" datatype="String" direction="Input" expression="variable_units" type="Optional"><pythonReference>
+						<para>The units of the data contained within the variable. The variable name is specified in the Variable parameter.</para>
+					</pythonReference><dialogReference>
+						<para>The units of the data contained within the variable. The variable name is specified in the Variable parameter.</para>
+					</dialogReference></param><param sync="true" name="x_dimension" displayname="X Dimension" datatype="String" direction="Input" expression="x_dimension" type="Optional"><pythonReference>
+						<para>The netCDF dimension name used to specify x, or longitude coordinates.</para>
+					</pythonReference><dialogReference>
+						<para>The netCDF dimension name used to specify x, or longitude coordinates.</para>
+					</dialogReference></param><param sync="true" name="y_dimension" displayname="Y Dimension" datatype="String" direction="Input" expression="y_dimension" type="Optional"><pythonReference>
+						<para>The netCDF dimension name used to specify y, or latitude coordinates.</para>
+					</pythonReference><dialogReference>
+						<para>The netCDF dimension name used to specify y, or latitude coordinates.</para>
+					</dialogReference></param><param sync="true" name="band_dimension" displayname="Band Dimension" datatype="String" direction="Input" expression="band_dimension" type="Optional"><pythonReference>
+						<para>The netCDF dimension name used to specify bands.</para>
+					</pythonReference><dialogReference>
+						<para>The netCDF dimension name used to specify bands.</para>
+					</dialogReference></param><param sync="true" name="fields_to_dimensions" displayname="Fields to Dimensions" datatype="Value Table" direction="Input" expression="[[field, {dimension}, {units}],...]" type="Optional"><pythonReference>
+						<para>The field or fields used to create dimensions in the netCDF file.</para>
+						<bulletList>
+							<bullet_item>field—A field in the input feature attribute table.</bullet_item>
+							<bullet_item>{dimension}—The netCDF dimension name.</bullet_item>
+							<bullet_item>{unit}—The unit of the data represented by the field.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>The field or fields used to create dimensions in the netCDF file.</para>
+						<bulletList>
+							<bullet_item>field—A field in the input feature attribute table.</bullet_item>
+							<bullet_item>{dimension}—The netCDF dimension name.</bullet_item>
+							<bullet_item>{unit}—The unit of the data represented by the field.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input can be any valid raster dataset or raster catalog.</para>
+			</bullet_item><bullet_item>
+				<para>The default variable name is the same as the input raster name.</para>
+			</bullet_item><bullet_item>
+				<para>The output netCDF variable type is either float or integer based on the input raster dataset type.</para>
+			</bullet_item><bullet_item>
+				<para>The default x dimension and y dimension names are x and y, respectively.</para>
+			</bullet_item><bullet_item>
+				<para>Band dimension is only applicable for a multiband raster.</para>
+			</bullet_item><bullet_item>
+				<para>Field to dimension mapping is only applicable for a raster catalog.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RasterToNetCDF example 1 (Python window)</title>
+					<para>Converts a raster dataset to a netCDF file.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.RasterToNetCDF_md("C:/data/elevation","c:/output/elev.nc","elevation",
+                        "meter","x","y",)
+                    </code></scriptExample><scriptExample><title>RasterToNetCDF example 2 (stand-alone script)</title>
+					<para>Converts a raster dataset to a netCDF file.</para>
+				<code xml:space="preserve"># RasterToNetCDF_Ex_02.py
+# Description: Converts a raster dataset to a netCDF file.
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inRaster = "c:/data/elevation"
+outNetCDFFile = "c:/output/elevnetcdf.nc"
+variable = "elevation"
+units = "meter"
+XDimension = "x"
+YDimension = "y"
+bandDimension = ""
+
+# Process: RasterToNetCDF
+arcpy.RasterToNetCDF_md(inRaster, outNetCDFFile, variable, units, 
+                        XDimension, YDimension, bandDimension)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

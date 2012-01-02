@@ -1,0 +1,99 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Spline (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Interpolates a raster surface  from points using a two-dimensional minimum curvature spline technique.</para>
+			<para>The resulting smooth surface passes exactly through the input points.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Estimate</keyword><keyword>Interpolate</keyword><keyword>Interpolation</keyword><keyword>Interpolator</keyword><keyword>Predict</keyword><keyword>Radial Basis Function</keyword><keyword>Raster</keyword><keyword>Rbf</keyword><keyword>Surface</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Spline" displayname="Spline (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Interpolates a raster surface  from points using a two-dimensional minimum curvature spline technique.</para>
+			<para>The resulting smooth surface passes exactly through the input points.</para>
+			
+		</summary><alink_name>Spline_3d</alink_name><parameters><param sync="true" name="in_point_features" displayname="Input point features" datatype="Feature Layer" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para>The input point features containing the z-values to be interpolated into a surface raster.</para></pythonReference><dialogReference>
+						<para>The input point features containing the z-values to be interpolated into a surface raster.</para></dialogReference></param><param sync="true" name="z_field" displayname="Z value field" datatype="Field" direction="Input" expression="z_field" type="Required"><pythonReference>
+						<para>The field that holds a height or magnitude value for each point.</para><para>This can be a numeric field or the Shape field if the input point features contain z-values.</para>
+					</pythonReference><dialogReference>
+						<para>The field that holds a height or magnitude value for each point.</para><para>This can be a numeric field or the Shape field if the input point features contain z-values.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Layer" direction="Output" expression="out_raster" type="Required"><pythonReference>
+						<para>The output interpolated surface raster.</para>
+					</pythonReference><dialogReference>
+						<para>The output interpolated surface raster.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size at which the output raster will be created.</para><para>This will be the value in the environment if it is explicitly set;  otherwise, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size at which the output raster will be created.</para><para>This will be the value in the environment if it is explicitly set;  otherwise, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="spline_type" displayname="Spline type" datatype="String" direction="Input" expression="spline_type" type="Optional"><pythonReference>
+						<para>The type of spline to be used.</para>
+						<bulletList><bullet_item>REGULARIZED — Yields a smooth surface and smooth first derivatives.</bullet_item><bullet_item>TENSION — Tunes the stiffness of the interpolant according to the character of the modeled phenomenon.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of spline to be used.</para>
+						<bulletList><bullet_item>REGULARIZED — Yields a smooth surface and smooth first derivatives.</bullet_item><bullet_item>TENSION — Tunes the stiffness of the interpolant according to the character of the modeled phenomenon.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="weight" displayname="Weight" datatype="Double" direction="Input" expression="weight" type="Optional"><pythonReference>
+						<para>Parameter influencing the character of the surface interpolation.</para>
+						<para>When the REGULARIZED option is used, it defines the weight of the third derivatives of the surface in the curvature minimization expression. If the TENSION option is used, it defines the weight of tension.</para>
+						<para>The default weight is 0.1.</para>
+					</pythonReference><dialogReference>
+						<para>Parameter influencing the character of the surface interpolation.</para>
+						<para>When the REGULARIZED option is used, it defines the weight of the third derivatives of the surface in the curvature minimization expression. If the TENSION option is used, it defines the weight of tension.</para>
+						<para>The default weight is 0.1.</para>
+					</dialogReference></param><param sync="true" name="number_points" displayname="Number of points" datatype="Long" direction="Input" expression="number_points" type="Optional"><pythonReference>
+						<para>The number of points per region used for local approximation.</para>
+						<para>The default is 12.</para>
+					</pythonReference><dialogReference>
+						<para>The number of points per region used for local approximation.</para>
+						<para>The default is 12.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The REGULARIZED option of Spline type usually produces smoother surfaces than those created with the TENSION option.</para>
+				<bulletList><bullet_item><para>With the REGULARIZED option, higher values used for the weight parameter produce smoother surfaces. The values entered for this parameter must be equal to or greater than zero. Typical values used are 0, 0.001, 0.01, 0.1, and 0.5. The Weight is the square of the parameter referred to in the literature as tau (t).</para></bullet_item><bullet_item><para>With the TENSION option, higher values entered for the weight parameter result in somewhat coarser surfaces, but surfaces that closely conform to the control points. The values entered must be equal to or greater than zero. Typical values are 0, 1, 5, and 10. The Weight is the square of the parameter referred to in the literature as phi (Φ).</para></bullet_item></bulletList></bullet_item><bullet_item>
+				<para>The greater the value of Number of Points, the smoother the surface of the output raster.</para>
+			</bullet_item><bullet_item>
+				<para>Some input datasets may have several points with the same x,y coordinates. If the values of the points at the common location are the same, they are considered duplicates and have no affect on the output. If the values are different, they are considered 'coincident' points.</para><para>The various interpolation tools may handle this data condition differently. For example, in some cases the first coincident point encountered is used for the calculation; in other cases the last point encountered is used.  This may cause some locations in the output raster to have different values than what you might expect. The solution is to prepare your data by removing these coincident points. The  tool in the Spatial Statistics toolbox is useful for identifying any coincident points in your data.</para></bullet_item></usage><scriptExamples><scriptExample><title>Spline example 1 (Python window)</title>
+					
+					<para>This example inputs a point shapefile and interpolates the output surface as a TIFF raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env  
+env.workspace = "C:/data"
+arcpy.Spline_3d("ozone_pts.shp", "ozone", "C:/output/splineout.tif",
+                 2000, "REGULARIZED", 0.1)
+                    </code></scriptExample><scriptExample><title>Spline example 2 (stand-alone script)</title>
+					
+					<para>This example inputs a point shapefile and interpolates the output surface as a GRID raster.</para><code xml:space="preserve"># Name: Spline_3d_Ex_02.py
+# Description: Interpolate a series of points onto a rectangular
+#              raster using a minimum curvature spline technique.
+# Requirements: 3D Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inPointFeatures = "ca_ozone_pts.shp"
+zField = "ozone"
+outRaster = "C:/output/splineout"
+cellSize = 2000.0
+splineType = "REGULARIZED"
+weight = 0.1
+
+# Check out the ArcGIS 3D Analyst extension license
+arcpy.CheckOutExtension("3D")
+
+# Execute Spline
+arcpy.Spline_3d(inPointFeatures, zField, outRaster, cellSize, 
+                splineType, weight)
+                    </code></scriptExample></scriptExamples></tool></metadata>

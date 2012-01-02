@@ -1,0 +1,80 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Export To Interchange File (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a coverage to an interchange file for transfer to another platform.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Compression</keyword><keyword>Conversion</keyword><keyword>E00</keyword><keyword>Export</keyword><keyword>Export_Arc</keyword><keyword>Interchange File</keyword><keyword>Max Lines</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Export" displayname="Export To Interchange File (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Converts a coverage to an interchange file for transfer to another platform.</para>
+			
+		</summary><alink_name>Export_arc</alink_name><parameters><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Required"><pythonReference>
+						<para>The data type to be exported.</para>
+						<bulletList><bullet_item>COVER—a coverage, associated INFO files, and any index files.</bullet_item><bullet_item>FONT—an IGL font file.</bullet_item><bullet_item>GRID—an integer or floating-point grid.</bullet_item><bullet_item>INFO—an INFO file. </bullet_item><bullet_item>LINESET—a lineset file.</bullet_item><bullet_item>MAP—a map composition created with the ARCPLOT map composer.</bullet_item><bullet_item>MARKERSET—a markerset file.</bullet_item><bullet_item>PLOT—a plotfile or graphics file.</bullet_item><bullet_item>SHADESET—a shadeset file.</bullet_item><bullet_item>STACK—a stack.</bullet_item><bullet_item>STACKALL—a stack and all of the grids associated with that stack.</bullet_item><bullet_item>TEXT—any ASCII text file.</bullet_item><bullet_item>TEXTSET—a textset file.</bullet_item><bullet_item>TIN—a tin.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The data type to be exported.</para>
+						<bulletList><bullet_item>COVER—a coverage, associated INFO files, and any index files.</bullet_item><bullet_item>FONT—an IGL font file.</bullet_item><bullet_item>GRID—an integer or floating-point grid.</bullet_item><bullet_item>INFO—an INFO file. </bullet_item><bullet_item>LINESET—a lineset file.</bullet_item><bullet_item>MAP—a map composition created with the ARCPLOT map composer.</bullet_item><bullet_item>MARKERSET—a markerset file.</bullet_item><bullet_item>PLOT—a plotfile or graphics file.</bullet_item><bullet_item>SHADESET—a shadeset file.</bullet_item><bullet_item>STACK—a stack.</bullet_item><bullet_item>STACKALL—a stack and all of the grids associated with that stack.</bullet_item><bullet_item>TEXT—any ASCII text file.</bullet_item><bullet_item>TEXTSET—a textset file.</bullet_item><bullet_item>TIN—a tin.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="in_dataset" displayname="Input Dataset" datatype="Coverage" direction="Input" expression="in_dataset" type="Required"><pythonReference>
+						<para>The input dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input dataset.</para>
+					</dialogReference></param><param sync="true" name="interchange_file" displayname="Output Interchange File" datatype="File" direction="Output" expression="interchange_file" type="Required"><pythonReference>
+						<para>The prefix name of the ArcInfo interchange file or files to be created by Export. A volume ID of E00 will be appended to the file name of the first interchange file, E01 to the second file, and so on. Each subsequent file is created when the {max_lines} for each file is reached.</para>
+					</pythonReference><dialogReference>
+						<para>The prefix name of the ArcInfo interchange file or files to be created by Export. A volume ID of E00 will be appended to the file name of the first interchange file, E01 to the second file, and so on. Each subsequent file is created when the {max_lines} for each file is reached.</para>
+					</dialogReference></param><param sync="true" name="compression_type" displayname="Compression Type" datatype="String" direction="Input" expression="compression_type" type="Optional"><pythonReference>
+						<para>Specifies how numbers and blanks will be compressed in the export file. There are three options:</para>
+						<bulletList><bullet_item>NONE—No compression is performed. This option can also produce an export file that can be listed on your terminal or line printer. This is the default and the preferred method for creating export files. </bullet_item><bullet_item>PARTIAL—Compresses blanks but does not compress numbers. </bullet_item><bullet_item>FULL—Compresses both blanks and numbers using ASCII compression characters. This option requires the least amount of storage space (on tape or disk). </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how numbers and blanks will be compressed in the export file. There are three options:</para>
+						<bulletList><bullet_item>NONE—No compression is performed. This option can also produce an export file that can be listed on your terminal or line printer. This is the default and the preferred method for creating export files. </bullet_item><bullet_item>PARTIAL—Compresses blanks but does not compress numbers. </bullet_item><bullet_item>FULL—Compresses both blanks and numbers using ASCII compression characters. This option requires the least amount of storage space (on tape or disk). </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="max_lines" displayname="Max Lines" datatype="Long" direction="Input" expression="max_lines" type="Optional"><pythonReference>
+						<para>Maximum number of lines for each volume (for example, disk file) of an Export To Interchange File file. A volume has the extension .E00 through .E99. Only one export file is created if this is not specified.</para>
+					</pythonReference><dialogReference>
+						<para>Maximum number of lines for each volume (for example, disk file) of an Export To Interchange File file. A volume has the extension .E00 through .E99. Only one export file is created if this is not specified.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>When exporting a coverage, all associated INFO tables are written to the interchange file. For example, if the coverage name specified for input data is Forest, an INFO table named Forest.LABEL would be saved in the interchange file. A table named Forest1.LABEL, however, would not be saved in the interchange file.</para>
+			</bullet_item><bullet_item>
+				<para>Export files created with the Compression type parameter set to FULL can be significantly smaller than export files created with the PARTIAL or NONE options.</para>
+			</bullet_item><bullet_item>
+				<para>Exporting a grid can result in an export file much larger than the original grid, even when FULL compression is used. This is because each grid cell must be represented in the export file in ASCII format, which is less efficient than the grid's binary format. Also, integer grids are stored in a compressed format, which cannot be maintained in the export file.</para>
+				<para>The best solution is not to export large grids. All ArcInfo platforms that support grids now read the same file format, so exporting is not necessary. To create a single file for transfer, a utility, such as PKZIP (or "tar" on UNIX systems), can be used to place the workspace containing the grid into a single file. Versions of PKZIP and tar are available on both UNIX and PC systems. Warning: Do not PKZIP or tar just the grid, because you'll lose the INFO tables. If you don't want to transfer all the grids in your workspace, create a temporary workspace and copy the grids to be transferred into it.</para>
+			</bullet_item><bullet_item>
+				<para>Coverages to be exported must not contain edit masks. In other words, do not export an uncleaned cover. Run the  or  tool to remove edit masks (msk.adf file in the coverage directory). </para>
+			</bullet_item><bullet_item>
+				<para>Export has a limit of -999999999 on negative User-IDs.</para>
+			</bullet_item><bullet_item>
+				<para>Export files for coverages with nondefault text alignment will have data loss if imported to a version prior to 8.0.1.</para>
+			</bullet_item><bullet_item>
+				<para>When exporting text files, the FULL and PARTIAL compression options support line lengths up to 300 characters. Longer line lengths will get truncated. The NONE option supports up to 80 characters per line.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Export example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to export a coverage to one ArcInfo interchange file. </para>
+				<code xml:space="preserve"># Name: Export_Example.py
+# Description: Exports a coverage to ArcInfo interchange format
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+featureType = "COVER"
+inDataset = "stand"
+interchangeFile = "C:/output/stand.e00"
+compressionType = "NONE"
+
+#Execute Export
+arcpy.Export_arc(featureType, inDataset, interchangeFile, compressionType, "")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

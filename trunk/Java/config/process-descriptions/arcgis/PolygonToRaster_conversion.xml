@@ -1,0 +1,95 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Polygon to Raster (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts polygon features to a raster dataset.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>Import</keyword><keyword>Rasterize</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PolygonToRaster" displayname="Polygon to Raster (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts polygon features to a raster dataset.</para>
+			
+		</summary><alink_name>PolygonToRaster_conversion</alink_name><parameters><param sync="true" name="in_features" displayname="Input features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The polygon input feature dataset to be converted to a raster.</para>
+					</pythonReference><dialogReference>
+						<para>The polygon input feature dataset to be converted to a raster.</para>
+					</dialogReference></param><param sync="true" name="value_field" displayname="Value field" datatype="Field" direction="Input" expression="value_field" type="Required"><pythonReference>
+						<para>
+The field used to assign values to the output raster.</para><para>It can be any field of the input feature dataset's attribute table.</para>
+					</pythonReference><dialogReference>
+						<para>
+The field used to assign values to the output raster.</para><para>It can be any field of the input feature dataset's attribute table.</para>
+					</dialogReference></param><param sync="true" name="out_raster_dataset" displayname="Output raster name" datatype="Raster Dataset" direction="Output" expression="out_raster_dataset" type="Required"><pythonReference><para>
+The output raster dataset to be created.</para><para>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for a GRID raster format.</para>
+					</pythonReference><dialogReference><para>
+The output raster dataset to be created.</para><para>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for a GRID raster format.</para>
+					</dialogReference></param><param sync="true" name="cell_assignment" displayname="Cell assignment type" datatype="String" direction="Input" expression="cell_assignment" type="Optional"><pythonReference>
+						<para>The method to determine how the cell will be assigned a value when more than one feature falls within a cell.</para>
+						<bulletList><bullet_item>CELL_CENTER—The polygon which overlaps the center of the cell yields the attribute to assign to the cell. </bullet_item><bullet_item>MAXIMUM_AREA—The single feature with the largest area within the cell yields the attribute to assign to the cell. </bullet_item><bullet_item>MAXIMUM_COMBINED_AREA—For all features within a cell, the values in the Value Field are examined to determine which value covers the most area. This value is then assigned to the cell.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The method to determine how the cell will be assigned a value when more than one feature falls within a cell.</para>
+						<bulletList><bullet_item>CELL_CENTER—The polygon which overlaps the center of the cell yields the attribute to assign to the cell. </bullet_item><bullet_item>MAXIMUM_AREA—The single feature with the largest area within the cell yields the attribute to assign to the cell. </bullet_item><bullet_item>MAXIMUM_COMBINED_AREA—For all features within a cell, the values in the Value Field are examined to determine which value covers the most area. This value is then assigned to the cell.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="priority_field" displayname="Priority field" datatype="Field" direction="Input" expression="priority_field" type="Optional"><pythonReference>
+						<para>This field is used to determine which feature should take preference over another feature with the same value in the Value field.</para>
+					</pythonReference><dialogReference>
+						<para>This field is used to determine which feature should take preference over another feature with the same value in the Value field.</para>
+					</dialogReference></param><param sync="true" name="cellsize" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cellsize" type="Optional"><pythonReference>
+						<para>
+The cell size for the output raster dataset.</para>
+						<para>The default cell size is the shortest of the width or height of the extent of the input feature dataset, in the output spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>
+The cell size for the output raster dataset.</para>
+						<para>The default cell size is the shortest of the width or height of the extent of the input feature dataset, in the output spatial reference, divided by 250.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Pyramid" label="Pyramid">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Cell_size" label="Cell size"></environment><environment name="Snap_raster" label="Snap raster"></environment></environments><usage><bullet_item>
+				<para>Any feature class (geodatabase, shapefile or coverage) containing polygon features can be converted to a raster dataset.</para></bullet_item><bullet_item>
+				<para>The input field type determines the type of output raster.  If the field is integer, the output raster will be integer; if it is floating-point, the output will be floating-point.</para><para>If the input field contains string values, the output raster will contain an integer value field and a string field.</para>
+			</bullet_item><bullet_item>
+				<para>This tool is a complement to the  tool, which convert a raster to a polygon feature class.</para>
+			</bullet_item><bullet_item>
+				<para>This tool provides greater control over the assignment of cell values when more than one feature is present in an output cell than the  tool.</para></bullet_item><bullet_item>
+				<para>If "bleeding" or stripes occur in the output raster then use the  and  tools to correct the input feature data.</para>
+			</bullet_item><bullet_item>
+				<para>When converting overlapping polygons, you may want the polygons with the smallest area to be assigned to a cell. An easy way to do this is to add an additional field to the input feature class and calculate it to the inverse area of the polygons, then use this field as the Priority Field when running this tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>PolygonToRaster example 1 (Python window)</title>
+					<para>Converts polygon features to a raster dataset.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "c:/data"
+arcpy.PolygonToRaster_conversion("ca_counties.shp", "NAME", 
+                                 "c:/output/ca_counties.img", "MAXIMUM_AREA", 
+                                 "MALES", 0.25)
+                    </code></scriptExample><scriptExample><title>PolygonToRaster example 2 (stand-alone script)</title>
+					<para>Converts polygon features to a raster dataset.</para>
+				<code xml:space="preserve"># Name: PolygonToRaster_Ex_02.py
+# Description: Converts polygon features to a raster dataset.
+# Requirements: ArcInfo
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inFeatures = "ca_counties.shp"
+valField = "NAME"
+outRaster = "c:/output/ca_counties"
+assignmentType = "MAXIMUM_AREA"
+priorityField = "MALES"
+cellSize = 0.5
+
+# Execute PolygonToRaster
+arcpy.PolygonToRaster_conversion(inFeatures, valField, outRaster, assignmentType,
+                                 priorityField, cellSize)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

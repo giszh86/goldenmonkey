@@ -1,0 +1,45 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Remove Feature Class From Topology (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Removes a feature class from a topology.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coincident</keyword><keyword>Delete</keyword><keyword>Exclude</keyword><keyword>Geometry</keyword><keyword>Relationship</keyword><keyword>Rule</keyword><keyword>Share</keyword><keyword>Spatial</keyword><keyword>Valid</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RemoveFeatureClassFromTopology" displayname="Remove Feature Class From Topology (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Removes a feature class from a topology.</para>
+		</summary><alink_name>RemoveFeatureClassFromTopology_management</alink_name><parameters><param sync="true" name="in_topology" displayname="Input Topology" datatype="Topology" direction="Input" expression="in_topology" type="Required"><pythonReference>
+						<para>The topology from which to remove the feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The topology from which to remove the feature class.</para>
+					</dialogReference></param><param sync="true" name="in_featureclass" displayname="Feature Class to Remove" datatype="String" direction="Input" expression="in_featureclass" type="Required"><pythonReference>
+						<para>The feature class to remove from the topology.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class to remove from the topology.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>Removing a feature class from a topology also removes all the topology rules associated with that feature class.</para>
+			</bullet_item><bullet_item>
+				<para>Removing a feature class from a topology will require  the entire topology to be validated.</para>
+			</bullet_item><bullet_item>
+				<para>Removing a feature class from a topology alters the schema of the topology. To remove a feature class, the topology must not be registered as versioned.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RemoveFeatureClassFromTopology Python Window example</title>
+					<para>The following stand-alone script demonstrates how to use the RemoveFeatureClassFromTopology function in the Python Window.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.RemoveFeatureClassFromTopology_management("C:/Datasets/TestGPTopology.mdb/LegalFabric/topology", "Parcel_line")
+
+
+
+                    </code></scriptExample><scriptExample><title>RemoveFeatureClassFromTopology stand-alone script</title>
+					<para>The following stand-alone script demonstrates how to use the RemoveFeatureClassFromTopology function.</para>
+				<code xml:space="preserve">
+
+# Name: RemoveClassFromTopology_Example.py
+# Description: Removes a feature class from participating in a topology
+# Author: ESRI
+
+# Import system modules
+
+import arcpy
+from arcpy import env
+
+topo = "C:/Datasets/TestGPTopology.mdb/LegalFabric/topology"
+fc = "Parcel_line"
+arcpy.RemoveFeatureClassFromTopology_management(topo, fc)
+
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

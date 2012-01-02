@@ -1,0 +1,71 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Generalize (Editing)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Simplifies the input features using the Douglas-Peucker simplification algorithm with a specified maximum offset tolerance. The output features will contain a subset of the original input vertices. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Generalize" displayname="Generalize (Editing)" toolboxalias="edit" softwarerestriction="none"><summary>
+			<para>Simplifies the input features using the Douglas-Peucker simplification algorithm with a specified maximum offset tolerance. The output features will contain a subset of the original input vertices. </para>
+		</summary><alink_name>Generalize_edit</alink_name><toolIllust type="illustration" src="Generalize_edit_h.gif" alt="The line is simplified within the boundary of the maximum allowable offset" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The polygon or line features to be generalized.</para>
+					</pythonReference><dialogReference>
+						<para>The polygon or line features to be generalized.</para>
+					</dialogReference></param><param sync="true" name="tolerance" displayname="Tolerance" datatype="Linear Unit" direction="Input" expression="tolerance" type="Optional"><pythonReference>
+						<para>The tolerance sets the maximum allowable offset, which will determine the degree of simplification. This value limits the distance the output geometry can differ from the input geometry. You can specify a preferred unit of measurement. The default is the feature unit.</para>
+					</pythonReference><dialogReference>
+						<para>The tolerance sets the maximum allowable offset, which will determine the degree of simplification. This value limits the distance the output geometry can differ from the input geometry. You can specify a preferred unit of measurement. The default is the feature unit.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				
+					<para>This tool modifies the input data. See  for more information and strategies to avoid undesired data changes.</para>
+				
+			</bullet_item><bullet_item>
+				<para>This tool uses the same algorithm as the  tool's . The  Simplify Line tool provides more parameters and creates a new output, whereas this tool will modify the input.</para>
+			</bullet_item><bullet_item>
+				<para>This tool generalizes features record by record. Coincident edges between features are not maintained.</para>
+			</bullet_item><bullet_item>
+				<para>Each part of a parametric curve (Bézier curve, circular arc, elliptic arc) is converted into a collection of line segments. The output contains points along all parts of the curve. </para>
+			</bullet_item><bullet_item>
+				<para>For parametric curves with nonlinear segments, the output curve may contain more vertices than the input curve, but all output segments will be linear.</para>
+			</bullet_item><bullet_item><para>This tool does not delete features.  If any input polygon features are smaller than the specified tolerance then the output will be a polygon made of at least three vertices from the input polygon.</para></bullet_item></usage><scriptExamples><scriptExample><title>Generalize Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the Generalize function in immediate mode:</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:\data\data.gdb"
+arcpy.Generalize_edit("zones", "10 Feet")
+                    </code></scriptExample><scriptExample><title>Generalize Example 2 (Stand-alone Script)</title>
+					<para>The stand-alone script below is an example of how to use the Generalize function in a workflow where features are first simplified and then buffered:</para>
+				<code xml:space="preserve">#Name: BufferZones.py
+#Purpose: Simplify features using the Generalize tool and then Buffer them
+#Author: ESRI
+
+#Import script modules
+import arcpy
+from arcpy import env
+
+try:
+    #Set the workspace
+    env.workspace = "C:/data/data.gdb"
+    
+    #Set local parameters
+    inFeatures = "zones"
+    gTolerance = "4 Feet"
+    copFeatures = "zones_cp"
+    bufDist = "50 Miles"
+    bufOutput = "zones_buff"
+    
+    #Since Generalize permanently updates the input, first make a copy of the original FC
+    arcpy.CopyFeatures_management (inFeatures, copFeatures)
+    
+    #Use the Generalize tool to simplify the Buffer input to shorten Buffer processing time
+    arcpy.Generalize_edit(copFeatures, gTolerance)
+    
+    #Buffer the output
+    arcpy.Buffer_analysis(copFeatures, bufOutput, bufDist, "", "", "", "")
+
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message    
+                    </code></scriptExample></scriptExamples></tool></metadata>

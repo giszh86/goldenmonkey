@@ -1,0 +1,119 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Intersect 3D Line With Multipatch (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Computes a geometric intersection of the input line and multipatch features, and returns the number of points of intersection. Points (of intersection) and/or lines (resulting from input lines being broken at intersection points) can optionally be written to output feature class(es).</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Analysis</keyword><keyword>3D Features</keyword><keyword>3D Geometry</keyword><keyword>3D Intersect</keyword><keyword>3D Spatial Relationship</keyword><keyword>Common</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Intersect3DLineWithMultiPatch" displayname="Intersect 3D Line With Multipatch (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Computes a geometric intersection of the input line and multipatch features, and returns the number of points of intersection. Points (of intersection) and/or lines (resulting from input lines being broken at intersection points) can optionally be written to output feature class(es).</para>
+			
+		</summary><alink_name>Intersect3DLineWithMultiPatch_3d</alink_name><parameters><param sync="true" name="in_line_features" displayname="Input Line Features" datatype="Feature Layer" direction="Input" expression="in_line_features" type="Required"><pythonReference>
+						<para>The input line feature class or layer.</para>
+					</pythonReference><dialogReference>
+						<para>The input line feature class or layer.</para>
+					</dialogReference></param><param sync="true" name="in_multipatch_features" displayname="Input Multipatch Features" datatype="Feature Layer" direction="Input" expression="in_multipatch_features" type="Required"><pythonReference>
+						<para>The input multipatch feature class or layer.</para>
+					</pythonReference><dialogReference>
+						<para>The input multipatch feature class or layer.</para>
+					</dialogReference></param><param sync="true" name="join_attributes" displayname="Join Attributes" datatype="String" direction="Output" expression="join_attributes" type="Optional"><pythonReference>
+						<para>Allows all nonrequired fields (in other words, not ObjectID or geometry) and values from the input line feature class to be copied into the optional output line feature class.</para>
+						<bulletList><bullet_item> IDS_ONLY— No attributes from the input line feature class will be written to the output line feature class. This is the default.</bullet_item><bullet_item>ALL—All attributes from the input line feature class will be written to the output line feature class.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>Allows all nonrequired fields (in other words, not ObjectID or geometry) and values from the input line feature class to be copied into the optional output line feature class.</para>
+						<bulletList><bullet_item> IDS_ONLY— No attributes from the input line feature class will be written to the output line feature class. This is the default.</bullet_item><bullet_item>ALL—All attributes from the input line feature class will be written to the output line feature class.</bullet_item></bulletList></dialogReference></param><param sync="true" name="out_point_feature_class" displayname="Output Point Feature Class" datatype="Feature Class" direction="Output" expression="out_point_feature_class" type="Optional"><pythonReference>
+						<para>The optional feature class into which points of intersection will be placed.</para>
+					</pythonReference><dialogReference>
+						<para>The optional feature class into which points of intersection will be placed.</para>
+					</dialogReference></param><param sync="true" name="out_line_feature_class" displayname="Output Line Feature Class" datatype="Feature Class" direction="Output" expression="out_line_feature_class" type="Optional"><pythonReference>
+						<para> The optional feature class into which lines (input lines broken at points of intersection) will be placed.</para>
+					</pythonReference><dialogReference>
+						<para> The optional feature class into which lines (input lines broken at points of intersection) will be placed.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>A multipatch feature class and a 3D line feature class are required as input. </para>
+			</bullet_item><bullet_item><para>The tool will determine the intersection between every selected line (or all lines, if none is selected) in the input line
+feature class, and every selected multipatch (or all multipatches,
+if none is selected) in the input multipatch feature class.</para></bullet_item><bullet_item>
+				<para> Attribute values from the input line features are optionally
+carried across to the optional output line feature class.</para>
+			</bullet_item><bullet_item><para>The tool also generates a numeric (integer) output, giving the
+number of points of intersection found, even if no output feature
+class is specified.</para></bullet_item><bullet_item><para>Either, neither, or both of the output feature classes may be
+specified (i.e. point and/or line or neither). Neither is only used  when using a model or script and using the output intersection count. </para></bullet_item><bullet_item><para>Multipatches do not have to be closed. </para></bullet_item><bullet_item><para>The output features have three-dimensional geometry.</para></bullet_item><bullet_item>
+				<para>The following fields are present in the optional output point
+feature class:</para>
+				<bulletList>
+					<bullet_item>OID: The OBJECTID of the point.</bullet_item>
+					<bullet_item>Shape: The geometry of the point.</bullet_item>
+					<bullet_item>LINE_OID: The OBJECTID of the original line along which the
+intersection was found.</bullet_item>
+					<bullet_item>MPATCH_OID: The OBJECTID of the multipatch which intersected the
+line at this location.</bullet_item>
+					<bullet_item>DIST_3D: The 3D distance along the original line at which the
+intersection was found.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>The following fields are present in the optional output line
+feature class:</para>
+				<bulletList>
+					<bullet_item>OID: The OBJECTID of the point</bullet_item>
+					<bullet_item>Shape: The geometry of the line</bullet_item>
+					<bullet_item>LINE_OID: The OBJECTID of the original line along which the
+intersection was found, and from which this new line was
+spawned.</bullet_item>
+					<bullet_item>FROM_MP_ID: The OBJECTID of the multipatch which intersected the
+original line at the beginning of this new line (-1 if no
+multipatch).</bullet_item>
+					<bullet_item>TO_MP_ID: The OBJECTID of the multipatch which intersected the
+original line at the end of this new line (-1 if no multipatch).</bullet_item><bullet_item>DIST_3D: The 3D distance along the original line at which an
+intersection was found and which represents the beginning of this
+new line.</bullet_item>
+					<bullet_item>LENGTH_3D: The 3D length of this new line.</bullet_item></bulletList>
+			</bullet_item><bullet_item><para>Intersect 3D Line With Multipatch is a 3D set operator as part of the  3D Features toolset. See  for more information on what set operators are and how to use them.</para></bullet_item></usage><scriptExamples><scriptExample><title>Intersect 3D Line With Multipatch Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Intersect 3D Line With Multipatch
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.Intersect3DLineWithMultiPatch_3d("inLine.shp", "inMultipatch.shp", "IDS_ONLY", "outPts.shp", "outLine.shp")
+                    </code></scriptExample><scriptExample><title>Intersect 3D Line With Multipatch Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Intersect 3D Line With Multipatch
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: Intersect3DLineWithMultiPatch Example
+# Description: The following stand-alone script demonstrates how to
+#              use the Intersect3DLine tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+inLineFC = "sample.gdb/lines_3d"
+inMP = "sample.gdb/test_MP"
+# Ensure a unique name is produced for output files
+outPoint = arcpy.CreateUniqueName("OutPt_3DIntersect", "sample.gdb")
+outLine = arcpy.CreateUniqueName("OutLine_3DIntersect", "sample.gdb")
+
+# Execute Intersect 3D Line with Multipatch
+arcpy.Intersect3DLineWithMultiPatch_3d(inLineFC, inMP, "IDS_ONLY", outPoint, outLine)
+
+del inLineFC, inMP, outPoint, outLine, arcpy
+                    </code></scriptExample></scriptExamples></tool></metadata>

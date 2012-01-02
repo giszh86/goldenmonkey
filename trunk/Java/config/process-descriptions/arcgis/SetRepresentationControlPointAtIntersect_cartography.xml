@@ -1,0 +1,51 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Set Representation Control Point At Intersect (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool is commonly used to synchronize boundary symbology on adjacent polygons. It creates a representation control point at vertices that are shared by one or more line or polygon features. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cartography</keyword><keyword>Intersection</keyword><keyword>Marker</keyword><keyword>Override</keyword><keyword>Representation</keyword><keyword>Symbol</keyword><keyword>Symbology</keyword><keyword>Vertex</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SetRepresentationControlPointAtIntersect" displayname="Set Representation Control Point At Intersect (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>This tool is commonly used to synchronize boundary symbology on adjacent polygons. It creates a representation control point at vertices that are shared by one or more line or polygon features. </para>
+		</summary><alink_name>SetRepresentationControlPointAtIntersect_cartography</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/SetRepresentationControlPointAtIntersect_cartography_v.gif" alt="Set Representation Control Point At Intersects" /><toolIllust type="illustration" src="SetRepresentationControlPointAtIntersect_cartography_h.gif" alt="Set Representation Control Point At Intersects" /><parameters><param sync="true" name="in_line_or_polygon_features" displayname="Input Features With Stroke Or Fill Representations" datatype="Layer" direction="Input" expression="in_line_or_polygon_features" type="Required"><pythonReference>
+						<para>The input line or polygon feature layer symbolized with a feature class representation.</para>
+					</pythonReference><dialogReference>
+						<para>The input line or polygon feature layer symbolized with a feature class representation.</para>
+					</dialogReference></param><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Optional"><pythonReference>
+						<para>The feature layer with coincident features. These features can be from a geodatabase, shapefile, or coverage.</para>
+					</pythonReference><dialogReference>
+						<para>The feature layer with coincident features. These features can be from a geodatabase, shapefile, or coverage.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>Representation control points can be used to control the phasing of patterned representation symbology like dashed lines. Use this tool to synchronize phased outline symbology on adjacent polygons.</para>
+			</bullet_item><bullet_item>
+				<para>The primary input must be a line or polygon feature layer that is symbolized with a feature class representation. The secondary input can be a point, line, or polygon feature class; it does not need to have a feature class representation; these features provide geometry for comparison to the primary input features. </para>
+			</bullet_item><bullet_item>
+				<para>The secondary input receives representation control points only if it contains a feature class representation. This allows features from both inputs to receive representation control points simultaneously. If the secondary input is not specified, the tool operates on the primary input only, allowing self-intersecting features to be processed.</para>
+			</bullet_item><bullet_item>
+				<para>Modifications to the vertices are stored as geometry override on the feature representation.</para>
+			</bullet_item><bullet_item>
+				<para>Both input layers can accept multipart geometry.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SetRepresentationControlPointAtIntersect tool Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the SetRepresentationControlPointAtIntersect tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:\data"
+
+arcpy.SetRepresentationControlPointAtIntersect_cartography("parcels.lyr", "roads.lyr")
+
+                    </code></scriptExample><scriptExample><title>SetRepresentationControlPointAtIntersect tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the SetRepresentationControlPointAtIntersect tool.</para>
+				<code xml:space="preserve"># Name: SetRepresentationControlPointAtIntersect_standalone_script.py
+# Description: adds representation control points at locations where two or more features have coincident vertices
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+in_line_or_polygon_features = "parcels.lyr"
+in_features = "roads.lyr"
+
+# Execute Set Representation Control Point At Intersect
+arcpy.SetRepresentationControlPointAtIntersect_cartography(in_line_or_polygon_features, in_features)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

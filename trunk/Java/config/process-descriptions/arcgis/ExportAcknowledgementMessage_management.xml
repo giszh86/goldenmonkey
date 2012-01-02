@@ -1,0 +1,52 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Export Acknowledgement Message (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates an output acknowledgement file to acknowledge the reception of previously received data change messages.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>1 Way</keyword><keyword>2 Way</keyword><keyword>Centralize</keyword><keyword>Change</keyword><keyword>Check</keyword><keyword>Child</keyword><keyword>Contractor</keyword><keyword>Database</keyword><keyword>Delta</keyword><keyword>Difference</keyword><keyword>Disconnect</keyword><keyword>Edit</keyword><keyword>Gdb</keyword><keyword>Geodata</keyword><keyword>In</keyword><keyword>Mobile</keyword><keyword>One</keyword><keyword>Out</keyword><keyword>Parent</keyword><keyword>Production</keyword><keyword>Publication</keyword><keyword>Receive</keyword><keyword>Replica</keyword><keyword>Replicate</keyword><keyword>Replication</keyword><keyword>Respond</keyword><keyword>Sde</keyword><keyword>Service</keyword><keyword>Synchronize</keyword><keyword>Two</keyword><keyword>Update</keyword><keyword>Way</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExportAcknowledgementMessage" displayname="Export Acknowledgement Message (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates an output acknowledgement file to acknowledge the reception of previously received data change messages.</para>
+		</summary><alink_name>ExportAcknowledgementMessage_management</alink_name><parameters><param sync="true" name="in_geodatabase" displayname="Export from Replica Geodatabase" datatype="Workspace ; GeoDataServer" direction="Input" expression="in_geodatabase" type="Required"><pythonReference>
+						<para>Specifies the replica geodatabase from which to export the acknowledgement message. The geodatabase may be local or remote.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the replica geodatabase from which to export the acknowledgement message. The geodatabase may be local or remote.</para>
+					</dialogReference></param><param sync="true" name="out_acknowledgement_file" displayname="Output Acknowledgement File" datatype="File" direction="Output" expression="out_acknowledgement_file" type="Required"><pythonReference>
+						<para>Specifies the delta file to export to.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the delta file to export to.</para>
+					</dialogReference></param><param sync="true" name="in_replica" displayname="Replica" datatype="String" direction="Input" expression="in_replica" type="Required"><pythonReference>
+						<para>The replica from which the acknowledgement message will be exported.</para>
+					</pythonReference><dialogReference>
+						<para>The replica from which the acknowledgement message will be exported.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is used when synchronizing replica while disconnected. This is done by first running the  tool which creates a delta file with changes to synchronize. The delta file is then copied to the relative replica and imported using the  tool. If a delta file gets lost and you want to resend, you can use the  tool to regenerate the delta file. After the changes are imported, the relative replica can export an acknowledgement file using the  tool. The acknowledgment file is copied to the replica and imported using the  tool. If an acknowledgement is not received, the next time changes are sent they will include the new changes plus the previously sent changes. </para>
+			</bullet_item><bullet_item>
+				<para>The geodatabase may be a local geodatabase or a geodata service.</para>
+			</bullet_item><bullet_item>
+				<para>The output acknowledgement file must be XML.</para>
+			</bullet_item><bullet_item>
+				<para>This tool is not applicable for check-out replicas.</para>
+			</bullet_item><bullet_item>
+				<para>To synchronize replicas in a connected mode see the  tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ExportAcknowledgement Example (Python Window)</title><code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace = "C:/Data"
+arcpy.ExportAcknowledgementMessage_management("MySDEdata.sde", "AcknowledgementMessage.xml" , "MyReplica1")
+                    </code></scriptExample><scriptExample><title>ExportAcknowledgement Example 2 (stand-alone Python script)</title><code xml:space="preserve"># Name: ExportAcknowledgement_Example2.py
+# Description: Exports an acknowledgement message from a replica geodatabase (SDE).
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data"
+
+# Set local variables
+in_geodatabase = "MySDEdata.sde"
+output_file = "AcknowledgementMessage.xml"
+replica_name = "MyReplica1"
+arcpy.ExportAcknowledgementMessage_management(in_geodatabase, output_file , replica_name)
+                    </code></scriptExample></scriptExamples></tool></metadata>

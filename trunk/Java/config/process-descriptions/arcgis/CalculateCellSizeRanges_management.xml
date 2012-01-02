@@ -1,0 +1,85 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate Cell Size Ranges (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Computes the minimum and maximum cell sizes for the rasters in a mosaic dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Amd</keyword><keyword>Area</keyword><keyword>Compute</keyword><keyword>Highps</keyword><keyword>Image</keyword><keyword>Level</keyword><keyword>Lowps</keyword><keyword>Maxps</keyword><keyword>Minps</keyword><keyword>Mosaic Dataset</keyword><keyword>Overview</keyword><keyword>Pixel</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateCellSizeRanges" displayname="Calculate Cell Size Ranges (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Computes the minimum and maximum cell sizes for the rasters in a mosaic dataset.</para>
+		</summary><alink_name>CalculateCellSizeRanges_management</alink_name><parameters><param sync="true" name="in_mosaic_dataset" displayname="Mosaic Dataset" datatype="Mosaic Dataset; Mosaic Layer" direction="Input" expression="in_mosaic_dataset" type="Required"><pythonReference>
+						<para>Path and name of mosaic dataset.</para>
+					</pythonReference><dialogReference>
+						<para>Path and name of mosaic dataset.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Query Definition" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para> Using SQL you can define a query, or use the Query Builder to build a query. </para>
+					</pythonReference><dialogReference>
+						<para> Using SQL you can define a query, or use the Query Builder to build a query. </para>
+					</dialogReference></param><param sync="true" name="do_compute_min" displayname="Compute Minimum Cell Sizes" datatype="Boolean" direction="Input" expression="do_compute_min" type="Optional"><pythonReference>
+						<para>Computes the minimum pixel size for all the rasters in the mosaic dataset.</para>
+						<bulletList><bullet_item>MIN_CELL_SIZES—Computes the minimum pixel size. This is the default. </bullet_item><bullet_item>NO_MIN_CELL_SIZES—The minimum pixel size is not computed. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Computes the minimum pixel size for all the rasters in the mosaic dataset.</para>
+						<bulletList>
+							<bullet_item>Checked—Computes the minimum pixel size. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The minimum pixel size is not computed.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="do_compute_max" displayname="Compute Maximum Cell Sizes" datatype="Boolean" direction="Input" expression="do_compute_max" type="Optional"><pythonReference>
+						<para>Computes the maximum pixel size for all the rasters in the mosaic dataset.</para>
+						<bulletList><bullet_item>MAX_CELL_SIZES—Computes the maximum pixel size. This is the default. </bullet_item><bullet_item>NO_MAX_CELL_SIZES—The maximum pixel size is not computed. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Computes the maximum pixel size for all the rasters in the mosaic dataset.</para>
+						<bulletList>
+							<bullet_item>Checked—Computes the maximum pixel size. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The maximum pixel size is not computed.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="max_range_factor" displayname="Maximum Cell Size Range Factor" datatype="Double" direction="Input" expression="max_range_factor" type="Optional"><pythonReference>
+						<para>Controls the factor by which the maximum pixel size of the top-most overview is multiplied to ensure visibility of the mosaic when viewed at small scales. The default is 10.</para>
+					</pythonReference><dialogReference>
+						<para>Controls the factor by which the maximum pixel size of the top-most overview is multiplied to ensure visibility of the mosaic when viewed at small scales. The default is 10.</para>
+					</dialogReference></param><param sync="true" name="cell_size_tolerance_factor" displayname="Cell Size Tolerance Factor" datatype="Double" direction="Input" expression="cell_size_tolerance_factor" type="Optional"><pythonReference>
+						<para>Allows you to specify a cell size tolerance. This is useful when you have rasters with differing pixel sizes that should be considered the same. The default is 0.1.</para>
+					</pythonReference><dialogReference>
+						<para>Allows you to specify a cell size tolerance. This is useful when you have rasters with differing pixel sizes that should be considered the same. The default is 0.1.</para>
+					</dialogReference></param><param sync="true" name="update_missing_only" displayname="Update Missing Values Only" datatype="Boolean" direction="Input" expression="update_missing_only" type="Optional"><pythonReference>
+						<para> Allows you to calculate only the missing cell size range values. </para>
+						<bulletList><bullet_item>UPDATE_ALL—Cell size minimum and maximum values will be calculated for all rasters within the mosaic dataset. This is the default.</bullet_item><bullet_item>UPDATE_MISSING_ONLY— Cell size minimum and maximum values will only be calculated if they do not exist. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Allows you to calculate only the missing cell size range values. </para>
+						<bulletList>
+							<bullet_item>Unchecked—Cell size minimum and maximum values will be calculated for all rasters within the mosaic dataset. This is the default.</bullet_item>
+							<bullet_item>Checked—Cell size minimum and maximum values will only be calculated if they do not exist.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent"></environment></environments><usage><bullet_item>
+				<para> Cell size ranges are specified in the attribute table, under the minPS and maxPS columns. You can edit these values manually if needed. </para>
+			</bullet_item><bullet_item>
+				<para>You cannot calculate cell size ranges for a referenced mosaic dataset.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CalculateCellSizeRanges example 1 (Python window)</title>
+					<para>This is a Python sample for CalculateCellSizeRanges.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.CalculateCellSizeRanges_management("c:/workspace/fgdb.gdb/md", \
+                                         "MIN_CELL_SIZES", "MAX_CELL_SIZES", \
+                                         "#", "#", "#")
+                    </code></scriptExample><scriptExample><title>CalculateCellSizeRanges example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for CalculateCellSizeRanges.</para>
+				<code xml:space="preserve">##===========================
+##Calculate Cell Size Ranges
+##Usage: CalculateCellSizeRanges_management in_mosaic_dataset {where_clause} {MIN_CELL_SIZES
+##                                          | NO_MIN_CELL_SIZES} {MAX_CELL_SIZES
+##                                          | NO_MAX_CELL_SIZES} {max_range_factor}
+##                                          {cell_size_tolerance_factor} {UPDATE_ALL
+##                                          | UPDATE_MISSING_ONLY}
+
+try:
+    import arcpy
+    arcpy.env.workspace = "C:/Workspace"
+    # Calculate the Mininum Cell Size and Maximum Cell Size with default setting
+    arcpy.CalculateCellSizeRanges_management("Cellsize.gdb/md", "#", "MIN_CELL_SIZES",\
+                                             "MAX_CELL_SIZES", "#", "#", "#")
+    
+    # Change the Cell Size Range factor to use Source data pyramid
+    # Change the Cell Size Tolerance factor to ignore the small difference
+    # Only update the items that do not have cell size values
+    arcpy.CalculateCellSizeRanges_management("Cellsize.gdb/md", "#", "MIN_CELL_SIZES",\
+                                             "MAX_CELL_SIZES", "100", "1"
+                                             "UPDATE_MISSING_ONLY")
+    
+except:
+    print "Calculate Cell Size Ranges example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

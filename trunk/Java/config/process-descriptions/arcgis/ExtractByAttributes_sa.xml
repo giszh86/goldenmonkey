@@ -1,0 +1,74 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">  Extract by Attributes (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Extracts the cells of a raster based on a logical query.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Sample</keyword><keyword>Select</keyword><keyword>Subset</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExtractByAttributes" displayname="  Extract by Attributes (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Extracts the cells of a raster based on a logical query.</para>
+		</summary><alink_name>ExtractByAttributes_sa</alink_name><toolIllust type="illustration" src="ExtractByAttributes_sa_h.gif" alt="Extract by Attributes illustration" /><parameters><param sync="true" name="in_raster" displayname="in_raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster from which cells will be extracted.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster from which cells will be extracted.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Where clause" datatype="SQL Expression" direction="Input" expression="where_clause" type="Required"><pythonReference><para>A logical expression that selects a subset of raster cells.</para><para>The expression follows the general form of an SQL expression.</para><para>Consult the documentation for more information on the SQL reference for query expressions used in ArcGIS and specifying a query in Python.</para></pythonReference><dialogReference>
+						<para>A logical expression that selects a subset of raster cells.</para>
+						<para>The expression follows the general form of an SQL expression. It can be entered directly into the Where clause, for example, "VALUE" &gt; 100. It can also be created in the Query Builder dialog box. </para><para>Consult the documentation for more information on building a query expression and the SQL reference for query expressions used in ArcGIS.</para></dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster containing the cell values extracted from the input raster.</para></pythonReference><dialogReference>
+							<para>The output raster containing the cell values extracted from the input raster.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If the Where clause evaluates to true, the original input value is returned for the cell location.  If it evaluates to false, the cell location is assigned NoData.</para>
+			</bullet_item><bullet_item>
+				<para>Any extra items (other than Value and Count) of the input raster are dropped for the output raster.</para>
+			</bullet_item><bullet_item>
+				<para>If an item other than Value of input raster is specified in the Where clause, the original input value is returned for the cell location.</para>
+			</bullet_item><bullet_item>
+				<para>When a  is specified as input, a new multiband raster will be created as output. Each individual band in the input multiband raster will be analyzed accordingly.</para><para>The default output format is an . Note that the name of an ESRI grid stack cannot start with a number, use spaces, or be more than 9 characters in length.</para>
+			</bullet_item><bullet_item>
+				<para>If the input is a layer created from a multiband raster with more than three bands, the extraction operation will only consider the bands that were loaded (symbolized) by the layer. As a result, the output multiband raster can only have three bands, corresponding to those used in the display of the input layer.</para>
+			</bullet_item><bullet_item>
+				<para>If the input raster is integer, the output raster will be integer. If the input is floating point, the output will be floating point.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ExtractByAttributes example 1 (Python window)</title>
+					<para>This example extracts cells from a raster based on a logical query, where elevation is greater than 1,000 meters.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+attExtract = ExtractByAttributes("elevation", "VALUE &gt; 1000") 
+attExtract.save("c:/sapyexamples/output/attextract")
+                    </code></scriptExample><scriptExample><title>ExtractByAttributes example 2 (stand-alone script)</title>
+					<para>This example extracts cells from a raster based on a logical query, where elevation is greater than 1,000 meters.</para>
+				<code xml:space="preserve"># Name: ExtractByAttributes_Ex_02.py
+# Description: Extracts the cells of a raster based on a logical query. 
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "elevation"
+inSQLClause = "VALUE &gt; 1000"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ExtractByAttributes
+attExtract = ExtractByAttributes(inRaster, inSQLClause) 
+
+# Save the output 
+attExtract.save("c:/sapyexamples/output/attextract02")
+                    </code></scriptExample></scriptExamples></tool></metadata>

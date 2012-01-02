@@ -1,0 +1,97 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Tolerance (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Sets a coverage's tolerances.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Coverage</keyword><keyword>Dangle</keyword><keyword>Edit</keyword><keyword>Fuzzy</keyword><keyword>Grain</keyword><keyword>Management</keyword><keyword>Nodesnap</keyword><keyword>Snap</keyword><keyword>Tolerance</keyword><keyword>Weed</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Tolerance" displayname="Tolerance (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Sets a coverage's tolerances.</para>
+			
+		</summary><alink_name>Tolerance_arc</alink_name><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage for which tolerances will be set.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage for which tolerances will be set.</para>
+					</dialogReference></param><param sync="true" name="tolerance_type" displayname="Tolerance Type" datatype="String" direction="Input" expression="tolerance_type" type="Optional"><pythonReference>
+						<para>The type of tolerance to be set.</para>
+						<bulletList><bullet_item>FUZZY—Sets the Input Coverage's fuzzy tolerance to the value specified in the Tolerance Value. This is the default option. </bullet_item><bullet_item>DANGLE—Sets the Input Coverage's dangle length to the value specified in the Tolerance Value. </bullet_item><bullet_item>TIC_MATCH—Sets the tic match tolerance to the value specified in the Tolerance Value. </bullet_item><bullet_item>EDIT—Sets the Input Coverage's edit distance to the value specified in the Tolerance Value. </bullet_item><bullet_item>NODESNAP—Sets the Input Coverage's node snap distance to the value specified in the Tolerance Value. </bullet_item><bullet_item>WEED—Sets the weed tolerance to the value specified in the Tolerance Value. </bullet_item><bullet_item>GRAIN—Sets the grain tolerance to the value specified in the Tolerance Value. </bullet_item><bullet_item>SNAP—Sets the Input Coverage's general snapping distance to the value specified in the Tolerance Value. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of tolerance to be set.</para>
+						<bulletList><bullet_item>FUZZY—Sets the Input Coverage's fuzzy tolerance to the value specified in the Tolerance Value. This is the default option. </bullet_item><bullet_item>DANGLE—Sets the Input Coverage's dangle length to the value specified in the Tolerance Value. </bullet_item><bullet_item>TIC_MATCH—Sets the tic match tolerance to the value specified in the Tolerance Value. </bullet_item><bullet_item>EDIT—Sets the Input Coverage's edit distance to the value specified in the Tolerance Value. </bullet_item><bullet_item>NODESNAP—Sets the Input Coverage's node snap distance to the value specified in the Tolerance Value. </bullet_item><bullet_item>WEED—Sets the weed tolerance to the value specified in the Tolerance Value. </bullet_item><bullet_item>GRAIN—Sets the grain tolerance to the value specified in the Tolerance Value. </bullet_item><bullet_item>SNAP—Sets the Input Coverage's general snapping distance to the value specified in the Tolerance Value. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="tolerance_value" displayname="Tolerance Value" datatype="Double" direction="Input" expression="tolerance_value" type="Optional"><pythonReference>
+						<para>The value to be set for the selected option's tolerance. A Tolerance Value of zero will not be accepted for the following options: FUZZY, EDIT, NODESNAP, WEED, GRAIN, and SNAP.</para>
+					</pythonReference><dialogReference>
+						<para>The value to be set for the selected option's tolerance. A Tolerance Value of zero will not be accepted for the following options: FUZZY, EDIT, NODESNAP, WEED, GRAIN, and SNAP.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>A Tolerance Value of zero will not be accepted for the following options: FUZZY, EDIT, NODESNAP, WEED, GRAIN, and SNAP.</para>
+			</bullet_item><bullet_item>
+				<para>If no Tolerance Type is specified, the default type is FUZZY.</para>
+			</bullet_item><bullet_item>
+				<para>To see which tolerances have been set and which are Verified, open the Coverage Properties page and go to the Tolerances tab. To do this, right-click the coverage name in the Catalog window or ArcCatalog and click Properties.</para>
+			</bullet_item><bullet_item>
+				<para>Only one tolerance is set for each execution of this tool.</para>
+			</bullet_item><bullet_item>
+				<para>Unverified tolerances cannot be verified with this tool. However, if you are using the tool to change existing tolerances to a smaller value, verified tolerances will remain verified.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Tolerance stand-alone script</title>
+					<para>The following stand-alone script demonstrates how to use the Tolerance tool.  
+The script uses Describe to check the tolerances on all the coverages in a workspace. 
+If any don't match a predetermined standard, it uses the Tolerance tool to update them.</para>
+				<code xml:space="preserve"># Name: Tolerance_Example.py
+# Description: Checks/updates tolerances on all coverages in a workspace.
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# set the tolerance standards
+fuzzyValue      =    1.0
+dangleValue     =    0.0
+tic_matchValue  =    0.0
+editValue       =  100.0
+nodesnapValue   =   10.0
+weedValue       =   10.0
+grainValue      =   10.0
+snapValue       =   10.0
+
+coverageList = arcpy.ListDatasets("*", "coverage")
+
+for cov in coverageList:
+    desc = arcpy.Describe(cov)
+
+    if desc.tolerances.fuzzy &lt;&gt; fuzzyValue:
+        arcpy.Tolerance_arc(cov, "fuzzy", fuzzyValue)
+
+    if desc.tolerances.dangle &lt;&gt; dangleValue:
+        arcpy.Tolerance_arc(cov, "dangle", dangleValue)
+
+    if desc.tolerances.ticmatch &lt;&gt; tic_matchValue:
+        arcpy.Tolerance_arc(cov, "tic_match", tic_matchValue)            
+
+    if desc.tolerances.edit &lt;&gt; editValue:
+        arcpy.Tolerance_arc(cov, "edit", editValue)            
+
+    if desc.tolerances.nodesnap &lt;&gt; nodesnapValue:
+        arcpy.Tolerance_arc(cov, "nodesnap", nodesnapValue)           
+
+    if desc.tolerances.weed &lt;&gt; weedValue:
+        arcpy.Tolerance_arc(cov, "weed", weedValue)            
+
+    if desc.tolerances.grain &lt;&gt; grainValue:
+        arcpy.Tolerance_arc(cov, "grain", grainValue)            
+
+    if desc.tolerances.snap &lt;&gt; snapValue:
+        arcpy.Tolerance_arc(cov, "snap", snapValue)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

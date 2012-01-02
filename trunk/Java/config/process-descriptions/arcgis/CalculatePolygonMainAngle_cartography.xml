@@ -1,0 +1,47 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate Polygon Main Angle (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the dominant angles of  input polygon features and assigns the values to a specified field in the feature class.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Calculate Polygon Main Angle</keyword><keyword>Cartography</keyword><keyword>Main Angle</keyword><keyword>Orient</keyword><keyword>Orientation</keyword><keyword>Override</keyword><keyword>Polygon Main Angle</keyword><keyword>Representation</keyword><keyword>Symbol</keyword><keyword>Symbology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculatePolygonMainAngle" displayname="Calculate Polygon Main Angle (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Calculates the dominant angles of  input polygon features and assigns the values to a specified field in the feature class.</para>
+			
+		</summary><alink_name>CalculatePolygonMainAngle_cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input polygon features.</para>
+					</pythonReference><dialogReference>
+						<para>The input polygon features.</para>
+					</dialogReference></param><param sync="true" name="angle_field" displayname="Angle Field" datatype="Field" direction="Input" expression="angle_field" type="Required"><pythonReference>
+						<para>The field that will be updated with the polygon main angle values.</para>
+					</pythonReference><dialogReference>
+						<para>The field that will be updated with the polygon main angle values.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cartographic_coordinate_system" label="Cartographic coordinate system">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The dominant angle of a polygon is  the angle of  longest collection of segments that have similar orientation. This  angle  will be stored in the specified field in decimal degrees from true north.</para>
+				</bullet_item><bullet_item>
+				<para>Use this tool  to determine the trend of a polygon and use the resulting angle to orient symbology such as markers or hatch lines within the polygon. This tool is meant for primarily orthogonal polygons rather than organically-shaped ones.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CalculatePolygonMainAngle tool Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the CalculatePolygonMainAngle tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:\data"
+
+arcpy.CalculatePolygonMainAngle_cartography("cities", "poly_angle")
+                    </code></scriptExample><scriptExample><title>CalculatePolygonMainAngle tool Example (Stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the CalculatePolygonMainAngle tool.</para>
+				<code xml:space="preserve"># Name: CalculatePolygonMainAngle_standalone_script.py
+# Description: calculates an angle for a polygon based on the largest edge of the feature
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+in_features = "cities"
+angle_field = "poly_angle"
+
+# Execute Calculate Polygon Main Angle
+arcpy.CalculatePolygonMainAngle_cartography(in_features, angle_field)
+                    </code></scriptExample></scriptExamples></tool></metadata>

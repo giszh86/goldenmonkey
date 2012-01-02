@@ -1,0 +1,71 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Clear Workspace Cache (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Clears any ArcSDE workspaces from the ArcSDE workspace cache.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Connection</keyword><keyword>Disconnect</keyword><keyword>Efficient</keyword><keyword>Geodatabase</keyword><keyword>Performance</keyword><keyword>Sde</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ClearWorkspaceCache" displayname="Clear Workspace Cache (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Clears any ArcSDE workspaces from the ArcSDE workspace cache.</para>
+		</summary><alink_name>ClearWorkspaceCache_management</alink_name><parameters><param sync="true" name="in_data" displayname="in_data" datatype="ArcSDE connection file" direction="Input" expression="in_data" type="Optional"><pythonReference>
+						<para>The ArcSDE database connection file representing the ArcSDE workspace to be removed from the cache. Specify the path to the ArcSDE connection file that was used in running your geoprocessing tools in order to remove the specific ArcSDE workspace from the cache. Passing no input parameter will clear all ArcSDE workspaces from the cache.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcSDE database connection file representing the ArcSDE workspace to be removed from the cache. Specify the path to the ArcSDE connection file that was used in running your geoprocessing tools in order to remove the specific ArcSDE workspace from the cache. Passing no input parameter will clear all ArcSDE workspaces from the cache.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool only works with ArcSDE workspaces.</para>
+			</bullet_item><bullet_item>
+				<para>This tool can be used to help disconnect idle ArcSDE connections in a long-running application.</para>
+			</bullet_item><bullet_item>
+				<para>If you run the tool without specifying an Input data element, all ArcSDE workspaces in the ArcSDE workspace cache will be cleared. Specify the specific .sde file associated with the workspace you want to clear in order to clear a specific ArcSDE workspace.</para>
+			</bullet_item><bullet_item>
+				<para>
+Clearing an ArcSDE workspace from the ArcSDE workspace cache does not guarantee the connection to the ArcSDE server will be disconnected. It will only ensure the geoprocessor object no longer has any hold on the ArcSDE workspace that has been cleared. If any other process has references to this ArcSDE workspace the connection will be maintained.<bulletList><bullet_item>To clear the workspace cache correctly in ArcCatalog: After using this tool in ArcCatalog you will have to navigate to a different folder in the Table of Contents and refresh before the ArcSDE connection will be disconnected.</bullet_item><bullet_item>To clear the workspace cache correctly in ArcMap: Remove all references to data in ArcMap that may be accessing the ArcSDE workspace and then run the Clear Workspace Cache tool to ensure the connection is disconnected.</bullet_item><bullet_item>To clear the workspace cache correctly in a script: The call to ClearWorkspaceCache() should be the last call in your script making sure to remove all references to any objects that may be pointing to the ArcSDE workspace before making the call to ClearWorkspaceCache().</bullet_item></bulletList>
+					</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ClearWorkspaceCache Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the ClearWorkspaceCache function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "c:/connectionFiles/Connection to gpserver.sde"
+arcpy.ClearWorkspaceCache_management()
+                    </code></scriptExample><scriptExample><title>Clear Workspace Cache Sample</title>
+					<para>Sample showing how to disconnect from ArcSDE by clearing the ArcSDE workspace cache. Two methods are shown. 1. Disconnect from a specific connection by specifying the connection file name. 2. Disconnect from all connections by leaving the ArcSDE connection file parameter blank.</para>
+				<code xml:space="preserve"># Name: ClearWorkspaceCache_Example.py
+# Description: Two examples: 1. Remove the specified ArcSDE workspace from the workspace cache, 
+#                               terminating the connection to ArcSDE from this client
+#                            2. Remove many ArcSDE workspaces from the workspace cache, 
+#                               terminating the connection to ArcSDE from this client for each workspace.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "Database Connections\Connection to gpserver.sde" # Creates a connection to ArcSDE
+fcList = arcpy.ListFeatureClasses() # Show that we are connected
+print str(fcList) + "\n"
+env.workspace = "" # Release hold on ArcSDE workspace created in previous step.
+
+# Execute the Clear Workspace Cache tool
+arcpy.ClearWorkspaceCache("Database Connections\Connection to gpserver.sde")
+print arcpy.GetMessages() + "\n"
+
+# Clear the Workspace Cache of multiple connections
+# Set environment settings
+# Connection 1
+env.workspace = "Database Connections\Connection to gpServer.sde" # Creates a connection to ArcSDE
+fcList = arcpy.ListFeatureClasses() # Show that we are connected
+print str(fcList) + "\n"
+
+# Connection 2
+env.workspace = "Database Connections\Connection to ProductionServer.sde" # Creates a connection to ArcSDE
+fcList = arcpy.ListFeatureClasses() # Show that we are connected
+print str(fcList) + "\n"
+
+# Connection 3
+env.workspace = "Database Connections\Connection to TestServer.sde" # Creates a connection to ArcSDE
+fcList = arcpy.ListFeatureClasses() # Show that we are connected
+print str(fcList) + "\n"
+env.workspace = "" # Release hold on ArcSDE workspace created in previous steps.
+
+# Execute the Clear Workspace Cache tool
+arcpy.ClearWorkspaceCache() # If you do not specify a connection, all ArcSDE workspaces will be removed from the Cache
+print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

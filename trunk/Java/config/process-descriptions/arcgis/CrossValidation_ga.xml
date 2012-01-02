@@ -1,0 +1,73 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Cross Validation (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Removes one data location and then predicts the associated data using the data at the rest of the locations.   The primary use for this tool is to compare the predicted value to the observed value in order to obtain useful information about some of your model parameters.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Diagnostic</keyword><keyword>Error</keyword><keyword>Estimate</keyword><keyword>Predict</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CrossValidation" displayname="Cross Validation (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Removes one data location and then predicts the associated data using the data at the rest of the locations.   The primary use for this tool is to compare the predicted value to the observed value in order to obtain useful information about some of your model parameters.</para>
+			
+		</summary><alink_name>CrossValidation_ga</alink_name><parameters><param sync="true" name="in_geostat_layer" displayname="Input geostatistical layer" datatype="Geostatistical Layer" direction="Input" expression="in_geostat_layer" type="Required"><pythonReference>
+						<para>The geostatistical layer to be analyzed.</para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical layer to be analyzed.</para>
+					</dialogReference></param><param sync="true" name="out_point_feature_class" displayname="Output point feature class" datatype="Feature Class" direction="Output" expression="out_point_feature_class" type="Optional"><pythonReference>
+						<para>Stores the cross validation statistics at each location in the geostatistical layer.</para>
+					</pythonReference><dialogReference>
+						<para>Stores the cross validation statistics at each location in the geostatistical layer.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item><para>When using this tool in Python,  the result object contains both a feature class and a   , which has the following properties;</para>
+				<para><bulletList>
+						<bullet_item>Count—Total number of samples used.</bullet_item>
+						<bullet_item>Mean Error—The averaged difference between the measured and the predicted values.
+								
+								
+							</bullet_item>
+						<bullet_item>Root Mean Square Error—Indicates how closely your model predicts the measured values. The smaller this error, the better. 
+								
+								
+							</bullet_item>
+						<bullet_item>Average Standard Error—The average of the prediction standard errors.
+								
+								
+							</bullet_item>
+						<bullet_item>Mean Standardized Error— 
+								
+								
+							</bullet_item>
+						<bullet_item>Root Mean Square Standardized Error—This should be close to one if the prediction standard errors are valid. If the root-mean-squared standardized error is greater than one, you are underestimating the variability in your predictions. If the root mean square standardized error is less than one, you are overestimating the variability in your predictions.
+								
+								
+							</bullet_item>
+					</bulletList> Only the Mean and Root Mean Square Error results are available for IDW, Global Polynomial Interpolation, Radial Basis Functions, Diffusion Interpolation with Barriers and Kernel Interpolation with Barriers. </para>
+			</bullet_item><bullet_item><para>The fields in the optional output feature class are described in .</para></bullet_item></usage><scriptExamples><scriptExample><title>CrossValidation example 1 (Python window)</title>
+					<para>Perform cross validation on an input geostatistical layer.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapyexamples/data"
+cvResult = arcpy.CrossValidation_ga("C:/gapyexamples/data/kriging.lyr")
+print "Root Mean Square error = " + str(cvResult.rootMeanSquare)
+
+                    </code></scriptExample><scriptExample><title>CrossValidation example 2 (stand-alone script)</title>
+					<para>Perform cross validation on an input geostatistical layer.</para>
+				<code xml:space="preserve"># Name: CrossValidation_Example_02.py
+# Description: Perform cross validation on an input geostatistical layer.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inLayer = "C:/gapyexamples/data/kriging.lyr"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute CrossValidation
+cvResult = arcpy.CrossValidation_ga(inLayer)
+print "Root Mean Square error = " + str(cvResult.rootMeanSquare)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

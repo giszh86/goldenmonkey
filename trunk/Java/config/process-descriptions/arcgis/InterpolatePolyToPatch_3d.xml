@@ -1,0 +1,102 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Interpolate Polygon to Multipatch (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool creates surface-conforming areal features by extracting those portions of a TIN or terrain dataset surface that fall within the extent of input polygons as multipatches.</para>
+			<para>The attributes from the input features are copied to the output. Planimetric and surface area are calculated for each feature and added as attribution to the output.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D</keyword><keyword>Multipatch</keyword><keyword>Points</keyword><keyword>Polygon</keyword><keyword>Surface</keyword><keyword>Surface Analysis</keyword><keyword>Terrain Dataset</keyword><keyword>Terrain Dataset</keyword><keyword>Terrains</keyword><keyword>Tin</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="InterpolatePolyToPatch" displayname="Interpolate Polygon to Multipatch (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool creates surface-conforming areal features by extracting those portions of a TIN or terrain dataset surface that fall within the extent of input polygons as multipatches.</para>
+			<para>The attributes from the input features are copied to the output. Planimetric and surface area are calculated for each feature and added as attribution to the output.</para>
+			
+		</summary><alink_name>InterpolatePolyToPatch_3d</alink_name><parameters><param sync="true" name="in_surface" displayname="Input Surface" datatype="TIN Layer; Terrain Layer" direction="Input" expression="in_surface" type="Required"><pythonReference>
+						<para>The input triangulated irregular network (TIN) or terrain dataset surface.</para>
+					</pythonReference><dialogReference>
+						<para>The input triangulated irregular network (TIN) or terrain dataset surface.</para>
+					</dialogReference></param><param sync="true" name="in_feature_class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_feature_class" type="Required"><pythonReference>
+						<para>The input polygon feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The input polygon feature class.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output multipatch feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output multipatch feature class.</para>
+					</dialogReference></param><param sync="true" name="max_strip_size" displayname="Maximum Triangle Strip Size" datatype="Long" direction="Input" expression="max_strip_size" type="Optional"><pythonReference>
+						<para>Controls the maximum number of points used to create an individual triangle strip. Note that each multipatch is usually composed of multiple strips. The default value is 1,024.</para>
+					</pythonReference><dialogReference>
+						<para>Controls the maximum number of points used to create an individual triangle strip. Note that each multipatch is usually composed of multiple strips. The default value is 1,024.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>The factor by which the heights of the resultant multipatch will be determined from those of the input polygons. Used to convert z-units to x- and y-units.</para>
+					</pythonReference><dialogReference>
+						<para>The factor by which the heights of the resultant multipatch will be determined from those of the input polygons. Used to convert z-units to x- and y-units.</para>
+					</dialogReference></param><param sync="true" name="area_field" displayname="Area Field" datatype="String" direction="Input" expression="area_field" type="Optional"><pythonReference>
+						<para>The name of the output field containing the planimetric, or 2D, area of the resulting multipatches.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output field containing the planimetric, or 2D, area of the resulting multipatches.</para>
+					</dialogReference></param><param sync="true" name="surface_area_field" displayname="Surface Area Field" datatype="String" direction="Input" expression="surface_area_field" type="Optional"><pythonReference>
+						<para>The name of the output field containing the 3D area of the resulting multipatches. This area takes the surface undulations into consideration and is always larger than the planimetric area unless the surface is flat, in which case the two are equal.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output field containing the 3D area of the resulting multipatches. This area takes the surface undulations into consideration and is always larger than the planimetric area unless the surface is flat, in which case the two are equal.</para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Double" direction="Input" expression="pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The pyramid-level resolution of the terrain dataset to use for interpolation. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The pyramid-level resolution of the terrain dataset to use for interpolation. The default is 0, full resolution.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Convert polygons to multipatches if you are having display problems with polygons conforming to a surface.</para>
+			</bullet_item><bullet_item>
+				<para>The Maximum Triangle Strip Size value must be 3 or larger. The recommended range is between 128 and 2048.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Interpolate Polygon to Multipatch Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Interpolate Polygon to Multipatch
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.InterpolatePolyToPatch_3d("sample.gdb/featuredataset/terrain", "polygon.shp", "out_multipatch.shp", 1024, 1, "Area", "SArea", 5)
+                    </code></scriptExample><scriptExample><title>Interpolate Polygon to Multipatch Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Interpolate Polygon to Multipatch
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: InterpolatePolyToPatch Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              InterpolatePolyToPatch tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Set Local Variables
+    inTerrain = "sample.gdb/featuredataset/terrain"
+    inPoly = "polygon.shp"
+    outMP = arcpy.CreateUniqueName("out_multipatch.shp")
+    
+    #Execute InterpolatePolyToPatch
+    arcpy.InterpolatePolyToPatch_3d(inTerrain, inPoly, outMP, 1024, 1, "Area", "SArea", 5)
+
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,62 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Rename (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Changes the name of all types of data items, among them, feature datasets, rasters, tables, and toolboxes.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change Name</keyword><keyword>Dataset</keyword><keyword>Existing</keyword><keyword>New Name</keyword><keyword>Update</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Rename" displayname="Rename (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Changes the name of all types of data items, among them, feature datasets, rasters, tables, and toolboxes.</para>
+		</summary><alink_name>Rename_management</alink_name><parameters><param sync="true" name="in_data" displayname="Input data element" datatype="Data Element" direction="Input" expression="in_data" type="Required"><pythonReference>
+						<para>The input data item to be renamed.</para>
+					</pythonReference><dialogReference>
+						<para>The input data item to be renamed.</para>
+					</dialogReference></param><param sync="true" name="out_data" displayname="Output data element" datatype="Data Element" direction="Output" expression="out_data" type="Required"><pythonReference>
+						<para>The name for the output data item.</para>
+					</pythonReference><dialogReference>
+						<para>The name for the output data item.</para>
+					</dialogReference></param><param sync="true" name="data_type" displayname="Data type" datatype="String" direction="Input" expression="data_type" type="Optional"><pythonReference>
+						<para>The type of the data to be renamed. The only time you need to provide a value is when a geodatabase contains a feature dataset and a feature class with the same name. In this case, you need to select the data type (feature dataset or feature class) of the item you want to rename.</para>
+						
+						
+					</pythonReference><dialogReference>
+						<para>The type of the data to be renamed. The only time you need to provide a value is when a geodatabase contains a feature dataset and a feature class with the same name. In this case, you need to select the data type (feature dataset or feature class) of the item you want to rename.</para>
+						
+						
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The output name must be unique.</para>
+			</bullet_item><bullet_item>
+				<para>Ancillary files such as the metadata, projection, and index files associated with a shapefile are renamed along with a shapefile. The same applies when renaming a coverage: all region and route subclasses within a coverage are renamed along with it.</para>
+			</bullet_item><bullet_item>
+				<para>Rename does not rename fields in the dataset. For example, suppose you have a field named ROADS_ID on a feature class named ROADS. Renaming the ROADS feature class to STREETS does not rename the ROADS_ID field to STREETS_ID.</para>
+			</bullet_item><bullet_item>
+				<para>Do not use the Rename tool to change the data names in a DB2 geodatabase; doing so returns an error indicating the table can't be renamed due to various DBMS constraints. </para>
+				<para></para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Rename Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Rename function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/data"
+arcpy.Rename_management("majorrds.shp", "C:/output/majorrds_allClasses.shp")
+                    </code></scriptExample><scriptExample><title>Rename Example 2 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the Rename function in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: Rename_Example2.py
+# Description: Rename major roads dataset to reflect all rds classes
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/workspace/test.gdb"
+
+# Set local variables
+in_data =  "test"
+out_data = "testFC"
+data_type = "Feature Class"
+
+# Execute Rename
+arcpy.Rename_management(in_data, out_data, data_type)
+                    </code></scriptExample></scriptExamples></tool></metadata>

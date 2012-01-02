@@ -1,0 +1,138 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Point Density (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates a magnitude per unit area from point features that fall within a neighborhood around each cell.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Concentration</keyword><keyword>Diminish With Distance</keyword><keyword>Magnitude Per Unit Area</keyword><keyword>Neighborhood</keyword><keyword>Population</keyword><keyword>Radius</keyword><keyword>Spread</keyword><keyword>Surface</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PointDensity" displayname="Point Density (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates a magnitude per unit area from point features that fall within a neighborhood around each cell.</para>
+			
+		</summary><alink_name>PointDensity_sa</alink_name><parameters><param sync="true" name="in_point_features" displayname="Input point features" datatype="Feature Layer" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para>The input point features for which to calculate the density.</para>
+					</pythonReference><dialogReference>
+						<para>The input point features for which to calculate the density.</para>
+					</dialogReference></param><param sync="true" name="population_field" displayname="Population Field" datatype="Field" direction="Input" expression="population_field" type="Required"><pythonReference>
+						<para>Field denoting population values for each point. The population
+field is the count or quantity to be used in the calculation of a
+continuous surface.</para>
+						<para>Values in the population field may be integer or floating point.</para><para>The options and default behaviours for the field are listed below.</para><bulletList><bullet_item><para>Use None if no item or special value will be used and each feature will be counted once.</para></bullet_item><bullet_item><para>You can use Shape if input features contains Z.</para></bullet_item><bullet_item><para>Otherwise, the default field is POPULATION. The following conditions may also apply.</para><bulletList>
+									<bullet_item>If there is no POPULATION field, but there is a POPULATIONxxxx field, this is used by default. The "xxxx" can be any valid character, such as POPULATION6, POPULATION1974, or POPULATIONROADTYPE.</bullet_item>
+									<bullet_item>If there is no POPULATION field or POPULATIONxxxx field, but there is a POP field, this is used by default.</bullet_item>
+									<bullet_item>If there is no POPULATION field, POPULATIONxxxx field, or POP field, but there is a POPxxxx field, this is used by default.</bullet_item>
+									<bullet_item>If there is no POPULATION field, POPULATIONxxxx field, POP field, or POPxxxx field, NONE is used by default.</bullet_item>
+								</bulletList></bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Field denoting population values for each point. The population
+field is the count or quantity to be used in the calculation of a
+continuous surface.</para>
+						<para>Values in the population field may be integer or floating point.</para><para>The options and default behaviours for the field are listed below.</para><bulletList><bullet_item><para>Use None if no item or special value will be used and each feature will be counted once.</para></bullet_item><bullet_item><para>You can use Shape if input features contains Z.</para></bullet_item><bullet_item><para>Otherwise, the default field is POPULATION. The following conditions may also apply.</para><bulletList>
+									<bullet_item>If there is no POPULATION field, but there is a POPULATIONxxxx field, this is used by default. The "xxxx" can be any valid character, such as POPULATION6, POPULATION1974, or POPULATIONROADTYPE.</bullet_item>
+									<bullet_item>If there is no POPULATION field or POPULATIONxxxx field, but there is a POP field, this is used by default.</bullet_item>
+									<bullet_item>If there is no POPULATION field, POPULATIONxxxx field, or POP field, but there is a POPxxxx field, this is used by default.</bullet_item>
+									<bullet_item>If there is no POPULATION field, POPULATIONxxxx field, POP field, or POPxxxx field, NONE is used by default.</bullet_item>
+								</bulletList></bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference><para>
+The cell size for the output raster dataset.</para>
+						<para>This is the value in the environment if specifically set. If the environment is not set, then cell size is the shorter of the width or height of the extent of the input features, in the output spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference><para>
+The cell size for the output raster dataset.</para>
+						<para>This is the value in the environment if specifically set. If the environment is not set, then cell size is the shorter of the width or height of the extent of the input features, in the output spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="neighborhood" displayname="Neighborhood" datatype="Neighborhood" direction="Input" expression="neighborhood" type="Optional"><pythonReference>
+						<para>Dictates the shape of the area around each cell used to calculate the density value.</para>
+						<para>This is a Neighborhood class.</para><para>There are four types of neighbourhood class: NbrAnnulus, NbrCircle, NbrRectangle, and NbrWedge.</para><para>The forms and descriptions of the classes are: </para>
+						<bulletList>
+							<bullet_item>NbrAnnulus ({inner_radius}, {outer_radius}, {CELL | MAP})<para>A torus (donut shaped) neighborhood defined by an inner radius and an outer radius.</para></bullet_item>
+							<bullet_item>NbrCircle ({radius}, {CELL | MAP})<para>A circular neighborhood with the given radius.</para>
+							</bullet_item>
+							<bullet_item>NbrRectangle ({width}, {height}, {CELL | MAP})<para>A rectangular neighborhood with the given width and height.</para></bullet_item>
+							<bullet_item>NbrWedge ({radius}, {start_angle}, {end_angle}, {CELL | MAP})<para>A wedge (pie) shaped neighborhood. A wedge is specified by a start angle, an end angle, and a radius. The wedge extends counterclockwise from the starting angle to the ending angle. Angles are specified in arithmetic degrees (counterclockwise from the positive x-axis). Negative angles may be used.</para></bullet_item>
+						</bulletList>
+						<bulletList>
+							<bullet_item>{CELL | MAP}<para>Defines the units as either the number of cells or as value in map units.</para>
+							</bullet_item>
+						</bulletList>
+						<para>The default is NbrCircle, where radius is the shortest of the width or height of the extent of the input point features in the output spatial reference, divided by 30.</para>
+					</pythonReference><dialogReference>
+						<para>Dictates the shape of the area around each cell that is used to calculate the density value.</para>
+						<bulletList>
+							<bullet_item>Annulus—A torus (donut shaped) neighborhood defined by an inner and outer radius.</bullet_item>
+							<bullet_item>Circle—A circular neighborhood with the given radius. This is default where the radius is the shortest of the width or height of the extent of the input point features, in the output spatial reference, divided by 30.</bullet_item>
+							<bullet_item>Rectangle—A rectangular neighborhood with the given height and width.</bullet_item>
+							<bullet_item>Wedge—A wedge-shaped neighborhood. A wedge is specified by a start angle, an end angle and a radius. The wedge extends counterclockwise from the starting angle to the ending angle. Angles are specified in arithmetic degrees (counterclockwise from the positive x-axis). Negative angles may be used.</bullet_item>
+							<bullet_item>Cell | Map—Defines the units of the selected neighborhood measurements in either cells or map units (based on the linear unit of the projection of the output spatial reference).</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="area_unit_scale_factor" displayname="Area units" datatype="String" direction="Input" expression="area_unit_scale_factor" type="Optional"><pythonReference>
+						<para>The desired area units of the output density values.</para>
+						<para>A default unit is selected based on the linear unit of the projection of the output spatial reference. You can change this to the appropriate unit if you wish to convert the density output. Values for line density convert the units of both length and area.</para>
+						<para>For example, if your input units are meters the default output area density units will be square kilometers for point features or kilometers per square kilometer for polyline features.</para>
+						<para>The default density units based on the input feature units are:</para>
+						<bulletList><bullet_item>SQUARE_MAP_UNITS — If the units are unknown, points, or decimal degrees.</bullet_item><bullet_item>SQUARE_MILES — For feet, yards, miles, or nautical miles.</bullet_item><bullet_item>SQUARE_KILOMETERS — For meters or kilometers.</bullet_item><bullet_item>SQUARE_INCHES — For inches.</bullet_item><bullet_item>SQUARE_CENTIMETERS — For centimeters.</bullet_item><bullet_item>SQUARE_MILLIMETERS — For millimeters.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The desired area units of the output density values.</para>
+						<para>A default unit is selected based on the linear unit of the projection of the output spatial reference. You can change this to the appropriate unit if you wish to convert the density output. Values for line density convert the units of both length and area.</para>
+						<para>For example, if your input units are meters the default output area density units will be square kilometers for point features or kilometers per square kilometer for polyline features.</para>
+						<para>The default density units based on the input feature units are:</para>
+						<bulletList><bullet_item>SQUARE_MAP_UNITS — If the units are unknown, points, or decimal degrees.</bullet_item><bullet_item>SQUARE_MILES — For feet, yards, miles, or nautical miles.</bullet_item><bullet_item>SQUARE_KILOMETERS — For meters or kilometers.</bullet_item><bullet_item>SQUARE_INCHES — For inches.</bullet_item><bullet_item>SQUARE_CENTIMETERS — For centimeters.</bullet_item><bullet_item>SQUARE_MILLIMETERS — For millimeters.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output point density raster.</para>
+							<para>It is always a floating point raster.</para></pythonReference><dialogReference>
+							<para>The output point density raster.</para>
+							<para>It is always a floating point raster.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Larger values of the radius parameter produce a more generalized density raster. Smaller values produce a raster that shows more detail.</para>
+			</bullet_item><bullet_item>
+				<para>Only the points that fall within the neighborhood are considered when calculating the density. If no points fall within the neighborhood at a particular cell, that cell is assigned NoData.</para>
+			</bullet_item><bullet_item>
+				<para>If the area unit scale factor units are small, relative to the distance between the points, the output raster values may be small. To obtain larger values, use the area unit scale factor for larger units (for example, square kilometers versus square meters).</para>
+			</bullet_item><bullet_item>
+				<para>The values on the output raster will always be floating point.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>PointDensity example 1 (Python window)</title>
+					<para>This example calculates a density raster from a point shape file.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+pdensOut = PointDensity("rec_sites.shp", "NONE", 60, 2500)
+pdensOut.save("C:/sapyexamples/output/pointdensity")
+                    </code></scriptExample><scriptExample><title>PointDensity example 2 (stand-alone script)</title>
+					<para>This example calculates a density raster from a point shape file.</para>
+				<code xml:space="preserve"># Name: PointDensity_Ex_02.py
+# Description: Calculates a magnitude per unit area from point 
+#    features that fall within a neighborhood around each cell.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inFeatures = "rec_sites.shp"
+populationField = "NONE"
+cellSize = 60
+searchRadius = 2500
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute PointDensity
+outPdens = PointDensity(inFeatures, populationField, cellSize, 
+                        searchRadius, "SQUARE_KILOMETERS")
+
+# Save the output 
+outPdens.save("C:/sapyexamples/output/outpdens")
+                    </code></scriptExample></scriptExamples></tool></metadata>

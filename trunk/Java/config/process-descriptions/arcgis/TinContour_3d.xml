@@ -1,0 +1,72 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">TIN Contour (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a feature class containing a set of contours generated from a functional surface.</para>
+			<para>The output feature class is 2D and contains an attribute with contour values.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here to view archived documentation. This functionality has been added to the Surface Contour tool.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TinContour" displayname="TIN Contour (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Creates a feature class containing a set of contours generated from a functional surface.</para>
+			<para>The output feature class is 2D and contains an attribute with contour values.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here to view archived documentation. This functionality has been added to the Surface Contour tool.</para>
+			
+		</summary><alink_name>TinContour_3d</alink_name><toolIllust type="illustration" src="TinContour_3d_h.gif" alt="TIN Contour illustration" /><parameters><param sync="true" name="in_tin" displayname="Input TIN" datatype="Tin Layer" direction="Input" expression="in_tin" type="Required"><pythonReference>
+						<para>The surface from which the contours will be interpolated.</para>
+					</pythonReference><dialogReference>
+						<para>The surface from which the contours will be interpolated.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class.</para>
+					</dialogReference></param><param sync="true" name="interval" displayname="Contour Interval" datatype="Double" direction="Input" expression="interval" type="Required"><pythonReference>
+						<para>The interval between the contours.</para>
+					</pythonReference><dialogReference>
+						<para>The interval between the contours.</para>
+					</dialogReference></param><param sync="true" name="base_contour" displayname="Base Contour" datatype="Double" direction="Input" expression="base_contour" type="Optional"><pythonReference>
+						<para>Along with the index interval, the base height is used to determine what contours are produced. The base height is a starting point from which the index interval is either added or subtracted. By default, the base contour is 0.0.</para>
+					</pythonReference><dialogReference>
+						<para>Along with the index interval, the base height is used to determine what contours are produced. The base height is a starting point from which the index interval is either added or subtracted. By default, the base contour is 0.0.</para>
+					</dialogReference></param><param sync="true" name="contour_field" displayname="Contour Field" datatype="String" direction="Input" expression="contour_field" type="Optional"><pythonReference>
+						<para>The field containing contour values.</para>
+					</pythonReference><dialogReference>
+						<para>The field containing contour values.</para>
+					</dialogReference></param><param sync="true" name="contour_field_precision" displayname="Contour Field Precision" datatype="Long" direction="Input" expression="contour_field_precision" type="Optional"><pythonReference>
+						<para>The precision of the contour field. Zero specifies an integer, and the numbers 1–9 indicate how many decimal places the field will contain. By default, the field will be an integer (0).</para>
+					</pythonReference><dialogReference>
+						<para>The precision of the contour field. Zero specifies an integer, and the numbers 1–9 indicate how many decimal places the field will contain. By default, the field will be an integer (0).</para>
+					</dialogReference></param><param sync="true" name="index_interval" displayname="Index Interval" datatype="Double" direction="Input" expression="index_interval" type="Optional"><pythonReference>
+						<para>The difference, in Z units, between index contours. The value specified should be evenly divisible by the contour interval. Typically, it’s five times greater. Use of this parameter adds an attribute field to the output feature class that’s used to differentiate index contours from regular contours.</para>
+					</pythonReference><dialogReference>
+						<para>The difference, in Z units, between index contours. The value specified should be evenly divisible by the contour interval. Typically, it’s five times greater. Use of this parameter adds an attribute field to the output feature class that’s used to differentiate index contours from regular contours.</para>
+					</dialogReference></param><param sync="true" name="index_interval_field" displayname="Index Interval Field" datatype="String" direction="Input" expression="index_interval_field" type="Optional"><pythonReference>
+						<para>The name of the field used to record whether a contour is a regular or an index contour. By default, the value is ‘Index’.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the field used to record whether a contour is a regular or an index contour. By default, the value is ‘Index’.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>Specifies a factor by which to multiply the surface heights. Used to convert z units to x and y units.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies a factor by which to multiply the surface heights. Used to convert z units to x and y units.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Use the interval and base contour options to tailor the extent and resolution of the output feature class.</para>
+			</bullet_item><bullet_item>
+				<para>Use the out contour field data to convert the feature class to 3D.</para>
+			</bullet_item><bullet_item>
+				<para>In certain instances the last valid contour line may not be produced when creating contours using TIN surfaces. This is an algorithmic limitation common to computer contouring software. To ensure that all valid contours are generated, add a very small negative value to the base contour field to slightly shift the data.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TIN Contour Example (Python window)</title><para>The following Python Window script demonstrates how to use the TIN Contour
+function in immediate mode.</para>
+				<code xml:space="preserve">Missing source code file
+                    </code></scriptExample></scriptExamples></tool></metadata>

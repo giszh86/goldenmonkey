@@ -1,0 +1,72 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Geostatistical Layer (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a new geostatistical layer. An  existing geostatistical layer or geostatistical model is required to populate the initial values for the new layer. The input to this tool can be created using the Geostatistical Wizard.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Convert</keyword><keyword>Export</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GACreateGeostatisticalLayer" displayname="Create Geostatistical Layer (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Creates a new geostatistical layer. An  existing geostatistical layer or geostatistical model is required to populate the initial values for the new layer. The input to this tool can be created using the Geostatistical Wizard.</para></summary><alink_name>GACreateGeostatisticalLayer_ga</alink_name><parameters><param sync="true" name="in_ga_model_source" displayname="Geostatistical model source" datatype="Geostatistical Layer ; Geostatistical Model" direction="Input" expression="in_ga_model_source" type="Required"><pythonReference>
+						<para>The geostatistical model source to be analyzed.</para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical model source to be analyzed.</para>
+					</dialogReference></param><param sync="true" name="in_datasets" displayname="Input dataset(s)" datatype="Geostatistical Value Table" direction="Input" expression="[in_dataset,...]" type="Required"><pythonReference>
+						<para>Input dataset(s) displays two pieces:</para>
+						<bulletList>
+							<bullet_item>Dataset — The path and the name of the input data.</bullet_item>
+							<bullet_item>Field — The name of the required field.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>The name of the input dataset(s) and field name(s) used in the creation of the output layer.</bullet_item>
+						</bulletList>
+						<bulletList>
+							<bullet_item> When checked, the  Always reset input datasets when the geostatistical model source changes parameter ensures when a different geostatistical model source is specified its associated dataset(s) are automatically inserted into the tool. If unchecked and the geostatistical model source is changed, the displayed input dataset(s) remain unchanged. This can lead to problems if the model is incompatible with the dataset, for example, a model was created to predict temperature and a new dataset with rainfall data is specified.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_layer" displayname="Output geostatistical layer" datatype="Geostatistical Layer" direction="Output" expression="out_layer" type="Required"><pythonReference>
+						<para>The geostatistical layer produced by the tool. </para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical layer produced by the tool. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Coincident_points" label="Coincident points">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Geostatistical model source is either a geostatistical layer or a geostatistical model (XML).</para>
+			</bullet_item><bullet_item>
+				<para>The input to this tool is a geostatistical model source which can be either a geostatistical layer or an XML file. The complete name of the dataset that is used to create the geostatistical layer is stored within the layer. However, the XML file only contains the model parameters and not the dataset information.</para>
+			</bullet_item><bullet_item>
+				<para>If a NODATA value was specified in the Geostatistical Wizard it will be ignored by this tool.</para>
+			</bullet_item><bullet_item>
+				<para>If a selection exists on any of the input layers, then those layers should be specified in the Input dataset(s) parameter rather than the full name and path to the dataset on disk.</para>
+			</bullet_item><bullet_item>
+				<para>All the Geostatistical Analyst geoprocessing tools are functional in ArcGlobe or ArcScene. However, a geostatistical layer can only be displayed using ArcMap or ArcCatalog and it is therefore recommended that geostatistical analysis rather be performed using these products.  </para>
+				</bullet_item><bullet_item>
+				<para>For data formats that support Null values, such as file and personal geodatabase feature classes, a Null value will be used to indicate that a prediction could not be made for that location or that the value showed be ignored when used as input. For data formats that do not support Null values, such as shapefiles, the value of  -1.7976931348623158e+308 is used (this is the negative of the C++ defined constant DBL_MAX)  to indicate that a prediction could not be made for that location.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateGeostatisticalLayer example 1 (Python window)</title>
+					<para>Use an existing geostatistical layer to create a new geostatistical layer.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapyexamples/data"
+arcpy.GACreateGeostatisticalLayer_ga("C:/gapyexamples/data/kriging.lyr", "ca_ozone_pts OZONE",
+                               "outCGL")
+
+                    </code></scriptExample><scriptExample><title>CreateGeostatisticalLayer example 2 (stand-alone script)</title>
+					<para>Use an existing geostatistical layer to create a new geostatistical layer.</para>
+				<code xml:space="preserve"># Name: CreateGeostatisticalLayer_Example_02.py
+# Description: Uses an existing geostatistical layer to create a new layer,
+#   which includes a new feature dataset or variable.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inLayer = "C:/gapyexamples/data/kriging.lyr"
+inData = "ca_ozone_pts.shp OZONE"
+outLayer = "outCGL"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute CreateGeostatisticalLayer
+arcpy.GACreateGeostatisticalLayer_ga(inLayer, inData, outLayer)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

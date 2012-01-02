@@ -1,0 +1,60 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">
+Convert Time Field
+ (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>
+Converts time values stored in a string or numeric field to a date field.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ConvertTimeField" displayname="&#xA;Convert Time Field&#xA; (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>
+Converts time values stored in a string or numeric field to a date field.</para>
+		</summary><alink_name>ConvertTimeField_management</alink_name><toolIllust type="illustration" src="ConvertTimeField_management_h.png" alt="Converting string or numeric field containing time values  into a date field" /><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>
+The layer or table that contains the field containing the time values that need to be converted and stored in the Date field.</para>
+					</pythonReference><dialogReference>
+						<para>
+The layer or table that contains the field containing the time values that need to be converted and stored in the Date field.</para>
+					</dialogReference></param><param sync="true" name="input_time_field" displayname="Input Time Field" datatype="Field" direction="Input" expression="input_time_field" type="Required"><pythonReference>
+						<para>
+The field containing the time values.  May be of type short, long, float, double, or text.</para>
+					</pythonReference><dialogReference>
+						<para>
+The field containing the time values.  May be of type short, long, float, double, or text.</para>
+					</dialogReference></param><param sync="true" name="input_time_format" displayname="Input Time Format" datatype="String" direction="Input" expression="input_time_format" type="Optional"><pythonReference>
+						<para>The format in which the time values were stored in the input time field.   Either a standard time format can be selected from the drop-down list, or a custom format can be entered. If the data type of the time field is numeric (Short, Long, Float, or Double), a list of standard numeric time formats is provided in the drop-down list.  If the data type of the time field is string, a list of standard string time formats is provided in the drop-down list. For string fields, you can also choose to specify a custom time format. 
+For example, the time values may have been stored in a string field in one of the standard formats such as yyyy/MM/dd HH:mm:ss or in a custom format such as dd/MM/yyyy HH:mm:ss.  For the custom format, you can also specify the AM, PM designator.</para>
+					</pythonReference><dialogReference>
+						<para>The format in which the time values were stored in the input time field.   Either a standard time format can be selected from the drop-down list, or a custom format can be entered. If the data type of the time field is numeric (Short, Long, Float, or Double), a list of standard numeric time formats is provided in the drop-down list.  If the data type of the time field is string, a list of standard string time formats is provided in the drop-down list. For string fields, you can also choose to specify a custom time format. 
+For example, the time values may have been stored in a string field in one of the standard formats such as yyyy/MM/dd HH:mm:ss or in a custom format such as dd/MM/yyyy HH:mm:ss.  For the custom format, you can also specify the AM, PM designator.</para>
+					</dialogReference></param><param sync="true" name="output_time_field" displayname="Output Time Field" datatype="String" direction="Output" expression="output_time_field" type="Required"><pythonReference>
+						<para>
+The name of output field. The output field  created will be of type Date.</para>
+					</pythonReference><dialogReference>
+						<para>
+The name of output field. The output field  created will be of type Date.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>
+If the input time field selected is a string or text field, the input time format can be selected from a list of  or you can define a custom time field format to interpret custom date and/or time values in the  string field.  For more information about custom formats for string fields, refer to .</para>
+			</bullet_item><bullet_item><para>If the input time field selected is numeric (short, long, float, or double) the input time format can be selected from a list of . Custom time formats are not supported  with numeric fields.</para></bullet_item></usage><scriptExamples><scriptExample><title>ConvertTimeField example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the
+ConvertTimeField tool in immediate mode.</para><code xml:space="preserve">import arcpy
+arcpy.ConvertTimeField_management("C:/Data/TemporalData.gdb/Input_Table","Input_Time","1033;MMMM dd, yyyy HH:mm:ss;AM;PM","Output_Time")
+
+                    </code></scriptExample><scriptExample><title>ConvertTimeField example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the ConvertTimeField tool.</para>
+				<code xml:space="preserve"># Name: ConvertTimeField_Ex02.py
+# Description: Convert a time field to date field
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+inTable = "C:\Data\TemporalData.gdb\Input_Table"
+inputTimeField = "Input_Time"
+inputTimeFormat = "1033;MMMM dd, yyyy HH:mm:ss;AM;PM"
+outputDateField = "Output_Time"
+
+# Execute CalculateEndDate
+arcpy.ConvertTimeField_management(inTable, inputTimeField, inputTimeFormat, outputDateField)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

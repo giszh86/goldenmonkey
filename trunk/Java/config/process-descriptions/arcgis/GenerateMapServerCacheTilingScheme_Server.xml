@@ -1,0 +1,118 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Generate Map Server Cache Tiling Scheme (Server)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Generates an XML tiling scheme file that defines the scale levels, tile dimensions, and other properties for a map service cache. This tool is useful when creating a tiling scheme to use in multiple caches. You can load the tiling scheme file when you create a cache in ArcCatalog or Manager, or you can run Create Map Server Cache and pass in the tiling scheme file as a parameter.</para>
+			<para>A tiling scheme describes how clients should reference the tiles in a cache and is a mapping between the spatial reference of the source map document and the tiling grid. The tiling grid uses a level-of-detail (scale-level), row, and column reference scheme. The scheme also defines the scale levels (levels of detail) at which the cache has tiles, the size of the tiles in pixels, and the screen resolution for which the tiles are intended to be most commonly displayed. A tiling scheme is needed to generate a map cache.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GenerateMapServerCacheTilingScheme" displayname="Generate Map Server Cache Tiling Scheme (Server)" toolboxalias="Server" softwarerestriction="none"><summary>
+			<para>Generates an XML tiling scheme file that defines the scale levels, tile dimensions, and other properties for a map service cache. This tool is useful when creating a tiling scheme to use in multiple caches. You can load the tiling scheme file when you create a cache in ArcCatalog or Manager, or you can run Create Map Server Cache and pass in the tiling scheme file as a parameter.</para>
+			<para>A tiling scheme describes how clients should reference the tiles in a cache and is a mapping between the spatial reference of the source map document and the tiling grid. The tiling grid uses a level-of-detail (scale-level), row, and column reference scheme. The scheme also defines the scale levels (levels of detail) at which the cache has tiles, the size of the tiles in pixels, and the screen resolution for which the tiles are intended to be most commonly displayed. A tiling scheme is needed to generate a map cache.</para>
+		</summary><alink_name>GenerateMapServerCacheTilingScheme_Server</alink_name><parameters><param sync="true" name="map_document" displayname="Map Document" datatype="File" direction="Input" expression="map_document" type="Required"><pythonReference>
+						<para>The source map document to be used for the tiling scheme.</para>
+					</pythonReference><dialogReference>
+						<para>The source map document to be used for the tiling scheme.</para>
+					</dialogReference></param><param sync="true" name="data_frame" displayname="Data Frame" datatype="String" direction="Input" expression="data_frame" type="Required"><pythonReference>
+						<para>The data frame to be used for the tiling scheme.</para>
+					</pythonReference><dialogReference>
+						<para>The data frame to be used for the tiling scheme.</para>
+					</dialogReference></param><param sync="true" name="tile_origin" displayname="Tiling origin in map units" datatype="Point" direction="Output" expression="tile_origin" type="Required"><pythonReference>
+						<para>The upper left corner of the tiling scheme in coordinates of the spatial reference of the source data frame.</para>
+					</pythonReference><dialogReference>
+						<para>The upper left corner of the tiling scheme in coordinates of the spatial reference of the source data frame.</para>
+					</dialogReference></param><param sync="true" name="tiling_schema" displayname="Output Tiling Scheme" datatype="File" direction="Output" expression="tiling_schema" type="Required"><pythonReference>
+						<para>Path and file name of the tiling scheme file to create.</para>
+					</pythonReference><dialogReference>
+						<para>Path and file name of the tiling scheme file to create.</para>
+					</dialogReference></param><param sync="true" name="cache_levels" displayname="Number of Scales" datatype="Long" direction="Output" expression="cache_levels" type="Required"><pythonReference>
+						<para>Number of scale levels in the tiling scheme.</para>
+					</pythonReference><dialogReference>
+						<para>Number of scale levels in the tiling scheme.</para>
+					</dialogReference></param><param sync="true" name="levels" displayname="Scales" datatype="Value Table" direction="Input" expression="[levels,...]" type="Required"><pythonReference>
+						<para>Scale levels to include in the tiling scheme. These are not represented as fractions. Instead, use 500 to represent a scale of 1:500, and so on.</para>
+					</pythonReference><dialogReference>
+						<para>Scale levels to include in the tiling scheme. These are not represented as fractions. Instead, use 500 to represent a scale of 1:500, and so on.</para>
+					</dialogReference></param><param sync="true" name="dpi" displayname="Dots(Pixels) Per Inch" datatype="Long" direction="Input" expression="dpi" type="Required"><pythonReference>
+						<para>The dots per inch of the intended output device. If a DPI is chosen that does not match the resolution of the output device, the scale of the map tile will appear incorrect. The default value is 96.</para>
+					</pythonReference><dialogReference>
+						<para>The dots per inch of the intended output device. If a DPI is chosen that does not match the resolution of the output device, the scale of the map tile will appear incorrect. The default value is 96.</para>
+					</dialogReference></param><param sync="true" name="tile_width" displayname="Tile Width (in pixels)" datatype="Long" direction="Input" expression="tile_width" type="Required"><pythonReference>
+						<para>The width of the cache tiles in pixels. The default is 256. For the best balance between performance and manageability, avoid deviating from standard widths of 256 or 512.</para>
+					</pythonReference><dialogReference>
+						<para>The width of the cache tiles in pixels. The default is 256. For the best balance between performance and manageability, avoid deviating from standard widths of 256 or 512.</para>
+					</dialogReference></param><param sync="true" name="tile_height" displayname="Tile Height (in pixels)" datatype="Long" direction="Input" expression="tile_height" type="Required"><pythonReference>
+						<para>The height of the cache tiles in pixels. The default is 256. For the best balance between performance and manageability, avoid deviating from standard widths of 256 or 512.</para>
+					</pythonReference><dialogReference>
+						<para>The height of the cache tiles in pixels. The default is 256. For the best balance between performance and manageability, avoid deviating from standard widths of 256 or 512.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item><para>If you've already defined a cache in ArcCatalog or Manager, then you do not have to run this tool. You will already have a tiling scheme (conf.xml) in the cache folder, which you can reference when you create other caches.</para></bullet_item><bullet_item>
+				<para>By default, the tiling origin starts at the upper left of the coordinate system used by the service's source map document.</para>
+			</bullet_item><bullet_item>
+				<para>Once the cache has been created, the scale levels are the only part of the tiling scheme that can be changed. Use  to add or remove scale levels.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><para>This example creates a map cache tiling scheme with four scales.</para><code xml:space="preserve"># GeneateMapServerCacheTilingScheme example (stand-alone script)
+
+# Name: GeneateMapServerCacheTilingScheme.py
+# Description: The following stand-alone script demonstrates how to create map
+#               server cache schema using a given map document at a given
+#               "pathForOutputXml"
+# Requirements: os, sys, time &amp; traceback modules
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default value.
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, datetime, traceback, string
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of input variables for map service properties
+pathToMapDocument = "C:/data/94/Portland/mxd/_M_Portland_classic_FGDB_Local.mxd"
+dataFrame = "" 
+pathForXml = "C:/data/port.xml"
+tileOrigin = ""
+scales = "4"
+scaleValues = "500000,250000,125000,64000"
+tileWidth = "256"
+tileHeight = "256"
+dpi = "96"
+
+currentTime = datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+
+# print results of the script to a report
+report = open(file,'w')
+
+try:
+    starttime = time.clock()
+    result = arcpy.GenerateMapServerCacheTilingScheme_server( pathToMapDocument, 
+                                                     dataFrame, tileOrigin, 
+                                                     pathForXml,scales, 
+                                                     scaleValues, dpi, 
+                                                     tileWidth, tileHeight)
+    finishtime = time.clock()
+    elapsedtime = finishtime-starttime
+
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+
+    print " Created MapServer cache tiling schema successfully using"
+    + pathToMapDocument + " at "+ pathForXml + " in " + str(elapsedtime)
+    + " sec \n on " + arg2
+    
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 1 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+    
+print "Created Map server Cache Tiling schema "
+
+report.close()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

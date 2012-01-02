@@ -1,0 +1,73 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Change Version  (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Changes the version that an input feature layer or table view is connected to.  This tool only changes the version for the input layer or table view - other layers or table views are not affected. The tool has no effect on the version you are connected to if using feature classes or tables. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" ChangeVersion " displayname=" Change Version  (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Changes the version that an input feature layer or table view is connected to.  This tool only changes the version for the input layer or table view - other layers or table views are not affected. The tool has no effect on the version you are connected to if using feature classes or tables. </para>
+		</summary><alink_name> ChangeVersion _management</alink_name><parameters><param sync="true" name="in_features" displayname="Input Feature Layer" datatype="Feature Layer;Table View" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The Input Feature Layer or Table View to connect to using the specified version. </para>
+					</pythonReference><dialogReference>
+						<para>The Input Feature Layer or Table View to connect to using the specified version. </para>
+					</dialogReference></param><param sync="true" name="version_type" displayname="Version Type" datatype="String" direction="Input" expression="version_type" type="Required"><pythonReference>
+						<para> The type of version to change to.</para>
+						<bulletList><bullet_item>TRANSACTIONAL—Connect to a defined state of the database. </bullet_item><bullet_item>HISTORICAL—Connect to a version representing a defined moment in time, often specified by a time or Historical Marker. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> The type of version to change to.</para>
+						<bulletList><bullet_item>TRANSACTIONAL—Connect to a defined state of the database. </bullet_item><bullet_item>HISTORICAL—Connect to a version representing a defined moment in time, often specified by a time or Historical Marker. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="version_name" displayname="Version Name" datatype="String" direction="Input" expression="version_name" type="Optional"><pythonReference>
+						<para> Name of the version to change to. Optional if using historical versions. </para>
+					</pythonReference><dialogReference>
+						<para> Name of the version to change to. Optional if using historical versions. </para>
+					</dialogReference></param><param sync="true" name="date" displayname="Date" datatype="Date" direction="Input" expression="date" type="Optional"><pythonReference>
+						<para>Date of the historical version to change to.</para>
+					</pythonReference><dialogReference>
+						<para>Date of the historical version to change to.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para> Only works with feature layers and table views. </para>
+			</bullet_item><bullet_item>
+				<para>Each Feature Layer/Table View passed into the tool will have its workspace modified to connect to the requested version. </para>
+			</bullet_item><bullet_item>
+				<para>The ArcSDE connection file used in the path to create the Feature Layer or Table View will not be edited by this tool. Only the open workspace of the Feature Layer/Table View is changed to connect to the specified version.</para>
+			</bullet_item><bullet_item>
+				<para>Transactional and historical views are supported.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ChangeVersion Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the ChangeVersion function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = r'Database Connections\toolbox.sde'
+arcpy.MakeFeatureLayer_management(r'TOOLBOX.Redlands\TOOLBOX.street', 'RedlandsStreets')
+arcpy.MakeFeatureLayer_management(r'TOOLBOX.Redlands\TOOLBOX.streams', 'RedlandsStreams')
+arcpy.MakeFeatureLayer_management(arcpy.SelectLayerByLocation_management("RedlandsStreams","WITHIN_A_DISTANCE","RedlandsStreets","100 Meters","NEW_SELECTION",'#'), 'StreamsNearStreets','','','')
+arcpy.ChangeVersion_management('RedlandsStreets','TRANSACTIONAL', 'TOOLBOX.proposedStreets2k9','')
+arcpy.MakeFeatureLayer_management(arcpy.SelectLayerByLocation_management("RedlandsStreams","WITHIN_A_DISTANCE","RedlandsStreets","100 Meters","NEW_SELECTION",'#'), 'NewStreamsNearStreets','','','')
+
+                    </code></scriptExample><scriptExample><title>ChangeVersion example (Stand-alone script)</title>
+					<para>Use the ChangeVersion tool in a typical versioned analysis workflow.</para>
+				<code xml:space="preserve"># Name: ChangeVersion.py
+# Description: Use the ChangeVersion tool in a typical versioned analysis workflow. Quick check of additional
+#              streams within a pre-determined distance of new proposed street development.
+# Author: ESRI
+
+# import system modules 
+import arcpy
+from arcpy import env
+import sys, os
+
+# Set environments
+env.workspace = sys.path[0] + os.sep + "toolbox.sde"
+
+# Create the layers
+arcpy.MakeFeatureLayer_management(r'TOOLBOX.Redlands\TOOLBOX.street', 'RedlandsStreets')
+arcpy.MakeFeatureLayer_management(r'TOOLBOX.Redlands\TOOLBOX.streams', 'RedlandsStreams')
+
+# Perform analysis on the Default version to determine current number of streams within 100 meters of streets.
+arcpy.MakeFeatureLayer_management(arcpy.SelectLayerByLocation_management("RedlandsStreams","WITHIN_A_DISTANCE","RedlandsStreets","100 Meters","NEW_SELECTION",'#'), 'StreamsNearStreets','','','')
+print "Streams within 100 Meters of current streets: " + str(arcpy.GetCount_management("StreamsNearStreets"))
+
+# Change to the development version
+arcpy.ChangeVersion_management('RedlandsStreets','TRANSACTIONAL', 'TOOLBOX.proposedStreets2k9','')
+
+# Perform the same analysis on the development version to see the effect of the proposed changes.
+arcpy.MakeFeatureLayer_management(arcpy.SelectLayerByLocation_management("RedlandsStreams","WITHIN_A_DISTANCE","RedlandsStreets","100 Meters","NEW_SELECTION",'#'), 'NewStreamsNearStreets','','','')
+print "Streams projected to be within 100 Meters of streets after proposed street additions: " + str(arcpy.GetCount_management("NewStreamsNearStreets"))
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,71 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Import From S57 (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			
+			<para>Converts data from S-57 format to Arc/Iinfo coverages.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc_Import From S57</keyword><keyword>Clean</keyword><keyword>Conversion Tools</keyword><keyword>Coverage</keyword><keyword>S57</keyword><keyword>To Coverage</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="S57Arc" displayname="Import From S57 (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			
+			<para>Converts data from S-57 format to Arc/Iinfo coverages.</para>
+		</summary><alink_name>S57Arc_arc</alink_name><parameters><param sync="true" name="in_s57_file" displayname="Input S57 File" datatype="File" direction="Input" expression="in_s57_file" type="Required"><pythonReference>
+						<para>The data catalog filename or base cell filename in the S-57 exchange set. If a catalog filename is specified, all base cell files listed in the catalog file will be converted. If a base cell filename is specified, only that base cell file will be converted.</para>
+					</pythonReference><dialogReference>
+						<para>The data catalog filename or base cell filename in the S-57 exchange set. If a catalog filename is specified, all base cell files listed in the catalog file will be converted. If a base cell filename is specified, only that base cell file will be converted.</para>
+					</dialogReference></param><param sync="true" name="out_workspace" displayname="Output Workspace" datatype="Folder; Workspace" direction="Output" expression="out_workspace" type="Required"><pythonReference>
+						<para>The workspace where all output coverages will be written.</para>
+					</pythonReference><dialogReference>
+						<para>The workspace where all output coverages will be written.</para>
+					</dialogReference></param><param sync="true" name="clean" displayname="Clean feature topology" datatype="Boolean" direction="Input" expression="clean" type="Optional"><pythonReference>
+						<para>Specifies whether to run the Clean command.</para>
+						<bulletList><bullet_item>CLEAN—Cleans the newly created coverages. This is the default. </bullet_item><bullet_item>NO_CLEAN—Does not clean the newly created coverages. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether to run the Clean command.</para>
+						<bulletList>
+							<bullet_item>Checked—Cleans the newly created coverages.</bullet_item>
+							<bullet_item>Unchecked—Does not clean the newly created coverages.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>S-57 is a data standard developed by the International Hydrographic Organization (IHO) to be used for the exchange of digital hydrographic data.</para>
+			</bullet_item><bullet_item>
+				<para>Each S-57 exchange dataset contains one catalog file and one or more base cells. Import From S57 reads the catalog file, converts it to an INFO file, then converts each base cell file to one or two Arc/Info coverages. One of these coverages will contain all the isolated nodes (for instance, spatial point objects); the other coverage will contain all the spatial and feature objects plus the data descriptive information.</para>
+			</bullet_item><bullet_item>
+				<para>The Import From S57 importer creates either one or two Arc/Info coverages per base cell file, depending on the types of objects contained within the file.</para>
+			</bullet_item><bullet_item>
+				<para>Import From S57 creates an INFO file to capture all the objects being converted for each base cell file. The resulting file is called coverage.object and has the following items: NAME has a content of Record Identifier, LNAM has a content of Feature object long name, CLASS contains feature class, and PRIM contains the Object's spatial primitive (VI, VC, VE, VF, FP, FN, FL, FA, and CF). This INFO file will have a record for each spatial and feature object being converted. The NAME and PRIM columns apply to both spatial and feature objects;however, the LNAM and CLASS columns only apply to feature objects. You can use this table to quickly identify what sort of objects exist in the base cell file.</para>
+			</bullet_item><bullet_item>
+				<para>This INFO file is an enhancement to the importer and is not required by the exporter ().</para>
+			</bullet_item><bullet_item>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>S57Arc example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to import a coverage from S-57 format.
+
+</para>
+				<code xml:space="preserve"># Name: S57Arc_Example.py
+# Description: Imports from S-57 format to coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inS57File = "US5MI82M.000"
+outWorkspace = "C:/output/holland_harb"
+clean = "NO_CLEAN"
+
+# Execute S57Arc
+arcpy.S57Arc_arc(inS57File, outWorkspace, clean)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

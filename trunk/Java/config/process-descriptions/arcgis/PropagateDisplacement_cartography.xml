@@ -1,0 +1,55 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Propagate Displacement  (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Propagates the displacement resulting from road adjustment in the Resolve Road Conflicts  and Merge Divided Roads tools to adjacent features. </para>
+			<para>
+			<para>This tool does not produce output layers but instead alters the source feature classes of the input  layers. If the input layers are drawn with a representation (whose editing behavior is set to store shape overrides), the modified features are stored as shape overrides in the representation. If the layer is not drawn with a representation, the geometry of the input features is modified. Using representations is recommended when working with the conflict resolution tools. That way, if the results are not acceptable, or to rerun the tool with different parameters, simply remove the overrides using the Remove Override tool. It is strongly suggested that you make a copy of your input features if you are not using representations whose editing behavior is set to store shape overrides.</para>
+		</para><para><para>This tool will act cumulatively if run on the same dataset multiple times. In some cases, features may be moved further and further away from their original location, which may lead to unexpect and unwanted results. </para></para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cartography</keyword><keyword>Conflict Detection</keyword><keyword>Conflict Resolution</keyword><keyword>Displace</keyword><keyword>Elastic</keyword><keyword>Geometry Override</keyword><keyword>Graphic Conflict</keyword><keyword>Move</keyword><keyword>Overlap</keyword><keyword>Push</keyword><keyword>Representation</keyword><keyword>Shape Override</keyword><keyword>Solid</keyword><keyword>Stretch</keyword><keyword>Symbol</keyword><keyword>Symbol Conflict</keyword><keyword>Symbol Footprint</keyword><keyword>Symbolisation</keyword><keyword>Symbolization</keyword><keyword>Symbology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" PropagateDisplacement " displayname=" Propagate Displacement  (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Propagates the displacement resulting from road adjustment in the Resolve Road Conflicts  and Merge Divided Roads tools to adjacent features. </para>
+			<para>
+			<para>This tool does not produce output layers but instead alters the source feature classes of the input  layers. If the input layers are drawn with a representation (whose editing behavior is set to store shape overrides), the modified features are stored as shape overrides in the representation. If the layer is not drawn with a representation, the geometry of the input features is modified. Using representations is recommended when working with the conflict resolution tools. That way, if the results are not acceptable, or to rerun the tool with different parameters, simply remove the overrides using the Remove Override tool. It is strongly suggested that you make a copy of your input features if you are not using representations whose editing behavior is set to store shape overrides.</para>
+		</para><para><para>This tool will act cumulatively if run on the same dataset multiple times. In some cases, features may be moved further and further away from their original location, which may lead to unexpect and unwanted results. </para></para></summary><alink_name> PropagateDisplacement _cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para> The input feature layer containing features that may be in conflict. May be point, line, or polygon. </para>
+					</pythonReference><dialogReference>
+						<para> The input feature layer containing features that may be in conflict. May be point, line, or polygon. </para>
+					</dialogReference></param><param sync="true" name="displacement_features" displayname="Displacement Features" datatype="Feature Layer" direction="Input" expression="displacement_features" type="Required"><pythonReference>
+						<para> The displacement polygon features created by the Resolve Road Conflicts or the Merge Divided Roads tools which contain the degree and direction of displacement that took place to resolve conflicts. These polygons dictate the amount of displacement that will be propagated to the Input Features. </para>
+					</pythonReference><dialogReference>
+						<para> The displacement polygon features created by the Resolve Road Conflicts or the Merge Divided Roads tools which contain the degree and direction of displacement that took place to resolve conflicts. These polygons dictate the amount of displacement that will be propagated to the Input Features. </para>
+					</dialogReference></param><param sync="true" name="adjustment_style" displayname="Adjustment Style" datatype="String" direction="Input" expression="adjustment_style" type="Optional"><pythonReference>
+						<para>Defines the type of adjustment that will be used when displacing input features. </para>
+						<bulletList><bullet_item>AUTO—The tool will decide for each input feature whether a SOLID or an ELASTIC adjustment is most appropriate. In general, features with orthogonal shapes will have SOLID adjustment applied, while organically shaped features will have ELASTIC adjustment applied. This is the default. </bullet_item><bullet_item>SOLID—The feature will be translated. All vertices will move the same distance and direction. Topological errors may be introduced. </bullet_item><bullet_item>ELASTIC—The vertices of the feature may be moved independently to best fit the feature to the road network. The shape of the feature may be modified slightly. Topological errors are less likely to be introduced. This option only applies to line and polygon input features.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Defines the type of adjustment that will be used when displacing input features. </para>
+						<bulletList><bullet_item>AUTO—The tool will decide for each input feature whether a SOLID or an ELASTIC adjustment is most appropriate. In general, features with orthogonal shapes will have SOLID adjustment applied, while organically shaped features will have ELASTIC adjustment applied. This is the default. </bullet_item><bullet_item>SOLID—The feature will be translated. All vertices will move the same distance and direction. Topological errors may be introduced. </bullet_item><bullet_item>ELASTIC—The vertices of the feature may be moved independently to best fit the feature to the road network. The shape of the feature may be modified slightly. Topological errors are less likely to be introduced. This option only applies to line and polygon input features.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Reference_scale" label="Reference scale">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The location of input features are adjusted based on the vector displacements contained in the displacement features. Adjustments are a compromise of all displacements, such that large displacements that occurred quite near an input feature will have more influence than smaller displacements further away. Conceptually, this action is similar to a rubber-sheeting process that moves features in various directions by various amounts to fit them back to the spatial relationship that they originally had with the roads.</para>
+			</bullet_item><bullet_item>
+				<para> This tool does not resolve graphic conflicts and in fact may introduce new conflicts. Topological errors that are introduced can be inspected using the  tool. If you are using this tool to propagate  displacement  to building features, consider running the  tool after propagation. </para>
+			</bullet_item><bullet_item><para> This tool operates by assessing graphic conflicts of symbolized features. The symbology extent and the reference scale are considered in conjunction with one another. Run this tool only after you have finalized the appearance of your symbols, and ensure that the reference scale corresponds to the final intended output scale.</para></bullet_item></usage><scriptExamples><scriptExample><title>PropagateDisplacement tool Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the PropagateDisplacement tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.PropagateDisplacement_cartography("footprints.lyr", "displacement.lyr", "AUTO")
+                    </code></scriptExample><scriptExample><title>PropagateDisplacement tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the PropagateDisplacement tool.</para>
+				<code xml:space="preserve"># Name: PropagateDisplacement_standalone_script.py
+# Description: Propagate the displacement of road features to nearby buildings
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+in_features = "footprints.lyr"
+displacement_features = "displacement.lyr"
+adjustment_style = "AUTO"
+
+# Execute Propagate Displacment
+arcpy.PropagateDisplacement_cartography(in_features, displacement_features, adjustment_style)
+                    </code></scriptExample></scriptExamples></tool></metadata>

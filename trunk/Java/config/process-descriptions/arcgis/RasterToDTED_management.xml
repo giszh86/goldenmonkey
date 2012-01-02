@@ -1,0 +1,56 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Raster To DTED  (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Splits a raster dataset into files based on the DTED tiling structure. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" RasterToDTED " displayname=" Raster To DTED  (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Splits a raster dataset into files based on the DTED tiling structure. </para>
+		</summary><alink_name> RasterToDTED _management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para> The input raster dataset. </para><para>The input must be a single band raster dataset representing elevation.</para>
+					</pythonReference><dialogReference>
+						<para> The input raster dataset. </para><para>The input must be a single band raster dataset representing elevation.</para>
+					</dialogReference></param><param sync="true" name="out_folder" displayname="Ouput Folder" datatype="Folder" direction="Input" expression="out_folder" type="Required"><pythonReference>
+						<para> The output folder where the folder structure and DTED files will be created. </para>
+					</pythonReference><dialogReference>
+						<para> The output folder where the folder structure and DTED files will be created. </para>
+					</dialogReference></param><param sync="true" name="dted_level" displayname="DTED Level" datatype="String" direction="Input" expression="dted_level" type="Required"><pythonReference>
+						<para>The DTED level to use when creating your tiles.</para>
+						<bulletList><bullet_item>DTED_0— DTED level 0 specification will be used to split the raster dataset. </bullet_item><bullet_item>DTED_1— DTED level 1 specification will be used to split the raster dataset. This is the default. </bullet_item><bullet_item>DTED_2— DTED level 2 specification will be used to split the raster dataset. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The DTED level to use when creating your tiles.</para>
+						<bulletList><bullet_item>DTED_0— DTED level 0 specification will be used to split the raster dataset. </bullet_item><bullet_item>DTED_1— DTED level 1 specification will be used to split the raster dataset. This is the default. </bullet_item><bullet_item>DTED_2— DTED level 2 specification will be used to split the raster dataset. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="resampling_type" displayname="Resampling Technique" datatype="String" direction="Input" expression="resampling_type" type="Optional"><pythonReference>
+						<para>Choose the resampling method to use when creating the DTEDs. The default is bilinear interpolation resampling.</para>
+						<bulletList><bullet_item>NEAREST—Nearest neighbor assignment</bullet_item><bullet_item>BILINEAR—Bilinear interpolation. This is the default.</bullet_item><bullet_item>CUBIC—Cubic convolution</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose the resampling method to use when creating the DTEDs. The default is bilinear interpolation resampling.</para>
+						<bulletList><bullet_item>NEAREST—Nearest neighbor assignment</bullet_item><bullet_item>BILINEAR—Bilinear interpolation. This is the default.</bullet_item><bullet_item>CUBIC—Cubic convolution</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Raster_statistics" label="Raster statistics"></environment><environment name="Pyramid" label="Pyramid"></environment></environments><usage><bullet_item>
+				<para> There are three levels of the DTED tiling scheme available: DTED level 0, DTED level 1, and DTED level 2.</para>
+			</bullet_item><bullet_item>
+				<para>The input can only be a single band raster dataset.</para>
+			</bullet_item><bullet_item>
+				<para>The output spatial reference will be GCS_WGS84. Each tile's extent is one degree in each direction, plus a half pixel on each edge so adjacent tiles have one column and row of overlap. The output pixel size is dictated by the DTED level, and the data is converted and stored as signed, 16-bit integers. </para>
+			</bullet_item><bullet_item><para>The DTED format is intended to be used with one band data that represents elevation, so this tool cannot be used for multiband images.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RasterToDTED example 1 (Python window)</title>
+					<para>This is a Python sample for RasterToDTED.</para>
+				<code xml:space="preserve">import arcpy
+RasterToDTED_management("C:/workspace/image1.img","C:/workspace/outputDTED",\
+                        "DTED_0","BILINEAR")
+                    </code></scriptExample><scriptExample><title>RasterToDTED example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for RasterToDTED.</para>
+				<code xml:space="preserve">##====================================
+##Raster To DTED
+##Usage: RasterToDTED_management in_raster out_folder DTED_1 | DTED_0 | DTED_2
+##                               {BILINEAR | NEAREST | CUBIC} 
+
+try:
+    import arcpy
+    arcpy.env.workspace = "c:/workspace"
+
+    ##Split a large DEM image to DTED_1 standard
+    arcpy.RasterToDTED_management("socal_dem", "ras2dted", "DTED_1", "BILINEAR")
+    
+except:
+    print "Raster To DTED sample failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

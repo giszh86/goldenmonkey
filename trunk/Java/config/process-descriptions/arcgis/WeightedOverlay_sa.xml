@@ -1,0 +1,97 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Weighted Overlay (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Overlays several rasters using a common measurement scale and weights each according to its importance.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Additive</keyword><keyword>Combine</keyword><keyword>Common Measurement</keyword><keyword>Influence</keyword><keyword>Multiple Rasters</keyword><keyword>Reclassify</keyword><keyword>Scale</keyword><keyword>Site Selection</keyword><keyword>Siting</keyword><keyword>Suitability</keyword><keyword>Suitability Modeling</keyword><keyword>Weight</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="WeightedOverlay" displayname="Weighted Overlay (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para> Overlays several rasters using a common measurement scale and weights each according to its importance.</para>
+			</summary><alink_name>WeightedOverlay_sa</alink_name><toolIllust type="illustration" src="WeightedOverlay_sa_h.gif" alt="Weighted Overlay illustration" /><parameters><param sync="true" name="in_weighted_overlay_table" displayname="Weighted overlay table" datatype="WOTable" direction="Input" expression="in_weighted_overlay_table" type="Required"><pythonReference>
+						<para>The Weighted Overlay tool allows the calculation of a multiple-criteria analysis between several rasters.</para>
+						<para>An Overlay class is used to define the table. The WOTable object is used to specify the criteria rasters and their respective properties.</para><para>The form of the object is:
+<bulletList><bullet_item>WOTable([[inRaster, influence, field, remap],...], [from, to, by])</bullet_item></bulletList></para>
+					</pythonReference><dialogReference>
+						<para> The weighted overlay table allows the calculation of a multiple-criteria analysis between several rasters.</para>
+						<para>Table:</para><bulletList>
+							<bullet_item>Raster—The input criteria raster being weighted.</bullet_item>
+							<bullet_item>% Influence—The influence of the raster compared to the other criteria as a percentage of 100.</bullet_item>
+							<bullet_item>Field—The field of the criteria raster to use for weighting.</bullet_item>
+							<bullet_item>Scale Value—The scaled value for the criterion, as specified by the Evaluation scale setting.  Changing these values will alter the values in the input rasters used in the overlay analysis. You can enter a value directly, or select from the drop-down list. In addition to numerical values, the following options are available:<bulletList>
+									<bullet_item> Restricted—Assigns the restricted value (the minimum value of the evaluation scale set, minus one) to cells in the output, regardless of whether other input rasters have a different scale value set for that cell.</bullet_item>
+									<bullet_item> NoData—Assigns NoData to cells in the output, regardless of whether other input rasters have a different scale value set for that cell.</bullet_item>
+								</bulletList></bullet_item>
+						</bulletList>
+						<para>Evaluation scale—Select from a list of predefined evaluation scales.  You can also define your own evaluation scale with the From, To, and By controls.</para><para>Set Equal Influence—Balances the percent influence of the input rasters equally and sums them to 100.</para></dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para> The output suitability raster.</para>
+						</pythonReference><dialogReference>
+							<para> The output suitability raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment></environments><usage><bullet_item>
+				<para>All input rasters must be integer. A floating-point raster must first be converted to an integer raster before it can be used in Weighted Overlay. The  tools provide an effective way to do the conversion.</para>
+			</bullet_item><bullet_item>
+				<para>Each value class in an input raster is assigned a new value based on an evaluation scale. These new values are reclassifications of the original input raster values. A restricted value is used for areas you want to exclude from the analysis.</para>
+			</bullet_item><bullet_item>
+				<para>Each input raster is weighted according to its importance or its percent influence. The weight is a relative percentage, and the sum of the percent influence weights must equal 100.</para>
+			</bullet_item><bullet_item>
+				<para>Changing the evaluation scales or the percentage influences can change the results of the weighted overlay analysis.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>WeightedOverlay example 1 (Python window)</title>
+					<para>This example create a suitability IMG raster that identifies potential site locations for a ski area.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env  
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+
+outsuit = WeightedOverlay(WOTable(
+           [
+            ["snow", 50, 'VALUE', RemapValue([[1,"Nodata"],[5,3],[9,10],["NODATA","NODATA"]])], 
+            ["land", 20, '', RemapValue([["water","1"],["forest",5],["open field",9],["NODATA", "NODATA"]])],
+            ["soil", 30, 'VALUE', RemapValue([[1,"Restricted"],[5,5],[7,7],[9,9],["NODATA", "Restricted"]])]
+           ],[1,9,1]))
+outsuit.save("C:/sapyexamples/output/outsuit.img")
+                    </code></scriptExample><scriptExample><title>WeightedOverlay example 2 (stand-alone script)</title>
+					<para>This example create a suitability IMG raster that identifies potential site locations for a ski area.</para><code xml:space="preserve"># Name: WeightedOverlay_Ex_02.py
+# Description: Overlays several rasters using a common scale and weighing 
+#    each according to its importance.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster1 = "snow"
+inRaster2 = "land"
+inRaster3 = "soil"
+
+remapsnow = RemapValue([[0,1],[1,1],[5,5],[9,9],["NODATA","NODATA"]])
+remapland = RemapValue([[1,1],[5,5],[6,6],[7,7],[8,8],[9,9],["NODATA","Restricted"]])
+remapsoil = RemapValue([[0,1],[1,1],[5,5],[6,6],[7,7],[8,8],[9,9],["NODATA", "NODATA"]])
+
+myWOTable = WOTable([[inRaster1, 50, "VALUE", remapsnow],
+                     [inRaster2, 20, "VALUE", remapland], 
+                     [inRaster3, 30, "VALUE", remapsoil]
+					          ], [1, 9, 1])    
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute WeightedOverlay
+outWeightedOverlay = WeightedOverlay(myWOTable)
+
+# Save the output
+outWeightedOverlay.save("C:/sapyexamples/output/weightover2")
+                    </code></scriptExample></scriptExamples></tool></metadata>

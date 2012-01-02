@@ -1,0 +1,66 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Global IDs (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds global IDs to a list of geodatabase feature classes, tables, and/or feature datasets. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>1 Way</keyword><keyword>2 Way</keyword><keyword>Centralize</keyword><keyword>Check</keyword><keyword>Child</keyword><keyword>Contractor</keyword><keyword>Database</keyword><keyword>Gdb</keyword><keyword>Guid</keyword><keyword>Identifier</keyword><keyword>In</keyword><keyword>Mobile</keyword><keyword>One</keyword><keyword>Out</keyword><keyword>Parent</keyword><keyword>Production</keyword><keyword>Publication</keyword><keyword>Replica</keyword><keyword>Replicate</keyword><keyword>Replication</keyword><keyword>Sde</keyword><keyword>Synchronize</keyword><keyword>Two</keyword><keyword>Unique</keyword><keyword>Uuid</keyword><keyword>Way</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddGlobalIDs" displayname="Add Global IDs (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Adds global IDs to a list of geodatabase feature classes, tables, and/or feature datasets. </para>
+		</summary><alink_name>AddGlobalIDs_management</alink_name><parameters><param sync="true" name="in_datasets" displayname="Input Datasets" datatype="Layer;Table View" direction="Input" expression="[in_dataset,...]" type="Required"><pythonReference>
+						<para>A list of geodatabase classes, tables, and/or feature datasets to which global IDs will be added.</para>
+					</pythonReference><dialogReference>
+						<para>A list of geodatabase classes, tables, and/or feature datasets to which global IDs will be added.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>GlobalIDs uniquely identify a feature or table row within a geodatabase and across geodatabases.</para>
+			</bullet_item><bullet_item>
+				<para>GlobalIDs are required for two-way and one-way replication.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AddGlobalIDs Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the AddGlobalIDs function in the Python window.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/data/MySDEdata.sde" 
+
+arcpy.AddGlobalIDs_managment("GDB1.Heather.Roads")
+
+                    </code></scriptExample><scriptExample><title>AddGlobalIDs Example 2 (stand-alone Python script)</title>
+					<para>The following Python script demonstrates how to use the AddGlobalIDs function with an SDE feature class.</para>
+				<code xml:space="preserve"># Name: AddGlobalIDs_Example2.py
+# Description: Add globalIDs to a feature class. The feature class is in an SDE workspace.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/MySDEdata.sde"
+
+# Set local variables
+in_dataset = "GDB1.Heather.Roads"
+
+# Execute AddGlobalIDs
+arcpy.AddGlobalIDs_management(in_dataset)
+
+                    </code></scriptExample><scriptExample><title>AddGlobalIDs Example 3 (stand-alone Python script)</title>
+					<para>The following Python script demonstrates how to use the AddGlobalIDs function with multiple SDE feature classes.</para>
+				<code xml:space="preserve"># Name: AddGlobalIDs_Example2.py
+# Description: Add globalIDs to a list of datasets. Both feature classes are in the same ArcSDE workspace.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/MySDEdata.sde"
+
+# Set local variables
+in_dataset1 = "GDB1.Heather.Roads"
+in_dataset2 = "GDB1.Heather.Streets"
+
+# Execute AddGlobalIDs
+arcpy.AddGlobalIDs_management([in_dataset1, in_dataset2])
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

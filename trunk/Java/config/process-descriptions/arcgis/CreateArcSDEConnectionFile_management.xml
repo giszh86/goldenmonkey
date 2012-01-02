@@ -1,0 +1,93 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Create ArcSDE Connection File (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Creates an ArcSDE connection file for use in connecting to ArcSDE geodatabases. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Connect To Arcsde From Geoprocessing</keyword><keyword>Empty</keyword><keyword>Enterprise</keyword><keyword>Location</keyword><keyword>Make</keyword><keyword>Network</keyword><keyword>New</keyword><keyword>Remote</keyword><keyword>Sde</keyword><keyword>Storage</keyword><keyword>Store</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" CreateArcSDEConnectionFile " displayname=" Create ArcSDE Connection File (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Creates an ArcSDE connection file for use in connecting to ArcSDE geodatabases. </para>
+		</summary><alink_name> CreateArcSDEConnectionFile _management</alink_name><parameters><param sync="true" name="out_folder_path" displayname="ArcSDE Connection File Location" datatype="Folder" direction="Output" expression="out_folder_path" type="Required"><pythonReference>
+						<para> The folder path where the .sde file will be stored. </para>
+					</pythonReference><dialogReference>
+						<para> The folder path where the .sde file will be stored. </para>
+					</dialogReference></param><param sync="true" name="out_name" displayname="ArcSDE Connection File Name" datatype="String" direction="Output" expression="out_name" type="Required"><pythonReference>
+						<para> The name of the ArcSDE Connection file. Use the .sde file extension. </para>
+					</pythonReference><dialogReference>
+						<para> The name of the ArcSDE Connection file. Use the .sde file extension. </para>
+					</dialogReference></param><param sync="true" name="server" displayname="Server" datatype="String" direction="Input" expression="server" type="Required"><pythonReference>
+						<para> The ArcSDE Server machine name. </para>
+					</pythonReference><dialogReference>
+						<para> The ArcSDE Server machine name. </para>
+					</dialogReference></param><param sync="true" name="service" displayname="Service" datatype="String" direction="Input" expression="service" type="Required"><pythonReference>
+						<para> The ArcSDE Service name or TCP port number. </para>
+					</pythonReference><dialogReference>
+						<para> The ArcSDE Service name or TCP port number. </para>
+					</dialogReference></param><param sync="true" name="database" displayname="Database" datatype="String" direction="Input" expression="database" type="Optional"><pythonReference>
+						<para>For non-Oracle databases only. The DBMS database to connect to.</para>
+					</pythonReference><dialogReference>
+						<para>For non-Oracle databases only. The DBMS database to connect to.</para>
+					</dialogReference></param><param sync="true" name="account_authentication" displayname="Database authentication" datatype="Boolean" direction="Input" expression="account_authentication" type="Optional"><pythonReference>
+						<bulletList><bullet_item>DATABASE_AUTH—Database Authentication. Uses an internal database username and password to connect to the DBMS. You aren't required to type your username and password to create a connection; however, if you don't, you will be prompted to enter them when a connection is established.</bullet_item><bullet_item>OPERATING_SYSTEM_AUTH—Use Operating system authentication. You do not need to type in a username and password. The connection will be made with the username and password used to log in to the operating system. If the login used for the operating system is not a valid geodatabase login, the connection will fail. Also note if you are creating a connection to a geodatabase stored in Oracle, DB2, or Informix you have to use a direct connection to the database.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked—Use Database Authentication. Uses an internal database username and password to connect to the DBMS. You aren't required to type your username and password to create a connection; however, if you don't, you will be prompted to enter them when a connection is established.</bullet_item>
+							<bullet_item>UnChecked—Use Operating system authentication. You do not need to type in a username and password. The connection will be made with the username and password used to log in to the operating system. If the login used for the operating system is not a valid geodatabase login, the connection will fail. Also note if you are creating a connection to a geodatabase stored in Oracle, DB2, or Informix you have to use a direct connection to the database.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="username" displayname="Username" datatype="String" direction="Input" expression="username" type="Optional"><pythonReference>
+						<para> Database username to connect with using Database Authentication. </para>
+					</pythonReference><dialogReference>
+						<para> Database username to connect with using Database Authentication. </para>
+					</dialogReference></param><param sync="true" name="password" displayname="Password" datatype="String" direction="Input" expression="password" type="Optional"><pythonReference>
+						<para> The database user password when using Database Authentication.</para>
+					</pythonReference><dialogReference>
+						<para> The database user password when using Database Authentication.</para>
+					</dialogReference></param><param sync="true" name="save_username_password" displayname="Save username and password" datatype="Boolean" direction="Input" expression="save_username_password" type="Optional"><pythonReference>
+						<bulletList><bullet_item>SAVE_USERNAME—Save the username and password in the connection file.</bullet_item><bullet_item>DO_NOT_SAVE_USERNAME—Do not save the username and password in the file. Every time you attempt to connect using the file you will be prompted for the username and password.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked—Save the username and password in the connection file.</bullet_item>
+							<bullet_item>Unchecked—Do not save the username and password in the file. Every time you attempt to connect using the file you will be prompted for the username and password.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="version" displayname="The following transactional version will be used" datatype="String" direction="Input" expression="version" type="Optional"><pythonReference>
+						<para> The Geodatabase version to connect to. </para>
+					</pythonReference><dialogReference>
+						<para> The Geodatabase version to connect to. </para>
+					</dialogReference></param><param sync="true" name="save_version_info" displayname="Save the transactional version name with the connection file." datatype="Boolean" direction="Input" expression="save_version_info" type="Optional"><pythonReference>
+						<bulletList><bullet_item>SAVE_VERSION—Save the version name in the connection file.</bullet_item><bullet_item>DO_NOT_SAVE_VERSION—Do not save the version name in the connection file. Without the version name being saved with the file you will be prompted for the version to connect to each time you access the connection file.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item> Checked—Save the version name in the connection file.</bullet_item>
+							<bullet_item>Unchecked—Do not save the version name in the connection file. Without the version name being saved with the file you will be prompted for the version to connect to each time you access the connection file.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>Although you can enter any file extension for the ArcSDE Connection File Name, you must use the standard file extension .sde in order for it to be recognised correctly by ArcGIS.</para>
+			</bullet_item><bullet_item>
+				<para>When valid connection information is entered the tool will connect to the ArcSDE server in order to populate the versions list with versions the connected user has permissions to connect to.</para>
+			</bullet_item><bullet_item>
+				<para>Please see  for a more complete explanation of ArcSDE connection properties.</para>
+			</bullet_item><bullet_item>If you want to prevent your connection information from being saved in the Results window or stored in the geoprocessing history log files, you will need to disable  and save the ArcSDE Connection file without saving the connection information you wish to hide. </bullet_item></usage><scriptExamples><scriptExample><title>CreateArcSDEConnectionFile Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the CreateArcSDEConnectionFile function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.CreateArcSDEConnectionFile_management(r'c:\connectionFiles', 'gpserver', '5151', '', 'toolbox', 'toolbox', 'SAVE_USERNAME', 'SDE.DEFAULT', 'SAVE_VERSION')
+                    </code></scriptExample><scriptExample><title>CreateArcSDEConnectionFile Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script is a simple example of how to apply the CreateArcSDEConnectionFile function in scripting.</para>
+				<code xml:space="preserve"># CreateArcSDEConnection.py
+# Description: Simple example showing use of CreateArcSDEConnectionFile tool
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+
+# Set variables
+folderName = r"c:\connectionFiles"
+fileName = "Connection to gpserver.sde"
+serverName = "gpserver"
+serviceName = "5151"
+databaseName = ""
+authType = "DATABASE_AUTH"
+username = "toolbox"
+password = "toolbox"
+saveUserInfo = "SAVE_USERNAME"
+versionName = "SDE.DEFAULT"
+saveVersionInfo = "SAVE_VERSION"
+
+#Process: Use the CreateArcSDEConnectionFile function
+arcpy.CreateArcSDEConnectionFile_management (folderName, fileName, serverName, serviceName, databaseName, authType, username, password, saveUserInfo, versionName, saveVersionInfo)
+ 
+                    </code></scriptExample></scriptExamples></tool></metadata>

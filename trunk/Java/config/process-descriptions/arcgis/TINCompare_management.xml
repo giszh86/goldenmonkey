@@ -1,0 +1,66 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">TIN Compare (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Compares two TINs and returns the comparison results. TIN Compare can report differences with geometry, TIN node and triangle tags, and spatial reference.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Base</keyword><keyword>Difference</keyword><keyword>Different</keyword><keyword>Edge</keyword><keyword>Find</keyword><keyword>Geometry</keyword><keyword>Hull</keyword><keyword>Identical</keyword><keyword>Irregular</keyword><keyword>Network</keyword><keyword>Node</keyword><keyword>Properties</keyword><keyword>Reference</keyword><keyword>Search</keyword><keyword>Similar</keyword><keyword>Spatial</keyword><keyword>Tag</keyword><keyword>Test</keyword><keyword>Triangle</keyword><keyword>Triangular</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TINCompare" displayname="TIN Compare (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Compares two TINs and returns the comparison results. TIN Compare can report differences with geometry, TIN node and triangle tags, and spatial reference.</para>
+		</summary><alink_name>TINCompare_management</alink_name><parameters><param sync="true" name="in_base_tin" displayname="Input Base Tin" datatype="Tin Layer" direction="Input" expression="in_base_tin" type="Required"><pythonReference>
+						<para>The Input Base Tin is compared with the Input Test Tin. Input Base Tin refers to data that you have declared valid. This base data has the correct geometry, tag values (if any), and spatial reference.</para>
+					</pythonReference><dialogReference>
+						<para>The Input Base Tin is compared with the Input Test Tin. Input Base Tin refers to data that you have declared valid. This base data has the correct geometry, tag values (if any), and spatial reference.</para>
+					</dialogReference></param><param sync="true" name="in_test_tin" displayname="Input Test Tin" datatype="Tin Layer" direction="Input" expression="in_test_tin" type="Required"><pythonReference>
+						<para>The Input Test Tin is compared against the Input Base Tin.</para>
+					</pythonReference><dialogReference>
+						<para>The Input Test Tin is compared against the Input Base Tin.</para>
+					</dialogReference></param><param sync="true" name="compare_type" displayname="Compare Type" datatype="String" direction="Input" expression="compare_type" type="Optional"><pythonReference>
+						<para>The comparison type.</para>
+						<bulletList><bullet_item>ALL—This is the default. </bullet_item><bullet_item>PROPERTIES_ONLY—Refers to both geometry and TIN tag values, if any, that are assigned to nodes and triangles. </bullet_item><bullet_item>SPATIAL_REFERENCE_ONLY—Coordinate system information. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The comparison type.</para>
+						<bulletList><bullet_item>ALL—This is the default. </bullet_item><bullet_item>PROPERTIES_ONLY—Refers to both geometry and TIN tag values, if any, that are assigned to nodes and triangles. </bullet_item><bullet_item>SPATIAL_REFERENCE_ONLY—Coordinate system information. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="continue_compare" displayname="Continue Comparison" datatype="Boolean" direction="Input" expression="continue_compare" type="Optional"><pythonReference>
+						<para>Indicates whether to compare all properties after encountering the first mismatch.</para>
+						<bulletList><bullet_item>NO_CONTINUE_COMPARE—Stop after encountering the first mismatch. This is the default. </bullet_item><bullet_item>CONTINUE_COMPARE—Compare other properties after encountering the first mismatch. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether to compare all properties after encountering the first mismatch.<bulletList>
+								<bullet_item>Unchecked—Stop after encountering the first mismatch. This is the default. </bullet_item>
+								<bullet_item>Checked—Compare other properties after encountering the first mismatch.</bullet_item>
+							</bulletList></para>
+					</dialogReference></param><param sync="true" name="out_compare_file" displayname="Output Comparison File" datatype="File" direction="Output" expression="out_compare_file" type="Optional"><pythonReference>
+						<para>The name and path of the text file which will contain the comparison results.</para>
+					</pythonReference><dialogReference>
+						<para>The name and path of the text file which will contain the comparison results.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>The tool returns messages showing the comparison result. By default, the tool will stop executing after encountering the first miscompare. To report all differences, set the continue compare option to true.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Compare File will contain all similarities and differences between the Input Base TIN and the Input Test TIN. This file is a comma-delimited text file which can be viewed and used as a table in ArcGIS. For example, this table can be queried to obtain all the ObjectID values for all the rows that are different.</para>
+			</bullet_item><bullet_item>
+				<para>The comparison tools  will be 'true' when no differences are found and 'false' when differences are detected.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TinCompare Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the TinCompare function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.TinCompare_management(r'c:\Workspace\basetin', r'c:\Workspace\newtin', 'ALL', 'CONTINUE_COMPARE', r'c:\Workspace\tincompare.txt')
+                    </code></scriptExample><scriptExample><title>TinCompare tool Example (Stand-alone script)</title>
+					<para>Example of how to use the TinCompare tool in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: TinCompare.py
+# Description: Compare two TINs and return comparison result.
+# Author: ESRI
+
+# import system modules 
+import arcpy
+
+try:
+    # Set local variables
+    base_tin= "C:/Workspace/basetin"
+    test_tin= "C:/Workspace/newtin"
+    compare_type = "ALL"
+    continue_compare = "CONTINUE_COMPARE"
+    compare_file = "C:/Workspace/tincompare.txt"
+ 
+    # Process: TinCompare
+    compare_result = arcpy.TinCompare_management(base_tin, test_tin, compare_type, continue_compare, compare_file)
+    print compare_result
+    print arcpy.GetMessages()
+ 
+except:
+    # Print error message if an error occurs
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

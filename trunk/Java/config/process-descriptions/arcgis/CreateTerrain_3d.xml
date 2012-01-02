@@ -1,0 +1,140 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Terrain (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a new terrain dataset inside the specified feature dataset. Use Add Terrain Pyramid Level, and Add Feature Class To Terrain, followed by Build Terrain to complete the terrain definition and construct a usable terrain.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Create</keyword><keyword>Edit</keyword><keyword>Lidar</keyword><keyword>Masspoints</keyword><keyword>Multipoints</keyword><keyword>Multiresolution Surface</keyword><keyword>Surface</keyword><keyword>Terrain</keyword><keyword>Terrain Dataset</keyword><keyword>Terrains</keyword><keyword>Triangulated</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateTerrain" displayname="Create Terrain (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Creates a new terrain dataset inside the specified feature dataset. Use Add Terrain Pyramid Level, and Add Feature Class To Terrain, followed by Build Terrain to complete the terrain definition and construct a usable terrain.</para>
+		</summary><alink_name>CreateTerrain_3d</alink_name><parameters><param sync="true" name="in_feature_dataset" displayname="Input Feature Dataset" datatype="Feature Dataset" direction="Input" expression="in_feature_dataset" type="Required"><pythonReference>
+						<para>The feature dataset where the Terrain dataset will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The feature dataset where the Terrain dataset will be created.</para>
+					</dialogReference></param><param sync="true" name="out_terrain_name" displayname="Output Terrain" datatype="String" direction="Output" expression="out_terrain_name" type="Required"><pythonReference>
+						<para>The output Terrain dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The output Terrain dataset.</para>
+					</dialogReference></param><param sync="true" name="average_point_spacing" displayname="Average Point Spacing" datatype="Double" direction="Input" expression="average_point_spacing" type="Required"><pythonReference>
+						<para>The average distance between input points and vertices.</para>
+					</pythonReference><dialogReference>
+						<para>The average, or nominal, horizontal distance between points for the data being used to build the terrain. Data collected for photogrammetric, lidar, and sonar surveys typically have a known spacing. This is the value that should be used. If you're unsure of the spacing you should go back and check the data rather than guess. The spacing is given in the horizontal units of the feature dataset's coordinate system.</para>
+					</dialogReference></param><param sync="true" name="max_overview_size" displayname="Maximum Overview Size" datatype="Long" direction="Output" expression="max_overview_size" type="Optional"><pythonReference>
+						<para>The terrain overview is the coarsest representation of the Terrain dataset. It's like a vector-based thumbnail. The maximum size is the upper limit to the number of measurement points sampled to create the overview.</para>
+					</pythonReference><dialogReference>
+						<para>The terrain overview is the coarsest representation of the Terrain dataset. It's like a vector-based thumbnail. The maximum size is the upper limit to the number of measurement points sampled to create the overview.</para>
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="Config Keyword" datatype="String" direction="Input" expression="config_keyword" type="Optional"><pythonReference>
+						<para>Configuration keyword for ArcSDE.</para>
+					</pythonReference><dialogReference>
+						<para>Configuration keyword for ArcSDE.</para>
+						<para>A configuration keyword is used to specify storage and location parameters for optimal space and disk location efficiency. It applies only to ArcSDE geodatabases. The configuration keyword is provided by your database administrator.</para>
+					</dialogReference></param><param sync="true" name="pyramid_type" displayname="Pyramid Type" datatype="String" direction="Input" expression="pyramid_type" type="Optional"><pythonReference>
+						<para>The type of filter used by the terrain to construct the pyramid.</para>
+					</pythonReference><dialogReference>
+						<para>The type of filter used by the terrain to construct the pyramid.</para>
+					</dialogReference></param><param sync="true" name="windowsize_method" displayname="Window Size Method" datatype="String" direction="Input" expression="windowsize_method" type="Optional"><pythonReference>
+						<para>The criterion used for selecting points when the pyramid type is Window Size.</para>
+					</pythonReference><dialogReference>
+						<para>The criterion used for selecting points when the pyramid type is Window Size.</para>
+					</dialogReference></param><param sync="true" name="secondary_thinning_method" displayname="Secondary Thinning Method" datatype="String" direction="Input" expression="secondary_thinning_method" type="Optional"><pythonReference>
+						<para>The type of additional thinning, if any, to use with the Window Size filter.</para>
+					</pythonReference><dialogReference>
+						<para>The type of additional thinning, if any, to use with the Window Size filter.</para>
+					</dialogReference></param><param sync="true" name="secondary_thinning_threshold" displayname="Secondary Thinning Threshold" datatype="Double" direction="Input" expression="secondary_thinning_threshold" type="Optional"><pythonReference>
+						<para>The vertical threshold used to activate secondary thinning with the Window Size filter. The value should be set equal to or larger than the vertical accuracy of the data.</para>
+					</pythonReference><dialogReference>
+						<para>The vertical threshold used to activate secondary thinning with the Window Size filter. The value should be set equal to or larger than the vertical accuracy of the data.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Geoprocessing tools for terrain construction are geared toward data automation—for use in scripts and ModelBuilder. Consider using the Terrain Wizard in ArcCatalog or the Catalog window for interactively creating a new terrain. Access it from the Feature Dataset context menu under the New pullright.</para>
+			</bullet_item><bullet_item>
+				<para>The Average Point Spacing parameter needs to be determined by the data that will be used to build the terrain. This value doesn't need to be exact but should represent a good approximation. If the data has been gathered at significantly different densities from one location to another, give more weight to the smaller spacing.</para>
+			</bullet_item><bullet_item>
+				<para>The following environment settings affect this tool:</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Create Terrain Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Create Terrain
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.CreateTerrain_3d("C:/data/terrain.gdb/terrainFDS", "my_terrain",  "10", "50000", "", "WINDOWSIZE", "ZMIN", "NONE", "1")
+                    </code></scriptExample><scriptExample><title>Create Terrain Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Create Terrain
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: CreateTerrain Example
+# Description: The following stand-alone script demonstrates how to create a
+#              terrain dataset from a TIN. The TinDomain, TinLine, and TinNode 
+#              tools are used to extract the features from the TIN, and the 
+#              CreateTerrain, AddTerrainPyramidLevel, AddFeatureClassToTerrain, 
+#              and BuildTerrain tools are used to construct the terrain. This 
+#              process is helpful in situations where the data used in
+#              making the TIN is no longer available.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension('3D')
+
+# Set environment settings
+env.workspace = 'C:/data'
+
+try:
+    # Set Local Variables
+    sourceTIN = 'elevation'
+    newFGDB = 'sample.gdb' # name of the file geodatabase that will be created
+    newFD = 'data_from_TIN' # name of the feature dataset that will be created
+    # os.sep is used to denote the separator (e.g. '/')
+    # The clip polygon that will be extracted from the TIN
+    TIN_domain = newFGDB + os.sep + newFD + os.sep + 'boundary'
+    # The elevation points that will be extracted from the TIN
+    TIN_nodes = newFGDB + os.sep + newFD + os.sep + 'mass_points'
+    # The breaklines that will be extracted from the TIN
+    TIN_lines = newFGDB + os.sep + newFD + os.sep + 'breaklines'
+    # Name of the terrain that will be created
+    terrain = 'terrain_from_tin'
+    # Pyramid levels for the terrain
+    pyramids = '20 5000;25 10000;35 25000;50 50000'
+    # Properties for the terrain surfaces
+    PolyParams = TIN_domain + \
+               ' Shape softclip 1 0 10 true false boundary_embed &lt;None&gt; false'
+    PtParams = TIN_nodes + \
+             ' Shape masspoints 1 0 50 true false points_embed &lt;None&gt; false'
+    LineParams = TIN_lines + \
+               ' Shape softline 1 0 25 false false lines_embed &lt;None&gt; false'
+    arcpy.AddMessage('Creating file geodatabase...')
+    # Execute CreateFileGDB
+    arcpy.CreateFileGDB_management(env.workspace, newFGDB)
+    arcpy.AddMessage('Creating feature dataset...')
+    # Execute CreateFeatureDataset
+    arcpy.CreateFeatureDataset_management(newFGDB, newFD, sourceTIN)
+    arcpy.AddMessage('Exporting TIN footprint...')
+    # Execute TinDomain
+    arcpy.TinDomain_3d(sourceTIN, TIN_domain, 'POLYGON')
+    arcpy.AddMessage('Exporting TIN lines...')
+    # Execute TinLine
+    arcpy.TinLine_3d(sourceTIN, TIN_edges, 'Code')
+    arcpy.AddMessage('Exporting TIN nodes...')
+    # Execute TinNode
+    arcpy.TinNode_3d(sourceTIN, TIN_nodes)
+    # Execute CreateTerrain
+    arcpy.CreateTerrain_3d(newFGDB + os.sep + newFD, terrain, 10, 50000, '', \
+                           'WINDOWSIZE', 'ZMEAN', 'NONE', 1)
+    # Execute AddTerrainPyramidLevel
+    arcpy.AddTerrainPyramidLevel_3d(newFGDB + os.sep + newFD + os.sep + terrain,\
+                                    '', pyramids)
+    # Execute AddFeatureClassToTerrain
+    arcpy.AddFeatureClassToTerrain_3d(newFGDB + os.sep + newFD + os.sep + terrain,\
+                                      PolyParams + ';' + PtParams + ';' + LineParams) 
+    # Execute BuildTerrain
+    arcpy.BuildTerrain_3d(newFGDB + os.sep + newFD + os.sep + terrain, 'NO_UPDATE_EXTENT')
+except:
+    # Returns any other error messages
+    print arcpy.GetMessages(2)
+
+del arcpy, sourceTIN, newFGDB, newFD, TIN_domain, TIN_lines, TIN_nodes, terrain, \
+    pyramids, PolyParams, PtParams, LineParams
+                    </code></scriptExample></scriptExamples></tool></metadata>

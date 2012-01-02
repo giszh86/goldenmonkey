@@ -1,0 +1,99 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Check Geometry (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Generates a report of the geometry problems in a feature class.</para>
+			<para>Valid input formats are shapefile and feature classes stored in a personal geodatabase or file geodatabase. SDE Geodatabases automatically check the validity of each geometry when they are uploaded; therefore the Check Geometry and Repair Geometry tools are not for use with SDE.</para>
+			<para>For additional information on geometry problems, it's impact on the software, and potential sources, see Checking and repairing geometries.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Bad</keyword><keyword>Clean</keyword><keyword>Corrupt</keyword><keyword>Dirty</keyword><keyword>Empty</keyword><keyword>Error</keyword><keyword>Examine</keyword><keyword>Find</keyword><keyword>From</keyword><keyword>Geometry</keyword><keyword>Incorrect</keyword><keyword>Inspect</keyword><keyword>Intersect</keyword><keyword>Null</keyword><keyword>Order</keyword><keyword>Orientation</keyword><keyword>Problem</keyword><keyword>Repair</keyword><keyword>Report</keyword><keyword>Salvage</keyword><keyword>Self</keyword><keyword>Shape</keyword><keyword>Short</keyword><keyword>Simplify</keyword><keyword>To</keyword><keyword>Unclosed</keyword><keyword>Valid</keyword><keyword>Vector</keyword><keyword>Verify</keyword><keyword>Void</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CheckGeometry" displayname="Check Geometry (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Generates a report of the geometry problems in a feature class.</para>
+			<para>Valid input formats are shapefile and feature classes stored in a personal geodatabase or file geodatabase. SDE Geodatabases automatically check the validity of each geometry when they are uploaded; therefore the Check Geometry and Repair Geometry tools are not for use with SDE.</para>
+			<para>For additional information on geometry problems, it's impact on the software, and potential sources, see Checking and repairing geometries.</para>
+		</summary><alink_name>CheckGeometry_management</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="[in_features,...]" type="Required"><pythonReference>
+						<para>One or more feature classes or feature layers that will be checked for geometry problems. Valid input formats are shapefile and feature classes stored in a personal geodatabase or file geodatabase.</para>
+					</pythonReference><dialogReference>
+						<para>One or more feature classes or feature layers that will be checked for geometry problems. Valid input formats are shapefile and feature classes stored in a personal geodatabase or file geodatabase.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>The table that will contain the list of problems that were discovered in the input features.</para>
+					</pythonReference><dialogReference>
+						<para>The table that will contain the list of problems that were discovered in the input features.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Output Table will have a record for each geometry problem discovered. If no problems are found the table will be empty.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Table has the following fields:</para>
+				<bulletList>
+					<bullet_item>CLASS—The full path to and name of the feature class in which the problem was found.</bullet_item>
+					<bullet_item>FEATURE_ID—The Feature ID (FID) or Object ID (OID) for the feature with the geometry problem.</bullet_item>
+					<bullet_item>PROBLEM—A short description of the problem.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>The PROBLEM field will contain one of the following:</para>
+				<bulletList>
+					<bullet_item>Short segment—Some segments are shorter than allowed by the system units of the spatial reference associated with the geometry.</bullet_item>
+					<bullet_item>Null geometry—The feature has no geometry or nothing in the SHAPE field.</bullet_item>
+					<bullet_item>Incorrect ring ordering—The polygon is topologically simple, but its rings may not be oriented correctly (outer rings—clockwise, inner rings—counterclockwise).</bullet_item>
+					<bullet_item>Incorrect segment orientation—Individual segments are not consistently oriented. The "to" point of seg i should be incident on the "from" point of seg i+1.</bullet_item>
+					<bullet_item>Self intersections—A polygon must not intersect itself. </bullet_item>
+					<bullet_item>Unclosed rings—The last segment in a ring must have its "to" point incident on the "from" point of the first segment.</bullet_item>
+					<bullet_item>Empty parts—The geometry has multiple parts and one of them is empty (has no geometry).</bullet_item>
+					<bullet_item>Duplicate vertex—The geometry has two or more vertices with identical coordinates.</bullet_item>
+					<bullet_item>Mismatched attributes—The Z or M coordinate of a line segment's endpoint does not match the Z or M coordinate of the coincident endpoint on the next segment.</bullet_item>
+					<bullet_item>Discontinuous parts—One of the geometry's part is made up of disconnected or discontinuous parts.</bullet_item>
+					<bullet_item>Empty Z values—The geometry has one or more vertex with empty Z value (NaN, for example).</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>The problem identified by this tool can be addressed in the following ways:</para>
+				<bulletList>
+					<bullet_item>Manually editing and fixing the feature with the geometry problems. Some of the problems, such as nonsimple geometry, cannot be fixed in the Editor.</bullet_item>
+					<bullet_item>By running the  tool on the feature classes that were identified as having geometry problems.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>For point features, only the null geometry problem applies.</para>
+			</bullet_item><bullet_item>
+				<para>To facilitate the review of the features which are reported to have geometry problems in ArcMap you can join the Input Features to the Output Table using the  tool. Simply join using the input's ObjectID field, and the output table's FEATURE_ID field. You may also uncheck the Keep All option so that only features with geometry problems are displayed.</para>
+			</bullet_item><bullet_item><para>Starting with the 10.0 release, a line geometry  is no longer considered "self-intersecting" if it crosses itself.  There was no adverse effect to these types of geometry therefore the Check Geometry tool will no longer report the feature as a problem, and the Repair Geometry tool will no longer perform a "fix" on the feature's geometry.  Prior to the 10.0 release Repair Geometry would add vertices at the point of intersection of "self-intersecting" lines.  If you do want to add vertices when line features intersect themselves use the  tool.</para></bullet_item></usage><scriptExamples><scriptExample><title>Check Geometry Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the CheckGeometry function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+arcpy.env.workspace = "c:/data/data.gdb"
+
+arcpy.CheckGeometry_management (["contours", "roads", "vegetation"], "CG_Result")
+                    </code></scriptExample><scriptExample><title>Check Geometry Example 2 (Stand-alone Script)</title>
+					<para>The following stand-alone script uses the CheckGeometry function as by looping through all the feature classes in a geodatabase.</para>
+				<code xml:space="preserve"># BatchCheckGeometry.py
+# Description: 
+#   Loops through all the feature classes in a geodatabase, and generates 
+#   a report of the problems encountered with feature geometry.
+# Requirements: Python
+# Author: ESRI
+
+# Import modules
+import arcpy
+ 
+# The workspace in which the feature classes will be checked
+outTable = "C:/data/St_Lucia.gdb/checkGeometryResult"
+arcpy.env.workspace = "C:/data/St_Lucia.gdb"
+ 
+# A variable that will hold the list of all the feature classes 
+# inside the geodatabase
+fcs = []
+ 
+# List all feature classes in feature datasets
+for fds in arcpy.ListDatasets("","featuredataset"):
+    fcs += arcpy.ListFeatureClasses("*","",fds)
+          
+# List all standalone feature classes
+fcs = arcpy.ListFeatureClasses()
+     
+print "Running the check geometry tool on %i feature classes" % len(fcs)
+arcpy.CheckGeometry_management(fcs, outTable)
+
+print (str(arcpy.GetCount_management(outTable)) + " geometry problems were found.")
+print ("See " + outTable + " for full details")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

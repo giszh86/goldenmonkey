@@ -1,0 +1,78 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Lowest Position (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Determines on a cell-by-cell basis the position of the raster with the minimum value in a set of rasters.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>By Cell</keyword><keyword>For Each</keyword><keyword>List</keyword><keyword>Order</keyword><keyword>Per Cell</keyword><keyword>Pixel</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="LowestPosition" displayname="Lowest Position (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Determines on a cell-by-cell basis the position of the raster with the minimum value in a set of rasters.</para>
+		</summary><alink_name>LowestPosition_sa</alink_name><toolIllust type="illustration" src="LowestPosition_sa_h.png" alt="Lowest Position illustration" /><parameters><param sync="true" name="in_rasters_or_constants" displayname="Input rasters or constant values" datatype="Raster Layer | Constant" direction="Input" expression="[in_raster_or_constant,...]" type="Required"><pythonReference>
+						<para>The list of input rasters for which the position of the input with the lowest value will be determined.</para>
+						<para>
+A number can be used as an input; however, the cell size and extent must first be set in the environment.</para></pythonReference><dialogReference>
+						<para>The list of input rasters for which the position of the input with the lowest value will be determined.</para>
+						<para>
+A number can be used as an input; however, the cell size and extent must first be set in the environment.</para></dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>For each cell in the output raster, the value represents the position of the raster with the lowest value.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>For each cell in the output raster, the value represents the position of the raster with the lowest value.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>An arbitrary number of rasters can be specified in the input rasters list.</para>
+			</bullet_item><bullet_item>
+				<para>The order of the input rasters is relevant for this tool.</para>
+			</bullet_item><bullet_item>
+				<para>If a cell location contains NoData on any of the input rasters, that location will be assigned NoData on the output.</para>
+			</bullet_item><bullet_item>
+				<para>The output raster is always of integer type.</para>
+			</bullet_item><bullet_item>
+				<para>If two or more input rasters contain the minimum value for a particular cell location, the position of the first one encountered is returned on the output raster.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>LowestPosition example 1 (Python window)</title>
+					<para>This example evaluates several input rasters and returns as an output value the position in the list of the raster with the minimum value.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outLowestPosition = LowestPosition(["degs", "negs", "fourgrd"])
+outLowestPosition.save("C:/sapyexamples/output/outlp.tif")
+                    </code></scriptExample><scriptExample><title>LowestPosition example 2 (stand-alone script)</title>
+					<para>This example evaluates several input rasters and returns as an output value the position in the list of the raster with the minimum value.</para>
+				<code xml:space="preserve"># Name: LowestPosition_Ex_02.py
+# Description: Determines the position of a raster with the minimum
+#              value in a set of rasters
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster01 = "degs"
+inRaster02 = "negs"
+inRaster03 = "fourgrd"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute LowestPosition
+outLowestPosition = LowestPosition([inRaster01, inRaster02, inRaster03])
+
+# Save the output 
+outLowestPosition.save("C:/sapyexamples/output/outlp")
+                    </code></scriptExample></scriptExamples></tool></metadata>

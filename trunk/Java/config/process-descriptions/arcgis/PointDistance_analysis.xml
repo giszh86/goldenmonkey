@@ -1,0 +1,61 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Point Distance (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Determines the distances from input point features to all points in the near features within a specified search radius.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Adjacent</keyword><keyword>Between</keyword><keyword>Close</keyword><keyword>Distance</keyword><keyword>Euclidean</keyword><keyword>Far</keyword><keyword>From</keyword><keyword>Length</keyword><keyword>Location</keyword><keyword>Long</keyword><keyword>Matrix</keyword><keyword>Near</keyword><keyword>Neighbor</keyword><keyword>Radius</keyword><keyword>Search</keyword><keyword>Separation</keyword><keyword>Short</keyword><keyword>Straight Line</keyword><keyword>To</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PointDistance" displayname="Point Distance (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Determines the distances from input point features to all points in the near features within a specified search radius.</para>
+		</summary><alink_name>PointDistance_analysis</alink_name><toolIllust type="illustration" src="PointDistance_analysis_h.png" alt="Point Distance illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The point features from which distances to the near features will be calculated.</para>
+					</pythonReference><dialogReference>
+						<para>The point features from which distances to the near features will be calculated.</para>
+					</dialogReference></param><param sync="true" name="near_features" displayname="Near Features" datatype="Feature Layer" direction="Input" expression="near_features" type="Required"><pythonReference>
+						<para>The points to which distances from the input features will be calculated. Distances between points within the same feature class or layer can be determined by specifying the same feature class or layer for the input and near features.</para>
+					</pythonReference><dialogReference>
+						<para>The points to which distances from the input features will be calculated. Distances between points within the same feature class or layer can be determined by specifying the same feature class or layer for the input and near features.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>The table containing the list of input features and information of about all near features within the search radius. If a search radius is not specified distances from all input features to all near features are calculated.</para>
+					</pythonReference><dialogReference>
+						<para>The table containing the list of input features and information of about all near features within the search radius. If a search radius is not specified distances from all input features to all near features are calculated.</para>
+					</dialogReference></param><param sync="true" name="search_radius" displayname="Search Radius" datatype="Linear unit" direction="Input" expression="search_radius" type="Optional"><pythonReference>
+						<para>Distances will only be calculated for those near features that are within the search radius of the input features.</para>
+					</pythonReference><dialogReference>
+						<para>Distances will only be calculated for those near features that are within the search radius of the input features.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>The tool creates a distance matrix between two sets of points if the default search radius is used in which case distances from all input features to all near features are calculated. The output table can be quite large. For example, if both input and near features have 1000 points each then the output table can contain one  million records. Use a meaningful search radius to limit the size of the output.</para>
+			</bullet_item><bullet_item>
+				<para>The results are recorded in the output table containing the following information:</para>
+				<bulletList>
+					<bullet_item>INPUT_FID : the feature ID of the input features.</bullet_item>
+					<bullet_item>NEAR_FID : the feature ID of the near features.</bullet_item>
+					<bullet_item>DISTANCE : the distance from the input to near feature.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>Both the Input Features and Near Features can be the same dataset. In that case when the input and near features are the same record, that result will be skipped so as not to report that each feature is 0 units from itself.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>PointDistance Example 1 (Python Window)</title>
+					<para>The following Python Interactive Window script demonstrates how to use the PointDistance function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data/pointdistance.gdb"
+  
+arcpy.PointDistance_analysis("police_stations", "crime_location", "crime_distances")
+                    </code></scriptExample><scriptExample><title>PointDistance Example 2 (stand-alone Python script)</title>
+					<para>The following Python script demonstrates how to use the PointDistance function in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: PointDistance.py
+# Description: Finds distance of each near point from each input point and outputs to a table.
+# Author: ESRI
+  
+# import system modules
+import arcpy
+from arcpy import env
+  
+# set workspace environment
+env.workspace = "C:/data/pointdistance.gdb"
+  
+# set variables
+inFeatures = "police_stations"
+nearFeatures = "crime_location"
+outTable = "crime_distance4"
+searchRadius = "22000 Feet"
+  
+# find crime locations within the search radius
+arcpy.PointDistance_analysis(inFeatures, nearFeatures, outTable, searchRadius)
+                    </code></scriptExample></scriptExamples></tool></metadata>

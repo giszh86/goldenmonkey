@@ -1,0 +1,99 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Surface Aspect (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool extracts aspect information from an input TIN or terrain dataset into an output feature class. It produces a polygon feature class whose polygons are categorized by the input surface triangle aspect values.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D</keyword><keyword>Bearing</keyword><keyword>Direction</keyword><keyword>Down Slope</keyword><keyword>Elevation</keyword><keyword>Flat</keyword><keyword>Points</keyword><keyword>Relief</keyword><keyword>Slope</keyword><keyword>Surface</keyword><keyword>Surface Analysis</keyword><keyword>Terrain Dataset</keyword><keyword>Terrains</keyword><keyword>Tin</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SurfaceAspect" displayname="Surface Aspect (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool extracts aspect information from an input TIN or terrain dataset into an output feature class. It produces a polygon feature class whose polygons are categorized by the input surface triangle aspect values.</para>
+			
+		</summary><alink_name>SurfaceAspect_3d</alink_name><toolIllust type="illustration" src="SurfaceAspect_3d_h.gif" alt="TIN Aspect illustration" /><parameters><param sync="true" name="in_surface" displayname="Input Surface" datatype="TIN Layer; Terrain Layer" direction="Input" expression="in_surface" type="Required"><pythonReference>
+						<para>The input terrain dataset or TIN surface.</para>
+					</pythonReference><dialogReference>
+						<para>The input terrain dataset or TIN surface.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class.</para>
+					</dialogReference></param><param sync="true" name="class_breaks_table" displayname="Class Breaks Table" datatype="Table" direction="Input" expression="class_breaks_table" type="Optional"><pythonReference>
+						<para>An input table containing the classification breaks that will be used to classify the output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>An input table containing the classification breaks that will be used to classify the output feature class.</para>
+					</dialogReference></param><param sync="true" name="aspect_field" displayname="Aspect Field" datatype="String" direction="Input" expression="aspect_field" type="Optional"><pythonReference>
+						<para>The field containing aspect values.</para>
+					</pythonReference><dialogReference>
+						<para>The field containing aspect values.</para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Double" direction="Input" expression="pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The resolution of the terrain dataset pyramid level to use for geoprocessing. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The resolution of the terrain dataset pyramid level to use for geoprocessing. The default is 0, full resolution.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Aspect is expressed in degrees.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Surface Aspect Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Surface Aspect
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.SurfaceAspect_3d("sample.gdb/featuredataset/terrain", "sample.gdb/featuredataset/terrain_aspect")
+                    </code></scriptExample><scriptExample><title>Surface Aspect Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Surface Aspect
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: SurfaceAspect Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              SurfaceAspect and SurfaceSlope tools to generate a polygon
+#              that contains the intersection of both 
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # List all TINs in workspace
+    listTINs = arcpy.ListDatasets("","TIN")
+    # Determine whether the list contains any TINs
+    if len(listTINs) &gt; 0:
+        for dataset in listTINs:
+            print dataset
+            # Set Local Variables
+            aspect = arcpy.CreateUniqueName("Aspect.shp")
+            slope = arcpy.CreateUniqueName("Slope.shp")
+            outFC = dataset + "_Aspect_Slope.shp"
+            #Execute SurfaceAspect
+            arcpy.SurfaceAspect_3d(dataset, aspect)
+            #Execute SurfaceSlope
+            arcpy.SurfaceSlope_3d(dataset, slope)
+            #Execute SurfaceSlope
+            print "Starting Intersect"
+            arcpy.Intersect_analysis(aspect + " #;" + slope + " #", outFC, "ALL")
+            print "Completed intersect for " + dataset
+            del aspect, slope, outFC
+    else:
+        print "There are no TINs in the " + env.workspace + " directory."
+
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+
+del arcpy, listTINs
+                    </code></scriptExample></scriptExamples></tool></metadata>

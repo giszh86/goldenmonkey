@@ -1,0 +1,162 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Field to Analysis Layer (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds a field to a sublayer of a network analysis layer.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add Field</keyword><keyword>Alter</keyword><keyword>Altered</keyword><keyword>Field</keyword><keyword>Layer</keyword><keyword>Network Analyst Layer</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddFieldToAnalysisLayer" displayname="Add Field to Analysis Layer (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Adds a field to a sublayer of a network analysis layer.</para>
+		</summary><alink_name>AddFieldToAnalysisLayer_na</alink_name><parameters><param sync="true" name="in_network_analysis_layer" displayname="Input network analysis Layer" datatype="Network Analyst Layer" direction="Input" expression="in_network_analysis_layer" type="Required"><pythonReference>
+						<para>Network analysis layer to which the new field will be added.</para>
+					</pythonReference><dialogReference>
+						<para>Network analysis layer to which the new field will be added.</para>
+					</dialogReference></param><param sync="true" name="sub_layer" displayname="Sub layer" datatype="String" direction="Input" expression="sub_layer" type="Required"><pythonReference>
+						<para>The sublayer of the network analysis layer to which the new field will be added.</para>
+					</pythonReference><dialogReference>
+						<para>The sublayer of the network analysis layer to which the new field will be added.</para>
+					</dialogReference></param><param sync="true" name="field_name" displayname="Field name" datatype="String" direction="Input" expression="field_name" type="Required"><pythonReference>
+						<para>The name of the field that will be added to the specified sublayer of the network analysis layer.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the field that will be added to the specified sublayer of the network analysis layer.</para>
+					</dialogReference></param><param sync="true" name="field_type" displayname="Field type" datatype="String" direction="Input" expression="field_type" type="Required"><pythonReference>
+						<para>The field type used in the creation of the new field.</para>
+						<bulletList><bullet_item>LONG—Numeric values without fractional values within a specific range. </bullet_item><bullet_item>TEXT—Names or other textual qualities. </bullet_item><bullet_item>FLOAT—Numeric values with fractional values within a specific range. </bullet_item><bullet_item>DOUBLE—Numeric values with fractional values within a specific range. </bullet_item><bullet_item>SHORT—Numeric values without fractional values within a specific range; coded values. </bullet_item><bullet_item>DATE—Date and/or Time. </bullet_item><bullet_item>BLOB—Images or other multimedia. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The field type used in the creation of the new field.</para>
+						<bulletList><bullet_item>LONG—Numeric values without fractional values within a specific range. </bullet_item><bullet_item>TEXT—Names or other textual qualities. </bullet_item><bullet_item>FLOAT—Numeric values with fractional values within a specific range. </bullet_item><bullet_item>DOUBLE—Numeric values with fractional values within a specific range. </bullet_item><bullet_item>SHORT—Numeric values without fractional values within a specific range; coded values. </bullet_item><bullet_item>DATE—Date and/or Time. </bullet_item><bullet_item>BLOB—Images or other multimedia. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="field_precision" displayname="Field precision" datatype="Long" direction="Input" expression="field_precision" type="Optional"><pythonReference>
+						<para>Describes the number of digits that can be stored in the field. All digits are counted no matter what side of the decimal they are on.</para>
+						<para>The parameter value is valid only for numeric field types.</para>
+					</pythonReference><dialogReference>
+						<para>Describes the number of digits that can be stored in the field. All digits are counted no matter what side of the decimal they are on.</para>
+						<para>The parameter value is valid only for numeric field types.</para>
+					</dialogReference></param><param sync="true" name="field_scale" displayname="Field scale" datatype="Long" direction="Input" expression="field_scale" type="Optional"><pythonReference>
+						<para>Sets the number of decimal places stored in a field. This parameter is only used in Float and Double data field types.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the number of decimal places stored in a field. This parameter is only used in Float and Double data field types.</para>
+					</dialogReference></param><param sync="true" name="field_length" displayname="Field length" datatype="Long" direction="Input" expression="field_length" type="Optional"><pythonReference>
+						<para>The length of the field being added. This sets the maximum number of allowable characters for each record of the field. This option is only applicable on fields of type text or blob.</para>
+					</pythonReference><dialogReference>
+						<para>The length of the field being added. This sets the maximum number of allowable characters for each record of the field. This option is only applicable on fields of type text or blob.</para>
+					</dialogReference></param><param sync="true" name="field_alias" displayname="Field alias" datatype="String" direction="Input" expression="field_alias" type="Optional"><pythonReference>
+						<para>The alternate name given to the field name. This name is used to give more descriptive names to cryptic field names. The field alias parameter only applies to geodatabases and coverages.</para>
+					</pythonReference><dialogReference>
+						<para>The alternate name given to the field name. This name is used to give more descriptive names to cryptic field names. The field alias parameter only applies to geodatabases and coverages.</para>
+					</dialogReference></param><param sync="true" name="field_is_nullable" displayname="Field is nullable" datatype="Boolean" direction="Input" expression="field_is_nullable" type="Optional"><pythonReference>
+						<para>A geographic feature where there is no associated attribute information. These are different from zero or empty fields and are only supported for fields in a geodatabase.</para>
+						<bulletList><bullet_item>NON_NULLABLE—The field will not allow null values. </bullet_item><bullet_item>NULLABLE—The field will allow null values. This is the default. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>A geographic feature where there is no associated attribute information. These are different from zero or empty fields and are only supported for fields in a geodatabase.</para>
+						<para>
+							<bulletList>
+							<bullet_item>Checked—The field will allow null values. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The field will not allow null values.</bullet_item>
+						</bulletList>
+						</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The tool is mostly used along with the  tool to transfer fields from the input features to the sublayers. For example, if you want to transfer a field called UniqueID from your input features into the Facilities sublayer of the Service Area layer, use this tool to first add the UniqueID field to the Facilities sublayer, and then use the field mappings in the Add Locations tool to provide input values for the UniqueID field. </para>
+			</bullet_item><bullet_item>
+				<para>Fields can be added to any of the sublayers of the network analysis layers.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AddFieldToAnalysisLayer example 1 (Python window)</title>
+					<para>
+The following Python Window script demonstrates how to add a UniqueID field to the Facilities sublayer of the Service Area network analysis layer.
+</para>
+				<code xml:space="preserve">import arcpy
+arcpy.AddFieldToAnalysisLayer_na("Service Area","Facilities","UniqueID","LONG")
+
+                    </code></scriptExample><scriptExample><title>AddFieldToAnalysisLayer example 2 (workflow)</title>
+					<para>The following stand-alone Python script demonstrates how the AddFieldToAnalysisLayer function can be used to transfer the StationID field from the input fire station features to the 2,3, 5 minute service area polygon features calculated from a service area analysis. The StationID field can be used to join other attributes from the fire station features to the service area polygon features.
+ </para><code xml:space="preserve"># Name: AddFieldToAnalysisLayer_Workflow.py
+# Description: Transfers the StationID field from the input fire station 
+#              features to the 2,3,5 minute service area polygon features
+#              calculated from a service area analysis. The StationID field can 
+#              be used to join other attributes from the fire station features 
+#              to the service area polygon features.
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+try:
+    #Check out the Network Analyst extension license
+    arcpy.CheckOutExtension("Network")
+
+    #Set environment settings
+    env.workspace = "C:/data/SanFrancisco.gdb"
+    env.overwriteOutput = True
+    
+    #Set local variables
+    inNetworkDataset = "Transportation/Streets_ND"
+    outNALayer = "FireStationsCoverage"
+    impedanceAttribute = "TravelTime"
+    defaultBreakValues = "2 3 5"   
+    fieldName = "StationID"
+    fieldType = "LONG"
+    inFeatures = "Analysis/FireStations"
+    fieldMappings = "Name StationName #; StationID StationID #"
+    searchTolerance = "2 Miles"
+    polygonLayer = outNALayer + "/" + "Polygons"
+    facilitiesLayer = outNALayer + "/" + "Facilities"
+    calculateField = "SAPolygons." + fieldName    
+    expression = "!Facilities." + fieldName + "!"
+    outFeatures = outNALayer + "Area"
+    
+    #Create a new service area analysis layer. For this scenario, the default 
+    #value for all the remaining parameters statisfies the analysis requirements
+    arcpy.MakeServiceAreaLayer_na(inNetworkDataset, outNALayer, 
+                                  impedanceAttribute,"",defaultBreakValues)
+    
+    #Add a StationID field to the Facilities sublayer of the service area layer.
+    #This is done before loading the fire stations as facilities so that the 
+    #StationID values can be transferred from the input features to the 
+    #Facilities sublayer. The service area layer created previously is 
+    #referred by its name.
+    arcpy.AddFieldToAnalysisLayer_na(outNALayer,"Facilities",fieldName,
+                                    fieldType)
+    
+    #Add the fire station features as Facilities and map the Name and the 
+    #StationID properties from the StationName and StationID fields.
+    arcpy.AddLocations_na(outNALayer,"Facilities",inFeatures,fieldMappings,
+                          searchTolerance)
+    
+    #Solve the service area layer
+    arcpy.Solve_na(outNALayer)
+    
+    #Transfer the StationID field from Facilities sublayer to Polygons sublayer 
+    #of the service area layer since we wish to export the polygons.
+    #First add "StationID" field to the Polygons sublayer
+    arcpy.AddFieldToAnalysisLayer_na(outNALayer,"Polygons",fieldName,fieldType)
+    
+    #Join Facilities to Polygons based on FacilityID and ObjectID fields
+    arcpy.AddJoin_management(polygonLayer,"FacilityID",facilitiesLayer,
+                            "ObjectID")
+    
+    #Calculate the StationID field in Polygons based on the StationID field from
+    #facilities.
+    arcpy.CalculateField_management(polygonLayer,calculateField,expression,
+                                    "PYTHON")
+    
+    #Remove the join so that the Polygons sublayer will not have all the fields 
+    #from the Facilities sublayer when Polygons are exported to a feature class.
+    arcpy.RemoveJoin_management(polygonLayer,"Facilities")
+    
+    #Export the Polygons sublayer to a feature class on disk.
+    arcpy.CopyFeatures_management(polygonLayer, outFeatures)
+    
+    print "Script completed successfully"
+    
+except Exception as e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "An error occured on line %i" % tb.tb_lineno
+    print str(e)
+
+    
+    
+    
+    
+    
+                                  
+                                  
+                    </code></scriptExample></scriptExamples></tool></metadata>

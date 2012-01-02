@@ -1,0 +1,152 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">LAS To Multipoint (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool imports one or more files in LAS format, the industry standard for lidar data, into a new multipoint feature class. Supported LAS file format versions are 1.0, 1.1, and 1.2.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Feature Class</keyword><keyword>3D Files</keyword><keyword>Blobs</keyword><keyword>Convert</keyword><keyword>Import Las</keyword><keyword>Las</keyword><keyword>Lidar</keyword><keyword>Multipoint</keyword><keyword>Point Spacing</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="LASToMultipoint" displayname="LAS To Multipoint (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool imports one or more files in LAS format, the industry standard for lidar data, into a new multipoint feature class. Supported LAS file format versions are 1.0, 1.1, and 1.2.</para>
+		</summary><alink_name>LASToMultipoint_3d</alink_name><parameters><param sync="true" name="input" displayname="Input" datatype="Folder; File" direction="Input" expression="input" type="Required"><pythonReference>
+						<para>One or more files or folders with data in the LAS version 1.0, 1.1, and 1.2 format. The LAS format is the industry standard for lidar data.</para>
+					</pythonReference><dialogReference>
+						<para>One or more files or folders with data in the LAS version 1.0, 1.1, and 1.2 format. The LAS format is the industry standard for lidar data.</para>
+					</dialogReference></param><param sync="true" name="in_feature_dataset" displayname="Input Feature Dataset" datatype="Feature Dataset" direction="Input" expression="in_feature_dataset" type="Required"><pythonReference>
+						<para>The name of an existing feature dataset where the output feature class is created.</para>
+					</pythonReference><dialogReference>
+						<para>The name of an existing feature dataset where the output feature class is created.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The newly created multipoint feature class to which lidar points are added.</para>
+					</pythonReference><dialogReference>
+						<para>The newly created multipoint feature class to which lidar points are added.</para>
+					</dialogReference></param><param sync="true" name="average_point_spacing" displayname="Average Point Spacing" datatype="Double" direction="Input" expression="average_point_spacing" type="Optional"><pythonReference>
+						<para>The average 2D distance between points in the input file or files. This can be an approximation. If areas have been sampled at different densities, specify the smaller spacing. The value needs to be provided in the projection units of the output coordinate system.</para>
+					</pythonReference><dialogReference>
+						<para>The average 2D distance between points in the input file or files. This can be an approximation. If areas have been sampled at different densities, specify the smaller spacing. The value needs to be provided in the projection units of the output coordinate system.</para>
+					</dialogReference></param><param sync="true" name="class_code" displayname="Input Class Codes" datatype="Long" direction="Input" expression="class_code" type="Optional"><pythonReference>
+						<para>Numeric classification codes to use as a query filter. The default is no filter.</para>
+					</pythonReference><dialogReference>
+						<para>The classification codes to use as a query filter. The default is no filter.</para>
+						<para>LAS points may have been classified into a number of categories such as bare earth, top of canopy, and water. The different classes are defined using numeric integer codes. Unfortunately, the LAS 1.0 specification does not have a predefined classification scheme, nor do the files summarize what, if any, class codes are used by the points.  You need to be given this information from the data provider.    </para><para>If you are working with the LAS 1.1 or 1.2 specification, refer to the predefined classification schemes defined by ASPRS for the desired data category. If you are interested in pulling only those points from the LAS file or files with certain class codes, specify them here. </para>
+					</dialogReference></param><param sync="true" name="return" displayname="Input Return Values" datatype="String" direction="Input" expression="return" type="Optional"><pythonReference>
+						<para>The return values used as a query filter. Valid return values are 1-5, LAST_RETURNS, and ANY_RETURNS. The default is ANY_RETURNS.</para>
+					</pythonReference><dialogReference>
+						<para>The return values used as a query filter. Valid return values are 1-5, LAST_RETURNS, and ANY_RETURNS. The default is ANY_RETURNS.</para>
+						<para>LAS points may have been assigned return numbers. These can sometimes be used to help differentiate ground shots from tree canopy. If you know return values have been assigned and are interested in particular values, check them here. Note that you can choose one or more returns, used in combination, if you're interested in specific return numbers. The LAST_RETURNS and ANY_RETURNS choices are only to be used by themselves.</para>
+					</dialogReference></param><param sync="true" name="attribute" displayname="Input Attribute Names" datatype="String" direction="Input" expression="attribute" type="Optional"><pythonReference>
+						<para>One or more LAS attributes to load and store and optionally the field names to use. The default is none. Supported attribute keywords are INTENSITY, RETURN_NUMBER, NUMBER_OF_RETURNS, SCAN_DIRECTION_FLAG, EDGE_OF_FLIGHTLINE, CLASSIFICATION, SCAN_ANGLE_RANK, FILE_MARKER, USER_BIT_FIELD, and GPS_TIME.</para>
+					</pythonReference><dialogReference>
+						<para>One or more LAS attributes to load into the output feature class. The default is that no attributes are imported.</para>
+						<para>LAS files can store several attribute values per lidar point. These attributes are predefined as part of the LAS specification. The data supplier of the LAS file or files may or may not have actually set the values. You'll need to check with the data provider to determine whether or not this is the case.</para>
+						<para>LAS To Multipoint loads attributes into BLOB fields in the output feature class. This is the only way to record something like an INTENSITY value per point when multiple points are stored in an individual feature record. There are no tools on the user interface to access these values. At present, the values can only be persisted. Custom ArcObjects tools can access the values.</para>
+						<para>You indicate which attribute you want imported using a keyword. The output field names have defaults, but you can supply your own.</para>
+						<para>The attribute keywords are as follows:</para>
+						<bulletList><bullet_item>INTENSITY</bullet_item><bullet_item>RETURN_NUMBER
+</bullet_item><bullet_item>NUMBER_OF_RETURNS
+</bullet_item><bullet_item>SCAN_DIRECTION_FLAG
+</bullet_item><bullet_item>EDGE_OF_FLIGHTLINE
+CLASSIFICATION
+</bullet_item><bullet_item>SCAN_ANGLE_RANK</bullet_item><bullet_item>
+FILE_MARKER
+</bullet_item><bullet_item>USER_BIT_FIELD
+</bullet_item><bullet_item>GPS_TIME</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="input_coordinate_system" displayname="Input Coordinate System" datatype="Coordinate system" direction="Input" expression="input_coordinate_system" type="Optional"><pythonReference>
+						<para>The coordinate system of the input LAS file. This defaults to that specified in the LAS file. If for some reason it's not defined in the file but you know what it is, provide it here.</para>
+					</pythonReference><dialogReference>
+						<para>The coordinate system of the input LAS file. This defaults to that specified in the LAS file. If for some reason it's not defined in the file but you know what it is, specify it here.</para>
+					</dialogReference></param><param sync="true" name="file_suffix" displayname="File Suffix" datatype="String" direction="Input" expression="file_suffix" type="Optional"><pythonReference>
+						<para>The suffix of the files to import when a folder is specified on input.</para>
+					</pythonReference><dialogReference>
+						<para>The suffix of the files to import when a folder is specified on input.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>
+Specifies a factor by which to multiply the surface heights. Used to convert z units to x and y units.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Specifies a factor by which to multiply the surface heights. Used to convert z units to x and y units.
+</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item><para>LAS points can be classified into a number of categories including bare earth or ground, top of canopy, and water. The different classes are defined using numeric integer codes. Unfortunately, the LAS 1.0 specification does not have a predefined classification scheme, nor do the files summarize what, if any, class codes are used by the points. You need to be given this information from the data provider. </para><para>If you are working with the LAS 1.1 or 1.2 specification, refer to the predefined classification schemes defined by American Society for Photogrammetry and Remote Sensing (ASPRS) for the desired data category.  The following table lists the LAS class codes based on LAS version 1.2 defined by ASPRS. </para>
+				<para>To import predefined LAS points from the LAS file or files, you can specify them in the Input Class Codes parameter.    </para>
+				ASPRS Standard LiDAR Point Classes <para>Classification Value </para><para>Meaning</para><para>0</para><para>Created, never classified</para><para>1</para><para>Unclassified</para><para>2</para><para>Ground</para><para>3</para><para>Low Vegetation</para><para>4</para><para>Medium Vegetation</para><para>5</para><para>High Vegetation</para><para>6</para><para>Building</para><para>7</para><para>Low Points (noise)</para><para>8</para><para>Model Key-Points  (mass points)</para><para>9</para><para>Water</para><para>10</para><para>Reserved for ASPRS Definition</para><para>11</para><para>Reserved for ASPRS Definition</para><para>12</para><para>Overlap Points</para><para>13-31</para><para>Reserved fro ASPRS Definition</para></bullet_item><bullet_item>
+				<para>Supported LAS versions are 1.0, 1.1, and 1.2.</para>
+			</bullet_item><bullet_item>
+				<para>If you are not interested in importing points based on their return number, or if all returns specified in the file or files are set to 0 because the points have been filtered or classified, select ANY_RETURN.</para>
+			</bullet_item><bullet_item>
+				<para>When loading multiple LAS attributes into an Oracle database, you'll need to make sure all DBTUNE keywords for parameter attribute_binary are set to use binary large objects (BLOBs), not LONGRAW. This is because LAS attributes are loaded as BLOBs, and Oracle does not support multiple BLOBs in LONGRAW tables. See your Oracle database administrator for assistance.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>LAS To Multipoint Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the LAS To Multipoint
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.LASToMultipoint_3d("001.las", "Test.gdb/sample_1", "1", "2", "ANY_RETURNS", "INTENSITY", "C:/Program Files/ArcGIS/Desktop/Coordinate Systems/Projected Coordinate Systems/UTM/NAD 1983/NAD 1983 UTM Zone 17N.prj", "las", "1")
+                    </code></scriptExample><scriptExample><title>LAS To Multipoint Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the LAS To Multipoint
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: LASToMultipoint Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              LAStoMultipoint tool to load the ground class readings in all
+#              the LAS files in a workspace. The PointFileInformation tool is
+#              used to determine the appropriate point spacing value.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension('3D')
+
+# Set environment settings
+env.workspace = 'C:/Data'
+
+try:
+    # Set Local Variables
+    LASInfo = 'LASInfo.shp'
+    inFormat = 'LAS'
+    fileSuffix = 'las'
+    prj = 'Coordinate Systems/Projected Coordinate Systems/UTM/NAD 1983/'+\
+        'NAD 1983 UTM Zone 17N.prj'
+    folderRecursion = False
+    sumClass = False
+    extrude = False
+    decSep = 'DECIMAL_POINT'
+    outputFC = 'Lidar_Multipoint1.shp'
+    class_code = '2' # Identifies all ground returns    
+    Delaunay = 'NO_constrained_delaunay'
+    # Use the ListFiles method to identify all LAS files in the workspace
+    LidarList = arcpy.ListFiles('*.las')
+    if len(LidarList) &gt; 0:
+        # Execute PointFileInformation
+        arcpy.PointFileInformation_3d(LidarList, LASInfo, inFormat, fileSuffix, prj, 
+                                      folderRecursion, extrude, decSep, sumClass)
+        # Create SearchCursor and sort Pt_Spacing values in descending order
+        LAScursor = arcpy.SearchCursor(LASInfo, '', '', 'Pt_Spacing', 'Pt_Spacing D')
+        for row in LAScursor:
+            # Sets the ptSpacing variable to the largest value in the Pt_Spacing field
+            ptSpacing = row.getValue('Pt_Spacing')
+            # Stop the for loop from looping for each row
+            break
+        # Execute LASToMultipoint
+        print 'Creating multipoint dataset.'
+        arcpy.LASToMultipoint_3d(LidarList, outputFC, ptSpacing, class_code, 
+                                 'ANY_RETURNS', '', prj, inFormat, '1')
+        print 'Finished'
+    else:
+        print 'There are no LAS files in the ' + env.workspace + ' directory.'    
+        
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

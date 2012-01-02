@@ -1,0 +1,71 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Delete Features (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Deletes features from the input feature class or layer. If the input is a layer with a selection, only the selected features will be deleted. If the input is a geodatabase feature class or shapefile, all features will be deleted.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>All</keyword><keyword>Clear</keyword><keyword>Erase</keyword><keyword>Geometry</keyword><keyword>Record</keyword><keyword>Remove</keyword><keyword>Row</keyword><keyword>Vector</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DeleteFeatures" displayname="Delete Features (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Deletes features from the input feature class or layer. If the input is a layer with a selection, only the selected features will be deleted. If the input is a geodatabase feature class or shapefile, all features will be deleted.</para>
+		</summary><alink_name>DeleteFeatures_management</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The feature class, shapefile, or layer containing features to be deleted.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class, shapefile, or layer containing features to be deleted.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+Only those features that are within or intersect the extent will be deleted.</environment></environments><usage><bullet_item>
+				<para>This tool accepts layers with selections as input, and will delete only those features that are selected. To delete specific features from a feature class, convert the feature class into a layer using  or by adding it to the ArcMap display. A selection can then be applied using the  or  tools or by querying a map layer or selecting features with the selection arrow in ArcMap. </para>
+			</bullet_item><bullet_item>
+				<para>This tool deletes both the geometry and attributes of the Input Features.</para>
+			</bullet_item><bullet_item>
+				<para>When working in ArcMap, using this  tool in an edit session will allow for the Delete Features operation to be undone using undo/redo.</para>
+			</bullet_item><bullet_item>
+				<para>If you want to delete all features from a feature class, use this tool on a feature class or a layer without a selection.</para>
+			</bullet_item><bullet_item>
+				<para>If you want to delete all features from an ArcSDE feature class, use this  tool against the ArcSDE feature class (not a layer) without a selection in order to perform a database truncate rather than a row by row deletion of features to delete all the features. The database truncate operation is much faster when deleting all the features in a feature class.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DeleteFeatures example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the DeleteFeatures tool in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.CopyFeatures_management("majorrds.shp", "C:/output/output.gdb/majorrds2")
+arcpy.DeleteFeatures_management("C:/output/output.gdb/majorrds2")
+                    </code></scriptExample><scriptExample><title>DeleteFeatures example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the DeleteFeatures tool to delete features based on an expression.</para>
+				<code xml:space="preserve"># Name: DeleteFeatures_Example2.py
+# Description: Delete features from a feature class based on an expression
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data/airport.gdb"
+ 
+# Set local variables
+inFeatures = "parcels"
+outFeatures = "C:/output/output.gdb/new_parcels"
+tempLayer = "parcelsLayer"
+expression = arcpy.AddFieldDelimiters(tempLayer, "PARCEL_ID") + " = 'Cemetery'"
+ 
+try:
+    # Execute CopyFeatures to make a new copy of the feature class
+    arcpy.CopyFeatures_management(inFeatures, outFeatures)
+ 
+    # Execute MakeFeatureLayer
+    arcpy.MakeFeatureLayer_management(outFeatures, tempLayer)
+ 
+    # Execute SelectLayerByAttribute to determine which features to delete
+    arcpy.SelectLayerByAttribute_management(tempLayer, "NEW_SELECTION", 
+                                            expression)
+ 
+    # Execute GetCount and if some features have been selected, then 
+    #  execute DeleteFeatures to remove the selected features.
+    if arcpy.GetCount_management(tempLayer) &gt; 0:
+        arcpy.DeleteFeatures_management(tempLayer)
+         
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

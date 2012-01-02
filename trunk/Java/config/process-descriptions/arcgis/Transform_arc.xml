@@ -1,0 +1,91 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Transform (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Moves all features in a coverage based on a set of from and to control points.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Affine</keyword><keyword>Arc</keyword><keyword>Coverage</keyword><keyword>Management</keyword><keyword>Project</keyword><keyword>Projection</keyword><keyword>Projective</keyword><keyword>Similarity</keyword><keyword>Transform</keyword><keyword>Transformation</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Transform" displayname="Transform (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Moves all features in a coverage based on a set of from and to control points.</para>
+			
+		</summary><alink_name>Transform_arc</alink_name><toolIllust type="illustration" src="Transform_arc_h.gif" alt="Transform illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage whose coordinates are to be transformed.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage whose coordinates are to be transformed.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Input" expression="out_cover" type="Required"><pythonReference>
+						<para>The name of an existing coverage containing destination tics. The features from the input coverage will be transformed into this coverage.</para>
+					</pythonReference><dialogReference>
+						<para>The name of an existing coverage containing destination tics. The features from the input coverage will be transformed into this coverage.</para>
+					</dialogReference></param><param sync="true" name="transform_type" displayname="Transformation Type" datatype="String" direction="Input" expression="transform_type" type="Optional"><pythonReference>
+						<para>The type of coordinate transformation to be performed:</para>
+						<bulletList><bullet_item>AFFINE—Performs an affine transformation. At least three tics are required to define this transformation. If only two tics are matched, a similarity transformation will be applied. The AFFINE equations use six parameters. </bullet_item><bullet_item>PROJECTIVE—Performs a projective transformation. This requires a minimum of four tics to define the transformation. The projective transformation is only used to transform coordinates digitized directly off high-altitude aerial photography or aerial photographs of relatively flat terrain, assuming there is no systematic distortion in the air photos. PROJECTIVE uses eight parameters. </bullet_item><bullet_item>SIMILARITY—Performs a similarity transformation. At least two tics are necessary for this transformation. This transformation is also known as a Helmert, orthogonal, two-dimensional linear conformal, or four-parameter transformation. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of coordinate transformation to be performed:</para>
+						<bulletList><bullet_item>AFFINE—Performs an affine transformation. At least three tics are required to define this transformation. If only two tics are matched, a similarity transformation will be applied. The AFFINE equations use six parameters. </bullet_item><bullet_item>PROJECTIVE—Performs a projective transformation. This requires a minimum of four tics to define the transformation. The projective transformation is only used to transform coordinates digitized directly off high-altitude aerial photography or aerial photographs of relatively flat terrain, assuming there is no systematic distortion in the air photos. PROJECTIVE uses eight parameters. </bullet_item><bullet_item>SIMILARITY—Performs a similarity transformation. At least two tics are necessary for this transformation. This transformation is also known as a Helmert, orthogonal, two-dimensional linear conformal, or four-parameter transformation. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Output Coverage must already exist with a tic file containing x,y coordinates for at least two in the desired location and units. Except for the tics, any existing features in the  Output Coverage will be replaced by features from the Input Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>This tool scales, skews, rotates, and shifts all coordinates in a coverage, but it does not perform "rubber sheeting".</para>
+			</bullet_item><bullet_item>
+				<para>The input coverage tic file and the output coverage tic file must contain at least two that have the same Tic-IDs and represent corresponding locations in both coverages. The two coverages do not have to have identical tics; only those tics whose IDs are common to both coverages will be used in the transformation.</para>
+			</bullet_item><bullet_item>
+				<para>The tolerances of the input coverage will be transformed and retained in the output coverage.</para>
+			</bullet_item><bullet_item>
+				<para>At least one more than the required minimum is needed to generate an RMS error with coordinate transformation.</para>
+			</bullet_item><bullet_item>
+				<para>Since the default $ANGLE value is 0, label points that have not been rotated will remain unrotated in the output. However, if the $ANGLE value of some labels are set, the transform angle will be added to the label angles.</para>
+			</bullet_item><bullet_item>
+				<para>All annotation subclasses present in the input coverage will be transformed to the output coverage. The position and size of input coverage annotation are transformed in the output coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Existing section tables will be copied to the output coverage. The relation between the sections and the arcs will be maintained by the transform process.</para>
+			</bullet_item><bullet_item>
+				<para>Region information will be maintained.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of the output coverage may not be the same as the precision of the input coverage. Precision is determined by the value of the applicable precision environment at the time the coverage was created. This can be done with the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>Feature attributes (that is, LENGTH, AREA, and PERIMETER) from the input coverage are updated after they are transformed.</para>
+			</bullet_item><bullet_item>
+				<para>The AFFINE transformation scales, skews, rotates, and translates all coordinates in the coverage using the same equation. Based on a minimum of three control points, this transformation can scale the x coordinates differently than the y coordinates. An AFFINE transformation can perform plane reflections as well.</para>
+			</bullet_item><bullet_item>
+				<para>The SIMILARITY transformation scales, rotates, and translates the coverage coordinates using an equation whose parameters are generated from the coordinates. If you use the SIMILARITY option, you can use two or more tics to calculate the equation parameters. This transformation cannot apply differential scaling or skewing to the x and y coordinates, but may be useful to edgematch scanner output where a scanned map has been cut into several sections to fit on the scanner.</para>
+			</bullet_item><bullet_item>
+				<para>Use the PROJECTIVE transformation option only if your Input Coverage was digitized directly off aerial photographs. The accuracy of the transformation will depend on the surface terrain being photographed, the angle between the camera and the ground, and the elevation from which the photograph was taken. The best results are obtained when photographing from higher elevations and located directly above a portion of the surface that is relatively flat. PROJECTIVE needs at least four control points to calculate the transformation.</para>
+			</bullet_item><bullet_item>
+				<para>The least squares solution is used to determine the transformation. To detect errors in the tic locations or Tic-IDs that could produce an incorrect transformation, it is recommended that you provide at least one more than the minimum number of tics required.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><para>The following stand-alone script demonstrates how to use the Transform tool on a digitized coverage.
+First it creates an empy output coverage based on a template coverage.  The template has tics and a defined projection. The empty output coverage is named roads.
+Then it transforms the digitized road features into the empty roads coverage.</para>
+				<code xml:space="preserve"># Name: Transform_Example.py
+# Description: Transforms digitized road features into a new output coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "roads_dig"
+outCover = "C:/output/roads"
+transformType = "AFFINE"
+
+# Create the empty output coverage
+arcpy.Create_arc(outCover, "citylim")
+
+# Execute Transform
+arcpy.Transform_arc(inCover, outCover, transformType)
+
+# Print the RMS error
+print arcpy.GetMessage(4)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

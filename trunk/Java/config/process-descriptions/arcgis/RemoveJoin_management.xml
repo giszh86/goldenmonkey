@@ -1,0 +1,83 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Remove Join (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Removes a join from a feature layer or table view.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Break</keyword><keyword>Clear</keyword><keyword>Column</keyword><keyword>Combine</keyword><keyword>Data</keyword><keyword>Delete</keyword><keyword>Field</keyword><keyword>Match</keyword><keyword>Source</keyword><keyword>Table</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RemoveJoin" displayname="Remove Join (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Removes a join from a feature layer or table view.</para>
+		</summary><alink_name>RemoveJoin_management</alink_name><parameters><param sync="true" name="in_layer_or_view" displayname="Layer Name" datatype="Table View;Raster Layer" direction="Input" expression="in_layer_or_view" type="Required"><pythonReference>
+						<para>The layer or table view from which the join will be removed.</para>
+					</pythonReference><dialogReference>
+						<para>The layer or table view from which the join will be removed.</para>
+					</dialogReference></param><param sync="true" name="join_name" displayname="Join" datatype="String" direction="Input" expression="join_name" type="Required"><pythonReference>
+						<para>The join to be removed.</para>
+					</pythonReference><dialogReference>
+						<para>The join to be removed.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Join name is the name of the table that was joined to the input layer or table view.</para>
+				<bulletList>
+					<bullet_item>If the join table was a dBASE file named "MyTable.dbf", the join name would be "MyTable"; so to remove it, specify "MyTable".</bullet_item>
+					<bullet_item>If the join table was an INFO or Geodatabase Table named "MyTable2", the Join Name would be "MyTable2"; so to remove it, specify "MyTable2".</bullet_item>
+					<bullet_item>The join name will not reflect the name of the table view itself, but rather the source of the table view. Therefore, if a table view is named TableView1 and points at "mytable.dbf", the name of the join will be "mytable".</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>When a layer is joined to two tables and the first join is removed, then both joins will be removed. For example, Layer1 is joined to TableA. Then Layer1 is joined to TableB. If the join to TableA is removed, the join to TableB is also removed.</para>
+			</bullet_item><bullet_item>
+				<para>This tool is not limited to working within ArcMap; it works on layers and table views in other ArcGIS applications and in scripts. The  tool makes a layer from a feature class, and the  tool creates a table view from an input table or feature class. The layer or table view can then be used as the input to the Add Join and Remove Join tools.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Remove Join Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the RemoveJoin function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/data.gdb"
+arcpy.RemoveJoin_management("veglayer", "vegtable")
+                    </code></scriptExample><scriptExample><title>Remove Join Example 2 (Stand-alone Script)</title>
+					<para>This stand-alone script shows the RemoveJoin function as part of a workflow to add a field to a table and calculate its values based on the values in a field from a joined table.</para>
+				<code xml:space="preserve"># AddFieldFromJoin.py
+# Description: Adds a field to a table, and calculates its values based
+#              on the values in a field from a joined table
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+try:
+    # set the environments
+    env.workspace = "C:/data"
+    env.qualifiedFieldNames = "UNQUALIFIED"
+    
+    # Define script parameters    
+    inFeatures = "Habitat_Analysis.gdb/vegtype"
+    layerName = "veg_layer"
+    newField = "description"
+    joinTable = "vegtable.dbf"
+    joinField = "HOLLAND95"
+    calcExpression = "!vegtable.VEG_TYPE!"
+    outFeature = "Habitat_Analysis.gdb/vegjoin335"
+    
+    # Add the new field
+    arcpy.AddField_management (inFeatures, newField, "TEXT")
+    
+    # Create a feature layer from the vegtype featureclass
+    arcpy.MakeFeatureLayer_management (inFeatures,  layerName)
+    
+    # Join the feature layer to a table
+    arcpy.AddJoin_management (layerName, joinField, joinTable, joinField)
+    
+    # Populate the newly created field with values from the joined table
+    arcpy.CalculateField_management (layerName, newField, calcExpression, "PYTHON")
+    
+    # Remove the join
+    arcpy.RemoveJoin_management (layerName, "vegtable")
+    
+    # Copy the layer to a new permanent feature class
+    arcpy.CopyFeatures_management (layerName, outFeature)
+    
+except Exception, e:
+    
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

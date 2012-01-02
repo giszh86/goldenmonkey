@@ -1,0 +1,71 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Batch Calculate Statistics (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Runs the Calculate Statistics tool on multiple raster datasets.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>All</keyword><keyword>Contrast Stretch</keyword><keyword>Deviation</keyword><keyword>Display</keyword><keyword>Each</keyword><keyword>Every</keyword><keyword>Many</keyword><keyword>Properties</keyword><keyword>Render</keyword><keyword>Repeat</keyword><keyword>Series</keyword><keyword>Skip Factor</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BatchCalculateStatistics" displayname="Batch Calculate Statistics (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Runs the Calculate Statistics tool on multiple raster datasets.</para>
+		</summary><alink_name>BatchCalculateStatistics_management</alink_name><parameters><param sync="true" name="Input_Raster_Datasets" displayname="Input Raster Datasets" datatype="Raster dataset" direction="Input" expression="[input_raster_dataset,...]" type="Required"><pythonReference>
+						<para>The input raster datasets.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster datasets.</para>
+					</dialogReference></param><param sync="true" name="Number_of_columns_to_skip" displayname="Number of columns to skip" datatype="Long" direction="Input" expression="Number_of_columns_to_skip" type="Optional"><pythonReference>
+						<para>The number of horizontal pixels between samples.</para>
+						<para>The value must be greater than zero and less than or equal to the number of columns in the raster dataset. The default is 1 or the last skip factor used.</para>
+						<para>The skip factors for raster datasets stored in a file geodatabase or an ArcSDE geodatabase are different. First, if the x and y skip factors are different, the smaller skip factor will be used for both the x and y skip factors. Second, the skip factor is related to the pyramid level that most closely fits the skip factor chosen. If the skip factor value is not equal to the number of pixels in a pyramid layer, the number is rounded down to the next pyramid level, and those statistics are used.</para>
+					</pythonReference><dialogReference>
+						<para>The number of horizontal pixels between samples.</para>
+						<para>The value must be greater than zero and less than or equal to the number of columns in the raster dataset. The default is 1 or the last skip factor used.</para>
+						<para>The skip factors for raster datasets stored in a file geodatabase or an ArcSDE geodatabase are different. First, if the x and y skip factors are different, the smaller skip factor will be used for both the x and y skip factors. Second, the skip factor is related to the pyramid level that most closely fits the skip factor chosen. If the skip factor value is not equal to the number of pixels in a pyramid layer, the number is rounded down to the next pyramid level, and those statistics are used.</para>
+					</dialogReference></param><param sync="true" name="Number_of_rows_to_skip" displayname="Number of rows to skip" datatype="Long" direction="Input" expression="Number_of_rows_to_skip" type="Optional"><pythonReference>
+						<para>The number of vertical pixels between samples.</para>
+						<para>The value must be greater than zero and less than or equal to the number of rows in the raster. The default is 1 or the last y skip factor used.</para>
+						<para>The skip factors for raster datasets stored in a file geodatabase or an ArcSDE geodatabase are different. First, if the x and y skip factors are different, the smaller skip factor will be used for both the x and y skip factors. Second, the skip factor is related to the pyramid level that most closely fits the skip factor chosen. If the skip factor value is not equal to the number of pixels in a pyramid layer, the number is rounded down to the next pyramid level, and those statistics are used.</para>
+					</pythonReference><dialogReference>
+						<para>The number of vertical pixels between samples.</para>
+						<para>The value must be greater than zero and less than or equal to the number of rows in the raster. The default is 1 or the last y skip factor used.</para>
+						<para>The skip factors for raster datasets stored in a file geodatabase or an ArcSDE geodatabase are different. First, if the x and y skip factors are different, the smaller skip factor will be used for both the x and y skip factors. Second, the skip factor is related to the pyramid level that most closely fits the skip factor chosen. If the skip factor value is not equal to the number of pixels in a pyramid layer, the number is rounded down to the next pyramid level, and those statistics are used.</para>
+					</dialogReference></param><param sync="true" name="Ignore_values" displayname="Ignore values" datatype="Double" direction="Input" expression="[ignore_value,...]" type="Optional"><pythonReference>
+						<para>The pixel values that are not to be included in the statistics calculation.</para>
+						<para>The default is no value.</para>
+					</pythonReference><dialogReference>
+						<para>The pixel values that are not to be included in the statistics calculation.</para>
+						<para>The default is no value.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>Calculating  allows ArcGIS applications to properly stretch and symbolize raster data for display.</para>
+			</bullet_item><bullet_item>
+				<para>A skip factor controls the portion of the raster dataset that is used when calculating the statistics. The input value indicates the horizontal or vertical skip factor, where a value of 1 will use each pixel and a value of 2 will use every second pixel. The skip factor can only range from 1 to the number of columns/rows in the raster dataset.</para>
+			</bullet_item><bullet_item>
+				<para>Calculating statistics on the GRID and the RADARSAT2 formats always uses a skip factor of 1.</para>
+			</bullet_item><bullet_item>
+				<para>The skip factors for raster datasets stored in a file geodatabase or an ArcSDE geodatabase are quite different. First, if the x and y skip factors are different, the smaller skip factor will be used for both the x and y skip factors. Second, the skip factor is related to the pyramid level that most closely fits the skip factor chosen. If the skip factor value is not equal to the number of pixels in a pyramid (for example, if the skip factor is 5 and the closest pyramid level is 4 x 4 pixels, which is level 2), the software will round down to the next pyramid level (in this case, 2) and use that value as the skip factor.</para>
+			</bullet_item><bullet_item>
+				<para>A skip factor is not used for all raster formats. The raster formats that cannot use the skip factor include ADRG, CIB, and CADRG.</para>
+			</bullet_item><bullet_item>
+				<para>The Ignore Values option allows you to exclude a specific value from the calculation of statistics. You may want to ignore a value if it is a NoData value or if it will skew your calculation.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>BatchCalculateStatistics example 1 (Python window)</title>
+					<para>This is a python sample for BatchCalculateStatistics.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "c:/data"
+arcpy.BatchCalculateStatistics_management("image1.tif;image2.img;image3.bil",\
+                                                 "1", "1", "0;255;21")
+                    </code></scriptExample><scriptExample><title>BatchCalculateStatistics example 2 (stand-alone script)</title>
+					<para>This is a python script sample for BatchCalculateStatistics.</para>
+				<code xml:space="preserve">##====================================
+##Batch Calculate Statistics
+##Usage: BatchCalculateStatistics_management Input_Raster_Datasets;Input_Raster_Datasets... 
+##                                           {Number_of_columns_to_skip} {Number_of_rows_to_skip}
+##                                           {Ignore_values;Ignore_values...}
+
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:/Workspace"
+    
+    ##Calculate Statistics for multiple raster dataset with multiple ignore values
+    arcpy.BatchCalculateStatistics_management("image1.tif;image2.img;fgdb.gdb/image3",\
+                                                 "1", "1", "0;255;21")
+
+except:
+    print "Batch Build Statistics example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

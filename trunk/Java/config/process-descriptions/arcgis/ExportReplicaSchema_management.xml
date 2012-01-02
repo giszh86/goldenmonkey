@@ -1,0 +1,52 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Export Replica Schema (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a replica schema file with the schema of an input one- or two-way replica.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>1 Way</keyword><keyword>2 Way</keyword><keyword>Centralize</keyword><keyword>Change</keyword><keyword>Check</keyword><keyword>Child</keyword><keyword>Contractor</keyword><keyword>Database</keyword><keyword>Definition</keyword><keyword>Difference</keyword><keyword>Gdb</keyword><keyword>In</keyword><keyword>Mobile</keyword><keyword>One</keyword><keyword>Out</keyword><keyword>Parent</keyword><keyword>Production</keyword><keyword>Publication</keyword><keyword>Replica</keyword><keyword>Replicate</keyword><keyword>Replication</keyword><keyword>Sde</keyword><keyword>Synchronize</keyword><keyword>Two</keyword><keyword>Way</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExportReplicaSchema" displayname="Export Replica Schema (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a replica schema file with the schema of an input one- or two-way replica.</para>
+		</summary><alink_name>ExportReplicaSchema_management</alink_name><parameters><param sync="true" name="in_geodatabase" displayname="Export From Replica Geodatabase" datatype="Workspace ;GeoDataServer" direction="Input" expression="in_geodatabase" type="Required"><pythonReference>
+						<para>Specifies the replica geodatabase from which to export the replica schema. The geodatabase may be local or remote.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the replica geodatabase from which to export the replica schema. The geodatabase may be local or remote.</para>
+					</dialogReference></param><param sync="true" name="output_replica_schema_file" displayname="Export Replica Schema File" datatype="File" direction="Output" expression="output_replica_schema_file" type="Required"><pythonReference>
+						<para>Specifies the file in which to export schema.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the file in which to export schema.</para>
+					</dialogReference></param><param sync="true" name="in_replica" displayname="Replica" datatype="String" direction="Input" expression="in_replica" type="Required"><pythonReference>
+						<para>The replica from which to export schema.</para>
+					</pythonReference><dialogReference>
+						<para>The replica from which to export schema.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The output schema file must be XML. You must specify .xml as the file suffix.</para>
+			</bullet_item><bullet_item>
+				<para>This tool is used when synchronizing replica schema. To synchronize replica schema, first run  on the relative replica. The output from export replica schema contains information about the schema of the replica datasets in the relative replica geodatabase. This output is then used with the  to find differences between the replica geodatabases. The output from the  tool can then be used to apply schema differences to the replica geodatabase using the .</para>
+			</bullet_item><bullet_item>
+				<para>This tool is used when synchronizing replica schema. Additionally, see the  and  tools.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ExportReplicaSchema Example (Python Window)</title><code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.worksapce = "C:/Data"
+arcpy.ExportReplicaSchema_management("Countries.mdb", "replicaSchema.xml", "MyReplica1")
+
+                    </code></scriptExample><scriptExample><title>ExportReplicaSchema Example 2 (stand-alone Python script)</title><code xml:space="preserve"># Name: ExportReplicaSchema_Example2.py
+# Description: Exports replica schema from a personal geodatabase with a replica
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.worksapce = "C:/Data"
+
+# Set local variables
+replica_workspace = "Countries.mdb"
+output_file = "replicaSchema.xml"
+replica = "MyReplica1"
+
+# Execute ExportReplicaSchema
+arcpy.ExportReplicaSchema_management(replica_workspace, output_file, replica)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

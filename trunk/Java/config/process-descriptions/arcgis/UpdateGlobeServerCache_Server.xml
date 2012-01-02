@@ -1,0 +1,87 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Update Globe Server Cache (Server)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Updates an existing Globe Service cache to replace missing tiles, overwrite outdated tiles, or add new tiles in new areas. Update Globe Server Cache tool works on a single layer or on all layers of the Service.</para>
+			<para>This is a deprecated tool. Use Manage Globe Server Cache Tiles instead.</para><para>There are two modes of operation for this tool:</para>
+			<bulletList>
+				<bullet_item>Recreate Empty Tiles—Only tiles that are empty (have been deleted<para>on disk), or that are new because the cache extent has changed or because new layers have been added to the globe service, will be created. Existing tiles will be left unchanged.</para></bullet_item>
+				<bullet_item>Recreate All Tiles—All tiles, including existing tiles, will be replaced. Additionally new tiles will<para>be added if a layers data extent has changed or new layers have been added to the globe service.</para></bullet_item>
+			</bulletList>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="UpdateGlobeServerCache" displayname="Update Globe Server Cache (Server)" toolboxalias="Server" softwarerestriction="none"><summary>
+			<para>Updates an existing Globe Service cache to replace missing tiles, overwrite outdated tiles, or add new tiles in new areas. Update Globe Server Cache tool works on a single layer or on all layers of the Service.</para>
+			<para>This is a deprecated tool. Use Manage Globe Server Cache Tiles instead.</para><para>There are two modes of operation for this tool:</para>
+			<bulletList>
+				<bullet_item>Recreate Empty Tiles—Only tiles that are empty (have been deleted<para>on disk), or that are new because the cache extent has changed or because new layers have been added to the globe service, will be created. Existing tiles will be left unchanged.</para></bullet_item>
+				<bullet_item>Recreate All Tiles—All tiles, including existing tiles, will be replaced. Additionally new tiles will<para>be added if a layers data extent has changed or new layers have been added to the globe service.</para></bullet_item>
+			</bulletList>
+		</summary><alink_name>UpdateGlobeServerCache_Server</alink_name><parameters><param sync="true" name="server_name" displayname="Host" datatype="String" direction="Input" expression="server_name" type="Required"><pythonReference>
+						<para>The host name of the ArcGIS Server to use to update the cache.</para>
+					</pythonReference><dialogReference>
+						<para>The host name of the ArcGIS Server to use to update the cache.</para>
+					</dialogReference></param><param sync="true" name="object_name" displayname="Globe Server Object" datatype="String" direction="Input" expression="object_name" type="Required"><pythonReference>
+						<para>The name of the Globe Service to use to update the cache.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the Globe Service to use to update the cache.</para>
+					</dialogReference></param><param sync="true" name="update_extent" displayname="Update Extent" datatype="Extent" direction="Input" expression="update_extent" type="Optional"><pythonReference>
+						<para>Choose an area of the layer for which the cache should be updated. You can do so by specifying the extent values or choosing an extent from an existing data source.</para>
+						
+							<para>Choosing a new cache extent will update tiles in every level of detail that intersects that extent.</para>
+						
+					</pythonReference><dialogReference>
+						<para>Choose an area of the layer for which the cache should be updated. You can do so by specifying the extent values or choosing an extent from an existing data source.</para>
+						
+							<para>Choosing a new cache extent will update tiles in every level of detail that intersects that extent.</para>
+						
+					</dialogReference></param><param sync="true" name="layer" displayname="Input Layers" datatype="String" direction="Input" expression="layer;layer..." type="Required"><pythonReference>
+						<para>Update the data cache of the chosen layers. All layers are checked by default. If a layer is unchecked update will not affect the layer.</para>
+					</pythonReference><dialogReference>
+						<para>Update the data cache of the chosen layers. All layers are checked by default. If a layer is unchecked update will not affect the layer.</para>
+					</dialogReference></param><param sync="true" name="LOD_from" displayname="From LOD" datatype="String" direction="Input" expression="LOD_from" type="Required"><pythonReference>
+						<para>The minimum level of detail of the data cache building.</para>
+						<para>Each level of detail corresponds to a fixed scale. These levels are fixed and correspond to the ArcGlobe's data tiling scheme. There are 21 levels of detail available:</para>
+						<para>Globe - 1:10000000 | Continent - 1:5000000 | Countries - 1:2500000 | Country - 1:1250000 | States - 1:625000 | State - 1:312500 |</para>
+						<para>Counties - 1:156250 | County - 1:78125 | Metropolitan Area - 1:39062 | Cities - 1:19531 | City - 1:9765 | Town - 1:4882 | Neighborhood - 1:2441 |</para>
+						<para>City Blocks - 1:1220 | City Block - 1:610 | Buildings - 1:305 | Building - 1:152 | Houses - 1:76 | House Property - 1:38 | House - 1:19 | Rooms - 1:9 | Room - 1:4.</para>
+					</pythonReference><dialogReference>
+						<para>The minimum level of detail of the data cache building.</para>
+						<para>Each level of detail corresponds to a fixed scale. These levels are fixed and correspond to the ArcGlobe's data tiling scheme. There are 21 levels of detail available:</para>
+						<para>Globe - 1:10000000 | Continent - 1:5000000 | Countries - 1:2500000 | Country - 1:1250000 | States - 1:625000 | State - 1:312500 |</para>
+						<para>Counties - 1:156250 | County - 1:78125 | Metropolitan Area - 1:39062 | Cities - 1:19531 | City - 1:9765 | Town - 1:4882 | Neighborhood - 1:2441 |</para>
+						<para>City Blocks - 1:1220 | City Block - 1:610 | Buildings - 1:305 | Building - 1:152 | Houses - 1:76 | House Property - 1:38 | House - 1:19 | Rooms - 1:9 | Room - 1:4.</para>
+					</dialogReference></param><param sync="true" name="LOD_to" displayname="To LOD" datatype="String" direction="Input" expression="LOD_to" type="Required"><pythonReference>
+						<para>The maximum level of detail of the data cache building.</para>
+						<para>Each level of detail corresponds to a fixed scale. These levels are fixed and correspond to the ArcGlobe's data tiling scheme. There are 21 levels of detail available:</para>
+						<para>Globe - 1:10000000 | Continent - 1:5000000 | Countries - 1:2500000 | Country - 1:1250000 | States - 1:625000 | State - 1:312500 |</para>
+						<para>Counties - 1:156250 | County - 1:78125 | Metropolitan Area - 1:39062 | Cities - 1:19531 | City - 1:9765 | Town - 1:4882 | Neighborhood - 1:2441 |</para>
+						<para>City Blocks - 1:1220 | City Block - 1:610 | Buildings - 1:305 | Building - 1:152 | Houses - 1:76 | House Property - 1:38 | House - 1:19 | Rooms - 1:9 | Room - 1:4.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum level of detail of the data cache building.</para>
+						<para>Each level of detail corresponds to a fixed scale. These levels are fixed and correspond to the ArcGlobe's data tiling scheme. There are 21 levels of detail available:</para>
+						<para>Globe - 1:10000000 | Continent - 1:5000000 | Countries - 1:2500000 | Country - 1:1250000 | States - 1:625000 | State - 1:312500 |</para>
+						<para>Counties - 1:156250 | County - 1:78125 | Metropolitan Area - 1:39062 | Cities - 1:19531 | City - 1:9765 | Town - 1:4882 | Neighborhood - 1:2441 |</para>
+						<para>City Blocks - 1:1220 | City Block - 1:610 | Buildings - 1:305 | Building - 1:152 | Houses - 1:76 | House Property - 1:38 | House - 1:19 | Rooms - 1:9 | Room - 1:4.</para>
+					</dialogReference></param><param sync="true" name="thread_count" displayname="Number of Globe Server instances" datatype="Long" direction="Input" expression="thread_count" type="Optional"><pythonReference>
+						<para>Specifies the number of ArcGIS Server Globe Server Instances to use to create the cache. This number defaults to the maximum number of Globe Server instances specified in the Globe Service properties, but can be changed to a lesser number.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the number of ArcGIS Server Globe Server Instances to use to create the cache. This number defaults to the maximum number of Globe Server instances specified in the Globe Service properties, but can be changed to a lesser number.</para>
+					</dialogReference></param><param sync="true" name="update_mode" displayname="Update Mode" datatype="Boolean" direction="Input" expression="update_mode" type="Required"><pythonReference>
+						<para>Choose a mode for updating the cache. The two modes are:</para>
+						<bulletList><bullet_item>Recreate Empty Tiles—Only tiles that are empty (have been deleted on disk), or that are new because the cache extent has changed or because new layers have been added to the globe service, will be created. Existing tiles will be left unchanged. </bullet_item><bullet_item>Recreate All Tiles—All tiles, including existing tiles, will be replaced. Additionally new tiles will be added if a layers data extent has changed or new layers have been added to the globe service. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose a mode for updating the cache. The two modes are:</para>
+						<bulletList><bullet_item>Recreate Empty Tiles—Only tiles that are empty (have been deleted on disk), or that are new because the cache extent has changed or because new layers have been added to the globe service, will be created. Existing tiles will be left unchanged. </bullet_item><bullet_item>Recreate All Tiles—All tiles, including existing tiles, will be replaced. Additionally new tiles will be added if a layers data extent has changed or new layers have been added to the globe service. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>This tool should be used to update an existing globe server cache. To update a cache, specify the Globe server host. The tool will automatically list all server objects available on that server.</para>
+			</bullet_item><bullet_item>
+				<para>Running update without specifying an extent will update the entire extent of the service being for the specified levels of detail.</para>
+			</bullet_item><bullet_item>
+				<para>Update is useful to run when you need to update only a portion of the globe services cache. When specifying the 'from' and 'To' Levels of detail make sure you specify all levels you want tiles generated for. The From Level of Detail defines the lowest level of detail you'd want your data cache to begin with. The To Level of detail defines the highest resolution you'd want your data caching to have.</para>
+			</bullet_item><bullet_item>
+				<para>This tool does not accept any Environment Setting that have been specified.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><code xml:space="preserve">
+# Importing standard library modules
+import os, arcgisscripting
+ 
+# Create the geoprocessing object
+gp = arcgisscripting.create()
+  
+gp.UpdateGlobeServerCache("myglobeserver","Boundaries","Globe - 1:10000000","Countries - 1:2500000", 4,"'ESRI Countries (Small Scale)';'ESRI Countries Medium Scale)';LargeProvinces;'ESRI AWS Boundaries';'AND Countries'")
+                    </code></scriptExample></scriptExamples></tool></metadata>

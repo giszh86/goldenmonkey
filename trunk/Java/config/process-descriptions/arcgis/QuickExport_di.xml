@@ -1,0 +1,146 @@
+<metadata>
+<Esri>
+<MetaID SYNC="true"></MetaID>
+<CreaDate SYNC="true"></CreaDate>
+<CreaTime SYNC="true"></CreaTime>
+<SyncOnce SYNC="true">TRUE</SyncOnce>
+<ModDate SYNC="true"></ModDate>
+<ModTime SYNC="true"></ModTime>
+</Esri>
+<dataIdInfo>
+<idCitation>
+<resTitle sync="true">Quick Export (Data Interoperability)</resTitle>
+<citRespParty>
+<rpIndName />
+<rpOrgName>ESRI, Inc.</rpOrgName>
+<rpPosName />
+<rpCntInfo>
+<cntAddress>
+<delPoint>380 New York Street</delPoint>
+<city>Redlands</city>
+<adminArea>California</adminArea>
+<postCode>92373 - 8100</postCode>
+<eMailAdd>info@esri.com</eMailAdd>
+<country>United States</country>
+</cntAddress>
+<cntPhone>
+<voiceNum>909-793-2853</voiceNum>
+<faxNum>909-793-5953</faxNum>
+</cntPhone>
+</rpCntInfo>
+<role>
+<RoleCd>010</RoleCd>
+</role>
+</citRespParty>
+</idCitation>
+<idAbs>
+<para>Converts one or more input feature classes or feature layers into any format supported by the ArcGIS Data Interoperability extension.</para><para>
+</para>
+</idAbs>
+<descKeys KeyTypCd="005">
+<keyTyp>
+<keyTyp>005</keyTyp>
+</keyTyp>
+<keyword>data interoperability; FME; data conversion; data type; data format; quick export; export; export data; feature class; feature layer; layer</keyword>
+</descKeys>
+</dataIdInfo>
+<distInfo>
+<distributor>
+<distorFormat>
+<formatName sync="true">ArcToolBox Tool</formatName>
+</distorFormat>
+<distorTran>
+<onLineSrc>
+<linkage />
+<protocol />
+<onFunct>
+<onFunctCd />
+</onFunct>
+</onLineSrc>
+</distorTran>
+</distributor>
+</distInfo>
+<metainfo>
+<metd Sync="TRUE"></metd>
+</metainfo>
+<mdDateSt Sync="TRUE"></mdDateSt>
+<tool name="QuickExport" displayname="Quick Export (Data Interoperability)" toolboxalias="di" softwarerestriction="none">
+<summary>
+<para>Converts one or more input feature classes or feature layers into any format supported by the ArcGIS Data Interoperability extension.</para><para>
+</para>
+<para>
+</para><para>
+</para><para>
+</para><para>
+</para>
+</summary>
+<alink_name>QuickExport_di</alink_name>
+<rt_list>
+<rt title="An overview of the Data Interoperability toolbox" folderName="data_interoperability_toolbox" _edn="" _hlp="An%20overview%20of%20the%20Data%20Interoperability%20toolbox">an_overview_of_the_data_interoperability_toolbox</rt>
+<rt title="Quick Import (Data Interoperability)" folderName="data_interoperability_tools" _edn="" _hlp="Quick%20Import%20%28Data%20Interoperability%29">quick_import_data_interoperability_</rt>
+</rt_list>
+<toolIllust />
+<parameters>
+<param sync="true" name="Input" displayname="Input Layer" type="Required" direction="Input" Datatype="Feature Layer" expression="&lt;Input;Input...&gt;">
+<commandReference>
+<para>The layers that will be exported from ArcGIS.</para><para>
+</para>
+</commandReference>
+<dialogReference>
+<para>The feature layers or feature classes that will be exported from ArcGIS.</para><para>
+</para>
+</dialogReference>
+</param>
+<param sync="true" name="Output" displayname="Output Dataset" type="Optional" direction="Output" Datatype="Interop Destination Dataset" expression="{Output}">
+<commandReference>
+<para>The format and dataset that the data will be exported to.</para><para>If the destination is a file with a well-known file extension, it can be given as-is. For instance: "c:\data\roads.gml" </para><para>If the destination is not a file, or the file has an unknown extension, the format can be given as part of the argument, seperated by a comma. For instance: "MIF,c:\data\". The names for supported formats can be found in the formats gallery, by opening up this tool in dialog mode and clicking the browse button </para><para>Additional format-specific parameters can be added after the dataset, separated by a comma. However, the syntax can be complex, so if this is required it is easiest to run the tool in its dialog box in ArcToolbox and copy the command syntax from the results window.</para><para>
+</para><para>
+</para>
+</commandReference>
+<dialogReference>
+<para>The format and dataset that the data will be exported to.</para><para>
+</para>
+</dialogReference>
+</param>
+</parameters>
+<usage>
+<bullet_item><para>This tool is used to either export data from ArcGIS, or as the final step in a model or script where the destination data is external to ArcGIS. </para></bullet_item>
+<bullet_item><para>During the export, no change to the data model is made, if this is desired, a custom data export tool should be created and used. </para></bullet_item>
+<bullet_item><para>Quick Export is used to either bring data into the ArcGIS environment, or as the beginning point in a model or script where data from outside ArcGIS will be processed.</para></bullet_item>
+<bullet_item><para>The feature classes generated depend on the input data. For instance, if you import two MapInfo MIF/MID files, two features classes will be created. </para></bullet_item>
+<bullet_item><para>Quick Export creates a new personal geodatabase, and will not append to an existing one.</para></bullet_item>
+<bullet_item><para>The feature classes generated from the imported data can be accessed using the Select Data tool on the output staging personal geodatabase.</para></bullet_item>
+<bullet_item><para>As data is imported, no changes to the data model are made. To transform the data model during import, a Custom Data Import Tool should be created and used.</para></bullet_item>
+<bullet_item><para>Bezier curves are not maintained when using Quick Export.</para></bullet_item>
+<bullet_item><para>No environment settings affect this tool.</para></bullet_item>
+</usage>
+<commandExample>
+<code>QuickExport c:\Data\roads.shp c:\out\roads.gml<para />
+</code>
+<code>QuickExport c:\Data\roads.shp;c:\Data\rivers.shp MIF,c:\mif-files<para />
+</code>
+</commandExample>
+<scriptExample>
+<code>
+<italics># Purpose: Buffer any layer and export it to GML<para />
+<para /># Import system modules<para />
+</italics>import arcgisscripting<para />
+<para />
+<italics># Create the Geoprocessor object<para />
+</italics>gp = arcgisscripting.create()<para />
+<para />
+<italics># Local variables...<para />
+</italics>tmp_buffered = "c:/Project/tmp_buffered.shp"<para />tmp_dissolved = "c:/Project/tmp_dissolbed.shp"<para />Output_Dataset = "GML2,c:/data/buffered.gml"<para />Input_Features = "C:/Project/roads.shp"<para />
+<para />
+<italics># Process: Buffer...<para />
+</italics>gp.Buffer_analysis(Input_Features, tmp_buffered, "10.000000 Meters", "FULL", "ROUND", "NONE", "")<para />
+<para />
+<italics># Process: Dissolve...<para />
+</italics>gp.Dissolve_management(tmp_buffered, tmp_dissolved, "", "")<para />
+<para />
+<italics># Process: Quick Export...<para />
+</italics>gp.QuickExport(tmp_dissolved, Output_Dataset)<para />
+</code>
+</scriptExample>
+</tool>
+</metadata>

@@ -1,0 +1,123 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Update Map Server Cache (Server)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Updates an existing Map Service cache to replace missing tiles, overwrite outdated tiles, or add new tiles in new areas or, in the case of a multi-layer cache, from additional layers.</para>
+			<para>This is a deprecated tool. Use Manage Map Server Cache Tiles instead.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="UpdateMapServerCache" displayname="Update Map Server Cache (Server)" toolboxalias="Server" softwarerestriction="none"><summary>
+			<para>Updates an existing Map Service cache to replace missing tiles, overwrite outdated tiles, or add new tiles in new areas or, in the case of a multi-layer cache, from additional layers.</para>
+			<para>This is a deprecated tool. Use Manage Map Server Cache Tiles instead.</para></summary><alink_name>UpdateMapServerCache_Server</alink_name><parameters><param sync="true" name="server_name" displayname="Host" datatype="String" direction="Input" expression="server_name" type="Required"><pythonReference>
+						<para>The host name of the ArcGIS Server to use to update the cache.</para>
+					</pythonReference><dialogReference>
+						<para>The host name of the ArcGIS Server to use to update the cache.</para>
+					</dialogReference></param><param sync="true" name="object_name" displayname="Map Server" datatype="String" direction="Input" expression="object_name" type="Required"><pythonReference>
+						<para>The name of the Map Service to use to update the cache.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the Map Service to use to update the cache.</para>
+					</dialogReference></param><param sync="true" name="data_frame" displayname="Data Frame" datatype="String" direction="Input" expression="data_frame" type="Required"><pythonReference>
+						<para>The map frame to cache.</para>
+					</pythonReference><dialogReference>
+						<para>The map frame to cache.</para>
+					</dialogReference></param><param sync="true" name="layer" displayname="Input Layers" datatype="String" direction="Input" expression="layer;layer..." type="Required"><pythonReference>
+						<para>Layers to remove from the cache.</para>
+					</pythonReference><dialogReference>
+						<para>Layers to remove from the cache.</para>
+					</dialogReference></param><param sync="true" name="constraining_extent" displayname="Update Extent" datatype="Extent" direction="Input" expression="constraining_extent" type="Optional"><pythonReference>
+						<para>Extent in the cache to update.</para>
+					</pythonReference><dialogReference>
+						<para>Extent in the cache to update.</para>
+					</dialogReference></param><param sync="true" name="levels" displayname="scales" datatype="String" direction="Input" expression="scale;scale..." type="Required"><pythonReference>
+						<para>A list of scale levels to update.</para>
+					</pythonReference><dialogReference>
+						<para>A list of scale levels to update.</para>
+					</dialogReference></param><param sync="true" name="update_mode" displayname="Update Mode" datatype="Boolean" direction="Input" expression="update_mode" type="Required"><pythonReference>
+						<para>Choose a mode for updating the cache. The two modes are:</para>
+						<bulletList><bullet_item>Recreate Empty Tiles - Only tiles that are empty (have been deleted on disk), or that are new because the cache extent has changed or because new layers have been added to a multi-layer cache, will be created. Old tiles will be left unchanged. —Missing Value</bullet_item><bullet_item>Recreate All Tiles - All tiles will be replaced and new tiles will be added if the extent has changed or if layers have been added to a multi-layer cache. —Missing Value</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose a mode for updating the cache. The two modes are:</para>
+						<bulletList><bullet_item>Recreate Empty Tiles - Only tiles that are empty (have been deleted on disk), or that are new because the cache extent has changed or because new layers have been added to a multi-layer cache, will be created. Old tiles will be left unchanged. —Missing Value</bullet_item><bullet_item>Recreate All Tiles - All tiles will be replaced and new tiles will be added if the extent has changed or if layers have been added to a multi-layer cache. —Missing Value</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="thread_count" displayname="Number of Map Server Instances" datatype="Long" direction="Input" expression="thread_count" type="Optional"><pythonReference>
+						<para>Number of Map Server instances to use while updating the cache.</para>
+					</pythonReference><dialogReference>
+						<para>Number of Map Server instances to use while updating the cache.</para>
+					</dialogReference></param><param sync="true" name="antialiasing" displayname="Antialiasing" datatype="Boolean" direction="Input" expression="antialiasing" type="Optional"><pythonReference>
+						<para>Choose whether to use antialiasing when rendering the tiles. If ANTIALIASING is edges of lines, borders, and text will be smoothed. There is a performance cost for this option. No benefit will be gained on raster data.</para>
+					</pythonReference><dialogReference>
+						<para>Choose whether to use antialiasing when rendering the tiles. If ANTIALIASING is edges of lines, borders, and text will be smoothed. There is a performance cost for this option. No benefit will be gained on raster data.</para>
+					</dialogReference></param><param sync="true" name="update_feature_class" displayname="Update Feature Class" datatype="Feature Class" direction="Input" expression="update_feature_class" type="Optional"><pythonReference>
+						<para>A polygon feature class used to derive the extents for which the cache should be updated.</para>
+					</pythonReference><dialogReference>
+						<para>A polygon feature class used to derive the extents for which the cache should be updated.</para>
+					</dialogReference></param><param sync="true" name="ignore_status" displayname="Ignore Status" datatype="String" direction="Input" expression="ignore_status" type="Optional"><pythonReference>
+						<para>Choose Cache all features and ignore completion status field to ignore the cache completion status field and cache all feature extents. Choose Track cache completion status for each feature option to update the cache completion status to a field named Cached. A status of "Yes" is written to the Cached field after successful completion of cache generation for that feature.</para>
+					</pythonReference><dialogReference>
+						<para>Choose Cache all features and ignore completion status field to ignore the cache completion status field and cache all feature extents. Choose Track cache completion status for each feature option to update the cache completion status to a field named Cached. A status of "Yes" is written to the Cached field after successful completion of cache generation for that feature.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>Use Recreate Empty Tiles mode to add tiles in an extent not previously cached.</para>
+			</bullet_item><bullet_item>
+				<para>Use Recreate All Tiles to update outdated tiles.</para>
+			</bullet_item><bullet_item>
+				<para>Before running this tool, configure the Map Service to use as many instances as possible. This will dramatically decrease cache update time.</para>
+			</bullet_item><bullet_item>
+				<para>This tool does not accept any Environment Setting that have been specified.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><code xml:space="preserve">
+# Script Name: Update Fused Map Server Cache
+# Description: Updates a fused map server cache
+# Uncomment sys.argv[] lines to accept arguments from the command line.
+ 
+# Import standard library modules
+import sys, string, os, arcgisscripting
+ 
+# Create the Geoprocessor object
+gp = arcgisscripting.create()
+ 
+# Set the SOM server name
+# Example: "mySOM"
+server_name = "mySOM"
+#server_name = sys.argv[1]
+ 
+# Set the object_name
+# Example: "MyServiceFolder/MyService"
+object_name = "MyServiceFolder/MyService"
+#object_name = sys.argv[2]
+ 
+# Set the data frame
+# Example: "Layers"
+data_frame = "Layers"
+#data_frame = sys.argv[3]
+ 
+# Set the layers to cache.
+# Example: "My First Layer;My Second Layer;My Third Layer"
+layers = "My First Layer;My Second Layer;My Third Layer"
+#layers = sys.argv[4]
+ 
+# Set the extent to update in the cache.
+# Example: "8 50 10 52"
+constraining_extent = "8 50 10 52"
+#constraining_extent = sys.argv[5]
+ 
+# Set the scale levels for the cache.
+# Example: "2000000;500000;250000"
+scales = "2000000;500000;250000"
+#scales = sys.argv[6]
+ 
+# Set the update mode.
+# Example: "Recreate Empty Tiles"
+update_mode = "Recreate All Tiles"
+#update_mode = sys.argv[7]
+ 
+# Set number of instances to use while updating the cache
+# Example: "3"
+thread_count = "3"
+#thread_count = sys.argv[8]
+ 
+# Set antialiasing mode
+# Example: "NONE"
+antialiasing = "ANTIALIASING"
+#antialiasing = sys.argv[9]
+ 
+try:
+    print 'Starting Cache Update'
+    gp.UpdateMapServerCache(server_name, object_name, data_frame, layers, constraining_extent,  scales, update_mode, thread_count, antialiasing)
+    print 'Finished Cache Update'
+ 
+except:
+    gp.AddMessage(gp.GetMessages(2))
+    print gp.GetMessages(2)
+                    </code></scriptExample></scriptExamples></tool></metadata>

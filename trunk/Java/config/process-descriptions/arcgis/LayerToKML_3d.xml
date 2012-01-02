@@ -1,0 +1,98 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Layer to KML (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool converts an in-memory or file-based feature or raster layer into a KML file containing a translation of ESRI geometries and symbology. This file is compressed using ZIP compression, has a .kmz extension, and can be read by any KML client including ArcGIS Explorer, ArcGlobe, and Google Earth.</para>
+			
+				<para>This tool was previously available in the 3D Analyst toolbox.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="LayerToKML" displayname="Layer to KML (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool converts an in-memory or file-based feature or raster layer into a KML file containing a translation of ESRI geometries and symbology. This file is compressed using ZIP compression, has a .kmz extension, and can be read by any KML client including ArcGIS Explorer, ArcGlobe, and Google Earth.</para>
+			
+				<para>This tool was previously available in the 3D Analyst toolbox.</para>
+			</summary><alink_name>LayerToKML_3d</alink_name><parameters><param sync="true" name="layer" displayname="Layer" datatype="Feature layer" direction="Input" expression="layer" type="Required"><pythonReference>
+						<para>The in-memory layer or layer file stored on disk that is to be converted to KML.</para>
+					</pythonReference><dialogReference>
+						<para>The in-memory layer or layer file stored on disk that is to be converted to KML.</para>
+					</dialogReference></param><param sync="true" name="out_kmz_file" displayname="Output File" datatype="KML file" direction="Output" expression="out_kmz_file" type="Required"><pythonReference>
+						<para>The KML file to write. This file is compressed and has a .kmz extension. It can be read by any KML client including ArcGIS Explorer, ArcGlobe, and Google Earth.</para>
+					</pythonReference><dialogReference>
+						<para>The KML file to write. This file is compressed and has a .kmz extension. It can be read by any KML client including ArcGIS Explorer, ArcGlobe, and Google Earth.</para>
+					</dialogReference></param><param sync="true" name="layer_output_scale" displayname="Layer Output Scale" datatype="Double" direction="Input" expression="layer_output_scale" type="Required"><pythonReference>
+						<para>The scale at which to export the layer. Any scale-dependent rendering is observed, so if the layer is not visible at the export scale, it will not be included in the created KML file. The symbology for the layer is driven by this scale.</para>
+						<para>Only numeric characters should be entered. For example, enter "20000" as the scale, not 1:20000 or 20,000.</para>
+						<para>Furthermore, if you are exporting a layer that is to be displayed as 3D vectors—such as a point layer with the Return single composite image option disabled—and there is no scale-dependent rendering defined for the layer, then this parameter is not required for the export process and can be set to any numeric value, such as 1.</para>
+					</pythonReference><dialogReference>
+						<para>The scale at which to export the layer. Any scale-dependent rendering is observed, so if the layer is not visible at the export scale, it will not be included in the created KML file. The symbology for the layer is driven by this scale.</para>
+						<para>Only numeric characters should be entered. For example, enter "20000" as the scale, not 1:20000 or 20,000.</para>
+						<para>Furthermore, if you are exporting a layer that is to be displayed as 3D vectors—such as a point layer with the Return single composite image option disabled—and there is no scale-dependent rendering defined for the layer, then this parameter is not required for the export process and can be set to any numeric value, such as 1.</para>
+					</dialogReference></param><param sync="true" name="is_composite" displayname="Return single composite image" datatype="Boolean" direction="Input" expression="is_composite" type="Optional"><pythonReference><bulletList><bullet_item>COMPOSITE—The output KML file will be a single composite image representing the raster or vector features in the source layer. The raster is draped over the terrain as a KML GroundOverlay. Select this option to reduce the size of the output KMZ file. When you check this box, individual features and layers in the KML are not selectable.</bullet_item><bullet_item>NO_COMPOSITE—If your layer has vector features, they are preserved as KML vectors.  (If your layer is a raster, you can choose either option for this parameter without any visual difference.)</bullet_item></bulletList></pythonReference><dialogReference>
+						<bulletList><bullet_item>Checked—The output KML file will be a single composite image representing the raster or vector features in the source layer. The raster is draped over the terrain as a KML GroundOverlay. Select this option to reduce the size of the output KMZ file. When you check this box, individual features and layers in the KML are not selectable.</bullet_item><bullet_item>Unchecked—If your layer has vector features, they are preserved as KML vectors. (If your layer is a raster, you can choose either option for this parameter without any visual difference.)</bullet_item></bulletList></dialogReference></param><param sync="true" name="boundary_box_extent" displayname="Extent to Export" datatype="Extent" direction="Input" expression="boundary_box_extent" type="Optional"><pythonReference>
+						<para> The geographic extent of the area to be exported. The extent rectangle bounds should be specified as a space-delimited string of WGS84 geographic coordinates in the form "left lower right upper".</para>
+					</pythonReference><dialogReference><para> The geographic extent of the area to be exported. Either define the extent box (in the WGS84 coordinate system) or choose a layer or map document that defines an extent using the File Selection button and text field.</para></dialogReference></param><param sync="true" name="image_size" displayname="Size of returned image (pixels)" datatype="Long" direction="Input" expression="image_size" type="Optional"><pythonReference>
+						<para>Defines the vertical and horizontal resolution of any rasters in the output KML document.</para>
+					</pythonReference><dialogReference>
+						<para>Defines the vertical and horizontal resolution of any rasters in the output KML document.</para>
+					</dialogReference></param><param sync="true" name="dpi_of_client" displayname="DPIofoutput image" datatype="Long" direction="Output" expression="dpi_of_client" type="Optional"><pythonReference>
+						<para>Define the device resolution for any rasters in the output KML document.</para>
+					</pythonReference><dialogReference>
+						<para>Define the device resolution for any rasters in the output KML document.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The output KMZ file cannot already exist.</para>
+			</bullet_item><bullet_item>
+				<para>You can reduce the size of the output KMZ document if your layer has a scale-dependent renderer and you choose an appropriate layer output scale.</para>
+			</bullet_item><bullet_item>
+				<para>To output a single raster image draped over topography, use the Return single composite image option.</para>
+			</bullet_item><bullet_item>
+				<para>To output every layer as a separate raster image, use the Convert Vector to Raster option.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Layer to KML Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Layer to KML
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.LayerToKML_3d("bldg.lyr", "bldg.kmz", "1")
+                    </code></scriptExample><scriptExample><title>Layer to KML Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Layer to KML
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: LayerToKML Example
+# Description: The following stand-alone script demonstrates how to find 
+#              all layer files in a given workspace and export each to 
+#              a KML at the 1:10,000, 1:20,000, and 1:30,000 scale using
+#              the LayerToKML tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Use the ListFiles method to identify all layer files in workspace
+    if len(arcpy.ListFiles("*.lyr")) &gt; 0:
+        for layer in arcpy.ListFiles("*.lyr"):
+            # Set Local Variables
+            composite = 'NO_COMPOSITE'
+            pixels = 2048
+            dpi = 192
+            # Strips the '.lyr' part of the name and appends '.kmz'
+            outKML = file[:4] + ".kmz"
+            for scale in range(10000, 30001, 10000):
+                #Execute LayerToKML
+                arcpy.LayerToKML_conversion(layer, outKML, scale, composite, 
+                                            '', pixels, dpi)
+    else:
+        arcpy.AddMessage('There are no layer files in '+env.workspace+'.')
+
+except Exception as e:
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Replica Footprints (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a feature class that contains the geometries for all the replicas in a geodatabase. Attributes in the feature class store the information from the replica manager.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>1 Way</keyword><keyword>2 Way</keyword><keyword>Area</keyword><keyword>Centralize</keyword><keyword>Check</keyword><keyword>Child</keyword><keyword>Contractor</keyword><keyword>Database</keyword><keyword>Extent</keyword><keyword>Gdb</keyword><keyword>Geometry</keyword><keyword>In</keyword><keyword>Mobile</keyword><keyword>One</keyword><keyword>Out</keyword><keyword>Outline</keyword><keyword>Parent</keyword><keyword>Production</keyword><keyword>Publication</keyword><keyword>Replica</keyword><keyword>Replicate</keyword><keyword>Replication</keyword><keyword>Sde</keyword><keyword>Synchronize</keyword><keyword>Two</keyword><keyword>Way</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateReplicaFootprints" displayname="Create Replica Footprints (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a feature class that contains the geometries for all the replicas in a geodatabase. Attributes in the feature class store the information from the replica manager.</para>
+		</summary><alink_name>CreateReplicaFootprints_management</alink_name><parameters><param sync="true" name="in_workspace" displayname="Export from Replica Geodatabase" datatype="Workspace" direction="Input" expression="in_workspace" type="Required"><pythonReference>
+						<para>The geodatabase containing the replicas from which you would like to create the replica footprint. The geodatabase must be a local geodatabase; it cannot be a geodata service.</para>
+					</pythonReference><dialogReference>
+						<para>The geodatabase containing the replicas from which you would like to create the replica footprint. The geodatabase must be a local geodatabase; it cannot be a geodata service.</para>
+					</dialogReference></param><param sync="true" name="out_workspace" displayname="Workspace that Replica Footprints Create to" datatype="Workspace" direction="Input" expression="out_workspace" type="Required"><pythonReference>
+						<para>The output geodatabase that will hold the replica footprints feature class once it is created. The geodatabase may be local or remote.</para>
+					</pythonReference><dialogReference>
+						<para>The output geodatabase that will hold the replica footprints feature class once it is created. The geodatabase may be local or remote.</para>
+					</dialogReference></param><param sync="true" name="output_featureclass" displayname="Output Feature Class" datatype="String" direction="Input" expression="output_featureclass" type="Required"><pythonReference>
+						<para>The name of the replica footprints feature class to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the replica footprints feature class to be created.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The output feature class can be any geodatabase feature class (File, Personal, or ArcSDE).</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateReplicaFootprints Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the CreateReplicaFootprints function in the Python window.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace = "C:/Data/MySDEdata.sde"
+arcpy.CreateReplicaFootprints_management(env.workspace, env.workspace, "replicaFootprints")
+ 
+
+                    </code></scriptExample><scriptExample><title>CreateReplicaFootprints Example 2 (stand-alone Python script)</title>
+					<para>The following Python script demonstrates how to use the CreateReplicaFootprints function in a stand-alone script.</para>
+				<code xml:space="preserve"># Name CreateReplicaFootprints_Example2.py
+# Description: Creates a replica footprints feature class for an SDE workspace.  
+# The output FC is stored in the same SDE workspace.
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/MySDEdata.sde"
+
+# Set local variables
+out_FC = "replicaFootprints"
+arcpy.CreateReplicaFootprints_management(env.workspace, env.workspace, out_FC)
+ 
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

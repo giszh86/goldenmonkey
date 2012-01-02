@@ -1,0 +1,114 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Import From DLG (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a Standard or Optional formatted Digital Line Graph (DLG) file to a coverage.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Conversion Tools</keyword><keyword>Coverage</keyword><keyword>Digital Line Graph</keyword><keyword>Dlg To Coverage</keyword><keyword>Dlgarc</keyword><keyword>To Coverage</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DLGArc" displayname="Import From DLG (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Converts a Standard or Optional formatted Digital Line Graph (DLG) file to a coverage.</para>
+		</summary><alink_name>DLGArc_arc</alink_name><parameters><param sync="true" name="in_dlg_file" displayname="Input DLG File" datatype="File" direction="Input" expression="in_dlg_file" type="Required"><pythonReference>
+						<para>The DLG file to be converted to a coverage.</para>
+					</pythonReference><dialogReference>
+						<para>The DLG file to be converted to a coverage.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The name of the coverage to be created from the DLG data. If the input DLG file contains data produced by the United States Geological Survey (USGS), the output coverage will usually contain line, polygon, and node features created from nondegenerate line (L) records, area (A) records, and node (N) records. An Output Coverage.NAT for node features will be created.</para>
+						<para>This is the only feature attribute table that is created by Import From DLG.</para>
+						<para>An INFO table named Output Coverage.ACODE will be created that contains the major/minor pair values for all line (L) records. Similarly, an INFO table named Output Coverage.PCODE will store the major/minor codes for area (A) records.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the coverage to be created from the DLG data. If the input DLG file contains data produced by the United States Geological Survey (USGS), the output coverage will usually contain line, polygon, and node features created from nondegenerate line (L) records, area (A) records, and node (N) records. An Output Coverage.NAT for node features will be created.</para>
+						<para>This is the only feature attribute table that is created by Import From DLG.</para>
+						<para>An INFO table named Output Coverage.ACODE will be created that contains the major/minor pair values for all line (L) records. Similarly, an INFO table named Output Coverage.PCODE will store the major/minor codes for area (A) records.</para>
+					</dialogReference></param><param sync="true" name="out_point_cover" displayname="Output Point Coverage" datatype="Coverage" direction="Output" expression="out_point_cover" type="Optional"><pythonReference>
+						<para>The name of an Optional point coverage to be created from degenerate line (L) records in the DLG. In a DLG, points are stored as zero-length arcs (that is, degenerate lines).</para>
+						<para>These are optionally converted to points by specifying an output point coverage. An INFO table named Output Point Coverage.XCODE will be created, which contains all major and minor code pair values for degenerate line (L) records.</para>
+						<para>No coverage will be created from degenerate line records unless an Output Point Coverage is specified.</para>
+					</pythonReference><dialogReference>
+						<para>The name of an Optional point coverage to be created from degenerate line (L) records in the DLG. In a DLG, points are stored as zero-length arcs (that is, degenerate lines).</para>
+						<para>These are optionally converted to points by specifying an output point coverage. An INFO table named Output Point Coverage.XCODE will be created, which contains all major and minor code pair values for degenerate line (L) records.</para>
+						<para>No coverage will be created from degenerate line records unless an Output Point Coverage is specified.</para>
+					</dialogReference></param><param sync="true" name="area_calculation" displayname="Area Calculation Method" datatype="String" direction="Input" expression="area_calculation" type="Optional"><pythonReference>
+						<para>Determines how the area (A) records are written to the output coverage.</para>
+						<bulletList><bullet_item>NOFIRST—The first area record is ignored. Labels are written for all other area records and the corresponding major/minor codes are written to the Output Coverage.PCODE file. This is the default option. </bullet_item><bullet_item>ALL—All area records are converted to output coverage label points and the major and minor codes for all area (A) records in the Output Coverage.PCODE file. Usually the label point for the first area record is in the outside polygon. </bullet_item><bullet_item>ATTRIBUTED—The label location in the DLG file is used only for those area records that carry major/minor codes. For some DLG categories, only area records with attributes have valid label locations. The first area (A) record is not included. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines how the area (A) records are written to the output coverage.</para>
+						<bulletList><bullet_item>NOFIRST—The first area record is ignored. Labels are written for all other area records and the corresponding major/minor codes are written to the Output Coverage.PCODE file. This is the default option. </bullet_item><bullet_item>ALL—All area records are converted to output coverage label points and the major and minor codes for all area (A) records in the Output Coverage.PCODE file. Usually the label point for the first area record is in the outside polygon. </bullet_item><bullet_item>ATTRIBUTED—The label location in the DLG file is used only for those area records that carry major/minor codes. For some DLG categories, only area records with attributes have valid label locations. The first area (A) record is not included. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="x_shift" displayname="X Shift" datatype="Double" direction="Input" expression="x_shift" type="Optional"><pythonReference>
+						<para>A constant value to be added to all x coordinates during DLG conversion. The default X Shift value is zero.</para>
+					</pythonReference><dialogReference>
+						<para>A constant value to be added to all x coordinates during DLG conversion. The default X Shift value is zero.</para>
+					</dialogReference></param><param sync="true" name="y_shift" displayname="Y Shift" datatype="Double" direction="Input" expression="y_shift" type="Optional"><pythonReference>
+						<para>A constant value to be added to all y coordinates during DLG conversion. The default Y Shift value is zero.</para>
+					</pythonReference><dialogReference>
+						<para>A constant value to be added to all y coordinates during DLG conversion. The default Y Shift value is zero.</para>
+					</dialogReference></param><param sync="true" name="category" displayname="DLG Category Name" datatype="String" direction="Input" expression="category" type="Optional"><pythonReference>
+						<para>The optional name of a specific DLG category to be converted from the DLG file. Only the specified category will be converted if one is given. Otherwise, only the first category in the DLG will be written to the output coverages: output coverage, point coverage.</para>
+					</pythonReference><dialogReference>
+						<para>The optional name of a specific DLG category to be converted from the DLG file. Only the specified category will be converted if one is given. Otherwise, only the first category in the DLG will be written to the output coverages: output coverage, point coverage.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Topology data contained in the DLG file is ignored. You can use the  tool after running Import From DLG, creating topology on the newly created coverage. Sometimes the coverage will have arc intersections and will need to be cleaned using the  tool.</para>
+				<para>The feature attribute table NAT is automatically created and does not require an additional build for nodes.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Coverage may require editing before polygons or lines can be built and feature attribute tables created. For example, checks should be made on the output coverage to ensure that label points occur within their polygons, arcs match at nodes, polygons close, arcs do not cross, and so on.</para>
+			</bullet_item><bullet_item>
+				<para>Feature numbers in the DLG area (A) records become label point User-IDs for polygons; feature numbers in line (L) records become User-IDs for arcs in the output coverage. The same User-IDs are written to the INFO table output coverage.ACODE and output coverage.PCODE.</para>
+			</bullet_item><bullet_item>
+				<para>The CODE files, output coverage.ACODE and output coverage.PCODE, hold line attribute codes and polygon attribute codes.</para>
+			</bullet_item><bullet_item>
+				<para>The DLG feature numbers for node (N) records become User-IDs for nodes in output coverage. There is no corresponding CODE file for node attributes. The User-IDs and attribute codes for node (N) records are stored directly in the output coverage.NAT feature attribute table.</para>
+			</bullet_item><bullet_item>
+				<para>For the Output Point Coverage, the DLG feature numbers in degenerate (zero-length) line (L) records become User-IDs for points in the Output Point Coverage. An Output Point Coverage.XCODE is created to hold degenerate line (L) attribute codes.</para>
+			</bullet_item><bullet_item>
+				<para>CODE files for a particular feature class are only created if feature attributes are found in the DLG.</para>
+			</bullet_item><bullet_item>
+				<para>The fields in the CODE files consist of a Cover-ID, major and Minor fields. The Cover-ID is each feature's unique identifier. MAJOR1 is the first major feature code in the DLG; MINOR1 is the first minor code. There are as many major/minor pairs in the table as the maximum number of pairs for that feature class in the DLG. If no value appears for a particular code, it will be set to -99999.</para>
+			</bullet_item><bullet_item>
+				<para>Import From DLG writes the projection parameters stored in the DLG file to a projection definition file (PRJ) stored in the output coverage subdirectory.</para>
+			</bullet_item><bullet_item>
+				<para>DLG header records may contain parameters of a transformation that are used to convert the internal file coordinates to the ground coordinate system. Import From DLG will automatically apply any transformation parameters found in the header records to the feature coordinates and control points (in addition to any specified shift).</para>
+			</bullet_item><bullet_item>
+				<para>The header records in the DLG file provide information used to determine the tic locations of the output coverages.</para>
+			</bullet_item><bullet_item>
+				<para>If the fields used to store control point information are blank, Import From DLG will generate tics for the output coverages.</para>
+			</bullet_item><bullet_item>
+				<para>DLG files usually provide four control points representing the four corners of the map area in the same map coordinate system used to store geographic features. Any transformation or x,y shift applied to the feature coordinates will apply to the control points as well.</para>
+			</bullet_item><bullet_item>
+				<para>A DLG category is equivalent to a layer.</para>
+			</bullet_item><bullet_item>
+				<para>Usually, only one category is included in a DLG file; however, some DLGs contain more than one category.</para>
+			</bullet_item><bullet_item>
+				<para>Categories are listed in DLG header records. Use of the tool's DLG Category parameter enables you to create a set of coverages for other layers or categories contained in the DLG.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of the output coverage is determined by the current creation rule. If the precision setting has not yet been established during the current ArcInfo session, then the creation rule will be Single. This means the Import From DLG tool will create an output coverage in single precision. (Coordinate values in DLG files have a format definition of F12.2.)</para>
+			</bullet_item><bullet_item>
+				<para> can be used to merge each coverage feature attribute table with the DLG code files—INFO table PCODE to Output Coverage.PAT, ACODE with Output Coverage.AAT, and XCODE with Output Point Coverage.PAT.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DLGArc example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to import a coverage from DLG format.
+</para>
+				<code xml:space="preserve"># Name: DLGArc_Example.py
+# Description: Imports from DLG format to a coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inDlgFile = "509954.PL.opt.dlg"
+outCover = "C:/output/954netcov"
+outPointCover = "C:/output/954pointcov"
+
+# Execute DLGArc
+arcpy.DLGArc_arc(inDlgFile, outCover, outPointCover, "", "", "", "")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

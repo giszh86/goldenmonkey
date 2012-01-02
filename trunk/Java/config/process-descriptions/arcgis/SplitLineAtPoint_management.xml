@@ -1,0 +1,85 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Split Line At Point (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Splits line features based on intersection or proximity to point features.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Apart</keyword><keyword>Chop</keyword><keyword>Divide</keyword><keyword>Geometry</keyword><keyword>Line</keyword><keyword>Point</keyword><keyword>Separate</keyword><keyword>Split</keyword><keyword>Vector</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SplitLineAtPoint" displayname="Split Line At Point (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Splits line features based on intersection or proximity to point features.</para>
+		</summary><alink_name>SplitLineAtPoint_management</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input line features to be split.</para>
+					</pythonReference><dialogReference>
+						<para>The input line features to be split.</para>
+					</dialogReference></param><param sync="true" name="point_features" displayname="Point Features" datatype="Feature layer" direction="Input" expression="point_features" type="Required"><pythonReference>
+						<para>The input point features whose locations will be used to split the input lines.</para>
+					</pythonReference><dialogReference>
+						<para>The input point features whose locations will be used to split the input lines.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output feature class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The new feature class that will be created containing the split lines.</para>
+					</pythonReference><dialogReference>
+						<para>The new feature class that will be created containing the split lines.</para>
+					</dialogReference></param><param sync="true" name="search_radius" displayname="Search Distance" datatype="Double" direction="Input" expression="search_radius" type="Optional"><pythonReference>
+						<para>Used to split lines by their proximity to point features. Points within the search distance to an input line will be used to split those lines at the nearest location to the point along the line segment.</para>
+					</pythonReference><dialogReference>
+						<para>Used to split lines by their proximity to point features. Points within the search distance to an input line will be used to split those lines at the nearest location to the point along the line segment.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Input Features must be lines. </para>
+			</bullet_item><bullet_item>
+				<para>If search_radius is unspecified, a nearest point will be used to split the line feature. </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SplitLineAtPoint Example(stand-alone script)</title>
+					<para>This example shows how to use a Python script to run SplitLineAtPoint.</para>
+				<code xml:space="preserve">#Name: SplitLineAtPoint_Example.py
+# Description: split line features based upon near   #point features
+# Requirements: 
+# Author: ESRI
+
+import arcpy
+from arcpy import env
+
+env.workspace="C:/data"
+inFeatures="streets.shp"
+pointFeatures="enents.shp"
+searchRadius=20
+outFeatureclass="splitline_out.shp"
+try:
+    arcpy.SplitLineAtPoint_management(inFeatures,pointFeatures, searchRadius,outFeatureclass)
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample><scriptExample><title>SplitLineAtPoint Example (Python window)</title>
+					<para>This example shows how to run SplitLineAtPoint tool in a Python window.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+env.workspace="C:/data"
+arcpy.SplitLineAtPoint_management("streets.shp","enents.shp",20,"splitline_out.shp")
+                    </code></scriptExample></scriptExamples></tool></metadata>

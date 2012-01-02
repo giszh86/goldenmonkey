@@ -1,0 +1,184 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Dissolve Route Events (Linear Referencing)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Removes redundant information from event tables or separates event tables having more than one descriptive attribute into individual tables.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Aggregate</keyword><keyword>Analyze</keyword><keyword>Break Up</keyword><keyword>Combine</keyword><keyword>Concatenate</keyword><keyword>Divide</keyword><keyword>Eliminate</keyword><keyword>Event</keyword><keyword>Fragment</keyword><keyword>Merge</keyword><keyword>Partition</keyword><keyword>Route</keyword><keyword>Separate</keyword><keyword>Split</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DissolveRouteEvents" displayname="Dissolve Route Events (Linear Referencing)" toolboxalias="lr" softwarerestriction="none"><summary>
+			<para>Removes redundant information from event tables or separates event tables having more than one descriptive attribute into individual tables.</para>
+		</summary><alink_name>DissolveRouteEvents_lr</alink_name><parameters><param sync="true" name="in_events" displayname="Input Event Table" datatype="Table View" direction="Input" expression="in_events" type="Required"><pythonReference>
+						<para>The table whose rows will be aggregated.</para>
+					</pythonReference><dialogReference>
+						<para>The table whose rows will be aggregated.</para>
+					</dialogReference></param><param sync="true" name="in_event_properties" displayname="Event Table Properties" datatype="Route Measure Event Properties" direction="Input" expression="in_event_properties" type="Required"><pythonReference>
+						<para>Parameter consisting of the route location fields and the type of events in the input event table.</para>
+						<bulletList>
+							<bullet_item>Route Identifier Field—The field containing values that indicate which route each event is along. This field can be numeric or character.</bullet_item>
+							<bullet_item>Event Type—The type of events in the input event table (POINT or LINE).<bulletList>
+									<bullet_item>POINT—Point events occur at a precise location along a route. Only a from-measure field must be specified.</bullet_item>
+									<bullet_item>LINE—Line events define a portion of a route. Both from- and to-measure fields must be specified.</bullet_item>
+								</bulletList></bullet_item>
+							<bullet_item>From-Measure Field—A field containing measure values. This field must be numeric and is required when the event type is POINT or LINE. Note, when the Event Type is POINT the label for this parameter becomes "Measure Field".</bullet_item>
+							<bullet_item>To-Measure Field—A field containing measure values. This field must be numeric and is required when the event type is LINE.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>Parameter consisting of the route location fields and the type of events in the input event table.</para>
+						<bulletList>
+							<bullet_item>Route Identifier Field—The field containing values that indicate which route each event is along. This field can be numeric or character.</bullet_item>
+							<bullet_item>Event Type—The type of events in the input event table (POINT or LINE).<bulletList>
+									<bullet_item>POINT—Point events occur at a precise location along a route. Only a from-measure field must be specified.</bullet_item>
+									<bullet_item>LINE—Line events define a portion of a route. Both from- and to-measure fields must be specified.</bullet_item>
+								</bulletList></bullet_item>
+							<bullet_item>From-Measure Field—A field containing measure values. This field must be numeric and is required when the event type is POINT or LINE. Note, when the Event Type is POINT the label for this parameter becomes "Measure Field".</bullet_item>
+							<bullet_item>To-Measure Field—A field containing measure values. This field must be numeric and is required when the event type is LINE.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="dissolve_field" displayname="Dissolve Fields" datatype="Field" direction="Input" expression="[dissolve_field,...]" type="Required"><pythonReference>
+						<para>The field(s)used to aggregate rows.</para>
+					</pythonReference><dialogReference>
+						<para>The field(s)used to aggregate rows.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Event Table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>The table to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The table to be created.</para>
+					</dialogReference></param><param sync="true" name="out_event_properties" displayname="Output Event Table Properties" datatype="Route Measure Event Properties" direction="Output" expression="out_event_properties" type="Required"><pythonReference>
+						<para>Parameter consisting of the route location fields and the type of events that will be written to the output event table.</para>
+						<bulletList><bullet_item>Route Identifier Field—The field that will contain values that indicate which route each event is along.</bullet_item><bullet_item>Event Type—The type of events the output event table will contain (POINT or LINE).<bulletList>
+									<bullet_item>POINT—Point events occur at a precise location along a route. Only a single measure field must be specified.</bullet_item>
+									<bullet_item>LINE—Line events define a portion of a route. Both from- and to-measure fields must be specified.</bullet_item>
+								</bulletList></bullet_item><bullet_item>From-Measure Field—A field that will contain measure values. Required when the event type is POINT or LINE. Note when the Event Type is POINT the label for this parameter becomes "Measure Field".</bullet_item><bullet_item>To-Measure Field—A field that will contain measure values. Required when the event type is LINE.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Parameter consisting of the route location fields and the type of events that will be written to the output event table.</para>
+						<bulletList><bullet_item>Route Identifier Field—The field that will contain values that indicate which route each event is along.</bullet_item><bullet_item>Event Type—The type of events the output event table will contain (POINT or LINE).<bulletList>
+									<bullet_item>POINT—Point events occur at a precise location along a route. Only a single measure field must be specified.</bullet_item>
+									<bullet_item>LINE—Line events define a portion of a route. Both from- and to-measure fields must be specified.</bullet_item>
+								</bulletList></bullet_item><bullet_item>From-Measure Field—A field that will contain measure values. Required when the event type is POINT or LINE. Note when the Event Type is POINT the label for this parameter becomes "Measure Field".</bullet_item><bullet_item>To-Measure Field—A field that will contain measure values. Required when the event type is LINE.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="dissolve_type" displayname="Combine adjacent events only" datatype="Boolean" direction="Input" expression="dissolve_type" type="Optional"><pythonReference>
+						<para>Specifies whether the input events will be concatenated or dissolved.</para>
+						<bulletList><bullet_item>DISSOLVE—Events will be aggregated wherever there is measure overlap. This is the default. </bullet_item><bullet_item>CONCATENATE—Events will be aggregated where the to-measure of one event matches the from-measure of the next event. This option is applicable only for line events. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether the input events will be concatenated or dissolved.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Events will be aggregated wherever there is measure overlap. This is the default.</bullet_item>
+							<bullet_item>Checked—Events will be aggregated where the to-measure of one event matches the from-measure of the next event. This option is applicable only for line events.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="build_index" displayname="Build index" datatype="Boolean" direction="Input" expression="build_index" type="Optional"><pythonReference>
+						<para>Specifies whether an attribute index will be created for the route identifier field that is written to the output event table.</para>
+						<bulletList><bullet_item>INDEX—Creates an attribute index. This is the default. </bullet_item><bullet_item>NO_INDEX—Does not create an attribute index. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether an attribute index will be created for the route identifier field that is written to the output event table.</para>
+						<bulletList>
+							<bullet_item>Checked—Creates an attribute index. This is the default. </bullet_item>
+							<bullet_item>Unchecked—Does not create an attribute index. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input table can be any type of table that ArcGIS supports. The output table can be a dBASE file or a geodatabase table.</para>
+			</bullet_item><bullet_item>
+				<para>If the input events do not have an ObjectID field, use  prior to using this tool  to add a virtual ObjectID field.</para>
+			</bullet_item><bullet_item>
+				<para>An attribute index on the route identifier field speeds up the dynamic segmentation process. If you will be using the Output Event Table for , it is recommended that you choose to have an attribute index created.</para>
+			</bullet_item><bullet_item>
+				<para>The output table can be displayed in ArcMap using the  tool or using the .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DissolveRouteEvents Example (Python Window)</title><code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/Data"
+arcpy.DissolveRouteEvents_lr("pavecond.dbf", "rkey LINE fmp tmp", "lanes", "pave_dissolve1.dbf", "rkey LINE fmp tmp")
+
+ 
+                    </code></scriptExample><scriptExample><title>DissolveRouteEvents Example 2 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the DissolveRouteEvents function in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name: DissolveRouteEvents_Example2.py
+# Description:  Dissolve line events based on one field (input table is dBASE).
+# Author: ESRI
+
+# Import system modules 
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "D:/Data/pitt_county"
+
+# Set local variables
+in_tbl = "pavecond.dbf"
+in_props = "rkey LINE fmp tmp"   # re-used as out event properties
+flds = "lanes" 
+out_tbl = "pave_dissolve1.dbf"
+
+# Execute DissolveRouteEvents
+arcpy.DissolveRouteEvents_lr(in_tbl, in_props, flds, out_tbl, in_props)
+ 
+ 
+                    </code></scriptExample><scriptExample><title>DissolveRouteEvents Example 3 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the DissolveRouteEvents function in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name: DissolveRouteEvents_Example3.py
+# Description:  Concatenate line events based on two fields (input table is file geodatabase).
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/pitt.gdb"
+
+# Set local variables
+in_tbl = "pavecond"
+in_props = "rkey LINE fmp tmp"          # re-used as out event properties
+flds = "lanes; curb" 
+out_tbl = "pave_dissolve2"
+
+# Execute DissolveRouteEvents
+arcpy.DissolveRouteEvents_lr(in_tbl, in_props, flds, out_tbl, in_props, "CONCATENATE")
+ 
+
+                    </code></scriptExample><scriptExample><title>DissolveRouteEvents Example 4 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the DissolveRouteEvents function in a stand-alone Python script using data in a personal geodatabase.</para>
+				<code xml:space="preserve"># Name: DissolveRouteEvents_Example4.py
+# Description: Concatenate line events based on two fields (input table is personal geodatabase).
+# Author: ESRI
+
+# Import system modules 
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/pitt.mdb"
+
+# Set local variables
+in_tbl = "pavecond"
+in_props = "rkey LINE fmp tmp"          # re-used as out event properties
+flds = "lanes; curb" 
+out_tbl = "pave_dissolve2"
+
+# Execute DissolveRouteEvents
+arcpy.DissolveRouteEvents_lr(in_tbl, in_props, flds, out_tbl, in_props, "CONCATENATE")
+ 
+
+                    </code></scriptExample><scriptExample><title>DissolveRouteEvents Example 5 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the DissolveRouteEvents function in a stand-alone Python script using SDE data.</para>
+				<code xml:space="preserve"># Name: DissolveRouteEvents_Example5.py
+# Description: Dissolve line events based on two fields (input table is enterprise geodatabase).
+# Author: ESRI 
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "Database Connections/Connection to Jerry.sde"
+
+# Set local variables
+in_tbl = gp.QualifyTableName("pavecond", wkspc) 
+in_props = "rkey LINE fmp tmp" 
+flds = "lanes; curb" 
+out_tbl = "pave_dissolve3"
+out_props = "rid LINE f_meas t_meas" 
+
+# Execute DissolveRouteEvents
+arcpy.DissolveRouteEvents_lr(in_tbl, in_props, flds, out_tbl, out_props, "#", "NO_INDEX")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

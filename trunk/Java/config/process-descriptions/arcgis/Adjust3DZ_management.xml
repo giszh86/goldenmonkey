@@ -1,0 +1,124 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Adjust 3D Z (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Allows the modification of all Z-values in a Z-enabled feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Convert</keyword><keyword>Decrease</keyword><keyword>Depth</keyword><keyword>Flip</keyword><keyword>Geometry</keyword><keyword>Height</keyword><keyword>Increase</keyword><keyword>Invert</keyword><keyword>Modify</keyword><keyword>Reverse</keyword><keyword>Update</keyword><keyword>Vector</keyword><keyword>Vertical</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Adjust3DZ" displayname="Adjust 3D Z (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Allows the modification of all Z-values in a Z-enabled feature class.</para>
+		</summary><alink_name>Adjust3DZ_management</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature class containing Z-values in the SHAPE field.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class containing Z-values in the SHAPE field.</para>
+					</dialogReference></param><param sync="true" name="reverse_sign" displayname="Reverse Sign of Z Values" datatype="String" direction="Input" expression="reverse_sign" type="Optional"><pythonReference>
+						<para>Flips the sign of all the Z-values in the feature class.</para>
+						<bulletList><bullet_item>REVERSE—Reverse (negate) the Z-values.</bullet_item><bullet_item>NO_REVERSE—Do not reverse (negate) the Z-values.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>Flips the sign of all the Z-values in the feature class.</para>
+						<bulletList><bullet_item>REVERSE—Reverse (negate) the Z-values.</bullet_item><bullet_item>NO_REVERSE—Do not reverse (negate) the Z-values.</bullet_item></bulletList></dialogReference></param><param sync="true" name="adjust_value" displayname="Adjust Z Value" datatype="Double" direction="Input" expression="adjust_value" type="Optional"><pythonReference>
+						<para>A value to apply to all Z-values.   To decrease the Z-values for the entire feature class, enter a negative number. To increase, enter a positive value.</para>
+					</pythonReference><dialogReference>
+						<para>A value to apply to all Z-values.   To decrease the Z-values for the entire feature class, enter a negative number. To increase, enter a positive value.</para>
+					</dialogReference></param><param sync="true" name="from_units" displayname="Convert From Units" datatype="String" direction="Input" expression="from_units" type="Optional"><pythonReference>
+						<para>The existing units of the Z-values. This parameter is used in conjunction with the Convert To Units parameter.  </para>
+						<bulletList><bullet_item>MILIMETERS —</bullet_item><bullet_item>CENTIMETERS—</bullet_item><bullet_item>METERS—</bullet_item><bullet_item>INCHES—</bullet_item><bullet_item>FEET—</bullet_item><bullet_item>YARDS—</bullet_item><bullet_item>FATHOMS—</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The existing units of the Z-values. This parameter is used in conjunction with the Convert To Units parameter.  </para>
+						<bulletList><bullet_item>MILIMETERS —</bullet_item><bullet_item>CENTIMETERS—</bullet_item><bullet_item>METERS—</bullet_item><bullet_item>INCHES—</bullet_item><bullet_item>FEET—</bullet_item><bullet_item>YARDS—</bullet_item><bullet_item>FATHOMS—</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="to_units" displayname="Convert To Units" datatype="String" direction="Input" expression="to_units" type="Optional"><pythonReference>
+						<para>The units to convert to.</para>
+						<bulletList><bullet_item>MILIMETERS —</bullet_item><bullet_item>CENTIMETERS—</bullet_item><bullet_item>METERS—</bullet_item><bullet_item>INCHES—</bullet_item><bullet_item>FEET—</bullet_item><bullet_item>YARDS—</bullet_item><bullet_item>FATHOMS—</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>The units to convert to.</para>
+						<bulletList><bullet_item>MILIMETERS —</bullet_item><bullet_item>CENTIMETERS—</bullet_item><bullet_item>METERS—</bullet_item><bullet_item>INCHES—</bullet_item><bullet_item>FEET—</bullet_item><bullet_item>YARDS—</bullet_item><bullet_item>FATHOMS—</bullet_item></bulletList></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				
+					<para>This tool modifies the input data. See  for more information and strategies to avoid undesired data changes.</para>
+				
+			</bullet_item><bullet_item>
+				<para>Bathymetry data often has positive Z-values. You may wish to reverse the signs of all the data in the feature class to make the Z-values negative.</para>
+			</bullet_item><bullet_item>
+				<para>Z-enabled data could be referenced to a vertical datum that is not appropriate for your geoprocessing needs. This tool could apply a bulk-shift of all the Z-values in the feature class to adjust the data either up or down vertically.</para>
+			</bullet_item><bullet_item>
+				<para>The Convert From Units and Convert To Units parameters  allow you to convert  your Z-values from one common unit of measure to another.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Adjust3DZ Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Adjust3DZ
+function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.Adjust3DZ_management("subsurface_pts.shp", "REVERSE", 0, "METERS", "FEET")
+
+                    </code></scriptExample><scriptExample><title>Adjust3DZ Example 2 (stand-alone script)</title><para>The following Python script demonstrates how to use the Adjust3DZ
+function in a stand-alone script.
+</para><code xml:space="preserve">
+# Name:         Adjust3DZ Example
+# Description:  The following stand-alone script demonstrates how to use the
+#   Adjust3DZ tool to modify the z-values of points, lines, and
+#   polygons in the specified workspace.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Create a list of feature classes in the workspace
+    fcList = arcpy.ListFeatureClasses()
+    # Determine if the list contains any feature classes
+    if len(fcList) &gt; 0:
+        # Loop through each feature class
+        for fc in fcList:
+            # Describe the feature class
+            desc = arcpy.Describe(fc)
+            # Evaluate if the feature class is z-aware
+            if desc.hasZ is True:
+                # Evaluate the geometry of the feature
+                # Convert polyline z values from meters to feet
+                if desc.shapeType is "Polyline":
+                    # Set Local Variables
+                    rev = "NO_REVERSE"
+                    startUnits = "Meters"
+                    endUnits = "Feet"
+                    arcpy.AddMessage("Converting units of " + fc + " from meters to feet.")
+                    #Execute Adjust3DZ
+                    arcpy.Adjust3DZ_management(fc, 0, startUnits, endUnits)
+                # Shift polygon z-values by a value of 3
+                if desc.shapeType is "Polygon":
+                    # Set Local Variables
+                    rev = "NO_REVERSE"
+                    arcpy.AddMessage("Shifting the z-value of " + fc +".")
+                    #Execute Adjust3DZ
+                    arcpy.Adjust3DZ_management(fc, rev)
+            del desc, rev
+    else:
+        arcpy.AddMessage("There are no feature classes in the workspace.")
+    del fcList
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+
+del arcpy
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

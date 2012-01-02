@@ -1,0 +1,114 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Import 3D Files (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool imports one or more 3D models into an output feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Feature Class</keyword><keyword>3D Files</keyword><keyword>3D Studio</keyword><keyword>Convert</keyword><keyword>Geovrml</keyword><keyword>Multipatch</keyword><keyword>Openflight</keyword><keyword>Sketchup</keyword><keyword>Vrml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Import3DFiles" displayname="Import 3D Files (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool imports one or more 3D models into an output feature class.</para>
+		</summary><alink_name>Import3DFiles_3d</alink_name><parameters><param sync="true" name="in_files" displayname="Input Files" datatype="File; Folder" direction="Input" expression="in_files" type="Required"><pythonReference>
+						<para>One or more input files or folders with data in the
+the supported formats.  Supported formats include 3D Studio Max (*.3ds), SketchUp (*.skp), VRML and GeoVRML (*.wrl), and OpenFlight (*.flt).</para>
+					</pythonReference><dialogReference>
+						<para>One or more input files or folders with data in the
+the supported formats.  Supported formats include 3D Studio Max (*.3ds), SketchUp (*.skp), VRML and GeoVRML (*.wrl), and OpenFlight (*.flt).</para>
+					</dialogReference></param><param sync="true" name="out_featureClass" displayname="Output Multipatch Feature Class" datatype="Feature Class" direction="Output" expression="out_featureClass" type="Required"><pythonReference>
+						<para>The output multipatch feature class to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The output multipatch feature class to be created.</para>
+					</dialogReference></param><param sync="true" name="root_per_feature" displayname="One Root Per Feature" datatype="Boolean" direction="Input" expression="root_per_feature" type="Optional"><pythonReference>
+						<para>Indicates whether to produce one feature per file or one feature for each root node in a file. The default is ONE_FILE_ONE_FEATURE.</para>
+						<bulletList><bullet_item>ONE_ROOT_ONE_FEATURE—The generated output will contain one feature for each root node in the file.</bullet_item><bullet_item>ONE_FILE_ONE_FEATURE—The generated output will contain one file for each feature. This is the default.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether to produce one feature per file or one feature for each root node in a file. The default is one file, one feature.</para>
+						<bulletList>
+							<bullet_item>Unchecked—The generated output will contain one file for each feature. This is the default.</bullet_item>
+							<bullet_item>Checked—The generated output will contain one feature for each root node in the file.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="spatial_reference" displayname="Spatial Reference" datatype="Spatial Reference" direction="Input" expression="spatial_reference" type="Optional"><pythonReference>
+						<para>The coordinate system of the input data. The default is taken from the first file in the list. For the majority of formats, this is Unknown. Only the GeoVRML format knows the coordinate system.</para>
+					</pythonReference><dialogReference>
+						<para>The coordinate system of the input data. The default is taken from the first file in the list. For the majority of formats, this is Unknown. Only the GeoVRML format knows the coordinate system.</para>
+					</dialogReference></param><param sync="true" name="y_is_up" displayname="Y Is Up" datatype="Boolean" direction="Input" expression="y_is_up" type="Optional"><pythonReference>
+						<para>The vertical orientation of the input coordinate system. The default is Z_IS_UP.</para>
+						<bulletList><bullet_item>Z_IS_UP—Indicates that z is up. This is the default option.</bullet_item><bullet_item>Y_IS_UP—Indicated that y is up. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The vertical orientation of the input coordinate system. The default is unchecked, indicating that z is up.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Indicates that z is up. This is the default option.</bullet_item>
+							<bullet_item>Checked—Indicates that y is up. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The 3D Studio Max (*.3ds), VRML and GeoVRML 2.0 (*.wrl), SketchUp 6.0 (*.skp), OpenFlight 15.8 (*.flt), and billboards (PNG, JPEG, BMP, TIFF, GIF, and so on) formats are supported.</para>
+			</bullet_item><bullet_item>
+				<para>The output feature class must be placed in a geodatabase, rather than a shapefile, if textures (images mapped onto geometry faces) are to be preserved.</para>
+			</bullet_item><bullet_item>
+				<para>GeoVRML is the only format that has a defined coordinate system. The other formats tend to use local coordinate systems (in other words, centered on 0,0,0). In the latter case, the output shapes will need to be georeferenced.</para>
+			</bullet_item><bullet_item>
+				<para>When multiple files are input, the coordinate system of the first file is used for all the files. For all formats other than GeoVRML, this will be Unknown.</para>
+			</bullet_item><bullet_item>
+				<para>If the output multipatches are oriented with their tops facing sideways, try again using the {Y_Is_Up} option to orient them properly.</para>
+			</bullet_item><bullet_item>
+				<para>Unsupported geometry types for VRML files include Box, Cone, Cylinder, Extrusion, PointSet, Sphere, and Text.</para>
+			</bullet_item><bullet_item>
+				<para>Point and line geometries that may exist in a 3D file are not maintained in the output multipatch feature class, as multipatches do not support them.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Import 3D Files Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Import 3D Files
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.Import3DFiles_3d("AddisSheraton.skp", "Test.gdb/AddisSheraton", False, "", False)
+                    </code></scriptExample><scriptExample><title>Import 3D Files Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Import 3D Files
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: Import3DFiles Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              ListFiles method to collect all OpenFlight (*.flt) models in a 
+#              workspace as input for the Import3DFiles tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Set Local Variables
+    OpenFlightList = arcpy.ListFiles("*.flt")
+    CS = "Coordinate Systems/Geographic Coordinate Systems/World/WGS 1984.prj"
+    outputFC = "Test.gdb/OpenFlight_Models"
+    if len(OpenFlightList) &gt; 0:
+        # Execute Import3DFiles
+        arcpy.Import3DFiles_3d(OpenFlightList, outputFC, False, CS, False)
+    else:
+        # Returned if there are no flt files in the target workspace
+        print "There are no OpenFlight files in the " + env.workspace + " directory."
+    
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

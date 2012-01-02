@@ -1,0 +1,72 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create CAD XData (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates an attribute field called 'XDList' in the Input Table.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here to view archived documentation. This functionality has been replaced by the tool Export_to_CAD that now exports feature class schema, attribute values, and coordinate system information to XRecords as defined by the ESRI Mapping Specification for Drawings. </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateCADXData" displayname="Create CAD XData (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Creates an attribute field called 'XDList' in the Input Table.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here to view archived documentation. This functionality has been replaced by the tool Export_to_CAD that now exports feature class schema, attribute values, and coordinate system information to XRecords as defined by the ESRI Mapping Specification for Drawings. </para>
+			
+		</summary><alink_name>CreateCADXData_conversion</alink_name><parameters><param sync="true" name="In_table" displayname="Input Table" datatype="Table View" direction="Input" expression="In_table" type="Required"><pythonReference>
+						<para>This table contains the fields used to generate an XML string of values recognized by the Export to CAD tool. This enables XData to be created on output objects, based on values of fields from the Input Table.</para>
+					</pythonReference><dialogReference>
+						<para>This table contains the fields used to generate an XML string of values recognized by the Export to CAD tool. This enables XData to be created on output objects, based on values of fields from the Input Table.</para>
+					</dialogReference></param><param sync="true" name="Fields" displayname="Fields to Index" datatype="Field" direction="Input" expression="[Fields,...]" type="Required"><pythonReference>
+						<para>The selected field values for the encoded XData.</para>
+						<para>The Add Field button, which is used only in ModelBuilder, allows you to add expected field(s) so that you can complete the dialog and continue to build your model.</para>
+					</pythonReference><dialogReference>
+						<para>The selected field values for the encoded XData.</para>
+						<para>The Add Field button, which is used only in ModelBuilder, allows you to add expected field(s) so that you can complete the dialog and continue to build your model.</para>
+					</dialogReference></param><param sync="true" name="RegApp" displayname="Registered Application Name" datatype="String" direction="Input" expression="RegApp" type="Required"><pythonReference>
+						<para>The AutoCAD extended entity data registered application name. Required by only AutoCAD to identify the XData. This application name is an identifier of the newly created XData.</para>
+					</pythonReference><dialogReference>
+						<para>The AutoCAD extended entity data registered application name. Required by only AutoCAD to identify the XData. This application name is an identifier of the newly created XData.</para>
+					</dialogReference></param><param sync="true" name="Output_Type" displayname="Output Type" datatype="String" direction="Input" expression="Output_Type" type="Required"><pythonReference>
+						<para>Format of the AutoCAD XData.</para>
+						<bulletList><bullet_item>ADE—The XData string that contains a tag, type, and value in a single string. </bullet_item><bullet_item>TRADITIONAL—Single-typed value without tag names. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Format of the AutoCAD XData.</para>
+						<bulletList><bullet_item>ADE—The XData string that contains a tag, type, and value in a single string. </bullet_item><bullet_item>TRADITIONAL—Single-typed value without tag names. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>All input feature classes and/or feature layers are valid inputs to this tool.</para>
+			</bullet_item><bullet_item>
+				<para>XData is only read by AutoCAD.</para>
+			</bullet_item><bullet_item>
+				<para>The XDList field that is created by this function is read by the tool Expor to CAD when exported to AutoCAD .</para>
+			</bullet_item><bullet_item>
+				<para>Extended Entity Data, though, allows you to attach up to 16K of information to each and every entity in the drawing.</para>
+			</bullet_item><bullet_item>
+				<para>You can also keep the XData separate from other information because it uses a uniquely registered name.</para>
+			</bullet_item><bullet_item>
+				<para>If your function fails with "Output exceeds field length", then include less fields in your XData string. The XData field that is added has a maximum field length of 2049 characters.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><code xml:space="preserve">
+# Name: ExportXData.py
+# Description: Creates XData from a feature class and exports it to a CAD file with the Extended Entity Data.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Local variables...
+Roads2 = "C:/Test_data/Personal GDB/OrangeCounty.mdb/Roads"
+OrangeCounty_mdb = "C:/Test_data/Personal GDB/OrangeCounty.mdb"
+Roads = "C:/Test_data/Personal GDB/OrangeCounty.mdb/Roads"
+roads_dwg = "C:/Test_data/CAD/roads.dwg"
+ 
+# Process: Select Data...
+arcpy.SelectData_management(OrangeCounty_mdb, "Roads", )
+ 
+# Process: Create CAD XData...
+arcpy.CreateCADXData_conversion(Roads, "'MINOR2';'MAJOR3';'MINOR3';'MAJOR4';'MINOR4';'DESCRIPT';'Shape_Length'", "ArcGIS", "ADE", )
+ 
+# Process: Export to CAD...
+arcpy.ExportCAD_conversion("'C:/Test_data/Personal GDB/OrangeCounty.mdb/Roads'", "DWG-R2007", roads_dwg, "USE_FILENAMES_IN_TABLES", "OVERWRITE_EXISTING_FILES", "")
+                    </code></scriptExample></scriptExamples></tool></metadata>

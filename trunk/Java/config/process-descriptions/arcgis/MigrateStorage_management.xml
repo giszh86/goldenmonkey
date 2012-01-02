@@ -1,0 +1,33 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Migrate Storage (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool is designed to change the data types used to store rasters in an ArcSDE geodatabase in Oracle, PostgreSQL, and SQL Server; geometries in geodatabases in Oracle and SQL Server; and BLOB objects in  attribute columns in geodatabases in Oracle. This is done through the migration of raster, spatial, or BLOB objects using configuration keywords specified in the DBTUNE table.</para>
+			
+				<para>After migrating the data type, you must disconnect from and reconnect to the geodatabase to reload the column names. If you do not, subsequent actions executed on the newly migrated datasets may fail.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Blob</keyword><keyword>Efficient</keyword><keyword>Geodatabase</keyword><keyword>Objects</keyword><keyword>Oracle</keyword><keyword>Performance</keyword><keyword>Precision</keyword><keyword>Sde</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MigrateStorage" displayname="Migrate Storage (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>This tool is designed to change the data types used to store rasters in an ArcSDE geodatabase in Oracle, PostgreSQL, and SQL Server; geometries in geodatabases in Oracle and SQL Server; and BLOB objects in  attribute columns in geodatabases in Oracle. This is done through the migration of raster, spatial, or BLOB objects using configuration keywords specified in the DBTUNE table.</para>
+			
+				<para>After migrating the data type, you must disconnect from and reconnect to the geodatabase to reload the column names. If you do not, subsequent actions executed on the newly migrated datasets may fail.</para>
+			
+		</summary><alink_name>MigrateStorage_management</alink_name><parameters><param sync="true" name="in_datasets" displayname="in_datasets" datatype="Feature Class; Table" direction="Input" expression="[in_dataset,...]" type="Required"><pythonReference>
+						<para>Datasets to be migrated</para>
+					</pythonReference><dialogReference>
+						<para>Datasets to be migrated</para>
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="config_keyword" datatype="String" direction="Input" expression="config_keyword" type="Required"><pythonReference>
+						<para>DBTUNE configuration keyword containing the appropriate parameter values for the migration.</para>
+					</pythonReference><dialogReference>
+						<para>DBTUNE configuration keyword containing the appropriate parameter values for the migration.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>Add datasets you want to migrate to the Input Datasets list and specify the Configuration Keyword that contains the migration parameters.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MigrateStorage example (stand-alone script)</title><para>The following stand-alone script demonstrates how to use the Migrate Storage tool to migrate the input dataset to the ST_Geometry geometry storage type. </para><code xml:space="preserve"># Name: MigrateStorage_Example.py
+# Description: Migrates the input dataset to the ST_Geometry geometry stoage type 
+# Author: ESRI
+
+# Import arcpy module
+import arcpy
+
+# Local variables:
+inputDataset = "Database Connections\\Oracle on barbara.sde\\MAP.SBMigrate"
+
+# Process: Migrate Storage
+arcpy.MigrateStorage_management( inputDataset, "ST_GEOMETRY")
+                    </code></scriptExample></scriptExamples></tool></metadata>

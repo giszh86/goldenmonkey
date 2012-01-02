@@ -1,0 +1,109 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Summary Statistics (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates summary statistics for field(s) in a table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Attribute</keyword><keyword>Average</keyword><keyword>Count</keyword><keyword>Field</keyword><keyword>First</keyword><keyword>Histogram</keyword><keyword>Largest</keyword><keyword>Last</keyword><keyword>Math</keyword><keyword>Max</keyword><keyword>Mean</keyword><keyword>Min</keyword><keyword>Quantify</keyword><keyword>Range</keyword><keyword>Smallest</keyword><keyword>Standard Deviation</keyword><keyword>Statistical</keyword><keyword>Std</keyword><keyword>Sum</keyword><keyword>Summarize</keyword><keyword>Table</keyword><keyword>Total</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Statistics" displayname="Summary Statistics (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Calculates summary statistics for field(s) in a table.</para>
+		</summary><alink_name>Statistics_analysis</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View; Raster Layer" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The input table containing the field(s) that will be used to calculate statistics. The input can be an INFO table, a dBASE table, an OLE DB table, a VPF table, or a feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The input table containing the field(s) that will be used to calculate statistics. The input can be an INFO table, a dBASE table, an OLE DB table, a VPF table, or a feature class.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>The output dBASE or geodatabase table that will store the calculated statistics.</para>
+					</pythonReference><dialogReference>
+						<para>The output dBASE or geodatabase table that will store the calculated statistics.</para>
+					</dialogReference></param><param sync="true" name="statistics_fields" displayname="Statistics Field(s)" datatype="Value Table" direction="Input" expression="[[field, statistics_type],...]" type="Required"><pythonReference>
+						<para>The numeric field containing attribute values used to calculate the specified statistic. Multiple statistic and field combinations may be specified. Null values are excluded from all statistical calculations.</para>
+						<para>The Add Field button, which is used only in ModelBuilder, allows you to add expected field(s) so you can complete the dialog box and continue to build your model.</para>
+						<para>Available statistics types are:</para>
+						<bulletList>
+							<bullet_item>SUM—Adds the total value for the specified field.</bullet_item>
+							<bullet_item>MEAN—Calculates the average for the specified field.</bullet_item>
+							<bullet_item>MIN—Finds the smallest value for all records of the specified field.</bullet_item>
+							<bullet_item>MAX—Finds the largest value for all records of the specified field.</bullet_item>
+							<bullet_item>RANGE—Finds the range of values (MAXMIN) for the specified field.</bullet_item>
+							<bullet_item>STD—Finds the standard deviation on values in the specified field.</bullet_item><bullet_item>COUNT—Finds the number of values included in statistical calculations. This counts each value except null values. To determine the number of null values in a field, use the COUNT statistic on the field in question, and a COUNT statistic on a different field which does not contain nulls (for example, the OID if present), then subtract the two values.</bullet_item>
+							<bullet_item>FIRST—Finds the first record in the Input Table and uses its specified field value.</bullet_item>
+							<bullet_item>LAST—Finds the last record in the Input Table and uses its specified field value.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>The numeric field containing attribute values used to calculate the specified statistic. Multiple statistic and field combinations may be specified. Null values are excluded from all statistical calculations.</para>
+						<para>The Add Field button, which is used only in ModelBuilder, allows you to add expected field(s) so you can complete the dialog box and continue to build your model.</para>
+						<para>Available statistics types are:</para>
+						<bulletList>
+							<bullet_item>SUM—Adds the total value for the specified field.</bullet_item>
+							<bullet_item>MEAN—Calculates the average for the specified field.</bullet_item>
+							<bullet_item>MIN—Finds the smallest value for all records of the specified field.</bullet_item>
+							<bullet_item>MAX—Finds the largest value for all records of the specified field.</bullet_item>
+							<bullet_item>RANGE—Finds the range of values (MAXMIN) for the specified field.</bullet_item>
+							<bullet_item>STD—Finds the standard deviation on values in the specified field.</bullet_item><bullet_item>COUNT—Finds the number of values included in statistical calculations. This counts each value except null values. To determine the number of null values in a field, use the COUNT statistic on the field in question, and a COUNT statistic on a different field which does not contain nulls (for example, the OID if present), then subtract the two values.</bullet_item>
+							<bullet_item>FIRST—Finds the first record in the Input Table and uses its specified field value.</bullet_item>
+							<bullet_item>LAST—Finds the last record in the Input Table and uses its specified field value.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="case_field" displayname="Case field" datatype="Field" direction="Input" expression="[case_field,...]" type="Optional"><pythonReference>
+						<para>The fields in the Input Table used to calculate statistics separately for each unique attribute value (or combination of attribute values when multiple fields are specified).</para>
+					</pythonReference><dialogReference>
+						<para>The fields in the Input Table used to calculate statistics separately for each unique attribute value (or combination of attribute values when multiple fields are specified).</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Output Table will consist of fields containing the result of the statistical operation.</para>
+			</bullet_item><bullet_item>
+				<para>The following statistical operations are available with this tool: Sum, Mean, Maximum, Minimum, Range, Standard Deviation, Count, First, and Last. The Median operation is not available.</para>
+			</bullet_item><bullet_item>
+				<para>A field will be created for each statistic type using the following naming convention: SUM_FIELD, MAX_FIELD, MIN_FIELD, RANGE_FIELD, STD_FIELD, FIRST_FIELD, LAST_FIELD, COUNT_FIELD. The field name is truncated to 10 characters when the Output Table is a dBASE table.</para>
+			</bullet_item><bullet_item>
+				<para>If a Case field is specified, statistics will be calculated separately for each unique attribute value. The Output Table will contain only one record if no Case field is specified. If one is specified, there will be one record for each Case field value.</para>
+			</bullet_item><bullet_item>
+				<para>Null values are excluded from all statistical calculations. For example, the AVERAGE of 10, 5 and NULL is 7.5 ((10+5)/2). The COUNT tool returns the number of values included in the statistical calculation, which in this case is 2.</para>
+			</bullet_item><bullet_item>
+				<para>The Statistics Field(s) parameter Add Field button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run, or its derived data does not exist, the Statistics Field(s) parameter may not be populated with field names. The Add Field button allows you to add expected field(s) so you can complete the Summary Statistics dialog and continue to build your model.</para>
+			</bullet_item><bullet_item>
+				<para>When using layers, only the currently selected features are used to calculate statistics.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Statistics Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the Statistics tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/Habitat_Analysis.gdb"
+arcpy.Statistics_analysis("futrds", "C:/output/output.gdb/stats", [["Shape_Length", "SUM"]], "NM")
+                    </code></scriptExample><scriptExample><title>Statistics Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script summarizes the vegetation by area within 150 feet of major roads.</para>
+				<code xml:space="preserve"># Name: Statistics_Example2.py
+# Description: Summarize the vegetation by area within 150 feet of major roads
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data"
+ 
+# Set local variables
+inRoads = "majorrds.shp"
+outBuffer = "C:/output/output.gdb/buffer_out"
+bufferDistance = "250 feet"
+inVegetation = "Habitat_Analysis.gdb/vegtype"
+outClip = "C:/output/output.gdb/clip_out"
+joinField = "HOLLAND95"
+joinTable = "c:/data/vegtable.dbf"
+joinedField = "HABITAT"
+outStatsTable = "C:/output/output.gdb/stats_out"
+statsFields = [["Shape_Area", "SUM"]]
+ 
+# Execute Buffer to get a buffer of major roads
+arcpy.Buffer_analysis(inRoads, outBuffer, bufferDistance, dissolve_option = "ALL")
+ 
+# Execute Clip using the buffer output to get a clipped feature class
+#  of vegetation
+arcpy.Clip_analysis(inVegetation, outBuffer, outClip)
+ 
+# Execute JoinField to add the vegetation type
+arcpy.JoinField_management(outClip, joinField, joinTable, joinField, joinedField)
+ 
+# Execute Statistics to get the area of each vegetation type within
+#  the clipped buffer.
+arcpy.Statistics_analysis(outClip, outStatsTable, statsFields, joinedField)
+                    </code></scriptExample></scriptExamples></tool></metadata>

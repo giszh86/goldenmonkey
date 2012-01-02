@@ -1,0 +1,79 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Project (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Changes the coordinate system of your coverage including its datum or spheroid.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Coordinate System</keyword><keyword>Coordinates</keyword><keyword>Coverage</keyword><keyword>Data Management</keyword><keyword>Datum</keyword><keyword>Define Management</keyword><keyword>Easting</keyword><keyword>Latitude</keyword><keyword>Map</keyword><keyword>Meridians</keyword><keyword>Northing</keyword><keyword>Parallels</keyword><keyword>Prj</keyword><keyword>Project</keyword><keyword>Projection</keyword><keyword>Projection File</keyword><keyword>Spatial Reference</keyword><keyword>Spheroid</keyword><keyword>Surface</keyword><keyword>Transformation</keyword><keyword>Xshift</keyword><keyword>Yshift</keyword><keyword>Zone</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Project" displayname="Project (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Changes the coordinate system of your coverage including its datum or spheroid.</para>
+			
+		</summary><alink_name>Project_arc</alink_name><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage whose coordinates are to be converted.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage whose coordinates are to be converted.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The output coverage whose coordinates have been converted to the new coordinate system. The output coverage may exist, but must be empty.</para>
+					</pythonReference><dialogReference>
+						<para>The output coverage whose coordinates have been converted to the new coordinate system. The output coverage may exist, but must be empty.</para>
+					</dialogReference></param><param sync="true" name="projection_file" displayname="Projection File" datatype="File" direction="Input" expression="projection_file" type="Required"><pythonReference>
+						<para>The name of a text file defining the input and output projection parameters.</para>
+					</pythonReference><dialogReference>
+						<para>The name of a text file defining the input and output projection parameters.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool can convert a dataset from a spherical coordinate system with angular units (such as Geographic) to a planar coordinate system with linear units. Most Coverage tools, among them  and , assume you have a planar, two-dimensional dataset. So if your dataset is in a geographic coordinate system in decimal degrees (DD, angular units), the Project tool projects your dataset to any suitable projected coordinate system in linear units (meters or feet).</para>
+			</bullet_item><bullet_item>
+				<para>A coverage can maintain an explicit definition of the coordinate system in which it is stored. This can be created using the  tool. If not defined, the projection will be listed as unknown.</para>
+			</bullet_item><bullet_item>
+				<para>Output projection information can be specified using a Project File or from an empty output coverage. The Project File must contain both input and output projection definitions. Use of a Project File will override any projection information stored in the data's PRJ file.</para>
+			</bullet_item><bullet_item>
+				<para>Clarke 1866 is the default spheroid if it is not inherent to the projection (such as NEWZEALAND_GRID).</para>
+			</bullet_item><bullet_item>
+				<para>Do not name an output file the same as the Project File, even if the Project File has a .prj extension.</para>
+			</bullet_item><bullet_item>
+				<para>When projecting a coverage, the Output Coverage can be an existing, empty coverage. The coordinates of the Input Coverage will be projected into the coordinate system defined by the PRJ file of the Output Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Depending on the input and output projection definitions, an arc in the input coverage may need to be clipped into more than one segment while the output coverage is being generated. This will occur whenever an arc encounters the horizon line or crosses the line of longitude opposite the central meridian.</para>
+				<para>Whenever a vertex is encountered that cannot be projected, the previous vertex will be interpreted as the end of an arc, and the partially projected arc will be written to the output. It is possible for an arc to be split into several arcs if subsequent vertices are encountered that can be projected. In this case, the output retains the original IDs so attributes can be relinked. Examine this illustration; arcs 2 and 3 will be clipped by the horizon during projection of the line. The output coverage will contain one arc 2 but two arc 3s. In cases such as these, Project will generate arcs having duplicate User-IDs.</para>
+				
+					
+					
+				
+			</bullet_item><bullet_item>
+				<para>If regions exist in the input coverage, regions in the output coverage will be preliminary regions. When the Build tool is used to re-create the polygon topology, region topology will also be re-created.</para>
+			</bullet_item><bullet_item>
+				
+			</bullet_item><bullet_item>
+				<para> Learn about</para>
+			</bullet_item><bullet_item>
+				<para>For  tables of predefined geographic coordinate system, projected coordinate system, and geographic (datum) transformations, see .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Project example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to project a coverage from a geographic coordinate system into a projected coordinate system.</para>
+				<code xml:space="preserve"># Name: Project_Example.py
+# Description: Projects a global coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "worldgrat"
+outCover = "C:/output/sinusoidcov"
+projectionFile = "geo_to_sinusoidal.prj"
+
+# Execute Project
+arcpy.Project_arc(inCover, outCover, projectionFile)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

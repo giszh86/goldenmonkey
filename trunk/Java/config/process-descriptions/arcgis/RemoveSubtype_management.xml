@@ -1,0 +1,55 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Remove Subtype (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Removes a subtype from the input table using its code.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Category</keyword><keyword>Clear</keyword><keyword>Code</keyword><keyword>Delete</keyword><keyword>Domain</keyword><keyword>Feature</keyword><keyword>Geodatabase</keyword><keyword>Group</keyword><keyword>Table</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RemoveSubtype" displayname="Remove Subtype (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Removes a subtype from the input table using its code.</para>
+		</summary><alink_name>RemoveSubtype_management</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The feature class or table containing the subtype definition.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class or table containing the subtype definition.</para>
+					</dialogReference></param><param sync="true" name="subtype_code" displayname="Subtype Code" datatype="String" direction="Input" expression="[subtype_code,...]" type="Required"><pythonReference><para>The code used to remove a subtype from the input table or feature class.</para></pythonReference><dialogReference>
+						<para>The code used to remove a subtype from the input table or feature class.</para>
+						<para>The Add Value button, which is used only in ModelBuilder, allows you to add expected value(s) so you can complete the dialog and continue to build your model.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Subtypes are removed using their integer code.</para>
+			</bullet_item><bullet_item>
+				<para>The subtypes of a feature class or table can also be managed in ArcCatalog. Subtypes can be created and modified using the Subtypes Property page on the dataset's Properties dialog box.</para>
+			</bullet_item><bullet_item>
+				<para>The Subtype Code parameter's Add Value button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run, or its derived data does not exist, the Subtype Code parameter may not be populated with values. The Add Value button allows you to add expected value(s) so you can complete the Remove Subtype dialog box and continue to build your model.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Remove Subtype Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the RemoveSubtype function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace =  "C:/data/Montgomery.gdb"
+arcpy.RemoveSubtype_management ("water/fittings", ["4","7"])
+                    </code></scriptExample><scriptExample><title>Remove Subtype Example 2 (Stand-alone Script)</title>
+					<para>The following stand-alone script demonstrates how to use the RemoveSubtype function as part of a workflow to remove subtypes from a subtype definition.</para>
+				<code xml:space="preserve">#Name: RemoveSubtype.py
+# Purpose: Remove subtypes from a subtype definition
+#Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+try:
+    # Set the workspace (to avoid having to type in the full path to the data every time)
+    env.workspace =  "C:/data/Montgomery.gdb"
+  
+    #Set local parameters
+    inFeatures = "water/fittings"
+    stypeList = ["5", "6", "7"]
+ 
+    # Process: Remove Subtype Codes...
+    arcpy.RemoveSubtype_management(inFeatures, stypeList)
+ 
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

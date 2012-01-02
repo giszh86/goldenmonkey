@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<?xml-stylesheet type="text/xsl" href="geoprocessing_help.xsl"?>
+<metadata>
+    <Esri>
+        <CreaDate sync="true"/>
+        <ModDate sync="true"/>
+    </Esri>
+    <dataIdInfo>
+        <idAbs>
+Application wide environment settings for core functionality and extension products.
+    </idAbs>
+        <idCitation>
+            <resTitle sync="true">Environment Settings</resTitle>
+            <citRespParty>
+                <rpIndName/>
+                <rpOrgName/>
+                <rpPosName/>
+                <rpCntInfo>
+                    <cntAddress>
+                        <delPoint/>
+                        <city/>
+                        <adminArea/>
+                        <postCode/>
+                        <eMailAdd/>
+                        <country/>
+                    </cntAddress>
+                    <cntPhone>
+                        <voiceNum/>
+                        <faxNum/>
+                    </cntPhone>
+                </rpCntInfo>
+            </citRespParty>
+        </idCitation>
+        <resConst>
+            <Consts>
+                <useLimits/>
+            </Consts>
+        </resConst>
+        <descKeys KeyTypCd="005">
+            <keyTyp>
+                <KeyTypCd value="005"/>
+            </keyTyp>
+            <keyword/>
+        </descKeys>
+    </dataIdInfo>
+    <distInfo>
+        <distributor>
+            <distorFormat>
+                <formatName sync="true"/>
+            </distorFormat>
+            <distorTran>
+                <onLineSrc>
+                    <linkage/>
+                    <protocol/>
+                    <onFunct>
+                        <onFunctCd/>
+                    </onFunct>
+                </onLineSrc>
+            </distorTran>
+        </distributor>
+    </distInfo>
+    <tool name="environmentsettings" displayname="Environment Settings">
+        <summary>
+            <para>Environment settings specified in this dialog box are values that will be applied to appropriate results from running tools. They can be set hierarchically, meaning that they can be set for the application you are working in, so they apply to all tools; for a model, so they apply to all processes within the model; or for a particular process within a model. Environments set for a process within a model will overrride all other setting, and environments set for all processes in a model will override those set in the application.</para>
+            <para>Changing the default settings that will be used is a prerequisite to performing geoprocessing tasks. You may only be interested in analyzing a small piece of a geographic area, such as changing the extent for results, or you may want to write all results to a specific location (for example, changing the current workspace or the scratch workspace).</para>
+        </summary>
+        <alink_name>environmentsettings_es</alink_name>
+        <rt_list/>
+        <parameters>
+            <param sync="true" name="clusterTolerance" displayname="Cluster Tolerance" type="Required" direction="" expression="{clusterTolerance}">
+                <commandReference>
+                    <para>Cluster tolerance is the distance range in which all vertices and boundaries in a feature class are considered identical or coincident. To minimize error, the cluster tolerance chosen should be as small as possible, depending on the precision level of your data. By default, the minimum possible tolerance value is calculated in the units of the spatial reference of the input.  
+</para>
+                </commandReference>
+                <dialogReference>
+                    <para>Cluster tolerance is the distance range in which all vertices and boundaries in a feature class are considered identical or coincident. To minimize error, the cluster tolerance chosen should be as small as possible, depending on the precision level of your data. By default, the minimum possible tolerance value is calculated in the units of the spatial reference of the input. </para>
+                    <para>In ArcGIS 9.2, the term xy tolerance has been introduced.  This term is synonymous with cluster tolerance.  In certain contexts the term cluster tolerance has been replaced by the term XY Tolerance. </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="compression" displayname="Compression" type="Required" direction="" expression="{compression}">
+                <commandReference>
+                    <para>Specify the compression type for ArcSDE geodatabases.</para>
+                    <bulletList>
+                        <bullet_item>LZ77 - Lossless compression that preserves all raster cell values.</bullet_item>
+                        <bullet_item>JPEG - Lossy compression that uses the public JPEG compression algorithm. If you choose JPEG you must also specify the compression quality.</bullet_item>
+                        <bullet_item>JPEG2000 - Uses wavelet technology so rasters appear lossless. If you choose JPEG2000 you must also specify the compression quality.</bullet_item>
+                        <bullet_item>NONE - No compression.</bullet_item>
+                    </bulletList>
+                </commandReference>
+                <dialogReference>
+                    <para>Specify the compression type for ArcSDE geodatabases.</para>
+                    <bulletList>
+                        <bullet_item>LZ77 - Lossless compression that preserves all raster cell values.</bullet_item>
+                        <bullet_item>JPEG - Lossy compression that uses the public JPEG compression algorithm. If you choose JPEG you must also specify the compression quality.</bullet_item>
+                        <bullet_item>JPEG2000 - Uses wavelet technology so rasters appear lossless. If you choose JPEG2000 you must also specify the compression quality.</bullet_item>
+
+                        <bullet_item>PackBits - PackBits compression for TIFF files.</bullet_item>
+                        <bullet_item>LZW - Lossless compression that preserves all raster cell values.</bullet_item>
+                        <bullet_item>RLE - Run length encoding for IMG files.</bullet_item>
+                        <bullet_item>CCITT Group 3 - Lossless compression for 1-bit data.</bullet_item>
+                        <bullet_item>CCITT Group 4 - Lossless compression for 1-bit data.</bullet_item>
+                        <bullet_item>CCITT (1D) - Lossless compression for 1-bit data.</bullet_item>
+                        <bullet_item>NONE - No compression.</bullet_item>
+                    </bulletList>
+                    <bulletList>
+                        <bullet_item> Compression quality - When JPEG or JPEG2000 compression is chosen, the compression quality also needs to be specified.</bullet_item>
+                    </bulletList>
+                </dialogReference>
+            </param>
+            <param sync="true" name="scratchWorkspace" displayname="Scratch Workspace" type="Required" direction="" expression="{scratchWorkspace}">
+                <commandReference>
+                    <para>Specify the default workspace for output datasets. The Scratch Workspace is intended for output data you do not wish to maintain. ModelBuilder writes intermediate datasets into this workspace.</para>
+                </commandReference>
+                <dialogReference>
+                    <para>Specify the default workspace for output datasets. The Scratch Workspace is intended for output data you do not wish to maintain. ModelBuilder writes intermediate datasets into this workspace.</para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="derivedPrecision" displayname="Derived Precision" type="Required" direction="" expression="{derivedPrecision}">
+                <commandReference>
+                    <para>Determines the coordinate precision for derived coverages. Derived coverages are those that are derived from tools that accept input data to derive the output coverage, for example, coverages created by running the Buffer tool.
+                        <bulletList>
+                            <bullet_item>HIGHEST - The coordinate precision of the output coverage will be the same precision as the input coverage which has the highest precision. This is the default.</bullet_item>
+                            <bullet_item>LOWEST - The coordinate precision of the output coverage will be the same precision as the input coverage which has the lowest precision.</bullet_item>
+                            <bullet_item>SINGLE - The coordinate precision of the output coverage will always be single regardless of the precision of the input coverages.</bullet_item>
+                            <bullet_item>DOUBLE - The coordinate precision of the output coverage will always be double regardless of the precision of the input coverages.</bullet_item>
+                        </bulletList>
+                    </para>
+                </commandReference>
+                <dialogReference>
+                    <para>Determines the coordinate precision for derived coverages. Derived coverages are those that are derived from tools that accept input data to derive the output coverage, for example, coverages created by running the Buffer tool.
+                        <bulletList>
+                            <bullet_item>HIGHEST - The coordinate precision of the output coverage will be the same precision as the input coverage which has the highest precision. This is the default.</bullet_item>
+                            <bullet_item>LOWEST - The coordinate precision of the output coverage will be the same precision as the input coverage which has the lowest precision.</bullet_item>
+                            <bullet_item>SINGLE - The coordinate precision of the output coverage will always be single regardless of the precision of the input coverages.</bullet_item>
+                            <bullet_item>DOUBLE - The coordinate precision of the output coverage will always be double regardless of the precision of the input coverages.</bullet_item>
+                        </bulletList>
+                    </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="newPrecision" displayname="New Precision" type="Required" direction="" expression="{newPrecision}">
+                <commandReference>
+                    <para>Determines the coordinate precision for new coverages. New coverages are those that are created, for example, using the Create Coverage tool. 
+                        <bulletList>
+                            <bullet_item>SINGLE - New coverages will be created with single precision. This is the default.</bullet_item>
+                            <bullet_item>DOUBLE - New coverages will be created with double precision.</bullet_item>
+                        </bulletList>
+                    </para>
+                </commandReference>
+                <dialogReference>
+                    <para>Determines the coordinate precision for new coverages. New coverages are those that are created, for example, using the Create Coverage tool. 
+                        <bulletList>
+                            <bullet_item>SINGLE - New coverages will be created with single precision. This is the default.</bullet_item>
+                            <bullet_item>DOUBLE - New coverages will be created with double precision.</bullet_item>
+                        </bulletList>
+                    </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="configKeyword" displayname="Output CONFIG Keyword" type="Required" direction="" expression="{configKeyword}">
+                <commandReference>
+                    <para>Represent a setting or group of settings that tell the geodatabase where or in what format to store data contents in each dataset. </para>
+                    <para>Configuration keywords are only used with file geodatabases or ArcSDE Enterprise Edition geodadatabases; they cannot be specified for personal geodatabases or ArcSDE Personal or Workgroup Edition geodatabases.</para>
+                </commandReference>
+                <dialogReference>
+                    <para>Represent a setting or group of settings that tell the geodatabase where or in what format to store data contents in each dataset. </para>
+                    <para>Configuration keywords are only used with file geodatabases or ArcSDE Enterprise Edition geodadatabases; they cannot be specified for personal geodatabases or ArcSDE Personal or Workgroup Edition geodatabases.</para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="outputMFlag" displayname="Output M Flag" type="Required" direction="" expression="{outputMFlag}">
+                <commandReference>
+                    <para>Specify whether output feature datasets will contain m- (measure) values.
+                        <bulletList>
+                            <bullet_item>Same As Input - If the input features contain m- (measure) values then the output feature dataset will also contain m-values. If the input features do not contain m-values then the output feature dataset will not contain m-values. This is the default value.</bullet_item>
+                            <bullet_item>Enabled - The output feature dataset will contain m-values.</bullet_item>
+                            <bullet_item>Disabled - No output feature dataset will contain m-values.</bullet_item>
+                        </bulletList>
+                    </para>
+                </commandReference>
+                <dialogReference>
+                    <para>Specify whether output feature datasets will contain m- (measure) values.
+                        <bulletList>
+                            <bullet_item>Same As Input - If the input features contain m- (measure) values then the output feature dataset will also contain m-values. If the input features do not contain m-values then the output feature dataset will not contain m-values. This is the default value.</bullet_item>
+                            <bullet_item>Enabled - The output feature dataset will contain m-values.</bullet_item>
+                            <bullet_item>Disabled - No output feature dataset will contain m-values.</bullet_item>
+                        </bulletList>
+                    </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="spatialGrid1" displayname="Output Spatial Grid 1" type="Required" direction="" expression="{spatialGrid1}">
+                <commandReference>
+                    <para>The two-dimensional grid system that spans a layer, like a locator grid you might find on a common road map. The first, or lowest, grid level has the smallest cell size. </para>
+                    <para>One to three 2-D grids (also referred to as grid levels), each with a distinct cell size, are created for an SDE layer. Set the cell sizes of the other grids to 0 if you only want one, otherwise set each level at least three times larger than the previous level.</para>
+                    <para>Personal geodatabases require a maximum of one spatial grid.</para>
+                </commandReference>
+                <dialogReference>
+                    <para>The two-dimensional grid system that spans a layer, like a locator grid you might find on a common road map. The first, or lowest, grid level has the smallest cell size. </para>
+                    <para>One to three 2-D grids (also referred to as grid levels), each with a distinct cell size, are created for an SDE layer. Set the cell sizes of the other grids to 0 if you only want one, otherwise set each level at least three times larger than the previous level.</para>
+                    <para>Personal geodatabases require a maximum of one spatial grid.</para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="spatialGrid2" displayname="Output Spatial Grid 2" type="Required" direction="" expression="{spatiaGrid2}">
+                <commandReference>
+                    <para>The two-dimensional grid system that spans a layer, like a locator grid you might find on a common road map. The first, or lowest, grid level has the smallest cell size. </para>
+                    <para>One to three 2-D grids (also referred to as grid levels), each with a distinct cell size, are created for an SDE layer. Set the cell sizes of the other grids to 0 if you only want one, otherwise set each level at least three times larger than the previous level.</para>
+                    <para>Personal geodatabases require a maximum of one spatial grid.</para>
+                </commandReference>
+                <dialogReference>
+                    <para>The two-dimensional grid system that spans a layer, like a locator grid you might find on a common road map. The first, or lowest, grid level has the smallest cell size. </para>
+                    <para>One to three 2-D grids (also referred to as grid levels), each with a distinct cell size, are created for an SDE layer. Set the cell sizes of the other grids to 0 if you only want one, otherwise set each level at least three times larger than the previous level.</para>
+                    <para>Personal geodatabases require a maximum of one spatial grid.</para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="spatialGrid3" displayname="Output Spatial Grid 3" type="Required" direction="" expression="{spatialGrid3}">
+                <commandReference>
+                    <para>The two-dimensional grid system that spans a layer, like a locator grid you might find on a common road map. The first, or lowest, grid level has the smallest cell size. </para>
+                    <para>One to three 2-D grids (also referred to as grid levels), each with a distinct cell size, are created for an SDE layer. Set the cell sizes of the other grids to 0 if you only want one, otherwise set each level at least three times larger than the previous level.</para>
+                    <para>Personal geodatabases require a maximum of one spatial grid.</para>
+                </commandReference>
+                <dialogReference>
+                    <para>The two-dimensional grid system that spans a layer, like a locator grid you might find on a common road map. The first, or lowest, grid level has the smallest cell size. </para>
+                    <para>One to three 2-D grids (also referred to as grid levels), each with a distinct cell size, are created for an SDE layer. Set the cell sizes of the other grids to 0 if you only want one, otherwise set each level at least three times larger than the previous level.</para>
+                    <para>Personal geodatabases require a maximum of one spatial grid.</para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="outputCoordinateSystem" displayname="Output Coordinate System" type="Required" direction="" expression="{outputCoordinateSystem}">
+                <commandReference>
+                    <para>Specify the coordinate system in which geoprocessing will take place and output will be created. If not explicitly set and the output does not reside inside a feature dataset, the spatial reference of the first input will be used.
+                        <bulletList>
+                            <bullet_item>Same As Input - If input features have a coordinate system then the output features will have the same coordinate system. This is the default.</bullet_item>
+                            <bullet_item>As specified below - Choose a new coordinate system for outputs features. You may enter a coordinate system name, or use the Spatial Reference Properties dialog.</bullet_item>
+                        </bulletList>
+                    </para>
+                </commandReference>
+                <dialogReference>
+                    <para>Specify the coordinate system in which geoprocessing will take place and output will be created If not explicitly set and the output does not reside inside a feature dataset, the spatial reference of the first input will be used.
+                        <bulletList>
+                            <bullet_item>Same As Input - If input features have a coordinate system then the output features will have the same coordinate system. This is the default.</bullet_item>
+                            <bullet_item>As Specified Below - Choose a new coordinate system for outputs features. You may enter a coordinate system name, or use the Spatial Reference Properties dialog.</bullet_item>
+                            <bullet_item>Same as Display - The coordinate system of the current ArcMap, ArcScene, or ArcGlobe display will be used.</bullet_item>
+                            <bullet_item>Same as Layer &lt;layer&gt; - The coordinate system of the specified layer will be used. </bullet_item>
+                        </bulletList>
+                        <para><!-- Note: this extra para element is needed in order to keep post-bulletList text from having a different font -->
+                            Note: The Same as Display and Same as Layer options both read the current coordinate system of the display or layer. The next time you examine the coordinate system setting, it will read As Specified Below.
+                        </para>
+                    </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="outputZFlag" displayname="Output Z Flag" type="Required" direction="" expression="{outputZFlag}">
+                <commandReference>
+                    <para>Specify whether output feature datasets will contain z-values.
+                        <bulletList>
+                            <bullet_item>Same As Input - If input features have z-values then the output feature dataset will have the ability to hold z-values. This is the default.</bullet_item>
+                            <bullet_item>Enabled - The output feature dataset will contain z-values.</bullet_item>
+                            <bullet_item>Disabled - No output feature dataset will contain z-values.</bullet_item>
+                        </bulletList>
+                    </para>
+                </commandReference>
+                <dialogReference>
+                    <para>Specify whether output feature datasets will contain z-values.
+                        <bulletList>
+                            <bullet_item>Same As Input - If input features have z-values then the output feature dataset will have the ability to hold z-values. This is the default.</bullet_item>
+                            <bullet_item>Enabled - The output feature dataset will contain z-values.</bullet_item>
+                            <bullet_item>Disabled - No output feature dataset will contain z-values.</bullet_item>
+                        </bulletList>
+                    </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="outputZValue" displayname="Output Z Value" type="Required" direction="" expression="{outputZValue}">
+                <commandReference>
+                    <para>The z-value that will be applied to newly generated output features if the input feature classes contain z-values or the Output has Z Values is enabled. </para>
+                </commandReference>
+                <dialogReference>
+                    <para>The z-value that will be applied to newly generated output features if the input feature classes contain z-values or the Output has Z Values is enabled. </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="projectCompare" displayname="Compare Projections" type="Required" direction="" expression="{projectCompare}">
+                <commandReference>
+                    <para>The degree of similarity between input projection files required tool execution. Use this option if you want to validate the input projections before running coverage tools.  
+                        <bulletList>
+                            <bullet_item>NONE - Any combinations of projection information will result in a match. This is the default.</bullet_item>
+                            <bullet_item>PARTIAL - At least one projection file must be defined; the others can be UNKNOWN and will result in a match.</bullet_item>
+                            <bullet_item>FULL - All projection information must be specified and identical in the projection file of each input data set.</bullet_item>
+                        </bulletList>
+                    </para>
+                </commandReference>
+                <dialogReference>
+                    <para>The degree of similarity between input projection files required tool execution. Use this option if you want to validate the input projections before running coverage tools.  
+                        <bulletList>
+                            <bullet_item>NONE - Any combinations of projection information will result in a match. This is the default.</bullet_item>
+                            <bullet_item>PARTIAL - At least one projection file must be defined; the others can be UNKNOWN and will result in a match.</bullet_item>
+                            <bullet_item>FULL - All projection information must be specified and identical in the projection file of each input data set.</bullet_item>
+                        </bulletList>
+                    </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="pyramid" displayname="Pyramid" type="Required" direction="" expression="{pyramid}">
+                <commandReference>
+                    <para>Specify whether to create pyramids with the output raster. </para>
+                    <para>Pyramid levels - The number of pyramids to create. A number of -1 or higher can be entered. The default (blank) is -1. With the default set, a full set of pyramids will be created, based on the size of the raster being added to the ArcSDE geodatabase. </para>
+                        <bulletList>
+                            <bullet_item>CHECKED - Pyramids will be built. This is the default.  When pyramids are built for ArcSDE geodatabases you must specify the pyramid resampling technique:</bullet_item>
+                            <indent>
+                                <bullet_item>NEAREST neighbor - Uses the value of the closest cell to assign a value to the output cell when resampling. This is the default.</bullet_item>
+                                <bullet_item>BILINEAR interpolation - Determines the new value of a cell based upon a weighted distance average of the four nearest input cell centers.</bullet_item>
+                                <bullet_item>CUBIC convolution - Determines the new value of a cell based upon fitting a smooth curve through the sixteen nearest input cell centers.</bullet_item>
+                            </indent>
+                            <bullet_item>UNCHECKED - Pyramids will not be created with the output raster.</bullet_item>
+                        </bulletList>
+                </commandReference>
+                <dialogReference>
+                    <!--
+                    <para>Specify whether to create pyramids with the output raster. When pyramids are built for ArcSDE geodatabases you must specify the pyramid resampling technique.
+                        <bulletList>
+                            <bullet_item>CHECKED - Pyramids will be built. This is the default.  When pyramids are built for ArcSDE geodatabases you must specify the pyramid resampling technique:</bullet_item>
+                            <indent>
+                                <bullet_item>NEAREST neighbor - Uses the value of the closest cell to assign a value to the output cell when resampling. This is the default.</bullet_item>
+                                <bullet_item>BILINEAR interpolation - Determines the new value of a cell based upon a weighted distance average of the four nearest input cell centers.</bullet_item>
+                                <bullet_item>CUBIC convolution - Determines the new value of a cell based upon fitting a smooth curve through the sixteen nearest input cell centers.</bullet_item>
+                            </indent>
+                            <bullet_item>UNCHECKED - Pyramids will not be created with the output raster.</bullet_item>
+                        </bulletList>
+                    </para>
+                    -->
+                    <para>Raster pyramid settings
+                        <bulletList>
+                            <bullet_item>Build pyramids:</bullet_item>
+                        </bulletList>
+                        <indent>
+                            <bulletList>
+                                <bullet_item>CHECKED - Build pyramids</bullet_item>
+                                <bullet_item>UNCHECKED - Do not build pyramids</bullet_item>
+                            </bulletList>
+                        </indent>
+                        <bulletList>
+                            <bullet_item>Pyramid levels - Specify the number of pyramid levels to create, or leave the value blank to build all levels.</bullet_item>
+                        </bulletList>
+
+                        <bulletList>
+                            <bullet_item>Pyramid resampling technique:</bullet_item>
+                        </bulletList>
+                        <indent>
+                            <bulletList>
+                                <bullet_item>NEAREST - Uses the value of the closest cell to assign a value to the output cell. This is the default.</bullet_item>
+                                <bullet_item>BILINEAR - Determines the new value of a cell based on a weighted distance average of the four nearest input cell centers.</bullet_item>
+                                <bullet_item>CUBIC - Determines the new value of a cell based on fitting a smooth curve through the 16 nearest input cell centers.</bullet_item>
+                            </bulletList>
+                        </indent>
+
+                        <bulletList>
+                            <bullet_item>Pyramid compression type:</bullet_item>
+                        </bulletList>
+                        <indent>
+                            <bulletList>
+                                <bullet_item>DEFAULT - If the source data is compressed using a wavelet compression, it will build pyramids with the JPEG compression type; otherwise, LZ77 will be used. This is the default.</bullet_item>
+                                <bullet_item>LZ77 - The LZ77 compression algorithm will be used to build the pyramids. LZ77 can be used for any data type.</bullet_item>
+                                <bullet_item>JPEG - The JPEG compression algorithm will be used to build pyramids. Only data that adheres to the JPEG compression specification can use this compression type. If JPEG is chosen, you can then set the compression quality.</bullet_item>
+                                <bullet_item>NONE - No compression will be used when building pyramids.</bullet_item>
+                            </bulletList>
+                        </indent>
+
+                        <bulletList>
+                            <bullet_item>Compression Quality - The compression quality to use when pyramids are built with the JPEG compression method.</bullet_item>
+                        </bulletList>
+
+                    </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="CellSize" displayname="Cell Size" type="Required" direction="" expression="{cellSize}">
+                <commandReference>
+                    <para>The output cell size, or resolution. The default output resolution, when a feature class is used as input, is the width or the height (whichever is shortest) of the extent of the feature class divided by 250.
+                        <bulletList>
+                            <bullet_item>Maximum of Inputs - The largest cell size of all input datasets. This is the default.</bullet_item>
+                            <bullet_item>Minimum of Inputs - The smallest cell size of all input datasets.</bullet_item>
+                            <bullet_item>As Specified Below - Specify the exact cell size value. </bullet_item>
+                            <bullet_item>Same as Layer - Specify an input raster layer on which to base the cell size.</bullet_item>
+                        </bulletList>
+                    </para>
+                </commandReference>
+                <dialogReference>
+                    <para>The output cell size, or resolution. The default output resolution, when a feature class is used as input, is the width or the height (whichever is shortest) of the extent of the feature class divided by 250.
+                        <bulletList>
+                            <bullet_item>Maximum of Inputs - The largest cell size of all input datasets. This is the default.</bullet_item>
+                            <bullet_item>Minimum of Inputs - The smallest cell size of all input datasets.</bullet_item>
+                            <bullet_item>As Specified Below - Specify the exact cell size value. </bullet_item>
+                            <bullet_item>Same as Layer - Specify an input raster layer on which to base the cell size.</bullet_item>
+                        </bulletList>
+                    </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="Extent" displayname="Extent" type="Required" direction="" expression="{extent}">
+                <commandReference>
+                    <para>Specify the extent of the study area.
+                        <bulletList>
+                            <bullet_item>Extent object - An Extent class can be used to define the extent. </bullet_item>
+                            <bullet_item>MAXOF - The maximum extent of all input(s). </bullet_item>
+                            <bullet_item>MINOF - The minimum area common to all input(s). </bullet_item>
+                            <bullet_item>XMin, YMin, XMax, YMax - Space-delimited coordinates that define the extent, in the coordinate system in which the input data is stored. </bullet_item>
+                            <bullet_item>Same as Display - the extent of the current ArcMap, ArcScene, or ArcGlobe display will be used. </bullet_item>
+                            <bullet_item>pathname - Path to a dataset.  The extent of the dataset will be used. </bullet_item>
+                        </bulletList>
+                    </para>
+                        <para><!-- Note: this extra para element is needed in order to keep post-bulletList text from having a different font -->
+                            Note: The Same as Display and Same as layer options both read the current extent of the display or layer. The next time you examine the Extent setting, it will read As Specified Below. If you subsequently change the extent of the display or layer, the Extent setting is not updated—you will have to reset the Extent environment.
+                        </para>
+                </commandReference>
+                <dialogReference>
+                    <para>Specify the extent of the study area.
+You can think of this setting as a rectangle used to select input features and rasters for processing. Any feature or raster that passes through the rectangle will be processed and written to output. Note that the rectangle is used only to select features, not clip them. The extent of the output dataset will typically be larger than the Output Extent setting to account for features that pass through the extent rectangle. 
+                        
+                        <!-- NOTE on indenting bullets: so far, this is the only pattern that I've found to work, even though it seems cobbled up out of duct tape and baling wire.
+                        <bulletList>
+                            <bullet_item>foo</bullet_item>
+                            <bullet_item>bar</bullet_item>
+                        </bulletList>
+                        <indent>
+                                <bulletList>
+                                    <bullet_item>barone</bullet_item>
+                                </bulletList>
+                        </indent>
+                        <bulletList>
+                            <bullet_item>wawa</bullet_item>
+                        </bulletList>
+                        <para>
+                            You have to have this extra level of para for any text that comes
+                            after a bulletList, otherwise the post-bulletList text will
+                            have a different (larger) font
+                        </para>
+                        -->
+                        <bulletList>
+                            <bullet_item>Default - No extent set. The extent will be based on the inputs to a tool.  This is the default.</bullet_item>
+                            <bullet_item>Union of Inputs - The maximum extent of all input(s). </bullet_item>
+                            <bullet_item>Intersection of Inputs - The minimum area common to all input(s). </bullet_item>
+                            <bullet_item>As Specified Below - Specify the minimum and maximum extent values.</bullet_item>
+                        </bulletList>
+                        <indent>
+                            <bulletList>
+                                <bullet_item>Left - XMin value</bullet_item>
+                                <bullet_item>Right - XMax value</bullet_item>
+                                <bullet_item>Bottom - YMin value</bullet_item>
+                                <bullet_item>Top - YMax value</bullet_item>
+                            </bulletList>
+                        </indent>
+                        <bulletList>
+                            <bullet_item>Same as Display - the extent of the current ArcMap, ArcScene, or ArcGlobe display will be used. </bullet_item>
+                            <bullet_item>Same as layer &lt;layer&gt; - the extent will be based on the extent of the specified layer. </bullet_item>
+                        </bulletList>
+                        <para>
+                            Note: The Same as Display and Same as layer options both read the current extent of the display or layer. The next time you examine the Extent setting, it will read As Specified Below. If you subsequently change the extent of the display or layer, the Extent setting is not updated—you will have to reset the Extent environment.
+                        </para>
+                    </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="Mask" displayname="Mask" type="Required" direction="" expression="{mask}">
+                <commandReference>
+                    <para>Identifies those cells within the analysis extent that will be considered when performing an operation or a function. Setting an analysis mask means that processing will only occur on selected cells and that all other cells will be assigned values of nodata.</para>
+                </commandReference>
+                <dialogReference>
+                    <para>Identifies those cells within the analysis extent that will be considered when performing an operation or a function. Setting an analysis mask means that processing will only occur on selected cells and that all other cells will be assigned values of nodata. To remove a mask that has been set, clear the text from the Mask input box.</para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="Statistics" displayname="Raster Statistics" type="Required" direction="" expression="{statistics}">
+                <commandReference>
+                    <para>The Statistics option enables you to build statistics for the output raster dataset created in a geodatabase.
+                    <para>A skip factor may be set and applied to file-based or personal geodatabase raster datasets.</para>
+                        <bulletList>
+                            <bullet_item>X skip factor - skip value for the x-axis.</bullet_item>
+                            <bullet_item>Y skip factor - skip value for the y-axis.</bullet_item>
+                        </bulletList>
+                    </para>
+                </commandReference>
+                <dialogReference>
+                    <para>The Statistics option enables you to build statistics for the output raster dataset created in a geodatabase.
+                    <para>A skip factor may be set and applied to file-based or personal geodatabase raster datasets.</para>
+                        <bulletList>
+                            <bullet_item>X skip factor - skip value for the x-axis.</bullet_item>
+                            <bullet_item>Y skip factor - skip value for the y-axis.</bullet_item>
+                        </bulletList>
+                    </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="tileSize" displayname="Tile Size" type="Required" direction="" expression="{tileSize}">
+                <commandReference>
+                    <para>Specify the width and the height of the desired tile size for ArcSDE geodatabases. The default is 128 x 128.</para>
+                </commandReference>
+                <dialogReference>
+                    <para>Specify the width and the height of the desired tile size for ArcSDE geodatabases. The default is 128 x 128.</para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="workspace" displayname="Current workspace" type="Required" direction="" expression="{workspace}">
+                <commandReference>
+                    <para>Specify the workspace from which inputs are taken and into which outputs are placed.</para>
+                </commandReference>
+                <dialogReference>
+                    <para>Specify the workspace from which inputs are taken and into which outputs are placed.</para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="xydomain" displayname="XY Domain" type="Required" direction="" expression="{xydomain}">
+                <commandReference>
+                    <para>Allowable coordinate range for x,y coordinates.</para>
+                        <bulletList>
+                            <bullet_item>Same as Input - Same x,y value range as the input dataset.</bullet_item>
+                            <bullet_item>As Specified Below - Specify the exact xy domain values range.</bullet_item>
+                            <indent>
+                                <bullet_item>X Min - Minimum x coordinate value.</bullet_item>
+                                <bullet_item>X Max - Maximum x coordinate value.</bullet_item>
+                                <bullet_item>Y Min - Minimum y coordinate value.</bullet_item>
+                                <bullet_item>Y Max - Maximum y coordinate value.</bullet_item>
+                            </indent>
+                        </bulletList>
+                    <para>
+                        <br/>
+                    </para>
+                </commandReference>
+                <dialogReference>
+                    <para>Allowable coordinate range for x,y coordinates.</para>
+                        <bulletList>
+                            <bullet_item>Same as Input - same x,y value range as the input dataset.</bullet_item>
+                            <bullet_item>As Specified Below - Specify the exact xy domain values range.</bullet_item>
+                        </bulletList>
+                        <indent>
+                        <bulletList>
+                                <bullet_item>X Min - Minimum x coordinate value.</bullet_item>
+                                <bullet_item>X Max - Maximum x coordinate value.</bullet_item>
+                                <bullet_item>Y MIN - Minimum y coordinate value.</bullet_item>
+                                <bullet_item>Y Max - Maximum y coordinate value.</bullet_item>
+                        </bulletList>
+                        </indent>
+                    <para>
+                        <br/>
+                    </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="mdomain" displayname="M Domain" type="Required" direction="" expression="{mdomain}">
+                <commandReference>
+                    <para>Allowable coordinate range for m- (measure) values.</para>
+                        <bulletList>
+                            <bullet_item>Same as Input - </bullet_item>
+                            <bullet_item>As Specified Below - Specify the exact m domain values range.</bullet_item>
+                            <indent>
+                                <bullet_item>M Min - Minimum m- (measure) value.</bullet_item>
+                                <bullet_item>M Max - Maximum m- (measure) value.</bullet_item>
+                            </indent>
+                        </bulletList>
+                    <para>
+                        <br/>
+                    </para>
+                </commandReference>
+                <dialogReference>
+                    <para>Allowable coordinate range for m- (measure) values.</para>
+                        <bulletList>
+                            <bullet_item>Same as Input - Same m- (measure) value range as the input dataset.</bullet_item>
+                            <bullet_item>As Specified Below - Specify the exact m domain values range.</bullet_item>
+                        </bulletList>
+                        <indent>
+                            <bulletList>
+                                <bullet_item>M Min - Minimum m- (measure) value.</bullet_item>
+                                <bullet_item>M Max - Maximum m- (measure) value.</bullet_item>
+                            </bulletList>
+                        </indent>
+                    <para>
+                        <br/>
+                    </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="zdomain" displayname="Z Domain" type="Required" direction="" expression="{zdomain}">
+                <commandReference>
+                    <para>Allowable coordinate range for z values.</para>
+                        <bulletList>
+                            <bullet_item>Same as Input - Same z value range as the input dataset.</bullet_item>
+                            <bullet_item>As Specified Below - Specify the exact z domain values range.</bullet_item>
+                            <indent>
+                                <bullet_item>Z Min - Minimum z value.</bullet_item>
+                                <bullet_item>Z Max - Maximum z value.</bullet_item>
+                            </indent>
+                        </bulletList>
+                    <para>
+                        <br/>
+                    </para>
+                </commandReference>
+                <dialogReference>
+                    <para>Allowable coordinate range for z values.</para>
+                        <bulletList>
+                            <bullet_item>Same as Input - Same z value range as the input dataset.</bullet_item>
+                            <bullet_item>As Specified Below - Specify the exact z domain values range.</bullet_item>
+                        </bulletList>
+                        <indent>
+                            <bulletList>
+                                <bullet_item>Z Min - Minimum z value.</bullet_item>
+                                <bullet_item>Z Max - Maximum z value.</bullet_item>
+                            </bulletList>
+                        </indent>
+                    <para>
+                        <br/>
+                    </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="maintainSpatialIndex" displayname="Maintain Spatial Index" type="Required" direction="" expression="{MaintainSpatialIndex}">
+                <commandReference>
+                    <para>Delete and re-create the spatial index of an ArcSDE feature class, or keep it in place and update it, according to this setting.
+                        <bulletList>
+                            <bullet_item>TRUE - The spatial index is left in place and updated after processing.</bullet_item>
+                            <bullet_item>FALSE - The spatial index is dropped before processing and re-created at the end. This is the default.</bullet_item>
+                        </bulletList>
+                    </para>
+                </commandReference>
+                <dialogReference>
+                    <para>Delete and re-create the spatial index of an ArcSDE feature class, or keep it in place and update it, according to this setting.
+                        <bulletList>
+                            <bullet_item>CHECKED - The spatial index is left in place and updated after processing.</bullet_item>
+                            <bullet_item>UNCHECKED - The spatial index is dropped before processing and re-created at the end. This is the default.</bullet_item>
+                        </bulletList>
+                    </para>
+                </dialogReference>
+            </param>            
+            <param sync="true" name="rasterStatistics" displayname="Raster Statistics" type="Required" direction="" expression="{rasterStatistics}">
+                <commandReference>
+                    <para>The Statistics option enables you to build statistics for the output raster dataset created in a geodatabase.</para>
+                    <para>A skip factor may be set and applied to file-based or personal geodatabase raster datasets.</para>
+                        <bulletList>
+                            <bullet_item>X skip factor - skip value for the x-axis.</bullet_item>
+                            <bullet_item>Y skip factor - skip value for the y-axis.</bullet_item>
+                        </bulletList>
+                    <para>
+                        <br/>
+                    </para>
+                    <para>A statistics ignore value may also be set for personal geodatabases. These values will be ignored in the calculations. Type each value to be ignored, separated by a  semicolon (;).</para>
+                </commandReference>
+                <dialogReference>
+                    <para>The Statistics option enables you to build statistics for the output raster dataset created in a geodatabase.</para>
+                    <para>A skip factor may be set and applied to file-based or personal geodatabase raster datasets.</para>
+                        <bulletList>
+                            <bullet_item>X skip factor - skip value for the x-axis.</bullet_item>
+                            <bullet_item>Y skip factor - skip value for the y-axis.</bullet_item>
+                        </bulletList>
+                    <para>
+                        <br/>
+                    </para>
+                    <para>A statistics ignore value may also be set for personal geodatabases. These values will be ignored in the calculations. Type each value to be ignored, separated by a  semicolon (;).</para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="MResolution" displayname="M Resolution" type="Required" direction="" expression="{MResolution}">
+                <commandReference>
+                    <para>The resolution of M values when feature classes are created.</para>
+                    <para>The default value is the same as the xy resolution of 0.0001 meters or its equivalent in map units.</para>
+                </commandReference>
+                <dialogReference>
+                    <para>The resolution of M values when feature classes are created.</para>
+                    <para>The default value is the same as the xy resolution of 0.0001 meters or its equivalent in map units.</para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="MTolerance" displayname="M Tolerance" type="Required" direction="" expression="{MTolerance}">
+                <commandReference>
+                    <para>Tolerance value  for adjusting M values during cluster processing.</para>
+                    <para>The default value is 10 * the M Resolution.</para>
+                </commandReference>
+                <dialogReference>
+                    <para>Tolerance value  for adjusting M values during cluster processing.</para>
+                    <para>The default value is 10 * the M Resolution.</para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="XYResolution" displayname="XY Resolution" type="Required" direction="" expression="{XYResolution}">
+                <commandReference>
+                    <para>The number of decimal places or significant digits used to store express feature coordinates (in both X and Y).</para>
+                    <para>The default resolution for feature classes created in ArcGIS 9.2 and later releases is 0.0001 meters or its equivalent in map units.</para>
+                </commandReference>
+                <dialogReference>
+                    <para>The number of decimal places or significant digits used to store express feature coordinates (in both X and Y).</para>
+                    <para>The default resolution for feature classes created in ArcGIS 9.2 and later releases is 0.0001 meters or its equivalent in map units.</para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="XYTolerance" displayname="XY Tolerance" type="Required" direction="" expression="{XYTolerance}">
+                <commandReference>
+                    <para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both).</para>
+                    <para>You can set the value to be higher for data that has less coordinate accuracy and lower for datasets with extremely high accuracy.</para>
+                    <para>The default XY Tolerance is set to 0.001 meters or its equivalent in map units. </para>
+                    <para>In ArcGIS 9.2, the term xy tolerance has been introduced.  This term is synonymous with cluster tolerance.  In certain contexts the term cluster tolerance has been replaced by the term XY Tolerance. </para>
+                </commandReference>
+                <dialogReference>
+                    <para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both).</para>
+                    <para>You can set the value to be higher for data that has less coordinate accuracy and lower for datasets with extremely high accuracy.</para>
+                    <para>The default XY Tolerance is set to 0.001 meters or its equivalent in map units. </para>
+                    <para>In ArcGIS 9.2, the term xy tolerance has been introduced.  This term is synonymous with cluster tolerance.  In certain contexts the term cluster tolerance has been replaced by the term XY Tolerance. </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="ZResolution" displayname="Z Resolution" type="Required" direction="" expression="{ZResolution}">
+                <commandReference>
+                    <para>The resolution of Z values when creating feature classes.</para>
+                    <para>The default value is the same as the XY Resolution of 0.0001 meters or its equivalent in Z units.</para>
+                </commandReference>
+                <dialogReference>
+                    <para>The resolution of Z values when creating feature classes.</para>
+                    <para>The default value is the same as the XY Resolution of 0.0001 meters or its equivalent in Z units.</para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="ZTolerance" displayname="Z Tolerance" type="Required" direction="" expression="{Z Tolerance}">
+                <commandReference>
+                    <para>The tolerance for adjusting Z values during cluster processing. </para>
+                    <para>The default value is 10 * the Z Resolution.</para>
+                </commandReference>
+                <dialogReference>
+                    <para>The tolerance for adjusting Z values during cluster processing. </para>
+                    <para>The default value is 10 * the Z Resolution.</para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="RandomGenerator" displayname="Random Number Generator" type="Required" direction="" expression="{RandomGenerator}">
+                <commandReference>
+                    <para>Determines the random number generator type and seed that will be used to create random numbers between 0 and 1 for all tools that utilize random numbers (e.g., CreateRandomRaster, CreateRandomPoints, and the ArcGIS.Rand() function). </para>
+                    <para/>
+                </commandReference>
+                <dialogReference>
+                    <para>Determines the random number generator type and seed that will be used to create random numbers between 0 and 1 for all tools that utilize random numbers (e.g., CreateRandomRaster, CreateRandomPoints, and the ArcGIS.Rand() function).  </para>
+                    <para/>
+                </dialogReference>
+            </param>
+            <param sync="true" name="QualifiedFieldNames" displayname="Qualified Field Names" type="Required" direction="" expression="{QualifiedFieldNames}">
+                <commandReference>
+                    <para> Specify if the output tables field names will be qualified with the name of the table. By default, when feature classes are joined the resulting output tables fields are in the format tableName.fieldName. Setting this parameter allows you to choose whether fields should follow this format or just be fieldName.</para>
+                    <para/>
+                </commandReference>
+                <dialogReference>
+                    <para>Specify if the output tables field names will be qualified with the name of the table. By default, when feature classes are joined the resulting output tables fields are in the format tableName.fieldName. Setting this parameter allows you to choose whether fields should follow this format or just be fieldName.</para>
+                    <para/>
+                </dialogReference>
+            </param>
+            <param sync="true" name="GeographicTransformations" displayname="Geographic Transformations" type="Required" direction="" expression="{GeographicTransformations}">
+                <commandReference>
+                    <para>Specify transformation methods that can be used to project data on the fly. You can create a list of transformations methods the application can choose from, that includes custom transformations (those created using the Create Geographic Transformation tool) and system supplied transformations (those out-of-the-box).</para>
+                    <para/>
+                </commandReference>
+                <dialogReference>
+                    <para>Specify transformation methods that can be used to project data on the fly. You can create a list of transformations methods the application can choose from, that includes custom transformations (those created using the Create Geographic Transformation tool) and system supplied transformations (those out-of-the-box).</para>
+                    <para><!-- Note: this extra para element is needed in order to keep post-bulletList text from having a different font -->
+                        When working with geographic transformations, if the direction is not indicated, geoprocessing tools will handle the directionality automatically. For example, if converting data from WGS 1984 to NAD 1927, you can pick a transformation called NAD_1927_to_WGS_1984_3 and the software will apply it correctly.
+                    </para>
+                </dialogReference>
+            </param>
+            <param sync="true" name="CartographicCoordinateSystem" displayname="Cartographic Coordinate System" type="Required" direction="" expression="{CartographicCoordinateSystem}">
+                <commandReference>
+                    <para>Specify the coordinate system to be used in deriving representations for a target map. (If not explicitly set and the output does not reside inside a feature dataset, the spatial reference of the first input will be used.)</para>
+                    <para/>
+                </commandReference>
+                <dialogReference>
+                    <para>Specify the coordinate system to be used in deriving representations for a target map. (If not explicitly set and the output does not reside inside a feature dataset, the spatial reference of the first input will be used.)</para>
+                    <para/>
+                </dialogReference>
+            </param>
+            <param sync="true" name="ReferenceScale" displayname="Reference Scale" type="Required" direction="" expression="{ReferenceScale}">
+                <commandReference>
+                    <para>The scale at which symbols will appear on the page at their true size, specified in page units. As the extent is changed, the text and symbols will change scale along with the display. Without a reference scale, the symbols will look the same at all map scales.</para>
+                    <para/>
+                </commandReference>
+                <dialogReference>
+                    <para>The scale at which symbols will appear on the page at their true size, specified in page units. As the extent is changed, the text and symbols will change scale along with the display. Without a reference scale, the symbols will look the same at all map scales.</para>
+                    <para/>
+                </dialogReference>
+            </param>
+            <param sync="true" name="coincidentPoints" displayname="Coincident Points" type="Required" direction="" expression="{coincidentalPoints}">
+                <commandReference>
+                    <para>This environment variable is a means to specify how coincident data should be treated.</para>
+                        <bulletList>
+                            <bullet_item>MEAN - The mean of the data at the coincident location.</bullet_item>
+                            <bullet_item>REMOVE ALL - Exclude all the coincident data from the analysis.</bullet_item>
+                            <bullet_item>MIN - The minimum value of the data at the coincident location.</bullet_item>
+                            <bullet_item>MAX - The maximum value of the data at the coincident location.</bullet_item>
+                            <bullet_item>INCLUDE ALL - Include all the data.</bullet_item>
+                        </bulletList>
+                        This environment variable is not honored by the Geostatistical Wizard.
+                    <para/>
+                </commandReference>
+                <dialogReference>
+                    <para>This environment variable is a means to specify how coincident data should be treated.
+                        <bulletList>
+                            <bullet_item>MEAN - The mean of the data at the coincident location.</bullet_item>
+                            <bullet_item>REMOVE ALL - Exclude all the coincident data from the analysis.</bullet_item>
+                            <bullet_item>MIN - The minimum value of the data at the coincident location.</bullet_item>
+                            <bullet_item>MAX - The maximum value of the data at the coincident location.</bullet_item>
+                            <bullet_item>INCLUDE ALL - Include all the data.</bullet_item>
+                        </bulletList>
+                        <para><!-- Note: this extra para element is needed in order to keep post-bulletList text from having a different font -->
+                            This environment variable is not honored by the Geostatistical Wizard.
+                        </para>
+                    </para>
+                </dialogReference>
+            </param>
+            
+            <param sync="true" name="snapRaster" displayname="Snap Raster" type="Required" direction="" expression="{SnapRaster}">
+                <commandReference>
+                    <para>Snap raster is used to snap or align an extent during execution. The lower-left corner of the extent is snapped to a cell corner of the snap raster and then the upper-right corner is adjusted using the output cell size. As a result, when the output cell size is same as the snap raster cell size, the cells in the output raster are aligned with the cells of the snap raster.</para>
+                    <para/>
+                </commandReference>
+                <dialogReference>
+                    <para>Snap raster is used to snap or align an extent during execution. The lower-left corner of the extent is snapped to a cell corner of the snap raster and then the upper-right corner is adjusted using the output cell size. As a result, when the output cell size is same as the snap raster cell size, the cells in the output raster are aligned with the cells of the snap raster.</para>
+                    <para/>
+                </dialogReference>
+            </param>
+            
+            <param sync="true" name="terrainMemoryUsage" displayname="Minimize memory use during analysis on terrains" type="Required" direction="" expression="{TerrainMemoryUsage}">
+                <commandReference>
+                    <para>Influences the block size used by terrain during analysis. The default lets the software decide how many tiles it can group together as a block. If you select this option, the terrain block size is forced to be equal to the terrain tile size.</para>
+                        <bulletList>
+                            <bullet_item>TRUE - Memory use will be minimized during terrain analysis.</bullet_item>
+                            <bullet_item>FALSE - Memory use will not be minimized during terrain analysis. This is the default.</bullet_item>
+                        </bulletList>
+                </commandReference>
+                <dialogReference>
+                    <para>Influences the block size used by terrain during analysis. The default lets the software decide how many tiles it can group together as a block. If you select this option, the terrain block size is forced to be equal to the terrain tile size.</para>
+                        <bulletList>
+                            <bullet_item>CHECKED - Memory use will be minimized during terrain analysis.</bullet_item>
+                            <bullet_item>UNCHECKED - Memory use will not be minimized during terrain analysis. This is the default.</bullet_item>
+                        </bulletList>
+                </dialogReference>
+            </param>            
+
+            <param sync="true" name="tinSaveVersion" displayname="Default TIN storage version" type="Required" direction="" expression="{TinSaveVersion}">
+                <commandReference>
+                    <para>Tools that honor the TIN Storage Version setting will output TIN surfaces in the specified version.</para>
+                        <bulletList>
+                            <bullet_item>CURRENT - Can be either conforming Delaunay triangulation or constrained Delaunay triangulation. This option also adds support for additional spatial references. This is the default.</bullet_item>
+                            <bullet_item>PRE_10.0 - Supports Delaunay conforming triangulations for constructing TINs.</bullet_item>
+                        </bulletList>
+                </commandReference>
+                <dialogReference>
+                    <para>Tools that honor the TIN Storage Version setting will output TIN surfaces in the specified version.</para>
+                        <bulletList>
+                            <bullet_item>CURRENT - Can be either conforming Delaunay triangulation or constrained Delaunay triangulation. This option also adds support for additional spatial references. This is the default.</bullet_item>
+                            <bullet_item>PRE_10.0 - Supports Delaunay conforming triangulations for constructing TINs.</bullet_item>
+                        </bulletList>
+                </dialogReference>
+            </param>            
+
+            <param sync="true" name="autoCommit" displayname="Auto Commit" type="Required" direction="" expression="{autoCommit}">
+                <commandReference>
+                    <para>For ArcSDE transactions, this is the automatic commit interval used within a transaction.  A commit will be automatically forced after the specified number of changes have been made within the transaction.  For example, the default setting indicates a commit occurs every 1,000 updates.</para>
+                    <para/>
+                </commandReference>
+                <dialogReference>
+                    <para>For ArcSDE transactions, this is the automatic commit interval used within a transaction.  A commit will be automatically forced after the specified number of changes have been made within the transaction.  For example, the default setting indicates a commit occurs every 1,000 updates.</para>
+                    <para/>
+                </dialogReference>
+            </param>            
+            
+        </parameters>
+        <usage>
+            <bullet_item/>
+        </usage>
+        <commandExample/>
+        <scriptExample/>
+    </tool>
+</metadata>

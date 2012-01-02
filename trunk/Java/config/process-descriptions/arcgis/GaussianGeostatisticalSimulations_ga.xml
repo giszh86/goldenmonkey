@@ -1,0 +1,181 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Gaussian Geostatistical Simulations (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs a conditional or unconditional geostatistical simulation based on a Simple Kriging model.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Conditional</keyword><keyword>Esda</keyword><keyword>Geostatistics</keyword><keyword>Realization</keyword><keyword>Simple Kriging</keyword><keyword>Simulation</keyword><keyword>Unconditional</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GaussianGeostatisticalSimulations" displayname="Gaussian Geostatistical Simulations (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Performs a conditional or unconditional geostatistical simulation based on a Simple Kriging model.</para>
+			
+		</summary><alink_name>GaussianGeostatisticalSimulations_ga</alink_name><parameters><param sync="true" name="in_geostat_layer" displayname="Input geostatistical layer" datatype="Geostatistical Layer" direction="Input" expression="in_geostat_layer" type="Required"><pythonReference>
+						<para>Input a geostatistical layer resulting from a Simple Kriging model.</para>
+					</pythonReference><dialogReference>
+						<para>Input a geostatistical layer resulting from a Simple Kriging model.</para>
+					</dialogReference></param><param sync="true" name="number_of_realizations" displayname="Number of realizations" datatype="Long" direction="Input" expression="number_of_realizations" type="Required"><pythonReference>
+						<para>The number of simulations to perform.</para>
+					</pythonReference><dialogReference>
+						<para>The number of simulations to perform.</para>
+					</dialogReference></param><param sync="true" name="output_workspace" displayname="Output workspace" datatype="Workspace" direction="Input" expression="output_workspace" type="Required"><pythonReference>
+						<para>Stores all the simulation results.</para>
+					</pythonReference><dialogReference>
+						<para>Stores all the simulation results.</para>
+					</dialogReference></param><param sync="true" name="output_simulation_prefix" displayname="Output simulation prefix" datatype="String" direction="Input" expression="output_simulation_prefix" type="Required"><pythonReference>
+						<para>A 1- to 3-character alphanumeric prefix that is automatically added to the output dataset names.</para>
+					</pythonReference><dialogReference>
+						<para>A 1- to 3-character alphanumeric prefix that is automatically added to the output dataset names.</para>
+					</dialogReference></param><param sync="true" name="in_conditioning_features" displayname="Conditioning dataset" datatype="Feature Layer" direction="Input" expression="in_conditioning_features" type="Optional"><pythonReference>
+						<para>The features used to condition the realizations. If left blank, unconditional realizations are produced.</para>
+					</pythonReference><dialogReference>
+						<para>The features used to condition the realizations. If left blank, unconditional realizations are produced.</para>
+					</dialogReference></param><param sync="true" name="conditioning_field" displayname="Conditioning field" datatype="Field" direction="Input" expression="conditioning_field" type="Optional"><pythonReference>
+						<para>The field used to condition the realizations. If left blank, unconditional realizations are produced.</para>
+					</pythonReference><dialogReference>
+						<para>The field used to condition the realizations. If left blank, unconditional realizations are produced.</para>
+					</dialogReference></param><param sync="true" name="conditioning_measurement_error_field" displayname="Conditioning measurement error field" datatype="Field" direction="Input" expression="conditioning_measurement_error_field" type="Optional"><pythonReference>
+						<para>Specifies a constant measurement error for all input data in the input semivariogram model. Use this field if the measurement error values are not the same at each sampling location. The input's unit of measurement is applied.</para>
+						<para>Leave this blank if there are no measurement error values.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies a constant measurement error for all input data in the input semivariogram model. Use this field if the measurement error values are not the same at each sampling location. The input's unit of measurement is applied.</para>
+						<para>Leave this blank if there are no measurement error values.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="in_bounding_dataset" displayname="Bounding feature class" datatype="Feature Layer" direction="Input" expression="in_bounding_dataset" type="Optional"><pythonReference>
+						<para>Limits the analysis to these features' bounding polygon. If point features are entered, then a convex hull polygon is  automatically created. Realizations are then performed within that polygon.</para>
+					</pythonReference><dialogReference>
+						<para>Limits the analysis to these features' bounding polygon. If point features are entered, then a convex hull polygon is  automatically created. Realizations are then performed within that polygon.</para>
+					</dialogReference></param><param sync="true" name="save_simulated_rasters" displayname="Save simulated rasters" datatype="Boolean" direction="Input" expression="save_simulated_rasters" type="Optional"><pythonReference>
+						<para>Determines whether the simulated rasters are saved to disk or not.</para>
+					</pythonReference><dialogReference>
+						<para>Determines whether the simulated rasters are saved to disk or not.</para>
+					</dialogReference></param><param sync="true" name="quantile" displayname="Quantile (0 &lt; Q &lt; 1)" datatype="Double" direction="Input" expression="quantile" type="Optional"><pythonReference>
+						<para>The quantile value for which the output raster will be generated.</para>
+					</pythonReference><dialogReference>
+						<para>The quantile value for which the output raster will be generated.</para>
+					</dialogReference></param><param sync="true" name="threshold" displayname="Threshold" datatype="Double" direction="Input" expression="threshold" type="Optional"><pythonReference>
+						<para>The threshold value for which the output raster will be generated, as the percentage of the number of times the set threshold was exceeded, on a cell by cell basis.</para>
+					</pythonReference><dialogReference>
+						<para>The threshold value for which the output raster will be generated, as the percentage of the number of times the set threshold was exceeded, on a cell by cell basis.</para>
+					</dialogReference></param><param sync="true" name="in_stats_polygons" displayname="Input statistical polygons" datatype="Feature Layer" direction="Input" expression="in_stats_polygons" type="Optional"><pythonReference>
+						<para>These polygons represent areas of interest for which summary statistics are calculated.</para>
+					</pythonReference><dialogReference>
+						<para>These polygons represent areas of interest for which summary statistics are calculated.</para>
+					</dialogReference></param><param sync="true" name="raster_stat_type" displayname="Raster statistics type" datatype="String" direction="Input" expression="[raster_stat_type,...]" type="Optional"><pythonReference>
+						<para>The simulated rasters are post-processed on a cell by cell basis and each selected statistics type is calculated and reported in an output raster.</para>
+						<bulletList><bullet_item>MIN —Calculates the minimum (smallest value)</bullet_item><bullet_item>MAX —Calculates the maximum (largest value)</bullet_item><bullet_item>MEAN —Calculates the mean (average) </bullet_item><bullet_item>STDDEV —Calculates the standard deviation</bullet_item><bullet_item>QUARTILE1 —Calculates the 25th quantile</bullet_item><bullet_item>MEDIAN —Calculates the median</bullet_item><bullet_item>QUARTILE3 —Calculates the 75th quantile </bullet_item><bullet_item>QUANTILE —Calculates a user specified quantile (0 &lt; Q &lt; 1) </bullet_item><bullet_item>P_THRSHLD —Calculates the percentage of the simulations where the cell value exceeds a user specified threshold value</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The simulated rasters are post-processed on a cell by cell basis and each selected statistics type is calculated and reported in an output raster.</para>
+						<bulletList><bullet_item>MIN —Calculates the minimum (smallest value)</bullet_item><bullet_item>MAX —Calculates the maximum (largest value)</bullet_item><bullet_item>MEAN —Calculates the mean (average) </bullet_item><bullet_item>STDDEV —Calculates the standard deviation</bullet_item><bullet_item>QUARTILE1 —Calculates the 25th quantile</bullet_item><bullet_item>MEDIAN —Calculates the median</bullet_item><bullet_item>QUARTILE3 —Calculates the 75th quantile </bullet_item><bullet_item>QUANTILE —Calculates a user specified quantile (0 &lt; Q &lt; 1) </bullet_item><bullet_item>P_THRSHLD —Calculates the percentage of the simulations where the cell value exceeds a user specified threshold value</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Random_number_generator" label="Random number generator">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input geostatistical layer  must be the result of performing Simple Kriging on a dataset. Geostatistical layers resulting from other types of kriging cannot be used with this tool.</para>
+				<para>Additionally:</para>
+				<bulletList>
+					<bullet_item>A Normal Score transform of the data is recommended to ensure that the input data follows a standard normal distribution.</bullet_item>
+				</bulletList>
+				<bulletList>
+					<bullet_item>Clustered data should be declustered (using either the cell or polygon with a clipping outline method) so that the input histogram accurately represents the sampled population. This histogram will be reproduced (on average) in the realizations.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>To generate conditional realizations, the conditioning data should be the same as the data that was used to construct the Simple Kriging model that the simulation will be based on. However, other datasets can be used to condition the realizations.</para>
+			</bullet_item><bullet_item>
+				<para>Output generated by this tool can be identified as follows:</para>
+				<bulletList>
+					<bullet_item>The prefix followed by s0 to sN (where N is the number of realizations) is used to name the simulated rasters when the option Save simulated rasters has been selected.</bullet_item>
+				</bulletList>
+				<bulletList>
+					<bullet_item>The prefix followed by MIN, MAX, MEAN, STDDEV, QUARTILE1, MEDIAN, QUARTILE3, QUANTILE, or P_THRSHLD is used to name the output rasters when these postprocessing options have been selected.</bullet_item>
+				</bulletList>
+				<bulletList>
+					<bullet_item>The prefix followed by the polygon feature class name is used to name the output polygon feature class when postprocessing for areas of interest (statistical polygons) has been selected.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>Use different prefixes to identify output from different simulation runs. If you use the same prefix, all previous results starting with that prefix will be erased before the new results are created. Alternatively, the output from different simulation runs can be stored in separate folders.</para>
+			</bullet_item><bullet_item>
+				<para>If selected, the polygon output feature class will contain summary statistics of the values simulated within each polygon. To learn more about these summary statistics, refer to .</para>
+			</bullet_item><bullet_item>
+				<para>Polygons representing areas of interest must be fully contained within the simulated raster's extent. If any portion of a polygon is covered by NoData values in the simulated rasters, the polygon attribute table will contain invalid results. In this case, the CELL_COUNT field will show the number of cells within the polygon that have simulated values, and the number will be expressed as a negative value.</para>
+			</bullet_item><bullet_item>
+				<para>The Seed value (set in the Environment variables—see ) specifies the sequence of random numbers used in a simulation. By default, the Seed value is set to 0, so that each simulation will use a new sequence of random numbers. If the Seed is set to a value greater than 0, the simulation results will be replicated until the Seed value is changed. Setting the Seed to a value other than 0 may be useful when the results of a simulation study need to be replicated.</para>
+			</bullet_item><bullet_item>
+				<para>If you have opted to save the simulated rasters, only the first two will be added to the table of contents in ArcMap. You can, however, browse to the output workspace and add the rest.</para>
+			</bullet_item><bullet_item>
+				<para>The Environment setting for handling Coincident Points (under Geostatistical Analyst Settings) does not affect the results of unconditional or conditional simulations. Input datasets with coincident points are managed in the Geostatistical Wizard when the Simple Kriging layer (that will be used as input for the simulation) is built.</para>
+			</bullet_item><bullet_item>
+				<para>For conditional simulations, points of the conditioning dataset that fall inside the same cell will be averaged, and the realizations will be conditioned to honor that average value. If the output cell size is large, many points will fall inside each cell and will be averaged, and the realizations will be conditioned to honor these (relatively) few average values.</para>
+			</bullet_item><bullet_item>
+				<para>Current software limitations are as follows:</para>
+				<bulletList>
+					<bullet_item>The maximum raster size is limited to 2049^2 cells (that is: 2,049 rows by 2,049 columns for a square raster).</bullet_item>
+				</bulletList>
+				<bulletList>
+					<bullet_item>The maximum number of realizations that can be requested in a single run is 4,500. Note that the maximum number of rasters that can be contained in a workspace is 4,999.</bullet_item>
+				</bulletList>
+				<bulletList>
+					<bullet_item>Simulations based on periodical semivariogram models (J-Bessel and Hole Effect) may not be accurate.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>An error of Not enough memory to execute requested operation might indicate that the cell size requested will produce an output raster that is too large.</para>
+			</bullet_item><bullet_item>
+				<para>For data formats that support Null values, such as file and personal geodatabase feature classes, a Null value will be used to indicate that a prediction could not be made for that location or that the value showed be ignored when used as input. For data formats that do not support Null values, such as shapefiles, the value of  -1.7976931348623158e+308 is used (this is the negative of the C++ defined constant DBL_MAX)  to indicate that a prediction could not be made for that location.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>GaussianGeostatisticalSimulations example 1 (Python window)</title>
+					<para>Perform an unconditional simulation.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapyexamples/data"
+arcpy.GaussianGeostatisticalSimulations_ga("C:/gapyexamples/data/kriging.lyr", "10",
+                                           "C:/gapyexamples/output", "ggs", "", "",
+                                           "2000", "", "", "", "", "", "MEAN")  
+
+                    </code></scriptExample><scriptExample><title>GaussianGeostatisticalSimulations example 2 (stand-alone script)</title>
+					<para>Perform an unconditional simulation.</para>
+				<code xml:space="preserve"># Name: GaussianGeostatisticalSimulations_Example_02.py
+# Description: This tool performs conditional or unconditional geostatistical
+#   simulation based on a Simple Kriging model.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inLayer = "C:/gapyexamples/data/kriging.lyr"
+numRealizations = 10
+outWorkspace = "C:/gapyexamples/output"
+cellSize = 2000
+prefix = "ggs"
+rasstatType = "MEAN"
+conFeatures = ""
+conField = ""
+boundingData = ""
+savesimRasters = ""
+quantile = ""
+threshold = ""
+statsPolygons = ""
+errorField = ""
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute GaussianGeostatisticalSimulations
+arcpy.GaussianGeostatisticalSimulations_ga(inLayer, numRealizations, outWorkspace, prefix,
+                                           conFeatures, conField, cellSize, boundingData,
+                                           savesimRasters, quantile, threshold, statsPolygons,
+                                           rasstatType, errorField)
+
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

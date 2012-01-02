@@ -1,0 +1,81 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make NetCDF Table View (Multidimension)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Makes a table view from a netCDF file.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Climate</keyword><keyword>Climatology</keyword><keyword>Dimension</keyword><keyword>Meteorology</keyword><keyword>Oceanography</keyword><keyword>Scientific</keyword><keyword>Weather</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeNetCDFTableView" displayname="Make NetCDF Table View (Multidimension)" toolboxalias="md" softwarerestriction="none"><summary>
+			<para>Makes a table view from a netCDF file.</para>
+		</summary><alink_name>MakeNetCDFTableView_md</alink_name><parameters><param sync="true" name="in_netcdf_file" displayname="Input netCDF File" datatype="File" direction="Input" expression="in_netcdf_file" type="Required"><pythonReference>
+						<para>The input netCDF file.</para>
+					</pythonReference><dialogReference>
+						<para>The input netCDF file.</para>
+					</dialogReference></param><param sync="true" name="variable" displayname="Variables" datatype="String" direction="Input" expression="[variable,...]" type="Required"><pythonReference>
+						<para>The netCDF variable, or variables, used to create fields in the table view.</para>
+					</pythonReference><dialogReference>
+						<para>The netCDF variable, or variables, used to create fields in the table view.</para>
+					</dialogReference></param><param sync="true" name="out_table_view" displayname="Output Table View" datatype="Table View" direction="Output" expression="out_table_view" type="Required"><pythonReference>
+						<para>The name of the output table view.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output table view.</para>
+					</dialogReference></param><param sync="true" name="row_dimension" displayname="Row Dimensions" datatype="String" direction="Input" expression="[row_dimension,...]" type="Optional"><pythonReference>
+						<para>The netCDF dimension, or dimensions, used to create fields populated with unique values in the table view. The dimension, or dimensions, set here determine the number of rows in the table view and the fields that will be present.</para>
+						<para>For instance, if stationID is a dimension in the netCDF file and has 10 values, by setting stationID as the dimension to use, 10 rows will be created in the table view. If stationID and time are used and there are 3 time slices, 30 rows will be created in the table view.</para>
+					</pythonReference><dialogReference>
+						<para>The netCDF dimension, or dimensions, used to create fields populated with unique values in the table view. The dimension, or dimensions, set here determine the number of rows in the table view and the fields that will be present.</para>
+						<para>For instance, if stationID is a dimension in the netCDF file and has 10 values, by setting stationID as the dimension to use, 10 rows will be created in the table view. If stationID and time are used and there are 3 time slices, 30 rows will be created in the table view.</para>
+					</dialogReference></param><param sync="true" name="dimension_values" displayname="Dimension Values" datatype="Value Table" direction="Input" expression="[[dimension {value}],...]" type="Optional"><pythonReference>
+						<para>A set of dimension-value pairs used to specify a slice of a multidimensional variable.</para>
+					</pythonReference><dialogReference>
+						<para>A set of dimension-value pairs used to specify a slice of a multidimensional variable.</para>
+					</dialogReference></param><param sync="true" name="value_selection_method" displayname="Value Selection Method" datatype="String" direction="Input" expression="value_selection_method" type="Optional"><pythonReference>
+						<para>Specifies the dimension value selection method.</para>
+						<bulletList><bullet_item>BY_VALUE—The input value is matched with the actual dimension value. </bullet_item><bullet_item>BY_INDEX—The input value is matched with the position or index of a dimension value. The index is 0 based, that is, the position starts at 0. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the dimension value selection method.</para>
+						<bulletList><bullet_item>BY_VALUE—The input value is matched with the actual dimension value. </bullet_item><bullet_item>BY_INDEX—The input value is matched with the position or index of a dimension value. The index is 0 based, that is, the position starts at 0. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Table views are tables stored in memory and are the same as the table view when a table is added to ArcMap.</para>
+			</bullet_item><bullet_item>
+				<para>ArcCatalog does not display these table views, but they can be used as inputs to other geoprocessing tools in the current ArcGIS session. Once ArcGIS exits, the tables in memory are removed. To save the table view to a permanent table that can be used in later ArcGIS sessions, use the Copy Rows tool.</para>
+			</bullet_item><bullet_item>
+				<para>Table views created in ArcCatalog cannot be used in ArcMap. </para>
+			</bullet_item><bullet_item>
+				<para>An existing table view will be overwritten if the same table view name is entered.</para>
+			</bullet_item><bullet_item>
+				<para>The number of records in the table view is the same as the number of unique values in the row dimension. If multiple dimensions are selected, the number of records is the product of the number of unique values in those dimensions.</para>
+			</bullet_item><bullet_item>
+				<para>The output table contains only one record if no row dimension is specified. The values in the fields represent the slice specified by the dimension-value pairs.</para>
+			</bullet_item><bullet_item>
+				<para>The type of field is determined by the netCDF variable and dimension type.</para>
+			</bullet_item><bullet_item>
+				<para>The first value of a non-row dimension is used to create a default table view of a multidimensional variable.</para>
+			</bullet_item><bullet_item>
+				<para>The calender attribute values noleap and 365_day, assigned to the time coordinate variable of the netCDF file, are not honored in ArcGIS.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeNetCDFTableView example 1 (Python window)</title>
+					<para>Creates a table view from a netCDF file.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.MakeNetCDFTableView_md("C:/data/netcdf/precipmonmean.nc","precip",
+                             "precipmonmeantable","time")
+                    </code></scriptExample><scriptExample><title>MakeNetCDFTableView example 2 (stand-alone script)</title>
+					<para>Creates a table view from a netCDF file.</para>
+				<code xml:space="preserve"># MakeNetCDFTableView_Ex_02.py
+# Description: Create a table view from a netCDF file.
+# Requirements: None
+# Author: ESRI
+
+#Import system modules
+import arcpy
+
+# Set local variables
+inNetCDFFile = "c:/data/netcdf/precipmonmean.nc"
+variable = "precip;humidity"
+outTableView = "precipmonmeantable"
+rowDimension = "time"
+dimensionValue = ""
+valueSelectionMethod = ""
+
+# Execute MakeNetCDFTableView
+arcpy.MakeNetCDFTableView_md(inNetCDFFile, variable, outTableView, rowDimension, 
+                             dimensionValue,valueSelectionMethod)
+                    </code></scriptExample></scriptExamples></tool></metadata>

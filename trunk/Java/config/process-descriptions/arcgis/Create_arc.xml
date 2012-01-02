@@ -1,0 +1,54 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Coverage (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a new coverage.</para>
+			<para>The coverage can be initialized with the TIC, BND, and PRJ files copied from an existing coverage or grid.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Coverage</keyword><keyword>Create</keyword><keyword>Management</keyword><keyword>New</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Create" displayname="Create Coverage (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Creates a new coverage.</para>
+			<para>The coverage can be initialized with the TIC, BND, and PRJ files copied from an existing coverage or grid.</para>
+		</summary><alink_name>Create_arc</alink_name><parameters><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The name of the coverage that will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the coverage that will be created.</para>
+					</dialogReference></param><param sync="true" name="template_cover" displayname="Template Coverage" datatype="Coverage" direction="Input" expression="template_cover" type="Optional"><pythonReference>
+						<para>An existing coverage or grid whose TIC file, boundary information (BND file), and projection information (PRJ file) will be copied to the Output Coverage.</para>
+					</pythonReference><dialogReference>
+						<para>An existing coverage or grid whose TIC file, boundary information (BND file), and projection information (PRJ file) will be copied to the Output Coverage.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The coordinate precision of the Output Coverage is determined by the , regardless of whether the Template Coverage is specified.</para>
+			</bullet_item><bullet_item>
+				<para>To establish the location of the TICs in the Output Coverage, specify a Template Coverage or edit the Output Coverage manually. You can then use the Output Coverage as the destination (output) coverage of the  tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Create example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to create an empty coverage. </para>
+				<code xml:space="preserve"># Name: Create_Example.py
+# Description: Creates an empty coverage.
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+import os
+
+# Set local variables
+outCover = "c:/output/emptycov"
+
+# The output workspace must exist at least as an empty directory.
+#    Use os.makedirs if the parent directory may not exist.
+try:
+    os.makedirs(os.path.dirname(outCover))
+except:
+    pass
+
+# Execute Create
+arcpy.Create_arc(outCover)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,82 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Expand (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Expands specified zones of a raster by a specified number of cells.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Clean</keyword><keyword>Generalize</keyword><keyword>Grow</keyword><keyword>Image Processing</keyword><keyword>Simplify</keyword><keyword>Smooth</keyword><keyword>Zone</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Expand" displayname="Expand (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Expands specified zones of a raster by a specified number of cells.</para>
+			</summary><alink_name>Expand_sa</alink_name><toolIllust type="illustration" src="Expand_sa_h.png" alt="Expand illustration" /><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster for which the identified zones are to be expanded</para>
+						<para>It must be of integer type.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster for which the identified zones are to be expanded</para>
+						<para>It must be of integer type.</para>
+					</dialogReference></param><param sync="true" name="number_cells" displayname="Number of cells" datatype="Long" direction="Input" expression="number_cells" type="Required"><pythonReference>
+						<para>The number of cells to expand each specified zone by.</para>
+						<para>The value must be an integer greater than 1.</para></pythonReference><dialogReference>
+						<para>The number of cells to expand each specified zone by.</para>
+						<para>The value must be an integer greater than 1.</para></dialogReference></param><param sync="true" name="zone_values" displayname="Zone values" datatype="Long" direction="Input" expression="[zone_value,...]" type="Required"><pythonReference>
+						<para>The list of zone values to expand.</para>
+						<para>The zone values must be integers. They can be in any order.</para>
+					</pythonReference><dialogReference>
+						<para>The list of zone values to expand.</para>
+						<para>The zone values must be integers. They can be in any order.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference><para>The output generalized raster.</para>
+							<para>The specified zones of the input raster will be expanded by the specified number of cells.</para>
+						</pythonReference><dialogReference><para>The output generalized raster.</para>
+							<para>The specified zones of the input raster will be expanded by the specified number of cells.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The specified zone values are considered to be foreground zones, while the remaining zone values are considered to be background zones. With this tool the foreground zones are allowed to expand into the background zones.</para>
+			</bullet_item><bullet_item>
+				<para>When two foreground zones compete to expand into the same background zone, the conflict is resolved based on the value of the majority of surrounding cells.</para>
+			</bullet_item><bullet_item>
+				<para>NoData cells are always considered background cells; therefore, neighboring cells of any value can expand into NoData cells. NoData cells will never expand into their neighbors.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Expand example 1 (Python window)</title>
+					<para>This example expands the zone specified by a list of values by two cells.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outExpand = Expand("filter", 2, [0, 6, -3])
+outExpand.save("C:/sapyexamples/output/outexpand.img")
+                    </code></scriptExample><scriptExample><title>Expand example 2 (stand-alone script)</title>
+					<para>This example expands the zone specified by a list of values by two cells.</para>
+				<code xml:space="preserve"># Name: Expand_Ex_02.py
+# Description: Expands specified zones of a raster 
+#              by a specified number of cells.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "filter"
+numberCells = 2
+zoneValues = [0, 6, -3]
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Expand
+outExpand = Expand(inRaster, numberCells, zoneValues)
+
+# Save the output 
+outExpand.save("C:/sapyexamples/output/outexpand")
+                    </code></scriptExample></scriptExamples></tool></metadata>

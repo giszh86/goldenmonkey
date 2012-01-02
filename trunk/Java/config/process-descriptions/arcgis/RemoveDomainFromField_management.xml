@@ -1,0 +1,82 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Remove Domain from Field (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Removes an attribute domain association from a feature class or table field.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Constrain</keyword><keyword>Delete</keyword><keyword>Discard</keyword><keyword>Erase</keyword><keyword>Field</keyword><keyword>Integrity</keyword><keyword>Limit</keyword><keyword>Restrict</keyword><keyword>Subtype</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RemoveDomainFromField" displayname="Remove Domain from Field (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Removes an attribute domain association from a feature class or table field.</para>
+		</summary><alink_name>RemoveDomainFromField_management</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The input table containing the attribute domain that will be removed.</para>
+					</pythonReference><dialogReference>
+						<para>The input table containing the attribute domain that will be removed.</para>
+					</dialogReference></param><param sync="true" name="field_name" displayname="Field Name" datatype="Field" direction="Input" expression="field_name" type="Required"><pythonReference>
+						<para>The field that will no longer be associated with an attribute domain.</para>
+					</pythonReference><dialogReference>
+						<para>The field that will no longer be associated with an attribute domain.</para>
+					</dialogReference></param><param sync="true" name="subtype_code" displayname="Subtype" datatype="String" direction="Input" expression="[subtype_code,...]" type="Optional"><pythonReference><para>Selects the subtype code(s) that will no longer be associated with an attribute domain. </para></pythonReference><dialogReference>
+						<para>Selects the subtype code(s) that will no longer be associated with an attribute domain. </para>
+						<para>The Add Value button, which is used only in ModelBuilder, allows you to add expected value(s) so you can complete the dialog box and continue to build your model.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is the opposite operation from the  function. Removing a domain from a field removes the association between a field and an attribute domain.</para>
+			</bullet_item><bullet_item>
+				<para>When a domain is removed from a field, the attribute validation rule for that field is removed from the database.</para>
+			</bullet_item><bullet_item>
+				<para>The same attribute domain can be associated with multiple fields of the same table, feature class, or subtype as well as with multiple tables and feature classes. Removing a domain from a field will not affect other domain associations.</para>
+			</bullet_item><bullet_item>
+				<para>Workspace domains can also be managed in ArcCatalog or the Catalog window. Domains can be created and modified through the Domains tab on the Database Properties dialog box.</para>
+			</bullet_item><bullet_item>
+				<para>Current map layers may be used to define the Input table.</para>
+			</bullet_item><bullet_item>
+				<para>The Subtype parameter Add Value button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run, or its derived data does not exist, the Subtype parameter may not be populated with values. The Add Value button allows you to add expected value(s) so you can complete the Remove Domain From Field dialog box and continue to build your model.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Remove Domain from Field Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the RemoveDomainFromField function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env 
+env.workspace = "C:/data"
+arcpy.RemoveDomainFromField_management("montgomery.gdb/water/distribmains", "DIAMETER")
+                    </code></scriptExample><scriptExample><title>Remove Domain from Field Example 2 (Stand-alone Script)</title>
+					<para>This stand-alone script uses the RemoveDomainFromField function as part of a workflow to edit a domain.</para>
+				<code xml:space="preserve"># Name: RemoveDomainsExample.py
+# Purpose: Update an attribute domain to constrain valid pipe material values
+# Author: ESRI
+
+# Import system modules
+import arcpy, os
+from arcpy import env
+ 
+try:
+    # Set the workspace (to avoid having to type in the full path to the data every time)
+    env.workspace = "data"
+ 
+    # set local parameters
+    inFeatures = "Montgomery.gdb/Water/DistribMains"
+    inField = "MATERIAL"
+    dWorkspace = "Montgomery.gdb"
+    domName = "Material"
+    codedValue =  "ACP: Asbestos concrete"
+    codeField = "TYPE"
+    descField = "DESRIPT"
+    # Process: Remove the constraint from the material field
+    arcpy.RemoveDomainFromField_management(inFeatures, inField)
+ 
+    # Edit the domain values
+    # Process: Remove a coded value from the domain
+    arcpy.DeleteCodedValueFromDomain_management(dWorkspace, domName, codedValue)
+ 
+    # Process: Create a table from the domain to edit it with ArcMap editing tools
+    arcpy.DomainToTable_management(dWorkspace, domname, dWorkspace + os.sep + domname , codeField, descField)
+ 
+    # Process: Delete the domain
+    arcpy.DeleteDomain_management(dWorkspace, domName)
+ 
+    # Edit the domain table outside of geoprocessing
+    # and then bring the domain back in with the TableToDomain process
+ 
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

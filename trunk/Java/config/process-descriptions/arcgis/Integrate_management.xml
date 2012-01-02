@@ -1,0 +1,83 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Integrate (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Integrate is used to maintain the integrity of shared feature boundaries by making features coincident if they fall within the specified x,y tolerance.         Features that fall within the specified x,y tolerance are considered identical or coincident.</para><para>For example, suppose you specify an x,y tolerance of five  units (such as feet or meters) and your data has a parcel boundary that should be shared with the adjacent parcel boundary but is four  units away. After running this tool, the boundaries of the two parcels would be made coincident because they were within the x,y tolerance of five units.</para><para>Integrate performs
+the following processing tasks:</para>
+			<para>
+				<bulletList>
+					<bullet_item>Finds features that
+are within the given x,y tolerance.  </bullet_item><bullet_item>
+Inserts common coordinate vertices for features that fall within the given x,y tolerance and will add vertices where feature segments intersect.</bullet_item>
+				</bulletList>
+			</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Boundary</keyword><keyword>Clean</keyword><keyword>Cluster</keyword><keyword>Coincident</keyword><keyword>Collapse</keyword><keyword>Distance</keyword><keyword>Edit</keyword><keyword>Fuzzy</keyword><keyword>Reconcile</keyword><keyword>Separation</keyword><keyword>Snap</keyword><keyword>Tolerance</keyword><keyword>Topologic</keyword><keyword>Topology</keyword><keyword>Validate</keyword><keyword>Vertex</keyword><keyword>Vertices</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Integrate" displayname="Integrate (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Integrate is used to maintain the integrity of shared feature boundaries by making features coincident if they fall within the specified x,y tolerance.         Features that fall within the specified x,y tolerance are considered identical or coincident.</para><para>For example, suppose you specify an x,y tolerance of five  units (such as feet or meters) and your data has a parcel boundary that should be shared with the adjacent parcel boundary but is four  units away. After running this tool, the boundaries of the two parcels would be made coincident because they were within the x,y tolerance of five units.</para><para>Integrate performs
+the following processing tasks:</para>
+			<para>
+				<bulletList>
+					<bullet_item>Finds features that
+are within the given x,y tolerance.  </bullet_item><bullet_item>
+Inserts common coordinate vertices for features that fall within the given x,y tolerance and will add vertices where feature segments intersect.</bullet_item>
+				</bulletList>
+			</para>
+		</summary><alink_name>Integrate_management</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/Integrate_management_v.gif" alt="Integrate Illustration" /><toolIllust type="illustration" src="Integrate_management_h.gif" alt="Integrate Illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Value Table" direction="Input" expression="[[Feature Layer, Long],...]" type="Required"><pythonReference>
+						<para>The feature classes to be integrated. When the distance between features is small in comparison to the tolerance the vertices or points will be clustered (moved to be coincident). The feature class or layer with the lower rank will snap to the feature from the feature class or layer with the higher rank (with 1 being a higher rank than 2). Note that features in the feature class with a rank of 1 may move when a large x,y tolerance is used.</para>
+					</pythonReference><dialogReference>
+						<para>The feature classes to be integrated. When the distance between features is small in comparison to the tolerance the vertices or points will be clustered (moved to be coincident). The feature class or layer with the lower rank will snap to the feature from the feature class or layer with the higher rank (with 1 being a higher rank than 2). Note that features in the feature class with a rank of 1 may move when a large x,y tolerance is used.</para>
+					</dialogReference></param><param sync="true" name="cluster_tolerance" displayname="XY Tolerance" datatype="Linear unit" direction="Input" expression="cluster_tolerance" type="Optional"><pythonReference>
+						<para>The distance that determines the range in which feature vertices are made coincident. To minimize undesired movement of vertices, the x,y tolerance should be fairly small. If no value is specified, the xy tolerance from the first dataset in the list of inputs will be used.</para>
+					</pythonReference><dialogReference>
+						<para>The distance that determines the range in which feature vertices are made coincident. To minimize undesired movement of vertices, the x,y tolerance should be fairly small. If no value is specified, the xy tolerance from the first dataset in the list of inputs will be used.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				
+					<para>This tool modifies the input data. See  for more information and strategies to avoid undesired data changes.</para>
+				
+			</bullet_item><bullet_item>
+				<para>If there are any input features selected, this tool will execute only on those selected features.</para>
+			</bullet_item><bullet_item><para>This tool performs the same kind of work as a topology in that it moves features within an x,y tolerance and inserts vertices where features intersect. Consider using a topology to perform this sort of operation because a topology allows you to  specify rules and conditions about how features relate to each other.  For more information about using topologies, see  .</para><para></para><para>You would use Integrate rather than a topology when:<bulletList><bullet_item>You do not need to specify any rules about how features are moved—you simply want all features to coalesce within a specified tolerance.</bullet_item><bullet_item>You want lines to have vertices wherever they intersect.  </bullet_item><bullet_item>You are working with non-geodatabase features such as shapefiles, or with features from different geodatabases (features in a topology must all come from the same feature dataset).</bullet_item></bulletList></para></bullet_item><bullet_item>
+				<para>The value for XY Tolerance is critical—a tolerance that is too large may collapse and delete polygons or lines, or move vertices that should not be moved. To minimize error, the value you choose for x,y tolerance should be as small as possible.</para>
+			</bullet_item><bullet_item>
+				<para>Integrate accepts only simple feature classes as input (point, multipoint, line, or polygon). The input features cannot include annotation features, dimension features, network features, and so on.</para>
+			</bullet_item><bullet_item>
+				<para>To undo changes to the input features, use Integrate in an edit session.</para>
+			</bullet_item><bullet_item>
+				<para>When processing datasets that contain  individual features with a very large number of vertices (e.g., hundreds of thousands to millions of vertices within a single feature), some geometric processing operations may run out of memory. For more details, see .</para>
+			</bullet_item><bullet_item>
+				<para>The output data element of this tool is a derived multivalue output. To use this tool's output(s) with another tool, use its input(s) directly and set its output as a precondition of the other tool, as illustrated below. .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Integrate Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the Integrate function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.CopyFeatures_management("Habitat_Analysis.gdb/vegtype", "C:/output/output.gdb/vegtype")
+arcpy.Integrate_management("C:/output/output.gdb/vegtype", 0.01)
+
+                    </code></scriptExample><scriptExample><title>Integrate Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script is a simple example of how to apply the Integrate function in a scripting environment.</para>
+				<code xml:space="preserve"># Name: Integrate_Example2.py
+# Description: Run Integrate on a feature class
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data/Habitat_Analysis.gdb"
+ 
+# Set local variables
+inFeatures = "vegtype"
+integrateFeatures = "C:/output/output.gdb/vegtype"
+xyTolerance = "0.1 feet"
+ 
+# Execute CopyFeature (since Integrate modifies the original data
+#  this ensures the original is preserved)
+arcpy.CopyFeatures_management(inFeatures, integrateFeatures)
+ 
+# Execute Integrate
+arcpy.Integrate_management(integrateFeatures, xyTolerance)
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Remove Spatial Index (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Deletes the spatial index from a shapefile, file geodatabase feature class, or an ArcSDE feature class. The spatial index cannot be deleted from a personal geodatabase feature class.</para>
+			<para>Spatial indexes are used by ArcGIS to quickly locate features that match a spatial query. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Delete</keyword><keyword>Geometry</keyword><keyword>Improve</keyword><keyword>Locate</keyword><keyword>Optimize</keyword><keyword>Performance</keyword><keyword>Quick</keyword><keyword>Retrieve</keyword><keyword>Search</keyword><keyword>Speed</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RemoveSpatialIndex" displayname="Remove Spatial Index (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Deletes the spatial index from a shapefile, file geodatabase feature class, or an ArcSDE feature class. The spatial index cannot be deleted from a personal geodatabase feature class.</para>
+			<para>Spatial indexes are used by ArcGIS to quickly locate features that match a spatial query. </para>
+		</summary><alink_name>RemoveSpatialIndex_management</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer;Raster Catalog Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The features from which the spatial index will be removed.</para>
+					</pythonReference><dialogReference>
+						<para>The features from which the spatial index will be removed.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Auto_commit" label="Auto commit">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The spatial index cannot be deleted from an ArcSDE feature class that is versioned.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RemoveSpatialIndex Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the RemoveSpatialIndex function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "Database Connections/Connection to esoracle.sde"
+arcpy.RemoveSpatialIndex_management("LPI.Land/LPI.PLSSFirstDivision")
+                    </code></scriptExample><scriptExample><title>RemoveSpatialIndex Example 2 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the RemoveSpatialIndex function in a stand-alone script.</para>
+				<code xml:space="preserve">
+# Name: RemoveSpatialIndex_Example2.py
+# Description: Removes a spatial index from a SDE feature class.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set workspace
+arcpy.env.workspace = "Database Connections/Connection to esoracle.sde"
+
+# Set local variables
+in_features = "LPI.Land/LPI.PLSSFirstDivision"
+
+# Execute RemoveSpatialIndex
+arcpy.RemoveSpatialIndex_management(in_features)
+                    </code></scriptExample></scriptExamples></tool></metadata>

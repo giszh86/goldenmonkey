@@ -1,0 +1,105 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Line Statistics (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates a statistic on the attributes of lines in a circular neighborhood around each output cell.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Length</keyword><keyword>Neighborhood</keyword><keyword>Neighborhood</keyword><keyword>Segment</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="LineStatistics" displayname="Line Statistics (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates a statistic on the attributes of lines in a circular neighborhood around each output cell.</para>
+			
+		</summary><alink_name>LineStatistics_sa</alink_name><parameters><param sync="true" name="in_polyline_features" displayname="Input polyline features" datatype="Feature Layer" direction="Input" expression="in_polyline_features" type="Required"><pythonReference>
+						<para>The input polyline features for which to calculate the Line Statistics.</para>
+					</pythonReference><dialogReference>
+						<para>The input polyline features for which to calculate the Line Statistics.</para>
+					</dialogReference></param><param sync="true" name="field" displayname="Field" datatype="Field" direction="Input" expression="field" type="Required"><pythonReference>
+						<para>Field can be any numeric field of the input line features.</para>
+						<para>It can be the Shape field if the input features contains z.</para>
+					</pythonReference><dialogReference>
+						<para>Field can be any numeric field of the input line features.</para>
+						<para>It can be the Shape field if the input features contains z.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>Cell size for output raster dataset.</para>
+						<para>This is the value in the environment if specifically set. If not set in the environment, it is the shorter of the width or height of the extent of the input feature  dataset, in the output spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>Cell size for output raster dataset.</para>
+						<para>This is the value in the environment if specifically set. If not set in the environment, it is the shorter of the width or height of the extent of the input feature  dataset, in the output spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="search_radius" displayname="Search radius" datatype="Double" direction="Input" expression="search_radius" type="Optional"><pythonReference>
+						<para>Search radius to calculate the desired statistic within, in map units.</para>
+						<para>The default radius is five times the output cell size.</para>
+					</pythonReference><dialogReference>
+						<para>Search radius to calculate the desired statistic within, in map units.</para>
+						<para>The default radius is five times the output cell size.</para>
+					</dialogReference></param><param sync="true" name="statistics_type" displayname="Overlay statistic" datatype="String" direction="Input" expression="statistics_type" type="Optional"><pythonReference>
+						<para>The Statistic type to be calculated.</para>
+						<para>Statistics are calculated on the value of the specified field for all lines in the neighborhood.</para>
+						<bulletList><bullet_item>MEAN — Calculates the average field value in each neighborhood, weighted by the length.The form of the calculation is:<bulletList><bullet_item>Mean = (sum of (length * field_value)) / (sum_of_length)</bullet_item></bulletList>
+									Only the part of the length that falls within the neighborhood is used.</bullet_item><bullet_item>MAJORITY — Determines the value having the greatest length of line in the neighborhood.</bullet_item><bullet_item>MAXIMUM—Determines the largest value in the neighborhood.</bullet_item><bullet_item>MEDIAN — Determines the median value, weighted by the length.Conceptually, all line segments in the neighborhood are sorted by value and placed end-to-end in a straight line. The value of the segment at the midpoint of the straight line is the median.</bullet_item><bullet_item>MINIMUM — Calculates  smallest value in each neighborhood.</bullet_item><bullet_item>MINORITY — The value having the least length of line in the neighborhood.</bullet_item><bullet_item>RANGE — The range of values (maximum–minimum).</bullet_item><bullet_item>STD — The standard deviation of the values.</bullet_item><bullet_item>VARIETY — The number of unique values.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The Statistic type to be calculated.</para>
+						<para>Statistics are calculated on the value of the specified field for all lines in the neighborhood.</para>
+						<bulletList><bullet_item>MEAN — Calculates the average field value in each neighborhood, weighted by the length.The form of the calculation is:<bulletList><bullet_item>Mean = (sum of (length * field_value)) / (sum_of_length)</bullet_item></bulletList>
+									Only the part of the length that falls within the neighborhood is used.</bullet_item><bullet_item>MAJORITY — Determines the value having the greatest length of line in the neighborhood.</bullet_item><bullet_item>MAXIMUM—Determines the largest value in the neighborhood.</bullet_item><bullet_item>MEDIAN — Determines the median value, weighted by the length.Conceptually, all line segments in the neighborhood are sorted by value and placed end-to-end in a straight line. The value of the segment at the midpoint of the straight line is the median.</bullet_item><bullet_item>MINIMUM — Calculates  smallest value in each neighborhood.</bullet_item><bullet_item>MINORITY — The value having the least length of line in the neighborhood.</bullet_item><bullet_item>RANGE — The range of values (maximum–minimum).</bullet_item><bullet_item>STD — The standard deviation of the values.</bullet_item><bullet_item>VARIETY — The number of unique values.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output line statistics raster.</para>
+						</pythonReference><dialogReference>
+							<para>The output line statistics raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Only the part of a line within the neighborhood is considered for the Majority, Mean, Median, and Minority types. For the others, it does not matter whether a part or the whole line is used.</para>
+			</bullet_item><bullet_item>
+				<para>If there are no lines in the neighborhood of a raster cell, the Variety statistic assigns a value of zero. For the other statistics, NoData is assigned.</para>
+			</bullet_item><bullet_item>
+				<para>The statistic types Majority, Mean, Median, and Minority are weighted according to the length of the lines. If a line is twice as long as another, its value is considered to occur twice as often.</para>
+			</bullet_item><bullet_item>
+				<para>The values on the output raster will always be integer in the case of Variety. They will always be floating point for Mean and STD. For the other statistics, the output data type is the same as the input item value type.</para>
+			</bullet_item><bullet_item>
+				<para>When the field is integer, the available overlay statistic choices are Mean, Majority, Maximum, Median, Minimum, Minority, Range, STD, and Variety. When the field is floating point, the only allowed statistics are Mean, Maximum, Minimum, Range, and STD.</para>
+			</bullet_item><bullet_item>
+				<para>For statistic types Majority, Maximum, Median, Minimum, Minority, and Range, the output data type of the raster will be the same as the input field type. For statistics types Mean and STD, the output raster will always be floating point. For Variety, the output raster will always be integer.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>LineStatistics example 1 (Python window)</title>
+					<para>This example calculates the average length of line segments within a certain radius of each cell in the input raster.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+lineStatOut = LineStatistics("streams", "LENGTH", 50, 500, "MEAN")
+lineStatOut.save("C:/sapyexamples/output/linestatout")
+                    </code></scriptExample><scriptExample><title>LineStatistics example 2 (stand-alone script)</title>
+					<para>This example calculates the average length of line segments within a certain radius of each cell in the input raster.</para><code xml:space="preserve"># Name: LineStatistics_Ex_02.py
+# Description: 
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inLines = "streams.shp"
+field = "LENGTH"
+cellSize = 50
+searchRadius = 500
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute LineStatistics
+lineStatOut = LineStatistics(inLines, field, cellSize, searchRadius,
+                              "MEAN")
+
+# Save the output 
+lineStatOut.save("C:/sapyexamples/output/linestatisout")
+                    </code></scriptExample></scriptExamples></tool></metadata>

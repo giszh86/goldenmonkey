@@ -1,0 +1,69 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Resolve Road Conflicts  (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Resolves graphic conflicts among symbolized road features by adjusting portions of line segments. </para>
+			
+			
+			<para>This tool does not produce output layers but instead alters the source feature classes of the input  layers. If the input layers are drawn with a representation (whose editing behavior is set to store shape overrides), the modified features are stored as shape overrides in the representation. If the layer is not drawn with a representation, the geometry of the input features is modified. Using representations is recommended when working with the conflict resolution tools. That way, if the results are not acceptable, or to rerun the tool with different parameters, simply remove the overrides using the Remove Override tool. It is strongly suggested that you make a copy of your input features if you are not using representations whose editing behavior is set to store shape overrides.</para>
+		
+			<para> A warning is raised if the input features are not in a projected coordinate system. This tool relies on  linear distance units, which will create unexpected results in an unprojected coordinate system . It is strongly suggested that you run this tool on data in a projected coordinate system to ensure valid results. An error is raised and the tool will not process if the coordinate system is missing or unknown.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cartography</keyword><keyword>Classification</keyword><keyword>Conflict Detection</keyword><keyword>Conflict Resolution</keyword><keyword>Disperse</keyword><keyword>Displace</keyword><keyword>Displacement</keyword><keyword>Freeway</keyword><keyword>Geometry Override</keyword><keyword>Graphic Conflict</keyword><keyword>Hierarchy</keyword><keyword>Highway</keyword><keyword>Intersection</keyword><keyword>Lane</keyword><keyword>Move</keyword><keyword>Multilane</keyword><keyword>Overlap</keyword><keyword>Representation</keyword><keyword>Shape Override</keyword><keyword>Street</keyword><keyword>Symbol</keyword><keyword>Symbol Conflict</keyword><keyword>Symbol Footprint</keyword><keyword>Symbolisation</keyword><keyword>Symbolization</keyword><keyword>Symbology</keyword><keyword>Transportation</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" ResolveRoadConflicts " displayname=" Resolve Road Conflicts  (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para> Resolves graphic conflicts among symbolized road features by adjusting portions of line segments. </para>
+			
+			
+			<para>This tool does not produce output layers but instead alters the source feature classes of the input  layers. If the input layers are drawn with a representation (whose editing behavior is set to store shape overrides), the modified features are stored as shape overrides in the representation. If the layer is not drawn with a representation, the geometry of the input features is modified. Using representations is recommended when working with the conflict resolution tools. That way, if the results are not acceptable, or to rerun the tool with different parameters, simply remove the overrides using the Remove Override tool. It is strongly suggested that you make a copy of your input features if you are not using representations whose editing behavior is set to store shape overrides.</para>
+		
+			<para> A warning is raised if the input features are not in a projected coordinate system. This tool relies on  linear distance units, which will create unexpected results in an unprojected coordinate system . It is strongly suggested that you run this tool on data in a projected coordinate system to ensure valid results. An error is raised and the tool will not process if the coordinate system is missing or unknown.</para></summary><alink_name> ResolveRoadConflicts _cartography</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/ResolveRoadConflicts_cartography_v.png" alt="The Resolve Road Conflicts tool " /><toolIllust type="illustration" src="ResolveRoadConflicts_cartography_h.png" alt="The Resolve Road Conflicts tool" /><parameters><param sync="true" name="in_layers" displayname="Input Road Layers" datatype="Feature Layer" direction="Input" expression="[in_layers,...]" type="Required"><pythonReference>
+						<para> The input feature layers containing symbolized road features that may be in conflict. </para>
+					</pythonReference><dialogReference>
+						<para> The input feature layers containing symbolized road features that may be in conflict. </para>
+					</dialogReference></param><param sync="true" name="hierarchy_field" displayname="Hierarchy Field" datatype="Field" direction="Input" expression="hierarchy_field" type="Required"><pythonReference>
+						<para> The field that contains hierarchical ranking of feature importance, where 1 is very important and larger integers reflect decreasing importance. A value of 0 (zero) locks the feature to ensure that it is not moved. The hierarchy field must be present and named the same for all input feature classes.</para>
+					</pythonReference><dialogReference>
+						<para> The field that contains hierarchical ranking of feature importance, where 1 is very important and larger integers reflect decreasing importance. A value of 0 (zero) locks the feature to ensure that it is not moved. The hierarchy field must be present and named the same for all input feature classes.</para>
+					</dialogReference></param><param sync="true" name="out_displacement_features" displayname="Output Displacement Feature Class" datatype="Feature Class" direction="Output" expression="out_displacement_features" type="Optional"><pythonReference>
+						<para> The output polygon features containing the degree and direction of road displacement, to be used by the Propagate Displacement tool to preserve spatial relationships. </para>
+					</pythonReference><dialogReference>
+						<para> The output polygon features containing the degree and direction of road displacement, to be used by the Propagate Displacement tool to preserve spatial relationships. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cartographic_coordinate_system" label="Cartographic coordinate system">
+						
+					</environment><environment name="Reference_scale" label="Reference scale">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is typically used when producing relatively large-scale products where it is preferable to display divided roads with multiple lanes that are visually distinct. At smaller scales, you may want to use the  tool to display a single representative line for these features instead. If your workflow includes running both tools on the same collection of roads, it is advisable to merge roads prior to resolving road conflicts. </para>
+			</bullet_item><bullet_item>
+				<para> The Hierarchy Field parameter is used to specify the hierarchical importance of each road class. Lower integers specify more significant roads, with hierarchy  equal to 1 for the most important roads. Movement will be minimized for the most important roads; lower hierarchy roads generally will be moved to accommodate higher hierarchy roads. The hierarchy field must be present and named the same for all input feature classes.</para>
+			</bullet_item><bullet_item>
+				<para> This tool operates by assessing graphic conflicts of symbolized features. The symbology extent and the reference scale are considered in conjunction with one another. Run this tool only after you have finalized the appearance of your symbols, and ensure that the reference scale corresponds to the final intended output scale.</para>
+			</bullet_item><bullet_item>
+				<para>You can "lock" features from displacement  by calculating the Hierarchy Field value equal to 0 (zero). This is useful when a road should not be moved because of its a  spatial relationship with other map features, especially continuous data like elevation, and should not be moved. </para>
+			</bullet_item><bullet_item>
+				<para>The optional Output Displacement Feature Class parameter creates a feature class of  polygons that indicates the amount and direction of displacement that took place. This feature class can be used for visual inspection, for spatial querying, or as an input to the  tool. </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ResolveRoadConflicts tool Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the ResolveRoadConflicts tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+env.referenceScale = "50000"
+arcpy.ResolveRoadConflicts_cartography("C:/data/roads.lyr;C:/data/streets.lyr;C:/data/highways.lyr",
+                                        "hierarchy", "C:/data/cartography.gdb/transportation/displace")
+
+                    </code></scriptExample><scriptExample><title>ResolveRoadConflicts tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the ResolveRoadConflicts tool.</para>
+				<code xml:space="preserve"># Name: ResolveRoadConflicts_standalone_script.py
+# Description: Resolves symbology conflicts between roads by separating them apart from each other
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+env.referenceScale = "50000"
+
+# Set local variables
+in_layers = "C:/data/roads.lyr;C:/data/streets.lyr;C:/data/highways.lyr"
+hierarchy_field = "hierarchy"
+out_displacement_features = "C:/data/cartography.gdb/transportation/displace"
+
+# Execute Resolve Road Conflicts
+arcpy.ResolveRoadConflicts_cartography(in_layers, level_field, out_displacement_features)
+                    </code></scriptExample></scriptExamples></tool></metadata>

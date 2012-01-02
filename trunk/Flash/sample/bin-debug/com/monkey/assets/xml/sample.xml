@@ -1,0 +1,114 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?> 
+<process type="FFD" stepByStep="false">
+  <head>
+    <Identifier>sample</Identifier>
+    <Title>sample示例</Title>
+    <Abstract>sample示例</Abstract>
+    <DataInputs>
+      <Input>
+        <Identifier>first</Identifier>
+        <Title>参数中文caption</Title>
+        <Abstract>描述信息</Abstract>
+        <DataType>number</DataType>
+		<Reference id="2" name="first" />
+      </Input>
+      <Input>
+        <Identifier>second</Identifier>
+        <Title>second</Title>
+        <Abstract/>
+        <DataType>number</DataType>
+		<Reference id="2" name="second" />
+      </Input>
+	  <Input>
+        <Identifier>s1</Identifier>
+        <Title>s1</Title>
+        <Abstract/>
+        <DataType>String</DataType>
+		<Reference id="3" name="s1" />
+      </Input>
+	  <Input>
+        <Identifier>s2</Identifier>
+        <Title>s2</Title>
+        <Abstract/>
+        <DataType>String</DataType>
+		<Reference id="3" name="s2" />
+      </Input>
+	  <Input>
+        <Identifier>s3</Identifier>
+        <Title>s3</Title>
+        <Abstract/>
+        <DataType>String</DataType>
+		<Reference id="3" name="s3" />
+      </Input>
+    </DataInputs>
+    <ProcessOutputs>
+      <Output>
+        <Identifier>file</Identifier>
+        <Title>file</Title>
+        <Abstract>file.</Abstract>
+        <DataType>XML</DataType>
+      </Output>    
+    </ProcessOutputs>
+  </head>
+
+
+  <flow>   
+    <start id="1" />    
+    <operation name="monkey.Algebraic" id="2">
+      <inputs>
+        <input name="first" type="number" title="左运算数" abstract="左运算数" variable="ref:first"/>
+        <input name="second" type="number" title="右运算数" abstract="右运算数" variable="ref:second" />
+      </inputs>
+      <outputs> 
+		<output name="plus" type="number" title="加" abstract="加" />
+		<output name="decrease" type="number" title="加" abstract="加" />
+		<output name="multiply" type="number" title="加" abstract="加" />
+      </outputs>            
+    </operation>
+    <operation name="monkey.CombineString" id="3">
+      <inputs>
+        <input name="s1" type="String" title="s1" abstract="s1" variable="ref:s1" />
+        <input name="s2" type="String" title="s2" abstract="s2" variable="ref:s2" />
+        <input name="s3" type="String" title="s3" abstract="s3" variable="ref:s3" />
+      </inputs>
+      <outputs> 
+		<output name="s12" type="String" title="s12" abstract="s12" />	  
+		<output name="s13" type="String" title="s13" abstract="s13" />	  
+      </outputs>
+    </operation>
+    <operation name="monkey.CreateElement" id="4">
+      <inputs>       
+		<input name="key" type="String" title="key" abstract="key" variable="" />
+		<input name="value" type="number" title="value" abstract="value" variable="" />
+		<input name="file" type="XML" title="file" abstract="file" variable="" />
+      </inputs>
+      <outputs>
+		<output name="file" type="XML" title="file" abstract="file" />	  
+      </outputs>
+    </operation>    
+    <end id="5" />
+
+    <links>
+      <link from="1" to="2" />
+      <link from="1" to="3" />
+      <link from="2" to="4" >
+        <assign>
+            <from>plus</from>
+            <to>value</to>
+        </assign>	
+      </link>
+      <link from="3" to="4" >
+        <assign>
+            <from>s12</from>
+            <to>key</to>
+        </assign>
+		<assign>
+            <from>s13</from>
+            <to>file</to>
+        </assign>
+      </link>         
+      <link from="4" to="5" />
+    </links>
+	<reply name="file" kind="XML" operation="monkey.CreateElement" id="4" variable="file"/> 
+  </flow>
+</process>

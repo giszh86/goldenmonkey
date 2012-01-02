@@ -1,0 +1,253 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Topo to Raster (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Interpolates a hydrologically correct raster surface from point, line, and polygon data.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Anudem</keyword><keyword>Dem</keyword><keyword>Estimate</keyword><keyword>Hydro</keyword><keyword>Interpolate</keyword><keyword>Interpolation</keyword><keyword>Interpolator</keyword><keyword>Predict</keyword><keyword>Spline</keyword><keyword>Surface</keyword><keyword>Thin Plate</keyword><keyword>Topographic</keyword><keyword>Topogrid</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TopoToRaster" displayname="Topo to Raster (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Interpolates a hydrologically correct raster surface from point, line, and polygon data.</para>
+			
+		</summary><alink_name>TopoToRaster_sa</alink_name><parameters><param sync="true" name="in_topo_features" displayname="Input feature data" datatype="TopoInput" direction="Input" expression="topo_input" type="Required"><pythonReference>
+						<para>The Topo class specifies the input features containing the z-values to be interpolated into a surface raster.</para>
+						<para>There are six types of data accepted inputs to the Topo class: TopoPointElevation, TopoContour, TopoStream, TopoSink, TopoBoundary, TopoLake.</para>
+						<bulletList>
+							<bullet_item>TopoPointElevation ([[inFeatures,{field}],...])
+								<para> A point feature class representing surface elevations.</para>
+								<para>The field stores the elevations of the points.</para>
+							</bullet_item>
+							<bullet_item>TopoContour ([[inFeatures,{field}],...])
+								<para>A line feature class that represents elevation contours.</para>
+								<para>The field stores the elevations of the contour lines.</para>
+							</bullet_item>
+							<bullet_item>
+								TopoStream ([inFeatures,...])
+								<para>A line feature class of stream locations. All arcs must be oriented to point downstream. The feature class should only contain single arc streams.</para>
+							</bullet_item>
+							<bullet_item>
+								TopoSink ([[inFeatures,{field}],...])
+								<para>A point feature class that represents known topographic depressions. Topo to Raster will not attempt to remove from the analysis any points explicitly identified as sinks.</para>
+								<para>The field used should be one that stores the elevation of the legitimate sink. If NONE is selected, only the location of the sink is used.</para>
+							</bullet_item>
+							<bullet_item>
+								TopoBoundary ([inFeatures,...])
+								<para>A boundary is a feature class containing a single polygon that represents the outer boundary of the output raster. Cells in the output raster outside this boundary will be NoData. This option can be used for clipping out water areas along coastlines before making the final output raster. </para>
+							</bullet_item>
+							<bullet_item>
+								TopoLake ([inFeatures,...])
+								<para>A polygon feature class that specifies the location of lakes. All output raster cells within a lake will be assigned to the minimum elevation value of all cells along the shoreline.</para>
+							</bullet_item>
+						</bulletList>
+						<para>The PointElevation, Contour, and Sink types of feature input can have a field specified that contains the z-values. There is no Field option for Boundary, Lake, or Stream input types.</para>
+					</pythonReference><dialogReference>
+						<para>The input features containing the z-values to be interpolated into a surface raster.</para>
+						<para>Each feature input can have a field specified that contains the z-values, and one of six types specified.</para>
+						<bulletList>
+							<bullet_item>Feature layer—The input feature dataset.</bullet_item>
+							<bullet_item>Field—The name of the field that stores the attributes, where appropriate.</bullet_item>
+							<bullet_item>Type—The type of input feature dataset.</bullet_item>
+						</bulletList>
+						<para>There are six types of accepted inputs:</para>
+						<bulletList>
+							<bullet_item>PointElevation—A point feature class representing surface elevations. The Field stores the elevations of the points.</bullet_item>
+							<bullet_item>Contour—A line feature class that represents elevation contours. The Field stores the elevations of the contour lines.</bullet_item>
+							<bullet_item>Stream—A line feature class of stream locations. All arcs must be oriented to point downstream. The feature class should only contain single arc streams. There is no Field option for Stream.</bullet_item>
+							<bullet_item>Sink—A point feature class that represents known topographic depressions. Topo to Raster will not attempt to remove from the analysis any points explicitly identified as sinks. The Field used should be one that stores the elevation of the legitimate sink. If NONE is selected, only the location of the sink is used.</bullet_item>
+							<bullet_item>Boundary—A feature class containing a single polygon that represents the outer boundary of the output raster. Cells in the output raster outside this boundary will be NoData. This option can be used for clipping out water areas along coastlines before making the final output raster. There is no Field option for Boundary.</bullet_item>
+							<bullet_item>Lake—A polygon feature class that specifies the location of lakes. All output raster cells within a lake will be assigned to the minimum elevation value of all cells along the shoreline. There is no Field option for Lake.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size at which the output raster will be created.</para><para>This will be the value in the environment if it is explicitly set;  otherwise, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size at which the output raster will be created.</para><para>This will be the value in the environment if it is explicitly set;  otherwise, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="extent" displayname="Output extent" datatype="Extent" direction="Input" expression="extent" type="Optional"><pythonReference>
+						<para>The Extent class determines the extent for the output raster dataset.</para>
+						<para>Interpolation will occur out to the x and y limits, and cells outside that extent will be NoData. For best interpolation results along the edges of the output raster, the x and y limits should be smaller than the extent of the input data by at least 10 cells on each side.</para>
+						<para>The form of the Extent class is: <bulletList><bullet_item>Extent (XMin, YMin, XMax, YMax)<para>where:<bulletList>
+											<bullet_item>XMin—The default is the smallest x coordinate of all inputs.</bullet_item>
+											<bullet_item>YMin—The default is the smallest y coordinate of all inputs.</bullet_item>
+											<bullet_item>XMax—The default is the largest x coordinate of all inputs.</bullet_item>
+											<bullet_item>YMax—The default is the largest y coordinate of all inputs.</bullet_item>
+										</bulletList></para></bullet_item></bulletList></para><para>The default extent is the smallest of all extents of the input feature data.</para>
+					</pythonReference><dialogReference>
+						<para>Extent for the output raster dataset.</para>
+						<para>Interpolation will occur out to the x and y limits, and cells outside that extent will be NoData. For best interpolation results along the edges of the output raster, the x and y limits should be smaller than the extent of the input data by at least 10 cells on each side.</para>
+						<bulletList>
+							<bullet_item>Left—The default is the smallest x coordinate of all inputs.</bullet_item>
+							<bullet_item>Bottom—The default is the smallest y coordinate of all inputs.</bullet_item>
+							<bullet_item>Right—The default is the largest x coordinate of all inputs.</bullet_item>
+							<bullet_item>Top—The default is the largest y coordinate of all inputs.</bullet_item>
+						</bulletList>
+						<para>The default extent is the smallest of all extents of the input feature data.</para>
+					</dialogReference></param><param sync="true" name="Margin" displayname="Margin in cells" datatype="Long" direction="Input" expression="margin" type="Optional"><pythonReference>
+						<para>Distance in cells to interpolate beyond the specified output extent and boundary.</para>
+						<para>The value must be greater than or equal to 0 (zero). The default value is 20.</para>
+						<para>If the Extent and TopoBoundary feature dataset are the same as the limit of the input data (the default), values interpolated along the edge of the DEM will not match well with adjacent DEM data. This is because they have been interpolated using one-half as much data as the points inside the raster, which are surrounded on all sides by input data. The Margin option allows input data beyond these limits to be used in the interpolation.</para>
+					</pythonReference><dialogReference>
+						<para>Distance in cells to interpolate beyond the specified output extent and boundary.</para>
+						<para>The value must be greater than or equal to 0 (zero). The default value is 20.</para>
+						<para>If the Output extent and Boundary feature datasets are the same as the limit of the input data (the default), values interpolated along the edge of the DEM will not match well with adjacent DEM data. This is because they have been interpolated using one-half as much data as the points inside the raster, which are surrounded on all sides by input data. The Margin In Cells option allows input data beyond these limits to be used in the interpolation.</para>
+					</dialogReference></param><param sync="true" name="minimum_z_value" displayname="Smallest z value to be used in interpolation" datatype="Double" direction="Input" expression="minimum_z_value" type="Optional"><pythonReference>
+						<para>The minimum z-value to be used in the interpolation.</para>
+						<para>The default is 20 percent below the smallest of all the input values. This setting should seldom be less than zero (sea level).</para>
+					</pythonReference><dialogReference>
+						<para>The minimum z-value to be used in the interpolation.</para>
+						<para>The default is 20 percent below the smallest of all the input values. This setting should seldom be less than zero (sea level).</para>
+					</dialogReference></param><param sync="true" name="maximum_z_value" displayname="Largest z value to be used in interpolation" datatype="Double" direction="Input" expression="maximum_z_value" type="Optional"><pythonReference>
+						<para>The maximum z-value to be used in the interpolation.</para>
+						<para>The default is 20 percent above the largest of all input values.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum z-value to be used in the interpolation.</para>
+						<para>The default is 20 percent above the largest of all input values.</para>
+					</dialogReference></param><param sync="true" name="enforce" displayname="Drainage enforcement" datatype="String" direction="Input" expression="enforce" type="Optional"><pythonReference>
+						<para>The type of drainage enforcement to apply.</para>
+						<para>The drainage enforcement option can be set to attempt to remove all sinks or depressions so a hydrologically correct DEM can be created. If sink points have been explicitly identified in the input feature data, these depressions will not be filled.</para>
+						<bulletList><bullet_item>ENFORCE — The algorithm will attempt to remove all sinks it encounters, whether they are "real" or "spurious". This is the default.</bullet_item><bullet_item>NO_ENFORCE — No sinks will be filled.</bullet_item><bullet_item>ENFORCE_WITH_SINK — Points identified as sinks in Input feature data represent known topographic depressions, and will not be altered. Any sink not identified in input feature data is considered spurious, and the algorithm will attempt to fill it.Having more than 8,000 spurious sinks causes the tool to fail.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of drainage enforcement to apply.</para>
+						<para>The drainage enforcement option can be set to attempt to remove all sinks or depressions so a hydrologically correct DEM can be created. If sink points have been explicitly identified in the input feature data, these depressions will not be filled.</para>
+						<bulletList><bullet_item>ENFORCE — The algorithm will attempt to remove all sinks it encounters, whether they are "real" or "spurious". This is the default.</bullet_item><bullet_item>NO_ENFORCE — No sinks will be filled.</bullet_item><bullet_item>ENFORCE_WITH_SINK — Points identified as sinks in Input feature data represent known topographic depressions, and will not be altered. Any sink not identified in input feature data is considered spurious, and the algorithm will attempt to fill it.Having more than 8,000 spurious sinks causes the tool to fail.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="data_type" displayname="Primary type of input data" datatype="String" direction="Input" expression="data_type" type="Optional"><pythonReference>
+						<para>The dominant elevation data type of the input feature data.</para>
+						<bulletList><bullet_item>CONTOUR — The dominant type of input data will be elevation contours. This is the default.</bullet_item><bullet_item>SPOT — The dominant type of input will be point.</bullet_item></bulletList>
+						<para>Specifying the relevant selection optimizes the search method used during the generation of streams and ridges.</para>
+					</pythonReference><dialogReference>
+						<para>The dominant elevation data type of the input feature data.</para>
+						<bulletList><bullet_item>CONTOUR — The dominant type of input data will be elevation contours. This is the default.</bullet_item><bullet_item>SPOT — The dominant type of input will be point.</bullet_item></bulletList>
+						<para>Specifying the relevant selection optimizes the search method used during the generation of streams and ridges.</para>
+					</dialogReference></param><param sync="true" name="maximum_iterations" displayname="Maximum number of iterations" datatype="Long" direction="Input" expression="maximum_iterations" type="Optional"><pythonReference>
+						<para>The maximum number of interpolation iterations.</para>
+						<para>The number of iterations must be greater than zero. A default of 40 is normally adequate for both contour and line data.</para>
+						<para>A value of 30 will clear fewer sinks. Rarely, higher values (45–50) may be useful to clear more sinks or to set more ridges and streams. Iteration ceases for each grid resolution when the maximum number of iterations has been reached.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum number of interpolation iterations.</para>
+						<para>The number of iterations must be greater than zero. A default of 40 is normally adequate for both contour and line data.</para>
+						<para>A value of 30 will clear fewer sinks. Rarely, higher values (45–50) may be useful to clear more sinks or to set more ridges and streams. Iteration ceases for each grid resolution when the maximum number of iterations has been reached.</para>
+					</dialogReference></param><param sync="true" name="roughness_penalty" displayname="Roughness penalty" datatype="Double" direction="Input" expression="roughness_penalty" type="Optional"><pythonReference>
+						<para>The integrated squared second derivative as a measure of roughness.</para>
+						<para>The roughness penalty must be zero or greater. If the primary input data type is CONTOUR, the default is zero. If the primary data type is SPOT, the default is 0.5. Larger values are not normally recommended.</para>
+					</pythonReference><dialogReference>
+						<para>The integrated squared second derivative as a measure of roughness.</para>
+						<para>The roughness penalty must be zero or greater. If the primary input data type is CONTOUR, the default is zero. If the primary data type is SPOT, the default is 0.5. Larger values are not normally recommended.</para>
+					</dialogReference></param><param sync="true" name="discrete_error_factor" displayname="Discrete error factor" datatype="Double" direction="Input" expression="discrete_error_factor" type="Optional"><pythonReference>
+						<para>The discrete error factor is used to adjust the amount of smoothing when converting the input data to a raster.</para>
+						<para>The value must be greater than zero. The normal range of adjustment is 0.5 to 2, and the default is 1. A smaller value results in less data smoothing; a larger value causes greater smoothing.</para>
+					</pythonReference><dialogReference>
+						<para>The discrete error factor is used to adjust the amount of smoothing when converting the input data to a raster.</para>
+						<para>The value must be greater than zero. The normal range of adjustment is 0.5 to 2, and the default is 1. A smaller value results in less data smoothing; a larger value causes greater smoothing.</para>
+					</dialogReference></param><param sync="true" name="vertical_standard_error" displayname="Vertical standard error" datatype="Double" direction="Input" expression="vertical_standard_error" type="Optional"><pythonReference>
+						<para>The amount of random error in the z-values of the input data.</para>
+						<para>The value must be zero or greater. The default is zero.</para>
+						<para>The vertical standard error may be set to a small positive value if the data has significant random (non-systematic) vertical errors with uniform variance. In this case, set the vertical standard error to the standard deviation of these errors. For most elevation datasets, the vertical error should be set to zero, but it may be set to a small positive value to stabilize convergence when rasterizing point data with stream line data.</para>
+					</pythonReference><dialogReference>
+						<para>The amount of random error in the z-values of the input data.</para>
+						<para>The value must be zero or greater. The default is zero.</para>
+						<para>The vertical standard error may be set to a small positive value if the data has significant random (non-systematic) vertical errors with uniform variance. In this case, set the vertical standard error to the standard deviation of these errors. For most elevation datasets, the vertical error should be set to zero, but it may be set to a small positive value to stabilize convergence when rasterizing point data with stream line data.</para>
+					</dialogReference></param><param sync="true" name="tolerance_1" displayname="Tolerance 1" datatype="Double" direction="Input" expression="tolerance_1" type="Optional"><pythonReference>
+						<para>This tolerance reflects the accuracy and density of the elevation points in relation to surface drainage.</para>
+						<para>For point datasets, set the tolerance to the standard error of the data heights. For contour datasets, use one-half the average contour interval.</para>
+						<para>The value must be zero or greater. The default is 2.5 if the data type is CONTOUR and zero if the data type is SPOT.</para>
+					</pythonReference><dialogReference>
+						<para>This tolerance reflects the accuracy and density of the elevation points in relation to surface drainage.</para>
+						<para>For point datasets, set the tolerance to the standard error of the data heights. For contour datasets, use one-half the average contour interval.</para>
+						<para>The value must be zero or greater. The default is 2.5 if the data type is CONTOUR and zero if the data type is SPOT.</para>
+					</dialogReference></param><param sync="true" name="tolerance_2" displayname="Tolerance 2" datatype="Double" direction="Input" expression="tolerance_2" type="Optional"><pythonReference>
+						<para>This tolerance prevents drainage clearance through unrealistically high barriers.</para>
+						<para>The value must be greater than zero. The default is 100 if the data type is CONTOUR and 200 if the data type is SPOT.</para>
+					</pythonReference><dialogReference>
+						<para>This tolerance prevents drainage clearance through unrealistically high barriers.</para>
+						<para>The value must be greater than zero. The default is 100 if the data type is CONTOUR and 200 if the data type is SPOT.</para>
+					</dialogReference></param><param sync="true" name="out_stream_features" displayname="Output stream features" datatype="Feature Class" direction="Output" expression="out_stream_features" type="Optional"><pythonReference>
+						<para>The output line feature class of stream polyline features and ridge line features.</para>
+						<para>The line features are created at the beginning of the interpolation process. It provides the general morphology of the surface for interpolation. It can be used to verify correct drainage and morphology by comparing known stream and ridge data.</para>
+					</pythonReference><dialogReference>
+						<para>The output line feature class of stream polyline features and ridge line features.</para>
+						<para>The line features are created at the beginning of the interpolation process. It provides the general morphology of the surface for interpolation. It can be used to verify correct drainage and morphology by comparing known stream and ridge data.</para>
+					</dialogReference></param><param sync="true" name="out_sink_features" displayname="Output sinks features" datatype="Feature Class" direction="Output" expression="out_sink_features" type="Optional"><pythonReference>
+						<para>The output point feature class of the remaining sink point features.</para>
+						<para>These are the sinks that were not specified in the sink input feature data and were not cleared during drainage enforcement. Adjusting the values of the tolerances, tolerance_1 and tolerance_2, can reduce the number of remaining sinks. Remaining sinks often indicate errors in the input data that the drainage enforcement algorithm could not resolve. This can be an efficient way of detecting subtle elevation errors.</para>
+					</pythonReference><dialogReference>
+						<para>The output point feature class of the remaining sink point features.</para>
+						<para>These are the sinks that were not specified in the sink input feature data and were not cleared during drainage enforcement. Adjusting the values of the tolerances, Tolerance 1 and Tolerance 2, can reduce the number of remaining sinks. Remaining sinks often indicate errors in the input data that the drainage enforcement algorithm could not resolve. This can be an efficient way of detecting subtle elevation errors.</para>
+					</dialogReference></param><param sync="true" name="out_diagnostic_file" displayname="Output diagnostic file" datatype="File" direction="Output" expression="out_diagnostic_file" type="Optional"><pythonReference>
+						<para>The output diagnostic file listing all inputs and parameters used and the number of sinks cleared at each resolution and iteration.</para>
+					</pythonReference><dialogReference>
+						<para>The output diagnostic file listing all inputs and parameters used and the number of sinks cleared at each resolution and iteration.</para>
+					</dialogReference></param><param sync="true" name="out_parameter_file" displayname="Output parameter file" datatype="File" direction="Output" expression="out_parameter_file" type="Optional"><pythonReference>
+						<para>The output parameter file listing all inputs and parameters used, which can be used with Topo to Raster by File to run the interpolation again.</para>
+					</pythonReference><dialogReference>
+						<para>The output parameter file listing all inputs and parameters used, which can be used with Topo to Raster by File to run the interpolation again.</para>
+					</dialogReference></param><param sync="true" name="out_surface_raster" displayname="Output surface raster" datatype="Raster" direction="Output" expression="out_surface_raster" type="Required"><pythonReference>
+							<para>The output interpolated surface raster.</para>
+						</pythonReference><dialogReference>
+							<para>The output interpolated surface raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The best results will be obtained if all input data is stored in the same planar coordinate system and has the same ZUNITS. Unprojected data (latitude–longitude) can be used; however, the results may not be as accurate, particularly at high latitudes.</para>
+			</bullet_item><bullet_item>
+				<para>Topo to Raster will only use four input data points for the interpolation of each output cell. All additional points are ignored. If too many points are encountered by the algorithm, an error may occur, indicating the point dataset has too many points. The maximum number of points that can be used is NRows * NCols, where NRows is the number of rows in the output raster and NCols is the number of columns.</para>
+			</bullet_item><bullet_item>
+				<para>When the input feature type is CONTOUR, the algorithm first generates a generalized morphology of the surface based on the curvature of the contours. The algorithm then implements the contours as a source of elevation information. Contours are best suited for large-scale data where the contours and corners are reliable indicators of streams and ridges. At smaller scales it can be just as effective, and less expensive, to digitize corner points of contours and use them as an input point feature class.</para>
+			</bullet_item><bullet_item>
+				<para>Representing braided streams or using arcs to represent two sides of a stream may not produce reliable results. Stream data always takes priority over point or contour data; therefore, elevation data points that conflict with descent down each stream are ignored. Stream data is a powerful way of adding topographic information to the interpolation, further ensuring the quality of the output DEM.</para>
+			</bullet_item><bullet_item>
+				<para>Typical values for the Tolerance 1 and Tolerance 2 settings are:</para>
+				<bulletList>
+					<bullet_item>For point data at 1:100,000 scale, use 5.0 and 200.0.</bullet_item>
+					<bullet_item>For less dense point data at up to 1:500,000 scale, use 10.0 and 400.0.</bullet_item>
+					<bullet_item>For contour data with contour spacing of 10, use 5.0 and 100.0.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>To make experimentation with the inputs and parameters easier, use the Topo to Raster dialog box to create an output parameter file, which can be modified in any text editor and used as input to the Topo to Raster by File tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TopoToRaster example 1 (Python window)</title>
+					<para>This example creates a hydrologically correct TIFF surface raster from point, line, and polygon data.</para><code xml:space="preserve">import arcpy
+from arcpy import env  
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outTTR = TopoToRaster([TopoPointElevation([['spots.shp', 'spot_meter']]), 
+                       TopoContour([['contours.shp', 'spot_meter']])], 60, 
+                       "#", "#", "#", "#", "NO_ENFORCE")
+outTTR.save("C:/sapyexamples/output/ttrout.tif")
+                    </code></scriptExample><scriptExample><title>TopoToRaster example 2 (stand-alone script)</title>
+					<para>This example creates a hydrologically correct GRID surface raster from point, line, and polygon data.</para>
+				<code xml:space="preserve"># Name: TopoToRaster_Ex_02.py
+# Description: Interpolates a hydrologically correct surface 
+#    from point, line, and polygon data.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inPointElevations = TopoPointElevation([['spots.shp', 'spot_meter'], 
+                                        ['spots2.shp', 'elev']])
+inBoundary = TopoBoundary(['boundary.shp'])
+inContours = TopoContour([['contours.shp', 'spot_meter']])
+inLake = TopoLake(['lakes.shp'])
+inSinks = TopoSink([['sink1.shp', 'elevation'], ['sink2.shp', 'none']])
+inStream = TopoStream(['streams.shp'])
+
+inFeatures = ([inPointElevations, inContours, inLake, inBoundary, inSinks])
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute TopoToRaster
+outTTR = TopoToRaster(inFeatures)
+
+# Save the output 
+outTTR.save("C:/sapyexamples/output/ttrout03")
+                    </code></scriptExample></scriptExamples></tool></metadata>

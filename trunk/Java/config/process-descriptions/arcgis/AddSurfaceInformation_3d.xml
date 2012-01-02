@@ -1,0 +1,130 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Add Surface Information  (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Add Surface Information uses a surface to interpolate heights for features, converting them to 3D in the background, calculates 3D properties for these features, then writes the property values as attributes to the input feature class. The output z information options vary depending on shape type of the input feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D</keyword><keyword>3D Features</keyword><keyword>Elevation</keyword><keyword>Multipatches</keyword><keyword>Surface</keyword><keyword>Surface Analysis</keyword><keyword>Z Information</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" AddSurfaceInformation" displayname=" Add Surface Information  (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Add Surface Information uses a surface to interpolate heights for features, converting them to 3D in the background, calculates 3D properties for these features, then writes the property values as attributes to the input feature class. The output z information options vary depending on shape type of the input feature class.</para>
+		</summary><alink_name> AddSurfaceInformation_3d</alink_name><parameters><param sync="true" name="in_feature_class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_feature_class" type="Required"><pythonReference>
+						<para>The input 2D feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The input 2D feature class.</para>
+					</dialogReference></param><param sync="true" name="in_surface" displayname="Input Surface" datatype="TIN Layer; Raster Layer; Terrain Layer" direction="Input" expression="in_surface" type="Required"><pythonReference>
+						<para>The input raster, triangulated irregular network (TIN), or terrain dataset surface to be used as a source of z-values.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster, triangulated irregular network (TIN), or terrain dataset surface to be used as a source of z-values.</para>
+					</dialogReference></param><param sync="true" name="out_property" displayname="Output Property" datatype="String" direction="Input" expression="out_property" type="Required"><pythonReference>
+						<para>The output z properties that will be added to the attribute table of the input feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output z properties that will be added to the attribute table of the input feature class.</para>
+					</dialogReference></param><param sync="true" name="method" displayname="Method" datatype="String" direction="Input" expression="method" type="Optional"><pythonReference>
+						<para> Interpolation method used to define the Z values for the input features. </para>
+						<bulletList><bullet_item>LINEAR— Default interpolation method. Estimates z from the plane defined by the TIN or terrain triangle that contains the XY location of a query point. </bullet_item><bullet_item>NATURAL_NEIGHBORS— Estimates z by applying area based weights to the TIN or terrain's natural neighbors of a query point. </bullet_item><bullet_item>CONFLATE_ZMIN— Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor with the minimum height is used.</bullet_item><bullet_item>CONFLATE_ZMAX— Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor with the maximum height is used.</bullet_item><bullet_item>CONFLATE_NEAREST— Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor closest in XY to the query point is used.</bullet_item><bullet_item>CONFLATE_CLOSEST_TO_MEAN — Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor which is closest to the average height of all the neighbors is used.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Interpolation method used to define the Z values for the input features. </para>
+						<bulletList><bullet_item>LINEAR— Default interpolation method. Estimates z from the plane defined by the TIN or terrain triangle that contains the XY location of a query point. </bullet_item><bullet_item>NATURAL_NEIGHBORS— Estimates z by applying area based weights to the TIN or terrain's natural neighbors of a query point. </bullet_item><bullet_item>CONFLATE_ZMIN— Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor with the minimum height is used.</bullet_item><bullet_item>CONFLATE_ZMAX— Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor with the maximum height is used.</bullet_item><bullet_item>CONFLATE_NEAREST— Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor closest in XY to the query point is used.</bullet_item><bullet_item>CONFLATE_CLOSEST_TO_MEAN — Obtains z from one of the TIN or terrain's natural neighbors of a query point. The z of the neighbor which is closest to the average height of all the neighbors is used.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="sample_distance" displayname="Sampling Distance" datatype="Double" direction="Input" expression="sample_distance" type="Optional"><pythonReference>
+						<para>The spacing at which z-values will be interpolated. By default, this is a raster's cell size or a terrain or TIN's natural densification.</para>
+					</pythonReference><dialogReference>
+						<para>The spacing at which z-values will be interpolated. By default, this is a raster's cell size or a terrain or TIN's natural densification.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>The factor by which the heights of the input surface will be multiplied to calculate new heights in the output feature class. It is used for converting z-units to match x,y units.</para>
+					</pythonReference><dialogReference>
+						<para>The factor by which the heights of the input surface will be multiplied to calculate new heights in the output feature class. It is used for converting z-units to match x,y units.</para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Double" direction="Input" expression="pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The resolution of the terrain dataset pyramid level to use for geoprocessing. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The resolution of the terrain dataset pyramid level to use for geoprocessing. The default is 0, full resolution.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The z output property options, by shape type, are:</para>
+				<bulletList>
+					<bullet_item>Points—z</bullet_item>
+					<bullet_item>Multipoints—z minimum, z maximum, z mean</bullet_item>
+					<bullet_item>Polylines—z minimum, z maximum, z mean, surface length, minimum slope, maximum slope, average slope</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+ Slope for a line is calculated as a percent, or grade,  by examining each of its segments. The min and max slope values are taken from the segment that is either closest to horizontal or most extreme. The average slope is determined by averaging the slope for all segments weighted by their 3D length. Longer segments will have more influence than shorter segments.
+</bullet_item></usage><scriptExamples><scriptExample><title> Add Surface Information Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the  Add Surface Information
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.AddSurfaceInformation_3d("C:/data/2DPoints.shp", "my_tin", "Z", "LINEAR")
+                    </code></scriptExample><scriptExample><title> Add Surface Information Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the  Add Surface Information
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: AddSurfaceInformation Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              AddSurfaceInformation tool on all 2D feature classes in a target
+#              workspace.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Create list of feature classes
+    fcList = arcpy.ListFeatureClasses()
+    if len(fcList) &gt; 0:
+        for fc in fcList:
+            desc = arcpy.Describe(fc)
+            # Determine if the feature is 2D
+            if desc.hasZ is False:
+                # Set Local Variables
+                inSurface = "elevation_tin"
+                method = "BILINEAR"
+                if desc.shapeType == "Polygon":
+                    # Desired properties separated by semi-colons
+                    Prop = "Z_MIN;Z_MAX;VERTEX_COUNT" 
+                    # Execute AddSurfaceInformation
+                    arcpy.AddSurfaceInformation_3d(fc, inSurface, Prop, method, 15, 1, "")
+                elif desc.shapeType == "Point":
+                    Prop = "Z"
+                    # Execute AddSurfaceInformation
+                    arcpy.AddSurfaceInformation_3d(fc, inSurface, Prop, method, 15, 1, "")
+                elif desc.shapeType == "Multipoint":
+                    Prop = "Z_MIN;Z_MAX;Z_MEAN"
+                    # Execute AddSurfaceInformation
+                    arcpy.AddSurfaceInformation_3d(fc, inSurface, Prop, method, 15, 1, "")
+                elif desc.shapeType == "Polyline":
+                    Prop = "LENGTH_3D"
+                    # Execute AddSurfaceInformation
+                    arcpy.AddSurfaceInformation_3d(fc, inSurface, Prop, method, 15, 1, "")
+                else:
+                    pass
+                print "Completed adding surface information."
+                del inSurface, Prop, method
+            else:
+                print fc + " is not a 2D feature."
+            del desc
+    else:
+        print "There are no feature classes in the " + env.workspace + " directory."
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,92 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Collect Events (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts event data, such as crime or disease incidents, to weighted point data.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coincident</keyword><keyword>Combine</keyword><keyword>Coordinate</keyword><keyword>Count</keyword><keyword>Duplicate</keyword><keyword>Group</keyword><keyword>Incident</keyword><keyword>Location</keyword><keyword>Occurrence</keyword><keyword>On Top Of</keyword><keyword>Point</keyword><keyword>Weight</keyword><keyword>X</keyword><keyword>Y</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CollectEvents" displayname="Collect Events (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Converts event data, such as crime or disease incidents, to weighted point data.</para>
+		</summary><alink_name>CollectEvents_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/CollectEvents_stats_v.gif" alt="Collect Events tool illustration" /><toolIllust type="illustration" src="CollectEvents_stats_h.gif" alt="Collect Events tool illustration" /><parameters><param sync="true" name="Input_Incident_Features" displayname="Input Incident Features" datatype="Feature Class" direction="Input" expression="Input_Incident_Features" type="Required"><pythonReference>
+						<para>The features representing event or incident data.</para>
+					</pythonReference><dialogReference>
+						<para>The features representing event or incident data.</para>
+					</dialogReference></param><param sync="true" name="Output_Weighted_Point_Feature_Class" displayname="Output Weighted Point Feature Class" datatype="Feature Class" direction="Output" expression="Output_Weighted_Point_Feature_Class" type="Required"><pythonReference>
+						<para>The output feature class to contain the weighted point data.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class to contain the weighted point data.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Output_coordinate_system" label="Output coordinate system"></environment><environment name="Output_has_Z_values" label="Output has Z values"></environment><environment name="Default_output_Z_value" label="Default output Z value"></environment><environment name="Output_has_M_values" label="Output has M values"></environment></environments><usage><bullet_item>
+				<para>Collect Event combines coincident points: it creates a new Output Feature Class containing all of the unique locations found in the Input Feature Class. It then adds a field named ICOUNT to hold the sum of all incidents at each unique location.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will only combine features that have the exact same X and Y centroid coordinates. You may want to use the  tool to snap nearby features together prior to running the Collect Events tool. 
+						<para>The  tool permanently alters feature geometry; <italics>always</italics> make a backup copy of your feature class prior to using Integrate.</para>
+					</para>
+			</bullet_item><bullet_item>
+				<para>The , , and  tools, for example, require weighted points rather than individual incidents. Collect Events can be used to create weights when the input feature class contains coincident features.</para>
+			</bullet_item><bullet_item>
+				<para>Although this tool will work with polygon or line data, it is really only appropriate for event, incident, or other point feature data. For line and polygon features, feature coincidence is based on feature true geometric centroids. For multipoint, polyline, or polygons with multiple parts, the centroid is computed using the weighted mean center of all feature parts. The weighting for point features is 1, for line features is length, and for polygon features is area.</para>
+			</bullet_item><bullet_item>
+				<para>If you want each individual point/part of multipoint/multipart data treated as singlepart features, run the  tool, then run Collect Events on the single part feature class. For more information, see .</para>
+			</bullet_item><bullet_item>
+				<para>In addition to the Output Feature Class, this function passes, as derived output values, the name of the count field and the maximum count value encountered for any one location. These derived output values are helpful when you use this tool in models or scripts.</para>
+			</bullet_item><bullet_item>
+				<para>When this tool runs in ArcMap, the output feature class is automatically added to the Table of Contents (TOC) with default rendering applied to the ICOUNT field. The graduated circle rendering scheme is defined by a layer file in &lt;ArcGIS&gt;/ArcToolbox/Templates/Layers. You can reapply the default rendering, if needed, by  the template layer symbology.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CollectEvents Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Collect Events tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/Data"
+arcpy.CollectEvents_stats("911Copied.shp", "911Count.shp", "Count", "#")
+                    </code></scriptExample><scriptExample><title>CollectEvents Example (Stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the Collect Events tool.</para>
+				<code xml:space="preserve">
+# Analyze the spatial distribution of 911 calls in a metropolitan area
+# using the Hot-Spot Analysis Tool (Local Gi*)
+
+# Import system modules
+import arcpy
+
+# Set geoprocessor object property to overwrite existing output, by default
+arcpy.gp.overwriteOutput = True
+
+# Local variables...
+workspace = "C:/Data"
+
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.env.workspace = workspace
+
+    # Copy the input feature class and integrate the points to snap
+    # together at 500 feet
+    # Process: Copy Features and Integrate
+    cf = arcpy.CopyFeatures_management("911Calls.shp", "911Copied.shp",
+                         "#", 0, 0, 0)
+
+    integrate = arcpy.Integrate_management("911Copied.shp #", "500 Feet")
+
+    # Use Collect Events to count the number of calls at each location
+    # Process: Collect Events
+    ce = arcpy.CollectEvents_stats("911Copied.shp", "911Count.shp", "Count", "#")
+
+    # Add a unique ID field to the count feature class
+    # Process: Add Field and Calculate Field
+    af = arcpy.AddField_management("911Count.shp", "MyID", "LONG", "#", "#", "#", "#",
+                     "NON_NULLABLE", "NON_REQUIRED", "#",
+                     "911Count.shp")
+    
+    cf = arcpy.CalculateField_management("911Count.shp", "MyID", "[FID]", "VB")
+
+    # Create Spatial Weights Matrix for Calculations
+    # Process: Generate Spatial Weights Matrix... 
+    swm = arcpy.GenerateSpatialWeightsMatrix_stats("911Count.shp", "MYID",
+                        "euclidean6Neighs.swm",
+                        "K_NEAREST_NEIGHBORS",
+                        "#", "#", "#", 6,
+                        "NO_STANDARDIZATION") 
+
+    # Hot Spot Analysis of 911 Calls
+    # Process: Hot Spot Analysis (Getis-Ord Gi*)
+    hs = arcpy.HotSpots_stats("911Count.shp", "ICOUNT", "911HotSpots.shp", 
+                     "GET_SPATIAL_WEIGHTS_FROM_FILE",
+                     "EUCLIDEAN_DISTANCE", "NONE",
+                     "#", "#", "euclidean6Neighs.swm")
+
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

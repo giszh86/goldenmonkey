@@ -1,0 +1,78 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Densify (Editing)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Inserts vertices along line or polygon features. Also replaces curve segments (bezier, circular arcs, elliptical arcs) with densified line segments.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Change</keyword><keyword>Detail</keyword><keyword>Exist</keyword><keyword>Increase</keyword><keyword>Input</keyword><keyword>Insert</keyword><keyword>Modify</keyword><keyword>More</keyword><keyword>Remove Curve</keyword><keyword>Straighten</keyword><keyword>Update</keyword><keyword>Vertex</keyword><keyword>Vertices</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Densify" displayname="Densify (Editing)" toolboxalias="edit" softwarerestriction="none"><summary>
+			<para>Inserts vertices along line or polygon features. Also replaces curve segments (bezier, circular arcs, elliptical arcs) with densified line segments.</para>
+		</summary><alink_name>Densify_edit</alink_name><toolIllust type="illustration" src="Densify_edit_h.png" alt="The curve is densified into linear segments by either the Offset, Distance, or Angle" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The polygon or line feature class to be densified.</para>
+					</pythonReference><dialogReference>
+						<para>The polygon or line feature class to be densified.</para>
+					</dialogReference></param><param sync="true" name="curve_option" displayname="Densification Method" datatype="String" direction="Input" expression="curve_option" type="Optional"><pythonReference>
+						<para>The method selected to handle feature densification.</para>
+						<bulletList><bullet_item>DISTANCE— The tool will apply the Distance method to curves the same as it does to straight lines.  This is the default. </bullet_item><bullet_item>OFFSET—The tool will apply the Maximum Offset Deviation parameter to curves. </bullet_item><bullet_item>ANGLE—The tool will apply the Maximum Deflection Angle parameter to curves. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The method selected to handle feature densification.</para>
+						<bulletList><bullet_item>DISTANCE— The tool will apply the Distance method to curves the same as it does to straight lines.  This is the default. </bullet_item><bullet_item>OFFSET—The tool will apply the Maximum Offset Deviation parameter to curves. </bullet_item><bullet_item>ANGLE—The tool will apply the Maximum Deflection Angle parameter to curves. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="distance" displayname="Distance" datatype="Linear Unit" direction="Input" expression="distance" type="Optional"><pythonReference>
+						<para> The maximum linear distance between vertices. This distance will always be applied to line segments and to simplify curves.  The default value is a function of the tolerance.  </para>
+					</pythonReference><dialogReference>
+						<para> The maximum linear distance between vertices. This distance will always be applied to line segments and to simplify curves.  The default value is a function of the tolerance.  </para>
+					</dialogReference></param><param sync="true" name="max_deviation" displayname="Maximum Offset Deviation" datatype="Double" direction="Input" expression="max_deviation" type="Optional"><pythonReference>
+						<para>The maximum distance the output geometry can be from the input geometry. This parameter deals specifically with the simplification of curves. The default value is the value used to convert Feature Classes to Shapefiles.  </para>
+					</pythonReference><dialogReference>
+						<para>The maximum distance the output geometry can be from the input geometry. This parameter deals specifically with the simplification of curves. The default value is the value used to convert Feature Classes to Shapefiles.  </para>
+					</dialogReference></param><param sync="true" name="max_angle" displayname="Maximum Deflection Angle" datatype="Double" direction="Input" expression="max_angle" type="Optional"><pythonReference>
+						<para>The maximum angle that the output geometry can be from the input geometry. This parameter specifically deals with the simplification of curves.  The input angle can be between 0 and 90 degrees. The default value is the value used to convert Feature Classes to Shapefiles.  </para>
+					</pythonReference><dialogReference>
+						<para>The maximum angle that the output geometry can be from the input geometry. This parameter specifically deals with the simplification of curves.  The input angle can be between 0 and 90 degrees. The default value is the value used to convert Feature Classes to Shapefiles.  </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				
+					<para>This tool modifies the input data. See  for more information and strategies to avoid undesired data changes.</para>
+				
+			</bullet_item><bullet_item>
+				<para>Straight line segments are densified by the Distance parameter.  Curve segments are simplified through densification by either the Distance , Maximum Deflection Angle, or Maximum Offset Deviation parameter. </para>
+			</bullet_item><bullet_item><para>Densification is done segment by segment.</para></bullet_item><bullet_item><para>Only one densification method can be selected each time Densify is executed.</para></bullet_item><bullet_item>
+				<para>The  of the data is very important to the result generated by this tool. Data should be densified in an appropriate coordinate system to maintain the correct shape of the features.</para>
+			</bullet_item><bullet_item>
+				<para>All of the segments of the output features will have vertices lying on the original input features. The start and end points for each segment are always honored and will remain the same.</para>
+			</bullet_item><bullet_item><para>When densifying by Maximum Offset Deviation, if the input geometry contains circular arcs, then an upper limit on the offset will be enforced such that the angle between two consecutive line segments in the output cannot exceed ten degrees.  This angle can be exceeded if you densify by the Maximum Deflection Angle.</para></bullet_item></usage><scriptExamples><scriptExample><title>Densify Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the Densify function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/data.gdb"
+arcpy.Densify_edit("lines", "ANGLE","", "", "0.75")
+                    </code></scriptExample><scriptExample><title>Densify Example 2 (Stand-alone Script)</title>
+					<para>The stand-alone script below shows the Densify function as part of a workflow which also utilizes the Snap editing tool.</para>
+				<code xml:space="preserve"># Name: Snap.py
+# Description: Snap climate regions boundary to vegetation layer
+#              boundary to ensure common boundary is coincident
+# Author: ESRI
+
+# import system modules 
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Make backup copy of climate regions feature class, 
+# since modification with the Editing tools below is permanent
+climate = "climate.shp"
+climateBackup = "C:/output/Output.gdb/climateBackup"
+arcpy.CopyFeatures_management(climate, climateBackup)
+
+# Densify climate regions feature class to make sure there are enough
+#vertices to match detail of vegetation layer when layers are snapped
+arcpy.Densify_edit(climate, "DISTANCE", "10 Feet") 
+
+# Snap climate regions feature class to  vegetation layer vertices and edge
+veg = "Habitat_Analysis.gdb/vegtype"
+# first, snap climate region vertices to the nearest vegetation layer vertex within 30 Feet
+snapEnv1 = [veg, "VERTEX", "30 Feet"]    
+# second, snap climate region vertices to the nearest vegetation layer edge within 20 Feet
+snapEnv2 = [veg, "EDGE", "20 Feet"]       
+arcpy.Snap_edit(climate, [snapEnv1, snapEnv2])
+                    </code></scriptExample></scriptExamples></tool></metadata>

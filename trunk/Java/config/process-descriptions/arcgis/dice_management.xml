@@ -1,0 +1,67 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Dice (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Subdivides a feature into smaller features based on a specified vertex limit. This tool is intended as a way to subdivide extremely large features which cause issues with drawing, analysis, editing, and/or performance but are difficult to split up with standard editing and geoprocessing tools. This tool should not be used in any cases other than those where tools are failing to complete successfully due to the size of features.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Big</keyword><keyword>Cut</keyword><keyword>Divide</keyword><keyword>Draw</keyword><keyword>Edit</keyword><keyword>Geometry</keyword><keyword>Large</keyword><keyword>Out Of Memory</keyword><keyword>Performance</keyword><keyword>Problem</keyword><keyword>Ratio</keyword><keyword>Small</keyword><keyword>Split</keyword><keyword>Subdivide</keyword><keyword>Transform</keyword><keyword>Vector</keyword><keyword>Vertex</keyword><keyword>Vertices</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Dice" displayname="Dice (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Subdivides a feature into smaller features based on a specified vertex limit. This tool is intended as a way to subdivide extremely large features which cause issues with drawing, analysis, editing, and/or performance but are difficult to split up with standard editing and geoprocessing tools. This tool should not be used in any cases other than those where tools are failing to complete successfully due to the size of features.</para>
+		</summary><alink_name>Dice_management</alink_name><parameters><param sync="true" name="in_features" displayname="Input Dataset" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature class or feature layer. The geometry type must be multipoint, line, or polygon.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class or feature layer. The geometry type must be multipoint, line, or polygon.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The feature class which will be created and to which the result will be written</para>
+					</pythonReference><dialogReference>
+						<para>The feature class which will be created and to which the result will be written</para>
+					</dialogReference></param><param sync="true" name="vertex_limit" displayname="Vertex Limit" datatype="Long" direction="Input" expression="vertex_limit" type="Optional"><pythonReference>
+						<para>Features with geometries which exceed this vertex limit will be subdivided before being written to the output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>Features with geometries which exceed this vertex limit will be subdivided before being written to the output feature class.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Qualified_field_names" label="Qualified field names">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input can be a multipoint, line, or polygon feature layer or feature class.</para>
+			</bullet_item><bullet_item>
+				<para> No default vertex limit is provided. The number of vertices in a single feature that may cause issues due to being too large is dependent on your hardware configuration.</para>
+			</bullet_item><bullet_item>
+				<para>Features which do not exceed the vertex limit will be written to the output feature class as is.</para>
+			</bullet_item><bullet_item><para>Attribute values from the input feature classes will be carried across to the output fetaure class except if the input is a layer(s) created by the  or  tool and the field's "Use Ratio Policy" is checked. If a feature in an overlay operation is split the attributes of resulting features are a ratio of the original feature's value. The ratio is based on the ratio in which the original geometry is divided. If the geometry is divided equally, each new feature's attribute gets one-half of the value of the original object's attribute. "Use Ratio Policy" only applies to numeric field types. Geoprocessing tools do not honor geodatabase feature class or table field split policies.</para></bullet_item><bullet_item>
+				<para> The splitting of polygons may create new vertices.</para>
+			</bullet_item><bullet_item>
+				<para>Polygon components (think of this as the outer boundary of a part, and all the holes and other parts which it contains) will be grouped together in the output.</para>
+			</bullet_item><bullet_item>
+				<para>Lines are only diced at a vertex.</para>
+			</bullet_item><bullet_item>
+				<para>For line and polygon feature classes the number of vertices specified in the Vertex Limit parameter is not always the vertex count you get in the output after a feature has been diced. </para>
+			</bullet_item><bullet_item>
+				<para>This tool does not use the Output Coordinate System environment. This means there will be no projecting of features prior to processing. You always end up with the same coordinate system as the input. Any projecting should be done after the Dice tool has been run. This is done because projecting the "problem" feature may cause a system failure if it exceeds system resources.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Dice Example (Python Window)</title>
+					
+					<para>The following Python window script demonstrates how to use the Dice function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/gdb/thailand.gdb"
+arcpy.Dice_management('thailandBoundary', 'thai_Dice_1mill', 1000000)
+                    </code></scriptExample><scriptExample><title>Dice Example 2 (Stand-alone Script)</title>
+					<para>The following stand-alone script is a simple example of how to apply the Dice function in scripting.</para>
+				<code xml:space="preserve"># Dice.py
+# Description: Simple example showing use of Dice tool
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+env.workspace = "C:/data/gdb/canada.gdb"
+
+# Set variables
+fcName = "coastline"
+outFcName = "coastline_Dice_750k"
+vertLimit = 750000
+
+#Process: Use the Dice function
+arcpy.Dice_management (fcName, outFcName, vertLimit)
+ 
+                    </code></scriptExample></scriptExamples></tool></metadata>

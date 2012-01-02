@@ -1,0 +1,79 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Renumber Nodes (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Updates arc–node topology by renumbering nodes for the input coverage arcs and identifies arcs that share the same node locations.</para>
+			<para>The tool renumbers the internal node numbers for each arc, assigns the same node number for arcs that share a common node location, and updates the FNODE# and TNODE# items in the arc attribute table (AAT) when it exists.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Arc-Node Topology</keyword><keyword>Coincident Nodes</keyword><keyword>Coverage</keyword><keyword>Data Management</keyword><keyword>Duplicate Nodes</keyword><keyword>From Item</keyword><keyword>Nodes</keyword><keyword>Renode</keyword><keyword>Renumber Nodes</keyword><keyword>Table</keyword><keyword>To Item</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Renode" displayname="Renumber Nodes (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Updates arc–node topology by renumbering nodes for the input coverage arcs and identifies arcs that share the same node locations.</para>
+			<para>The tool renumbers the internal node numbers for each arc, assigns the same node number for arcs that share a common node location, and updates the FNODE# and TNODE# items in the arc attribute table (AAT) when it exists.</para>
+			
+		</summary><alink_name>Renode_arc</alink_name><toolIllust type="illustration" src="Renode_arc_h.gif" alt="Renumber Nodes illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage whose nodes will be renumbered.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage whose nodes will be renumbered.</para>
+					</dialogReference></param><param sync="true" name="from_item" displayname="From Node Elevation Item" datatype="ArcInfo Item" direction="Input" expression="from_item" type="Optional"><pythonReference>
+						<para>The item signifying the elevation of the from_node of each arc.</para>
+					</pythonReference><dialogReference>
+						<para>The item signifying the elevation of the from_node of each arc.</para>
+					</dialogReference></param><param sync="true" name="to_item" displayname="To Node Elevation Item" datatype="ArcInfo Item" direction="Input" expression="to_item" type="Optional"><pythonReference>
+						<para>The item signifying the elevation of the to_node of each arc.</para>
+					</pythonReference><dialogReference>
+						<para>The item signifying the elevation of the to_node of each arc.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If you specify one elevation item, you must specify the other. These items must be numeric.</para>
+			</bullet_item><bullet_item>
+				<para>Using From Node Elevation Item and To Node Elevation Item can create more nodes than are actually present. To delete unwanted nodes, run the tool again without specifying these items.</para>
+			</bullet_item><bullet_item>
+				<para>If the input coverage has a node attribute table (NAT), Renumber Nodes does the same thing as  with the NODE option.</para>
+			</bullet_item><bullet_item>
+				<para>All nodes in the input coverage are sequentially renumbered starting with 1.</para>
+			</bullet_item><bullet_item>
+				<para>All feature attribute tables as well as polygon topology and arc–node topology are maintained by Renumber Nodes.</para>
+			</bullet_item><bullet_item>
+				<para>Renumber Nodes updates the arc–node topology by renumbering the From Node Elevation Item and To Node Elevation Item of each arc and identifying arcs that share the same node locations. Renumber Nodes renumbers the internal node numbers for each arc, assigns the same node number for arcs that share a common node location, and updates the FNODE# and TNODE# items in the AAT when it exists.</para>
+				<para>If you want to run Renumber Nodes on a coverage in the AAT, both of these items must be present and specified for the Renumber Nodes process to work while building nodes.</para>
+			</bullet_item><bullet_item>
+				<para>Renumber Nodes dissolves coincident and duplicate nodes into single nodes. Use Renumber Nodes with caution. For example, while modeling freeway ramps, you may run into situations having coincident arcs in different planes with multiple nodes sharing the same x,y coordinates. Running  with the LINE option will preserve this topology. However, running Renumber Nodes will collapse the coincident nodes into single nodes and destroy the topology.</para>
+			</bullet_item><bullet_item>
+				<para> with POLY will eliminate overpass/underpass situations. Coincident nodes at different elevations will dissolve.</para>
+			</bullet_item><bullet_item>
+				<para>The term "elevation" as referenced here is relative. It doesn't need to be the real world or three dimensional elevation. Rather, it signifies the elevation of the ends of an arc relative to another arc that it may meet or cross. Its primary use is in building the arc-node topology to reflect transportation network situations, such as an overpass/underpass.</para>
+			</bullet_item><bullet_item>
+				<para>You can model an underpass/overpass situation by giving one set of node elevation values to arcs AB, BC, while arcs XY, YZ could share a different set of node elevation values. Running Renumber Nodes with the elevation arguments will actually retain two distinct nodes at the cross point. As in real life, this will prevent a path between nodes A and Z. Many transportation data vendors make such information available in their data products.</para>
+			</bullet_item><bullet_item>
+				<para>The "elevation" values for all nodes where there is no conflict could be set to zero. Only in cases where there are multiple nodes sharing the same x,y coordinates will the elevation values be looked up to determine whether they are in the same plane and dissolved or in different planes and retained.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of the coverage is unaffected by Renumber Nodes.</para>
+			</bullet_item><bullet_item>
+				<para>Overlay commands, such as  and  will honor these extra nodes and preserve topology.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Renode example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to renumber nodes in a coverage.</para>
+				<code xml:space="preserve"># Name: Renode_Example.py
+# Description: Renumbers the nodes in a coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "major_rds_raw"
+
+# Execute Renode
+arcpy.Renode_arc (inCover)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

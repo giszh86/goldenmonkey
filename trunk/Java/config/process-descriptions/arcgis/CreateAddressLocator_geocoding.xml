@@ -1,0 +1,88 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Address Locator (Geocoding)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates an address locator. The address locator can be used to find a location of an address, geocode a table of addresses, or  get the address of a point location. </para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Address</keyword><keyword>Address Attribute</keyword><keyword>Address Component</keyword><keyword>Address Locator</keyword><keyword>Address Locator Style</keyword><keyword>Address Matching</keyword><keyword>Alias</keyword><keyword>Build</keyword><keyword>Centerline Line</keyword><keyword>Create</keyword><keyword>Dime</keyword><keyword>Dual Ranges</keyword><keyword>Geocode</keyword><keyword>Geocoding</keyword><keyword>House Number</keyword><keyword>House Number Range</keyword><keyword>Index</keyword><keyword>Loc</keyword><keyword>Locator</keyword><keyword>Lox</keyword><keyword>Match Rate</keyword><keyword>Matching</keyword><keyword>Nationwide</keyword><keyword>Point Address</keyword><keyword>Prefix Direction</keyword><keyword>Prefix Type</keyword><keyword>Primary Table</keyword><keyword>Reference Data</keyword><keyword>Single Range</keyword><keyword>Street Name</keyword><keyword>Street Name Alias</keyword><keyword>Street Type</keyword><keyword>Style</keyword><keyword>Suffix Direction</keyword><keyword>Suffix Type</keyword><keyword>Workspace</keyword><keyword>Xml</keyword><keyword>Zip</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateAddressLocator" displayname="Create Address Locator (Geocoding)" toolboxalias="geocoding" softwarerestriction="none"><summary>
+			<para>Creates an address locator. The address locator can be used to find a location of an address, geocode a table of addresses, or  get the address of a point location. </para>
+			</summary><alink_name>CreateAddressLocator_geocoding</alink_name><parameters><param sync="true" name="in_address_locator_style" displayname="Address Locator Style" datatype="Address Locator Style" direction="Input" expression="in_address_locator_style" type="Required"><pythonReference>
+						<para>The address locator style on which to base the new address locator.</para>
+					</pythonReference><dialogReference>
+						<para>The address locator style on which to base the new address locator.</para>
+					</dialogReference></param><param sync="true" name="in_reference_data" displayname="Reference Data" datatype="Value Table" direction="Input" expression="[[Reference Data, {Role}],...]" type="Required"><pythonReference>
+						<para>The reference data feature classes and tables to be used by the address locator, along with their roles.</para>
+						<bulletList>
+							<bullet_item>Primary table—Defines the primary reference dataset feature class for a locator, such as a street centerline feature class. This is a required table.</bullet_item>
+							<bullet_item>Alternate Name table—Defines an alternate street name table that contains alternate names for the street or point features. The table is required to have a JoinID that can be used to join to the primary table. This table is optional.</bullet_item>
+							<bullet_item>Alias table—Defines a place name alias table that contains place names and actual addresses for the names. User can find the location using either the place name such as Field Museum or the address 1400 S Lakeshore Drive Chicago, IL 60605. This table is optional.</bullet_item>
+						</bulletList>
+						<para>Custom locator styles or locator styles provided by third parties may define a different set of roles for reference datasets.</para>
+					</pythonReference><dialogReference>
+						<para>The reference data feature classes and tables to be used by the address locator, along with their roles.</para>
+						<bulletList>
+							<bullet_item>Primary table—Defines the primary reference dataset feature class for a locator, such as a street centerline feature class. This is a required table.</bullet_item>
+							<bullet_item>Alternate Name table—Defines an alternate street name table that contains alternate names for the street or point features. The table is required to have a JoinID that can be used to join to the primary table. This table is optional.</bullet_item>
+							<bullet_item>Alias table—Defines a place name alias table that contains place names and actual addresses for the names. User can find the location using either the place name such as Field Museum or the address 1400 S Lakeshore Drive Chicago, IL 60605. This table is optional.</bullet_item>
+						</bulletList>
+						<para>Custom locator styles or locator styles provided by third parties may define a different set of roles for reference datasets.</para>
+					</dialogReference></param><param sync="true" name="in_field_map" displayname="Field Map" datatype="Field Info" direction="Input" expression="in_field_map" type="Required"><pythonReference>
+						<para>The mapping of reference data fields used by the address locator style to fields in the reference datasets. Each field mapping in this parameter is in the format:</para>
+						
+							   
+&lt;locator field alias&gt; &lt;dataset field name&gt; VISIBLE NONE
+
+# This shows as an example:
+reference_data_field_map = 
+"'Feature ID' FeatureID VISIBLE NONE;'*From Left' L_F_ADD VISIBLE NONE;
+'*To Left' L_T_ADD VISIBLE NONE;'*From Right' R_F_ADD VISIBLE NONE;
+'*To Right' R_T_ADD VISIBLE NONE;'Prefix Direction' PREFIX VISIBLE NONE;
+'Prefix Type' PRE_TYPE VISIBLE NONE;'*Street Name' NAME VISIBLE NONE;
+'Suffix Type' TYPE VISIBLE NONE;'Suffix Direction' SUFFIX VISIBLE NONE"
+
+						
+						<para>where &lt;locator field alias&gt; is the alias name for the reference data field used by the address locator, and &lt;dataset field name&gt; is the name of the field in the reference dataset. Fields with an asterisk ("*") next to their names are required by the address locator style.</para>
+						<para>VISIBLE—Field is visible; NONE—the geometry is a copy of the original value.</para>
+						<para>If you choose not to map an optional reference data field used by the address locator style to a field in a reference dataset, specify that there is no mapping by using "&lt;None&gt;" in place of a field name.</para>
+						<para>To determine the alias name for a reference data field used by a locator style, open the Create Address Locator tool and choose the locator style. The name that appears in the Field Name column of the Field Map control is the field's alias name.</para>
+					</pythonReference><dialogReference>
+						<para>The mapping of reference data fields used by the address locator style to fields in the reference datasets. Fields with an asterisk ("*") next to their names are required by the address locator style.</para>
+					</dialogReference></param><param sync="true" name="out_address_locator" displayname="Output Address Locator" datatype="Address Locator" direction="Output" expression="out_address_locator" type="Required"><pythonReference>
+						<para>The address locator to create.</para>
+					</pythonReference><dialogReference>
+						<para>The address locator to create.</para>
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="Configuration keyword (optional)" datatype="String" direction="Input" expression="config_keyword" type="Optional"><pythonReference>
+						<para>The configuration keyword that determines the storage parameters of the table in a Relational Database Management System (RDBMS)—ArcSDE and file geodatabases only.</para>
+					</pythonReference><dialogReference>
+						<para>The configuration keyword that determines the storage parameters of the table in a Relational Database Management System (RDBMS)—ArcSDE and file geodatabases only.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Address locators can be created in the same workspace as the reference data or other workspace in a geodatabase or file folder you specify.</para>
+			</bullet_item><bullet_item>
+				<para>The role of a reference dataset defines the role that it plays as reference data for the address locator. The address locator styles provided with ArcGIS use the following values to describe the roles of reference datasets:</para>
+				<bulletList>
+					<bullet_item>Primary table—Defines the primary reference dataset feature class for a locator, such as a street centerline feature class. This is a required table.</bullet_item>
+					<bullet_item>Alternate Name table—Defines an alternate street name table that contains alternate names for the street or point features. The table is required to have a JoinID that can be used to join to the primary table. This table is optional.</bullet_item>
+					<bullet_item>Alias table—Defines a place name alias table that contains place names and actual addresses for the names. User can find the location using either the place name such as Field Museum or the address 1400 S Lakeshore Drive Chicago, IL 60605. This table is optional.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>Custom locator styles or locator styles provided by third parties may define different roles for reference data feature classes and tables. Refer to their documentation for information on the roles that they define for reference datasets.</para>
+			</bullet_item><bullet_item>
+				<para>Composite address locators cannot be created using this tool. Use the  tool to create a composite addres locator.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateAddressLocator Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the CreateAddressLocator function in immediate mode. </para>
+				<code xml:space="preserve">
+#   Create a street address locator using a street centerline feature class 
+#   in a file geodatabase as reference data.
+#   The new address locator will be created in the same file geodatabase.
+
+# Import system modules
+import arcpy
+from arcpy import env
+env.workspace = "C:/ArcTutor/Geocoding/atlanta.gdb"
+
+arcpy.CreateAddressLocator_geocoding("US Address - Dual Ranges", "streets Primary", "'Feature ID' FeatureID VISIBLE NONE;'*From Left' L_F_ADD VISIBLE NONE;'*To Left' L_T_ADD VISIBLE NONE;'*From Right' R_F_ADD VISIBLE NONE;'*To Right' R_T_ADD VISIBLE NONE;'Prefix Direction' PREFIX VISIBLE NONE;'Prefix Type' PRE_TYPE VISIBLE NONE;'*Street Name' NAME VISIBLE NONE;'Suffix Type' TYPE VISIBLE NONE;'Suffix Direction' SUFFIX VISIBLE NONE;'Left City or Place' CITYL VISIBLE NONE;'Right City or Place' CITYR VISIBLE NONE;'Left Zipcode' ZIPL VISIBLE NONE;'Right Zipcode' ZIPR VISIBLE NONE;'Left State' State_Abbr VISIBLE NONE;'Right State' State_Abbr VISIBLE NONE", Atlanta_AddressLocator, "")
+ 
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

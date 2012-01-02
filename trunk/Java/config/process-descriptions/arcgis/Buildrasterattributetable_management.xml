@@ -1,0 +1,49 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Build Raster Attribute Table (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds a raster attribute table to a raster dataset or updates an existing one.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Classified</keyword><keyword>Field</keyword><keyword>List</keyword><keyword>New</keyword><keyword>Properties</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BuildRasterAttributeTable" displayname="Build Raster Attribute Table (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Adds a raster attribute table to a raster dataset or updates an existing one.</para>
+		</summary><alink_name>BuildRasterAttributeTable_management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster" datatype="Raster layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset.</para>
+						<para>This must be a raster dataset with only a single band. It is not possible to build a raster attribute table for a raster dataset that has a pixel type of 32-bit floating point.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster dataset.</para>
+						<para>This must be a raster dataset with only a single band. It is not possible to build a raster attribute table for a raster dataset that has a pixel type of 32-bit floating point.</para>
+					</dialogReference></param><param sync="true" name="overwrite" displayname="Overwrite" datatype="Boolean" direction="Input" expression="overwrite" type="Optional"><pythonReference>
+						<para>This allows you to overwrite any existing raster attribute table that might exist.</para>
+						<bulletList><bullet_item>NONE—Existing raster attribute tables will not be overwritten, and any edits will be appended to the current table. This is the default.</bullet_item><bullet_item>OVERWRITE—Delete the existing raster attribute tables and create a new raster attribute table.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>This allows you to overwrite any existing raster attribute table that might exist.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Existing raster attribute tables will not be overwritten, and any edits will be appended to the current table. This is the default. </bullet_item>
+							<bullet_item>Checked—Delete the existing raster attribute tables and create a new raster attribute table. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If you want to delete an existing table and create a new one, check  Overwrite. A new raster attribute table will be created, and the old one will be deleted.</para>
+			</bullet_item><bullet_item>
+				<para>If you have an existing table and you do not check  Overwrite, the table will be updated. No fields will be deleted, but the values in the table will be up to date.</para>
+			</bullet_item><bullet_item>
+				<para>It is not possible to build a raster attribute table for a raster dataset that is a pixel type of 32-bit floating point.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>BuildRasterAttributeTable example (Python window)</title>
+					<para>This is a Python sample for BuildRasterAttributeTable.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.BuildRasterAttributeTable_management("c:/data/image.tif", "Overwrite")
+                    </code></scriptExample><scriptExample><title>BuildRasterAttributeTable example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for BuildRasterAttributeTable.</para>
+				<code xml:space="preserve">##====================================
+##Build Raster Attribute Table
+##Usage: BuildRasterAttributeTable_management in_raster {NONE | Overwrite}
+    
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:/Workspace"
+    
+    ##Build attribute table for single band raster dataset
+    ##Overwrite the existing attribute table file
+    arcpy.BuildRasterAttributeTable_management("image.tif", "Overwrite")
+
+except:
+    print "Build Raster Attribute Table example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>
