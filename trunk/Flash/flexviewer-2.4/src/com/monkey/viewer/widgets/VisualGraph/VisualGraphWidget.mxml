@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<viewer:BaseWidget xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:s="library://ns.adobe.com/flex/spark"
+                   xmlns:mx="library://ns.adobe.com/flex/mx"
+                   xmlns:viewer="com.esri.viewer.*"
+                   xmlns:VisualGraph="com.monkey.viewer.widgets.VisualGraph.*"                   
+                   widgetConfigLoaded="init()">
+	<!--layoutDirection="ltr"-->
+
+    <fx:Script>
+        <![CDATA[
+            private function init():void
+            {
+                var rtl:Boolean = false;
+                if (parent.hasOwnProperty("layoutDirection"))
+                {
+                    rtl = parent["layoutDirection"] == "rtl";
+                }
+
+                if (left != null || right != null || top != null || bottom != null)
+                {
+                    var expandToLeft:Boolean = (right != null && !rtl) || (left != null && rtl);
+                    var expandToUp:Boolean = bottom != null;
+                    if (expandToLeft && expandToUp)
+                    {
+                        visualGraph.expansionDirection = ExpansionDirection.UP_LEFT;
+                    }
+                    else if (expandToLeft && !expandToUp)
+                    {
+						visualGraph.expansionDirection = ExpansionDirection.DOWN_LEFT;
+                    }
+                    else if (!expandToLeft && expandToUp)
+                    {
+						visualGraph.expansionDirection = ExpansionDirection.UP_RIGHT;
+                    }
+                    else if (!expandToLeft && !expandToUp)
+                    {
+						visualGraph.expansionDirection = ExpansionDirection.DOWN_RIGHT;
+                    }
+                }
+                else
+                {
+					visualGraph.expansionDirection = ExpansionDirection.DOWN_RIGHT;
+                }
+                // set these properties before setting the configXML
+				visualGraph.openDefaultToolTip = getDefaultString("openToolTip");
+				visualGraph.closeDefaultToolTip = getDefaultString("closeToolTip");
+/*				
+				visualGraph.configData = configData;
+                if (configXML)
+                {
+					visualGraph.configXML = configXML;
+                }
+*/				
+				//visualGraph.map = map;
+            }
+        ]]>
+    </fx:Script>
+
+    <VisualGraph:VisualGraphComponent id="visualGraph"/>
+
+</viewer:BaseWidget>
