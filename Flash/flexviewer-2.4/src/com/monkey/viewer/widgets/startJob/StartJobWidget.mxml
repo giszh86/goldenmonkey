@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<viewer:BaseWidget xmlns:fx="http://ns.adobe.com/mxml/2009" 
+						xmlns:s="library://ns.adobe.com/flex/spark" 
+						xmlns:mx="library://ns.adobe.com/flex/mx" 
+						xmlns:viewer="com.esri.viewer.*"	
+						xmlns:Job="com.monkey.viewer.widgets.startJob.*"
+						layout="absolute" 
+						x="600" y="300"
+					    widgetConfigLoaded="init()" 
+						
+					    >
+	<fx:Declarations>
+		<s:GlowFilter id="glowFilter"
+					  alpha="1"
+					  color="{getStyle('focusColor')}"
+					  inner="true"
+					  strength="2"/>		
+	</fx:Declarations>
+	
+	<viewer:states>
+		<s:State name="bkmList"/>
+		<s:State name="bkmAdd"/>
+	</viewer:states>
+	
+	<viewer:transitions>
+		<s:Transition autoReverse="true" toState="*">
+			<s:Fade id="fade"/>
+		</s:Transition>
+	</viewer:transitions>
+	
+	<fx:Script>
+		<![CDATA[						
+			import com.monkey.core.IContext;
+			import com.monkey.core.InstanceManager;
+			import com.monkey.event.*;
+			import com.monkey.process.IPMDispatcher;
+			import com.monkey.process.IPMParser;
+			import com.monkey.process.IPManager;
+			import com.monkey.process.ModelResult;
+			import com.monkey.propertygrid.ColumnFormatter;
+			import com.monkey.propertygrid.CustomProperty;
+			import com.monkey.service.ModelExecuteService;
+			import com.monkey.viewer.utils._XMLTag;
+			
+			import flash.utils.Dictionary;
+			
+			import mx.collections.ArrayCollection;
+			import mx.collections.ArrayList;
+			import mx.containers.Canvas;
+			import mx.controls.Alert;
+			
+			import org.un.cava.birdeye.ravis.graphLayout.data.INode;
+			import org.un.cava.birdeye.ravis.graphLayout.visual.events.VisualNodeEvent;
+			
+			import spark.components.supportClasses.ItemRenderer;
+			
+			
+			//import org.hamcrest.mxml.collection.Array;
+			//import org.un.cava.birdeye.ravis.assets.icons.EmbeddedIcons;
+			//import org.un.cava.birdeye.ravis.components.renderers.edgeLabels.DefaultEdgeLabelRenderer;
+			//import org.un.cava.birdeye.ravis.components.renderers.nodes.DefaultNodeRenderer;
+			//import org.un.cava.birdeye.ravis.components.ui.controls.vgraphControls.DegreesOfSeparation;
+			//import org.un.cava.birdeye.ravis.components.ui.controls.vgraphControls.EdgeRendererSelector;
+			//import org.un.cava.birdeye.ravis.components.ui.controls.vgraphControls.NodeRendererSelector;
+			//import org.un.cava.birdeye.ravis.enhancedGraphLayout.visual.nodeRenderers.NodeLabelRenderer;
+			//import org.un.cava.birdeye.ravis.graphLayout.data.*;
+			//import org.un.cava.birdeye.ravis.graphLayout.data.Graph;
+			//import org.un.cava.birdeye.ravis.graphLayout.layout.*;
+			//import org.un.cava.birdeye.ravis.graphLayout.visual.IVisualGraph;
+			//import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.*;
+			
+			private const ICON_URL:String = "assets/images/";
+
+			private var _basicURL:String = null;
+			private var _meURL:String = null;
+			
+			[Bindable]
+			private var submitLabel:String = "提交";
+			
+			[Bindable]
+			private var jobModelParaItemAL:ArrayList = new ArrayList();
+			
+			private function init():void {
+				try{					
+					var label:String = "提交作业:";
+										
+					wTemplatePL.addTitlebarButton(ICON_URL + "i_bookmark2.png", label, null);					
+					wTemplatePL.visible = true;
+				}
+				catch(err:Error){
+					err.getStackTrace();
+				}
+			}
+			
+			
+			private function widgetClosedHandler(event:Event):void{
+				var contxt:IContext = InstanceManager.instance.context;
+				if (null == contxt){
+					return;
+				}
+				
+				var vgraph:Canvas = contxt.getVariable("ActiveVisualGraph") as Canvas;
+				if (null != vgraph){
+					vgraph.removeEventListener(VisualNodeEvent.CLICK, vnode_clickHandler);
+				}
+			}
+			
+			private function widgetOpenedHandler(event:Event):void{
+				var contxt:IContext = InstanceManager.instance.context;
+				if (null == contxt){
+					return;
+				}
+				
+				if (null == _basicURL){
+					var services:Dictionary = contxt.getVariable("Services") as Dictionary;
+					if (null != services){
+						_basicURL = services["basic"] as String;
+						_meURL = services["ProjectJobExecute"] as String;
+					}
+					
+					_basicURL = services["basic"] as String;
+					_meURL = services["ProjectJobExecute"] as String;
+				}
+				
+				var vgraph:Canvas = contxt.getVariable("ActiveVisualGraph") as Canvas;
+				if (null != vgraph){
+					vgraph.addEventListener(VisualNodeEvent.CLICK, vnode_clickHandler);
+				}				
+			}		
+			
+			private function submit():void{
+				/*var vgraph:Canvas = Context.instance.getVariable("ActiveVisualGraph") as Canvas;
+				if (null != vgraph){
+					vgraph.removeEventListener(VisualNodeEvent.CLICK, vnode_clickHandler);
+				}*/
+				
+				var contxt:IContext = InstanceManager.instance.context;
+				if (null == contxt){
+					return;
+				}
+				
+				var manager:IPManager = InstanceManager.instance.processManager;
+				if (null == manager)
+				{
+					return;
+				}
+				var pd:IPMDispatcher = manager.newDispatcher();
+				if (null == pd){
+					//System.out.println("ModelExecuteServlet.doGet:PMDispatcher为空");
+					return;
+				}
+				pd.parser = contxt.getVariable("StartJobParser") as IPMParser;		
+				
+				var args:ArrayList = new ArrayList();
+				var outPara:String = "";
+				if (null != _paraItem){
+					outPara = "<reply name=\"\" kind=\"\" operation=\"\" id=\"" + _paraItem.nodeId + "\" variable=\"" + _paraItem.name + "\"/>"; 
+				}
+				args.addItem(outPara);
+				args.addItem("");
+				args.addItem(_basicURL);
+				args.addItem(_meURL);
+				
+				pd.dispatchCompleteHandler = afterSubmitListener;
+				pd.dispatchStrings(null,args);
+			}
+			
+			protected function afterSubmitListener(result:ModelResult):void{				
+				if (null == result){
+					return;
+				}
+				var mr:ModelResult = result.value as ModelResult;
+				if (null == mr){
+					return;
+				}
+				
+				Alert.show(mr.value as String,"返回结果",Alert.YES,this,null,null,1);  
+				
+				//result.value;
+			}
+			
+			private var _activeNode:INode;
+			private function vnode_clickHandler(event:VisualNodeEvent):void{
+				var xnode:XML = event.node.data as XML;
+				if (null == xnode){
+					return;
+				}	
+				jobModelParaItemAL.removeAll();
+				
+				/*
+				<operation name="ProcessGetBaseDirectory" id="2" title="应用程序文件夹" abstract="获取应用程序所在的根目录文件夹" color="" icon="3" x="20" y="30" size="16">
+					<inputs>       
+					</inputs>
+					<output>    
+					  <output name="BaseDir" type="String" title="文件夹" abstract="文件夹" variable="ref:Name" />	  	  
+					</output>            
+				  </operation>
+				*/
+					
+				var pItme:ParaItemName = null;
+				for each (var item:XML in xnode.descendants(_XMLTag.NODE_OUTPUTS).descendants(_XMLTag.NODE_OUTPUT)){
+					pItme = new ParaItemName();
+					pItme.nodeId = xnode.@id;
+					pItme.name = item.@name;
+					pItme.type = item.@type;
+					pItme.title = item.@title;
+					pItme.abstract = item.@abstract;
+					jobModelParaItemAL.addItem(pItme);
+				}
+				
+/*				
+				var ext:Extent = map.extent;
+				var bookmark:Bookmark = new Bookmark();
+				bookmark.name = name;
+				bookmark.userCreated = true;
+				bookmark.xmin = Number(ext.xmin.toFixed(4));
+				bookmark.ymin = Number(ext.ymin.toFixed(4));
+				bookmark.xmax = Number(ext.xmax.toFixed(4));
+				bookmark.ymax = Number(ext.ymax.toFixed(4));
+				bookmarkAL.addItem(bookmark);
+				bookmarkSOAL.addItem(bookmark);
+				saveBookmarks();
+				txtName.text = "";
+				bkmList.addEventListener(EffectEvent.EFFECT_END, bkmList_effectEndHandler);
+				showBookmarksList();
+			}
+*/				
+							
+				_activeNode = event.node;
+			}
+			
+			private var _paraItem:ParaItemName;
+			private function setOutputPara(event:Event):void
+			{
+				_paraItem = ItemRenderer(event.target).data as ParaItemName;				
+			}
+		]]>
+	</fx:Script>
+	
+	<viewer:WidgetTemplate id="wTemplatePL"
+						   width="430" height="240"
+						   closed="widgetClosedHandler(event)"
+						   open="widgetOpenedHandler(event)"                   
+						   visible="false">		
+		
+			
+		<s:HGroup>				
+		<s:HGroup id="bkmList"
+				 width="100%" height="100%"
+				 visible="false"
+				 visible.bkmList="true">
+			<s:Scroller width="100%" height="100%">
+				<Job:ParaItemNameDataGroup id="bookmarkDG"
+										    paraNameItemClick="setOutputPara(event)"										
+											dataProvider="{jobModelParaItemAL}">
+					<!--
+					bookmarkClick="showBookmark(event)"
+					-->
+					<Job:layout>
+						<s:VerticalLayout gap="2"
+										  horizontalAlign="justify"
+										  useVirtualLayout="true"/>
+					</Job:layout>
+				</Job:ParaItemNameDataGroup>
+			</s:Scroller>
+		</s:HGroup>
+		
+		<s:HGroup width="100%" verticalAlign="middle">
+			<s:RichEditableText id="helpLink"
+								editable="false"
+								selectable="false"/>
+			<mx:Spacer width="100%"/>
+			<mx:Image id="busyAnimation"
+					  source="assets/images/loader.swf"
+					  visible="false"/>
+			<!--
+			<s:Button id="clearOutputFeaturesButton"
+					  
+					
+					  includeInLayout="false"
+					  label="{clearFeatureLabel}"
+					  visible="false"/>
+			-->
+			<!--
+			includeIn="output"
+			click="clearAllOutputFeatures()"
+			-->
+			
+			<s:Button 
+				label="{submitLabel}" click="submit()" />
+			<!--
+				excludeFrom="output"
+			click="runGPIfRequiredParamsComplete()"
+			-->
+			
+			
+		</s:HGroup>
+		</s:HGroup>
+	</viewer:WidgetTemplate>
+</viewer:BaseWidget>

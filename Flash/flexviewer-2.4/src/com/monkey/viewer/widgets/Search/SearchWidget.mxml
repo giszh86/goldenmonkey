@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     ////////////////////////////////////////////////////////////////////////////////
+     //
+     // Copyright (c) 2010-2011 Esri
+     //
+     // All rights reserved under the copyright laws of the United States.
+     // You may freely redistribute and use this software, with or
+     // without modification, provided you include the original copyright
+     // and use restrictions.  See use restrictions in the file:
+     // <install location>/License.txt
+     //
+     ////////////////////////////////////////////////////////////////////////////////
+-->
+<viewer:BaseWidget 
+                   xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:s="library://ns.adobe.com/flex/spark"
+                   xmlns:mx="library://ns.adobe.com/flex/mx"
+                   xmlns:Search="widgets.Search.*"
+                   xmlns:viewer="com.monkey.viewer.*"
+                   x="600" y="300"
+                   widgetConfigLoaded="init()">
+
+
+    <viewer:states>
+        <s:State name="graphicalInput"/>
+        <s:State name="textInput"/>
+        <s:State name="resultsList"/>
+    </viewer:states>
+
+    <viewer:transitions>
+        <s:Transition autoReverse="true" toState="*">
+            <s:Fade id="fade"/>
+        </s:Transition>
+    </viewer:transitions>
+
+    <fx:Script>
+        <![CDATA[
+			import com.monkey.viewer.AppEvent1;
+			import mx.controls.Menu;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			import mx.events.ListEvent;
+			import mx.formatters.DateFormatter;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.events.FaultEvent;
+			
+			import spark.components.List;
+			import spark.components.supportClasses.ItemRenderer;
+
+            private const ICON_URL:String = "assets/images/";
+
+            private var configSearchGraphical:Array;
+            private var configSearchText:Array;
+//            private var finishDrawing:Boolean;
+//            private var graphicalsearchLabel:String;
+//            private var graphicsLayer:GraphicsLayer;
+//            private var loadingLabel:String;
+//            private var nolayerLabel:String;
+//            private var queryLayer:FeatureLayer;
+//            private var queryGeom:Geometry;
+//            private var queryExpr:String;
+//            private var queryFields:XMLList;
+//            private var queryTitleField:String;
+//            private var queryLinkField:String;
+//            private var resultsLabel:String;
+//            private var selectionLabel:String;
+//            private var selectedDrawingIcon:Image;
+//            private var textsearchLabel:String;
+//            private var timer:Timer;
+//            private var zoomScale:Number = 50000;
+//            private var mouseDownStageX:Number;
+//            private var mouseDownStageY:Number;
+//            private var dateFormatter:DateFormatter = new DateFormatter();
+            private var textDirection:String;
+
+            //labels
+			[Bindable]
+			private var searchLabel:String;
+			[Bindable]
+			private var searchKeys:ArrayCollection;
+			
+/*			
+            [Bindable]
+            private var clearLabel:String;
+            [Bindable]
+            private var layerLabel:String;
+            [Bindable]
+            private var lineLabel:String;
+            [Bindable]
+            private var freehandLineLabel:String;
+            [Bindable]
+            private var msgVisible:Boolean = false;
+            [Bindable]
+            private var searchResultAC:ArrayCollection;
+            [Bindable]
+            private var submitLabel:String;
+*/
+
+
+//            private var popUpRenderer:PopUpRenderer = new PopUpRenderer();
+
+            private function init():void
+            {
+                if (configXML)
+                {
+                    textDirection = getStyle("direction");      
+                }
+				
+				searchLabel = "Search Key:";
+
+                //wTemplate.addTitlebarButton(ICON_URL + "i_searchgraphical.png", graphicalsearchLabel, showStateGraphicalSearch);
+				wTemplate.addTitlebarButton(ICON_URL + "i_searchgraphical.png", searchLabel, showStateGraphicalSearch);
+                setInitialView(configXML.initialview[0]);
+                wTemplate.visible = true;
+            }
+
+            private function setInitialView(view:String):void
+            {
+                if (view == "graphical")
+                {
+                    //showStateGraphicalSearch();
+                }
+            }
+
+            private function clear():void
+            {
+//                hideInfoWindow();
+//                graphicsLayer.clear();
+                clearMessage();
+            }
+
+            private function showMessage(msg:String, swfVisible:Boolean):void
+            {
+/*				
+                txtMessage.text = msg;
+                swfMessage.visible = swfVisible;
+                msgVisible = true;
+*/				
+            }
+
+            private function clearMessage():void
+            {
+//                msgVisible = false;
+            }
+
+            private function widgetClosedHandler(event:Event):void
+            {
+            }
+
+            private function widgetOpenedHandler(event:Event):void
+            {
+            }
+			
+			private function searchKeyChanged():void
+			{
+				
+			}
+
+            private function showStateGraphicalSearch():void
+            {
+                this.currentState = "graphicalInput";
+                wTemplate.selectedTitlebarButtonIndex = 0;
+            }
+            private function iconRollOverHandler(event:MouseEvent):void
+            {
+                clearSelectionFilter();
+                event.target.filters = [ glowFilter ];
+            }
+
+            private function iconRollOutHandler(event:MouseEvent):void
+            {
+                clearSelectionFilter();
+            }
+
+            private function clearSelectionFilter():void
+            {			
+            }
+
+			protected function cboSearchKey_keyDownHandler(event:KeyboardEvent):void
+			{
+				// TODO Auto-generated method stub
+			}
+
+			
+			private function onChange(evt:Event):void {
+				data.isSelected = !data.isSelected;
+			} 
+		
+			/*
+			protected function combobox1_changeHandler(event:ListEvent):void
+			{
+				// TODO Auto-generated method stub
+			}
+
+
+			protected function btnSearchType_buttonDownHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+			}
+			*/
+
+			private var myMenu:Menu;
+			protected function btnSearchType_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				myMenu = new Menu();
+				var list:List = new List();
+				/*				list.addChild(
+				
+				
+				<s:List dataProvider="{searchTypes}" >
+					<s:itemRenderer>
+						<fx:Component>
+							<s:HGroup>		
+								
+								<s:CheckBox label="label" selected="true" textAlign="left" />
+							</s:HGroup>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:List>
+	*/				
+					
+//				var dp:Object = [{label: "New Folder"}, {label: "Sent Items"}, {label: "Inbox"}];        
+//				myMenu.dataProvider = dp;
+				myMenu.selectedIndex = 0;
+//				myMenu.addEventListener("itemClick", itemClickHandler);
+				btnSearchType.popUp = myMenu;
+				//popB.label = "Put in: " + myMenu.dataProvider[myMenu.selectedIndex].label;
+			}
+
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <s:GlowFilter id="glowFilter"
+                      alpha="1"
+                      color="{getStyle('focusColor')}"
+                      inner="true"
+                      strength="2"/>
+		
+		<s:ArrayCollection id="searchTypes" >
+			<Search:ListItemObject label="Model" isSelected="true" />
+			<Search:ListItemObject label="Process" isSelected="false" />
+		</s:ArrayCollection>	
+		
+		<s:List id="lst" dataProvider="{searchTypes}" >
+			<s:itemRenderer>
+				<fx:Component>
+					<s:HGroup>		
+						
+						<s:CheckBox label="label" selected="true" textAlign="left" />
+					</s:HGroup>
+				</fx:Component>
+			</s:itemRenderer>
+			
+		</s:List>
+    </fx:Declarations>
+
+	
+	
+    <viewer:WidgetTemplate id="wTemplate"
+                           width="430" height="240"
+                           closed="widgetClosedHandler(event)"
+						   open="widgetOpenedHandler(event)"                   
+                           visible="false">		
+        <s:Group id="graphicalInput"
+                 width="100%" height="100%"
+                 visible="false"
+                 visible.graphicalInput="true">
+            <s:layout>
+                <s:VerticalLayout gap="10" horizontalAlign="center"/>
+            </s:layout>
+            <s:HGroup id="boxGraphical"
+                      width="100%"
+                      gap="15"
+                      horizontalAlign="center"
+                      verticalAlign="middle">
+                <s:Label id="lblSearchKey" text="{searchLabel}" />
+				<!--lblLayerGraphical-->
+                <mx:ComboBox id="cboSearchKey" change="searchKeyChanged()" editable="true" dataProvider="{searchKeys}"
+							  keyDown="cboSearchKey_keyDownHandler(event)" width="160"/>
+				<!--
+				<s:Button id="btnSearchType" buttonDown="btnSearchType_buttonDownHandler(event)" width="16">					
+				</s:Button>
+				-->				
+				<mx:PopUpButton id="btnSearchType" creationComplete="btnSearchType_creationCompleteHandler(event)" width="16" />
+				
+				<!--
+				<mx:ComboBox dataProvider="{searchTypes}" width="16" change="combobox1_changeHandler(event)" >					
+					<mx:itemRenderer>						
+						<fx:Component>
+							<mx:CheckBox label="{data.label}" change="onChange(event)" >
+								<fx:Script >
+									<![CDATA[
+										
+										private function onChange(evt:Event):void {
+											data.isSelected = !data.isSelected;
+										} 
+
+										
+
+									]]>
+								</fx:Script>	
+							</mx:CheckBox>
+				-->
+							<!--
+							<s:CheckBox change="checkbox1_changeHandler(event)">
+								<fx:Script>
+									<![CDATA[
+										protected function checkbox1_changeHandler(event:Event):void
+										{
+											//data.isSelected = !data.isSelected;
+										}
+									]]>
+								</fx:Script>
+								
+							</s:CheckBox>
+							-->
+
+			<!--			
+						</fx:Component>
+			-->
+						<!--
+						<mx:Component>
+						-->
+						<!--
+							<mx:CheckBox selectedField="isSelected" change="onChange(event);" >
+								
+							</mx:CheckBox>
+						-->
+						<!--
+						</mx:Component>
+						-->
+			<!--
+					</mx:itemRenderer>
+				</mx:ComboBox>
+			-->
+				<!--
+				<s:List dataProvider="{searchTypes}" >
+					<s:itemRenderer>
+						<fx:Component>
+							<s:HGroup>		
+								
+								<s:CheckBox label="label" selected="true" textAlign="left" />
+							</s:HGroup>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:List>
+				-->
+		
+            </s:HGroup>
+		
+			<!--
+            <s:Label id="txtLabelGraphical"
+                     width="100%"
+                     text=""
+                     textAlign="center"/>
+			
+            <s:HGroup width="100%"
+                      horizontalAlign="right"
+                      paddingRight="10"
+                      paddingTop="2">
+                <s:Label buttonMode="true"
+                         click="clear()"
+                         fontWeight="bold"                        
+                         textDecoration="underline"/>
+							
+            </s:HGroup>
+			-->
+			<!--
+			text="{clearLabel}"
+			-->
+        </s:Group>		
+    </viewer:WidgetTemplate>
+
+</viewer:BaseWidget>

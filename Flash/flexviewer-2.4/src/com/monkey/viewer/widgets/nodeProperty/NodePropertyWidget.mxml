@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<viewer:BaseWidget xmlns:fx="http://ns.adobe.com/mxml/2009" 
+						xmlns:s="library://ns.adobe.com/flex/spark" 
+						xmlns:mx="library://ns.adobe.com/flex/mx" 
+						xmlns:viewer="com.esri.viewer.*"
+						xmlns:propertygrid="com.monkey.propertygrid.*"
+						layout="absolute" 
+						x="600" y="300"
+					    widgetConfigLoaded="init()"
+					    >
+	<fx:Declarations>
+		<s:GlowFilter id="glowFilter"
+					  alpha="1"
+					  color="{getStyle('focusColor')}"
+					  inner="true"
+					  strength="2"/>		
+	</fx:Declarations>
+	
+	<viewer:states>		
+	</viewer:states>
+	
+	<viewer:transitions>
+		<s:Transition autoReverse="true" toState="*">
+			<s:Fade id="fade"/>
+		</s:Transition>
+	</viewer:transitions>
+	
+	<fx:Script>
+		<![CDATA[						
+			import com.monkey.core.IContext;
+			import com.monkey.core.InstanceManager;
+			import com.monkey.event.*;
+			import com.monkey.process.IPMDispatcher;
+			import com.monkey.process.IPMParser;
+			import com.monkey.process.IPManager;
+			import com.monkey.process.ModelResult;
+			import com.monkey.propertygrid.ColumnFormatter;
+			import com.monkey.propertygrid.CustomProperty;
+			import com.monkey.service.ModelExecuteService;
+			import com.monkey.viewer.utils._XMLTag;
+			
+			import flash.utils.Dictionary;
+			
+			import mx.collections.ArrayCollection;
+			import mx.collections.ArrayList;
+			import mx.containers.Canvas;
+			
+			import org.un.cava.birdeye.ravis.graphLayout.data.IEdge;
+			import org.un.cava.birdeye.ravis.graphLayout.data.INode;
+			import org.un.cava.birdeye.ravis.graphLayout.visual.events.VisualNodeEvent;
+			//import org.hamcrest.mxml.collection.Array;
+			//import org.un.cava.birdeye.ravis.assets.icons.EmbeddedIcons;
+			//import org.un.cava.birdeye.ravis.components.renderers.edgeLabels.DefaultEdgeLabelRenderer;
+			//import org.un.cava.birdeye.ravis.components.renderers.nodes.DefaultNodeRenderer;
+			//import org.un.cava.birdeye.ravis.components.ui.controls.vgraphControls.DegreesOfSeparation;
+			//import org.un.cava.birdeye.ravis.components.ui.controls.vgraphControls.EdgeRendererSelector;
+			//import org.un.cava.birdeye.ravis.components.ui.controls.vgraphControls.NodeRendererSelector;
+			//import org.un.cava.birdeye.ravis.enhancedGraphLayout.visual.nodeRenderers.NodeLabelRenderer;
+			//import org.un.cava.birdeye.ravis.graphLayout.data.*;
+			//import org.un.cava.birdeye.ravis.graphLayout.data.Graph;
+			//import org.un.cava.birdeye.ravis.graphLayout.layout.*;
+			//import org.un.cava.birdeye.ravis.graphLayout.visual.IVisualGraph;
+			//import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.*;
+			
+			private const ICON_URL:String = "assets/images/";
+
+			private var _basicURL:String = null;
+			private var _meURL:String = null;
+			private var _activeNode:INode = null;
+			
+			[Bindable]
+			private var _propertys:ArrayCollection = new ArrayCollection();
+			
+			private function init():void {
+				try{					
+					var label:String = "结点属性:";
+										
+					wTemplatePL.addTitlebarButton(ICON_URL + "i_bookmark2.png", label, null);					
+					wTemplatePL.visible = true;
+				}
+				catch(err:Error){
+					err.getStackTrace();
+				}
+			}
+			
+			
+			private function widgetClosedHandler(event:Event):void{
+				var contxt:IContext = InstanceManager.instance.context;
+				if (null == contxt){
+					return;
+				}
+				
+				var vgraph:Canvas = contxt.getVariable("ActiveVisualGraph") as Canvas;
+				if (null != vgraph){
+					vgraph.removeEventListener(VisualNodeEvent.CLICK, vnode_clickHandler);
+				}
+				
+				EventBus.getInstance().removeEventListener(PropertyGrid.ITEMVALUE_CHANGE, itemValueChangeListener);
+			}
+			
+			private function widgetOpenedHandler(event:Event):void{
+				var contxt:IContext = InstanceManager.instance.context;
+				if (null == contxt){
+					return;
+				}
+				
+				if (null == _basicURL){
+					var services:Dictionary = contxt.getVariable("Services") as Dictionary;
+					if (null != services){
+						_basicURL = services["basic"] as String;
+						_meURL = services["modelexecute"] as String;
+					}
+					
+					_basicURL = services["basic"] as String;
+					_meURL = services["modelexecute"] as String;
+				}
+				
+				var vgraph:Canvas = contxt.getVariable("ActiveVisualGraph") as Canvas;
+				if (null != vgraph){
+					vgraph.addEventListener(VisualNodeEvent.CLICK, vnode_clickHandler);
+				}
+				
+				EventBus.getInstance().addEventListener(PropertyGrid.ITEMVALUE_CHANGE, itemValueChangeListener);
+				
+				//ColumnFormatter.valueChangeHandler = itemValueChangeListener;
+/*				
+				var property:CustomProperty = new CustomProperty();
+				property.caption = "苹果";
+				property.category = "Text";
+				property.datasource = "pingguo";
+				property.description = "红苹果";
+				property.name = "apple";				
+				_propertys.addItem(property);
+				
+				property = new CustomProperty();
+				property.caption = "西瓜";
+				property.category = "Text";
+				property.datasource = "xigua";
+				property.description = "大兴西瓜";
+				property.name = "xigua";				
+				_propertys.addItem(property);
+				
+				property = new CustomProperty();
+				property.caption = "水蜜桃";
+				property.category = "Text";
+				property.datasource = "shuimitao";
+				property.description = "水蜜桃";
+				property.name = "smt";				
+				_propertys.addItem(property);
+				return;
+*/				
+			}
+			/*
+			<operation name="ProcessModelList" id="3" title="获取模型列表" abstract="获取所有的空间处理模型的名称列表" color="" icon="4" x="30" y="50" size="16">
+				<inputs>   
+				  <input name="BaseDir" type="String" title="文件夹" abstract="文件夹" option="false" variable="" />	  	  
+				</inputs>
+				<output>      
+				  <output name="Models" type="String" title="模型列表" abstract="模型列表" />	  	  	  
+				</output>
+			  </operation>
+			*/
+			private function vnode_clickHandler(event:VisualNodeEvent):void{
+				var xnode:XML = event.node.data as XML;
+				if (null == xnode){
+					return;
+				}
+				_propertys.removeAll();
+				
+				//Context.instance.setVariable("ActiveVisualGraphElement", event.node);
+				_activeNode = event.node;
+				var inedgs:Array = _activeNode.inEdges;
+				
+				var property:CustomProperty = null;
+				//这里需要添加判断，如果是通过连接线输入的，则不显示
+				for each (var item:XML in xnode.descendants(_XMLTag.NODE_INPUTS).descendants(_XMLTag.NODE_INPUT)){
+					property = new CustomProperty();
+					property.name = item.@name;
+					property.caption = item.@title;
+					property.description = item.@abstract;
+					//property.category;
+					property.datasource = item.@variable;
+					property.value = item.@variable;
+					//通过关联边进行参数判断
+					if (isLinkValue(property.name,inedgs)){
+						property.readOnly = true;
+					}
+					_propertys.addItem(property);
+					
+					
+				}
+			}
+			
+/*			
+			protected function itemValueChangeListener(property:CustomProperty):void{
+				try{
+					if (null == _activeNode || null == property){
+						return;
+					}
+					var node:XML = _activeNode.data as XML;
+					if (null == node){
+						return;
+					}
+					var item:XML = findInputByName(node, property.name);
+					if (null == item){
+						return;
+					}
+					trace("NodePropertyWidget.itemValueChangeListener:para name--" + property.name);
+					trace("NodePropertyWidget.itemValueChangeListener:value--" + property.value);
+					trace("NodePropertyWidget.itemValueChangeListener:item name--" + item.@name);
+					item.@variable = property.value;
+					return;
+				}			
+				catch(err:Error){
+				}
+			}
+*/			
+			protected function findInputByName(node:XML, name:String):XML{
+				try{
+					if (null == node || null == name || "" == name){
+						return null;
+					}
+					name = name.toLowerCase();
+					
+					var str:String = null;
+					for each(var item:XML in node.descendants(_XMLTag.NODE_INPUTS).descendants(_XMLTag.NODE_INPUT)){
+						str = item.@name;
+						str = str.toLowerCase();
+						if (name.localeCompare(str) == 0){
+							return item;
+						}
+					}
+				}			
+				catch(err:Error){
+				}
+				return null;
+			}
+
+			private function itemValueChangeListener(event:AppEvent):void{
+				try{
+					if (null == event || null == _activeNode){
+						return;
+					}
+					var property:CustomProperty = event.data as CustomProperty;
+					if (null == property){
+						return;
+					}
+					var xnode:XML = _activeNode.data as XML;
+					if (null == xnode){
+						return;
+					}
+					
+					var item:XML = findInputByName(xnode, property.name);
+					if (null == item){
+						return;
+					}
+					trace("NodePropertyWidget.itemValueChangeListener:para name--" + property.name);
+					trace("NodePropertyWidget.itemValueChangeListener:value--" + property.value);
+					trace("NodePropertyWidget.itemValueChangeListener:item name--" + item.@name);
+					item.@variable = property.value;
+				}
+				catch(err:Error){
+				}
+			}
+			/*
+			<link from="2" to="3" >
+				<assign>
+					 <from>BaseDir</from>
+					 <to>BaseDir</to>
+				 </assign>
+			   </link>*/
+			private function isLinkValue(name:String,edgs:Array):Boolean{
+				try{
+					var xml:XML = null;
+					var assign:XML = null;
+					var to:XML = null;
+					name = name.toLowerCase();
+					var value:String = "";
+					for each(var e:IEdge in edgs){
+						if (null == e){
+							continue;
+						}
+						xml = e.data as XML;
+						if (null == xml){
+							continue;
+						}
+						assign = xml.descendants(_XMLTag.NODE_ASSIGN)[0];
+						if (null == assign){
+							continue;
+						}
+						/*
+						to = assign.descendants(_XMLTag.NODE_TO)[0];
+						if (null == to){
+							continue;
+						}*/
+						value = assign.to;
+						value = value.toLowerCase();
+						if (name.localeCompare(value) == 0){
+							return true;
+						}
+					}
+				}
+				catch(err:Error){
+				}
+				return false;
+			}
+		]]>
+	</fx:Script>
+	
+	<viewer:WidgetTemplate id="wTemplatePL"
+						   width="430" height="240"
+						   closed="widgetClosedHandler(event)"
+						   open="widgetOpenedHandler(event)"                   
+						   visible="false">		
+		<s:Group width="100%" height="100%">
+			<s:layout>
+				<s:VerticalLayout gap="10" horizontalAlign="center"/>
+			</s:layout>
+			<s:HGroup id="boxGraphical"
+					  width="100%"
+					  height="100%"
+					  gap="15"
+					  horizontalAlign="center"
+					  verticalAlign="middle">
+				<propertygrid:PropertyGrid id="grid" width="100%" height="100%" propertys="{_propertys}"/>
+			</s:HGroup>			
+		</s:Group>
+	</viewer:WidgetTemplate>
+</viewer:BaseWidget>

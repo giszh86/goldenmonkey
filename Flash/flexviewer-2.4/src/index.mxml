@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     ////////////////////////////////////////////////////////////////////////////////
+     //
+     // Copyright (c) 2010-2011 Esri
+     //
+     // All rights reserved under the copyright laws of the United States.
+     // You may freely redistribute and use this software, with or
+     // without modification, provided you include the original copyright
+     // and use restrictions.  See use restrictions in the file:
+     // <install location>/License.txt
+     //
+     ////////////////////////////////////////////////////////////////////////////////
+-->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:viewer="com.esri.viewer.*"
+               xmlns:managers="com.esri.viewer.managers.*"
+			   xmlns:ravis="org.un.cava.birdeye.ravis.graphLayout.visual.*"
+               pageTitle="ArcGIS Viewer for Flex"
+			   creationComplete="init()" xmlns:mx="library://ns.adobe.com/flex/mx" >
+
+    <fx:Style source="defaults.css"/>
+
+    <fx:Metadata>
+        [ResourceBundle("ViewerStrings")]
+    </fx:Metadata>
+
+	<fx:Declarations >		
+		<fx:XML id="config" source="assets/xmls/config.xml" />		
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.monkey.core.*;
+			import com.monkey.process.*;
+			import com.monkey.processor.*;
+			import com.monkey.utils.*;
+			
+			private var _basicURL:String = "";
+			private var _meURL:String = "";
+			
+			private function init():void {
+				try{
+					Initializer.init();									
+					var manager:IPManager = InstanceManager.instance.processManager;
+					if (null == manager)
+					{
+						return;
+					}
+					manager.register(new ViewerPMFactory());
+					
+					var contxt:IContext = InstanceManager.instance.context;
+					if (null == contxt){
+						return;
+					}
+					
+					var doMain:String = this.parent.stage.loaderInfo.url;
+					var doMainArray:Array = doMain.split("/");
+					var currSwfUrl:String = "";
+					if (doMainArray[0] == "file:") {   
+						if(doMainArray.length<=3){   							  
+							currSwfUrl = doMainArray[2];   
+							currSwfUrl = currSwfUrl.substring(0,currSwfUrl.lastIndexOf(currSwfUrl.charAt(2)));   
+						}else{
+							currSwfUrl = doMain;   
+							currSwfUrl = currSwfUrl.substring(0,currSwfUrl.lastIndexOf("/"));   
+						}  
+					}else{   
+						currSwfUrl = doMain;   
+						currSwfUrl = currSwfUrl.substring(0,currSwfUrl.lastIndexOf("/"));   
+					}   
+					currSwfUrl += "/";
+					contxt.setVariable("BaseDirectory", currSwfUrl); 					
+					
+					var parser:IPMParser = manager.newParser();
+					if (null == parser){
+						return;
+					}
+					var mpath:String = currSwfUrl + "data/models/initProjectList.xml";
+					parser.file = mpath;
+					contxt.setVariable("InitProjectListParser", parser);
+					
+					parser = manager.newParser();
+					if (null == parser){
+						return;
+					}
+					mpath = currSwfUrl + "data/models/openProject.xml";
+					parser.file = mpath;
+					contxt.setVariable("OpenProjectParser", parser);
+					
+					parser = manager.newParser();
+					if (null == parser){
+						return;
+					}
+					mpath = currSwfUrl + "data/models/startJob.xml";
+					parser.file = mpath;
+					contxt.setVariable("StartJobParser", parser);
+
+
+					var services:Dictionary = new Dictionary();					
+					var type:String = "";
+					var service:String = "";
+					for each(var xmlItem:XML in config.child("resources").child("services").child("service")){
+						if (null == xmlItem){
+							continue;
+						}
+						type = xmlItem.@type;
+						service = xmlItem.toString();
+						services[type] = service;
+
+						type = null;
+						service = null;
+					}					
+					contxt.setVariable("Services", services);	
+
+					_basicURL = services["basic"] as String;
+					_meURL = services["modelexecute"] as String;
+
+//					contxt.setVariable("ActiveVisualGraph", this.vgraph);
+				}
+				catch(err:Error){
+				}			
+			}
+		]]>
+	</fx:Script>
+		
+    <viewer:ViewerContainer id="viewerContainer">
+        <viewer:configManager>
+            <managers:ConfigManager id="configManager"/>
+        </viewer:configManager>
+        <viewer:dataManager>
+            <managers:DataManager id="dataManager"/>
+        </viewer:dataManager>
+        <viewer:mapManager>
+            <managers:MapManager id="mapManager"/>
+        </viewer:mapManager>
+        <viewer:uiManager>
+            <managers:UIManager id="uiManager"/>
+        </viewer:uiManager>
+        <viewer:widgetManager>
+            <managers:WidgetManager id="widgetManager"/>
+        </viewer:widgetManager>			
+    </viewer:ViewerContainer>
+		
+
+</s:Application>

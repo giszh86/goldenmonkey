@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<viewer:BaseWidget xmlns:fx="http://ns.adobe.com/mxml/2009" 
+						xmlns:s="library://ns.adobe.com/flex/spark" 
+						xmlns:mx="library://ns.adobe.com/flex/mx" 
+						xmlns:viewer="com.esri.viewer.*" 
+						layout="absolute" 
+						x="600" y="300"
+					    widgetConfigLoaded="init()"
+					    >
+	<fx:Declarations>
+		<s:GlowFilter id="glowFilter"
+					  alpha="1"
+					  color="{getStyle('focusColor')}"
+					  inner="true"
+					  strength="2"/>
+		<!--
+		<s:ArrayCollection id="models" >			
+		</s:ArrayCollection>	
+		
+		
+		<s:List id="lst" dataProvider="{models}" >
+			<s:itemRenderer>
+				<fx:Component>
+					<s:HGroup>		
+												
+					</s:HGroup>
+				</fx:Component>
+			</s:itemRenderer>
+			
+		</s:List>
+		-->
+	</fx:Declarations>
+	
+	<viewer:states>		
+	</viewer:states>
+	
+	<viewer:transitions>
+		<s:Transition autoReverse="true" toState="*">
+			<s:Fade id="fade"/>
+		</s:Transition>
+	</viewer:transitions>
+	
+	<fx:Script>
+		<![CDATA[			
+			import com.monkey.core.Context;
+			import com.monkey.core.IContext;
+			import com.monkey.core.InstanceManager;
+			import com.monkey.event.*;
+			import com.monkey.process.IPMDispatcher;
+			import com.monkey.process.IPMParser;
+			import com.monkey.process.IPManager;
+			import com.monkey.process.ModelResult;
+			import com.monkey.service.ModelExecuteService;
+			import com.monkey.viewer.utils._XMLTag;
+			
+			import flash.utils.Dictionary;
+			
+			import mx.collections.ArrayCollection;
+			import mx.collections.ArrayList;
+			
+			import org.un.cava.birdeye.ravis.assets.icons.EmbeddedIcons;
+			import org.un.cava.birdeye.ravis.components.renderers.edgeLabels.DefaultEdgeLabelRenderer;
+			import org.un.cava.birdeye.ravis.components.renderers.nodes.DefaultNodeRenderer;
+			import org.un.cava.birdeye.ravis.components.ui.controls.vgraphControls.DegreesOfSeparation;
+			import org.un.cava.birdeye.ravis.components.ui.controls.vgraphControls.EdgeRendererSelector;
+			import org.un.cava.birdeye.ravis.components.ui.controls.vgraphControls.NodeRendererSelector;
+			import org.un.cava.birdeye.ravis.enhancedGraphLayout.visual.nodeRenderers.NodeLabelRenderer;
+			import org.un.cava.birdeye.ravis.graphLayout.data.*;
+			import org.un.cava.birdeye.ravis.graphLayout.data.Graph;
+			import org.un.cava.birdeye.ravis.graphLayout.layout.*;
+			import org.un.cava.birdeye.ravis.graphLayout.visual.IVisualGraph;
+			import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.*;
+			
+			private const ICON_URL:String = "assets/images/";
+			
+			[Bindable]
+			private var _projects:ArrayCollection = new ArrayCollection();
+			
+			private var _basicURL:String = null;
+			private var _meURL:String = null;
+			
+			/*
+			public function set modelList(value:ArrayCollection):void{
+				_models = value;
+			}
+			*/
+			
+			private function init():void {
+				try{
+					/*if (null == _basicURL){
+						var services:Dictionary = Context.instance.getVariable("Services") as Dictionary;
+						if (null != services){
+							_basicURL = services["basic"] as String;
+							_meURL = services["modelexecute"] as String;
+						}
+						
+						_basicURL = services["basic"] as String;
+						_meURL = services["modelexecute"] as String;
+						EventBus.getInstance().addEventListener("getProjects", projectListChangedHandler);						
+					}*/
+					
+					
+					var label:String = "工程列表:";
+					
+					//wTemplate.addTitlebarButton(ICON_URL + "i_searchgraphical.png", graphicalsearchLabel, showStateGraphicalSearch);
+					wTemplatePL.addTitlebarButton(ICON_URL + "i_bookmark2.png", label, null);					
+					wTemplatePL.visible = true;		
+					
+					
+					var manager:IPManager = InstanceManager.instance.processManager;
+					if (null == manager)
+					{
+						return;
+					}
+					var pd:IPMDispatcher = manager.newDispatcher();
+					if (null == pd){
+						//System.out.println("ModelExecuteServlet.doGet:PMDispatcher为空");
+						return;
+					}
+					var contxt:IContext = InstanceManager.instance.context;
+					if (null == contxt){
+						return;
+					}
+					pd.parser = contxt.getVariable("InitProjectListParser") as IPMParser;		
+					
+					//<Identifier>Name</Identifier>
+					//<Title>模型名称</Title>
+					//<Identifier>Argument</Identifier>
+					//<Title>模型参数</Title>
+					//<Identifier>BasicURL</Identifier>
+					//<Title>服务基址</Title>
+					//<Identifier>ServiceURL</Identifier>
+					//<Title>服务名</Title>
+					var args:ArrayList = new ArrayList();
+					args.addItem("getProjects");
+					args.addItem("");
+					args.addItem(_basicURL);
+					args.addItem(_meURL);
+					
+					pd.dispatchCompleteHandler = getProjectsListener;
+					pd.dispatchStrings(null,args);
+				}
+				catch(err:Error){
+					err.getStackTrace();
+				}
+			}
+			
+			private function getProjectsListener(result:ModelResult):void{
+				if (null == result){
+					return;
+				}
+				_projects = result.value as ArrayCollection;
+/*				
+				var arrays:ArrayCollection = result.value as ArrayCollection;
+				if (null == arrays)
+				{
+					arrays = new ArrayCollection();
+					arrays.addItem({identifier:"getModel",title:"模型",abstract:"获取给定名称的模型的描述"});
+					arrays.addItem({identifier:"getModels",title:"模型列表",abstract:"获取所有模型的列表"});
+					arrays.addItem({identifier:"sample",title:"示例",abstract:"示例"});
+				}
+				//this._projectList.dataProvider = pd.dispatchStrings(null,args) as ArrayCollection;
+				this._projectList.dataProvider = arrays;
+*/				
+			}
+			
+			private function projectListWidgetClosedHandler(event:Event):void
+			{
+			}
+			
+//			private var parser:IPMParser = null;
+			private function projectListWidgetOpenedHandler(event:Event):void
+			{		
+/*				
+				var manager:IPManager = InstanceManager.instance.processManager;
+				if (null == manager)
+				{
+					return;
+				}
+				
+				//var parser:IPMParser = manager.newParser();
+				parser = manager.newParser();
+				if (null == parser){
+					return;
+				}
+				
+				var root:String = Context.instance.getVariable("BaseDirectory") as String;
+				//var mpath:String = root + "/assets/xmls/models/initProjectList.xml";
+				var mpath:String = root + "data/models/initProjectList.xml";
+				parser.file = mpath;
+*/			
+				if (null == _basicURL){
+					var contxt:IContext = InstanceManager.instance.context;
+					if (null == contxt){
+						return;
+					}
+					var services:Dictionary = contxt.getVariable("Services") as Dictionary;
+					if (null != services){
+						_basicURL = services["basic"] as String;
+						_meURL = services["modelexecute"] as String;
+					}
+					
+					_basicURL = services["basic"] as String;
+					_meURL = services["modelexecute"] as String;
+					//EventBus.getInstance().addEventListener("getProjects", projectListChangedHandler);					
+				}
+				return;
+/*				
+				var pd:IPMDispatcher = manager.newDispatcher();
+				if (null == pd){
+					//System.out.println("ModelExecuteServlet.doGet:PMDispatcher为空");
+					return;
+				}
+				
+				pd.parser = parser;		
+				
+				//<Identifier>Name</Identifier>
+				//<Title>模型名称</Title>
+				//<Identifier>Argument</Identifier>
+				//<Title>模型参数</Title>
+				//<Identifier>BasicURL</Identifier>
+				//<Title>服务基址</Title>
+				//<Identifier>ServiceURL</Identifier>
+				//<Title>服务名</Title>
+				var args:ArrayList = new ArrayList();
+				args.addItem("getProjects");
+				args.addItem("");
+				args.addItem(_basicURL);
+				args.addItem(_meURL);
+									
+				this._projectList.dataProvider = pd.dispatchStrings(null,args) as ArrayCollection;		
+*/				
+			}
+/*			
+			private function projectListChangedHandler(event:AppEvent):void
+			{
+				var projectList:ModelResult = event.data as ModelResult;
+				var xml:XML = new XML(projectList.value);
+				
+				for each(var item:XML in xml.child("project"))
+				{					
+					_projects.addItem({identifier:item.@identifier,title:item.@title,abstract:item.@abstract});				
+				}							
+			}
+*/			
+			protected function projectList_clickHandler(event:MouseEvent):void
+			{				
+				var o:Object = _projectList.selectedItem;
+				if (null == o)
+				{
+					return;
+				}
+				var argument:String = o.identifier;
+				
+				var content:XML = <mess-body>
+									<name>getProject</name>
+									<argument></argument>
+								  </mess-body>;	
+				content.argument = o.identifier;
+				var urlVar:URLVariables = new URLVariables();
+				urlVar.content = content.toString();
+				urlVar.request = _meURL;
+				
+				
+				var manager:IPManager = InstanceManager.instance.processManager;
+				if (null == manager)
+				{
+					return;
+				}
+				var pd:IPMDispatcher = manager.newDispatcher();
+				if (null == pd){
+					//System.out.println("ModelExecuteServlet.doGet:PMDispatcher为空");
+					return;
+				}
+				var contxt:IContext = InstanceManager.instance.context;
+				if (null == contxt){
+					return;
+				}
+				pd.parser = contxt.getVariable("OpenProjectParser") as IPMParser;		
+				
+				//<Identifier>Name</Identifier>
+				//<Title>模型名称</Title>
+				//<Identifier>Argument</Identifier>
+				//<Title>模型参数</Title>
+				//<Identifier>BasicURL</Identifier>
+				//<Title>服务基址</Title>
+				//<Identifier>ServiceURL</Identifier>
+				//<Title>服务名</Title>
+				var args:ArrayList = new ArrayList();
+				args.addItem("getProject");
+				args.addItem(argument);
+				args.addItem(_basicURL);
+				args.addItem(_meURL);
+				
+//				pd.dispatchCompleteHandler = getModelHandler;
+				pd.dispatchStrings(null,args);
+								
+//				var request:ModelExecuteService = new ModelExecuteService("getProject",_basicURL);
+//				request.start(urlVar);
+			}
+/*			
+			private function getProjectListener(result:ModelResult):void{
+				if (null == result){
+					return;
+				}
+				//_projects = result.value as ArrayCollection;
+			}
+*/		
+			private function getModelHandler(result:ModelResult):void{
+				var contxt:IContext = InstanceManager.instance.context;
+				if (null == contxt){
+					return;
+				}
+				var vgraph:IVisualGraph = contxt.getVariable("ActiveVisualGraph") as IVisualGraph;
+				if (null == vgraph)
+				{
+					return;
+				}
+				vgraph.refresh();
+			}
+			
+/*			
+			protected function getModelHandler(event:AppEvent):void			
+			{
+				var result:ModelResult = event.data as ModelResult;
+				var model:XML = new XML(result.value);
+				
+			
+				var contxt:IContext = InstanceManager.instance.context;
+				if (null == contxt){
+					return;
+				}
+				var vgraph:IVisualGraph = contxt.getVariable("ActiveVisualGraph") as IVisualGraph;
+				if (null == vgraph)
+				{
+					return;
+				}
+				var graph:Graph = initFromXML(model);
+				if (null == graph){
+					return;
+				}
+				vgraph.graph = graph;					
+				
+				var layouter:ILayoutAlgorithm = new HierarchicalLayouter(vgraph);
+				HierarchicalLayouter(layouter).orientation = HierarchicalLayouter.ORIENT_TOP_DOWN;
+				vgraph.layouter = layouter;
+				
+				layouter.autoFitEnabled = true;
+				vgraph.edgeRendererFactory = new ClassFactory(FlowEdgeRenderer);
+				//vgraph.edgeRenderer = new EdgeDrawer(vgraph.edgeDrawGraphics);
+				//vgraph.nodeLabelRenderer = new ClassFactory(NodeLabelRenderer);
+				//vgraph.edgeControlRenderer = new ClassFactory(EdgeControlRenderer);
+				vgraph.itemRenderer = new ClassFactory(DefaultNodeRenderer);
+				vgraph.edgeLabelRenderer = new ClassFactory(DefaultEdgeLabelRenderer);
+				
+				// set the visibility limit options, default 2 
+				vgraph.maxVisibleDistance = 20;
+				
+				vgraph.displayEdgeLabels = true;
+				//vgraph.displayNodeLabels = true;
+				
+				vgraph.currentRootVNode = vgraph.graph.nodeByStringId("1").vnode;
+				
+				//addEventListeners();
+				vgraph.draw();				
+			}		
+			
+			public function initFromXML(xml:XML):Graph {	
+				try{
+					var xnode:XML;
+					var xedge:XML;
+					
+					var fromNodeId:String;
+					var toNodeId:String;
+					
+					var fromNode:INode;
+					var toNode:INode;
+					
+					var graph:Graph = new Graph("XMLAsDocsGraph",false,null);
+					
+					//创建开始结点
+					//xnode = xml.flow.start[0];
+					xnode = xml.descendants(_XMLTag.NODE_FLOW).descendants(_XMLTag.NODE_START)[0];
+					if (null == xnode){
+						return null;
+					}
+					fromNode = graph.createNode(xnode.@id, xnode);
+					
+					for each(xnode in xml.descendants(_XMLTag.NODE_OPERATION)) {
+						if (null == xnode){
+							continue;
+						}
+						// we add the xml node id as string id and the xml						
+						// node data as data object 
+						fromNode = graph.createNode(xnode.@id, xnode);
+						//LogUtil.debug(_LOG, "Node:"+fromNode.stringid+" created, total:"+_nodes.length);
+					}
+					
+					//创建结束结点
+					xnode = xml.descendants(_XMLTag.NODE_FLOW).descendants(_XMLTag.NODE_END)[0];
+					if (null == xnode){
+						return null;
+					}
+					fromNode = graph.createNode(xnode.@id, xnode);
+					
+					for each(xedge in xml.descendants(_XMLTag.NODE_LINK)) {
+						if (null == xnode){
+							continue;
+						}
+						fromNodeId = xedge.@from;
+						toNodeId = xedge.@to;
+						
+						fromNode = graph.nodeByStringId(fromNodeId);
+						toNode = graph.nodeByStringId(toNodeId);
+						
+						// we do not throw an error here, because the data
+						//is often inconsistent. In this case we just ignore
+						//the edge 
+						if(fromNode == null) {
+							//LogUtil.warn(_LOG, "Node id: "+fromNodeId+" not found, link not done");
+							continue;
+						}
+						if(toNode == null) {
+							//LogUtil.warn(_LOG, "Node id: "+toNodeId+" not found, link not done");
+							continue;
+						}
+						graph.link(fromNode,toNode,xedge);
+						//LogUtil.warn(_LOG, "Current nr of edges:"+_edges.length);
+					}
+					return graph;
+				}
+				catch(e:Error){	
+					trace("index.initFromXML:" + e.getStackTrace());					
+				}
+				
+				return null;
+			}
+*/			
+		]]>
+	</fx:Script>
+	
+	<viewer:WidgetTemplate id="wTemplatePL"
+						   width="430" height="240"
+						   closed="projectListWidgetClosedHandler(event)"
+						   open="projectListWidgetOpenedHandler(event)"                   
+						   visible="false">		
+		<s:Group width="100%" height="100%">
+			<s:layout>
+				<s:VerticalLayout gap="10" horizontalAlign="center"/>
+			</s:layout>
+			<s:HGroup id="boxGraphical"
+					  width="100%"
+					  height="100%"
+					  gap="15"
+					  horizontalAlign="center"
+					  verticalAlign="middle">
+				<s:List id="_projectList" width="100%" height="100%" x="786"  y="165" click="projectList_clickHandler(event)" 
+						dataProvider="{_projects}" labelField="title" />
+			</s:HGroup>			
+		</s:Group>
+	</viewer:WidgetTemplate>
+</viewer:BaseWidget>
