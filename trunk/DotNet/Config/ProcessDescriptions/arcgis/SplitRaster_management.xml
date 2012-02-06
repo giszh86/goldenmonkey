@@ -1,0 +1,118 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Split Raster (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a tiled output from an input raster dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Divide</keyword><keyword>Preparation</keyword><keyword>Processing</keyword><keyword>Separate</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SplitRaster" displayname="Split Raster (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a tiled output from an input raster dataset.</para>
+		</summary><alink_name>SplitRaster_management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset to be split into tiles.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster dataset to be split into tiles.</para>
+					</dialogReference></param><param sync="true" name="out_folder" displayname="Output Folder" datatype="Folder" direction="Input" expression="out_folder" type="Required"><pythonReference>
+						<para>The output folder, where the tiles will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The output folder, where the tiles will be created.</para>
+					</dialogReference></param><param sync="true" name="out_base_name" displayname="Output Base Name" datatype="String" direction="Input" expression="out_base_name" type="Required"><pythonReference>
+						<para>The prefix for each filename. The tile number is then appended to complete the filename, which starts with 0. </para>
+						<para>By default, the prefix is the same name as the input raster.</para>
+					</pythonReference><dialogReference>
+						<para>The prefix for each filename. The tile number is then appended to complete the filename, which starts with 0. </para>
+						<para>By default, the prefix is the same name as the input raster.</para>
+					</dialogReference></param><param sync="true" name="split_method" displayname="Split Method" datatype="String" direction="Input" expression="split_method" type="Optional"><pythonReference>
+						<para>The tiling method to be used when splitting the raster dataset. It will determine the size and number of tiles for each output dataset.</para>
+						<bulletList><bullet_item>SIZE_OF_TILE—Allows you to specify the tile width and tile height. Then the appropriate number of tiles will be created. This is the default method. You can also specify a different lower left origin, different output pixel sizes, and the amount of overlap between adjoining tiles (in pixels, meters, feet, degrees, miles, or kilometers).</bullet_item><bullet_item>NUMBER_OF_TILES— Allows you to specify the number of raster tiles to create in the horizontal and the vertical direction. Then the appropriate tile size will be created for each dataset. You can also specify a different lower left origin, different output pixel sizes, and the amount of overlap between adjoining tiles (in pixels, meters, feet, degrees, miles, or kilometers).</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The tiling method to be used when splitting the raster dataset. It will determine the size and number of tiles for each output dataset.</para>
+						<bulletList><bullet_item>SIZE_OF_TILE—Allows you to specify the tile width and tile height. Then the appropriate number of tiles will be created. This is the default method. You can also specify a different lower left origin, different output pixel sizes, and the amount of overlap between adjoining tiles (in pixels, meters, feet, degrees, miles, or kilometers).</bullet_item><bullet_item>NUMBER_OF_TILES— Allows you to specify the number of raster tiles to create in the horizontal and the vertical direction. Then the appropriate tile size will be created for each dataset. You can also specify a different lower left origin, different output pixel sizes, and the amount of overlap between adjoining tiles (in pixels, meters, feet, degrees, miles, or kilometers).</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="format" displayname="Output Format" datatype="String" direction="Input" expression="format" type="Optional"><pythonReference>
+						<para>The file format for the output raster datasets.</para>
+						<bulletList><bullet_item>TIFF—Tagged Image File Format. This is the default.</bullet_item><bullet_item>BMP—Bitmap.</bullet_item><bullet_item>ENVI—ENVI DAT.</bullet_item><bullet_item>ESRI BIL—ESRI band interleaved by line.</bullet_item><bullet_item>ESRI BIP—ESRI band interleaved by pixel.</bullet_item><bullet_item>ESRI BSQ—ESRI band sequential.</bullet_item><bullet_item>GIF—Graphic interchange format.</bullet_item><bullet_item>GRID—ESRI GRID.</bullet_item><bullet_item>IMAGINE IMAGE—ERDAS IMAGINE.</bullet_item><bullet_item>JP2—JPEG 2000.</bullet_item><bullet_item>JPEG—Joint Photographics Experts Group.</bullet_item><bullet_item>PNG—Portable Network Graphics.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>The file format for the output raster datasets.</para>
+						<bulletList><bullet_item>TIFF—Tagged Image File Format. This is the default.</bullet_item><bullet_item>BMP—Bitmap.</bullet_item><bullet_item>ENVI—ENVI DAT.</bullet_item><bullet_item>ESRI BIL—ESRI band interleaved by line.</bullet_item><bullet_item>ESRI BIP—ESRI band interleaved by pixel.</bullet_item><bullet_item>ESRI BSQ—ESRI band sequential.</bullet_item><bullet_item>GIF—Graphic interchange format.</bullet_item><bullet_item>GRID—ESRI GRID.</bullet_item><bullet_item>IMAGINE IMAGE—ERDAS IMAGINE.</bullet_item><bullet_item>JP2—JPEG 2000.</bullet_item><bullet_item>JPEG—Joint Photographics Experts Group.</bullet_item><bullet_item>PNG—Portable Network Graphics.</bullet_item></bulletList></dialogReference></param><param sync="true" name="resampling_type" displayname="Resampling Technique" datatype="String" direction="Input" expression="resampling_type" type="Optional"><pythonReference>
+						<para>Choose the resampling method to use when creating the DTEDs. The default is bilinear interpolation resampling.</para>
+						<bulletList><bullet_item>NEAREST—Nearest neighbor assignment</bullet_item><bullet_item>BILINEAR—Bilinear interpolation</bullet_item><bullet_item>CUBIC—Cubic convolution</bullet_item><bullet_item>MAJORITY—Majority resampling</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose the resampling method to use when creating the DTEDs. The default is bilinear interpolation resampling.</para>
+						<bulletList><bullet_item>NEAREST—Nearest neighbor assignment</bullet_item><bullet_item>BILINEAR—Bilinear interpolation</bullet_item><bullet_item>CUBIC—Cubic convolution</bullet_item><bullet_item>MAJORITY—Majority resampling</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="num_rasters" displayname="Number of output rasters" datatype="Point" direction="Output" expression="num_rasters" type="Optional"><pythonReference>
+						<para>Specify the number of tiles in each direction. The default value is 1 tile for each direction.</para>
+						<para>This option is only valid when the tiling method is NUMBER_OF_TILES.</para>
+					</pythonReference><dialogReference>
+						<para>Specify the number of tiles in each direction. The default value is 1 tile for each direction.</para>
+						<para>This option is only valid when the tiling method is NUMBER_OF_TILES.</para>
+					</dialogReference></param><param sync="true" name="tile_size" displayname="Size of output rasters" datatype="Point" direction="Output" expression="tile_size" type="Optional"><pythonReference>
+						<para> The x and y dimensions of the output tiles. The "Units for Output Raster Size and Overlap" parameter will determine the units that are used for these values. </para>
+						<para>This option is only valid when the tiling method is SIZE_OF_TILE.</para>
+					</pythonReference><dialogReference>
+						<para> The x and y dimensions of the output tiles. The "Units for Output Raster Size and Overlap" parameter will determine the units that are used for these values. </para>
+						<para>This option is only valid when the tiling method is SIZE_OF_TILE.</para>
+					</dialogReference></param><param sync="true" name="overlap" displayname="Overlap" datatype="Double" direction="Output" expression="overlap" type="Optional"><pythonReference>
+						<para> The number of pixels of overlap between the adjoining tiles. The overlap value will be determined by the "Units for Output Raster Size and Overlap" parameter.</para>
+					</pythonReference><dialogReference>
+						<para> The number of pixels of overlap between the adjoining tiles. The overlap value will be determined by the "Units for Output Raster Size and Overlap" parameter.</para>
+					</dialogReference></param><param sync="true" name="Units" displayname="Units for Output Raster Size and Overlap" datatype="String" direction="Output" expression="Units" type="Optional"><pythonReference>
+						<para> Determines the units that apply to the "Size of Output Rasters" and the "Overlap" parameters. </para>
+						<bulletList><bullet_item>PIXELS—The unit is in pixels. This is the default.</bullet_item><bullet_item>METERS—The unit is in meters.</bullet_item><bullet_item>FEET—The unit is in feet.</bullet_item><bullet_item>DEGREES—The unit is in decimal degrees.</bullet_item><bullet_item>MILES—The unit is in miles.</bullet_item><bullet_item>KILOMETERS—The unit is in kilometers.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Determines the units that apply to the "Size of Output Rasters" and the "Overlap" parameters. </para>
+						<bulletList><bullet_item>PIXELS—The unit is in pixels. This is the default.</bullet_item><bullet_item>METERS—The unit is in meters.</bullet_item><bullet_item>FEET—The unit is in feet.</bullet_item><bullet_item>DEGREES—The unit is in decimal degrees.</bullet_item><bullet_item>MILES—The unit is in miles.</bullet_item><bullet_item>KILOMETERS—The unit is in kilometers.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Cell_size" displayname="Cellsize" datatype="Point" direction="Output" expression="Cell_size" type="Optional"><pythonReference>
+						<para> Specify the output pixel size in each direction. By default, the output will match the input raster. If the cell size values are changed, the tile size and count are reset to their default values (image size and 1, respectively).</para>
+						<para>This parameter is based on the output spatial reference system, which is set in the Environment Settings.</para>
+					</pythonReference><dialogReference>
+						<para> Specify the output pixel size in each direction. By default, the output will match the input raster. If the cell size values are changed, the tile size and count are reset to their default values (image size and 1, respectively).</para>
+						<para>This parameter is based on the output spatial reference system, which is set in the Environment Settings.</para>
+					</dialogReference></param><param sync="true" name="origin" displayname="Lower Left Origin" datatype="Point" direction="Output" expression="origin" type="Optional"><pythonReference>
+						<para>The coordinate for the lower left origin point, where the tiling scheme will begin. By default, the lower left origin would be the same as the input raster.</para>
+						<para>This parameter is based on the output spatial reference system, which is set in the Environment Settings.</para>
+					</pythonReference><dialogReference>
+						<para>The coordinate for the lower left origin point, where the tiling scheme will begin. By default, the lower left origin would be the same as the input raster.</para>
+						<para>This parameter is based on the output spatial reference system, which is set in the Environment Settings.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent"></environment><environment name="Output_Config_Keyword" label="Output Config Keyword"></environment><environment name="Pyramid" label="Pyramid">
+						
+					</environment><environment name="Tile_size" label="Tile size"></environment><environment name="Raster_statistics" label="Raster statistics">
+						
+					</environment><environment name="Compression" label="Compression">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The output files will share most of the properties of the input source raster, such as the spatial reference, source type, pixel type, pixel depth, and cell size.</para>
+			</bullet_item><bullet_item>
+				<para>The tiling method determines which of the optional parameters are used to determine the dimensions and location of the output tiles. In both cases, NoData values are used to pad the tiles where there is no corresponding source data. The data format depends on the limitations of the individual format specifications and the source image data type. Invalid combinations result in an appropriate error message.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SplitRaster example 1  (Python window)</title>
+					<para>This is a Python sample for SplitRaster.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.SplitRaster_management("c:/source/large.tif", "c:/output/splitras",\
+                             "ras", "NUMBER_OF_TILES", "TIFF", "NEAREST",\
+                             "2 2", "#", "10", "PIXELS", "#", "#")
+                    </code></scriptExample><scriptExample><title>SplitRaster example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for SplitRaster.</para>
+				<code xml:space="preserve">##====================================
+##Split Raster
+##Usage: SplitRaster_management in_raster out_folder out_base_name SIZE_OF_TILE
+##                              | NUMBER_OF_TILES | TIFF | BMP | ENVI | ESRI BIL |
+##                              ESRI BIP | ESRI BSQ | GIF | GRID | IMAGINE IMAGE | 
+##                              JP2 | JPG | PNG {NEAREST | BILINEAR | CUBIC | 
+##                              MAJORITY} {num_rasters} {tile_size} {overlap} 
+##                              {PIXELS | METERS | FEET | DEGREES | KILOMETERS | 
+##                              MILES} {cell_size} {origin}
+    
+try:
+    import arcpy
+    arcpy.env.workspace = r"\\myServer\PrjWorkspace\RasGP"
+    
+    ##Equally split a large TIFF image by number of images
+    arcpy.SplitRaster_management("large.tif", "splitras", "number", "NUMBER_OF_TILES",\
+                                 "TIFF", "NEAREST", "2 2", "#", "4", "PIXELS",\
+                                 "#", "#")
+    
+    ##Equally split a large TIFF image by size of images
+    arcpy.SplitRaster_management("large.tif", "splitras", "size2", "SIZE_OF_TILE",\
+                                 "TIFF", "BILINEAR", "#", "3500 3500", "4", "PIXELS",\
+                                 "#", "-50 60")
+
+except:
+    print "Split Raster exsample failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

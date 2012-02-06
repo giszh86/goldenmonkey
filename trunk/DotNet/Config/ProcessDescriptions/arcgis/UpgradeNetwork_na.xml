@@ -1,0 +1,61 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Upgrade Network (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Upgrades the schema of the network dataset. Upgrading the network dataset allows the network dataset to make use of the new functionality available in the current software release. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" UpgradeNetwork " displayname=" Upgrade Network (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Upgrades the schema of the network dataset. Upgrading the network dataset allows the network dataset to make use of the new functionality available in the current software release. </para>
+		</summary><alink_name> UpgradeNetwork _na</alink_name><parameters><param sync="true" name="in_network_dataset" displayname="Input Network Dataset" datatype="Network Dataset Layer" direction="Input" expression="in_network_dataset" type="Required"><pythonReference>
+						<para> The network dataset to be upgraded. The network dataset must be a geodatabase-based network dataset.</para>
+					</pythonReference><dialogReference>
+						<para> The network dataset to be upgraded. The network dataset must be a geodatabase-based network dataset.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para> Before the network dataset can be upgraded, the geodatabase must be first upgraded to the current release using the  tool. </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>UpgradeNetwork example 1 (Python window)</title>
+					<para>Execute the tool using all the parameters.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/Data/Socal.gdb"
+arcpy.UpgradeNetwork_na("Transportation/Streets_ND")
+
+                    </code></scriptExample><scriptExample><title>UpgradeNetwork example 2 (workflow)</title>
+					<para>The following stand-alone Python script demonstrates how the UpgradeNetwork tool can be used to upgrade the schema of a network dataset. </para>
+				<code xml:space="preserve"># Name: UpgradeNetwork_Workflow.py
+# Description: Upgrades the schema of a network dataset by first upgrading the 
+#              geodatabase containing the network dataset and then upgrading the
+#              network dataset. The network dataset is also built so that it can
+#              be used to perform network analyses.
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+try:
+    #Check out the Network Analyst extension license
+    arcpy.CheckOutExtension("Network")
+
+    #Set environment settings
+    env.workspace = "C:/data/RhodeIsland.gdb"
+    env.overwriteOutput = True
+    
+    #Set local variables
+    #inNetworkDataset = "Transportation/Streets_ND"
+    inNetworkDataset = "RhodeIsland/RhodeIsland_ND"
+    
+    #Before upgrading the network dataset, upgrade the file GDB that contains
+    #the network dataset
+    arcpy.UpgradeGDB_management(env.workspace)
+    
+    #Upgrade the network dataset
+    arcpy.UpgradeNetwork_na(inNetworkDataset)
+    
+    #The upgraded network dataset is not built. So build the network dataset
+    arcpy.BuildNetwork_na(inNetworkDataset)
+    
+    print "Script completed successfully"
+
+except Exception as e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "An error occured on line %i" % tb.tb_lineno
+    print str(e)
+                    </code></scriptExample></scriptExamples></tool></metadata>

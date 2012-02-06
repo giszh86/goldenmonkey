@@ -1,0 +1,59 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Drop Index (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Drops an attribute index from the specified item and INFO table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coverage Tools</keyword><keyword>Data Management</keyword><keyword>Indexes</keyword><keyword>Relates</keyword><keyword>Speed Up Selections</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DropIndex" displayname="Drop Index (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Drops an attribute index from the specified item and INFO table.</para>
+		</summary><alink_name>DropIndex_arc</alink_name><parameters><param sync="true" name="in_info_table" displayname="Input Info Table" datatype="Arcinfo Table" direction="Input" expression="in_info_table" type="Required"><pythonReference>
+						<para>The name of the INFO table containing the item whose index is to be deleted.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the INFO table containing the item whose index is to be deleted.</para>
+					</dialogReference></param><param sync="true" name="index_item" displayname="Indexed Item" datatype="ArcInfo Item" direction="Input" expression="[index_item,...]" type="Optional"><pythonReference>
+						<para>Selects the item indexes from the input INFO table to be removed. If no Index Item is given, all item indexes for the file will be dropped.</para>
+						<para>The Add Item button, which is used only in ModelBuilder, allows you to add expected items so you can complete the dialog and continue to build your model.</para>
+					</pythonReference><dialogReference>
+						<para>Selects the item indexes from the input INFO table to be removed. If no Index Item is given, all item indexes for the file will be dropped.</para>
+						<para>The Add Item button, which is used only in ModelBuilder, allows you to add expected items so you can complete the dialog and continue to build your model.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Many operations in ArcGIS will not maintain item indexes. Anytime the coverage or feature attribute table is updated, item indexes are deleted.</para>
+			</bullet_item><bullet_item>
+				<para>If there are no indexes on a coverage, the dialog box will not show any fields on which to drop an index.</para>
+			</bullet_item><bullet_item>
+				<para>Item indexes are preserved when INFO tables are duplicated with the  tool or  tool.</para>
+			</bullet_item><bullet_item>
+				<para>Item indexes are stored in the workspace INFO directory. They are named with an ARC prefix (for example, ARC0001R.003). This file is an index for the third item in the INFO table whose internal name is ARC0001.DAT.</para>
+			</bullet_item><bullet_item>
+				<para>Indexed items speed up ArcGIS selection and relate operations. The  tool is used to create an item index.</para>
+			</bullet_item><bullet_item>
+				<para>The Indexed Item parameter's Add Field button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run, or its derived data does not exist, the Indexed Item parameter may not be populated with field names. The Add Field button allows you to add expected fields so you can complete the Drop Index dialog and continue to build your model.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DropIndex example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to drop the index from an item in a coverage's polygon attribute table. </para>
+				<code xml:space="preserve"># Name: DropIndex_Example.py
+# Description: Drops the index from an item in a polygon featureclass
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inInfoTable = "tongass1/polygon"
+indexItem = "IN-FISH"
+
+# Execute DropIndex
+arcpy.DropIndex_arc(inInfoTable, indexItem)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

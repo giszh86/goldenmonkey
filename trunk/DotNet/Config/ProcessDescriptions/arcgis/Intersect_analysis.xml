@@ -1,0 +1,130 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Intersect (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Computes a geometric intersection of the input features. Features or portions of features which overlap in all layers and/or feature classes will be written to the output feature class.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Combine</keyword><keyword>Common</keyword><keyword>Cover</keyword><keyword>Inside</keyword><keyword>Inside Both</keyword><keyword>Intersect</keyword><keyword>Join</keyword><keyword>On Top Of</keyword><keyword>Outside</keyword><keyword>Overlap</keyword><keyword>Shared</keyword><keyword>Spatial Relationship</keyword><keyword>Superimpose</keyword><keyword>Topological Set</keyword><keyword>Topology</keyword><keyword>Within Both</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Intersect" displayname="Intersect (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Computes a geometric intersection of the input features. Features or portions of features which overlap in all layers and/or feature classes will be written to the output feature class.</para>
+			
+		</summary><alink_name>Intersect_analysis</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/Intersect_analysis_v.gif" alt="Intersect illustration" /><toolIllust type="illustration" src="Intersect_analysis_h.gif" alt="Intersect illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Value Table" direction="Input" expression="[in_features, {Rank},...]" type="Required"><pythonReference>
+						<para>A list of the input feature classes or layers. When the distance between features is less than the cluster tolerance, the features with the lower rank will snap to the feature with the higher rank. The highest rank is one. For more information, see Priority ranks and Geoprocessing tools. </para>
+					</pythonReference><dialogReference>
+						<para>A list of the input feature classes or layers. When the distance between features is less than the cluster tolerance, the features with the lower rank will snap to the feature with the higher rank. The highest rank is one. For more information, see Priority ranks and Geoprocessing tools. </para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class.</para>
+					</dialogReference></param><param sync="true" name="join_attributes" displayname="JoinAttributes" datatype="String" direction="Input" expression="join_attributes" type="Optional"><pythonReference>
+						<para>Determines which attributes from the Input Features will be transferred to the Output Feature Class.</para>
+						<bulletList><bullet_item>ALL—All the attributes from the Input Features will be transferred to the Output Feature Class. This is the default. </bullet_item><bullet_item>NO_FID—All the attributes except the FID from the Input Features will be transferred to the Output Feature Class. </bullet_item><bullet_item>ONLY_FID—Only the FID field from the Input Features will be transferred to the Output Feature Class. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines which attributes from the Input Features will be transferred to the Output Feature Class.</para>
+						<bulletList><bullet_item>ALL—All the attributes from the Input Features will be transferred to the Output Feature Class. This is the default. </bullet_item><bullet_item>NO_FID—All the attributes except the FID from the Input Features will be transferred to the Output Feature Class. </bullet_item><bullet_item>ONLY_FID—Only the FID field from the Input Features will be transferred to the Output Feature Class. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="cluster_tolerance" displayname="XY Tolerance" datatype="Linear unit" direction="Input" expression="cluster_tolerance" type="Optional"><pythonReference>
+						<para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both).</para>
+					</pythonReference><dialogReference>
+						<para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both).</para>
+					</dialogReference></param><param sync="true" name="output_type" displayname="Output Type" datatype="String" direction="Input" expression="output_type" type="Optional"><pythonReference>
+						<para>Choose what type of intersection you want to find.</para>
+						<bulletList><bullet_item>INPUT—The intersections returned will be the same geometry type as the Input Features with the lowest dimension geometry. If all inputs are polygons, the output feature class will contain polygons. If one or more of the inputs are lines and none of the inputs are points, the output will be line. If one or more of the inputs are points, the output feature class will contain points. This is the default. </bullet_item><bullet_item>LINE—Line intersections will be returned. This is only valid if none of the inputs are points. </bullet_item><bullet_item>POINT—Point intersections will be returned. If the inputs are line or polygon, the output will be a multipoint feature class. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose what type of intersection you want to find.</para>
+						<bulletList><bullet_item>INPUT—The intersections returned will be the same geometry type as the Input Features with the lowest dimension geometry. If all inputs are polygons, the output feature class will contain polygons. If one or more of the inputs are lines and none of the inputs are points, the output will be line. If one or more of the inputs are points, the output feature class will contain points. This is the default. </bullet_item><bullet_item>LINE—Line intersections will be returned. This is only valid if none of the inputs are points. </bullet_item><bullet_item>POINT—Point intersections will be returned. If the inputs are line or polygon, the output will be a multipoint feature class. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Qualified_field_names" label="Qualified field names">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3"></environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Input Features must be simple features: point, multipoint, line, or polygon. They cannot be complex features such as annotation features, dimension features, or network features.</para>
+			</bullet_item><bullet_item>
+				<para>If the inputs have different geometry types (that is, line on poly, point on line, and so on), the Output Feature Class geometry type will default to be the same as the Input Features with the lowest dimension geometry. For example, if one or more of the inputs is of type point, the default output will be point; if one or more of the inputs is line, the default output will be line; and if all inputs are polygon, the default output will be polygon.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Type can be that of the Input Features with the lowest dimension geometry or lower. For example, if all the inputs are polygons, the output could be polygon, line, or point. If one of the inputs is of type line and none are points, the output can be line or point. If any of the inputs are point, the Output Type can only be point.</para>
+			</bullet_item><bullet_item>
+				<para>Attribute values from the input feature class(es) will be copied to the output feature class.  However, if the input is a layer(s) created by the  tool and a field's "Use Ratio Policy" is checked, then a ratio of the input attribute value is calculated for the output attribute value.    When "Use Ratio Policy" is enabled, whenever a feature in an overlay operation is split, the attributes of the resulting features are a ratio of the attribute value of the input feature. The output value  is based on the ratio in which the input feature  geometry was divided. For example, If the input geometry was divided equally, each new feature's attribute value is assigned one-half of the value of the input feature's attribute value. "Use Ratio Policy" only applies to numeric field types. </para><para>Geoprocessing tools do not honor geodatabase feature class or table field split policies.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will use a tiling process to handle very large datasets for better performance and scalability. For more details, see .</para>
+			</bullet_item><bullet_item>
+				
+					<para>With ArcView and Editor licenses, the number of input feature classes or layers is limited to two.</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>Intersect Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the Intersect function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/RedRiver_basin.gdb"
+arcpy.Intersect_analysis (["vegetation_stands", "road_buffer200m", "water_buffer100"], "mysites", "ALL", "", "")
+arcpy.Intersect_analysis ([["vegetation_stands", 2], ["road_buffer200m", 1], ["water_buffer100", 2]], "mysites_ranked", "ALL", "", "")
+                    </code></scriptExample><scriptExample><title>Intersect Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script uses the Intersect function as part of a workflow with other analysis tools to determine the type of vegetation within 100 meters of all stream crossings.</para>
+				<code xml:space="preserve">#Name: VegRoadIntersect.py
+# Purpose: Determine the type of vegetation within 100 meters of all stream crossings
+#Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+try:
+    # Set the workspace (to avoid having to type in the full path to the data every time)
+    env.workspace = "c:/data/data.gdb"    
+    
+    # Process: Find all stream crossings (points)
+    inFeatures = ["roads", "streams"]
+    intersectOutput = "stream_crossings"
+    clusterTolerance = 1.5    
+    arcpy.Intersect_analysis(inFeatures, intersectOutput, "", clusterTolerance, "point")
+ 
+    # Process: Buffer all stream crossings by 100 meters
+    bufferOutput = "stream_crossings_100m"
+    bufferDist = "100 meters"
+    arcpy.Buffer_analysis(intersectOutput, bufferOutput, bufferDist)
+ 
+    # Process: Clip the vegetation feature class to stream_crossing_100m
+    clipInput = "vegetation"
+    clipOutput = "veg_within_100m_of_crossings"
+    arcpy.Clip_analysis(clipInput, bufferOutput, clipOutput)
+ 
+    # Process: Summarize how much (area) of each type of vegetation is found
+    #within 100 meter of the stream crossings
+    statsOutput = "veg_within_100m_of_crossings_stats"
+    statsFields = [["shape_area", "sum"]]
+    caseField = "veg_type"
+    arcpy.Statistics_analysis(clipOutput, statsOutput, statsFields, caseField)
+ 
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

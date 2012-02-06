@@ -1,0 +1,85 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make Feature Layer (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a feature layer from an input feature class or layer file. The layer that is created by the tool is temporary and will not persist after the session ends unless the layer is saved to disk or the map  document is saved.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Copy</keyword><keyword>Create</keyword><keyword>Expression</keyword><keyword>Memory</keyword><keyword>Query</keyword><keyword>Select</keyword><keyword>Sql</keyword><keyword>Subset</keyword><keyword>Temporary</keyword><keyword>Where Clause</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeFeatureLayer" displayname="Make Feature Layer (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a feature layer from an input feature class or layer file. The layer that is created by the tool is temporary and will not persist after the session ends unless the layer is saved to disk or the map  document is saved.</para>
+		</summary><alink_name>MakeFeatureLayer_management</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature class or layer used the make the new layer. Complex feature classes, such as annotation and dimensions, are not valid inputs to this tool.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class or layer used the make the new layer. Complex feature classes, such as annotation and dimensions, are not valid inputs to this tool.</para>
+					</dialogReference></param><param sync="true" name="out_layer" displayname="Layer Name" datatype="String" direction="Output" expression="out_layer" type="Required"><pythonReference>
+						<para>The name of the feature layer to be created. The newly  created layer can be used as input to any geoprocessing tool that accepts a feature layer as input.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the feature layer to be created. The newly  created layer can be used as input to any geoprocessing tool that accepts a feature layer as input.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Expression" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>An SQL expression used to select a subset of features. The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para>
+						<para>
+							"MY_FIELD"
+						</para>
+						<para> If you're querying personal geodatabases, enclose fields in square brackets: </para>
+						<para>
+							[MY_FIELD]
+						</para>
+						<para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para>
+						<para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</pythonReference><dialogReference>
+						<para>An SQL expression used to select a subset of features. The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para>
+						<para>
+							"MY_FIELD"
+						</para>
+						<para> If you're querying personal geodatabases, enclose fields in square brackets: </para>
+						<para>
+							[MY_FIELD]
+						</para>
+						<para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para>
+						<para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</dialogReference></param><param sync="true" name="workspace" displayname="Workspace or Feature Dataset" datatype="Workspace;Feature Dataset" direction="Input" expression="workspace" type="Optional"><pythonReference><para>The input workspace used to validate the field names. If the input is a geodatabase table and the output workspace is a dBASE table, the field names may be truncated, since dBASE fields can only have names of ten characters or less. The new names may be reviewed and altered using the field information control.</para>
+					</pythonReference><dialogReference><para>The input workspace used to validate the field names. If the input is a geodatabase table and the output workspace is a dBASE table, the field names may be truncated, since dBASE fields can only have names of ten characters or less. The new names may be reviewed and altered using the field information control.</para>
+					</dialogReference></param><param sync="true" name="field_info" displayname="Field Info" datatype="Field Info" direction="Input" expression="field_info" type="Optional"><pythonReference><para>Can be used to review and alter the field names and hide a subset of fields in the output layer. A split policy can be specified. See the usages for more information.</para>
+					</pythonReference><dialogReference><para>Can be used to review and alter the field names and hide a subset of fields in the output layer. A split policy can be specified. See the usages for more information.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para>The temporary feature layer can be saved as a layer file using the  tool or can be saved as a new feature class using the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>Complex feature classes, such as annotation and dimensions, are not supported by this tool.</para>
+			</bullet_item><bullet_item>
+				<para>Layers created in ArcCatalog cannot be used in ArcMap unless they are saved to a layer file using the  tool.</para>
+			</bullet_item><bullet_item><para> If an SQL expression is used but returns nothing, the output will be empty.</para></bullet_item><bullet_item><para>Field names can be given a new name by using the Field Info control. The second column on the control lists the existing field names from the input. To rename a field, click the field name and type in a new one.</para><para>New field names defined in the Field Info control will be honored in subsequent tools. However, if this tool is the last tool in a model, the field names will be obtained from the source data on disk. To maintain new field names, the new layer has to be written out to a new data using  or  tools.</para></bullet_item><bullet_item><para>The field names will be validated by specifying an input workspace. Thus, if the input is a geodatabase feature class, and the output workspace is a folder, the field names may be truncated, since shapefile attributes can only have names of ten characters or less. The new names may be reviewed and altered using the Field Info control.</para></bullet_item><bullet_item><para>A subset of fields can be made unavailable in the new layer by using the Field Info control's visible property. The third column in the control provides a dropdown option to specify whether a field will be visible or hidden in the new layer. The default is TRUE. Selecting FALSE will hide that field. You cannot use the hidden fields in a workflow if the newly created layer is input to a subsequent process or tool.  If the output is saved to disk, only the fields listed as visible will appear in the new data.</para></bullet_item><bullet_item>
+				<para>A split policy can be set by using the Field Info control <bold>Use Ratio Policy</bold> option. The split policy comes into effect any time the feature layer is being used as an input to a tool and a geometry of the input feature layer is split during processing. When the split geometry is sent to the output, a ratio of the input attribute value is calculated for the output attribute value. When <bold>Use Ratio Policy</bold> is enabled, whenever a feature in an overlay operation is split, the attributes of the resulting features are a ratio of the attribute value of the input feature. The output value is based on the ratio in which the input feature geometry was divided. For example, if the input geometry was divided equally, each new feature's attribute value is assigned one-half of the value of the input feature's attribute value. Use Ratio Policy only applies to numeric field types.</para>
+				<para>The default is NONE (unchecked). This means the attribute of the two resulting features takes on a copy of the original object's attribute value.</para><para>Geoprocessing tools do not honor geodatabase feature class or table field split policies.</para></bullet_item><bullet_item>
+				<para>When using ModelBuilder to create a tool, you need to ensure that the input data variable to this tool is not flagged as intermediate. If the input is flagged as intermediate, it will be deleted after the model is run from its dialog and the output layer will not be added to the display.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeFeatureLayer Example 1 (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the MakeFeatureLayer function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+
+arcpy.env.workspace = "C:/data/input"
+arcpy.MakeFeatureLayer_management("parcels.shp", "parcels_lyr")
+                    </code></scriptExample><scriptExample><title>MakeFeatureLayer example 2 (stand-alone script)</title><para>The following stand-alone script demonstrates how to use MakeFeatureLayer to create a layer that can be used by SelectLayerByLocation and SelectLayerByAttribute tools.</para><code xml:space="preserve"># Name: ExtractFeaturesByLocationAndAttribute.py
+# Description:  Extracts features to a new feature class based on a location and an attribute query.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set overwrite option
+arcpy.overwriteOutput = true
+
+# Put in error trapping in case an error occurs when running tool
+try:
+
+   # Make a layer from the feature class
+   arcpy.MakeFeatureLayer_management("C:/data/mexico.gdb/cities","cities_lyr")
+
+   # Select all cities that overlap the chihuahua polygon
+   arcpy.SelectLayerByLocation_management("cities_lyr", "INTERSECT", "c:/data/mexico.gdb/chihuahua", "", "NEW_SELECTION")
+
+   # Within the selection (done above) further select only those cities that have a population &gt;10,000
+   arcpy.SelectLayerByAttribute_management("cities_lyr", "SUBSET_SELECTION", "[POPULATION] &gt; 10000")
+
+   # Write the selected features to a new featureclass
+   arcpy.CopyFeatures_management("cities_lyr", "c:/data/mexico.gdb/chihuahua_10000plus")
+
+except:
+   print arcpy.GetMessages()
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

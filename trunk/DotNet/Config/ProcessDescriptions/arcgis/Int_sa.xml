@@ -1,0 +1,86 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Int (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts each cell value of a raster to an integer by truncation.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Convert</keyword><keyword>Integer</keyword><keyword>Round</keyword><keyword>Truncate</keyword><keyword>Whole</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Int" displayname="Int (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Converts each cell value of a raster to an integer by truncation.</para>
+		</summary><alink_name>Int_sa</alink_name><toolIllust type="illustration" src="Int_sa_h.png" alt="Int illustration" /><parameters><param sync="true" name="in_raster_or_constant" displayname="Input raster or constant value" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant" type="Required"><pythonReference>
+						<para>The input raster to be converted to integer.</para>
+						<para>
+In order to use a number as an input for this parameter, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster to be converted to integer.</para>
+						<para>
+In order to use a number as an input for this parameter, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>The cell values are the input values converted to integers by truncation.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>The cell values are the input values converted to integers by truncation.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input values can be either positive or negative.</para>
+			</bullet_item><bullet_item>
+				<para>If rounding is preferred to truncating, add a 0.5 input raster prior to performing the operation.</para>
+			</bullet_item><bullet_item>
+				<para>There is a difference between the Int tool and the Round Down tool.   For example, given the following two values Int always truncates the number:<bulletList>
+						<bullet_item>1.5 becomes 1</bullet_item>
+						<bullet_item>-1.5 becomes -1</bullet_item>
+					</bulletList></para>
+				<para>while for the same two values, Round Down returns:<bulletList>
+						<bullet_item>1.5 becomes 1.0</bullet_item>
+						<bullet_item>-1.5 becomes -2.0
+						</bullet_item>
+					</bulletList></para>
+				<para>Another difference is that Round Down outputs floating-point values, while Int only outputs integer values.</para>
+			</bullet_item><bullet_item>
+				<para>The maximum supported range of integer raster values is  -2,147,483,648 (minimum size determined by 231) to 2,147,483,647 (maximum size determined by 231 – 1).  If Int is used on a floating point raster which has cells with values outside this range, those cells will be NoData in the output raster.</para>
+			</bullet_item><bullet_item>
+				<para>Storing categorical (discrete) data as an integer raster will use significantly less disk space than the same information stored as a floating-point raster. Whenever possible, it is recommended to convert floating-point rasters to integer with this tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Int example 1 (Python window)</title>
+					<para>This example converts the input values to integer by truncation.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outInt = Int("gwhead")
+outInt.save("C:/sapyexamples/output/outint2")
+                    </code></scriptExample><scriptExample><title>Int example 2 (stand-alone script)</title>
+					<para>This example converts the input values to integer by truncation.</para>
+				<code xml:space="preserve"># Name: Int_Ex_02.py
+# Description: Converts each cell value of a raster to an integer by truncation
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "gwhead"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Int
+outInt = Int(inRaster)
+
+# Save the output 
+outInt.save("C:/sapyexamples/output/outint")
+                    </code></scriptExample></scriptExamples></tool></metadata>

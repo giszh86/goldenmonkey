@@ -1,0 +1,68 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Change Terrain Resolution Bounds (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Changes the pyramid level resolution bounds for a given feature class contributing to the surface of the terrain dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Edit</keyword><keyword>Lidar</keyword><keyword>Masspoints</keyword><keyword>Modify</keyword><keyword>Multipoints</keyword><keyword>Multiresolution Surface</keyword><keyword>Resolution</keyword><keyword>Surface</keyword><keyword>Terrain</keyword><keyword>Terrain Dataset</keyword><keyword>Terrains</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ChangeTerrainResolutionBounds" displayname="Change Terrain Resolution Bounds (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Changes the pyramid level resolution bounds for a given feature class contributing to the surface of the terrain dataset.</para>
+		</summary><alink_name>ChangeTerrainResolutionBounds_3d</alink_name><parameters><param sync="true" name="in_terrain" displayname="Input Terrain" datatype="Terrain Layer" direction="Input" expression="in_terrain" type="Required"><pythonReference>
+						<para>The input terrain dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input terrain dataset.</para>
+					</dialogReference></param><param sync="true" name="feature_class" displayname="Input Feature Class" datatype="String" direction="Input" expression="feature_class" type="Required"><pythonReference>
+						<para>The input Feature Class which requires that the current pyramid level resolutions be modified.</para>
+					</pythonReference><dialogReference>
+						<para>The input Feature Class which requires that the current pyramid level resolutions be modified.</para>
+					</dialogReference></param><param sync="true" name="lower_pyramid_resolution" displayname="New Lower Pyramid Level Resolution" datatype="Long" direction="Input" expression="lower_pyramid_resolution" type="Required"><pythonReference>
+						<para>The new lower pyramid level resolution for the chosen feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The new lower pyramid level resolution for the chosen feature class.</para>
+					</dialogReference></param><param sync="true" name="upper_pyramid_resolution" displayname="New Upper Pyramid Level Resolution" datatype="Long" direction="Input" expression="upper_pyramid_resolution" type="Required"><pythonReference>
+						<para>The new upper pyramid level resolution for the chosen feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The new upper pyramid level resolution for the chosen feature class.</para>
+					</dialogReference></param><param sync="true" name="overview" displayname="Contributes to Overview" datatype="Terrain Layer" direction="Input" expression="overview" type="Optional"><pythonReference>
+						<para>Determines if the given feature class will contribute to the overview terrain dataset.</para>
+					</pythonReference><dialogReference>
+						<para>Determines if the given feature class will contribute to the overview terrain dataset.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is useful when an existing feature class of a terrain dataset has inappropriate resolution bounds that need to be reset.</para>
+			</bullet_item><bullet_item>
+				<para>A rebuild of the terrain dataset is not required for these changes to be implemented.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Change Terrain Resolution Bounds Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Change Terrain Resolution Bounds
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.ChangeTerrainResolutionBounds_3d("sample.gdb/featuredataset/terrain", "breaklines", "2.5", "7.5")
+                    </code></scriptExample><scriptExample><title>Change Terrain Resolution Bounds Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Change Terrain Resolution Bounds
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: ChangeTerrainResolutionBounds Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              ChangeTerrainResolutionBounds tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+inTerrain = "sample.gdb/featuredataset/terrain"
+chgFC = "breaklines"
+
+#Execute ChangeTerrainResolutionBounds
+arcpy.ChangeTerrainResolutionBounds_3d(inTerrain, chgFC, "2.5", "7.5")
+
+del arcpy, inTerrain, chgFC
+                    </code></scriptExample></scriptExamples></tool></metadata>

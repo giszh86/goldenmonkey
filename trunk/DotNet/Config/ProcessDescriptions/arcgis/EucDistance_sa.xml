@@ -1,0 +1,91 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Euclidean Distance (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates, for each cell, the Euclidean distance to the closest source.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Crow</keyword><keyword>Eucdistance</keyword><keyword>Source</keyword><keyword>Spread</keyword><keyword>Straight Line</keyword><keyword>Travel Cost</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="EucDistance" displayname="Euclidean Distance (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates, for each cell, the Euclidean distance to the closest source.</para>
+			
+		</summary><alink_name>EucDistance_sa</alink_name><toolIllust type="illustration" src="EucDistance_sa_h.png" alt="Euclidean Distance illustration" /><parameters><param sync="true" name="in_source_data" displayname="Input raster or feature source data" datatype="Raster Layer | Feature Layer" direction="Input" expression="in_source_data" type="Required"><pythonReference>
+						<para>The input source locations.</para><para>
+This is a raster or feature dataset that identifies the cells or locations to which the Euclidean distance for every output cell location is calculated.</para><para>For rasters, the input type can be integer or floating point.</para>
+					</pythonReference><dialogReference>
+						<para>The input source locations.</para><para>
+This is a raster or feature dataset that identifies the cells or locations to which the Euclidean distance for every output cell location is calculated.</para><para>For rasters, the input type can be integer or floating point.</para>
+					</dialogReference></param><param sync="true" name="maximum_distance" displayname="Maximum distance" datatype="Double" direction="Input" expression="maximum_distance" type="Optional"><pythonReference><para>Defines the threshold that the accumulative distance values cannot exceed.</para><para>If an accumulative Euclidean distance value exceeds this value, the output value for the cell location will be NoData.</para><para>The default distance is to the edge of the output raster.</para>
+					</pythonReference><dialogReference><para>Defines the threshold that the accumulative distance values cannot exceed.</para><para>If an accumulative Euclidean distance value exceeds this value, the output value for the cell location will be NoData.</para><para>The default distance is to the edge of the output raster.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference><para>The cell size at which the output raster will be created.</para><para>This will be the value in the environment if it is explicitly set. If it is not set in the environment, the default cell size will depend on if the input source data is a raster or a feature, as follows:<bulletList>
+								<bullet_item>If the source is raster, the output will have that same cell size.</bullet_item>
+								<bullet_item>If the source is feature, the output will have a cell size determined by the shorter of the width or height of the extent of input feature, in the input spatial reference, divided by 250.</bullet_item>
+							</bulletList></para>
+					</pythonReference><dialogReference><para>The cell size at which the output raster will be created.</para><para>This will be the value in the environment if it is explicitly set. If it is not set in the environment, the default cell size will depend on if the input source data is a raster or a feature, as follows:<bulletList>
+								<bullet_item>If the source is raster, the output will have that same cell size.</bullet_item>
+								<bullet_item>If the source is feature, the output will have a cell size determined by the shorter of the width or height of the extent of input feature, in the input spatial reference, divided by 250.</bullet_item>
+							</bulletList></para>
+					</dialogReference></param><param sync="true" name="out_direction_raster" displayname="Output direction raster" datatype="Raster Dataset" direction="Output" expression="out_direction_raster" type="Optional"><pythonReference><para>The output Euclidean direction raster.</para><para>The direction raster contains the calculated direction, in degrees, each cell center is from the closest source cell center. </para><para>The range of values is from 0 degrees to 360 degrees, with 0 reserved for the source cells. Due east (right) is 90, and the values increase clockwise (180 is south, 270 is west, and 360 is north).</para><para>The output raster is of integer type.</para></pythonReference><dialogReference><para>The output Euclidean direction raster.</para><para>The direction raster contains the calculated direction, in degrees, each cell center is from the closest source cell center. </para><para>The range of values is from 0 degrees to 360 degrees, with 0 reserved for the source cells. Due east (right) is 90, and the values increase clockwise (180 is south, 270 is west, and 360 is north).</para><para>The output raster is of integer type.</para></dialogReference></param><param sync="true" name="out_distance_raster" displayname="Output distance raster" datatype="Raster" direction="Output" expression="out_distance_raster" type="Required"><pythonReference><para>The output Euclidean distance raster.</para><para>The distance raster identifies, for each cell, the Euclidean distance to the closest source cell, set of source cells, or source location.</para><para>The output raster is of floating point type.</para>
+						</pythonReference><dialogReference><para>The output Euclidean distance raster.</para><para>The distance raster identifies, for each cell, the Euclidean distance to the closest source cell, set of source cells, or source location.</para><para>The output raster is of floating point type.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input source data can be a feature class or raster.</para>
+			</bullet_item><bullet_item>
+				<para>When the input source data is a raster, the set of source cells consists of all cells in the source raster that have valid values. Cells that have NoData values are not included in the source set. The value 0 is considered a legitimate source. A source raster can be easily created using the .</para>
+			</bullet_item><bullet_item>
+				<para>When the input source data is a feature class, the source locations are converted internally to a raster before performing the Euclidean analysis. The resolution of the raster can be controlled with the Output cell size parameter.</para>
+			</bullet_item><bullet_item>
+				<para>The Maximum distance is specified in the same map units as the input source data.</para>
+			</bullet_item><bullet_item>
+				<para>Allocation is not an available output because there can be no floating-point information in the source data. If allocation output is desired, use Euclidean Allocation, which can generate all three outputs (allocation, distance, and direction) at the same time.</para>
+			</bullet_item><bullet_item>
+				<para>If a  has been set in the environment and the cells to be masked will mask a source, the Euclidean calculations will occur on the remaining source cells. The source cells that are masked will not be considered in the computations. These cell locations will be assigned NoData on the output rasters.</para>
+			</bullet_item><bullet_item>
+				<para>The NoData values created by the masked cells are ignored in the calculations on non-source cell locations. The Euclidean distance for cells behind NoData values is calculated as if the NoData value is not present. Any cell location that is assigned NoData because of the mask on the input surface will receive NoData on all the output rasters.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>EucDistance example 1 (Python window)</title>
+					<para>The following Python Window script demonstrates how to use the EuclideanDistance tool.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outEucDistance = EucDistance("rec_sites.shp", 5000, 5, 
+                             "c:/sapyexamples/output/EucDirOut")
+outEucDistance.save("C:/sapyexamples/output/eucdist")
+                    </code></scriptExample><scriptExample><title>EucDistance example 2 (stand-alone script)</title>
+					<para>Calculates for each cell the straight line distance to the nearest source.</para>
+				<code xml:space="preserve"># Name: EucDistance_Ex_02.py
+# Description: Calculates for each cell the Euclidean distance to the nearest source.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inSourceData = "rec_sites.shp"
+maxDistance = 4000
+cellSize = 4
+outDirectionRaster = "C:/sapyexamples/output/eucdirect"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute EucDistance
+outEucDistance = EucDistance(inSourceData, maxDistance, cellSize, outDirectionRaster)
+
+# Save the output 
+outEucDistance.save("C:/sapyexamples/output/eucdist")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,213 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Locate Features Along Routes (Linear Referencing)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Computes the intersection of input features (point, line, or polygon) and route features and writes the route and measure information to a new event table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Create</keyword><keyword>Detect</keyword><keyword>Discover</keyword><keyword>Event</keyword><keyword>Events</keyword><keyword>Find</keyword><keyword>Locate Features</keyword><keyword>Locate Features Along Routes</keyword><keyword>Locate Lines Along Routes</keyword><keyword>Locate Points Along Routes</keyword><keyword>Locate Polygons Along Routes</keyword><keyword>Pinpoint</keyword><keyword>Place</keyword><keyword>Position</keyword><keyword>Put</keyword><keyword>Route</keyword><keyword>Route Events</keyword><keyword>Set</keyword><keyword>Situate</keyword><keyword>Trace</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="LocateFeaturesAlongRoutes" displayname="Locate Features Along Routes (Linear Referencing)" toolboxalias="lr" softwarerestriction="none"><summary>
+			<para>Computes the intersection of input features (point, line, or polygon) and route features and writes the route and measure information to a new event table.</para>
+		</summary><alink_name>LocateFeaturesAlongRoutes_lr</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input point, line, or polygon features.</para>
+					</pythonReference><dialogReference>
+						<para>The input point, line, or polygon features.</para>
+					</dialogReference></param><param sync="true" name="in_routes" displayname="Input Route Features" datatype="Feature Layer" direction="Input" expression="in_routes" type="Required"><pythonReference>
+						<para>The routes with which the input features will be intersected.</para>
+					</pythonReference><dialogReference>
+						<para>The routes with which the input features will be intersected.</para>
+					</dialogReference></param><param sync="true" name="route_id_field" displayname="Route Identifier Field" datatype="Field" direction="Input" expression="route_id_field" type="Required"><pythonReference>
+						<para>The field containing values that uniquely identify each route. This field can be numeric or character.</para>
+					</pythonReference><dialogReference>
+						<para>The field containing values that uniquely identify each route. This field can be numeric or character.</para>
+					</dialogReference></param><param sync="true" name="radius_or_tolerance" displayname="Search Radius" datatype="Linear unit" direction="Input" expression="radius_or_tolerance" type="Required"><pythonReference>
+						<para>If the input features are points, the search radius is a numeric value defining how far around each point a search will be done to find a target route.</para>
+						<para>If the input features are lines, the search tolerance is really a cluster tolerance, which is a numeric value representing the maximum tolerated distance between the input lines and the target routes.</para>
+						<para>If the input features are polygons, this parameter is ignored and no search radius is used.</para>
+					</pythonReference><dialogReference>
+						<para>If the input features are points, the search radius is a numeric value defining how far around each point a search will be done to find a target route.</para>
+						<para>If the input features are lines, the search tolerance is really a cluster tolerance, which is a numeric value representing the maximum tolerated distance between the input lines and the target routes.</para>
+						<para>If the input features are polygons, this parameter is ignored and no search radius is used.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Event Table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>The table to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The table to be created.</para>
+					</dialogReference></param><param sync="true" name="out_event_properties" displayname="Output Event Table Properties" datatype="Route Measure Event Properties" direction="Output" expression="out_event_properties" type="Required"><pythonReference>
+						<para>Parameter consisting of the route location fields and the type of events that will be written to the output event table.</para>
+						<bulletList><bullet_item>Route Identifier Field—The field that will contain values that indicate which route each event is along.</bullet_item><bullet_item>Event Type—The type of events the output event table will contain (POINT or LINE).<bulletList>
+									<bullet_item>POINT—Point events occur at a precise location along a route. Only a single measure field must be specified.</bullet_item>
+									<bullet_item>LINE—Line events define a portion of a route. Both from- and to-measure fields must be specified.</bullet_item>
+								</bulletList></bullet_item><bullet_item>From-Measure Field—A field that will contain measure values. Required when the event type is POINT or LINE. Note when the Event Type is POINT the label for this parameter becomes "Measure Field".</bullet_item><bullet_item>To-Measure Field—A field that will contain measure values. Required when the event type is LINE.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Parameter consisting of the route location fields and the type of events that will be written to the output event table.</para>
+						<bulletList><bullet_item>Route Identifier Field—The field that will contain values that indicate which route each event is along.</bullet_item><bullet_item>Event Type—The type of events the output event table will contain (POINT or LINE).<bulletList>
+									<bullet_item>POINT—Point events occur at a precise location along a route. Only a single measure field must be specified.</bullet_item>
+									<bullet_item>LINE—Line events define a portion of a route. Both from- and to-measure fields must be specified.</bullet_item>
+								</bulletList></bullet_item><bullet_item>From-Measure Field—A field that will contain measure values. Required when the event type is POINT or LINE. Note when the Event Type is POINT the label for this parameter becomes "Measure Field".</bullet_item><bullet_item>To-Measure Field—A field that will contain measure values. Required when the event type is LINE.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="route_locations" displayname="Keep only the closest route location" datatype="Boolean" direction="Input" expression="route_locations" type="Optional"><pythonReference>
+						<para>When locating points along routes, it is possible that more than one route may be within the search radius of any given point. This parameter is ignored when locating lines or polygons along routes.</para>
+						<bulletList><bullet_item>FIRST—Only the closest route location will be written to the output event table. This is the default. </bullet_item><bullet_item>ALL—Every route location (within the search radius) will be written to the output event table. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>When locating points along routes, it is possible that more than one route may be within the search radius of any given point. This parameter is ignored when locating lines or polygons along routes.</para>
+						<bulletList>
+							<bullet_item>Checked—Only the closest route location will be written to the output event table. This is the default. </bullet_item>
+							<bullet_item>Unchecked—Every route location (within the search radius) will be written to the output event table. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="distance_field" displayname="Include distance field on output table" datatype="Boolean" direction="Input" expression="distance_field" type="Optional"><pythonReference>
+						<para>Specifies whether a field named DISTANCE will be added to the output event table. The values in this field are in the units of the specified search radius. This parameter is ignored when locating lines or polygons along routes.</para>
+						<bulletList><bullet_item>DISTANCE—A field containing the point to route distance will be added to the output event table. This is the default. </bullet_item><bullet_item>NO_DISTANCE—A field containing the point to route distance will not be added to the output event table. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether a field named DISTANCE will be added to the output event table. The values in this field are in the units of the specified search radius. This parameter is ignored when locating lines or polygons along routes.</para>
+						<bulletList>
+							<bullet_item>Checked—A field containing the point to route distance will be added to the output event table. This is the default.</bullet_item>
+							<bullet_item>Unchecked—A field containing the point to route distance will not be added to the output event table. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="zero_length_events" displayname="Keep zero length line events" datatype="Boolean" direction="Input" expression="zero_length_events" type="Optional"><pythonReference>
+						<para>When locating polygons along routes, it is possible that events can be created where the from-measure is equal to the to-measure. This parameter is ignored when locating points or lines along routes.</para>
+						<bulletList><bullet_item>ZERO—Zero length line events will be written to the output event table. This is the default. </bullet_item><bullet_item>NO_ZERO—Zero length line events will not be written to the output event table. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>When locating polygons along routes, it is possible that events can be created where the from-measure is equal to the to-measure. This parameter is ignored when locating points or lines along routes.</para>
+						<bulletList>
+							<bullet_item>Checked—Zero length line events will be written to the output event table. This is the default. </bullet_item>
+							<bullet_item>Unchecked—Zero length line events will not be written to the output event table.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="in_fields" displayname="Include all fields from input" datatype="Boolean" direction="Input" expression="in_fields" type="Optional"><pythonReference>
+						<para>Specifies whether the output event table will contain route location fields plus all the attributes from the input features.</para>
+						<bulletList><bullet_item>FIELDS—The output event table will contain route location fields plus all the attributes from the input features. This is the default. </bullet_item><bullet_item>NO_FIELDS—The output event table will only contain route location fields plus the ObjectID field from the input features. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether the output event table will contain route location fields plus all the attributes from the input features.</para>
+						<bulletList>
+							<bullet_item>Checked—The output event table will contain route location fields plus all the attributes from the input features. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The output event table will only contain route location fields plus the ObjectID field from the input features.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="m_direction_offsetting" displayname="Use M direction offsetting" datatype="Boolean" direction="Input" expression="m_direction_offsetting" type="Optional"><pythonReference>
+						<para> Specifies whether the offset distance calculated should be based on the M direction or the digitized direction. Distances are included in the output event table if the distance_field parameter value DISTANCE is specified. </para>
+						<bulletList><bullet_item>M_DIRECTION—The distance values in the output event table will be calculated based on the routes' M direction. Input features to the left of the M Direction of the route will be assigned a positive offset (+) and features to the right of the M Direction will be assigned a negative offset value (-). This is the default.</bullet_item><bullet_item>NO_M_DIRECTION—The distance values in the output event table will be calculated based on the routes' digitized direction. Input features to the left of the digitized direction of the route will be assigned a negative (-) offset and features to the right of the digitized direction will be assigned a positive offset value (+).</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Specifies whether the offset distance calculated should be based on the M direction or the digitized direction. Distances are included in the output event table if the distance_field parameter value DISTANCE is specified. </para>
+						<bulletList>
+							<bullet_item>Checked—The distance values in the output event table will be calculated based on the routes' M direction. Input features to the left of the M Direction of the route will be assigned a positive offset (+) and features to the right of the M Direction will be assigned a negative offset value (-). This is the default.</bullet_item>
+							<bullet_item>Unchecked—The distance values in the output event table will be calculated based on the routes' digitized direction. Input features to the left of the digitized direction of the route will be assigned a negative (-) offset and features to the right of the digitized direction will be assigned a positive offset value (+).</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The output table can be a dBASE file or a geodatabase table.</para>
+			</bullet_item><bullet_item>
+				<para>The event type must be POINT when the Input Features are points and must be LINE when the input features are lines or polygons.</para>
+			</bullet_item><bullet_item>
+				<para>The best results will be achieved when the input features and the target routes closely overlay.</para>
+				
+					<para>Using a large search radius or cluster tolerance to overcome discrepancies between the input features and target routes can produce unexpected results.</para>
+				
+			</bullet_item><bullet_item>
+				<para>Use the tool to effectively reduce the inputs that will be processed.</para>
+			</bullet_item><bullet_item>
+				<para>The output table can be displayed in ArcMap using the  tool or using the .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>LocateFeaturesAlongRoutes Example (Python Window)</title><code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/Data"
+arcpy.LocateFeaturesAlongRoutes_lr("rail_segments.shp", "rail_routes.shp", "rkey", "0.5 Feet", "locate_lines", "rkey LINE fmp tmp")
+
+ 
+                    </code></scriptExample><scriptExample><title>LocateFeaturesAlongRoutes Example (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the LocateFeaturesAlongRoutes function in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name: LocateFeaturesAlongRoutes_Example1.py
+# Description: Locate shapefile lines along shapefile routes.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data"
+
+# Set local variables
+feats = "rail_segments.shp"
+rts = "rail_routes.shp"
+rid = "rkey"
+tol = "0.5 Feet"
+tbl = "locate_lines"
+props = "rkey LINE fmp tmp" 
+
+# Execute LocateFeaturesAlongRoutes
+arcpy.LocateFeaturesAlongRoutes_lr(feats, rts, rid, tol, tbl, props)
+
+ 
+                    </code></scriptExample><scriptExample><title>LocateFeaturesAlongRoutes Example 2 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the LocateFeaturesAlongRoutes function in a stand-alone Python script using file geodatabase data..</para>
+				<code xml:space="preserve"># Name: LocateFeaturesAlongRoutes_Example2.py
+# Description: Locate personal geodatabase points along file geodatabase routes.
+# Author: ESRI
+
+# Import system modules 
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/Pitt.gdb"
+
+# Set local variables
+feats = "rail/crossings"          # crossings is in the rail feature dataset 
+rts = "rail/routes"               # routes is in the rail feature dataset
+rid = "rkey"
+rad = "10 Feet"
+tbl = "locate_points"
+props = "rkey POINT mp" 
+
+# Execute LocateFeaturesAlongRoutes
+arcpy.LocateFeaturesAlongRoutes_lr(feats, rts, rid, rad, tbl, props)
+ 
+
+                    </code></scriptExample><scriptExample><title>LocateFeaturesAlongRoutes Example 3 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the LocateFeaturesAlongRoutes function in a stand-alone Python script using personal geodatabase data.</para>
+				<code xml:space="preserve"># Name: LocateFeaturesAlongRoutes_Example3.py
+# Description:  Locate personal geodatabase points along personal geodatabase routes.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/Pitt.mdb"
+
+# Set local variables
+feats = "rail/crossings"          # crossings is in the rail feature dataset 
+rts = "rail/routes"               # routes is in the rail feature dataset
+rid = "rkey"
+rad = "10 Feet"
+tbl = "locate_points"
+props = "rkey POINT mp" 
+
+# Execute LocateFeaturesAlongRoutes
+arcpy.LocateFeaturesAlongRoutes_lr(feats, rts, rid, rad, tbl, props)
+ 
+
+                    </code></scriptExample><scriptExample><title>LocateFeaturesAlongRoutes Example 4 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the LocateFeaturesAlongRoutes function in a stand-alone Python script using SDE data. </para>
+				<code xml:space="preserve"># Name: LocateFeaturesAlongRoutes_Example4.py
+# Description:  Locate enterprise geodatabase polygons along enterprise geodatabase routes.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "Database Connections/Connection to Jerry.sde"
+
+# Set local variables
+feats = gp.QualifyTableName("counties", wkspc)      # standalone feature class
+rts = gp.QualifyTableName("rail_routes", wkspc)     # standalone feature class
+rid = "rkey"
+tbl = "locate_polys"
+props = "rkey LINE fmp tmp" 
+
+# Execute LocateFeaturesAlongRoutes
+arcpy.LocateFeaturesAlongRoutes_lr(feats, rts, rid, "#", tbl, props, "#", "#", "NO_ZERO", "M_DIRECTION")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

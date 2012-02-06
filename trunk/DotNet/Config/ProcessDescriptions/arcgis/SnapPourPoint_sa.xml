@@ -1,0 +1,87 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Snap Pour Point (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Snaps pour points to the cell of highest flow accumulation within a specified distance.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Catchment</keyword><keyword>Delineate Watershed</keyword><keyword>Flow</keyword><keyword>Pour Point</keyword><keyword>Surface Water</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SnapPourPoint" displayname="Snap Pour Point (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Snaps pour points to the cell of highest flow accumulation within a specified distance.</para>
+		</summary><alink_name>SnapPourPoint_sa</alink_name><parameters><param sync="true" name="in_pour_point_data" displayname="Input raster or feature pour point data" datatype="Raster Layer" direction="Input" expression="in_pour_point_data" type="Required"><pythonReference>
+						<para>The input pour point locations that are to be snapped.</para>
+						<para>For rasters, all cells that are not NoData (i.e., have a value) will be considered pour points and will be snapped.</para>
+						<para>For point datasets, specifies the locations of cells that will be snapped.</para></pythonReference><dialogReference>
+						<para>The input pour point locations that are to be snapped.</para>
+						<para>For rasters, all cells that are not NoData (i.e., have a value) will be considered pour points and will be snapped.</para>
+						<para>For point datasets, specifies the locations of cells that will be snapped.</para></dialogReference></param><param sync="true" name="in_accumulation_raster" displayname="Input accumulation raster" datatype="Raster Layer" direction="Input" expression="in_accumulation_raster" type="Required"><pythonReference>
+						<para>The input flow accumulation raster.</para>
+						<para>This can be created with the Flow Accumulation tool.</para>
+					</pythonReference><dialogReference>
+						<para>The input flow accumulation raster.</para>
+						<para>This can be created with the Flow Accumulation tool.</para>
+					</dialogReference></param><param sync="true" name="snap_distance" displayname="Snap distance" datatype="Double" direction="Input" expression="snap_distance" type="Required"><pythonReference>
+						<para>Maximum distance, in map units, to search for a cell of higher accumulated flow.</para>
+					</pythonReference><dialogReference>
+						<para>Maximum distance, in map units, to search for a cell of higher accumulated flow.</para>
+					</dialogReference></param><param sync="true" name="pour_point_field" displayname="Pour point field" datatype="Field" direction="Input" expression="pour_point_field" type="Optional"><pythonReference><para>Field used to assign values to the pour point locations.</para><para>If the pour point dataset is a raster, use Value.</para><para>If the pour point dataset is a feature, use a numeric field. If the field contains floating-point values, they will be truncated into integers.</para>
+					</pythonReference><dialogReference><para>Field used to assign values to the pour point locations.</para><para>If the pour point dataset is a raster, use Value.</para><para>If the pour point dataset is a feature, use a numeric field. If the field contains floating-point values, they will be truncated into integers.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output pour point integer raster where the original pour point locations have been snapped to locations of higher accumulated flow.</para>
+						</pythonReference><dialogReference>
+							<para>The output pour point integer raster where the original pour point locations have been snapped to locations of higher accumulated flow.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Snap Pour Point tool is used to ensure the selection of points of high accumulated flow when delineating drainage basins using the Watershed tool. Snap Pour Point will search within a snap distance around the specified pour points for the cell of highest accumulated flow and move the pour point to that location.</para>
+			</bullet_item><bullet_item>
+				<para>If the input raster or feature pour point data is a point feature class, it will be converted to a raster internally for processing.</para>
+			</bullet_item><bullet_item>
+				<para>The output is an integer raster when the original pour point locations have been snapped to locations of higher accumulated flow.</para>
+			</bullet_item><bullet_item>
+				<para>When there is only one input pour point location, the extent of the output is that of the accumulation raster. If there is more than one pour point location, the extent of the output is determined by the settings in the .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SnapPourPoint example 1 (Python window)</title>
+					<para>This example snaps pour points to the cell of highest flow accumulation within a specified distance.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outSnapPour = SnapPourPoint("pourpoint", "flowaccumulation.img", 5,"VALUE") 
+outSnapPour.save("c:/sapyexamples/output/outsnpprpnt01")
+
+                    </code></scriptExample><scriptExample><title>SnapPourPoint example 2 (stand-alone script)</title>
+					<para>This example snaps pour points to the cell of highest flow accumulation within a specified distance.</para><code xml:space="preserve"># Name: SnapPourPoints_Ex_02.py
+# Description: Snaps pour points to the cell of highest 
+#              flow accumulation within a specified distance.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inPourPoint = "pourpoint"
+inFlowAccum = "flowaccumulation.img"
+tolerance = 5
+pourField = "VALUE"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute SnapPourPoints
+outSnapPour = SnapPourPoint(inPourPoint, inFlowAccum, tolerance, 
+                            pourField) 
+
+# Save the output 
+outSnapPour.save("c:/sapyexamples/output/outsnpprpnt02")
+                    </code></scriptExample></scriptExamples></tool></metadata>

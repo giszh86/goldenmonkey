@@ -1,0 +1,61 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate Default Spatial Grid Index (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates a set of valid grid index values (spatial grid 1, 2, and 3) for the input features. Grid index values will be calculated even if the input features do not support spatial grid indexing.</para>
+			Learn more about_spatial_indexes</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Performance</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateDefaultGridIndex" displayname="Calculate Default Spatial Grid Index (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Calculates a set of valid grid index values (spatial grid 1, 2, and 3) for the input features. Grid index values will be calculated even if the input features do not support spatial grid indexing.</para>
+			Learn more about_spatial_indexes</summary><alink_name>CalculateDefaultGridIndex_management</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The features for which a valid spatial grid index will be calculated.</para>
+					</pythonReference><dialogReference>
+						<para>The features for which a valid spatial grid index will be calculated.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item><para>The grid index values will be returned as a message from the tool. The values can be viewed in the geoprocessing Results window, or the value can be assigned to a variable in scripting by accessing the tool execution result object.. </para></bullet_item><bullet_item>
+				<para>The spatial grid index of the Input Features is not updated by this tool. File or SDE geodatabase feature class spatial grid indexes can be modified using the  tool, or in the feature class property page under the Index tab.</para>
+			</bullet_item><bullet_item>
+				<para>The set of values returned by the tool can be used with the  or  tools, or for the  environment settings.</para>
+			</bullet_item><bullet_item>
+				<para>The returned grid size is based on the spatial reference, average feature size, and number of features in the input features.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Calculate Default Grid Index Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the CalculateDefaultGridIndex function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.CalculateDefaultGridIndex_management("rivers.shp")
+
+                    </code></scriptExample><scriptExample><title>Calculate Default Grid Index Example 2 (Standalone Script)</title>
+					<para>The following standalone script uses the CalculateDefaultGridIndex function in a workflow to update the spatial index of a FC.</para>
+				<code xml:space="preserve"># Name: UpdateSI_Example.py
+# Description: Use Calculate Default Grid Index to update the spatial index of a FC
+# Author: ESRI
+
+# Import system modules 
+import arcpy
+from arcpy import env
+
+# Set the workspace
+env.workspace = "C:/data/data.gdb"
+
+# Set local parameters
+inFeatures = "river"
+
+try:
+  # Get the grid sizes from the tool, this is a string with 3 semi-colon seperated values (typically something like "1500; 0; 0") 
+  result = arcpy.CalculateDefaultGridIndex_management(inFeatures)
+  indexGrids = []
+	 for count in range(0, result.outputCount):
+    indexGrids.append(result.getOutput(count))
+
+  # First remove the existing grid index
+		try:
+    arcpy.RemoveSpatialIndex_management(inFeatures)
+ 	except:
+		  # if no index exists, RemoveSpaitalIndex will fail, but just keep going
+    pass
+
+  # Now add the indexes calculated by the tool
+  arcpy.AddSpatialIndex_management(inFeatures, indexGrids)
+ 
+except Exception, e:
+  # If an error occurred, print line number and error message
+  import traceback, sys
+  tb = sys.exc_info()[2]
+  print "Line %i" % tb.tb_lineno
+  print e.args[0]
+                    </code></scriptExample></scriptExamples></tool></metadata>

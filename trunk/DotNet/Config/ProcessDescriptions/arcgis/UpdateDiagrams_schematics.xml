@@ -1,0 +1,81 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Update Diagrams (Schematics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Updates schematic diagrams stored in a schematic dataset or schematic folder. All diagrams or a subset of diagrams (for example, diagrams related to a specific diagram template or diagrams that have not been updated for a particular number of days) can be updated. </para>
+			<para>Only diagrams based on the Standard builder can be updated using this geoprocessing tool. Diagrams based on the Network Dataset builder and XML builder that require specific input data cannot be updated using this tool.</para>
+			
+				<para>If a diagram based on the XML or Network Dataset builder is detected during the execution, an error is displayed, and the process is stopped.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Bulk</keyword><keyword>Diagram</keyword><keyword>Rebuild</keyword><keyword>Refresh</keyword><keyword>Schema</keyword><keyword>Schematic</keyword><keyword>Synchronize</keyword><keyword>Update</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="UpdateDiagrams" displayname="Update Diagrams (Schematics)" toolboxalias="schematics" softwarerestriction="none"><summary>
+			<para>Updates schematic diagrams stored in a schematic dataset or schematic folder. All diagrams or a subset of diagrams (for example, diagrams related to a specific diagram template or diagrams that have not been updated for a particular number of days) can be updated. </para>
+			<para>Only diagrams based on the Standard builder can be updated using this geoprocessing tool. Diagrams based on the Network Dataset builder and XML builder that require specific input data cannot be updated using this tool.</para>
+			
+				<para>If a diagram based on the XML or Network Dataset builder is detected during the execution, an error is displayed, and the process is stopped.</para>
+			
+		</summary><alink_name>UpdateDiagrams_schematics</alink_name><parameters><param sync="true" name="in_container" displayname="Input Schematic Container" datatype="Schematic Diagram; Schematic Folder" direction="Input" expression="in_container" type="Required"><pythonReference>
+						<para>The schematic dataset or schematic folder in which the diagrams are stored. This container must already exist.</para>
+					</pythonReference><dialogReference>
+						<para>The schematic dataset or schematic folder in which the diagrams are stored. This container must already exist.</para>
+					</dialogReference></param><param sync="true" name="builder_options" displayname="Builder Options" datatype="String" direction="Input" expression="builder_options" type="Optional"><pythonReference>
+						<para>The schematic builder update options. They are optional.</para>
+						<bulletList><bullet_item>KEEP_MANUAL_MODIF—Default option. Use it if you want the schematic features that have been removed/reduced from the diagram not to reappear and the edited connections to be kept in the updated diagram. This is the default.</bullet_item><bullet_item>NO_KEEP_MANUAL_MODIF—Use it if you want the removed/reduced schematic features and reconnected schematic feature links to be restored after the update. </bullet_item><bullet_item> RESYNC_FROM_GUID—Use this particular option if you want to resynchronize the schematic related feature/object information based on GUIDs. This option must be used to avoid errors or data corruption when diagrams are updated while user data has been dropped and reloaded since their generations. Note that when using this option, the process works on the GUIDs to try to reattach the schematic features in the diagrams to their expected related features/objects, but the diagram contents are not updated when the process ends. Once the reattachment is done, the real update can be launched.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The schematic builder update options. They are optional.</para>
+						<bulletList><bullet_item>KEEP_MANUAL_MODIF—Default option. Use it if you want the schematic features that have been removed/reduced from the diagram not to reappear and the edited connections to be kept in the updated diagram. This is the default.</bullet_item><bullet_item>NO_KEEP_MANUAL_MODIF—Use it if you want the removed/reduced schematic features and reconnected schematic feature links to be restored after the update. </bullet_item><bullet_item> RESYNC_FROM_GUID—Use this particular option if you want to resynchronize the schematic related feature/object information based on GUIDs. This option must be used to avoid errors or data corruption when diagrams are updated while user data has been dropped and reloaded since their generations. Note that when using this option, the process works on the GUIDs to try to reattach the schematic features in the diagrams to their expected related features/objects, but the diagram contents are not updated when the process ends. Once the reattachment is done, the real update can be launched.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="recursive" displayname="Recursive Search" datatype="Boolean" direction="Input" expression="recursive" type="Optional"><pythonReference>
+						<bulletList><bullet_item>RECURSIVE—Search recursively in subfolders.</bullet_item><bullet_item>NO_RECURSIVE—Do not search recursively in subfolders.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked—Search recursively in subfolders.</bullet_item>
+							<bullet_item>Unchecked—Do not search recursively in subfolders.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="diagram_type" displayname="Diagram Template" datatype="String" direction="Input" expression="[diagram_type,...]" type="Optional"><pythonReference>
+						<para>The diagram template of the schematic diagram to update.</para>
+					</pythonReference><dialogReference>
+						<para>The diagram template of the schematic diagram to update.</para>
+					</dialogReference></param><param sync="true" name="last_update_criteria" displayname="Number of days without update" datatype="Long" direction="Input" expression="last_update_criteria" type="Optional"><pythonReference>
+						<para>The number of days between diagram updates. The default is zero (0), meaning all diagrams will be updated daily.</para>
+					</pythonReference><dialogReference>
+						<para>The number of days between diagram updates. The default is zero (0), meaning all diagrams will be updated daily.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>This tool is mostly used to batch diagram updates. But, when user data has been dropped and reloaded since the diagram generations, it can also be used to resynchronize the schematic features with their related features/objects based on GUIDs.</para>
+			</bullet_item><bullet_item>
+				<para>If the Diagram Template parameter is specified, only the diagrams based on that template will be updated.</para>
+			</bullet_item><bullet_item>
+				<para>If the Number of days without update parameter is specified, only the diagrams for which the last update date meets the criterion will be updated.</para>
+			</bullet_item><bullet_item>
+				<para>By default, when the value specified for Input Schematic Container is a schematic folder, the update process operates recursively on all diagrams contained in that schematic folder and on all those contained in its subfolders. If you do not want the diagrams contained in the subfolders to be updated, set 0 for the recursive parameter.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title>
+					<para>Update schematic diagrams contained in a specified schematic folder, implemented by a particular diagram template, or that have not been updated for a specified number of days.</para>
+				<code xml:space="preserve"># Name: UpdateDiagrams.py
+# Description: Update schematic diagrams
+# Author: ESRI
+
+# import system modules
+import arcpy
+msgNoLicenseAvailable = "Schematics license required"
+
+try:
+	# Check out the ArcGIS Schematic extension license
+	if arcpy.CheckExtension("Schematics") == "Available":
+		arcpy.CheckOutExtension("Schematics")
+	else:
+		raise Exception(msgNoLicenseAvailable)
+	
+	# Set environnement settings
+	arcpy.OverWriteOutput = True
+	arcpy.env.workspace = "C:\ArcGIS\ArcTutor\Schematics\Schematics_In_ArcMap\ElecDemo.gdb"
+
+	#Process: UpdateDiagrams on the specified Feeders schematic folder
+	arcpy.UpdateDiagrams_schematics("ElecDemo\Feeders")
+
+	#Process: UpdateDiagrams on the specified GeoSchematic diagram template
+	arcpy.UpdateDiagrams_schematics("ElecDemo", "#", "RECURSIVE", "GeoSchematic")
+
+	#Process: UpdateDiagrams on a specified Inside Plants schematic folder for diagrams that have not been updated for 7 days only
+	arcpy.UpdateDiagrams_schematics("ElecDemo\Inside Plants", "#", "RECURSIVE", "#", "7")
+
+	# Returns the schematic license
+	arcpy.CheckInExtension("Schematics")
+
+except Exception as exc:
+		print exc
+                    </code></scriptExample></scriptExamples></tool></metadata>

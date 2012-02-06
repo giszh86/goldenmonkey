@@ -1,0 +1,70 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Feature To 3D By Attribute  (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds a height dimension based on one or two attributes. The height (z-value) of the shape of each feature in the input feature class is set to the value found in the user-specified height field in that feature class. </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Data Creation</keyword><keyword>3D Editing</keyword><keyword>3D Features</keyword><keyword>3D Geometry</keyword><keyword>Adding Height</keyword><keyword>Convert 2D Features To 3D</keyword><keyword>Multipatch</keyword><keyword>Z Value</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" Featureto3DByAttribute " displayname=" Feature To 3D By Attribute  (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Adds a height dimension based on one or two attributes. The height (z-value) of the shape of each feature in the input feature class is set to the value found in the user-specified height field in that feature class. </para>
+			
+		</summary><alink_name> Featureto3DByAttribute _3d</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature class for which z information will be found in the attribute table.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class for which z information will be found in the attribute table.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class.</para>
+					</dialogReference></param><param sync="true" name="height_field" displayname="Height Field" datatype="Field" direction="Input" expression="height_field" type="Required"><pythonReference>
+						<para>The height field found in the attribute table.</para>
+					</pythonReference><dialogReference>
+						<para>The height field found in the attribute table.</para>
+					</dialogReference></param><param sync="true" name="to_height_field" displayname="To Height Field" datatype="Field" direction="Input" expression="to_height_field" type="Optional"><pythonReference>
+						<para>An optional second height field used for lines. When using two height fields, each line will start at the first height and end at the second (sloped).</para>
+					</pythonReference><dialogReference>
+						<para>An optional second height field used for lines. When using two height fields, each line will start at the first height and end at the second (sloped).</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para> Supports points, multipoints, lines, and polygon geometries. </para>
+			</bullet_item><bullet_item>
+				<para> If the shape of the feature is a line or a polygon, every vertex will be assigned the same z-value if one field is used.</para>
+			</bullet_item><bullet_item>
+				<para>With lines, you can optionally provide a second height field. When using two height fields, each line will start at the first height and end at the second (sloped). The heights for any intermediate vertices will be interpolated between the two endpoints.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Feature To 3D By Attribute Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Feature To 3D By Attribute
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.FeatureTo3DByAttribute_3d("Points2D.shp", "Points3D.shp", "Elevation")
+                    </code></scriptExample><scriptExample><title>Feature To 3D By Attribute Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Feature To 3D By Attribute
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: FeatureTo3DByAttribute Example
+# Description: The following stand-alone script demonstrates how to use the
+#              FeatureTo3DByAttribute tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+InFC = "Points_2D.shp"
+Height_Field = "POPULATION"
+# Ensure output has unique name
+OutFC = arcpy.CreateUniqueName("Points_3D.shp")
+
+# Execute ConstructSightLines
+arcpy.FeatureTo3DByAttribute_3d(InFC, OutFC, Height_Field)
+
+del arcpy, InFC, OutFC
+                    </code></scriptExample></scriptExamples></tool></metadata>

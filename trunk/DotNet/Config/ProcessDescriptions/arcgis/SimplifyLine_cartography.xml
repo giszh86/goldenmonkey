@@ -1,0 +1,125 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Simplify Line (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Simplifies lines by removing extraneous bends while preserving essential shape.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Bend Simplify</keyword><keyword>Bendsimplify</keyword><keyword>Cartography</keyword><keyword>Contextual</keyword><keyword>Generalisation</keyword><keyword>Generalise</keyword><keyword>Generalization</keyword><keyword>Generalize</keyword><keyword>Line Simplification</keyword><keyword>Point Remove</keyword><keyword>Pointremove</keyword><keyword>Reduce</keyword><keyword>Remove</keyword><keyword>Scale Change</keyword><keyword>Simplification</keyword><keyword>Simplify</keyword><keyword>Simplify Line</keyword><keyword>Small Scale</keyword><keyword>Typification</keyword><keyword>Typify</keyword><keyword>Vertex</keyword><keyword>Vertices</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SimplifyLine" displayname="Simplify Line (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Simplifies lines by removing extraneous bends while preserving essential shape.</para>
+		</summary><alink_name>SimplifyLine_cartography</alink_name><toolIllust type="illustration" src="SimplifyLine_cartography_h.gif" alt="Simplify Line illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The line features to be simplified.</para>
+					</pythonReference><dialogReference>
+						<para>The line features to be simplified.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output line feature class to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The output line feature class to be created.</para>
+					</dialogReference></param><param sync="true" name="algorithm" displayname="Simplification Algorithm" datatype="String" direction="Input" expression="algorithm" type="Required"><pythonReference>
+						<para>Specifies the line simplification algorithm.</para>
+						<bulletList><bullet_item>POINT_REMOVE—Keeps the so-called critical points that depict the essential shape of a line and removes all other points. This is the default. </bullet_item><bullet_item>BEND_SIMPLIFY—Keeps the main shape of a line and removes extraneous bends. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the line simplification algorithm.</para>
+						<bulletList><bullet_item>POINT_REMOVE—Keeps the so-called critical points that depict the essential shape of a line and removes all other points. This is the default. </bullet_item><bullet_item>BEND_SIMPLIFY—Keeps the main shape of a line and removes extraneous bends. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="tolerance" displayname="Simplification Tolerance" datatype="Linear Unit" direction="Input" expression="tolerance" type="Required"><pythonReference>
+						<para>The tolerance that determines the degree of simplification. A tolerance must be specified, and it must be greater than zero. You can choose a preferred unit; the default is the feature unit.</para>
+						<bulletList>
+							<bullet_item>For POINT_REMOVE algorithm, the tolerance you specify is the maximum allowable offset.</bullet_item>
+							<bullet_item>For BEND_SIMPLIFY algorithm, the tolerance you specify is the length of the reference bend baseline.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>The tolerance that determines the degree of simplification. A tolerance must be specified, and it must be greater than zero. You can choose a preferred unit; the default is the feature unit.</para>
+						<bulletList>
+							<bullet_item>For POINT_REMOVE algorithm, the tolerance you specify is the maximum allowable offset.</bullet_item>
+							<bullet_item>For BEND_SIMPLIFY algorithm, the tolerance you specify is the length of the reference bend baseline.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="error_resolving_option" displayname="Resolve topological errors" datatype="String" direction="Input" expression="error_resolving_option" type="Optional"><pythonReference>
+						<para>Specifies how the topological errors (possibly introduced in the process, including line crossing, line overlapping, and collapsed zero-length lines) will be handled. This parameter will be in effect when the error_checking_option is CHECK (the default).</para>
+						<bulletList><bullet_item>FLAG_ERRORS—Specifies to flag topological errors, if any are found. This is the default. </bullet_item><bullet_item>RESOLVE_ERRORS—Specifies to resolve topological errors, if any are found. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how the topological errors (possibly introduced in the process, including line crossing, line overlapping, and collapsed zero-length lines) will be handled. This checkbox will be enabled by default; and will be disabled when the checkbox next to "Check for topological errors" is unchecked.</para>
+						<bulletList><bullet_item>Unchecked—Specifies to flag topological errors, if any are found. This is the default. </bullet_item><bullet_item>Checked—Specifies to resolve topological errors, if any are found. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="collapsed_point_option" displayname="Keep collapsed points" datatype="Boolean" direction="Input" expression="collapsed_point_option" type="Optional"><pythonReference>
+						<para>Specifies whether to keep collapsed zero-length lines as points if any are found in the process. This option applies only when NO_CHECK is specified or when both FLAG_ERRORS and CHECK options are specified.</para>
+						<bulletList><bullet_item>KEEP_COLLAPSED_POINTS—Specifies to keep the collapsed zero-length lines as points. The endpoints of the collapsed lines will be stored in a point feature class at the output feature class location, taking the name of the output feature class plus a suffix _Pnt. This is the default. </bullet_item><bullet_item>NO_KEEP—Specifies not to keep the collapsed zero-length lines as points even if they are found in the process; therefore, the point feature class will be empty. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether to keep collapsed zero-length lines as points if any are found in the process. This option applies only when the checkbox for "Check for topological errors" is unchecked or when the checkbox for "Check for topological errors" is checked and the checkbox for "Resolve topological errors" is unchecked.</para>
+						<bulletList><bullet_item>Checked—Specifies to keep the collapsed zero-length lines as points. The endpoints of the collapsed lines will be stored in a point feature class at the output feature class location, taking the name of the output feature class plus a suffix _Pnt. This is the default. </bullet_item><bullet_item>Unchecked—Specifies not to keep the collapsed zero-length lines as points even if they are found in the process; therefore, the point feature class will be empty. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="error_checking_option" displayname="Check for topological errors" datatype="Boolean" direction="Input" expression="error_checking_option" type="Optional"><pythonReference>
+						<para>Specifies how the topological errors (possibly introduced in the process, including line crossing, line overlapping, and collapsed zero-length lines) will be handled.</para>
+						<bulletList><bullet_item>CHECK—Specifies to check for topological errors and enables the error_resolving_option parameter. This is the default. </bullet_item><bullet_item>NO_CHECK—Specifies not to check for topological errors and disables the error_resolving_option parameter. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how the topological errors (possibly introduced in the process, including line crossing, line overlapping, and collapsed zero-length lines) will be handled.</para>
+						<bulletList><bullet_item>Checked—Specifies to check for topological errors and enables the Resolve topological errors parameter. This is the default. </bullet_item><bullet_item>Unchecked—Specifies not to check for topological errors and disables the Resolve topological errors parameter.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment></environments><usage><bullet_item><para> There are two simplification methods:<bulletList><bullet_item> The POINT_REMOVE method is the faster of the two processes. It removes redundant vertices. Use this method for data compression or more coarser simplification, especially when the data is well-known. The angularity (sharp corners) of the resulting line will increase significantly as the tolerance increases, so the line may become less aesthetically pleasing.</bullet_item><bullet_item> The BEND_SIMPLIFY method is slower but typically produces  results that are more faithful to the original and more aesthetically pleasing. It operates by eliminating insignificant bends along lines. Use this method for less, more refined simplification. </bullet_item></bulletList></para></bullet_item><bullet_item>
+				<para> The tool produces two output feature classes: a line feature class to store the simplified lines and a point feature class to store points that represent any lines that were collapsed to zero-length. The point output name and location is automatically derived from the output line name with a _Pnt suffix. The line output will contain all the input fields; the point output will not contain any of the input fields.</para>
+			</bullet_item><bullet_item>
+				<para> There are options for handling topological errors in the output:</para>
+				<bulletList>
+					<bullet_item> The Check for topological errors parameter identifies topological errors introduced by the simplification process. When the option is checked, the Resolve topological errors parameter will also be enabled. Processing is faster without a topology check, but you should use this parameter if you do not have confidence in the topological accuracy of the data.</bullet_item>
+					<bullet_item> The line output will contain two new fields to indicate whether or not a feature has a topological error. InLine_FID and SimLnFlag contain the input feature IDs and topological errors, respectively. A value of 1 indicates an error was introduced, while 0 (zero) indicates that no errors were introduced.</bullet_item><bullet_item> The flag values will remain in place after a topological error has been resolved. Use the SimLnFlag field to examine features which have topological errors.</bullet_item></bulletList>
+			</bullet_item><bullet_item>
+				<para> The Check for topological errors and Resolve topological errors parameters cannot be used within an edit session. Disable the Check for topological errors parameter in order to run the tool within an edit session.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SimplifyLine Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the SimplifyLine tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+import arcpy.cartography as CA
+env.workspace = "C:/data"
+CA.SimplifyLine("roads.shp", "C:/output/output.gdb/simplified_roads", "POINT_REMOVE", 20)
+                    </code></scriptExample><scriptExample><title>SimplifyLine Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the SimplifyLine tool.</para>
+				<code xml:space="preserve"># Name: SimplifyLine_Example2.py
+# Description: Simplify line features from two feature classes, rivers and coastlines,
+# while maintaining their connections
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+import arcpy.management as DM
+import arcpy.cartography as CA
+ 
+# Set environment settings
+env.workspace = "C:/data/Portland.gdb/Hydrography"
+ 
+# Set local variables
+inRiverFeatures = "rivers"
+inCoastlineFeatures = "coastlines"
+
+mergedFeatures = "C:/data/PortlandOutput.gdb/merged_lines"
+simplifiedFeatures = "C:/data/PortlandOutput.gdb/merged_lines_simplified"
+tempLayer = "tempLyr"
+
+outRiverFeatureClass = "C:/data/PortlandOutput.gdb/rivers_final"
+ outCoastlineFeatureClass = "C:/data/PortlandOutput.gdb/coastlines_final"
+
+# Merge rivers and coastlines into one feature class, assuming that they have 
+#  a common f-code field with value 40 for rivers and 80 for coastlines.
+DM.Merge(inRiverFeatures, inCoastlineFeatures, mergedFeatures)
+# Simplify all lines.
+CA.SimplifyLine(mergedFeatures, simplifiedFeatures, "BEND_SIMPLIFY", 100, "RESOLVE_ERRORS", "KEEP_COLLAPSED_POINTS", "CHECK")
+ 
+# Select rivers and coastlines by their f-code values and put them in separate feature classes.
+DM.MakeFeatureLayer(simplifiedFeatures, tempLayer, "f-code = 40")
+DM.CopyFeatures(tempLayer, outRiverFeatureClass)
+
+DM.MakeFeatureLayer(simplifiedFeatures, tempLayer, "f-code = 80")
+DM.CopyFeatures(tempLayer, outCoastlineFeatureClass)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

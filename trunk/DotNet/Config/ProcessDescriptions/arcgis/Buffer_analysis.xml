@@ -1,0 +1,163 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Buffer (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates buffer polygons around input features to a specified distance. An optional dissolve can be performed to combine overlapping buffers.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Adjacent</keyword><keyword>Area</keyword><keyword>Around</keyword><keyword>Bound</keyword><keyword>Circle</keyword><keyword>Close</keyword><keyword>Cushion</keyword><keyword>Distance</keyword><keyword>Donut</keyword><keyword>Doughnut</keyword><keyword>Euclidean</keyword><keyword>Expand</keyword><keyword>Extend</keyword><keyword>Fall Inside</keyword><keyword>Far</keyword><keyword>Geodesic</keyword><keyword>Near</keyword><keyword>Nearby</keyword><keyword>Neighbor</keyword><keyword>Offset</keyword><keyword>Outside</keyword><keyword>Outward</keyword><keyword>Region</keyword><keyword>Ring</keyword><keyword>Surround</keyword><keyword>Within</keyword><keyword>Zone</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Buffer" displayname="Buffer (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Creates buffer polygons around input features to a specified distance. An optional dissolve can be performed to combine overlapping buffers.</para>
+			
+		</summary><alink_name>Buffer_analysis</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/Buffer_analysis_v.png" alt="Buffer illustration" /><toolIllust type="illustration" src="Buffer_analysis_h.png" alt="Buffer illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input point, line, or polygon features to be buffered.</para>
+					</pythonReference><dialogReference>
+						<para>The input point, line, or polygon features to be buffered.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The feature class containing the output feature buffers.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class containing the output feature buffers.</para>
+					</dialogReference></param><param sync="true" name="buffer_distance_or_field" displayname="Distance [value or field]" datatype="Linear unit ; Field" direction="Input" expression="buffer_distance_or_field" type="Required"><pythonReference>
+						<para>The distance around the input features in which buffer zones are created. Distances can be provided as either a value representing a linear distance or as a numeric field from the input features that contains the linear distances to buffer each feature.</para>
+						<para>If the Distance linear units are not specified or are entered as Unknown, the linear unit of the input features' spatial reference is used.</para>
+					</pythonReference><dialogReference>
+						<para>The distance around the input features in which buffer zones are created. Distances can be provided as either a value representing a linear distance or as a numeric field from the input features that contains the linear distances to buffer each feature.</para>
+						<para>If the Distance linear units are not specified or are entered as Unknown, the linear unit of the input features' spatial reference is used.</para>
+					</dialogReference></param><param sync="true" name="line_side" displayname="Side Type" datatype="String" direction="Input" expression="line_side" type="Optional"><pythonReference>
+						<para>The side(s) of the input features that will be buffered.</para>
+						<bulletList><bullet_item>FULL—For line input features, buffers will be generated on both sides of the line. For polygon input features, buffers will be generated around the polygon and will contain and overlap the area of the input features. For point input features, buffers will be generated around the point. This is the default. </bullet_item><bullet_item>LEFT—For line input features, buffers will be generated on the topological left of the line. This option is not valid for polygon input features.</bullet_item><bullet_item>RIGHT—For line input features, buffers will be generated on the topological right of the line. This option is not valid for polygon input features.</bullet_item><bullet_item>OUTSIDE_ONLY—For polygon input features, buffers will be generated only outside the input polygon (the area inside the input polygon will be erased from the output buffer). This option is not valid for line input features.</bullet_item></bulletList>
+						
+				<para>This optional parameter is not available with an ArcView or ArcEditor license.</para>
+			
+					</pythonReference><dialogReference>
+						<para>The side(s) of the input features that will be buffered.</para>
+						<bulletList><bullet_item>FULL—For line input features, buffers will be generated on both sides of the line. For polygon input features, buffers will be generated around the polygon and will contain and overlap the area of the input features. For point input features, buffers will be generated around the point. This is the default. </bullet_item><bullet_item>LEFT—For line input features, buffers will be generated on the topological left of the line. This option is not valid for polygon input features.</bullet_item><bullet_item>RIGHT—For line input features, buffers will be generated on the topological right of the line. This option is not valid for polygon input features.</bullet_item><bullet_item>OUTSIDE_ONLY—For polygon input features, buffers will be generated only outside the input polygon (the area inside the input polygon will be erased from the output buffer). This option is not valid for line input features.</bullet_item></bulletList>
+						
+				<para>This optional parameter is not available with an ArcView or ArcEditor license.</para>
+			
+					</dialogReference></param><param sync="true" name="line_end_type" displayname="End Type" datatype="String" direction="Input" expression="line_end_type" type="Optional"><pythonReference>
+						<para>The shape of the buffer at the end of line input features. This parameter is not valid for polygon input features.</para>
+						<bulletList><bullet_item>ROUND—The ends of the buffer will be round, in the shape of a half circle. This is the default. </bullet_item><bullet_item>FLAT—The ends of the buffer will be flat, or squared, and will end at the endpoint of the input line feature. </bullet_item></bulletList>
+						
+				<para>This optional parameter is not available with an ArcView or ArcEditor license.</para>
+			
+					</pythonReference><dialogReference>
+						<para>The shape of the buffer at the end of line input features. This parameter is not valid for polygon input features.</para>
+						<bulletList><bullet_item>ROUND—The ends of the buffer will be round, in the shape of a half circle. This is the default. </bullet_item><bullet_item>FLAT—The ends of the buffer will be flat, or squared, and will end at the endpoint of the input line feature. </bullet_item></bulletList>
+						
+				<para>This optional parameter is not available with an ArcView or ArcEditor license.</para>
+			
+					</dialogReference></param><param sync="true" name="dissolve_option" displayname="Dissolve Type" datatype="String" direction="Input" expression="dissolve_option" type="Optional"><pythonReference>
+						<para>Specifies the dissolve to be performed to remove output buffer overlap.</para>
+						<bulletList><bullet_item>NONE—An individual buffer for each feature is maintained, regardless of overlap. This is the default. </bullet_item><bullet_item>ALL—All buffers are dissolved together into a single feature, removing any overlap. </bullet_item><bullet_item>LIST—Any buffers sharing attribute values in the listed fields (carried over from the input features) are dissolved. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the dissolve to be performed to remove output buffer overlap.</para>
+						<bulletList><bullet_item>NONE—An individual buffer for each feature is maintained, regardless of overlap. This is the default. </bullet_item><bullet_item>ALL—All buffers are dissolved together into a single feature, removing any overlap. </bullet_item><bullet_item>LIST—Any buffers sharing attribute values in the listed fields (carried over from the input features) are dissolved. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="dissolve_field" displayname="Dissolve Field(s)" datatype="Field" direction="Input" expression="[dissolve_field,...]" type="Optional"><pythonReference>
+						<para>The list of field(s) from the input features on which to dissolve the output buffers. Any buffers sharing attribute values in the listed fields (carried over from the input features) are dissolved.</para>
+					</pythonReference><dialogReference>
+						<para>The list of field(s) from the input features on which to dissolve the output buffers. Any buffers sharing attribute values in the listed fields (carried over from the input features) are dissolved.</para>
+						<para>The Add Field button, which is only used in ModelBuilder, allows expected fields to be added to the Dissolve Field(s) list in order to complete the Buffer tool dialog box.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Geograpic_transformations" label="Geograpic transformations">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Buffer distances can be provided as either a value representing a linear distance or a field from the input features that contains the linear distance to buffer each feature.</para>
+			</bullet_item><bullet_item>
+				<para>Geodesic buffering will be performed when the input is a point or multipoint feature class with a geographic coordinate system and the buffer distance is specified in linear units (meters, feet, and so forth). For details, see .</para>
+			</bullet_item><bullet_item>
+				<para>When buffering polygon features, negative buffer distances can be used to create buffers inside the polygon features. Using a negative buffer distance will reduce the polygons' boundaries by the distance specified.</para>
+				
+					<para>If the negative buffer distance is large enough to collapse the polygon to nothing, a null geometry will be generated. A warning message will be given, and any null geometry features will not be written to the output feature class.</para>
+				
+			</bullet_item><bullet_item>
+				
+					<para>Side Type (line_side) options LEFT, RIGHT, and OUTSIDE_ONLY and the End Type (line_end_type) option FLAT are only available with an ArcInfo license.</para>
+				
+			</bullet_item><bullet_item>
+				<para>When the output of the Buffer tool will be used as input to an overlay operation such as  or , it is recommended that the Dissolve Type option LIST or ALL be used to reduce the number of overlapping features produced by the tool. Use the Dissolve Type option LIST, and in Dissolve Field(s), select only the attributes from the input features that are necessary for the analysis being performed. This will reduce the number of spatial relationships between the datasets involved in the overlay operation, thereby reducing the amount of memory and time required for processing.</para>
+			</bullet_item><bullet_item>
+				<para>If a field from the input features is used to obtain buffer distances, the field's values can be either a number (5, for example) or a number with a valid linear unit (5 Kilometers, for example). If the field values are simply a number, it is implied that these distances are in the linear unit of the input features' spatial reference. Field values can also be entered with any valid linear unit and the feature will be buffered to that specified distance. For example, a field with values 500 Feet, 200 Meters, 1 Kilometers, and 2 Miles could be specified, and each of the output buffers would be the appropriate size. If the linear unit specified in the field values is invalid or not recognized, the linear unit of the input features' spatial reference will be used by default.</para>
+				
+					
+					
+				
+			</bullet_item><bullet_item>
+				<para>The Buffer tool can create very large multipart polygon features when the Dissolve Type option is set to ALL or LIST. This is especially true when using a dissolve field that has few unique values or when dissolving all polygons into a single polygon. Very large polygon features can cause display problems and poor performance when the features are drawn on a map or edited. To avoid these potential problems, use  on the Buffer tool's output to split larger multipart features into many smaller features.</para>
+			</bullet_item><bullet_item>
+				<para>For details on how the dissolve types ALL and LIST work, please refer to the documentation for the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>Using the Dissolve Type option NONE adds the field BUFF_DIST to the output feature class. This field contains the buffer distance used to buffer each feature.</para>
+			</bullet_item><bullet_item>
+				<para>The Dissolve Field(s) parameter Add Field button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run or its derived data does not exist, the Dissolve Field(s) parameter may not be populated with field names. The Add Field button allows expected fields to be added to the Dissolve Field(s) list in order to complete the Buffer tool dialog box.</para>
+			</bullet_item><bullet_item>
+				<para>Features are excluded from the buffer process if their buffer distance is zero.</para>
+			</bullet_item><bullet_item>
+				<para>The buffered edges of a left or right side buffer are slightly different from those created by a full buffer due to differences in the algorithms used to create the buffers. The difference between the two is within the precision of the input features.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Buffer Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Buffer tool:</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data"
+arcpy.Buffer_analysis("roads", "C:/output/majorrdsBuffered" "100 Feet", "FULL", "ROUND", "LIST", "Distance")
+                    </code></scriptExample><scriptExample><title>Buffer Example (Stand-alone Script)</title>
+					<para>Find areas of suitable vegetation that exclude areas heavily impacted by major roads:</para>
+				<code xml:space="preserve"># Name: Buffer.py
+# Description: Find areas of suitable vegetation which exclude areas heavily impacted by major roads
+# Author: ESRI
+
+# import system modules 
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data/Habitat_Analysis.gdb"
+
+# Select suitable vegetation patches from all vegetation
+veg = "vegtype"
+suitableVeg = "C:/output/Output.gdb/suitable_vegetation"
+whereClause = "HABITAT = 1" 
+arcpy.Select_analysis(veg, suitableVeg, whereClause)
+
+# Buffer areas of impact around major roads
+roads = "majorrds"
+roadsBuffer = "C:/output/Output.gdb/buffer_output"
+distanceField = "Distance"
+sideType = "FULL"
+endType = "ROUND"
+dissolveType = "LIST"
+dissolveField = "Distance"
+arcpy.Buffer_analysis(roads, roadsBuffer, distanceField, sideType, endType, dissolveType, dissolveField)
+
+# Erase areas of impact around major roads from the suitable vegetation patches
+eraseOutput = "C:/output/Output.gdb/suitable_vegetation_minus_roads"
+xyTol = "1 Meters"
+arcpy.Erase_analysis(suitableVeg, roadsBuffer, eraseOutput, xyTol)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

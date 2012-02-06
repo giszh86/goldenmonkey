@@ -1,0 +1,59 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Update Override (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Transfers feature representation overrides from the default override field to explicit fields as defined by the representation rules in the representation.</para>
+			
+				<para>Updating geometry overrides will transfer the geometry override from the representation override field into the Shape field. The original geometry of the feature will be overwritten. </para>
+			
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cartography</keyword><keyword>Geometry</keyword><keyword>Override</keyword><keyword>Property</keyword><keyword>Representation</keyword><keyword>Shape</keyword><keyword>Symbology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="UpdateOverride" displayname="Update Override (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Transfers feature representation overrides from the default override field to explicit fields as defined by the representation rules in the representation.</para>
+			
+				<para>Updating geometry overrides will transfer the geometry override from the representation override field into the Shape field. The original geometry of the feature will be overwritten. </para>
+			
+			
+		</summary><alink_name>UpdateOverride_cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature layer containing at least one representation.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature layer containing at least one representation.</para>
+					</dialogReference></param><param sync="true" name="representation" displayname="Representation" datatype="String" direction="Input" expression="representation" type="Required"><pythonReference>
+						<para>The representation containing overrides to be transferred to explicit fields.</para>
+					</pythonReference><dialogReference>
+						<para>The representation containing overrides to be transferred to explicit fields.</para>
+					</dialogReference></param><param sync="true" name="update_option" displayname="Update Option" datatype="String" direction="Input" expression="update_option" type="Required"><pythonReference>
+						<para>Specifies the type of representation override to be transferred to explicit fields.</para>
+						<bulletList><bullet_item>REPRESENTATION_PROPERTY_OVERRIDE—Transfers representation property overrides only. This is the default. </bullet_item><bullet_item>GEOMETRY_OVERRIDE—Transfers representation geometry overrides only, into the Shape field. The original geometry of the feature will be overwritten. </bullet_item><bullet_item>BOTH—Transfers both representation property and geometry overrides. Representation geometry overrides will be transferred into the Shape field, overwriting the original geometry of the feature.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the type of representation override to be transferred to explicit fields.</para>
+						<bulletList><bullet_item>REPRESENTATION_PROPERTY_OVERRIDE—Transfers representation property overrides only. This is the default. </bullet_item><bullet_item>GEOMETRY_OVERRIDE—Transfers representation geometry overrides only, into the Shape field. The original geometry of the feature will be overwritten. </bullet_item><bullet_item>BOTH—Transfers both representation property and geometry overrides. Representation geometry overrides will be transferred into the Shape field, overwriting the original geometry of the feature.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item><para>Representation overrides are stored in the override field by default, for convenience. A manageable database model is one that leverages explicit fields to contain these overrides. Use this tool to expose overrides in the feature attribute table to support queries and selection. </para></bullet_item><bullet_item>
+				<para>The input must be a geodatabase feature class with at least one feature class representation.</para>
+			</bullet_item><bullet_item>
+				<para>The explicit fields to be updated must be present on the input feature attribute table, and specified in the representation rules of the representation prior to using this tool.</para>
+			</bullet_item><bullet_item>
+				<para>The explicit field to be used for field mapping can contain null values.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>UpdateOverride tool Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the UpdateOverride tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.UpdateOverride_cartography("footprints.lyr", "footprints_Rep", "BOTH")
+                    </code></scriptExample><scriptExample><title>UpdateOverride tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the UpdateOverride tool.</para>
+				<code xml:space="preserve"># Name: UpdateOverride_standalone_script.py
+# Description: Transfers feature representation overrides from the default override field to explicit fields as defined by the representation rules in the representation.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+in_features = "footprints.lyr"
+representation = "footprints_Rep"
+update_option = "BOTH"
+
+# Execute Update Override
+arcpy.UpdateOverride_cartography(in_features, representation, update_option)
+                    </code></scriptExample></scriptExamples></tool></metadata>

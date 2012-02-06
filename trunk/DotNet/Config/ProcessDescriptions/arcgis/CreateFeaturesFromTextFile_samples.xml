@@ -1,0 +1,179 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Features from Text File (Samples)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates features using coordinates in text files.</para>
+			This tool has been deprecated. For more information, see  An overview of the Samples toolbox.</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coordinates</keyword><keyword>Datasets</keyword><keyword>Features</keyword><keyword>Text File</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateFeaturesFromTextFile" displayname="Create Features from Text File (Samples)" toolboxalias="samples" softwarerestriction="none"><summary>
+			<para>Creates features using coordinates in text files.</para>
+			This tool has been deprecated. For more information, see  An overview of the Samples toolbox.</summary><alink_name>CreateFeaturesFromTextFile_samples</alink_name><parameters><param sync="true" name="input_text_file" displayname="Input Text File" datatype="Text File" direction="Input" expression="input_text_file" type="Required"><pythonReference>
+						<para>A text file containing coordinates.</para>
+					</pythonReference><dialogReference>
+						<para>A text file containing coordinates.</para>
+					</dialogReference></param><param sync="true" name="input_decimal_separator" displayname="Input Decimal Separator" datatype="String" direction="Input" expression="input_decimal_separator" type="Required"><pythonReference>
+						<para>The character that separates the whole number from the decimal. This may vary depending on the source of your data. If the coordinates take the form "1.5", your separator is a period.</para>
+					</pythonReference><dialogReference>
+						<para>The character that separates the whole number from the decimal. This may vary depending on the source of your data. If the coordinates take the form "1.5", your separator is a period.</para>
+					</dialogReference></param><param sync="true" name="output_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="output_feature_class" type="Required"><pythonReference>
+						<para>The output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class.</para>
+					</dialogReference></param><param sync="true" name="output_feature_class_spatial_reference" displayname="Output Feature Class Spatial Reference" datatype="Spatial Reference" direction="Output" expression="output_feature_class_spatial_reference" type="Optional"><pythonReference>
+						<para>The spatial reference of the output coordinates.</para>
+					</pythonReference><dialogReference>
+						<para>The spatial reference of the output coordinates.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool will create a feature class based on coordinates given in a text file. Text files can be the output from the  Write Features To Text File tool or from files you created.</para>
+			</bullet_item><bullet_item>
+				<para>Text files must be space delimited and will have different formats, depending on the geometry type.</para>
+			</bullet_item><bullet_item>
+				<para>It is not necessary to provide z- and m-values to point coordinates. Values of 1.#QNAN are given to unprovided z- and m-values.</para>
+			</bullet_item><bullet_item>
+				<para>If you use a thousands separator, the script will not work correctly. Instead of using 1,023.5, use 1023.5.</para>
+			</bullet_item><bullet_item>
+				<para>The script is able to handle various decimal separators. For example, data from the United States will often be in the format 1234.5, while data from Europe may be in the format 1234,5. Specify the decimal separator that corresponds to your data. If you have only integers, you may specify any separator you like.</para>
+			</bullet_item><bullet_item>
+				<para>The spatial reference parameter is optional. If you know the spatial reference of the input text coordinates, you can specify it; however, it is not required. If specified, the output feature class will have the spatial reference you selected.</para>
+			</bullet_item><bullet_item>
+				<para>Text files that represent points should be in the following format: The first line should contain the word Point to indicate the geometry type and the next lines should have the id and x,y,z,m coordinates of the points delimited by a space. The final line should contain the word END. Generically, it will look like this:</para>
+				
+					Point
+id x y z m
+id x y z m
+...
+END
+				
+				<para>An example would be:</para>
+				
+					
+Point
+0 1.0 1.0 3.0 1.4
+1 2.0 2.0 1.0 3.2
+2 3.0 1.0 2.0 2.5
+3 2.0 0.0 1.0 1.0
+END
+				
+			</bullet_item><bullet_item>
+				<para>Text files that represent multipoints should be in the following format: The first line should contain the word Multipoint to indicate the geometry type and the structure continues with the id number of the first group of points (id x y z m), followed by a zero. The points themselves follow. The final line should contain the word END. Generically, it will look like this:</para>
+				
+					Multipoint
+multipoint_id 0
+pnt_id x y z m
+pnt_id x y z m
+...
+multipoint_id 0
+pnt_id x y z m
+...
+END
+				
+				<para>An example would be:</para>
+				
+					
+Multipoint
+0 0
+1 23.0 12.0 5.0 1.0
+2 34.0 32.0 4.0 1.0
+3 11.0 54.0 5.0 1.0
+1 0
+1 11.0 9.0 1.0 1.0
+2 5.0 5.5 1.0 1.0
+3 9.8 3.2 1.0 1.0
+END
+				
+			</bullet_item><bullet_item>
+				<para>Text files that represent lines should be in the following format: The first line should contain the word Polyline to indicate the geometry type and the structure continues with the id number of the first line, followed by the part number (in case it is a multipart line). The point coordinates follow. The final line should contain the word END. Generically, it will look like this:</para>
+				
+					Polyline
+line_id part_number
+pnt_id x y z m
+pnt_id x y z m
+...
+line_id part_number
+pnt_id x y z m
+pnt_id x y z m
+...
+END
+				
+				<para>The example below represents a line feature class with two features. Feature zero contains two parts.</para>
+				
+					Polyline
+0 0
+0 1.0 1.0 0.0 0.0
+1 2.0 2.0 0.0 0.0
+2 3.0 3.0 0.0 0.0
+0 1
+0 4.0 4.0 0.0 0.0
+1 5.0 5.0 0.0 0.0
+2 6.0 6.0 0.0 0.0
+1 0
+0 1.0 6.0 0.0 0.0
+1 2.0 5.0 0.0 0.0
+2 3.0 4.0 0.0 0.0
+END
+				
+			</bullet_item><bullet_item>
+				<para>Text files that represent polygons should be in the following format: The first line should contain the word Polygon to indicate the geometry type and the structure continues with the id number of the first line, followed by the part number (in case it is a multipart polygon). Point coordinates for the respective part and feature follow. In the case of an interior ring, the word InteriorRing (no space) is written before the group of coordinates. Polygons should be closed, that is, the first and last points should be the same. The final line should contain the word END. Generically, it will look like this:</para>
+				
+					Polygon
+polygon_id part_number
+pnt_id x y z m
+pnt_id x y z m
+...
+InteriorRing
+pnt_id x y z m
+pnt_id x y z m
+...
+polygon_id part_number
+pnt_id x y z m
+pnt_id x y z m
+...
+END
+				
+				<para>In the example below, there are two polygons. Polygon zero has two parts. The second part has an interior ring. Polygon one is a normal polygon.</para>
+				
+					Polygon
+0 0
+0 5.0 5.0 1.#QNAN 1.#QNAN
+1 5.0 6.0 1.#QNAN 1.#QNAN
+2 6.0 6.0 1.#QNAN 1.#QNAN
+3 6.0 5.0 1.#QNAN 1.#QNAN
+4 5.0 5.0 1.#QNAN 1.#QNAN
+0 1
+0 0.0 0.0 1.#QNAN 1.#QNAN
+1 0.0 4.0 1.#QNAN 1.#QNAN
+2 4.0 4.0 1.#QNAN 1.#QNAN
+3 4.0 0.0 1.#QNAN 1.#QNAN
+4 0.0 0.0 1.#QNAN 1.#QNAN
+InteriorRing
+0 1.0 1.0 1.#QNAN 1.#QNAN
+1 1.0 3.0 1.#QNAN 1.#QNAN
+2 3.0 3.0 1.#QNAN 1.#QNAN
+3 3.0 1.0 1.#QNAN 1.#QNAN
+4 1.0 1.0 1.#QNAN 1.#QNAN
+1 0
+0 5.0 3.0 1.#QNAN 1.#QNAN
+1 5.0 4.0 1.#QNAN 1.#QNAN
+2 6.0 4.0 1.#QNAN 1.#QNAN
+3 6.0 3.0 1.#QNAN 1.#QNAN
+4 5.0 3.0 1.#QNAN 1.#QNAN
+END
+				
+			</bullet_item><bullet_item>
+				<para>All the examples above will work. Pass them into a text file, save the text file, and use it as input to the tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><code xml:space="preserve">
+# Create geoprocessing dispatch object
+import arcgisscripting
+gp = arcgisscripting.create()
+ 
+# Set up inputs to tool
+inTxt = r"C:\temp\StreamPoints.txt"
+inSep = "."
+strms = r"C:\temp\Streams.shp"
+ 
+# Run tool
+gp.CreateFeaturesFromTextFile(inTxt, inSep, strms, "#")
+ 
+# Use output from createfeatures tool as input to buffer
+outFCbuf = r"C:\temp\StreamsBuf.shp"
+gp.buffer(strms, "10 Unknown", "FULL", "ROUND", "NONE", "#")
+                    </code></scriptExample></scriptExamples></tool></metadata>

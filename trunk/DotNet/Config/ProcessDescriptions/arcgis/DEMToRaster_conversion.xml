@@ -1,0 +1,81 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">DEM to Raster (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a digital elevation model (DEM) in a United States Geological Survey (USGS) format to a raster dataset.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Convert</keyword><keyword>Digital</keyword><keyword>Elevation</keyword><keyword>Export</keyword><keyword>Import</keyword><keyword>Surface</keyword><keyword>Usgs</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DEMToRaster" displayname="DEM to Raster (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts a digital elevation model (DEM) in a United States Geological Survey (USGS) format to a raster dataset.</para>
+			
+		</summary><alink_name>DEMToRaster_conversion</alink_name><parameters><param sync="true" name="in_dem_file" displayname="Input USGS DEM file" datatype="File" direction="Input" expression="in_dem_file" type="Required"><pythonReference>
+						<para>The input USGS DEM file. The DEM must be standard USGS 7.5 minute, 1 degree, or any other file in the USGS DEM format. The DEM may be in either fixed or variable record-length format.</para>
+					</pythonReference><dialogReference>
+						<para>The input USGS DEM file. The DEM must be standard USGS 7.5 minute, 1 degree, or any other file in the USGS DEM format. The DEM may be in either fixed or variable record-length format.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Required"><pythonReference><para>
+The output raster dataset to be created.</para><para>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for a GRID raster format.</para>
+					</pythonReference><dialogReference><para>
+The output raster dataset to be created.</para><para>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for a GRID raster format.</para>
+					</dialogReference></param><param sync="true" name="data_type" displayname="Output data type" datatype="String" direction="Input" expression="data_type" type="Optional"><pythonReference>
+						<para>Data type of the output raster dataset.</para>
+						<bulletList><bullet_item>INTEGER—An integer raster dataset will be created. </bullet_item><bullet_item>FLOAT—A floating-point raster dataset will be created. This is the default. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Data type of the output raster dataset.</para>
+						<bulletList><bullet_item>INTEGER—An integer raster dataset will be created. </bullet_item><bullet_item>FLOAT—A floating-point raster dataset will be created. This is the default. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>The number of ground x,y units in one surface Z-unit.</para>
+						<para>The Z-factor adjusts the units of measure for the Z-units when they are different from the x,y units of the input surface. The Z-values of the input surface are multiplied by the Z-factor when calculating the final output surface. If the x,y units and Z-units are in the same units of measure, the Z-factor is 1. This is the default. If the x,y units and Z-units are in different units of measure, the Z-factor must be set to the appropriate factor, or the results will be incorrect. For example, if your Z-units are feet, and your x,y units are meters, you would use a Z-factor of 0.3048 to convert your Z-units from feet to meters (1 foot = 0.3048 meters).</para>
+					</pythonReference><dialogReference>
+						<para>The number of ground x,y units in one surface Z-unit.</para>
+						<para>The Z-factor adjusts the units of measure for the Z-units when they are different from the x,y units of the input surface. The Z-values of the input surface are multiplied by the Z-factor when calculating the final output surface. If the x,y units and Z-units are in the same units of measure, the Z-factor is 1. This is the default. If the x,y units and Z-units are in different units of measure, the Z-factor must be set to the appropriate factor, or the results will be incorrect. For example, if your Z-units are feet, and your x,y units are meters, you would use a Z-factor of 0.3048 to convert your Z-units from feet to meters (1 foot = 0.3048 meters).</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Pyramid" label="Pyramid">
+					</environment><environment name="Raster_statistics" label="Raster statistics">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Tile_size" label="Tile size">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The majority of DEM files are integer. If a floating-point type DEM is converted with the output data type set to INTEGER, the values will be truncated; however, it is not easy to identify if a particular DEM file happens to be floating point. To prevent inadvertent loss of floating-point data when it exists, the default output data type of the raster will be floating point. The only cost is for integer DEMs, where the resulting raster will occupy more disk space than it needs. This can be rectified by subsequently running the Int tool on the raster. If the input dataset is known to be an integer type, then the INTEGER option can be selected instead of the default.</para>
+			</bullet_item><bullet_item>
+				<para>DEM to Raster applies the spatial resolution value stored in the DEM. In USGS DEMs, this information is stored in Data Element 14 in Logical Record Type A. The spatial resolution value is used to scale all input DEM elevation values.</para>
+			</bullet_item><bullet_item>
+				<para>The output raster will have square cells if the specified format is ESRI GRID. If the input DEM has a different sample point spacing in the x and y directions, it will be resampled by bilinear interpolation during the conversion process to a cell size equal to the smaller of the point spacings of the DEM in the x or y.</para>
+			</bullet_item><bullet_item>
+				<para>For output to a GRID raster, the projection and units information contained in the DEM header record is transferred to a map projection file in the output grid directory. If the output raster is a different format, the projection information will be transferred to the .aux file.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DEMToRaster example 1 (Python window)</title>
+					<para>Converts a USGS DEM to a raster dataset.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.DEMToRaster_conversion("c:/data/fixed.dem", "c:/output/fixeddem.tif", 
+                             "FLOAT", 1)
+                    </code></scriptExample><scriptExample><title>DEMToRaster example 2 (stand-alone script)</title>
+					<para>Converts a USGS DEM to a raster dataset.</para>
+				<code xml:space="preserve"># Name: DEMToRaster_Ex_02.py
+# Description: Converts a USGS DEM file to a raster dataset. 
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+inDEM = "c:/data/fixed.dem"
+outRaster = "c:/output/fixeddem.tif"
+rasterType = "FLOAT"
+zFactor = 0.30488
+
+# Execute DEMToRaster
+arcpy.DEMToRaster_conversion(inDEM, outRaster, rasterType, zFactor)
+                    </code></scriptExample></scriptExamples></tool></metadata>

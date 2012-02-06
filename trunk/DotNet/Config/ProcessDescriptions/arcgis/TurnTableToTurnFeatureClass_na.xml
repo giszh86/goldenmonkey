@@ -1,0 +1,107 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Turn Table To Turn Feature Class (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts an ArcView turn table or ArcInfo Workstation coverage turn table to an ArcGIS turn feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Analysis</keyword><keyword>Edges</keyword><keyword>Field</keyword><keyword>Layer</keyword><keyword>Network</keyword><keyword>Network Analyst</keyword><keyword>Network Analyst Layer</keyword><keyword>Turn</keyword><keyword>Turn Feature Class</keyword><keyword>Turn Features</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TurnTableToTurnFeatureClass" displayname="Turn Table To Turn Feature Class (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Converts an ArcView turn table or ArcInfo Workstation coverage turn table to an ArcGIS turn feature class.</para>
+		</summary><alink_name>TurnTableToTurnFeatureClass_na</alink_name><parameters><param sync="true" name="in_turn_table" displayname="Input Turn Table" datatype="Table View" direction="Input" expression="in_turn_table" type="Required"><pythonReference>
+						<para>The .dbf or INFO turn table from which the new turn feature class is being created.</para>
+						<para>INFO tables do not support mixed case path names on Linux and Solaris.</para>
+					</pythonReference><dialogReference>
+						<para>The .dbf or INFO turn table from which the new turn feature class is being created.</para>
+					</dialogReference></param><param sync="true" name="reference_line_features" displayname="Reference Line Features" datatype="Feature Class" direction="Input" expression="reference_line_features" type="Required"><pythonReference>
+						<para>The line feature class to which the input turn table refers. The feature class must be a source in a network dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The line feature class to which the input turn table refers. The feature class must be a source in a network dataset.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class_name" displayname="Output Turn Feature Class Name" datatype="String" direction="Output" expression="out_feature_class_name" type="Required"><pythonReference>
+						<para>The name of the new turn feature class to create.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the new turn feature class to create.</para>
+					</dialogReference></param><param sync="true" name="reference_nodes_table" displayname="Reference Nodes Table" datatype="dBASE Table" direction="Input" expression="reference_nodes_table" type="Optional"><pythonReference>
+						<para>The nodes.dbf table in the .nws folder containing the original ArcView GIS network in which the input turn table participated.</para>
+						<para>This parameter is ignored if the input turn table is an INFO table.</para>
+						<para>If the input turn table is a .dbf table and this parameter is omitted, then U-turns and turns that traverse between edges connected to each other at both ends will not be created in the output turn feature class.</para>
+						<para>Errors will be reported in an error file written to the directory defined by the TEMP system variable. The full path name to the error file is reported as a warning message.</para>
+					</pythonReference><dialogReference>
+						<para>The nodes.dbf table in the .nws folder containing the original ArcView GIS network in which the input turn table participated.</para>
+						<para>This parameter is ignored if the input turn table is an INFO table.</para>
+						<para>If the input turn table is a .dbf table and this parameter is omitted, then U-turns and turns that traverse between edges connected to each other at both ends will not be created in the output turn feature class.</para>
+						<para>Errors will be reported in an error file written to the directory defined by the TEMP system variable. The full path name to the error file is reported as a warning message.</para>
+					</dialogReference></param><param sync="true" name="maximum_edges" displayname="Maximum Edges" datatype="Long" direction="Input" expression="maximum_edges" type="Optional"><pythonReference>
+						<para>The maximum number of edges per turn in the new turn feature class. The default value is 5. The maximum value is 20.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum number of edges per turn in the new turn feature class. The default value is 5. The maximum value is 20.</para>
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="Config Keyword" datatype="String" direction="Input" expression="config_keyword" type="Optional"><pythonReference>
+						<para>Specifies the configuration keyword that determines the storage parameters of the output turn feature class. This parameter is used only if the output turn feature class is created in an ArcSDE geodatabase.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the configuration keyword that determines the storage parameters of the output turn feature class. This parameter is used only if the output turn feature class is created in an ArcSDE geodatabase.</para>
+					</dialogReference></param><param sync="true" name="spatial_grid_1" displayname="Output Spatial Grid 1" datatype="Double" direction="Input" expression="spatial_grid_1" type="Optional"><pythonReference>
+						<para>The Spatial Grid 1, 2, and 3 parameters apply only to  file geodatabases and  certain ArcSDE geodatabase feature classes. If you are unfamiliar with setting grid sizes, leave these options as 0,0,0 and ArcGIS will compute optimal sizes for you.  For more information about this parameter, refer to the Add Spatial Index tool documentation.</para></pythonReference><dialogReference>
+						<para>The Spatial Grid 1, 2, and 3 parameters apply only to  file geodatabases and  certain ArcSDE geodatabase feature classes. If you are unfamiliar with setting grid sizes, leave these options as 0,0,0 and ArcGIS will compute optimal sizes for you.  For more information about this parameter, refer to the Add Spatial Index tool documentation.</para></dialogReference></param><param sync="true" name="spatial_grid_2" displayname="Output Spatial Grid 2" datatype="Double" direction="Input" expression="spatial_grid_2" type="Optional"><pythonReference>
+						<para>
+Cell size of the second spatial grid.  Leave the size at 0 if you only want one grid.  Otherwise, set the size to at least three times larger than Spatial Grid 1.
+</para></pythonReference><dialogReference>
+						<para>
+Cell size of the second spatial grid.  Leave the size at 0 if you only want one grid.  Otherwise, set the size to at least three times larger than Spatial Grid 1.
+</para></dialogReference></param><param sync="true" name="spatial_grid_3" displayname="Output Spatial Grid 3" datatype="Double" direction="Input" expression="spatial_grid_3" type="Optional"><pythonReference>
+						<para>
+Cell size of the third spatial grid.  Leave the size at 0 if you only want two grids.  Otherwise, set the size to at least three times larger than Spatial Grid 2.
+
+</para></pythonReference><dialogReference>
+						<para>
+Cell size of the third spatial grid.  Leave the size at 0 if you only want two grids.  Otherwise, set the size to at least three times larger than Spatial Grid 2.
+
+</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The turn feature class to be created is placed in the same workspace as the reference line feature class.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinates in the output turn feature class will have elevation (Z) values if the reference line feature class supports Z values.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TurnTableToTurnFeatureClass example 1 (Python window)</title>
+					<para>Convert an ArcInfo Workstation Turn table to a turn feature class.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.TurnTableToTurnFeatureClass_na("C:/data/delayturns.trn",
+                                     "C:/data/SoCal.gdb/Transportation/Streets",
+                                     "DelayTurns")
+
+                    </code></scriptExample><scriptExample><title>TurnTableToTurnFeatureClass example 2 (Python window)</title>
+					<para>Convert an ArcView Turn Table to a turn feature class.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.TurnTableToTurnFeatureClass_na("C:/Data/DelayTurns.dbf",
+                                     "C:/Data/SoCal.gdb/Transportation/Streets",
+                                     "DelayTurns","C:/Data/nodes.dbf",2)
+
+                    </code></scriptExample><scriptExample><title>TurnTableToTurnFeatureClass example 3 (Stand-alone Python script)</title>
+					<para>The following Python script demonstrates how to use the TurnTableToTurn FeatureClass tool in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: TurnTableToTurnFeatureClass_ex03.py
+# Description: Converts a Arcview 3.x turn table to a turn feature class
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+
+#Check out the Network Analyst extension license
+arcpy.CheckOutExtension("Network")
+
+#Set environment settings
+env.workspace = "C:/data/SanFrancisco.gdb/Transportation"
+
+#Set local variables
+inTurnTable = "C:/data/DelayTurns.dbf"
+refLineFeatures = "Streets"
+outTurnFeatureClassName = "DelayTurns"
+maxEdges = 7
+
+#Convert the ArcView 3.x Turn table to geodatabase turn feature class
+#The streets shapefile referred by the turn features has been converted to a
+#feature class in the geodatabase.
+arcpy.TurnTableToTurnFeatureClass_na(inTurnTable, refLineFeatures,
+                                     outTurnFeatureClassName, "", maxEdges)
+
+print "Script completed successfully."
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,60 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Drop Item (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Deletes one or more items from an INFO table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DropItem" displayname="Drop Item (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Deletes one or more items from an INFO table.</para>
+		</summary><alink_name>DropItem_arc</alink_name><parameters><param sync="true" name="in_info_table" displayname="Input Info Table" datatype="ArcInfo Table" direction="Input" expression="in_info_table" type="Required"><pythonReference>
+						<para>The INFO table containing the items to be dropped.</para>
+					</pythonReference><dialogReference>
+						<para>The INFO table containing the items to be dropped.</para>
+					</dialogReference></param><param sync="true" name="out_info_table" displayname="Output Info Table" datatype="ArcInfo Table" direction="Output" expression="out_info_table" type="Required"><pythonReference>
+						<para>The INFO table to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The INFO table to be created.</para>
+					</dialogReference></param><param sync="true" name="drop_item" displayname="Items to Drop" datatype="ArcInfo Item" direction="Input" expression="[drop_item,...]" type="Required"><pythonReference>
+						<para>The item or items to be dropped from the input table.</para>
+					</pythonReference><dialogReference>
+						<para>The item or items to be dropped from the input table.</para>
+						<para>The Add Item button, which is used only in ModelBuilder, allows you to add expected items so you can complete the dialog and continue to build your model.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Output Info Table can be the same name as the Input Info Table. However, if the Output Info Table already exists, it will be replaced.</para>
+			</bullet_item><bullet_item>
+				<para>Do not drop items before the User-ID in feature attribute tables. Redefined items will be dropped if their item definition relates to an item that was dropped.</para>
+			</bullet_item><bullet_item>
+				<para>Up to 100 items can be dropped with Drop Item.</para>
+			</bullet_item><bullet_item>
+				<para>The Items to Drop parameter's Add Item button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run, or its derived data does not exist, the Items to Drop parameter may not be populated with item names. The Add Item button allows you to add expected fields so you can complete the Drop Index dialog box and continue to build your model.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DropItem example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to drop an item from a coverage's polygon attribute table.
+</para>
+				<code xml:space="preserve"># Name: DropItem_Example.py
+# Description: Drops an item from a coverage's PAT to make an INFO table
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inInfoTable = "stand/polygon"
+outInfoTable = "C:/output/standrel"
+dropItem = "VALUE-PER-METER"
+
+# Execute DropItem
+arcpy.DropItem_arc(inInfoTable, outInfoTable, dropItem)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

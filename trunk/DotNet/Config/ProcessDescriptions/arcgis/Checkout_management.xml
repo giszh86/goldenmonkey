@@ -1,0 +1,78 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Check Out (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a check-out replica from datasets in an ArcSDE geodatabase to an ArcSDE, file, or personal geodatabase for offline editing.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Check</keyword><keyword>Checkout</keyword><keyword>Child</keyword><keyword>Clone</keyword><keyword>Contractor</keyword><keyword>Copy</keyword><keyword>Create</keyword><keyword>Database</keyword><keyword>Duplicate</keyword><keyword>Gdb</keyword><keyword>Geodatabase</keyword><keyword>In</keyword><keyword>Mobile</keyword><keyword>Offline</keyword><keyword>Out</keyword><keyword>Parent</keyword><keyword>Remote</keyword><keyword>Replica</keyword><keyword>Sde</keyword><keyword>Synchronize</keyword><keyword>Update</keyword><keyword>Version</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Checkout" displayname="Check Out (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a check-out replica from datasets in an ArcSDE geodatabase to an ArcSDE, file, or personal geodatabase for offline editing.</para>
+		</summary><alink_name>Checkout_management</alink_name><parameters><param sync="true" name="in_data" displayname="Check-out Data" datatype="Feature Layer; Table View" direction="Input" expression="[in_data,...]" type="Required"><pythonReference>
+						<para>The data to be replicated for offline editing. This list consists of layers and tables referencing versioned, editable data from an ArcSDE geodatabase.</para>
+					</pythonReference><dialogReference>
+						<para>The data to be replicated for offline editing. This list consists of layers and tables referencing versioned, editable data from an ArcSDE geodatabase.</para>
+					</dialogReference></param><param sync="true" name="in_type" displayname="Check-out Type" datatype="String" direction="Input" expression="in_type" type="Optional"><pythonReference>
+						<para>Specifies if the data and schema will be replicated or if a SCHEMA-ONLY check-out of the database should occur. The default is DATA.</para>
+						<bulletList><bullet_item>DATA—The data and the schema will be replicated. This is the default. </bullet_item><bullet_item>SCHEMA_ONLY—Only the schema will be replicated. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies if the data and schema will be replicated or if a SCHEMA-ONLY check-out of the database should occur. The default is DATA.</para>
+						<bulletList><bullet_item>DATA—The data and the schema will be replicated. This is the default. </bullet_item><bullet_item>SCHEMA_ONLY—Only the schema will be replicated. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="out_workspace" displayname="Check-out to Workspace" datatype="Workspace" direction="Output" expression="out_workspace" type="Required"><pythonReference>
+						<para>The workspace where the replicated data will be edited. This can be an ArcSDE, file, or personal geodatabase. If it's a personal geodatabase that doesn't exist, it will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The workspace where the replicated data will be edited. This can be an ArcSDE, file, or personal geodatabase. If it's a personal geodatabase that doesn't exist, it will be created.</para>
+					</dialogReference></param><param sync="true" name="out_name" displayname="Check-out Name" datatype="String" direction="Output" expression="out_name" type="Required"><pythonReference>
+						<para>The name that identifies the check-out replica. This is recorded and maintained in both the parent and the child database until synchronized.</para>
+					</pythonReference><dialogReference>
+						<para>The name that identifies the check-out replica. This is recorded and maintained in both the parent and the child database until synchronized.</para>
+					</dialogReference></param><param sync="true" name="reuse_schema" displayname="Reuse schema if this geodatabase was used for a check out previously" datatype="Boolean" direction="Input" expression="reuse_schema" type="Optional"><pythonReference>
+						<para>Choose REUSE if you are using a database with the schema (no data) as the out_workspace. REUSE will be faster, since a schema will not need to be created during replica creation. The default is NO_REUSE.</para>
+						<bulletList><bullet_item>NO_REUSE—Do not reuse the schema. This is the default. </bullet_item><bullet_item>REUSE—Reuse the schema. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Check this box to Reuse schema if you are using a database with the schema (no data) as the out_workspace. REUSE will be faster, since a schema will not need to be created during replica creation. The default is NO_REUSE.</para>
+						<bulletList>
+							<bullet_item>Checked--Reuse the schema. </bullet_item>
+							<bullet_item>Unchecked--Do not reuse the schema. This is the default. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="get_related_data" displayname="Check out related data" datatype="Boolean" direction="Input" expression="get_related_data" type="Optional"><pythonReference>
+						<para>Specifies whether to replicate related data that has established relationships with the replicated data. For example, consider a feature (f1) inside the replica area and a related feature (f2) from another class outside the replica area. Feature f2 is included in the check-out replica if you choose to get related data.</para>
+						<bulletList><bullet_item>RELATED—Replicate related data. This is the default. </bullet_item><bullet_item>NO_RELATED—Do not replicate related data. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether to replicate related data that has established relationships with the replicated data. For example, consider a feature (f1) inside the replica area and a related feature (f2) from another class outside the replica area. Feature f2 is included in the check-out replica if you choose to get related data.</para>
+						<bulletList>
+							<bullet_item>Checked—Replicate related data. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Do not replicate related data. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				
+					<para>Note that this tool is designed for check-out replicas only and should only be used to support applications from earlier releases. It is recommended that you use the  tool in the  in place of this tool.</para>
+				
+			</bullet_item><bullet_item>
+				<para>The tool accepts layers or tables that reference data from one ArcSDE server. Either add them to the list in the dialog box or create a semicolon-delimited list at the command line or in a script.</para>
+			</bullet_item><bullet_item>
+				<para>The layers and tables must reference versioned ArcSDE feature classes and tables for which you have permissions to edit.</para>
+			</bullet_item><bullet_item>
+				<para>The following describes how to define the rows to check out:</para>
+				<bulletList>
+					<bullet_item>The geoprocessing environment  setting  is used as the spatial extent for the replicated data. Only features intersecting this extent are considered for the replica.</bullet_item>
+					<bullet_item>Definition queries and selections on individual layers and in tables can also be used to define the rows to replicate.</bullet_item>
+					<bullet_item>A combination of these may be applied. For example, if there is an output extent defined and a layer has a selection set, only selected features that intersect the extent are replicated.</bullet_item>
+					<bullet_item>Definition queries can be defined using table or layer properties in ArcMap or using the Make Feature Layer and Make Table View tools. Selections applied to layers and tables in ArcMap will also be used. Selections and definition queries can also be persisted for layers in layer files.</bullet_item>
+					<bullet_item>Layers and tables in ArcMap or created using the Make Feature Layer and Make Table View tools can be added using a drop-down list in the tool. The layers and tables must be referenced by name on the command line. Layer files can be added using drag-and-drop or the Add Data button.</bullet_item>
+					<bullet_item>If you add data directly from the ArcSDE connection in the dialog box, a definition query or selection will not be applied.</bullet_item>
+					<bullet_item>For cases where there is no output extent, definition query, or selection, all data in a feature class is replicated. In a table, only schema is replicated.</bullet_item>
+					<bullet_item>If one feature class from a feature dataset is included in the replica, all data in the feature dataset is also replicated. Only the output extent will be applied to the other classes in the feature dataset. To apply a definition query or a selection set, layers or tables must be added explicitly to the tool.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>This tool applies the default behavior of the create replica command in ArcMap.</para>
+			</bullet_item><bullet_item>
+				<para>If the Check-out to Workspace parameter value is a personal or file geodatabase that does not exist, one will be created.</para>
+			</bullet_item><bullet_item>
+				<para>Once replicated, edits may be applied to the child replica geodatabase and synchronized with the parent geodatabase.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CheckOut Example (Python Window)</title><code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace = "C:/Data/MySDEdata.sde"
+arcpy.Checkout_management("roads", "DATA", "C:/Data/MyCheckout.gdb", "mycheckout1", "REUSE", "RELATED")
+                    </code></scriptExample></scriptExamples></tool></metadata>

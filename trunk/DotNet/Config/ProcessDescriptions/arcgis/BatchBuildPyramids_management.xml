@@ -1,0 +1,39 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Batch Build Pyramids (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Builds pyramids for multiple raster datasets.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>All</keyword><keyword>Display</keyword><keyword>Each</keyword><keyword>Every</keyword><keyword>Many</keyword><keyword>Overview</keyword><keyword>Ovr</keyword><keyword>Performance</keyword><keyword>Properties</keyword><keyword>Reduced Resolution Dataset</keyword><keyword>Repeat</keyword><keyword>Rrd</keyword><keyword>Speed</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BatchBuildPyramids" displayname="Batch Build Pyramids (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Builds pyramids for multiple raster datasets.</para>
+		</summary><alink_name>BatchBuildPyramids_management</alink_name><parameters><param sync="true" name="Input_Raster_Datasets" displayname="Input Raster Datasets" datatype="Raster Dataset" direction="Input" expression="[input_raster_dataset,...]" type="Required"><pythonReference>
+						<para>The input raster datasets that you want to build raster pyramids for.</para>
+						<para>Each input should have more than 1024 rows and 1024 columns.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster datasets that you want to build raster pyramids for.</para>
+						<para>Each input should have more than 1024 rows and 1024 columns.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Pyramid" label="Pyramid"> The pyramid level, pyramid compression, and resampling method does not apply to the IMG format. </environment></environments><usage><bullet_item><para>Building  improves the display performance of raster datasets.</para></bullet_item><bullet_item>
+				<para>Batch building of pyramids is useful when you have a large directory of raster datasets that do not have pyramids or to build pyramids on the items of a raster catalog (drag them into the dialog box).</para>
+			</bullet_item><bullet_item><para>Wavelet compressed raster datasets, such as ECW, and MrSID, do not need to have pyramids built. These formats have internal pyramids that are created upon encoding.</para></bullet_item><bullet_item><para>Pyramids will not be built for raster datasets that have less than 1024 pixels in the row or column. Pyramids are not needed since the raster dataset is small enough, and building pyramids will not help increase the performance.</para></bullet_item><bullet_item><para>Pyramids cannot be built for raster catalogs, but they can be built for each raster catalog item.</para></bullet_item><bullet_item><para>You can choose the compression type for your overview pyramid file, in the Raster Storage Environment Settings. Compression will create a smaller .ovr file. The IMAGINE format and older versions of ArcGIS will create reduced resolution dataset (.rrd) files, where compression is not available.</para></bullet_item><bullet_item><para>The default pyramid compression will use the optimal compression type, given the type of data. You can manually choose to have LZ77, JPEG, or no compression.</para></bullet_item><bullet_item>
+				<para>JPEG compression can only be used with file formats that can store data according to the JPEG specifications.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>BatchBuildPyramids example 1 (Python window)</title>
+					<para>This is a Python sample for BatchBuildPyramids. </para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "c:/data"
+arcpy.BatchBuildPyramids_management("image1.tif;image2.img;image3.bmp")
+                    </code></scriptExample><scriptExample><title>BatchBuildPyramids example 1 (Python window)</title>
+					<para>This is a Python script sample for BatchBuildPyramids.</para>
+				<code xml:space="preserve">##====================================
+##Batch Build Pyramids
+##Usage: BatchBuildPyramids_management Input_Raster_Datasets;Input_Raster_Datasets...
+
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:/Workspace"
+    
+    ##Build Pyramids for multiple raster datasets
+    arcpy.BatchBuildPyramids_management("image1.tif;image2.img;fgdb.gdb/image3")
+
+except:
+    print "Batch Build Pyramids example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

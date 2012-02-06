@@ -1,0 +1,66 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Merge Divided Roads  (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Generates single line road features in place of matched pairs of  divided road lanes. </para><para>Matched pairs of roads or lanes are merged if they are the same road class, trend generally parallel to one another, and are within the merge distance apart. The road class is specified by the Merge  Field parameter. All nonmerged roads from the input collection are copied to the output feature class. </para><para>Learn more about How Merge Divided Roads works</para><para>This tool is generally used to simplify a relatively large-scale road collection at a smaller scale, where it is appropriate to depict divided highways and boulevards as a single line. At medium scales it may be preferable to retain divided roads as separate features. In this case  you can use the Resolve Road Conflicts tool instead to ensure that symbolized lanes are displayed without symbol conflicts.  If both Resolve Road Conflicts and Merge Divided Roads tools will be run on the same collection of roads, it is advisable to run Merge Divided Roads first. </para>
+			<para> A warning is raised if the input features are not in a projected coordinate system. This tool relies on  linear distance units, which will create unexpected results in an unprojected coordinate system . It is strongly suggested that you run this tool on data in a projected coordinate system to ensure valid results. An error is raised and the tool will not process if the coordinate system is missing or unknown.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cartography</keyword><keyword>Collapse</keyword><keyword>Combine</keyword><keyword>Contextual</keyword><keyword>Displace</keyword><keyword>Displacement</keyword><keyword>Divided Highway</keyword><keyword>Divided Road</keyword><keyword>Generalisation</keyword><keyword>Generalise</keyword><keyword>Generalization</keyword><keyword>Generalize</keyword><keyword>Lane</keyword><keyword>Scale Change</keyword><keyword>Simplification</keyword><keyword>Simplify</keyword><keyword>Small Scale</keyword><keyword>Snap</keyword><keyword>Street</keyword><keyword>Typification</keyword><keyword>Typify</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" MergeDividedRoads " displayname=" Merge Divided Roads  (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para> Generates single line road features in place of matched pairs of  divided road lanes. </para><para>Matched pairs of roads or lanes are merged if they are the same road class, trend generally parallel to one another, and are within the merge distance apart. The road class is specified by the Merge  Field parameter. All nonmerged roads from the input collection are copied to the output feature class. </para><para>Learn more about How Merge Divided Roads works</para><para>This tool is generally used to simplify a relatively large-scale road collection at a smaller scale, where it is appropriate to depict divided highways and boulevards as a single line. At medium scales it may be preferable to retain divided roads as separate features. In this case  you can use the Resolve Road Conflicts tool instead to ensure that symbolized lanes are displayed without symbol conflicts.  If both Resolve Road Conflicts and Merge Divided Roads tools will be run on the same collection of roads, it is advisable to run Merge Divided Roads first. </para>
+			<para> A warning is raised if the input features are not in a projected coordinate system. This tool relies on  linear distance units, which will create unexpected results in an unprojected coordinate system . It is strongly suggested that you run this tool on data in a projected coordinate system to ensure valid results. An error is raised and the tool will not process if the coordinate system is missing or unknown.</para></summary><alink_name> MergeDividedRoads _cartography</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/MergeDividedRoads_cartography_v.png" alt="Merge Divided Roads tool" /><toolIllust type="illustration" src="MergeDividedRoads_cartography_h.png" alt="Merge Divided Roads tool" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para> The input linear road features that contain matched pairs of divided road lanes which should be merged together to a single output line feature. </para>
+					</pythonReference><dialogReference>
+						<para> The input linear road features that contain matched pairs of divided road lanes which should be merged together to a single output line feature. </para>
+					</dialogReference></param><param sync="true" name="merge_field" displayname="Merge Field" datatype="Field" direction="Input" expression="merge_field" type="Required"><pythonReference>
+						<para> The field that contains road classification information. Only parallel, proximate roads of equal classification will be merged. A value of 0 (zero) locks a feature to prevent it from participating in merging. </para>
+					</pythonReference><dialogReference>
+						<para> The field that contains road classification information. Only parallel, proximate roads of equal classification will be merged. A value of 0 (zero) locks a feature to prevent it from participating in merging. </para>
+					</dialogReference></param><param sync="true" name="merge_distance" displayname="Merge Distance" datatype="Linear unit" direction="Input" expression="merge_distance" type="Required"><pythonReference>
+						<para> The minimum distance apart, in the specified units, for equal-class, relatively parallel road features to be merged. This distance must be greater than zero. If the units are in  pt, mm, cm, or in,  the value is considered as page units and takes into account the reference scale. </para>
+					</pythonReference><dialogReference>
+						<para> The minimum distance apart, in the specified units, for equal-class, relatively parallel road features to be merged. This distance must be greater than zero. If the units are in  pt, mm, cm, or in,  the value is considered as page units and takes into account the reference scale. </para>
+					</dialogReference></param><param sync="true" name="out_features" displayname="Output Features" datatype="Feature Class" direction="Output" expression="out_features" type="Required"><pythonReference>
+						<para> The output feature class containing single line merged road features and all unmerged road features.</para>
+					</pythonReference><dialogReference>
+						<para> The output feature class containing single line merged road features and all unmerged road features.</para>
+					</dialogReference></param><param sync="true" name="out_displacement_features" displayname="Output Displacement Feature Class" datatype="Feature Class" direction="Output" expression="out_displacement_features" type="Optional"><pythonReference>
+						<para> The output polygon features containing the degree and direction of road displacement, to be used by the Propagate Displacement tool to preserve spatial relationships. </para>
+					</pythonReference><dialogReference>
+						<para> The output polygon features containing the degree and direction of road displacement, to be used by the Propagate Displacement tool to preserve spatial relationships. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cartographic_coordinate_system" label="Cartographic coordinate system">
+						
+					</environment><environment name="Reference_scale" label="Reference scale">
+The reference scale is only considered when the Merge Distance parameter is entered in page units.
+When the reference scale is available, the detection of false dead ends is based on feature separation of 0.5mm at scale. Otherwise a value twice the tolerance of the spatial reference is used.</environment></environments><usage><bullet_item>
+				<para>The output feature class contains single line features representing merged roads and copies of all unmerged input features. Merged features will inherit  the attribution from one of the two  input features.</para>
+			</bullet_item><bullet_item>
+				<para>Input features with Merge Field parameter values equal to zero are "locked" and will not be merged, even if adjacent features are not locked. </para>
+			</bullet_item><bullet_item><para>The optional Output Displacement Feature Class parameter creates a feature class of  polygons that indicates the amount and direction of displacement that took place. This feature class can be used for visual inspection, for spatial querying, or as an input to the  tool. </para></bullet_item><bullet_item><para>If the input is a feature layer drawn with a representation, any shape overrides associated with the representation will be used as the input geometry considered by this tool and the corresponding geometry in the Shape field will be ignored. The output feature class will contain the feature class representation, but all geometry will be stored in the output Shape field, not as representation shape overrides.</para></bullet_item></usage><scriptExamples><scriptExample><title>MergeDividedRoads tool Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the MergeDividedRoads tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+env.referenceScale = "50000"
+arcpy.MergeDividedRoads_cartography("roads.lyr", "level", "25 meters",
+                                      "C:/data/cartography.gdb/transportation/merged_roads",
+                                      "C:/data/cartography.gdb/transportation/displacement")
+
+                    </code></scriptExample><scriptExample><title>MergeDividedRoads tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the MergeDividedRoads tool.</para>
+				<code xml:space="preserve"># Name: MergeDividedRoads_standalone_script.py
+# Description: Resolves symbology conflicts between roads within a specified distance of each other by snapping them together
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+env.referenceScale = "50000"
+
+# Set local variables
+in_features = "roads.lyr"
+merge_field = "level"
+collapse_distance = "25 meters"
+out_features = "C:/data/cartography.gdb/transportation/merged_roads"
+out_displacement_features = "C:/data/cartography.gdb/transportation/displacement"
+
+# Execute Merge Divided Roads
+arcpy.MergeDividedRoads_cartography(in_features, merge_field, collapse_distance, out_features, out_displacement_features)
+                    </code></scriptExample></scriptExamples></tool></metadata>

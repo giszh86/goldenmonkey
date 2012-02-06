@@ -1,0 +1,60 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Upgrade Geodatabase  (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Upgrades a geodatabase to the latest release to take advantage of new functionality available in the latest release of ArcGIS. Valid input is a personal or file geodatabase or an sde connection file to an ArcSDE geodatabase. </para>
+			<para>You must have the current release of ArcGIS Desktop, ArcGIS Engine, or ArcGIS Server installed on the computer from which you will run the upgrade. For ArcSDE geodatabases, a direct connection to the geodatabase is necessary to run the upgrade. The direct-connect drivers that allow you to connect to older, supported geodatabases are automatically installed with ArcGIS Desktop, ArcGIS Engine, and ArcGIS Server.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" UpgradeGDB " displayname=" Upgrade Geodatabase  (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Upgrades a geodatabase to the latest release to take advantage of new functionality available in the latest release of ArcGIS. Valid input is a personal or file geodatabase or an sde connection file to an ArcSDE geodatabase. </para>
+			<para>You must have the current release of ArcGIS Desktop, ArcGIS Engine, or ArcGIS Server installed on the computer from which you will run the upgrade. For ArcSDE geodatabases, a direct connection to the geodatabase is necessary to run the upgrade. The direct-connect drivers that allow you to connect to older, supported geodatabases are automatically installed with ArcGIS Desktop, ArcGIS Engine, and ArcGIS Server.</para>
+		</summary><alink_name> UpgradeGDB _management</alink_name><parameters><param sync="true" name="input_workspace" displayname="Input geodatabase" datatype="Workspace" direction="Input" expression="input_workspace" type="Required"><pythonReference>
+						<para> The personal, file, or ArcSDE geodatabase to be upgraded. </para>
+					</pythonReference><dialogReference>
+						<para> The personal, file, or ArcSDE geodatabase to be upgraded. </para>
+					</dialogReference></param><param sync="true" name="input_prerequisite_check" displayname="Perform Pre-requisite check" datatype="Boolean" direction="Input" expression="input_prerequisite_check" type="Required"><pythonReference>
+						<para> Specifies whether the prerequisite check is run prior to upgrading the geodatabase. </para>
+						<bulletList><bullet_item>NO_ PREREQUISITE_CHECK—Prerequiste check  is not run. </bullet_item><bullet_item>PREREQUISITE_CHECK—Prerequiste check  is  run. This is the default.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para> Specifies whether the prerequisite check is run prior to upgrading the geodatabase. </para></dialogReference></param><param sync="true" name="input_upgrade_check" displayname="Upgrade geodatabase" datatype="Boolean" direction="Input" expression="input_upgrade_check" type="Required"><pythonReference>
+						<para> Specifies whether the upgrade is performed.</para>
+						<bulletList><bullet_item>NO_UPGRADE—The Upgrade is not run. </bullet_item><bullet_item>UPGRADE—The Upgrade  is  run. This is the default.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para> Specifies whether the upgrade is performed.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item><para>Before you upgrade your ArcSDE geodatabase, be sure you have read and performed the steps in:</para></bullet_item><bullet_item> To determine the geodatabase version, right-click the geodatabase in the Catalog window and click Properties. The Upgrade Status section of the General tab shows the ArcGIS release of the geodatabase and indicates if your geodatabase can be upgraded to the latest release to take advantage of new functionality.</bullet_item><bullet_item>At least one of either the Perform Pre-requisite check parameter or the Upgrade geodatabase parameter should be checked. Not checking either results in an error.</bullet_item><bullet_item>ESRI recommends using the Prerequisites check prior to upgrading your geodatabase to determine if your geodatabase is ready for upgrading. If any of these prerequisites are not met, the tool logs an error in the Results window and does not upgrade the geodatabase. This saves you from starting the upgrade only to have it fail part way through due to one of these prerequisites not having been met. If any checks fail, you must correct the problem then restart the upgrade process.</bullet_item><bullet_item> The Perform Pre-requisite check  option runs different checks depending on what type of geodatabase you are upgrading. For personal and file geodatabases, it determines whether: <bulletList>
+					<bullet_item> The geodatabase is read-only.</bullet_item>
+					<bullet_item> There are no other users connected to the geodatabase.</bullet_item><bullet_item>The current connection is not editing data in the geodatabase.</bullet_item>
+					<bullet_item>All the information within the current geodatabase system tables can be opened.</bullet_item></bulletList><bulletList>
+					<bullet_item> For ArcSDE geodatabases, it determines whether: <bulletList>
+							<bullet_item> The connected user has the appropriate privileges to upgrade.</bullet_item>
+							<bullet_item>The connected user is not editing data in the geodatabase.</bullet_item><bullet_item> There are no other users connected to the geodatabase.</bullet_item>
+							<bullet_item> The database is enabled to support XML data types.</bullet_item>
+							<bullet_item>All the information within the current geodatabase system tables can be opened.</bullet_item><bullet_item> For geodatabases in PostgreSQL and Oracle, it detects whether the ST_Geometry library in the database location is current.</bullet_item>
+							<bullet_item>For geodatabases in a user's schema in Oracle, it detects whether the master geodatabase is upgraded.</bullet_item></bulletList></bullet_item>
+				</bulletList></bullet_item></usage><scriptExamples><scriptExample><title>UpgradeGeodatabase example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the UpgradeGDB function in immediate mode to upgrade a file geodatabase.</para>
+				<code xml:space="preserve">import arcpy
+Output_Workspace = "C:\\temp\\Default.gdb"
+Default_gdb = "C:\\temp\\Default.gdb"
+arcpy.UpgradeGDB_management(Default_gdb, "PREREQUISITE_CHECK", "UPGRADE")
+                    </code></scriptExample><scriptExample><title>UpgradeGeodatabase example 2 (stand-alone script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the UpgradeGDB function in Python scripting to upgrade a file geodatabase.</para>
+				<code xml:space="preserve"> # Description: upgrade a geodatabase
+ 
+ # Import arcpy module
+ import arcpy
+
+ # Local variables:
+ Output_Workspace = "C:\\temp\\Default.gdb"
+ Default_gdb = "C:\\temp\\Default.gdb"
+
+ # Process: Upgrade Geodatabase
+ arcpy.UpgradeGDB_management(Default_gdb, "PREREQUISITE_CHECK", "UPGRADE")
+                    </code></scriptExample><scriptExample><title>UpgradeGeodatabase example 3 (stand-alone script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the UpgradeGDB function in Python scripting to upgrade an ArcSDE geodatabase.</para>
+				<code xml:space="preserve"># Description: upgrade a geodatabase
+
+# Import arcpy module
+import arcpy
+
+# Local variables:
+Output_Workspace = "C:\\Documents and Settings\&lt;user&gt;\Application Data\ESRI\ArcCatalog\Connection to gdb.sde"
+Default_gdb = "C:\\Documents and Settings\&lt;user&gt;\Application Data\ESRI\ArcCatalog\Connection to gdb.sde"
+
+# Process: Upgrade Geodatabase
+arcpy.UpgradeGDB_management(Default_gdb, "PREREQUISITE_CHECK", "UPGRADE")
+                    </code></scriptExample></scriptExamples></tool></metadata>

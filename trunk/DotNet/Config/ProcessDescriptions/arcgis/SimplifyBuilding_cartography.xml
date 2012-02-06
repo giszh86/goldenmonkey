@@ -1,0 +1,92 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Simplify Building (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Simplifies the boundary or footprint of building polygons while maintaining their essential shape and size.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Building Simplify</keyword><keyword>Cartography</keyword><keyword>Contextual</keyword><keyword>Footprint</keyword><keyword>Generalisation</keyword><keyword>Generalise</keyword><keyword>Generalization</keyword><keyword>Generalize</keyword><keyword>Orthogonal</keyword><keyword>Scale Change</keyword><keyword>Simplification</keyword><keyword>Simplify</keyword><keyword>Small Scale</keyword><keyword>Typification</keyword><keyword>Typify</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SimplifyBuilding" displayname="Simplify Building (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Simplifies the boundary or footprint of building polygons while maintaining their essential shape and size.</para>
+		</summary><alink_name>SimplifyBuilding_cartography</alink_name><toolIllust type="illustration" src="SimplifyBuilding_cartography_h.gif" alt="Simplify Building illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The building polygons to be simplified.</para>
+					</pythonReference><dialogReference>
+						<para>The building polygons to be simplified.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class to be created.</para>
+					</dialogReference></param><param sync="true" name="simplification_tolerance" displayname="Simplification Tolerance" datatype="Linear Unit" direction="Input" expression="simplification_tolerance" type="Required"><pythonReference>
+						<para>Sets the tolerance for building simplification. A tolerance must be specified, and it must be greater than zero. You can choose a preferred unit; the default is the feature unit.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the tolerance for building simplification. A tolerance must be specified, and it must be greater than zero. You can choose a preferred unit; the default is the feature unit.</para>
+					</dialogReference></param><param sync="true" name="minimum_area" displayname="Minimum Area" datatype="Areal Unit" direction="Input" expression="minimum_area" type="Optional"><pythonReference>
+						<para>Sets the minimum area for a simplified building to be retained in feature units. The default value is zero, that is, to keep all buildings. You can specify a preferred unit; the default is the feature unit.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the minimum area for a simplified building to be retained in feature units. The default value is zero, that is, to keep all buildings. You can specify a preferred unit; the default is the feature unit.</para>
+					</dialogReference></param><param sync="true" name="conflict_option" displayname="Check for spatial conflicts" datatype="Boolean" direction="Input" expression="conflict_option" type="Optional"><pythonReference>
+						<para>Specifies whether or not to check for potential conflicts, that is, overlapping or touching, among buildings.</para>
+						<bulletList><bullet_item>NO_CHECK—Specifies not to check for potential conflicts; the resulting buildings may overlap. This is the default. </bullet_item><bullet_item>CHECK_CONFLICTS—Specifies to check for potential conflicts; the conflicting buildings will be flagged. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether or not to check for potential conflicts, that is, overlapping or touching, among buildings.<bulletList><bullet_item>Unchecked—Specifies not to check for potential conflicts; the resulting buildings may overlap. This is the default. </bullet_item><bullet_item>Checked—Specifies to check for potential conflicts; the conflicting buildings will be flagged. </bullet_item></bulletList></para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment></environments><usage><bullet_item><para> The Minimum area parameter applies to simplified buildings only. Any buildings which are smaller than the minimum area after the simplification process is completed will be removed from the output feature class.</para></bullet_item><bullet_item>
+				<para>The output feature class will include a field called BLD_STATUS to indicate simplification status as follows:<bulletList>
+						<bullet_item>1 = a single building has been simplified</bullet_item><bullet_item>2 = a single building has been simplified to its minimum bounding rectangle</bullet_item><bullet_item>3 = a building smaller than the tolerance squared has been simplified to its minimum bounding rectangle</bullet_item><bullet_item>5 = a building that has not been simplified</bullet_item>
+					</bulletList><para>Prior to ArcGIS version 10, BLD_STATUS = 4 indicated simplified or partially simplified buildings connected with
+straight lines. 
+BLD_STATUS = 4 is no longer used. </para></para>
+			</bullet_item><bullet_item>
+				<para>If the Check for spatial conflicts parameter is used, the tool will detect spatial conflicts and add a new field called SimBldFlag to the output to store conflict flags. A value of 0 means 'no conflict'; a value of 1 means 'conflict'.</para>
+			</bullet_item><bullet_item>
+				<para>This tool cannot be executed within an edit session.</para>
+			</bullet_item><bullet_item>
+				<para>Input Z values can be preserved if specified in the Environment Settings. Where output vertices are coincident to input feature vertices, Z values will be transferred to output vertices. Elsewhere, Z-values will be derived either from existing Z values or through interpolation.</para>
+			</bullet_item><bullet_item>
+				<para>Invalid (self-intersecting) geometry may be created during the simplification process and will be repaired but not improved. For example, if a polygon crosses itself, the polygon will become a multiple-part polygon but will still look self-crossing.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SimplifyBuilding Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the SimplifyBuilding function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+import arcpy.cartography as CA
+env.workspace = "C:/data"
+CA.SimplifyBuilding("buildings.shp", "C:/output/output.gdb/simplified_buildings", 10)
+                    </code></scriptExample><scriptExample><title>SimplifyBuilding Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the SimplifyBuilding function.</para>
+				<code xml:space="preserve"># Name: SimplifyBuilding_Example2.py
+# Description: Aggregate building features and then simplify them
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+import arcpy.cartography as CA
+  
+# Set environment settings
+env.workspace = "C:/data/Portland.gdb/Buildings"
+ 
+# Set local variables
+inBuildingFeatures = "houses"
+aggregatedFeatures = "C:/data/PortlandOutput.gdb/residential_areas"
+simplifiedFeatures = "C:/data/PortlandOutput.gdb/residential_simplified"
+
+# Aggregate house polygons.
+CA.AggregatePolygons(inBuildingFeatures, aggregatedFeatures, 10, 100, 100, "ORTHOGONAL")
+ 
+# Simplify residential building polygons.
+CA.SimplifyBuilding(aggregatedFeatures, simplifiedFeatures, 10, 100, CHECK_CONFLICTS)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

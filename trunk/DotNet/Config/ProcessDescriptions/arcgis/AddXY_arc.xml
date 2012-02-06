@@ -1,0 +1,57 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add XY Coordinates (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds the items X-COORD and Y-COORD for labels or points to the input coverage PAT, or for nodes to the input coverage NAT, and calculates their values.</para>
+			<para>The tool determines the feature classes of the input coverage and lists those available to which x,y coordinates can be added. The tool is most commonly used to gain access to a coverage's geometry to perform queries and analysis or to extract points or nodes based on their x,y location.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add Xy Coordinates</keyword><keyword>Addxy_Arc</keyword><keyword>Coordinates</keyword><keyword>Coverage Tools</keyword><keyword>Data Management Tools</keyword><keyword>Labels</keyword><keyword>Nodes</keyword><keyword>Points</keyword><keyword>Table</keyword><keyword>Xy</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddXY" displayname="Add XY Coordinates (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Adds the items X-COORD and Y-COORD for labels or points to the input coverage PAT, or for nodes to the input coverage NAT, and calculates their values.</para>
+			<para>The tool determines the feature classes of the input coverage and lists those available to which x,y coordinates can be added. The tool is most commonly used to gain access to a coverage's geometry to perform queries and analysis or to extract points or nodes based on their x,y location.</para>
+		</summary><alink_name>AddXY_arc</alink_name><toolIllust type="illustration" src="AddXY_arc_h.gif" alt="Add XY illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage containing points or polygon labels whose x,y coordinates will become attributes in the PAT, or in the coverage containing nodes, to the NAT.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage containing points or polygon labels whose x,y coordinates will become attributes in the PAT, or in the coverage containing nodes, to the NAT.</para>
+					</dialogReference></param><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Optional"><pythonReference>
+						<para>Type of coverage feature whose x,y coordinates will become feature attributes.</para>
+						<bulletList><bullet_item>POINT—Point feature coordinates to be added to the PAT including label points. This is the default option. </bullet_item><bullet_item>NODE—Node feature coordinates to be added to the NAT. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Type of coverage feature whose x,y coordinates will become feature attributes.</para>
+						<bulletList><bullet_item>POINT—Point feature coordinates to be added to the PAT including label points. This is the default option. </bullet_item><bullet_item>NODE—Node feature coordinates to be added to the NAT. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If the items X-COORD and Y-COORD already exist, they will be overwritten.</para>
+			</bullet_item><bullet_item>
+				<para>If the input coverage is single precision, the items will be defined with Item width 4, Display width 12, Item type F, and Decimal places 3. If the input coverage is double precision, the items will be defined with Item width 8, Display width 18, Item type F, and Decimal places 5. Once defined, this definition will not change even if the  is changed.</para>
+			</bullet_item><bullet_item>
+				<para>If the point or node locations are moved after using Add XY Coordinates, the X-COORD and Y-COORD values will not represent the new locations. To update their values to the new location, rerun the tool. The values for X-COORD and Y-COORD are not modified by other tools, such as  and .</para>
+			</bullet_item><bullet_item>
+				<para>If your input coverage is in a geographic coordinate system, the X-COORD and Y-COORD represents the longitude and latitude, respectively.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AddXY example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to add X-COORD and Y-COORD items to a coverage's PAT. The items are populated with the coordinate values from the coverage's point features.</para>
+				<code xml:space="preserve"># Name: AddXY_Example.py
+# Description: Adds X and Y coordinates to a coverage's point attribute table
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "wells"
+featureType = "POINT"
+
+#Execute AddXY
+arcpy.AddXY_arc(inCover, featureType)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

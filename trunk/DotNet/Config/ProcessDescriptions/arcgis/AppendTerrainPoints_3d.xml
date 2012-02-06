@@ -1,0 +1,71 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Append Terrain Points  (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Adds points or multipoints to a terrain dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Append</keyword><keyword>Change</keyword><keyword>Edit</keyword><keyword>Lidar</keyword><keyword>Load Points</keyword><keyword>Masspoints</keyword><keyword>Modify</keyword><keyword>Points</keyword><keyword>Terrain</keyword><keyword>Terrain</keyword><keyword>Terrain Dataset</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" AppendTerrainPoints " displayname=" Append Terrain Points  (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para> Adds points or multipoints to a terrain dataset.</para>
+		</summary><alink_name> AppendTerrainPoints _3d</alink_name><parameters><param sync="true" name="in_terrain" displayname="Input Terrain" datatype="Terrain Layer" direction="Input" expression="in_terrain" type="Required"><pythonReference>
+						<para> The input terrain dataset to which the points or multipoints will be added. </para>
+					</pythonReference><dialogReference>
+						<para> The input terrain dataset to which the points or multipoints will be added. </para>
+					</dialogReference></param><param sync="true" name="terrain_feature_class" displayname="Input Terrain Data Source" datatype="Feature Layer" direction="Input" expression="terrain_feature_class" type="Required"><pythonReference>
+						<para> The feature class that contributes to the terrain dataset into which the points or multipoints will be added. </para>
+					</pythonReference><dialogReference>
+						<para> The feature class that contributes to the terrain dataset into which the points or multipoints will be added. </para>
+					</dialogReference></param><param sync="true" name="in_point_features" displayname="Input Points" datatype="Feature Layer" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para> The feature class of points or multipoints to add as an additional data source for the terrain dataset. </para>
+					</pythonReference><dialogReference>
+						<para> The feature class of points or multipoints to add as an additional data source for the terrain dataset. </para>
+					</dialogReference></param><param sync="true" name="polygon_features_or_extent" displayname="Area of Interest" datatype="Feature Layer or Extent" direction="Input" expression="polygon_features_or_extent" type="Optional"><pythonReference>
+						<para> The area of interest to use to import the points or multipoints.   The default is blank.</para>
+					</pythonReference><dialogReference>
+						<para> The area of interest to use to import the points or multipoints.   The default is blank.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Adding points to a terrain dataset will invalidate it. Run  after adding points or multipoints.</para>
+			</bullet_item><bullet_item><para>If the terrain is in SDE, it must be registered as versioned.</para></bullet_item></usage><scriptExamples><scriptExample><title> Append Terrain Points Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the  Append Terrain Points 
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.AppendTerrainPoints_3d("sample.gdb/featuredataset/terrain", "existing_points", "new_points.shp")
+                    </code></scriptExample><scriptExample><title> Append Terrain Points Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the  Append Terrain Points
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: AppendTerrainPoints Example
+# Description: The following stand-alone script demonstrates how to add new points 
+#              to a terrain with the AppendTerrainPoints tool, and use the 
+#              ChangeTerrainReferenceScale tool to reduce the scale that a terrain
+#              pyramid is drawn at. Such a workflow may apply for situations where
+#              the addition results in a significant expansion of the terrain's extent.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+#Execute AppendTerrainPoints
+try:
+    # Set Local Variables
+    inTerrain = "sample.gdb/featuredataset/terrain"
+    currentPts = "existing_points"
+    newPts = "updated_points.shp"
+    arcpy.AppendTerrainPoints_3d(inTerrain, currentPts, newPts)
+    arcpy.ChangeTerrainReferenceScale_3d(inTerrain, 1000, 500)
+
+except:
+    # Returns any other error messages
+    print arcpy.GetMessages(2)
+
+del arcpy
+                    </code></scriptExample></scriptExamples></tool></metadata>

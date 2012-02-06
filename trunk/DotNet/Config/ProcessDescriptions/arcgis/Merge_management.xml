@@ -1,0 +1,138 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Merge (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Combines multiple input datasets of the same data type into a single, new output dataset. This tool can combine point, line, or polygon feature classes or tables.</para>
+			<para>Use the Append tool to combine input datasets with an existing dataset.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Aggregate</keyword><keyword>Append</keyword><keyword>Attach</keyword><keyword>Combine</keyword><keyword>Concatenate</keyword><keyword>Dataset</keyword><keyword>Fuse</keyword><keyword>Join</keyword><keyword>Map</keyword><keyword>New</keyword><keyword>Union</keyword><keyword>Unite</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Merge" displayname="Merge (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Combines multiple input datasets of the same data type into a single, new output dataset. This tool can combine point, line, or polygon feature classes or tables.</para>
+			<para>Use the Append tool to combine input datasets with an existing dataset.</para></summary><alink_name>Merge_management</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/Merge_management_v.png" alt="Merge Illustration" /><toolIllust type="illustration" src="Merge_management_h.png" alt="Merge Illustration" /><parameters><param sync="true" name="inputs" displayname="Input Datasets" datatype="Table View" direction="Input" expression="[inputs,...]" type="Required"><pythonReference>
+						<para>The input datasets that will be merged together into a new output dataset. Input datasets can be point, line, or polygon feature classes or tables. The data type of all input datasets must match.</para>
+					</pythonReference><dialogReference>
+						<para>The input datasets that will be merged together into a new output dataset. Input datasets can be point, line, or polygon feature classes or tables. The data type of all input datasets must match.</para>
+					</dialogReference></param><param sync="true" name="output" displayname="Output Dataset" datatype="Feature Class;Table" direction="Output" expression="output" type="Required"><pythonReference>
+						<para>The output dataset that will contain all combined input datasets.</para>
+					</pythonReference><dialogReference>
+						<para>The output dataset that will contain all combined input datasets.</para>
+					</dialogReference></param><param sync="true" name="field_mappings" displayname="Field Map" datatype="Field Mappings" direction="Input" expression="field_mappings" type="Optional"><pythonReference>
+						<para>The fields and field contents chosen from the inputs. Each of the unique input fields will be listed on the Field Map window and when expanded, you will see a list of all the input field occurrences (subfields). New fields can also be added.</para>
+						<para>For each Field Map, you can add, rename, or delete output fields as well as set properties such as data type and merge rule. You can also delete an output field's subfields, and you can format any output field's values if the data type is text.</para>
+					</pythonReference><dialogReference>
+						<para>The fields and field contents chosen from the inputs. Each of the unique input fields will be listed on the Field Map window and when expanded, you will see a list of all the input field occurrences (subfields). New fields can also be added.</para>
+						<para>For each Field Map, you can add, rename, or delete output fields as well as set properties such as data type and merge rule. You can also delete an output field's subfields, and you can format any output field's values if the data type is text.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Geograpic_transformations" label="Geograpic transformations">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Use this tool to combine datasets from multiple sources into a new, single output dataset. All input datasets must be of the same type (i.e., several point feature classes can be merged, or several tables can be merged, but a line feature class cannot be merged with a polygon feature class).</para>
+			</bullet_item><bullet_item>
+				<para>All fields in the output dataset and the contents of those fields can be controlled using the  .</para>
+			</bullet_item><bullet_item>
+				<para>This tool will not planarize features from the input datasets. All features from the input datasets will remain intact in the output dataset, even if the features overlap. To combine, or planarize feature geometries use the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>This  tool does not perform edge matching—there will be no adjustment to the geometry of features.</para>
+			</bullet_item><bullet_item>
+				<para>If feature classes are being merged, the output dataset will be in the coordinate system of the first feature class in the Input Datasets list, unless the  geoprocessing environment is set.</para>
+			</bullet_item><bullet_item>
+				<para>Map layers can be used as input datasets. If a layer has a selection, only the selected records (features or table rows) are used by the Merge tool.</para>
+			</bullet_item><bullet_item>
+				<para>This  tool cannot use multiple input layers with the same name. Although ArcMap allows for the display of layers with the same name these layers may not be used. To work around this limitation, use the  tool dialog browse button to browse for the full paths of each input dataset.</para>
+			</bullet_item><bullet_item>
+				<para>Using the Field Map control, fields of type BLOB can only be passed into an output field of type BLOB, not into any other field type.</para>
+			</bullet_item><bullet_item>
+				<para>The Annotation Feature Class is not a valid input data type.</para>
+			</bullet_item><bullet_item><para>Raster datasets are not valid input. Use the  tool to merge multiple rasters into a new output raster.</para></bullet_item><bullet_item>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>Merge Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Merge tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data"
+arcpy.Merge_management(["majorrds.shp", "Habitat_Analysis.gdb/futrds"], "C:/output/Output.gdb/allroads")
+                    </code></scriptExample><scriptExample><title>Merge Example (stand-alone script)</title>
+					<para>Use Merge tool to move features from two street feature classes into a single dataset.</para>
+				<code xml:space="preserve"># Name: Merge.py
+# Description: Use Merge tool to move features from two street
+#                    feature classes into a single dataset with field mapping
+# Author: ESRI
+
+# import system modules 
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Street feature classes to be merged
+oldStreets = "majorrds.shp"
+newStreets = "Habitat_Analysis.gdb/futrds"
+
+# Create FieldMappings object to manage merge output fields
+fieldMappings = arcpy.CreateObject("FieldMappings")
+
+# Create FieldMap objects to add new fields to merge output
+fldMap_streetClass = arcpy.CreateObject("FieldMap")
+fldMap_streetName = arcpy.CreateObject("FieldMap")
+
+# Add all fields from both oldStreets and newStreets
+fieldMappings.AddTable(oldStreets)
+fieldMappings.AddTable(newStreets)
+
+# Add input fields "STREET_NAM" &amp; "NM" into new output field
+fldMap_streetName.AddInputField(oldStreets,"STREET_NAM")
+fldMap_streetName.AddInputField(newStreets,"NM")
+
+# Set name of new output field "Street_Name"
+streetName = fldMap_streetName.OutputField
+streetName.Name = "Street_Name"
+fldMap_streetName.OutputField = streetName
+
+# Add input fields "CLASS" &amp; "IFC" into new output field
+fldMap_streetClass.AddInputField(oldStreets,"CLASS")
+fldMap_streetClass.AddInputField(newStreets,"IFC")
+
+# Set name of new output field "Street_Class"
+streetClass = fldMap_streetClass.OutputField
+streetClass.Name = "Street_Class"
+fldMap_streetClass.OutputField = streetClass    
+
+# Add "Street_Class" and "Street_Name" output fields to FieldMappings object
+fieldMappings.AddFieldMap(fldMap_streetName)
+fieldMappings.AddFieldMap(fldMap_streetClass)
+
+# Remove all output fields from the field map, except fields "Street_Class", "Street_Name", &amp; "Distance"
+for field in fieldMappings.fields:
+    if field.name not in ["Street_Class","Street_Name","Distance"]:
+        fieldMappings.RemoveFieldMap(fieldMappings.FindFieldMapIndex(field.name))
+
+# Since both oldStreets and newStreets have field "Distance", no field mapping is required
+
+# Use Merge tool to move features into single dataset
+uptodateStreets = "C:/output/Output.gdb/allroads"
+arcpy.Merge_management([oldStreets, newStreets], uptodateStreets, fieldMappings)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

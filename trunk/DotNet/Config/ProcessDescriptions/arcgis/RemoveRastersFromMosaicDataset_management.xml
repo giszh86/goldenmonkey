@@ -1,0 +1,77 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Remove Rasters From Mosaic Dataset (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Removes rasters from a mosaic dataset. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RemoveRastersFromMosaicDataset" displayname=" Remove Rasters From Mosaic Dataset (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Removes rasters from a mosaic dataset. </para>
+		</summary><alink_name>RemoveRastersFromMosaicDataset_management</alink_name><parameters><param sync="true" name="in_mosaic_dataset" displayname="Mosaic Dataset" datatype="Mosaic Dataset; Mosaic Layer" direction="Input" expression="in_mosaic_dataset" type="Required"><pythonReference>
+						<para>Path and name of mosaic dataset.</para>
+					</pythonReference><dialogReference>
+						<para>Path and name of mosaic dataset.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Query Definition" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>Using SQL you can define a query, or use the Query Builder to build a query to define the raster datasets that will be removed from the mosaic dataset.</para>
+						<para>There must be a  selection or a query specified, otherwise the tool will not run. If you want to delete all the records from the mosaic dataset,  specify a query that would select all the rasters, such as "OBJECTID&gt;=0".</para></pythonReference><dialogReference>
+						<para>Using SQL you can define a query, or use the Query Builder to build a query to define the raster datasets that will be removed from the mosaic dataset.</para>
+						<para>There must be a  selection or a query specified, otherwise the tool will not run. If you want to delete all the records from the mosaic dataset,  specify a query that would select all the rasters, such as "OBJECTID&gt;=0".</para></dialogReference></param><param sync="true" name="update_boundary" displayname="Update Boundary" datatype="Boolean" direction="Input" expression="update_boundary" type="Optional"><pythonReference>
+						<para> Updates the boundary polygon of a mosaic dataset. By default, the boundary merges all the footprint polygons to create a single boundary representing the extent of the valid pixels. </para>
+						<bulletList><bullet_item>BUILD_BOUNDARY—The boundary will be updated. This is the default. </bullet_item><bullet_item>NO_BUILD_BOUNDARY— The boundary will not be updated. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Updates the boundary polygon of a mosaic dataset. By default, the boundary merges all the footprint polygons to create a single boundary representing the extent of the valid pixels. </para>
+						<bulletList>
+							<bullet_item>Checked—The boundary will be updated. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The boundary will not be updated.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="mark_overviews_items" displayname="Mark Affected Overviews" datatype="Boolean" direction="Input" expression="mark_overviews_items" type="Optional"><pythonReference>
+						<para>When the rasters in a mosaic catalog have been removed, any overviews created using those rasters may no longer be accurate, therefore, they can be identified so they can be updated or removed if they are no longer needed.</para>
+						<bulletList><bullet_item>MARK_OVERVIEWS—The affected overviews will be identified. This is the default.</bullet_item><bullet_item>NO_MARK_OVERVIEWS—The affected overviews will not be identified. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>When the rasters in a mosaic catalog have been removed, any overviews created using those rasters may no longer be accurate, therefore, they can be identified so they can be updated or removed if they are no longer needed.</para>
+						<bulletList>
+							<bullet_item>Checked—The affected overviews will be identified. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The affected overviews will not be identified.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="delete_overview_images" displayname="Delete Overview Images" datatype="Boolean" direction="Input" expression="delete_overview_images" type="Optional"><pythonReference>
+						<para> Any overviews that are no longer required as a result of the source rasters being removed can also be removed from the mosaic dataset.</para>
+						<bulletList><bullet_item>DELETE_OVERVIEW_IMAGES—The boundary will be updated. This is the default. </bullet_item><bullet_item>NO_DELETE_OVERVIEW_IMAGES— The boundary will not be updated. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Any overviews that are no longer required as a result of the source rasters being removed can also be removed from the mosaic dataset.</para>
+						<bulletList>
+							<bullet_item>Checked—The nonrequired overviews will be deleted. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The overviews will not be deleted.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent"></environment></environments><usage><bullet_item><para>There must be a  selection or a query specified, otherwise the tool will not run. If you want to delete all the records from the mosaic dataset,  specify a query that would select all the rasters, such as "OBJECTID&gt;=0".</para></bullet_item><bullet_item>
+				<para> You have the option to remove overviews but not to delete them. If the overviews are generated within the mosaic dataset they will be deleted when they are removed, because they are managed by the mosaic dataset. If you have created the overviews in a folder, or nondefault location, they are not fully managed by the mosaic dataset; therefore, you can remove them but not delete them from disk. You may not want to delete overviews if you are using them elsewhere. </para>
+			</bullet_item><bullet_item><para>If you choose to mark the affected overviews but not delete them, you can use the  to regenerate the affected overviews.</para></bullet_item></usage><scriptExamples><scriptExample><title>RemoveRastersFromMosaicDataset example 1 (Python window)</title>
+					<para>This is a Python sample for RemoveRastersFromMosaicDataset.</para>
+				<code xml:space="preserve">import arcpy  
+arcpy.RemoveMosaicCatalogItems_management("c:/workspace/fgdb.gdb/md2", \
+                                          "Category=2", "BUILD_BOUNDARY", \
+                                          "#", "#")
+                    </code></scriptExample><scriptExample><title>RemoveRastersFromMosaicDataset example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for RemoveRastersFromMosaicDataset.</para>
+				<code xml:space="preserve">##===========================
+##Remove Rasters From Mosaic Dataset
+##Usage: RemoveRastersFromMosaicDataset_management in_mosaic_dataset {where_clause}
+##                                                 {UPDATE_BOUNDARY | NO_BOUNDARY} 
+##                                                 {MARK_OVERVIEW_ITEMS | NO_MARK_OVERVIEW_ITEMS}
+##                                                 {DELETE_OVERVIEW_IMAGES | NO_DELETE_OVERVIEW_IMAGES}
+
+try:
+    import arcpy
+    arcpy.env.workspace = "C:/Workspace"
+
+    # Remove everything in the Mosaic Dataset
+    arcpy.RemoveRastersFromMosaicDataset_management("Remove.gdb/md", "OBJECTID&gt;=0", "#", "#", \
+                                                    "#")                                      
+    
+    # Delete Overviews with Query
+    arcpy.RemoveRastersFromMosaicDataset_management("Remove.gdb/md2", "Category=2", \
+                                                    "UPDATE_BOUNDARY", "#", "#")
+    
+    # Delete Selected items along with Overviews
+    arcpy.RemoveRastersFromMosaicDataset_management("Remove.gdb/md3", "OBJECTID&lt;3", \
+                                                    "UPDATE_BOUNDARY", "MARK_OVERVIEW_ITEMS",\
+                                                    "DELETE_OVERVIEW_IMAGES")
+    
+except:
+    print "Remove Rasters From Mosaic Dataset example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

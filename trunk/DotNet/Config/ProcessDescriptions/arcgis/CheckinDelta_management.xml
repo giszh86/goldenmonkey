@@ -1,0 +1,43 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Check In From Delta (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Imports changes from a delta file into the parent replica. A delta file contains only the changes exported from a child replica geodatabase.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Check</keyword><keyword>Checkout</keyword><keyword>Child</keyword><keyword>Contractor</keyword><keyword>Database</keyword><keyword>Difference</keyword><keyword>Edit</keyword><keyword>Finish</keyword><keyword>Gdb</keyword><keyword>Geodatabase</keyword><keyword>Import</keyword><keyword>In</keyword><keyword>Include</keyword><keyword>Integrate</keyword><keyword>Mobile</keyword><keyword>Offline</keyword><keyword>Out</keyword><keyword>Parent</keyword><keyword>Remote</keyword><keyword>Replica</keyword><keyword>Sde</keyword><keyword>Submit</keyword><keyword>Synchronize</keyword><keyword>Update</keyword><keyword>Updategram</keyword><keyword>Version</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CheckinDelta" displayname="Check In From Delta (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Imports changes from a delta file into the parent replica. A delta file contains only the changes exported from a child replica geodatabase.</para>
+		</summary><alink_name>CheckinDelta_management</alink_name><parameters><param sync="true" name="in_delta_database" displayname="Check-in from Delta Database" datatype="File" direction="Input" expression="in_delta_database" type="Required"><pythonReference>
+						<para>The delta file that contains the changes to be synchronized.</para>
+					</pythonReference><dialogReference>
+						<para>The delta file that contains the changes to be synchronized.</para>
+					</dialogReference></param><param sync="true" name="dest_workspace" displayname="Check-in to Workspace" datatype="Workspace" direction="Input" expression="dest_workspace" type="Required"><pythonReference>
+						<para>The parent replica geodatabase. The ArcSDE workspace to which changes will be applied.</para>
+					</pythonReference><dialogReference>
+						<para>The parent replica geodatabase. The ArcSDE workspace to which changes will be applied.</para>
+					</dialogReference></param><param sync="true" name="reconcile" displayname="Reconcile with the Parent Version" datatype="Boolean" direction="Input" expression="reconcile" type="Optional"><pythonReference>
+						<para>Indicates whether the synchronize process should reconcile the synchronization version after the edits have been synchronized.</para>
+						<bulletList><bullet_item>NON_RECONCILE—there is no reconcile performed. This is the default. </bullet_item><bullet_item>RECONCILE—There is a reconciliation performed. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether the synchronize process should reconcile the synchronization version after the edits have been synchronized.</para>
+						<bulletList>
+							<bullet_item>Checked—There is a reconciliation performed.</bullet_item>
+							<bullet_item>UnChecked—There is no reconcile performed. This is the default. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				
+					<para>Note that this tool is designed for check-out replicas only and should only be used to support applications from earlier releases. It is recommended that you use the  tool in the  toolset in place of this tool.</para>
+				
+			</bullet_item><bullet_item>
+				<para>Instead of synchronizing edits directly from the child replica geodatabase, you can export the changes only from the child replica to a delta file. Delta files are smaller than the original child replica geodatabase.</para>
+			</bullet_item><bullet_item>
+				<para>When the synchronize from a delta file succeeds, the check-out replica in the parent geodatabase is unregistered.</para>
+			</bullet_item><bullet_item>
+				<para>Synchronizing changes from a delta file does not automatically unregister the replica in the child replica geodatabase; this must be done manually.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CheckInFromDelta Example (Python Window)</title><code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace = "C:/Data"
+arcpy.CheckinDelta_management("MyCheckChanges.gdb", "MySDEdata.sde", NO_RECONCILE)
+                    </code></scriptExample></scriptExamples></tool></metadata>

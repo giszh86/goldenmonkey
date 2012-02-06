@@ -1,0 +1,57 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Copy (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Copies input data and pastes the output to the same or another location regardless of size. The data type of the Input and Output Data Element is identical.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Back Up</keyword><keyword>Change</keyword><keyword>Dataset</keyword><keyword>Duplicate</keyword><keyword>Location</keyword><keyword>Move</keyword><keyword>Paste</keyword><keyword>Reproduce</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Copy" displayname="Copy (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Copies input data and pastes the output to the same or another location regardless of size. The data type of the Input and Output Data Element is identical.</para>
+		</summary><alink_name>Copy_management</alink_name><parameters><param sync="true" name="in_data" displayname="Input data element" datatype="Data Element" direction="Input" expression="in_data" type="Required"><pythonReference>
+						<para>The Input Data Element to be copied to the same or another location.</para>
+					</pythonReference><dialogReference>
+						<para>The Input Data Element to be copied to the same or another location.</para>
+					</dialogReference></param><param sync="true" name="out_data" displayname="Output data element" datatype="Data Element" direction="Output" expression="out_data" type="Required"><pythonReference>
+						<para>The name of the Output Data Element.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the Output Data Element.</para>
+					</dialogReference></param><param sync="true" name="data_type" displayname="Data type" datatype="String" direction="Input" expression="data_type" type="Optional"><pythonReference>
+						<para>The data type of the Input and Output Data Element is identical. This parameter is read-only.</para>
+					</pythonReference><dialogReference>
+						<para>The data type of the Input and Output Data Element is identical. This parameter is read-only.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword"> ArcSDE data only. </environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If a feature class is copied to a feature dataset, the spatial reference of the feature class and the feature dataset must match; otherwise, copy fails.</para>
+			</bullet_item><bullet_item>
+				<para>Any data dependent on the input is also copied. For example, copying a feature class or table that is a part of a relationship class also copies the relationship class. The same applies to a feature class that has feature-linked annotation, domains, subtypes, and indices—all are copied along with the feature class.</para>
+			</bullet_item><bullet_item>
+				<para>To copy a geometric network or a topology class and all the participating feature classes, simply copy and paste the network or topology class only—this inlcudes all participating feature classes.</para>
+			</bullet_item><bullet_item>
+				<para>The copying of .txt and .sdc files is currently not supported.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Copy Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Copy function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/data"
+arcpy.Copy_management("majorrds.shp", "C:/output/majorrdsCopy.shp")
+                    </code></scriptExample><scriptExample><title>Copy Example 2 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the Copy function in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: Copy_Example2.py
+# Description: Copy major roads dataset to preserve the original data
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/data"
+
+# Set local variables
+in_data =  "majorrds.shp"
+out_data = "C:/output/majorrdsCopy.shp"
+data_type = ""
+
+# Execute Copy
+arcpy.Copy_management(in_data, out_data, data_type)
+                    </code></scriptExample></scriptExamples></tool></metadata>

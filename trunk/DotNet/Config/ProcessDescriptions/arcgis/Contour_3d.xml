@@ -1,0 +1,81 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Contour (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a line feature class of contours (isolines) from a raster surface.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Constant Value</keyword><keyword>Dem</keyword><keyword>Digital Elevation Model</keyword><keyword>Elevation</keyword><keyword>Isobar</keyword><keyword>Isohyet</keyword><keyword>Isoline</keyword><keyword>Isotherm</keyword><keyword>Z-Factor</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Contour" displayname="Contour (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Creates a line feature class of contours (isolines) from a raster surface.</para>
+			
+		</summary><alink_name>Contour_3d</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input surface raster.</para></pythonReference><dialogReference>
+						<para>The input surface raster.</para></dialogReference></param><param sync="true" name="out_polyline_features" displayname="Output polyline features" datatype="Feature Class" direction="Output" expression="out_polyline_features" type="Required"><pythonReference>
+						<para>Output contour polyline features.</para></pythonReference><dialogReference>
+						<para>Output contour polyline features.</para></dialogReference></param><param sync="true" name="contour_interval" displayname="Contour interval" datatype="Double" direction="Input" expression="contour_interval" type="Required"><pythonReference><para>Interval of contours.</para><para>This can be any positive number.</para>
+					</pythonReference><dialogReference><para>Interval of contours.</para><para>This can be any positive number.</para>
+					</dialogReference></param><param sync="true" name="base_contour" displayname="Base contour" datatype="Double" direction="Input" expression="base_contour" type="Optional"><pythonReference>
+						<para>Base contour value.</para><para>Contours are generated above and below this value as needed to cover the entire value range of the input raster. The default is zero.</para>
+					</pythonReference><dialogReference>
+						<para>Base contour value.</para><para>Contours are generated above and below this value as needed to cover the entire value range of the input raster. The default is zero.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>Number of ground x,y units in one surface z unit.</para>
+						<para>The z-factor adjusts the units of measure for the z units when they are different from the x,y units of the input surface. The z-values of the input surface are multiplied by the z-factor when calculating the final output surface.</para>
+						<para>If the x,y units and z units are in the same units of measure, the z-factor is 1. This is the default.</para>
+						<para>If the x,y units and z units are in different units of measure, the z-factor must be set to the appropriate factor, or the results will be incorrect. For example, if your z units are feet and your x,y units are meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</pythonReference><dialogReference>
+						<para>Number of ground x,y units in one surface z unit.</para>
+						<para>The z-factor adjusts the units of measure for the z units when they are different from the x,y units of the input surface. The z-values of the input surface are multiplied by the z-factor when calculating the final output surface.</para>
+						<para>If the x,y units and z units are in the same units of measure, the z-factor is 1. This is the default.</para>
+						<para>If the x,y units and z units are in different units of measure, the z-factor must be set to the appropriate factor, or the results will be incorrect. For example, if your z units are feet and your x,y units are meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Contours do not extend beyond the spatial extent of the raster, and they are not generated in areas of NoData; therefore, adjacent contour inputs should first be edgematched into a continuous feature dataset. As an alternative to edgematching, you can merge the adjacent rasters before computing contours.</para>
+			</bullet_item><bullet_item>
+				<para>Contours can be generated in areas of negative raster values. The contour values will be negative in such areas. Negative contour intervals are not allowed.</para>
+			</bullet_item><bullet_item>
+				<para>If you have Spatial Analyst available, smoother but less accurate contours can be obtained by pre-processing the  input raster with a  operation with the MEAN option or the  tool with the LOW option.</para></bullet_item><bullet_item>
+				<para>A base contour is used, for example, when you want to create contours every 15 meters, starting at 10 meters. Here, 10 would be used for the base contour, and 15 would be the contour interval. The values to be contoured would be 10, 25, 40, 55, and so on.</para>
+			</bullet_item><bullet_item>
+				<para>Specifying a base contour does not prevent contours from being created above or below that value.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Contour example 1 (Python window)</title>
+					
+					<para>This sample creates contours from an ESRI GRID raster and outputs them as a shapefile.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env  
+env.workspace = "C:/data"
+arcpy.Contour_3d("elevation", "C:/output/outcontours.shp", 200, 0)
+                    </code></scriptExample><scriptExample><title>Contour example 2 (stand-alone script)</title>
+					
+					<para>This example creates contours from an ESRI GRID raster and outputs them as a shapefile.</para>
+				<code xml:space="preserve"># Name: Contour_3d_Ex_02.py
+# Description: Creates contours or isolines from a raster surface.
+# Requirements: 3D Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inRaster = "elevation"
+contourInterval = 200
+baseContour = 0
+outContours = "C:/sapyexamples/output/outcontours02.shp"
+
+# Check out the ArcGIS 3D Analyst extension license
+arcpy.CheckOutExtension("3D")
+
+# Execute Contour
+arcpy.Contour_3d(inRaster, outContours, contourInterval, baseContour)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

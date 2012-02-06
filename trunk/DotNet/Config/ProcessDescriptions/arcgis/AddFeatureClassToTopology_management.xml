@@ -1,0 +1,46 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Feature Class to Topology (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds a feature class to a topology.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coincident</keyword><keyword>Geometry</keyword><keyword>Include</keyword><keyword>Relationship</keyword><keyword>Rule</keyword><keyword>Share</keyword><keyword>Spatial</keyword><keyword>Valid</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddFeatureClassToTopology" displayname="Add Feature Class to Topology (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Adds a feature class to a topology.</para>
+		</summary><alink_name>AddFeatureClassToTopology_management</alink_name><parameters><param sync="true" name="in_topology" displayname="Input Topology" datatype="Topology" direction="Input" expression="in_topology" type="Required"><pythonReference>
+						<para>The topology to which the feature class will participate.</para>
+					</pythonReference><dialogReference>
+						<para>The topology to which the feature class will participate.</para>
+					</dialogReference></param><param sync="true" name="in_featureclass" displayname="Input Feature Class" datatype="Feature Class" direction="Input" expression="in_featureclass" type="Required"><pythonReference>
+						<para>The feature class that you want to add to the topology. The feature class must be in the same feature dataset as the topology.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class that you want to add to the topology. The feature class must be in the same feature dataset as the topology.</para>
+					</dialogReference></param><param sync="true" name="xy_rank" displayname="XY Rank" datatype="Long" direction="Input" expression="xy_rank" type="Required"><pythonReference>
+						<para>The relative degree of positional accuracy associated with vertices of features in the feature class versus those in other feature classes participating in the topology.  The feature class with the highest accurracy should get a higher rank (lower number, for example 1) than a feature class which is known to be less accurate.</para>
+					</pythonReference><dialogReference>
+						<para>The relative degree of positional accuracy associated with vertices of features in the feature class versus those in other feature classes participating in the topology.  The feature class with the highest accurracy should get a higher rank (lower number, for example 1) than a feature class which is known to be less accurate.</para>
+					</dialogReference></param><param sync="true" name="z_rank" displayname="Z Rank" datatype="Long" direction="Input" expression="z_rank" type="Required"><pythonReference>
+						<para>Feature classes that are z-aware have elevation values embedded in their geometry for each vertex. By setting a z rank, you can influence how vertices with accurate z-values are snapped or clustered with vertices that contain less accurate z measurements.</para>
+					</pythonReference><dialogReference>
+						<para>Feature classes that are z-aware have elevation values embedded in their geometry for each vertex. By setting a z rank, you can influence how vertices with accurate z-values are snapped or clustered with vertices that contain less accurate z measurements.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The new feature class must be in the same feature dataset as the topology.</para>
+			</bullet_item><bullet_item>
+				<para>Adding a new rule to a topology automatically makes the entire topology dirty, so when you finish adding feature classes and rules, you will need to revalidate the topology. The new features may create errors where previously there were none depending on the topological rules associated with the feature class.</para>
+			</bullet_item><bullet_item>
+				<para>Neither the feature class nor the topology can be registered as versioned.</para>
+			</bullet_item><bullet_item>
+				<para>If the feature class you are adding is z-aware, you can rank the relative accuracy of the feature class by elevation by setting the z rank for the feature class.</para>
+			</bullet_item><bullet_item>
+				<para>When adding a feature class to a topology, you must specify the rank of the vertices in this feature class relative to those in other feature classes.When validation of the topology cracks and clusters feature vertices, vertices from feature classes assigned a higher rank will not be moved when snapping with vertices with lower-ranked feature classes. The highest rank is 1, and you can assign up to 50 different rank values.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AddFeatureClassToTopology stand-alone script</title>
+					<para>The following stand-alone script demonstrates how to use the AddFeatureClassToTopology function.</para>
+				<code xml:space="preserve">
+# Name: AddFeatureClassToTopology_Example.py
+# Description: Adds a feature class to participate in a topology
+# Author: ESRI
+
+# Import system modules
+
+import arcpy
+arcpy.AddFeatureClassToTopology_management(r"D:\Calgary\Trans.mdb\Streets\Street_Topo",r"D:\Calgary\Trans.mdb\Streets\StreetNetwork", 1, 0.1)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

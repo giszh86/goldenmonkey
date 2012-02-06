@@ -1,0 +1,60 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Disperse Markers (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Finds representation markers that are overlapping or too close to one another and spreads them apart based on a minimum spacing and dispersal pattern.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cartography</keyword><keyword>Coincident</keyword><keyword>Override</keyword><keyword>Point</keyword><keyword>Representation</keyword><keyword>Spread</keyword><keyword>Symbol</keyword><keyword>Symbology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DisperseMarkers" displayname="Disperse Markers (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Finds representation markers that are overlapping or too close to one another and spreads them apart based on a minimum spacing and dispersal pattern.</para>
+		</summary><alink_name>DisperseMarkers_cartography</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/DisperseMarkers_cartography_v.gif" alt="Disperse Markers geoprocessing tool" /><toolIllust type="illustration" src="DisperseMarkers_cartography_h.gif" alt="Disperse Markers geoprocessing tool" /><parameters><param sync="true" name="in_point_features" displayname="Input Representations" datatype="Feature Layer" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para>The input point feature layer containing marker representations.</para>
+					</pythonReference><dialogReference>
+						<para>The input point feature layer containing marker representations.</para>
+					</dialogReference></param><param sync="true" name="minimum_spacing" displayname="Minimum Spacing" datatype="Linear unit" direction="Input" expression="minimum_spacing" type="Required"><pythonReference>
+						<para>The minimum separation distance between individual markers, in page units. A distance must be specified and must be greater than or equal to zero. When a positive value is specified, markers will be separated by that value; when a value of zero is specified, markers will be touching. The default page unit is Points.</para>
+					</pythonReference><dialogReference>
+						<para>The minimum separation distance between individual markers, in page units. A distance must be specified and must be greater than or equal to zero. When a positive value is specified, markers will be separated by that value; when a value of zero is specified, markers will be touching. The default page unit is Points.</para>
+					</dialogReference></param><param sync="true" name="dispersal_pattern" displayname="Dispersal Pattern" datatype="String" direction="Input" expression="dispersal_pattern" type="Optional"><pythonReference>
+						<para>Specifies the pattern in which the dispersed representation markers are placed. A group of markers will have a center of mass derived from the locations of each marker in the group. The center of mass is then used as the anchor point around which the dispersal pattern operates.</para>
+						<bulletList><bullet_item>EXPANDED—The general pattern of the markers will be maintained as they are spread apart. Markers that were exactly coincident are dispersed to a circle around their center of mass. This is the default. </bullet_item><bullet_item>RANDOM—Representation markers are placed around the center of mass in a random dispersal that respects the minimum spacing. </bullet_item><bullet_item>SQUARES—Representation markers are placed in multiple square rings around the center of mass, ensuring that all markers are placed as closely together as allowable by the minimum spacing parameter. </bullet_item><bullet_item>RINGS—Representation markers are placed in multiple circular rings around the center of mass, ensuring that all markers are placed as closely together as allowable by the minimum spacing parameter. </bullet_item><bullet_item>SQUARE—Representation markers are placed evenly around the center of mass in a single square pattern. </bullet_item><bullet_item>RING—Representation markers are placed evenly around the center of mass in a single circular pattern. </bullet_item><bullet_item>CROSS—Representation markers are spaced evenly on horizontal and vertical axes originating from the center of mass. </bullet_item><bullet_item>X_CROSS—Representation markers are spaced evenly on 45° axes originating from the center of mass. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the pattern in which the dispersed representation markers are placed. A group of markers will have a center of mass derived from the locations of each marker in the group. The center of mass is then used as the anchor point around which the dispersal pattern operates.</para>
+						<bulletList><bullet_item>EXPANDED—The general pattern of the markers will be maintained as they are spread apart. Markers that were exactly coincident are dispersed to a circle around their center of mass. This is the default. </bullet_item><bullet_item>RANDOM—Representation markers are placed around the center of mass in a random dispersal that respects the minimum spacing. </bullet_item><bullet_item>SQUARES—Representation markers are placed in multiple square rings around the center of mass, ensuring that all markers are placed as closely together as allowable by the minimum spacing parameter. </bullet_item><bullet_item>RINGS—Representation markers are placed in multiple circular rings around the center of mass, ensuring that all markers are placed as closely together as allowable by the minimum spacing parameter. </bullet_item><bullet_item>SQUARE—Representation markers are placed evenly around the center of mass in a single square pattern. </bullet_item><bullet_item>RING—Representation markers are placed evenly around the center of mass in a single circular pattern. </bullet_item><bullet_item>CROSS—Representation markers are spaced evenly on horizontal and vertical axes originating from the center of mass. </bullet_item><bullet_item>X_CROSS—Representation markers are spaced evenly on 45° axes originating from the center of mass. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cartographic_coordinate_system" label="Cartographic coordinate system">
+						
+					</environment><environment name="Reference_scale" label="Reference scale">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input must be a point feature layer containing representations. Multipoint features are not a valid input. Location changes are stored as geometry overrides on the input representation.</para>
+			</bullet_item><bullet_item>
+				<para>The analysis of marker groups is based on a minimum rectangular envelope around each marker. If any two marker envelopes are within the minimum spacing of each other or overlap, then the two markers are considered in the same marker group.</para>
+			</bullet_item><bullet_item>
+				<para>Clustered or coincident representation markers are assessed and processed in groups. Within each group, markers are dispersed to the minimum spacing. Minimum spacing of zero will result in markers that touch at their edges.</para>
+			</bullet_item><bullet_item>
+				<para>Graphical overlaps may be introduced between marker groups. Use the  tool to identify conflicts.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DisperseMarkers tool Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the DisperseMarkers tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy inport env
+env.workspace = "C:/data"
+env.referenceScale = "50000"
+arcpy.DisperseMarkers_cartography("crime.lyr", "2 Points", "EXPANDED")
+                    </code></scriptExample><scriptExample><title>DisperseMarkers tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the DisperseMarkers tool.</para>
+				<code xml:space="preserve"># Name: DisperseMarkers_standalone_script.py
+# Description: creates visible space between representation markers which are graphically overlappig or coincident
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+env.referenceScale = "50000"
+
+# Set local variables
+in_point_features = "crime.lyr"
+minimum_spacing = "2 Points"
+dispersal_pattern = "EXPANDED"
+
+# Execute Disperse Markers
+arcpy.DisperseMarkers_cartography(in_point_features, minimum_spacing, dispersal_pattern)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

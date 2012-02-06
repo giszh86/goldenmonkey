@@ -1,0 +1,54 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Update by Geometry (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Updates all the edge references in the turn feature class using the geometry of the turn features. This tool is useful when the IDs listed for the turn can no longer find the edges participating in the turn due to edits to the underlying edges.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Analysis</keyword><keyword>Edges</keyword><keyword>Field</keyword><keyword>Layer</keyword><keyword>Network</keyword><keyword>Network Analyst</keyword><keyword>Network Analyst Layer</keyword><keyword>Turn</keyword><keyword>Turn Feature Class</keyword><keyword>Turn Features</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="UpdateByGeometry" displayname="Update by Geometry (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Updates all the edge references in the turn feature class using the geometry of the turn features. This tool is useful when the IDs listed for the turn can no longer find the edges participating in the turn due to edits to the underlying edges.</para>
+		</summary><alink_name>UpdateByGeometry_na</alink_name><parameters><param sync="true" name="in_turn_features" displayname="Input Turn Feature Class" datatype="Feature Layer" direction="Input" expression="in_turn_features" type="Required"><pythonReference>
+						<para>The turn feature class to be updated.</para>
+					</pythonReference><dialogReference>
+						<para>The turn feature class to be updated.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The tool updates the Edge#FID field values on the turn feature class based on the coincidence between the turn features and the edge features from the network sources.</para>
+			</bullet_item><bullet_item>
+				<para>Errors encountered when updating the turn features are reported in an error file written to the directory defined by the TEMP system variable. The full path name to the error file is reported as a warning message.</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>UpdateByGeometry example 1 (Python window)</title>
+					<para>Execute the tool using all parameters </para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.UpdateByGeometry_na("Transportation/RestrictedTurns")
+
+                    </code></scriptExample><scriptExample><title>UpdateByGeometry example 2 (stand-alone Python script)</title>
+					<para>The following Python script demonstrates how to use the UpdateByGeometry tool in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: UpdateByGeometry_ex02.py
+# Description: Update edge references in the turn feature class using the
+#              geometry of turn features and re-build the network dataset.
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+
+#Check out the Network Analyst extension license
+arcpy.CheckOutExtension("Network")
+
+#Set environment settings
+env.workspace = "C:/data/SanFrancisco.gdb"
+
+#Set local variables
+inTurnFeatures = "RestrictedTurns"
+inNetworkDataset = "Transportation/Streets_ND"
+
+#update the edge references in turn features using the geometry
+arcpy.UpdateByGeometry_na(inTurnFeatures)
+
+#Since we have modified the edge references for turn sources, we should rebuild 
+#the network dataset so that the turn features are correctly interpreted by the 
+#network dataset
+arcpy.BuildNetwork_na(inNetworkDataset)
+
+print "Script completed successfully."
+                    </code></scriptExample></scriptExamples></tool></metadata>

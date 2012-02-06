@@ -1,0 +1,68 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Delete Rows (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Deletes all or the <bold>selected</bold> subset of rows from the Input Rows.</para>
+			<para>If the Input Rows are from a feature class or table, all rows will be deleted. If theInput Rows are from a layer or table view, only the selected rows in the layer will be deleted.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Erase</keyword><keyword>Record</keyword><keyword>Remove</keyword><keyword>Tbl</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DeleteRows" displayname="Delete Rows (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Deletes all or the <bold>selected</bold> subset of rows from the Input Rows.</para>
+			<para>If the Input Rows are from a feature class or table, all rows will be deleted. If theInput Rows are from a layer or table view, only the selected rows in the layer will be deleted.</para>
+		</summary><alink_name>DeleteRows_management</alink_name><parameters><param sync="true" name="in_rows" displayname="Input Rows" datatype="Table View" direction="Input" expression="in_rows" type="Required"><pythonReference>
+						<para>The feature class, layer, table, or table view whose rows will be deleted.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class, layer, table, or table view whose rows will be deleted.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>TheInput Rows can be an INFO or dBASE table, ArcSDE, file, or personal geodatabase table or feature class, shapefile, layer, or table view.</para>
+			</bullet_item><bullet_item>
+				<para>If there is no selection in the Input Rows, all rows will be deleted.</para>
+			</bullet_item><bullet_item>
+				<para>If this tool is used on feature data, the entire row, including the geometry, will be deleted.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DeleteRows Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the DeleteRows function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/data"
+arcpy.CopyRows_management("accident.dbf", "C:/output/accident2.dbf")
+arcpy.DeleteRows_management("C:/output/accident2.dbf")
+                    </code></scriptExample><scriptExample><title>DeleteRows Example 2 (Stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the DeleteRows function to delete rows based on an expression.</para>
+				<code xml:space="preserve"># Name: DeleteRows_Example2.py
+# Description: Delete rows from a table based on an expression
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+try: 
+    # Set environment settings
+    env.workspace = "C:/data"
+ 
+    # Set local variables
+    inTable = "accident.dbf"
+    outTable = "C:/output/new_accident.dbf"
+    tempTableView = "accidentTableView"
+    expression = arcpy.AddFieldDelimiters(tempTableView, "Measure") + " = 0"
+ 
+    # Execute CopyRows to make a new copy of the table
+    arcpy.CopyRows_management(inTable, outTable)
+ 
+    # Execute MakeTableView
+    arcpy.MakeTableView_management(outTable, tempTableView)
+ 
+    # Execute SelectLayerByAttribute to determine which rows to delete
+    arcpy.SelectLayerByAttribute_management(tempTableView, "NEW_SELECTION", expression)
+ 
+    # Execute GetCount and if some features have been selected, then execute
+    #  DeleteRows to remove the selected rows.
+    if arcpy.GetCount_managemnt(tempLayer) &gt; 0:
+        arcpy.DeleteRows_management(tempLayer)
+         
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

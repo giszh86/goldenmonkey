@@ -1,0 +1,80 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Natural Neighbor (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Interpolates a raster surface from points using a natural neighbor technique.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Area Stealing</keyword><keyword>Estimate</keyword><keyword>Interpolate</keyword><keyword>Interpolation</keyword><keyword>Interpolator</keyword><keyword>Predict</keyword><keyword>Raster</keyword><keyword>Sibson</keyword><keyword>Surface</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="NaturalNeighbor" displayname="Natural Neighbor (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Interpolates a raster surface from points using a natural neighbor technique.</para>
+			
+		</summary><alink_name>NaturalNeighbor_3d</alink_name><parameters><param sync="true" name="in_point_features" displayname="Input point features" datatype="Feature Layer" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para>The input point features containing the z-values to be interpolated into a surface raster.</para>
+					</pythonReference><dialogReference>
+						<para>The input point features containing the z-values to be interpolated into a surface raster.</para>
+					</dialogReference></param><param sync="true" name="z_field" displayname="Z value field" datatype="Field" direction="Input" expression="z_field" type="Required"><pythonReference>
+						<para>The field that holds a height or magnitude value for each point.</para><para>This can be a numeric field or the Shape field if the input point features contain z-values.</para>
+					</pythonReference><dialogReference>
+						<para>The field that holds a height or magnitude value for each point.</para><para>This can be a numeric field or the Shape field if the input point features contain z-values.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Layer" direction="Output" expression="out_raster" type="Required"><pythonReference>
+						<para>The output interpolated surface raster.</para>
+					</pythonReference><dialogReference>
+						<para>The output interpolated surface raster.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size at which the output raster will be created.</para><para>This will be the value in the environment if it is explicitly set;  otherwise, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size at which the output raster will be created.</para><para>This will be the value in the environment if it is explicitly set;  otherwise, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If the cell center of the perimeter cells of the output raster fall outside the convex hull (defined by the input points), then those cells will be assigned NoData values. If an input point falls within one of these perimeter cells and the cell center falls outside the convex hull, the cell will still be assigned a value of NoData.</para>
+			</bullet_item><bullet_item>
+				<para>Some input datasets may have several points with the same x,y coordinates. If the values of the points at the common location are the same, they are considered duplicates and have no affect on the output. If the values are different, they are considered 'coincident' points.</para><para>The various interpolation tools may handle this data condition differently. For example, in some cases the first coincident point encountered is used for the calculation; in other cases the last point encountered is used.  This may cause some locations in the output raster to have different values than what you might expect. The solution is to prepare your data by removing these coincident points. The  tool in the Spatial Statistics toolbox is useful for identifying any coincident points in your data.</para></bullet_item><bullet_item>
+				<para>This tool has a limit of approximately 15 million input points. If your input feature class contains more than a very large number of points (around 15 million or greater), the tool may fail to create a result.</para>
+				<para>You can avoid this limit by processing your study area in several sections and  into a single large raster dataset. Ensure that there is some overlap between the sections. Alternatively, you can use a  to store and visualize points and surfaces comprised of billions of measurement points.</para>
+			</bullet_item><bullet_item><para> It is recommended that the input data be in a projected coordinate system rather than in a geographic coordinate system.</para></bullet_item><bullet_item>
+				<para>An alternative approach is to use a  dataset.  First,  from your source data. Then, convert the resulting TIN to a raster with the  tool, using the Natural Neighbors option. This is particularly useful if you have breaklines or an irregularly shaped data area.</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>NaturalNeighbor example 1 (Python window)</title>
+					
+					<para>This example inputs a point shapefile and interpolates the output surface as a TIFF raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env  
+env.workspace = "C:/data"
+arcpy.NaturalNeighbor_3d("ca_ozone_pts.shp", "ozone", 
+                         "C:/output/nnout.tif", 2000)
+
+                    </code></scriptExample><scriptExample><title>NaturalNeighbor example 2 (stand-alone script)</title>
+					
+					<para>This example inputs a point shapefile and interpolates the output surface as a GRID raster.</para>
+				<code xml:space="preserve"># Name: NaturalNeighbor_3d_Ex_02.py
+# Description: Interpolate a series of point features onto 
+#    a rectangular raster using Natural Neighbor interpolation.
+# Requirements: 3D Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inPntFeat = "ca_ozone_pts.shp"
+zField = "ozone"
+outRaster = "C:/output/nnout"
+cellSize = 40000
+
+# Check out the ArcGIS 3D Analyst extension license
+arcpy.CheckOutExtension("3D")
+
+# Execute NaturalNeighbor
+arcpy.NaturalNeighbor_3d(inPntFeat, zField, outRaster, cellSize)
+                    </code></scriptExample></scriptExamples></tool></metadata>

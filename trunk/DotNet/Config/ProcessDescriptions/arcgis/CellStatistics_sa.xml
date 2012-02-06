@@ -1,0 +1,88 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Cell Statistics (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates a per-cell statistic from multiple rasters.</para>
+			<para>The available statistics are Majority, Maximum, Mean, Median, Minimum, Minority, Range, Standard Deviation, Sum, and Variety.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Average</keyword><keyword>By Cell</keyword><keyword>For Each</keyword><keyword>Largest</keyword><keyword>Least</keyword><keyword>Maximum</keyword><keyword>Median</keyword><keyword>Minimum</keyword><keyword>Per Cell</keyword><keyword>Pixel</keyword><keyword>Smallest</keyword><keyword>Standard Deviation</keyword><keyword>Statistic</keyword><keyword>Stdev</keyword><keyword>Total</keyword><keyword>Unique</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CellStatistics" displayname="Cell Statistics (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates a per-cell statistic from multiple rasters.</para>
+			<para>The available statistics are Majority, Maximum, Mean, Median, Minimum, Minority, Range, Standard Deviation, Sum, and Variety.</para>
+			
+		</summary><alink_name>CellStatistics_sa</alink_name><toolIllust type="illustration" src="CellStatistics_sa_h.png" alt="Cell Statistics - Sum illustration" /><parameters><param sync="true" name="in_rasters_or_constants" displayname="Input rasters or constant values" datatype="Raster Layer | Constant" direction="Input" expression="[in_raster_or_constant,...]" type="Required"><pythonReference>
+						<para>A list of input rasters for which a statistic will be calculated for each cell within the Analysis window.</para>
+						<para>
+A number can be used as an input; however, the cell size and extent must first be set in the environment.</para></pythonReference><dialogReference>
+						<para>A list of input rasters for which a statistic will be calculated for each cell within the Analysis window.</para>
+						<para>
+A number can be used as an input; however, the cell size and extent must first be set in the environment.</para></dialogReference></param><param sync="true" name="statistics_type" displayname="Overlay statistic" datatype="String" direction="Input" expression="statistics_type" type="Optional"><pythonReference>
+						<para>Statistic type to be calculated.</para>
+						<bulletList><bullet_item>MEAN — Calculates the mean (average) of the inputs.</bullet_item><bullet_item>MAJORITY — Determines the majority (value that occurs most often) of the inputs.</bullet_item><bullet_item>MAXIMUM — Determines the maximum (largest value) of the inputs.</bullet_item><bullet_item>MEDIAN — Calculates the median of the inputs.</bullet_item><bullet_item>MINIMUM — Determines the minimum (smallest value) of the inputs.</bullet_item><bullet_item>MINORITY — Determines the minority (value that occurs least often) of the inputs.</bullet_item><bullet_item>RANGE — Calculates the range (difference between largest and smallest value) of the inputs.</bullet_item><bullet_item>STD — Calculates the standard deviation of the inputs.</bullet_item><bullet_item>SUM — Calculates the sum (total of all values) of the inputs.</bullet_item><bullet_item>VARIETY — Calculates the variety (number of unique values) of the inputs.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Statistic type to be calculated.</para>
+						<bulletList><bullet_item>MEAN — Calculates the mean (average) of the inputs.</bullet_item><bullet_item>MAJORITY — Determines the majority (value that occurs most often) of the inputs.</bullet_item><bullet_item>MAXIMUM — Determines the maximum (largest value) of the inputs.</bullet_item><bullet_item>MEDIAN — Calculates the median of the inputs.</bullet_item><bullet_item>MINIMUM — Determines the minimum (smallest value) of the inputs.</bullet_item><bullet_item>MINORITY — Determines the minority (value that occurs least often) of the inputs.</bullet_item><bullet_item>RANGE — Calculates the range (difference between largest and smallest value) of the inputs.</bullet_item><bullet_item>STD — Calculates the standard deviation of the inputs.</bullet_item><bullet_item>SUM — Calculates the sum (total of all values) of the inputs.</bullet_item><bullet_item>VARIETY — Calculates the variety (number of unique values) of the inputs.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="ignore_nodata" displayname="Ignore NoData in calculations" datatype="Boolean" direction="Input" expression="ignore_nodata" type="Optional"><pythonReference>
+						<para>Denotes whether NoData values are ignored by the statistic calculation.</para>
+						<bulletList><bullet_item>DATA — Only cells that have data values will be used in determining the
+statistic value.If a NoData value exists at a  certain location, the NoData value will be ignored. Only cells that have data values will be used in determining the output.</bullet_item><bullet_item>NODATA — All input cells at each  location, including those with a value of NoData, will be used in determining the statistic.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Denotes whether NoData values are ignored by the statistic calculation.</para>
+						<bulletList>
+							<bullet_item>Checked—Only cells that have data values will be used in determining the
+statistic value. If a NoData value exists at a certain location, the NoData value will be ignored. Only cells that have data values will be used in determining the output.</bullet_item>
+							<bullet_item>Unchecked—All input cells at each location, including those with a value of NoData, will be used in determining the statistic.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para><para>The value is determined by applying the specified statistic type to the input rasters.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para><para>The value is determined by applying the specified statistic type to the input rasters.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para>The order of the  input rasters is irrelevant for this tool.</para></bullet_item><bullet_item>
+				<para>For statistic types Maximum, Minimum, Mean, Median, Majority, Minority and Sum, if a single raster is used as the input, the output cell values will be the same as the input cell values. For Range and STD the output cell values will  all be 0, and for Variety, all 1.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CellStatistics example 1 (Python window)</title>
+					<para>This example calculates the standard deviation per cell on several input GRID rasters and outputs the result as an IMG raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outCellStats = CellStatistics(["degs", "negs", "cost"], "STD", "DATA")
+outCellStats.save("C:/sapyexamples/output/outcellstats.img")
+                    </code></scriptExample><scriptExample><title>CellStatistics example 2 (stand-alone script)</title>
+					<para>This example calculates the standard deviation per cell on several input GRID rasters and outputs the result as a GRID raster.</para>
+				<code xml:space="preserve"># Name: CellStatistics_Ex_02.py
+# Description: Calculates a per-cell statistic from multiple rasters
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster01 = "degs"
+inRaster02 = "negs"
+inRaster03 = "cost"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute CellStatistics
+outCellStatistics = CellStatistics([inRaster01, inRaster02, inRaster03], "RANGE", "NODATA")
+
+# Save the output 
+outCellStatistics.save("C:/sapyexamples/output/cellstats")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,109 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Eliminate Polygon Part (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a new output feature class containing the features from the input polygons with some parts or holes of a specified size deleted.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Area</keyword><keyword>Complex</keyword><keyword>Contain</keyword><keyword>Delete</keyword><keyword>Detail</keyword><keyword>Hole</keyword><keyword>In</keyword><keyword>Less</keyword><keyword>Little</keyword><keyword>Out</keyword><keyword>Percent</keyword><keyword>Reduce</keyword><keyword>Region</keyword><keyword>Remove</keyword><keyword>Scale</keyword><keyword>Small</keyword><keyword>Within</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="EliminatePolygonPart" displayname="Eliminate Polygon Part (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a new output feature class containing the features from the input polygons with some parts or holes of a specified size deleted.</para>
+		</summary><alink_name>EliminatePolygonPart_management</alink_name><toolIllust type="illustration" src="EliminatePolygonPart_management_h.png" alt="Illustration of Eliminate Polygon Part" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature class or layer whose features will be copied to the output feature class, with some parts or holes eliminated.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class or layer whose features will be copied to the output feature class, with some parts or holes eliminated.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output polygon feature class containing the remaining parts.</para>
+					</pythonReference><dialogReference>
+						<para>The output polygon feature class containing the remaining parts.</para>
+					</dialogReference></param><param sync="true" name="condition" displayname="Condition" datatype="String" direction="Input" expression="condition" type="Optional"><pythonReference>
+						<para> Specify how the parts to be eliminated will be determined. </para>
+						<bulletList><bullet_item>AREA—Parts with an area less than that specified will be eliminated.</bullet_item><bullet_item>PERCENT—Parts with a percent of the total outer area less than that specified will be eliminated.</bullet_item><bullet_item>AREA_AND_PERCENT—Parts with an area and percent less than that specified will be eliminated. Only if a polygon part meets both the area and percent criteria will it be deleted. </bullet_item><bullet_item>AREA_OR_PERCENT—Parts with an area or percent less than that specified will be eliminated. If a polygon part meets either the area or percent criteria, it will be deleted. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Specify how the parts to be eliminated will be determined. </para>
+						<bulletList><bullet_item>AREA—Parts with an area less than that specified will be eliminated.</bullet_item><bullet_item>PERCENT—Parts with a percent of the total outer area less than that specified will be eliminated.</bullet_item><bullet_item>AREA_AND_PERCENT—Parts with an area and percent less than that specified will be eliminated. Only if a polygon part meets both the area and percent criteria will it be deleted. </bullet_item><bullet_item>AREA_OR_PERCENT—Parts with an area or percent less than that specified will be eliminated. If a polygon part meets either the area or percent criteria, it will be deleted. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="part_area" displayname="Area" datatype="Areal Unit" direction="Input" expression="part_area" type="Optional"><pythonReference>
+						<para>Eliminate parts smaller than this area.</para>
+					</pythonReference><dialogReference>
+						<para>Eliminate parts smaller than this area.</para>
+					</dialogReference></param><param sync="true" name="part_area_percent" displayname="Percentage" datatype="Double" direction="Input" expression="part_area_percent" type="Optional"><pythonReference>
+						<para>Eliminate parts smaller than this percentage of a feature's total outer area.</para>
+					</pythonReference><dialogReference>
+						<para>Eliminate parts smaller than this percentage of a feature's total outer area.</para>
+					</dialogReference></param><param sync="true" name="part_option" displayname="Eliminate contained parts only" datatype="Boolean" direction="Input" expression="part_option" type="Optional"><pythonReference>
+						<para>Determines what parts can be eliminated.</para>
+						<bulletList><bullet_item>CONTAINED_ONLY—Only parts totally contained by other parts can be eliminated. This is the default. </bullet_item><bullet_item>ANY—Any parts can be eliminated. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines what parts can be eliminated. </para>
+						<bulletList>
+							<bullet_item>Checked - Only parts totally contained by other parts can be eliminated. This is the default. </bullet_item>
+							<bullet_item>Unchecked - Any parts can be eliminated.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Since polygon holes are considered parts of the polygon, they can be deleted or filled using this tool. If the hole area is smaller than the specified size, the hole will be eliminated and the space will be filled in the output. Any parts that are inside the deleted hole will also be eliminated in the output.</para>
+			</bullet_item><bullet_item>
+				<para>Part size can be specified as an area, a percent, or a combination of both. Use the Condition parameter to determine how the part size will be specified. The Condition parameter AREA_AND_PERCENT and AREA_OR_PERCENT options are used to eliminate parts using both the area and percent criteria. </para>
+			</bullet_item><bullet_item>
+				<para>Polygon part percent is calculated as a percentage of the feature's total outer area, including the area of any holes. For example, if a polygon with a hole has an area of 75 square meters, with the hole covering 25 square meters, the polygons total outer area is 100 square meters. To eliminate this hole, an area greater than 25 square meters or a percentage greater than 25% would need to be specified. If the input is a multipart polygon, a feature's outer area is the sum of the area covered by all polygon parts.</para>
+			</bullet_item><bullet_item>
+				<para>For multipart polygons, the area of each part will be compared with the specified area. If an individual polygon part is smaller than the specified size, the part will be eliminated in the output.</para>
+			</bullet_item><bullet_item>
+				<para>If all of a polygon feature's parts are smaller than the specified size, the largest part will be kept in the output while all other parts will be eliminated.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>EliminatePolygonPart Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Eliminate Polygon Part tool.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.EliminatePolygonPart_management("buildings.shp", "output.gdb/remaining_buildings", "AREA", 10)
+                    </code></scriptExample><scriptExample><title>EliminatePolygonPart Example 2 (Stand-alone script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the Eliminate Polygon Part tool.</para>
+				<code xml:space="preserve"># Name: EliminatePolygonPart_Example2.py
+# Description: Eliminate small islands before simplifying and smoothing lake boundaries
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data/Portland.gdb/Hydrography"
+ 
+# Set local variables
+inLakeFeatures = "lakes"
+eliminatedFeatures = "lakes_eliminated"
+simplifiedFeatures = "lakes_simplified"
+smoothedFeatures = "lakes_smoothed"
+
+# Eliminate small islands in lake polygons.
+arcpy.EliminatePolygonPart_management(inLakeFeatures, eliminatedFeatures, "AREA", 100, "", "CONTAINED_ONLY")
+ 
+# Simplify lake polygons.
+arcpy.SimplifyPolygon_cartography(eliminatedFeatures, simplifiedFeatures, "POINT_REMOVE", 50, 200, "RESOLVE_ERRORS", "KEEP_COLLAPSED_POINTS")
+ 
+# Smooth lake polygons.
+arcpy.SmoothPolygon_cartography(simplifiedFeatures, smoothedFeatures, "BEZIER_INTERPOLATION")
+ 
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

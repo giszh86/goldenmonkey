@@ -1,0 +1,105 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Color Balance Mosaic Dataset  (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Color balances a mosaic dataset so that the tiles appear seamless. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" ColorBalanceMosaicDataset " displayname=" Color Balance Mosaic Dataset  (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Color balances a mosaic dataset so that the tiles appear seamless. </para>
+		</summary><alink_name> ColorBalanceMosaicDataset _management</alink_name><parameters><param sync="true" name="in_mosaic_dataset" displayname="Mosaic Dataset" datatype="Mosaic Layer; Mosaic Dataset" direction="Input" expression="in_mosaic_dataset" type="Required"><pythonReference>
+						<para> Type or navigate to the mosaic dataset that you want to color balance. </para>
+					</pythonReference><dialogReference>
+						<para> Type or navigate to the mosaic dataset that you want to color balance. </para>
+					</dialogReference></param><param sync="true" name="balancing_method" displayname="Balance Method" datatype="String" direction="Input" expression="balancing_method" type="Optional"><pythonReference>
+						<para> Choose the balancing algorithm to use. </para>
+						<bulletList><bullet_item>DODGING—This is the traditional dodging photogrammetric technique, where each of the pixel's values change toward the target color. These values are used to determine the output value for each pixel. If you choose Dodging, then you must also choose the type of target color surface to use, which will affect what the target color is. Dodging balancing tends to give the best result in most cases. </bullet_item><bullet_item>HISTOGRAM—This technique will change each of the pixel's values according to the target histogram. The target histogram can be automatically calculated from all the rasters, or a target raster can be specified. Histogram balancing works well when all the rasters have a similar histogram shape.</bullet_item><bullet_item>STANDARD DEVIATION—This technique will change each of the pixel's values according to the standard deviation calculation. The standard deviation value can be automatically calculated from all the rasters or from a specified target raster. Standard deviation balancing works best when all the rasters have the same histogram distribution of the normalized values.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Choose the balancing algorithm to use. </para>
+						<bulletList><bullet_item>DODGING—This is the traditional dodging photogrammetric technique, where each of the pixel's values change toward the target color. These values are used to determine the output value for each pixel. If you choose Dodging, then you must also choose the type of target color surface to use, which will affect what the target color is. Dodging balancing tends to give the best result in most cases. </bullet_item><bullet_item>HISTOGRAM—This technique will change each of the pixel's values according to the target histogram. The target histogram can be automatically calculated from all the rasters, or a target raster can be specified. Histogram balancing works well when all the rasters have a similar histogram shape.</bullet_item><bullet_item>STANDARD DEVIATION—This technique will change each of the pixel's values according to the standard deviation calculation. The standard deviation value can be automatically calculated from all the rasters or from a specified target raster. Standard deviation balancing works best when all the rasters have the same histogram distribution of the normalized values.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="color_surface_type" displayname="Color Surface Type" datatype="String" direction="Input" expression="color_surface_type" type="Optional"><pythonReference>
+						<para> The Target Color Surface Type is only available if the dodging balancing technique is chosen. When using the dodging technique, each pixel needs a target color, which is determined by which surface type is chosen.</para>
+						<bulletList><bullet_item>SINGLE_COLOR—All the pixels are dodged toward a single color point, which is the mean. A single color surface works well when there are only a small number of rasters and there are only a few different types of ground objects. If there are too many rasters or there are too many types of ground surfaces, then the output color may become blurred.</bullet_item><bullet_item>COLOR_GRID—All the input pixels are dodged toward a multiple set of points, which are distributed all over the mosaic dataset. Color grid produces a good output for a large number of rasters, or areas with a large number of diverse ground objects.</bullet_item><bullet_item>FIRST_ORDER—All input pixels are dodged toward many points, which are obtained from the two-dimensional polynomial slanted plane. Compared to the Color Grid surface, a polynomial order surface tends to be a smoother color change and uses less storage in the auxiliary table but tends to take longer to process.</bullet_item><bullet_item>SECOND_ORDER—All input pixels are dodged toward a set of multiple points, which is obtained from the two-dimensional polynomial parabolic surface. Compared to the Color Grid surface, a polynomial order surface tends to be a smoother color change and uses less storage in the auxiliary table but tends to take longer to process.</bullet_item><bullet_item>THIRD_ORDER—All input pixels are dodged toward multiple points, which are obtained from the cubic surface. Compared to the Color Grid surface, a polynomial order surface tends to be a smoother color change and uses less storage in the auxiliary table but tends to take longer to process.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> The Target Color Surface Type is only available if the dodging balancing technique is chosen. When using the dodging technique, each pixel needs a target color, which is determined by which surface type is chosen.</para>
+						<bulletList><bullet_item>SINGLE_COLOR—All the pixels are dodged toward a single color point, which is the mean. A single color surface works well when there are only a small number of rasters and there are only a few different types of ground objects. If there are too many rasters or there are too many types of ground surfaces, then the output color may become blurred.</bullet_item><bullet_item>COLOR_GRID—All the input pixels are dodged toward a multiple set of points, which are distributed all over the mosaic dataset. Color grid produces a good output for a large number of rasters, or areas with a large number of diverse ground objects.</bullet_item><bullet_item>FIRST_ORDER—All input pixels are dodged toward many points, which are obtained from the two-dimensional polynomial slanted plane. Compared to the Color Grid surface, a polynomial order surface tends to be a smoother color change and uses less storage in the auxiliary table but tends to take longer to process.</bullet_item><bullet_item>SECOND_ORDER—All input pixels are dodged toward a set of multiple points, which is obtained from the two-dimensional polynomial parabolic surface. Compared to the Color Grid surface, a polynomial order surface tends to be a smoother color change and uses less storage in the auxiliary table but tends to take longer to process.</bullet_item><bullet_item>THIRD_ORDER—All input pixels are dodged toward multiple points, which are obtained from the cubic surface. Compared to the Color Grid surface, a polynomial order surface tends to be a smoother color change and uses less storage in the auxiliary table but tends to take longer to process.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="target_raster" displayname="Target Raster" datatype="Raster Layer" direction="Input" expression="target_raster" type="Optional"><pythonReference>
+						<para> The target raster image allows you to specify the target raster to balance your rasters. </para>
+						<para>When dodging balancing is used, the target color that will be derived depends on the target color surface type that was chosen. For Single Color, the average value of the reference target image is used. For Color Grid, the reference target image is resampled to a suitable grid. For the polynomial order surfaces, the coefficients of the polynomial are obtained by the Least Squares Fitting from the reference target image.</para>
+						<para>When Histogram Balancing is used, the target histogram is obtained from the reference target image.</para>
+						<para>When Standard Deviation balancing is used, the target standard deviation is obtained from the reference target image.</para>
+					</pythonReference><dialogReference>
+						<para> The target raster image allows you to specify the target raster to balance your rasters. </para>
+						<para>When dodging balancing is used, the target color that will be derived depends on the target color surface type that was chosen. For Single Color, the average value of the reference target image is used. For Color Grid, the reference target image is resampled to a suitable grid. For the polynomial order surfaces, the coefficients of the polynomial are obtained by the Least Squares Fitting from the reference target image.</para>
+						<para>When Histogram Balancing is used, the target histogram is obtained from the reference target image.</para>
+						<para>When Standard Deviation balancing is used, the target standard deviation is obtained from the reference target image.</para>
+					</dialogReference></param><param sync="true" name="gamma" displayname="Gamma" datatype="Double" direction="Input" expression="gamma" type="Optional"><pythonReference>
+						<para> Type the gamma value to use in the pre-processing stretch. This is only available if the Standard Deviation or Minimum-Maximum prestretch type is chosen.</para>
+						<para>By applying the gamma stretch, you can control the overall brightness of an image. If the gamma coefficient is set too low, the middle tones appear too dark; however, if the gamma coefficient is set too high, the middle tones appear too light. Gamma changes not only the brightness but also the ratios of red to green to blue.</para>
+					</pythonReference><dialogReference>
+						<para> Type the gamma value to use in the pre-processing stretch. This is only available if the Standard Deviation or Minimum-Maximum prestretch type is chosen.</para>
+						<para>By applying the gamma stretch, you can control the overall brightness of an image. If the gamma coefficient is set too low, the middle tones appear too dark; however, if the gamma coefficient is set too high, the middle tones appear too light. Gamma changes not only the brightness but also the ratios of red to green to blue.</para>
+					</dialogReference></param><param sync="true" name="exclude_raster" displayname="Exclude Area Raster" datatype="Raster Layer" direction="Input" expression="exclude_raster" type="Optional"><pythonReference>
+						<para> Navigate to the raster you would like to use as an exclude layer. The Generate Exclude Area tool can be used to create the exclude area.</para>
+						<para>The exclude area is taken into consideration before any color balancing takes place.</para>
+					</pythonReference><dialogReference>
+						<para> Navigate to the raster you would like to use as an exclude layer. The Generate Exclude Area tool can be used to create the exclude area.</para>
+						<para>The exclude area is taken into consideration before any color balancing takes place.</para>
+					</dialogReference></param><param sync="true" name="stretch_type" displayname="Stretch Type" datatype="String" direction="Input" expression="stretch_type" type="Optional"><pythonReference>
+						<para>Prestretching can be performed on each raster catalog item before any other color correction takes place. This means that the original raster catalog item will be using its stretched pixel values, rather than its raw pixel values, in the color correction process. You may want to use this option to change the color to an expected distribution before applying color correction.</para>
+						<bulletList><bullet_item>NONE— No prestretch will be applied. This is the default </bullet_item><bullet_item>ADAPTIVE— An adaptive prestretch will be applied before any processing takes place. </bullet_item><bullet_item>MINIMUM_MAXIMUM— A minimum-maximum prestretch will be applied before any processing takes place.</bullet_item><bullet_item>STANDARD DEVIATION— A standard deviation prestretch will be applied before any processing takes place.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Prestretching can be performed on each raster catalog item before any other color correction takes place. This means that the original raster catalog item will be using its stretched pixel values, rather than its raw pixel values, in the color correction process. You may want to use this option to change the color to an expected distribution before applying color correction.</para>
+						<bulletList><bullet_item>NONE— No prestretch will be applied. This is the default </bullet_item><bullet_item>ADAPTIVE— An adaptive prestretch will be applied before any processing takes place. </bullet_item><bullet_item>MINIMUM_MAXIMUM— A minimum-maximum prestretch will be applied before any processing takes place.</bullet_item><bullet_item>STANDARD DEVIATION— A standard deviation prestretch will be applied before any processing takes place.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>Color balancing can only take place if the following is true about your data:</para>
+				<bulletList>
+				<bullet_item>All the bands have their statistics calculated.</bullet_item>
+				<bullet_item>All the bands have their histograms built.</bullet_item>
+				<bullet_item>All the raster datasets have the same number of bands.</bullet_item>
+				<bullet_item>All the raster datasets have the same pixel type and pixel depth. Only 8-bit unsigned and 16-bit unsigned bit depths are supported.</bullet_item>
+				<bullet_item>None of the raster datasets have an associated color map.</bullet_item>
+			</bulletList>
+			</bullet_item><bullet_item>
+				<para>The Pre-processing Options are performed before any color balancing takes place.</para>
+			</bullet_item><bullet_item>
+				<para>There are three balancing algorithms available: Dodging, Histogram, and Standard deviation.</para>
+			</bullet_item><bullet_item>
+				<para>The target color surface is only available if the dodging balancing technique is chosen. When using the dodging technique, each pixel needs a target color, which is picked up from the target color surface. There are five types of target color surfaces that you can choose from: single color, color grid, first order surface, second order surface, and third order surface.</para>
+			</bullet_item><bullet_item>
+				<para>Target Raster allows you to specify the target to balance your rasters.<bulletList>
+				<bullet_item>When dodging balancing is used—The target color that will be derived depends on the target color surface type that was chosen. For single color, the average value of the reference target image is used. For color grid, the reference target image is resampled to a suitable grid. For the polynomial order surfaces, the coefficients of the polynomial are obtained by least square fitting, from the reference target image.</bullet_item>
+				<bullet_item>When histogram balancing is used—The target histogram is obtained from the reference target image.</bullet_item>
+				<bullet_item>When standard deviation balancing is used—The target standard deviation is obtained from the reference target image.</bullet_item>
+			</bulletList></para>
+			</bullet_item><bullet_item><para>To remove a color correction, right-click the mosaic dataset in ArcCatalog or the Catalog window and click RemoveRemove Color Correction.</para></bullet_item></usage><scriptExamples><scriptExample><title>ColorBalanceMosaicDataset example 1 (Python window)</title>
+					<para>This is a Python sample for ColorBalanceMosaicDataset.</para>
+				<code xml:space="preserve">import arcpy 
+ColorBalanceMosaicDataset_management("C:/workspace/fgdb.gdb/mosData","DODGING",\
+                                     "COLOR_GRID", "C:/workspace/target.tif",\
+                                     "C:/temp/excludeArea.tif","NONE","1")
+                    </code></scriptExample><scriptExample><title>ColorBalanceMosaicDataset example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for ColorBalanceMosaicDataset.</para>
+				<code xml:space="preserve">##===========================
+##Color Balance Mosaic Dataset
+##Usage: ColorBalanceMosaicDataset_management(in_mosaic_dataset, {DODGING |
+##                                            HISTOGRAM | STANDARD_DEVIATION},
+##                                            {SINGLE_COLOR | COLOR_GRID | 
+##                                            FIRST_ORDER | SECOND_ORDER | THIRD_ORDER},
+##                                            {target_raster}, {exclude_raster},
+##                                            {NONE | STANDARD_DEVIATION | MINIMUM_MAXIMUM
+##                                            | ADAPTIVE}, {gamma})
+
+try:
+    import arcpy
+    arcpy.env.workspace = "c:/workspace"
+    
+    # Color Correction Mosaic Dataset with target layer
+    arcpy.ColorBalanceMosaicDataset_management("CC.gdb/cc1", "DODGING", "SINGLE_COLOR", \
+                                              "Aerial_photo.lyr", "#", "NONE", "#")                                      
+
+    # Color Correction Mosaic Dataset with exclude area dataset and prestretch
+    arcpy.ColorBalanceMosaicDataset_management("CC.gdb/cc2", "DODGING", "COLOR_GRID", \
+                                              "#", "excludearea.tif", "STANDARD_DEVIATION", \
+                                              "3") 
+    
+    
+except:
+    print "Color Balance Mosaic Dataset example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

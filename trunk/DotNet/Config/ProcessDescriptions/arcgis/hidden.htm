@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+<SCRIPT language="JavaScript1.2">
+var fileName = parent.getFileName();
+
+function getCookie() {
+  var allCookies = document.cookie;
+  var pos = allCookies.indexOf(fileName);
+  if (pos != -1) {
+    var start = pos + fileName.length + 1;
+    var end = allCookies.indexOf(";", start);
+    if (end == -1) end = allCookies.length;
+    var value = allCookies.substring(start, end);
+    value = unescape(value);
+    return value;
+  } else {
+    return false;
+  }
+}
+
+function cookie(name, value) {
+  var nextyear = new Date();
+	nextyear.setFullYear(nextyear.getFullYear() + 1);
+  document.cookie = name + "= ; expires=Fri, 02-Jan-1970 00:00:00 GMT";
+	document.cookie = name + "=" + escape(value) + "; expires=" + nextyear.toGMTString();
+}
+
+</SCRIPT>
+</head>
+
+<body onLoad="parent.hiddenLoaded=1;">
+test
+
+
+</body>
+</html>

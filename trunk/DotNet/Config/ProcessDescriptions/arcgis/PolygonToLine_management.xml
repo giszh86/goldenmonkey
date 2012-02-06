@@ -1,0 +1,107 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Polygon To Line (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Creates a feature class containing lines that are converted from polygon boundaries with or without considering neighboring polygons.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Area</keyword><keyword>Border</keyword><keyword>Boundary</keyword><keyword>Change</keyword><keyword>Common</keyword><keyword>Conversion</keyword><keyword>Convert</keyword><keyword>Geometry</keyword><keyword>Left</keyword><keyword>Neighbor</keyword><keyword>Orientation</keyword><keyword>Outline</keyword><keyword>Polygon Boundary</keyword><keyword>Polyline</keyword><keyword>Region</keyword><keyword>Right</keyword><keyword>Share</keyword><keyword>Topology</keyword><keyword>Transform</keyword><keyword>Vector</keyword><keyword>Zone</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PolygonToLine" displayname=" Polygon To Line (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Creates a feature class containing lines that are converted from polygon boundaries with or without considering neighboring polygons.</para>
+			</summary><alink_name>PolygonToLine_management</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/PolygonToLine_management_v.png" alt="Polygon To Line illustration" /><toolIllust type="illustration" src="PolygonToLine_management_h.png" alt="Polygon To Line illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input features that must be polygon.</para>
+					</pythonReference><dialogReference>
+						<para>The input features that must be polygon.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output line feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output line feature class.</para>
+					</dialogReference></param><param sync="true" name="neighbor_option" displayname="Identify and store polygon neighboring information" datatype="Boolean" direction="Input" expression="neighbor_option" type="Optional"><pythonReference>
+						<para>Specifies whether or not to identify and store polygon neighboring information.</para>
+						<bulletList><bullet_item> IDENTIFY_NEIGHBORS—Polygon neighboring relationship will be identified and stored in the output. If different segments of a polygon share boundary with different polygons, the boundary will be split such that each uniquely shared segment will become a line with its two neighboring polygon FIDs stored in the output. This is the default.</bullet_item><bullet_item> IGNORE_NEIGHBORS—Polygon neighboring relationship will be ignored; every polygon boundary will become a line feature with its original polygon feature ID stored in the output.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Specifies whether or not to identify and store polygon neighboring information.<bulletList><bullet_item>Checked— Polygon neighboring relationship will be identified and stored in the output. If different segments of a polygon share boundary with different polygons, the boundary will be split such that each uniquely shared segment will become a line with its two neighboring polygon FIDs stored in the output, as shown in the illustration. This is the default.</bullet_item><bullet_item>Unchecked— Polygon neighboring relationship will be ignored; every polygon boundary will become a line feature with its original polygon feature ID stored in the output.</bullet_item></bulletList></para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item><para>If  the checkbox  Identify and store polygon neighboring information is checked (the neighbor_option is set to IDENTIFY_NEIGHBORS in scripting), the polygon neighboring relationship will be analyzed. As illustrated above, the boundaries are converted to lines taking into account of crossing or shared segments;    two new fields, LEFT_FID and RIGHT_FID, will be added to the output feature class and set to the feature IDs of the input polygons to the left and right of each output line. The attributes of the input features will not be maintained in the output feature class. The following scenarios help you understand the process and output in more detail:<bulletList><bullet_item>In a polygon geometry, the outer boundary is always stored in a clockwise direction. If the polygon has a hole, the hole (or  inner) boundary is always stored in a counterclockwise direction. Therefore, for a polygon with no neighbors to the left side (outside) of its outer boundary and the left side (inside) of the hole boundary, the resulting lines will have a value of -1 for LEFT_FID and the polygon feature ID as the RIGHT_FID.</bullet_item><bullet_item>If a polygon contains another polygon, one output line in the clockwise direction will be generated representing the shared boundary, with its LEFT_FID set to the outer polygon feature ID and the RIGHT_FID set to the inner polygon feature ID.</bullet_item>
+						<bullet_item>If two polygons share a portion of their boundaries, one output line will be generated representing the shared segment. The line direction will be arbitrary; the LEFT_FID and the RIGHT_FID will be set to the left or right polygon feature IDs accordingly.</bullet_item>
+						<bullet_item>If a polygon overlaps another polygon, two output lines will be generated representing each crossing boundary twice: the first line will represent the outer boundary of one of the overlapping polygons, therefore, its LEFT_FID is the feature ID of the polygon it crosses and its RIGHT_FID will be its own polygon feature ID; the second line will be in the opposite direction, splitting the other polygon, therefore, its LEFT_FID and RIGHT_FID will be the same as the other polygon feature ID.</bullet_item><bullet_item>Multiparts in input polygons are not maintained; the output lines are all singlepart.</bullet_item></bulletList></para>
+			</bullet_item><bullet_item>
+				<para>If  the checkbox Identify and store polygon neighboring information is unchecked (the neighbor_option is set to IGNORE_NEIGHBORS in scripting), the polygon neighboring relationship will be ignored. Each input polygon boundary will be written out as an enclosed line feature.  A multipart polygon will become a multipart line  in the output. The attributes of the input features will  be maintained in the output feature class. A new field, ORIG_FID, will be added to the output and set to the input feature IDs of each line. </para>
+			</bullet_item><bullet_item>
+				<para>For parametric (true) curve input features, the output lines will remain true curves even if they are split. This does not apply to shapefile data.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>PolygonToLine Example 1 (Python window)</title>
+					<para>The following Python window script demonstrates how to use the PolygonToLine function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.PolygonToLine_management("Habitat_Analysis.gdb/vegtype", 
+                               "C:/output/Output.gdb/vegtype_lines",
+                               "IGNORE_NEIGHBORS")
+                    </code></scriptExample><scriptExample><title>PolygonToLine Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script is a simple example of how to apply the PolygonToLine function in a scripting environment.</para>
+				<code xml:space="preserve"># Name: PolygonToLine_Example2.py
+# Description: Use PolygonToLine function to convert polygons to lines,
+#              and report how many shared or overlapping boundary lines
+#              were found.
+# Author: ESRI
+
+# import system modules 
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data/landcovers.gdb"
+ 
+# Create variables for the input and output feature classes
+inFeatureClass = "bldgs"
+outFeatureClass = "bldgs_lines"
+ 
+# Use error trapping in case a problem occurs when running the tool
+try:
+    # Run PolygonToLine to convert polygons to lines using default neighbor_option
+    arcpy.PolygonToLine_management(inFeatureClass, outFeatureClass)
+ 
+    # Select lines that have LEFT_FID values greater than -1
+    arcpy.MakeFeatureLayer_management(outFeatureClass, "selection_lyr", 
+                                      "\"LEFT_FID\" &gt; -1")
+    result = arcpy.GetCount_management("selection_lyr")
+
+    if (result.getOutput(0) == "0"):
+        print "No overlapping or shared boundary lines were found."
+    else:
+        print result.getOutput(0) + " overlapping or shared " +\
+              "boundary lines were found."
+ 
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

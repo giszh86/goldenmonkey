@@ -1,0 +1,90 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Edit Signatures (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Edits and updates a signature file by merging, renumbering, and deleting class signatures.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Class</keyword><keyword>Classification</keyword><keyword>Cluster</keyword><keyword>Image Processing</keyword><keyword>Multiband</keyword><keyword>Multivariate Statistics</keyword><keyword>Remote Sensing</keyword><keyword>Signature File</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="EditSignatures" displayname="Edit Signatures (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Edits and updates a signature file by merging, renumbering, and deleting class signatures.</para>
+			
+		</summary><alink_name>EditSignatures_sa</alink_name><parameters><param sync="true" name="in_raster_bands" displayname="Input raster bands" datatype="Raster Layer" direction="Input" expression="[in_raster_band,...]" type="Required"><pythonReference>
+						<para>The input raster bands for which to edit the signatures.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster bands for which to edit the signatures.</para>
+					</dialogReference></param><param sync="true" name="in_signature_file" displayname="Input signature file" datatype="File" direction="Input" expression="in_signature_file" type="Required"><pythonReference>
+						<para>Input signature file whose class signatures are to be edited.</para>
+						<para>A .gsg extension is required.</para>
+					</pythonReference><dialogReference>
+						<para>Input signature file whose class signatures are to be edited.</para>
+						<para>A .gsg extension is required.</para>
+					</dialogReference></param><param sync="true" name="in_signature_remap_file" displayname="Input signature remap file" datatype="File" direction="Input" expression="in_signature_remap_file" type="Required"><pythonReference>
+						<para>Input ASCII remap table containing the class IDs to be merged, renumbered, or deleted.</para>
+						<para>The extension can be .rmp, .asc or .txt. The default is .rmp.</para>
+					</pythonReference><dialogReference>
+						<para>Input ASCII remap table containing the class IDs to be merged, renumbered, or deleted.</para>
+						<para>The extension can be .rmp, .asc or .txt. The default is .rmp.</para>
+					</dialogReference></param><param sync="true" name="out_signature_file" displayname="Output signature file" datatype="File" direction="Output" expression="out_signature_file" type="Required"><pythonReference>
+						<para>The output signature file.</para><para>A .gsg extension must be specified.</para>
+					</pythonReference><dialogReference>
+						<para>The output signature file.</para><para>A .gsg extension must be specified.</para>
+					</dialogReference></param><param sync="true" name="sample_interval" displayname="Sample interval" datatype="Long" direction="Input" expression="sample_interval" type="Optional"><pythonReference>
+						<para>The interval to be used for sampling.</para><para>The default is 10.</para>
+					</pythonReference><dialogReference>
+						<para>The interval to be used for sampling.</para><para>The default is 10.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Edit Signatures tool allows the modification of an existing signature file by all or any of the following operations:</para>
+				<bulletList>
+					<bullet_item>Merging signatures of a set of classes</bullet_item>
+					<bullet_item>Renumbering a signature class ID</bullet_item>
+					<bullet_item>Deleting unwanted signatures</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>The input signature file must be an ASCII signature file. The file can be the output of any Multivariate tool that produces the file containing the required statistical information—for example, Iso Cluster  and Create Signatures. The file must have a minimum of two classes. Such a file can be recognized by its .gsg extension.</para>
+			</bullet_item><bullet_item>
+				<para>The input signature remap file is an ASCII file consisting of two columns. In the first column, the original class IDs are listed in ascending order. The second column has the new class IDs for updating in the signature file. When a set of classes is to be merged, a new class ID must be put in the second column for each class ID of the set. Only classes that need to be edited have to be placed in the signature remap file. Any class not present in the remap file will remain unchanged. To delete a class signature, the value of -9,999 must be entered in the second column of the remap file. A class ID can also be renumbered to a value that does not exist in the input signature file. The following is an example of the input signature remap file:</para>
+				2 : 3
+4 : 11
+5 : -9999
+9 : 3
+				<para>The example above will merge classes 2 and 9 with 3, merge class 4 with 11, and delete class 5.</para>
+			</bullet_item><bullet_item>
+				<para>If the input signature file carries names for the class signatures and if the signatures in the input signature remap file are to be merged, the name associated with the value in which to merge will be transferred to the output signature file.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>EditSignatures example 1 (Python window)</title>
+					<para>This example will edit the signature file based on the input remap file.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+EditSignatures("redl123", "c:/sapyexamples/data/zsamp12.gsg", 
+               "c:/sapyexamples/data/zsamp7.rmp", 
+               "c:/sapyexamples/output/redlremap.gsg", "")
+                    </code></scriptExample><scriptExample><title>EditSignatures example 2 (stand-alone script)</title>
+					<para>This example will edit the signature file based on the input remap file.</para>
+				<code xml:space="preserve"># Name: EditSignatures_Ex_02.py
+# Description: Edits and updates a signature file by merging, renumbering, 
+#    and deleting class signatures.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "redl123"
+oldSig = "c:/sapyexamples/data/zsamp12.gsg"
+sigRemap = "c:/sapyexamples/data/zsamp7.rmp"
+outNewSig = "c:/sapyexamples/output/redlsig.gsg"
+interval = ""
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute EditSignatures
+EditSignatures(inRaster, oldSig, sigRemap, outNewSig, interval)
+                    </code></scriptExample></scriptExamples></tool></metadata>

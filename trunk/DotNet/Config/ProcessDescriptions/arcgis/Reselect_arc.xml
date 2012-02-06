@@ -1,0 +1,88 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Select (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Extracts selected features from an input coverage and stores them in the output coverage. </para>
+			<para>Features are selected for extraction based on logical expressions or by applying the criteria contained in a selection file. Any item, including redefined items, in the specified feature attribute table of the Input coverage can be used.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Analysis</keyword><keyword>Expression</keyword><keyword>Extract</keyword><keyword>Query</keyword><keyword>Reselect</keyword><keyword>Reselect_Arc</keyword><keyword>Select</keyword><keyword>Selection File</keyword><keyword>Subset</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Reselect" displayname="Select (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Extracts selected features from an input coverage and stores them in the output coverage. </para>
+			<para>Features are selected for extraction based on logical expressions or by applying the criteria contained in a selection file. Any item, including redefined items, in the specified feature attribute table of the Input coverage can be used.</para>
+		</summary><alink_name>Reselect_arc</alink_name><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The input coverage containing the features that will be selected.</para>
+					</pythonReference><dialogReference>
+						<para>The input coverage containing the features that will be selected.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The output coverage containing the selected features.</para>
+					</pythonReference><dialogReference>
+						<para>The output coverage containing the selected features.</para>
+					</dialogReference></param><param sync="true" name="info_express" displayname="Info Expression" datatype="INFO Expression" direction="Input" expression="[info_express,...]" type="Required"><pythonReference>
+						<para>Write a query  that contains one or more logical expressions to select features from the input coverage. Each expression takes one of the following forms:</para>
+						<bulletList>
+							<bullet_item>RESELECT &lt;expression&gt;—Reduces the selected set of records with a selection expression to those that meet its criteria. If no selection expression follows, the selected set will be empty.</bullet_item>
+							<bullet_item>ASELECT &lt;expression&gt;—Adds unselected records that meet the selection expression criteria to the currently selected set. If no selection expression follows, the selected set will contain all features.</bullet_item>
+							<bullet_item>NSELECT—Reverses the current selection to the unselected set.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference><para>Write a query  that contains one or more logical expressions to select features from the input coverage. Each expression takes one of the following forms:</para>
+						<bulletList>
+							<bullet_item>RESELECT &lt;expression&gt;—Reduces the selected set of records with a selection expression to those that meet its criteria. If no selection expression follows, the selected set will be empty.</bullet_item>
+							<bullet_item>ASELECT &lt;expression&gt;—Adds unselected records that meet the selection expression criteria to the currently selected set. If no selection expression follows, the selected set will contain all features.</bullet_item>
+							<bullet_item>NSELECT—Reverses the current selection to the unselected set.</bullet_item>
+						</bulletList><para>Enter each expression separately on the INFO Expression line.  Use the Add button to add the expression to the list of expressions. You can manage the list of expressions using the Up, Down, and Delete buttons.</para></dialogReference></param><param sync="true" name="in_feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="in_feature_type" type="Optional"><pythonReference>
+						<para>The feature class to select:</para>
+						<bulletList><bullet_item>Poly—Polygons are reselected using PAT item values. </bullet_item><bullet_item>Line—Arcs are reselected using AAT item values. </bullet_item><bullet_item>Point—Points are reselected using PAT item values. </bullet_item><bullet_item>Anno.&lt;subclass&gt;—Annotation from the specified subclass is reselected using TAT subclass item values. </bullet_item><bullet_item>Route.&lt;subclass&gt;—Routes from the specified subclass are reselected using RAT subclass item values. </bullet_item><bullet_item>Section.&lt;subclass&gt;—Sections from the specified subclass are reselected using SEC subclass item values. </bullet_item><bullet_item>Region.&lt;subclass&gt;—Regions from the specified subclass are reselected using the region PAT subclass item values. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The feature class to select:</para>
+						<bulletList><bullet_item>Poly—Polygons are reselected using PAT item values. </bullet_item><bullet_item>Line—Arcs are reselected using AAT item values. </bullet_item><bullet_item>Point—Points are reselected using PAT item values. </bullet_item><bullet_item>Anno.&lt;subclass&gt;—Annotation from the specified subclass is reselected using TAT subclass item values. </bullet_item><bullet_item>Route.&lt;subclass&gt;—Routes from the specified subclass are reselected using RAT subclass item values. </bullet_item><bullet_item>Section.&lt;subclass&gt;—Sections from the specified subclass are reselected using SEC subclass item values. </bullet_item><bullet_item>Region.&lt;subclass&gt;—Regions from the specified subclass are reselected using the region PAT subclass item values. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="selection_file" displayname="Selection File" datatype="File" direction="Input" expression="selection_file" type="Optional"><pythonReference>
+						<para>A preexisting file that identifies the features to select.</para>
+					</pythonReference><dialogReference>
+						<para>A preexisting file that identifies the features to select.</para>
+					</dialogReference></param><param sync="true" name="out_feature_type" displayname="Output Feature Type" datatype="String" direction="Input" expression="out_feature_type" type="Optional"><pythonReference>
+						<para>The feature class in the output coverage. This must be the same as that of the input feature class, with this exception: When the input feature class is an Anno, Route, Section, or Region subclass and the output coverage is the same as the Input coverage, the output feature class must have a different subclass name.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class in the output coverage. This must be the same as that of the input feature class, with this exception: When the input feature class is an Anno, Route, Section, or Region subclass and the output coverage is the same as the Input coverage, the output feature class must have a different subclass name.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>When using the same input coverage and output coverage for feature classes Anno, Section, Route, or Region, the output feature class subclass name must be different from the input feature class subclass name.</para>
+			</bullet_item><bullet_item>
+				<para>Use of indexed items  can speed up the logical selection process. You can use the  tool to create an attribute index.</para>
+			</bullet_item><bullet_item>
+				<para>The same subclass names may be specified when the Output coverage is not the same as the Input coverage.</para>
+			</bullet_item><bullet_item>
+				<para>
+Learn more about 
+				</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Reselect example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to select features from a coverage.</para>
+				<code xml:space="preserve"># Name: Reselect_Example.py
+# Description: Selects streams of interest from a larger stream coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "stream"
+outCover = "C:/output/studystreams"
+infoExpress = ["RESELECT stream_name CN 'AQUEDUCT'",
+               "NSELECT",
+               "RESELECT stream_order &gt; 3",
+               "ASELECT length &gt; 10000"]
+inFeatureType = "LINE"
+
+# Execute Reselect
+arcpy.Reselect_arc(inCover, outCover, infoExpress, inFeatureType, "", "")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

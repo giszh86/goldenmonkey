@@ -1,0 +1,106 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Map to KML (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool converts a map document into a KML file containing a translation of ESRI geometries and symbology. This file is compressed using ZIP compression and will have a .kmz extension and can be read by any KML client including ArcGIS Explorer, ArcGlobe, and Google Earth.</para>
+			
+				<para>This tool was previously available in the 3D Analyst toolbox.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MapToKML" displayname="Map to KML (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool converts a map document into a KML file containing a translation of ESRI geometries and symbology. This file is compressed using ZIP compression and will have a .kmz extension and can be read by any KML client including ArcGIS Explorer, ArcGlobe, and Google Earth.</para>
+			
+				<para>This tool was previously available in the 3D Analyst toolbox.</para>
+			</summary><alink_name>MapToKML_3d</alink_name><parameters><param sync="true" name="in_map_document" displayname="In map document" datatype="Feature layer" direction="Input" expression="in_map_document" type="Required"><pythonReference>
+						<para>The map document to convert to KML.</para>
+					</pythonReference><dialogReference>
+						<para>The map document to convert to KML.</para>
+					</dialogReference></param><param sync="true" name="data_frame" displayname="Data Frame" datatype="Data frame" direction="Input" expression="data_frame" type="Required"><pythonReference>
+						<para>The data frame of the map document to convert to KML.</para>
+					</pythonReference><dialogReference>
+						<para>The data frame of the map document to convert to KML.</para>
+					</dialogReference></param><param sync="true" name="out_kmz_file" displayname="Output KMZ File" datatype="KML file" direction="Output" expression="out_kmz_file" type="Required"><pythonReference>
+						<para>The KML file to write. This file is compressed and will have a .kmz extension. It can be read by any KML client including ArcGIS Explorer, ArcGlobe, and Google Earth.</para>
+					</pythonReference><dialogReference>
+						<para>The KML file to write. This file is compressed and will have a .kmz extension. It can be read by any KML client including ArcGIS Explorer, ArcGlobe, and Google Earth.</para>
+					</dialogReference></param><param sync="true" name="map_output_scale" displayname="Map Output Scale" datatype="Double" direction="Output" expression="map_output_scale" type="Required"><pythonReference>
+						<para>The scale at which to export the map document. Any scale-dependent rendering will be observed, so layers that are not visible at the export scale will not be included in the created KML file. The symbology for the map will be driven by this scale, so if the map has a reference scale defined, it should be considered when setting this parameter.</para>
+						<para>Only numerical characters should be entered. For example, enter the scale as "20000", not 1:20,000 or 20,000.</para>
+						<para>Furthermore, if you are exporting a map containing only layers that will be displayed as 3D vectors and there is no scale-dependent rendering defined, this parameter is not required for the export process and can be set to any numeric value, such as 1.</para>
+					</pythonReference><dialogReference>
+						<para>The scale at which to export the map document. Any scale-dependent rendering will be observed, so layers that are not visible at the export scale will not be included in the created KML file. The symbology for the map will be driven by this scale, so if the map has a reference scale defined, it should be considered when setting this parameter.</para>
+						<para>Only numerical characters should be entered. For example, enter the scale as "20000", not 1:20,000 or 20,000.</para>
+						<para>Furthermore, if you are exporting a map containing only layers that will be displayed as 3D vectors and there is no scale-dependent rendering defined, this parameter is not required for the export process and can be set to any numeric value, such as 1.</para>
+					</dialogReference></param><param sync="true" name="is_composite" displayname="Is Composite" datatype="Boolean" direction="Input" expression="is_composite" type="Optional"><pythonReference><bulletList><bullet_item>COMPOSITE—Directs the output KML file to contain only a single image that composites all the features in this map into a single raster image. The raster is draped over the terrain as a KML GroundOverlay. Select this option to reduce the size of the output KMZ file. When you check this box, individual features and layers in the KML are not selectable. Also, the next parameter "is_vector_to_raster" is ignored.</bullet_item><bullet_item>NO_COMPOSITE—Layers are returned separately in the KML. Whether the layers are returned all as rasters or as a mix of vectors and rasters is determined by the next parameter "is_vector_to_raster".</bullet_item></bulletList></pythonReference><dialogReference>
+						<bulletList><bullet_item>Checked—Directs the output KML file to contain only a single image that composites all the features in this map into a single raster image. The raster is draped over the terrain as a KML GroundOverlay. Select this option to reduce the size of the output KMZ file. When you check this box, individual features and layers in the KML are not selectable. Also, the next parameter "Is vector to raster" is ignored.</bullet_item><bullet_item>Unchecked—Layers will be returned separately in the KML. Whether the layers are returned all as rasters or as a mix of vectors and rasters is determined by the next parameter "Is vector to raster".</bullet_item></bulletList></dialogReference></param><param sync="true" name="is_vector_to_raster" displayname="Is vector to raster" datatype="Boolean" direction="Input" expression="is_vector_to_raster" type="Optional"><pythonReference><bulletList><bullet_item>VECTOR_TO_RASTER—Converts each vector layer in the map into a separate raster image in the KML output. Normal raster layers are also added to the KML output. Each output KML raster layer is selectable, and its transparency can be adjusted in certain KML clients.</bullet_item><bullet_item>VECTOR_TO_VECTOR—Preserves vector layers in the map as KML vectors.</bullet_item></bulletList></pythonReference><dialogReference><bulletList><bullet_item>Checked—Converts each vector layer in the map into a separate raster image in the KML output. Normal raster layers are also added to the KML output. Each output KML raster layer is selectable, and its transparency can be adjusted in certain KML clients.</bullet_item><bullet_item>Unchecked—Preserves vector layers in the map as KML vectors.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="extent_to_export" displayname="Extent to export" datatype="Extent" direction="Input" expression="extent_to_export" type="Optional"><pythonReference><para>The geographic extent of the area to be exported. The extent rectangle bounds should be specified as a space-delimited string of WGS84 geographic coordinates in the form "left lower right upper".</para></pythonReference><dialogReference>
+						<para>The geographic extent of the area to be exported. Either define the extent box (in the WGS84 coordinate system), or select a layer or map document that defines an extent using the file selection button and text field.</para>
+					</dialogReference></param><param sync="true" name="image_size" displayname="Size of returned image (pixels)" datatype="Long" direction="Input" expression="image_size" type="Optional"><pythonReference>
+						<para>Size of returned image in pixels (optional): Defines the vertical and horizontal resolution of any rasters in the output KML document.</para>
+					</pythonReference><dialogReference>
+						<para>Size of returned image in pixels (optional): Defines the vertical and horizontal resolution of any rasters in the output KML document.</para>
+					</dialogReference></param><param sync="true" name="dpi_of_client" displayname="DPI of output image" datatype="Long" direction="Output" expression="dpi_of_client" type="Optional"><pythonReference>
+						<para>Defines the device resolution for any rasters in the output KML document.</para>
+					</pythonReference><dialogReference>
+						<para>Defines the device resolution for any rasters in the output KML document.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The output KMZ file cannot already exist.</para>
+			</bullet_item><bullet_item>
+				<para>You can reduce the size of the output KMZ document if your map has scale-dependent renderers and you choose an appropriate map output scale.</para>
+			</bullet_item><bullet_item>
+				<para>To output a single raster image draped over topography, use the Return single composite image option.</para>
+			</bullet_item><bullet_item>
+				<para>To output every layer as a separate raster image, use the Convert Vector to Raster option.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Map To KML Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Map To KML
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.MapToKML_3d("city.mxd", "Layers", "city.kmz", "1")
+                    </code></scriptExample><scriptExample><title>Map To KML Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Map To KML
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: MapToKML Example
+# Description: The following stand-alone script demonstrates how to find 
+#              all map documents in a given workspace and export each to 
+#              a KML at the 1:10,000, 1:20,000, and 1:30,000 scale using
+#              the MapToKML tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Use the ListFiles method to identify all layer files in workspace
+    if len(arcpy.ListFiles('*.mxd')) &gt; 0:
+        for mxd in arcpy.ListFiles('*.mxd'):
+            # Set Local Variables
+            dataFrame = 'Layers'
+            composite = 'NO_COMPOSITE'
+            vector = 'VECTOR_TO_VECTOR'
+            pixels = 2048
+            dpi = 192
+            for scale in range(10000, 30001, 10000):
+                # Strips the '.mxd' part of the name and appends '.kmz'
+                outKML = mxd[:-4]+'.kmz'
+                #Execute MapToKML
+                arcpy.MapToKML_conversion(mxd, dataFrame, outKML, scale, 
+                                          composite, vector, '', pixels, dpi)
+    else:
+        arcpy.AddMessage('There are no map documents (*.mxd) in '+env.workspace)
+
+except Exception as e:
+    print e.message
+    
+                    </code></scriptExample></scriptExamples></tool></metadata>

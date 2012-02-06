@@ -1,0 +1,93 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Zonal Statistics (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates statistics on values of a raster within the zones of another dataset.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Average</keyword><keyword>Dissimilar</keyword><keyword>Largest</keyword><keyword>Least Frequent</keyword><keyword>Least Often</keyword><keyword>Majority</keyword><keyword>Max</keyword><keyword>Maximum</keyword><keyword>Median</keyword><keyword>Min</keyword><keyword>Minimum</keyword><keyword>Most Frequent</keyword><keyword>Most Often</keyword><keyword>Smallest</keyword><keyword>Standard Deviation</keyword><keyword>Statistical</keyword><keyword>Std</keyword><keyword>Sum</keyword><keyword>Total</keyword><keyword>Unique</keyword><keyword>Value</keyword><keyword>Variety</keyword><keyword>Zone</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ZonalStatistics" displayname="Zonal Statistics (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates statistics on values of a raster within the zones of another dataset.</para>
+			
+		</summary><alink_name>ZonalStatistics_sa</alink_name><toolIllust type="illustration" src="ZonalStatistics_sa_h.gif" alt="Zonal Statistics illustration" /><parameters><param sync="true" name="in_zone_data" displayname="Input raster or feature zone data" datatype="Raster Layer | Feature Layer" direction="Input" expression="in_zone_data" type="Required"><pythonReference>
+						<para>Dataset that defines the zones.</para>
+						<para>The zones can be defined by an integer raster or a feature layer.</para></pythonReference><dialogReference>
+						<para>Dataset that defines the zones.</para>
+						<para>The zones can be defined by an integer raster or a feature layer.</para></dialogReference></param><param sync="true" name="zone_field" displayname="Zone field" datatype="Field" direction="Input" expression="zone_field" type="Required"><pythonReference><para>
+Field that holds the values that define each zone.</para><para>It can be an integer or a string field of the zone dataset.</para>
+					</pythonReference><dialogReference><para>
+Field that holds the values that define each zone.</para><para>It can be an integer or a string field of the zone dataset.</para>
+					</dialogReference></param><param sync="true" name="in_value_raster" displayname="Input value raster" datatype="Raster Layer" direction="Input" expression="in_value_raster" type="Required"><pythonReference>
+						<para>Raster that contains the values on which to calculate a statistic.</para></pythonReference><dialogReference>
+						<para>Raster that contains the values on which to calculate a statistic.</para></dialogReference></param><param sync="true" name="statistics_type" displayname="Statistics type" datatype="String" direction="Input" expression="statistics_type" type="Optional"><pythonReference>
+						<para>Statistic type to be calculated.</para>
+						<bulletList><bullet_item>MEAN — Calculates the average of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>MAJORITY — Determines the value that occurs most often of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>MAXIMUM — Determines the largest value of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>MEDIAN — Determines the median value of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>MINIMUM — Determines the smallest value of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>MINORITY — Determines the value that occurs least often of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>RANGE — Calculates the difference between the largest and smallest value of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>STD — Calculates the standard deviation of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>SUM — Calculates the total value of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>VARIETY — Calculates the number of unique values for all cells in the value raster that belong to the same zone as the output cell.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Statistic type to be calculated.</para>
+						<bulletList><bullet_item>MEAN — Calculates the average of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>MAJORITY — Determines the value that occurs most often of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>MAXIMUM — Determines the largest value of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>MEDIAN — Determines the median value of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>MINIMUM — Determines the smallest value of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>MINORITY — Determines the value that occurs least often of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>RANGE — Calculates the difference between the largest and smallest value of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>STD — Calculates the standard deviation of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>SUM — Calculates the total value of all cells in the value raster that belong to the same zone as the output cell.</bullet_item><bullet_item>VARIETY — Calculates the number of unique values for all cells in the value raster that belong to the same zone as the output cell.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="ignore_nodata" displayname="Ignore NoData in calculations" datatype="Boolean" direction="Input" expression="ignore_nodata" type="Optional"><pythonReference>
+						<para>Denotes whether NoData values in the Value input will influence the results of the zone that they fall within.</para>
+						<bulletList><bullet_item>DATA — Within any particular zone, only cells that have a value in the input Value raster will be used in determining the output value for that zone. NoData cells in the Value raster will be ignored in the statistic calculation.</bullet_item><bullet_item>NODATA — Within any particular zone, if any NoData cells exist in the Value raster it is deemed that there is insufficient information to perform statistical calculations for all the cells in that zone; therefore, the entire zone will receive the NoData value on the output raster.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Denotes whether NoData values in the Value input will influence the results of the zone that they fall within.</para>
+						<bulletList>
+							<bullet_item>Checked—Within any particular zone, only cells that have a value in the input Value raster will be used in determining the output value for that zone. NoData cells in the Value raster will be ignored in the statistic calculation.</bullet_item>
+							<bullet_item>Unchecked—Within any particular zone, if any NoData cells exist in the Value raster it is deemed that there is insufficient information to perform statistical calculations for all the cells in that zone; therefore, the entire zone will receive the NoData value on the output raster.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output zonal statistics raster.</para>
+						</pythonReference><dialogReference>
+							<para>The output zonal statistics raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>A zone is defined as all areas in the input that have the same value.  The areas do not have to be contiguous.  Both raster and feature datasets can be used for the zone input.</para></bullet_item><bullet_item><para>When the zone and value inputs are both rasters of the same resolution, they will be used directly.</para><para>If the resolutions are different, an internal resampling is applied to make them match before the zonal operation is performed.</para><para>Should there be any NoData cells in the inputs, the resampling may cause there to be larger areas of NoData in your output than you might have expected. To avoid this situation, either  the coarser input rasters to the resolution of the finer input raster, or set the  to Minimum Of Inputs in the Raster Analysis .</para></bullet_item><bullet_item><para>If the zone input is a raster dataset, it must have an attribute table. The attribute table is usually created automatically for integer rasters, but may not be under certain circumstances. You can use  to create one.</para></bullet_item><bullet_item><para>If the zone input is a feature dataset, a vector-to-raster conversion will be internally applied to it. To ensure that the results of the conversion will align properly with the value raster, it is recommended that you check that the extent and snap raster are set appropriately in the environment settings and the raster settings.</para><para>Since the internal raster must have an attribute table, an error will occur if one was not created in the conversion. If this happens, convert your feature dataset directly with , , (, or . Generate an attribute table for it as described in the previous tip and use the resulting raster as your Zone input.</para></bullet_item><bullet_item><para>If the zone input is feature dataset with small features, keep in mind that the resolution of the information needs to be appropriate relative to the resolution of the value raster. If the areas of single features are similar to or smaller than the area of single cells in the value raster, in the feature-to-raster conversion some of these zones may not be represented.</para><para>To demonstrate this, try converting the feature dataset to a raster with the appropriate feature-to-raster conversion tool and specify the resolution to be that of the Value raster. The result from this conversion will give an indication about what the default output of the zonal operation will be.</para><para>If you have fewer results in the output than you expected, you need to determine an appropriate raster resolution that will represent the detail of your feature input, and use this resolution as the  of the Raster Analysis Settings of the Environment.</para></bullet_item><bullet_item><para>If the zone input is a point feature dataset, it is possible to have more than one point contained within any particular cell of the value input raster. For such cells, the zone value is determined by the point with the highest feature ID.</para></bullet_item><bullet_item><para>If the zone feature input has overlapping polygons, the zonal analysis will not be performed for each individual polygon. Since the feature input is converted to a raster, each location can only have one value.</para>
+				<para>An alternative method is to process the zonal statistics iteratively for each of the polygon zones and collate the results.</para></bullet_item><bullet_item><para>It is recommended to only use rasters as the zone input, as it offers you greater control over the vector-to-raster conversion. This will help ensure you consistently get the expected results.</para></bullet_item><bullet_item><para>The input value raster can be either integer or floating point. However, when it is floating-point type, the zonal calculations for majority, median, minority, and variety will not be computed.</para></bullet_item><bullet_item><para>For majority and minority calculations, when there is a tie, the output for the zone is based on the lowest of the tied values.</para></bullet_item><bullet_item>
+				<para>The data type of the output is dependent on the zonal calculation being performed and the input value raster type. See  for more information.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ZonalStatistics example 1 (Python window)</title>
+					<para>This example determines for each zone the range of cell values in the Value input raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outZonalStats = ZonalStatistics("zone", "value", "valueraster", "RANGE",
+                                "NODATA")
+outZonalStats.save("C:/sapyexamples/output/zonestatout")
+                    </code></scriptExample><scriptExample><title>ZonalStatistics example 2 (stand-alone script)</title>
+					<para>This example determines for each zone the range of cell values in the Value input raster.</para>
+				<code xml:space="preserve"># Name: ZonalStatistics_Ex_02.py
+# Description: Calculates statistics on values of a raster 
+#    within the zones of another dataset.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inZoneData = "zone"
+zoneField = "value"
+inValueRaster = "valueraster" 
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ZonalStatistics
+outZonalStatistics = ZonalStatistics(inZoneData, zoneField, inValueRaster,
+                                     "RANGE", "NODATA")
+
+# Save the output 
+outZonalStatistics.save("C:/sapyexamples/output/zonestatout2")
+                    </code></scriptExample></scriptExamples></tool></metadata>

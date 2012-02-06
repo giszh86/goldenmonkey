@@ -1,0 +1,128 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Import From Interchange File (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts an ARC/INFO export interchange file.</para>
+			<para>An ARC/INFO interchange file can be used to transport coverages; INFO tables; text files, such as AML macros; and other ARC/INFO files between various machine types. An interchange file contains all coverage information and appropriate INFO table information in a fixed-length ASCII format.</para>
+			<para>There are many ways to use Import From Interchange. One way is to transport a coverage and its associated INFO tables. Each coverage file and its INFO tables are read from the interchange file into an output coverage. This is done by using the keyword COVER for the first argument. Another way is to transfer an INFO table. In this case, any INFO pathname/username can be used to specify the name of the output INFO table. This option is invoked by using the keyword INFO for the first argument. A third way is to use Import with the TEXT option to transfer key files, AML macros, and other text files.</para>
+			<para>If multiple volumes are provided by Export To Interchange, the ASCII interchange file name for Import from Interchange must be in the format &lt;interchange_file&gt;.E00 through &lt;interchange_file&gt;.Enn, where nn is the last volume ID. Even if only one volume is produced, this file name must have the .E00 extension.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Conversion</keyword><keyword>E00</keyword><keyword>Import</keyword><keyword>Import_Arc</keyword><keyword>Importing</keyword><keyword>Interchange File</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Import" displayname="Import From Interchange File (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Converts an ARC/INFO export interchange file.</para>
+			<para>An ARC/INFO interchange file can be used to transport coverages; INFO tables; text files, such as AML macros; and other ARC/INFO files between various machine types. An interchange file contains all coverage information and appropriate INFO table information in a fixed-length ASCII format.</para>
+			<para>There are many ways to use Import From Interchange. One way is to transport a coverage and its associated INFO tables. Each coverage file and its INFO tables are read from the interchange file into an output coverage. This is done by using the keyword COVER for the first argument. Another way is to transfer an INFO table. In this case, any INFO pathname/username can be used to specify the name of the output INFO table. This option is invoked by using the keyword INFO for the first argument. A third way is to use Import with the TEXT option to transfer key files, AML macros, and other text files.</para>
+			<para>If multiple volumes are provided by Export To Interchange, the ASCII interchange file name for Import from Interchange must be in the format &lt;interchange_file&gt;.E00 through &lt;interchange_file&gt;.Enn, where nn is the last volume ID. Even if only one volume is produced, this file name must have the .E00 extension.</para>
+		</summary><alink_name>Import_arc</alink_name><parameters><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Required"><pythonReference>
+						<para>The type of file to be imported. Auto is the default option.</para>
+						<bulletList><bullet_item>AUTO—
+										
+									</bullet_item><bullet_item>COVER—
+										
+									</bullet_item><bullet_item>FONT—
+										
+									</bullet_item><bullet_item>GRID —
+										
+									</bullet_item><bullet_item>INFO—
+										
+									</bullet_item><bullet_item>LINESET—
+										
+									</bullet_item><bullet_item>PLOT—
+										
+									</bullet_item><bullet_item>MAP—
+										
+									</bullet_item><bullet_item>MARKERSET—
+										
+									</bullet_item><bullet_item>SHADESET—
+										
+									</bullet_item><bullet_item>STACK—
+										
+									</bullet_item><bullet_item>TEXT—
+										
+									</bullet_item><bullet_item>TEXTSET—
+										
+									</bullet_item><bullet_item>TIN—
+										
+									</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of file to be imported. Auto is the default option.</para>
+						<bulletList><bullet_item>AUTO—
+										
+									</bullet_item><bullet_item>COVER—
+										
+									</bullet_item><bullet_item>FONT—
+										
+									</bullet_item><bullet_item>GRID —
+										
+									</bullet_item><bullet_item>INFO—
+										
+									</bullet_item><bullet_item>LINESET—
+										
+									</bullet_item><bullet_item>PLOT—
+										
+									</bullet_item><bullet_item>MAP—
+										
+									</bullet_item><bullet_item>MARKERSET—
+										
+									</bullet_item><bullet_item>SHADESET—
+										
+									</bullet_item><bullet_item>STACK—
+										
+									</bullet_item><bullet_item>TEXT—
+										
+									</bullet_item><bullet_item>TEXTSET—
+										
+									</bullet_item><bullet_item>TIN—
+										
+									</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="interchange_file" displayname="Input Interchange File" datatype="File" direction="Input" expression="interchange_file" type="Required"><pythonReference>
+						<para>The prefix name of the ARC/INFO interchange file to be converted. A volume ID of .e00, .e01, and so on, will always be appended to the given interchange_file to specify the file or files to be imported.</para>
+					</pythonReference><dialogReference>
+						<para>The prefix name of the ARC/INFO interchange file to be converted. A volume ID of .e00, .e01, and so on, will always be appended to the given interchange_file to specify the file or files to be imported.</para>
+					</dialogReference></param><param sync="true" name="out_dataset" displayname="Output Dataset" datatype="Coverage" direction="Output" expression="out_dataset" type="Required"><pythonReference>
+						<para>The name of the output dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output dataset.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The AUTO option determines what is contained in an import file, then imports it correctly.</para>
+			</bullet_item><bullet_item>
+				<para>In ModelBuilder, you should specify the feature type of the data being imported. The AUTO option does not set the properties of the output variable in the model, because the data type is unknown until the process is executed. For example, if the .e00 file contains a coverage, set the feature type to COVER so the output variable may be connected to any other process that requires a coverage as input.</para>
+			</bullet_item><bullet_item>
+				<para>IMPORT reads any export file that has been fully or partially compressed as well as decompressed. IMPORT automatically recognizes whether the export file is compressed.</para>
+			</bullet_item><bullet_item>
+				<para>For the COVER option, all INFO data files saved in the interchange file whose names contain the coverage name prior to the last period in the INFO data file name are written to the workspace INFO database for the output coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Any INFO pathname/username can be specified as the output data file when the INFO option is used. However, the specified INFO directory must exist prior to using IMPORT.</para>
+			</bullet_item><bullet_item>
+				<para>The STACK option will work in one of two ways. If the interchange file was made by the EXPORT command with the STACK option, then only the stack directory will be re-created. None of the grids associated with the stack will be re-created. If the interchange file was made by the EXPORT command with the STACKALL option, then both the stack directory and the grids associated with that stack are re-created. Only the grids that do not presently exist in the workspace will be re-created.</para>
+			</bullet_item><bullet_item>
+				<para>ArcCatalog doesn't show ArcInfo .e00 files by default, but it is easy to configure ArcCatalog to show them. From the Customize pulldown menu, choose the ArcCatalog Options command, click the File Types tab, then click the New Type button. In the dialog that appears, type "e00" into the File extension field (be sure to use zeros, not the letter "O"), type a description such as "Export File" into the Description of type field, click Change Icon and choose an icon, then click OK. Click OK on the ArcCatalog Options dialog box. ArcCatalog will refresh and show you .e00 files.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Import example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to import a coverage from an ArcInfo interchange file.</para>
+				<code xml:space="preserve"># Name: Import_Example.py
+# Description: Imports from E00 format to a coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+featureType = "COVER"
+interchangeFile = "citylim.e00"
+outDataset = "C:/output/citylimit"
+
+# Execute Import
+arcpy.Import_arc(featureType, interchangeFile, outDataset)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,80 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Filter (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs either a smoothing (Low pass) or edge-enhancing (High pass) filter on a raster.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Edge Detection</keyword><keyword>Edge Enhancement</keyword><keyword>High Pass</keyword><keyword>Low Pass</keyword><keyword>Neighborhood</keyword><keyword>Smooth</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Filter" displayname="Filter (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Performs either a smoothing (Low pass) or edge-enhancing (High pass) filter on a raster.</para>
+			
+		</summary><alink_name>Filter_sa</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster on which to perform the filter operation.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster on which to perform the filter operation.</para>
+					</dialogReference></param><param sync="true" name="filter_type" displayname="Filter type" datatype="String" direction="Input" expression="filter_type" type="Optional"><pythonReference>
+						<para>The type of filter operation to perform.</para>
+						<bulletList><bullet_item>LOW — Traverses a low pass 3-by-3 filter over the raster. This option smooths the entire input raster and reduces the significance of anomalous cells.This is the default option.</bullet_item><bullet_item>HIGH — Traverses a high pass 3-by-3 filter over the raster. This option enhances the edges of subdued features in a raster.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of filter operation to perform.</para>
+						<bulletList><bullet_item>LOW — Traverses a low pass 3-by-3 filter over the raster. This option smooths the entire input raster and reduces the significance of anomalous cells.This is the default option.</bullet_item><bullet_item>HIGH — Traverses a high pass 3-by-3 filter over the raster. This option enhances the edges of subdued features in a raster.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="ignore_nodata" displayname="Ignore NoData in calculations" datatype="Boolean" direction="Input" expression="ignore_nodata" type="Optional"><pythonReference>
+						<para>Denotes whether NoData values are ignored by the filter calculation.</para>
+						<bulletList><bullet_item>DATA — If a NoData value exists within the filter, the NoData value will be ignored. Only cells within the filter that have data values will be used in determining the output.</bullet_item><bullet_item>NODATA — If a NoData value exists within the filter, the output for the processing cell will be NoData.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Denotes whether NoData values are ignored by the filter calculation.</para>
+						<bulletList>
+							<bullet_item>Checked—If a NoData value exists within the filter, the NoData value will be ignored. Only cells within the filter that have data values will be used in determining the output.</bullet_item>
+							<bullet_item>Unchecked—If a NoData value exists within the filter, the output for the processing cell will be NoData.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output filtered raster.</para>
+						</pythonReference><dialogReference>
+							<para>The output filtered raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The LOW filter option is an averaging (smoothing) filter. The HIGH filter option is an edge-enhancement filter.</para>
+			</bullet_item><bullet_item>
+				<para>All input raster cells with NoData value are assigned NoData value in the output raster.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Filter example 1 (Python window)</title>
+					<para>This example applies a high-pass filter to the input raster.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+filterOut =  Filter("elevation", "HIGH", "DATA") 
+filterOut.save("C:/sapyexamples/output/filtered")
+                    </code></scriptExample><scriptExample><title>Filter example 2 (stand-alone script)</title>
+					<para>This example applies a low-pass filter to the input raster.</para><code xml:space="preserve"># Name: Filter_Ex_02.py
+# Description: Performs a preset focal filter on a raster. 
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "elevation" 
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Filter
+filterOut =  Filter(inRaster, "LOW", "") 
+
+# Save the output 
+filterOut.save("C:/sapyexamples/output/filterout")
+                    </code></scriptExample></scriptExamples></tool></metadata>

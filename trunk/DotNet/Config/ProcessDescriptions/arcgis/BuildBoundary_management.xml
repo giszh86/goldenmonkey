@@ -1,0 +1,49 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Build Boundary (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Generates the boundary polygon for a mosaic dataset. By default, the boundary merges all the footprint polygons to create a single boundary representing the extent of the valid pixels.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Amd</keyword><keyword>Border</keyword><keyword>Composite</keyword><keyword>Create</keyword><keyword>Extent</keyword><keyword>Make</keyword><keyword>Mosaic Dataset</keyword><keyword>Outline</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BuildBoundary" displayname="Build Boundary (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Generates the boundary polygon for a mosaic dataset. By default, the boundary merges all the footprint polygons to create a single boundary representing the extent of the valid pixels.</para>
+		</summary><alink_name>BuildBoundary_management</alink_name><toolIllust type="illustration" src="BuildBoundary_management_h.png" alt="Boundary and footprints of a mosaic dataset" /><parameters><param sync="true" name="in_mosaic_dataset" displayname="Mosaic Dataset" datatype="Mosaic Dataset" direction="Input" expression="in_mosaic_dataset" type="Required"><pythonReference>
+						<para>The mosaic dataset for which the boundary will be calculated.</para>
+					</pythonReference><dialogReference>
+						<para>The mosaic dataset for which the boundary will be calculated.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Query Definition" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>Enter an SQL query if you would like to create a subset of the data, based on attributes.</para>
+					</pythonReference><dialogReference>
+						<para>Enter an SQL query if you would like to create a subset of the data, based on attributes.</para>
+					</dialogReference></param><param sync="true" name="append_to_existing" displayname="Append To Existing Boundary" datatype="Boolean" direction="Input" expression="append_to_existing" type="Optional"><pythonReference>
+						<para>When footprints have been selected, this option determines how the boundary will be modified.</para>
+						<bulletList><bullet_item>OVERWRITE—Removes any existing boundary, and then creates a newly computed boundary.</bullet_item><bullet_item>APPEND—Appends the perimeter of footprints to the existing boundary. This can save time when adding additional raster data to the mosaic dataset, as the entire boundary will not be recalculated. If there are rasters selected, the boundary will be recalculated to include only the selected footprints. This is the default. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>When footprints have been selected, this option determines how the boundary will be modified.</para>
+						<bulletList>
+							<bullet_item>Checked— Removes any existing boundary, and then creates a newly computed boundary.</bullet_item>
+							<bullet_item>Unchecked—Appends the perimeter of footprints to the existing boundary. This can save time when adding additional raster data to the mosaic dataset, as the entire boundary will not be recalculated. If there are rasters selected, the boundary will be recalculated to include only the selected footprints. This is the default. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent"></environment></environments><usage><bullet_item>
+				<para>Boundaries can only be generated for mosaic datasets stored within a geodatabase.</para>
+			</bullet_item><bullet_item>
+				<para>If you remove or add rasters, or modify the extent of the footprints, you should use this tool to rebuild the boundary.</para>
+			</bullet_item><bullet_item>
+				<para>If you modify the shape of the boundary polygon (using editing tools), you can use this tool to rebuild the boundary to its unmodified shape.</para>
+			</bullet_item><bullet_item>
+				<para>Use the Append To Existing Boundary option to only update the boundary where newly added footprints exist. Since the entire boundary is not recalculated, it will save time.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>BuildBoundary example (Python window)</title>
+					<para>This is a Python sample for the BuildBoundary.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.BuildBoundary_management("c:/workspace/fGDB.gdb/md","APPEND")
+                    </code></scriptExample><scriptExample><title>Build Boundary example 2 (stand-alone window)</title>
+					<para>This is a Python script for the BuildBoundary.</para>
+				<code xml:space="preserve">##===========================
+##Build Boundary
+##Usage: BuildBoundary_management in_mosaic_dataset {OVERWRITE | APPEND}
+
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:\Workspace"
+    
+    #Build boundary using the appending mode
+    arcpy.BuildBoundary_management("Boundary.gdb/md","APPEND")    
+except:
+    print "Build Boundary example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

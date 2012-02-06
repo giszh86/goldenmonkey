@@ -1,0 +1,79 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Focal Flow (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Determines the flow of the values in the input raster within each cell's immediate neighborhood.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Focal</keyword><keyword>Neighborhood</keyword><keyword>Neighborhood</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FocalFlow" displayname="Focal Flow (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Determines the flow of the values in the input raster within each cell's immediate neighborhood.</para>
+			
+		</summary><alink_name>FocalFlow_sa</alink_name><toolIllust type="illustration" src="FocalFlow_sa_h.png" alt="Focal Flow illustration" /><parameters><param sync="true" name="in_surface_raster" displayname="Input surface raster" datatype="Raster Layer" direction="Input" expression="in_surface_raster" type="Required"><pythonReference>
+						<para>The input surface raster for which to calculate the focal flow.</para>
+						<para>The eight immediate neighbors of each cell are evaluated  to determine the flow.</para>
+						<para>The input raster can be integer or floating point.</para>
+					</pythonReference><dialogReference>
+						<para>The input surface raster for which to calculate the focal flow.</para>
+						<para>The eight immediate neighbors of each cell are evaluated  to determine the flow.</para>
+						<para>The input raster can be integer or floating point.</para>
+					</dialogReference></param><param sync="true" name="threshold_value" displayname="Threshold value" datatype="Double" direction="Input" expression="threshold_value" type="Optional"><pythonReference>
+						<para>Defines a value that constitutes the threshold, which must be equaled or exceeded before flow can occur.</para>
+						<para>The threshold value can be either an integer or floating-point value.</para><para>If the difference between the value at a neighboring cell location and the value of the processing cell is less than or equal to the threshold value, the output will be 0 (or no flow).</para>
+					</pythonReference><dialogReference>
+						<para>Defines a value that constitutes the threshold, which must be equaled or exceeded before flow can occur.</para>
+						<para>The threshold value can be either an integer or floating-point value.</para><para>If the difference between the value at a neighboring cell location and the value of the processing cell is less than or equal to the threshold value, the output will be 0 (or no flow).</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output focal flow raster.</para>
+							<para>The output raster is always of integer type.</para></pythonReference><dialogReference>
+							<para>The output focal flow raster.</para>
+							<para>The output raster is always of integer type.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para>Focal Flow evaluates the eight immediate neighbors of a cell to determine the flow.</para></bullet_item><bullet_item>
+				<para>The resulting values from the tool  measure flow into, not out of, a cell.</para>
+			</bullet_item><bullet_item>
+				<para>The output values are derived from the binary representation of the results of the analysis.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FocalFlow example 1 (Python window)</title>
+					<para>This example determines the binary representation of flow for the input raster with a threshold value of 10.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+focalFlowOut = FocalFlow("elevation", 10)
+focalFlowOut.save("C:/sapyexamples/output/flowout")
+                    </code></scriptExample><scriptExample><title>FocalFlow example 2 (stand-alone script)</title>
+					<para>This example determines the binary representation of flow for the input raster with a threshold value of 5.</para>
+				<code xml:space="preserve"># Name: FocalFlow_Ex_02.py
+# Description: Determines the flow of the values in the 
+#    input raster within each cell's immediate neighborhood.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "elevation"
+threshold = 5 
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute FocalFlow
+outFocalFlow = FocalFlow(inRaster, threshold)
+
+# Save the output 
+outFocalFlow.save("C:/sapyexamples/output/focalflow")
+                    </code></scriptExample></scriptExamples></tool></metadata>

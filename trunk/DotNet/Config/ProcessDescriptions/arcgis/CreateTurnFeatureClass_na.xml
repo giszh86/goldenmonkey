@@ -1,0 +1,116 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Turn Feature Class (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a new turn feature class to store turn features that model turning movements in a network dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Analysis</keyword><keyword>Layer</keyword><keyword>Network</keyword><keyword>Network Analyst</keyword><keyword>Network Analyst Layer</keyword><keyword>Turn</keyword><keyword>Turn Feature Class</keyword><keyword>Turn Features</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateTurnFeatureClass" displayname="Create Turn Feature Class (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Creates a new turn feature class to store turn features that model turning movements in a network dataset.</para>
+		</summary><alink_name>CreateTurnFeatureClass_na</alink_name><parameters><param sync="true" name="out_location" displayname="Output Location" datatype="Workspace;Feature Dataset" direction="Input" expression="out_location" type="Required"><pythonReference>
+						<para>The ArcSDE, file, or personal geodatabase, or the folder in which the output turn feature class will be created. This workspace must already exist.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcSDE, file, or personal geodatabase, or the folder in which the output turn feature class will be created. This workspace must already exist.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class_name" displayname="Output Turn Feature Class Name" datatype="String" direction="Output" expression="out_feature_class_name" type="Required"><pythonReference>
+						<para>The name of the turn feature class to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the turn feature class to be created.</para>
+					</dialogReference></param><param sync="true" name="maximum_edges" displayname="Maximum Edges" datatype="Long" direction="Input" expression="maximum_edges" type="Optional"><pythonReference>
+						<para>The maximum number of edges that turns in the new turn feature class can model. The default value is 5. The maximum value is 20.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum number of edges that turns in the new turn feature class can model. The default value is 5. The maximum value is 20.</para>
+					</dialogReference></param><param sync="true" name="in_network_dataset" displayname="Input Network Dataset" datatype="Network Dataset Layer" direction="Input" expression="in_network_dataset" type="Optional"><pythonReference>
+						<para>The network dataset in which the turn feature class will participate. The resulting turn feature class will be added as a turn source to the network dataset. If no network dataset is specified, the turn feature class will be created as not participating in a network dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The network dataset in which the turn feature class will participate. The resulting turn feature class will be added as a turn source to the network dataset. If no network dataset is specified, the turn feature class will be created as not participating in a network dataset.</para>
+					</dialogReference></param><param sync="true" name="in_template_feature_class" displayname="Template Feature Class" datatype="Feature Layer" direction="Input" expression="in_template_feature_class" type="Optional"><pythonReference>
+						<para>The feature class used as a template to define the attribute schema of the new turn feature class. </para>
+						<para>If the template feature class has the following fields, they are not created on the output turn feature class; NODE_, NODE#, JUNCTION, F_EDGE, T_EDGE, F-EDGE, T-EDGE, ARC1_,ARC2_,ARC1#,ARC2#,ARC1-ID, ARC2-ID, AZIMUTH, ANGLE. </para>
+					</pythonReference><dialogReference>
+						<para>The feature class used as a template to define the attribute schema of the new turn feature class. </para>
+						<para>If the template feature class has the following fields, they are not created on the output turn feature class; NODE_, NODE#, JUNCTION, F_EDGE, T_EDGE, F-EDGE, T-EDGE, ARC1_,ARC2_,ARC1#,ARC2#,ARC1-ID, ARC2-ID, AZIMUTH, ANGLE. </para>
+					</dialogReference></param><param sync="true" name="spatial_reference" displayname="Spatial Reference" datatype="Spatial Reference" direction="Input" expression="spatial_reference" type="Optional"><pythonReference>
+						<para>The spatial reference to be applied to the output turn feature class. This parameter is ignored if the output location is a geodatabase feature dataset as the output turn  feature class will inherit the spatial reference of the feature dataset.</para>
+						<para>If you want to import the spatial reference from an existing feature class, specify its path as the parameter value. </para>
+					</pythonReference><dialogReference>
+						<para>The spatial reference to be applied to the output turn feature class. This parameter is ignored if the output location is a geodatabase feature dataset as the output turn  feature class will inherit the spatial reference of the feature dataset.</para>
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="Config keyword" datatype="String" direction="Input" expression="config_keyword" type="Optional"><pythonReference>
+						<para>Specifies the configuration keyword that determines the storage parameters of the new turn feature class. This parameter is used only if the output location is an ArcSDE geodatabase</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the configuration keyword that determines the storage parameters of the new turn feature class. This parameter is used only if the output location is an ArcSDE geodatabase</para>
+					</dialogReference></param><param sync="true" name="spatial_grid_1" displayname="Output Spatial Grid 1" datatype="Double" direction="Output" expression="spatial_grid_1" type="Optional"><pythonReference>
+						<para>The Spatial Grid 1, 2, and 3 parameters are used to compute a spatial index and only apply to   file geodatabases and  certain ArcSDE geodatabase feature classes. If you are unfamiliar with setting grid sizes, leave these options as 0,0,0 and ArcGIS will compute optimal sizes for you.  Since no features are written by this tool, the spatial index will be in an unbuilt state.  The index will be built when features are written to the feature class such as by the  Append tool or editing operations.  For more information about this parameter, refer to the Add Spatial Index tool documentation.</para><para></para>
+					</pythonReference><dialogReference>
+						<para>The Spatial Grid 1, 2, and 3 parameters are used to compute a spatial index and only apply to   file geodatabases and  certain ArcSDE geodatabase feature classes. If you are unfamiliar with setting grid sizes, leave these options as 0,0,0 and ArcGIS will compute optimal sizes for you.  Since no features are written by this tool, the spatial index will be in an unbuilt state.  The index will be built when features are written to the feature class such as by the  Append tool or editing operations.  For more information about this parameter, refer to the Add Spatial Index tool documentation.</para><para></para>
+					</dialogReference></param><param sync="true" name="spatial_grid_2" displayname="Output Spatial Grid 2" datatype="Double" direction="Output" expression="spatial_grid_2" type="Optional"><pythonReference>
+						<para>
+Cell size of the second spatial grid.  Leave the size at 0 if you only want one grid.  Otherwise, set the size to at least three times larger than Spatial Grid 1.
+</para></pythonReference><dialogReference>
+						<para>
+Cell size of the second spatial grid.  Leave the size at 0 if you only want one grid.  Otherwise, set the size to at least three times larger than Spatial Grid 1.
+</para></dialogReference></param><param sync="true" name="spatial_grid_3" displayname="Output Spatial Grid 3" datatype="Double" direction="Output" expression="spatial_grid_3" type="Optional"><pythonReference>
+						<para>
+Cell size of the third spatial grid.  Leave the size at 0 if you only want two grids.  Otherwise, set the size to at least three times larger than Spatial Grid 2.
+
+</para></pythonReference><dialogReference>
+						<para>
+Cell size of the third spatial grid.  Leave the size at 0 if you only want two grids.  Otherwise, set the size to at least three times larger than Spatial Grid 2.
+
+</para></dialogReference></param><param sync="true" name="has_z" displayname="Has Z" datatype="Boolean" direction="Input" expression="has_z" type="Optional"><pythonReference>
+						<bulletList><bullet_item>ENABLED—The coordinates in the new turn feature class will have elevation (Z) values. This value should be used if the input network dataset is specified and it supports connectivity based on z coordinate values of the network sources.</bullet_item><bullet_item>DISABLED—The coordinates in the new turn feature class will not have elevation (Z) values.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked—The coordinates in the new turn feature class will have elevation (Z) values. This parameter is automatically checked and disabled if the input network dataset is specified and it supports connectivity based on z coordinate values of the network sources.</bullet_item>
+							<bullet_item>Unchecked—The coordinates in the new turn feature class will not have elevation (Z) values.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment></environments><usage><bullet_item>
+				<para>You can add a turn feature class as a turn sources to your network only if your network dataset supports turns. If you want to add turns to a network that does not support turns, you will have to create a new network dataset that supports turns.</para>
+			</bullet_item><bullet_item>
+				<para>After creating the turn feature class, the turn features can be created in ArcMap using the commands to create linear features on the Editor toolbar.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateTurnFeatureClass example 1 (Python window)</title>
+					<para>Execute the tool using only the required parameters</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.CreateTurnFeatureClass_na("Transportation","DelayTurns")
+
+                    </code></scriptExample><scriptExample><title>CreateTurnFeatureClass example 2 (Python window)</title>
+					<para>Execute the tool using all parameters </para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.CreateTurnFeatureClass_na("Transportation","DelayTurns",2,
+                                "Transportation/Streets_ND",
+                                "C:/Data/schema.gdb/TurnTemplate","","",0,0,0,
+                                "DISABLED")
+
+                    </code></scriptExample><scriptExample><title>CreateTurnFeatureClass example 3 (stand-alone Python script)</title><para>The following Python script demonstrates how to use the CreateTurnFeatureClass tool in a stand-alone script.</para><code xml:space="preserve"># Name: CreateTurnFeatureClass_ex03.py
+# Description: Create a new turn feature class associated with a network dataset
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+
+#Check out the Network Analyst extension license
+arcpy.CheckOutExtension("Network")
+
+#Set environment settings
+env.workspace = "C:/data/SanFrancisco.gdb"
+
+#Set local variables
+inFeatureDataset = "Transportation"
+outTurnFeatureClassName = "DelayTurns"
+maxEdges = 3
+inNetworkDataset = inFeatureDataset + "/" + "Streets_ND"
+
+#Create a turn feature class and add it as a turn source by specifying the
+#network dataset
+arcpy.CreateTurnFeatureClass_na(inFeatureDataset,outTurnFeatureClassName,
+                                maxEdges, inNetworkDataset)
+
+print "Script completed successfully."
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,83 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Float to Raster (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a file of binary floating-point values representing raster data to a raster dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Binary</keyword><keyword>Change</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>Flt</keyword><keyword>Hdr</keyword><keyword>Import</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FloatToRaster" displayname="Float to Raster (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts a file of binary floating-point values representing raster data to a raster dataset.</para>
+		</summary><alink_name>FloatToRaster_conversion</alink_name><parameters><param sync="true" name="in_float_file" displayname="Input floating point raster file" datatype="File" direction="Input" expression="in_float_file" type="Required"><pythonReference>
+						<para>The input floating-point binary file.</para>
+						<para> The file must have a .flt extension. There must be a header file in association with the floating-point binary file, with a .hdr extension.</para>
+					</pythonReference><dialogReference>
+						<para>The input floating-point binary file.</para>
+						<para> The file must have a .flt extension. There must be a header file in association with the floating-point binary file, with a .hdr extension.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Required"><pythonReference><para>
+The output raster dataset to be created.</para><para>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for a GRID raster format.</para>
+					</pythonReference><dialogReference><para>
+The output raster dataset to be created.</para><para>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for a GRID raster format.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Pyramid" label="Pyramid">
+					</environment><environment name="Raster_statistics" label="Raster statistics">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Tile_size" label="Tile size">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input file is an IEEE floating-point format, 32-bit signed binary file.</para>
+			</bullet_item><bullet_item>
+				<para>Two inputs are required: the binary floating-point file with a .flt extension (&lt;in_float_file&gt;.flt) and an ASCII header file with a .hdr extension (&lt;in_float_file&gt;.hdr). You only specify the .flt file; however, there needs to be an existing .hdr file in the same directory with the same file name.</para>
+			</bullet_item><bullet_item>
+				<para>The ASCII file consists of header information containing a set of keywords.</para><para>There are two variations  of the structure of the ASCII file.  One identifies the origin by the coordinates of the lower left corner of the lower left cell, or as the center of the lower left cell.</para><para>The format of the file in general  is:</para>    NCOLS xxx
+    NROWS xxx
+    XLLCORNER xxx
+    YLLCORNER xxx
+    CELLSIZE xxx
+    NODATA_VALUE xxx
+    BYTEORDER &lt;MSBFIRST | LSBFIRST&gt;<para>The definitions of the keywords are as follows:</para><bulletList><bullet_item><para>NCOLS and NROWS are the number of columns and rows in the raster defined by the binary file.</para></bullet_item><bullet_item><para>XLLCORNER and XLLCORNER are the coordinates of the lower left corner of the lower left cell.</para><para>You can also use XLLCENTER and XLLCENTER to specify the origin by the coordinates of the center of the lower left cell.</para></bullet_item><bullet_item><para>CELLSIZE is the cell size of the raster.</para></bullet_item><bullet_item><para>NODATA_VALUE is the value that is to represent NoData cells.</para></bullet_item><bullet_item><para>BYTEORDER represents how multibyte binary numbers are stored on the system on which the binary file was generated. On Intel-based systems, the byte order is LSBFIRST (also known as Big Endian). On most other architectures (all UNIX systems  except Alpha, and older Macintosh  with Motorola CPUs), the byte order is MSBFIRST (also known as Little Endian).</para></bullet_item></bulletList>
+			</bullet_item><bullet_item>
+				<para>The NODATA_VALUE is the value in the input file that determines which cells should be assigned the value of NoData in the output raster. NoData is normally reserved for those cells whose true value is unknown.</para>
+			</bullet_item><bullet_item>
+				<para>In a floating-point binary file, the values are written as binary 32-bit signed floating-point numbers. The first record of the file corresponds to the first row of the raster. Going from left to right, the first 32 bits are the first cell, the next 32 bits are the second cell, and so on, to the end of the record (row). This is repeated for the second record (the second row of the raster) and all the way until the last record (the bottom row of the raster).</para>
+			</bullet_item><bullet_item>
+				<para>This tool  supports both the lower left corner and the center of the lower left cell for determining the origin.  only writes the origin as the lower left corner of the lower left cell.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FloatToRaster example 1 (Python window)</title>
+					<para>Converts a file of binary floating-point values representing raster data to a raster dataset.
+</para>
+				<code xml:space="preserve">import arcpy
+arcpy.FloatToRaster_conversion("c:/data/elevation.flt", "c:/output/elev")
+                    </code></scriptExample><scriptExample><title>FloatToRaster example 2 (stand-alone script)</title>
+					<para>Converts a file of binary floating-point values representing raster data to a raster dataset.
+</para>
+				<code xml:space="preserve"># Name: FloatToRaster_Ex_02.py
+# Description: Converts a file of binary floating-point values representing 
+#    raster data to a raster dataset.
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+inASCII = "c:/data/elevation.flt"
+outRaster = "c:/output/elev02"
+
+# Execute FloatToRaster
+arcpy.FloatToRaster_conversion("c:/data/elevation.flt", "c:/output/elev02")
+                    </code></scriptExample></scriptExamples></tool></metadata>

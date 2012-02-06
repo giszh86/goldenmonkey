@@ -1,0 +1,147 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Near 3D (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Determines the distance from each feature in the input features to the nearest features in the near features, within the search radius. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Analysis</keyword><keyword>3D Features</keyword><keyword>3D Geometry</keyword><keyword>Close</keyword><keyword>Distance</keyword><keyword>Near</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Near3D" displayname="Near 3D (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Determines the distance from each feature in the input features to the nearest features in the near features, within the search radius. </para>
+		</summary><alink_name>Near3D_3d</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Features" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature class or layer containing features from which distances are calculated to each feature in the Near Features.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class or layer containing features from which distances are calculated to each feature in the Near Features.</para>
+					</dialogReference></param><param sync="true" name="near_features" displayname="Near Features" datatype="Features" direction="Input" expression="near_features" type="Required"><pythonReference>
+						<para>The feature class or layer containing features from which distances are calculated to the closest feature in the Input Features. If multiple feature classes or layers are specified, an extra field named NEAR_FC will be added to the input feature class to identify which near feature class contains the closest feature.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class or layer containing features from which distances are calculated to the closest feature in the Input Features. If multiple feature classes or layers are specified, an extra field named NEAR_FC will be added to the input feature class to identify which near feature class contains the closest feature.</para>
+					</dialogReference></param><param sync="true" name="search_radius" displayname="Search Radius" datatype="Linear Units" direction="Input" expression="search_radius" type="Optional"><pythonReference>
+						<para>The maximum distance between Input Features and Near Features for which distance and FID will be determined. If no Search Radius is specified, all Near Features will be used.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum distance between Input Features and Near Features for which distance and FID will be determined. If no Search Radius is specified, all Near Features will be used.</para>
+					</dialogReference></param><param sync="true" name="location" displayname="Location" datatype="Boolean" direction="Input" expression="location" type="Optional"><pythonReference>
+						<para>Determines whether six coordinate fields (two sets of x,y,z values) are added to each input feature. The values are the three coordinates of the input feature (NEAR_FROMX, NEAR_FROMY, NEAR_FROMZ), and the three coordinates of the nearest feature (NEAR_X, NEAR_Y, NEAR_Z). The fields NEAR_FID and NEAR_DIST are always added, regardless of the Location option.</para>
+						<bulletList><bullet_item>NO_LOCATION—The x,y, and z coordinates are not saved. This is the default.</bullet_item><bullet_item>LOCATION—The x,y, and z coordinates are saved. Six additional attribute fields are added to each input field.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines whether six coordinate fields (two sets of x,y,z values) are added to each input feature. The values are the three coordinates of the input feature (NEAR_FROMX, NEAR_FROMY, NEAR_FROMZ), and the three coordinates of the nearest feature (NEAR_X, NEAR_Y, NEAR_Z). The fields NEAR_FID and NEAR_DIST are always added, regardless of the Location option.</para>
+						<bulletList>
+							<bullet_item>Unchecked—The x,y, and z coordinates are not saved. This is the default.</bullet_item>
+							<bullet_item>Checked—The x,y, and z coordinates are saved. Six additional attribute fields are added to each input field.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="angle" displayname="Angle" datatype="Boolean" direction="Input" expression="angle" type="Optional"><pythonReference>
+						<para>Determines whether the angles between the input feature and the nearest near feature will be calculated, and stored into the NEAR_ANG_H and NEAR_ANG_V fields. Both angle values are in degrees, where one degree represents 1/360 of a circle, and fractions of a degree are represented as decimal points. Horizontal angles are measured from 180° to -180°; 0° to the east, 90° to the north, 180° (-180°) to the west, and -90° to the south. Vertical angles are zero for horizontal, 90° for straight up, and -90° for straight down.</para>
+						<bulletList><bullet_item>NO_ANGLE—The angle will not be saved. This is the default.</bullet_item><bullet_item>ANGLE—The angles will be added to the result and the fields will be created if they don't already exist.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines whether the angles between the input feature and the nearest near feature will be calculated, and stored into the NEAR_ANG_H and NEAR_ANG_V fields. Both angle values are in degrees, where one degree represents 1/360 of a circle, and fractions of a degree are represented as decimal points. Horizontal angles are measured from 180° to -180°; 0° to the east, 90° to the north, 180° (-180°) to the west, and -90° to the south. Vertical angles are zero for horizontal, 90° for straight up, and -90° for straight down. </para>
+						<bulletList>
+							<bullet_item>Unchecked—The angle will not be saved. This is the default.</bullet_item>
+							<bullet_item>Checked—The angles will be added to the result and the fields will be created if they don't already exist.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="delta" displayname="Deltas" datatype="Boolean" direction="Input" expression="delta" type="Optional"><pythonReference>
+						<para>Determines whether the distances along the primary axes between the input feature and the nearest near feature will be calculated, and stored into the NEAR_DELTX, NEAR_DELTY, and NEAR_DELTZ fields.</para>
+						<bulletList><bullet_item>NO_DELTA—No deltas will be calculated. This is the default.</bullet_item><bullet_item>DELTA—Deltas will be calculated. Three additional fields named NEAR_DELTX, NEAR_DELTY, and NEAR_DELTZ will be added to the result. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines whether the distances along the primary axes between the input feature and the nearest near feature will be calculated, and stored into the NEAR_DELTX, NEAR_DELTY, and NEAR_DELTZ fields.</para>
+						<bulletList>
+							<bullet_item>Unchecked—No deltas will be calculated. This is the default.</bullet_item>
+							<bullet_item>Checked— Deltas will be calculated. Three additional fields named NEAR_DELTX, NEAR_DELTY, and NEAR_DELTZ will be added to the result. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item><para> The input feature class and the near feature class(es) can be any simple geometry type.  They must all have z values.</para><bulletList><bullet_item>Point </bullet_item><bullet_item>Polyline </bullet_item><bullet_item>Polygon</bullet_item><bullet_item>Multipoint</bullet_item><bullet_item>Multipatch</bullet_item></bulletList></bullet_item><bullet_item><para> The Near Features can include one or more feature classes of different shape types.</para></bullet_item><bullet_item><para>The Near Features can be the same dataset as the Input Features. When an input feature's nearest Near Feature is itself (distance is 0), this feature is ignored and the next nearest feature is found.</para></bullet_item><bullet_item><para>The basic difference between the  tool and the Near 3D tool
+is that the Near 3D tool works with 3D features instead of 2D
+features. Furthermore, the distances which are compared by the Near
+3D tool are the 3D (slope) distances, rather than the horizontal
+distances. A number of additional fields can be output as well.</para>
+			</bullet_item><bullet_item><para> The angle fields will only be created/populated if you check the Angle checkbox.</para></bullet_item><bullet_item><para>The Input Features can be a layer on which you have performed a selection. The selected features will be used during the execution of the tool.</para></bullet_item><bullet_item><para>The Near tool adds a number of analysis fields to the Input Features attribute table (if the field already exists, the value is updated). These include:</para><bulletList><bullet_item> NEAR_FID: The FID of the nearest Near feature.</bullet_item><bullet_item>NEAR_DIST: The 2D distance (horizontal distance) between the nearest point on an input feature and the nearest point on the nearest Near feature.</bullet_item><bullet_item>NEAR_DIST3: The 3D distance (slope distance) between the nearest
+point on an input feature and the nearest point on the nearest Near
+feature.</bullet_item><bullet_item>NEAR_DELTX: The distance along the X axis from the nearest point
+on the input feature to the nearest point on the nearest Near
+feature.</bullet_item><bullet_item>NEAR_DELTY: The distance along the Y axis from the nearest point
+on the input feature to the nearest point on the nearest Near
+feature.</bullet_item><bullet_item>NEAR_DELTZ: The distance along the Z axis from the nearest point
+on the input feature to the nearest point on the nearest Near
+feature.</bullet_item><bullet_item>NEAR_FROMX: The X coordinate of the nearest point on the input
+feature nearest to the nearest point on the nearest Near
+feature.</bullet_item><bullet_item>NEAR_FROMY: The Y coordinate of the nearest point on the input
+feature nearest to the nearest point on the nearest Near
+feature.</bullet_item><bullet_item>NEAR_FROMZ: The Z coordinate of the nearest point on the input
+feature nearest to the nearest point on the nearest Near
+feature.</bullet_item><bullet_item>NEAR_X: The X coordinate of the nearest point on the nearest
+Near feature, or of the nearest imaginary point along the nearest
+Near feature.</bullet_item><bullet_item>NEAR_Y: The Y coordinate of the nearest point on the nearest
+Near feature, or of the nearest imaginary point along the nearest
+Near feature.</bullet_item><bullet_item>NEAR_Z: The Z coordinate of the nearest point on the nearest
+Near feature, or of the nearest imaginary point along the nearest
+Near feature.</bullet_item><bullet_item>NEAR_ANG_H: The horizontal geographic angle (north azimuth), in
+degrees, between the nearest point on the input feature and the
+nearest point on the nearest Near feature. It is the same system as
+used by the older Near tool; it is not an azimuth or a bearing. Due
+east is zero; northeast is 45; due north is 90, due south is -90,
+and due west is 180 or -180. This value disregards elevation.</bullet_item><bullet_item>NEAR_ANG_V: The vertical angle (a.k.a. the elevation angle, or
+angle of elevation), in degrees, from the nearest point on the
+input feature to the nearest point on the nearest Near feature.
+Horizontal is zero; straight up is 90; straight down is -90; up at
+10 degrees above horizontal is 10.</bullet_item><bullet_item>NEAR_FC: The pathname of the feature class containing the
+nearest Near feature. This field is only added when multiple Near
+Features are specified.</bullet_item></bulletList>
+			</bullet_item><bullet_item><para>The values for NEAR_FID, NEAR_DIST and NEAR_DIST3 will be -1 if no match is found within the Search Radius.</para></bullet_item><bullet_item><para> The NEAR_DELTX, NEAR_DELTY, and NEAR_DELTZ fields will only be created/populated if you check the Delta checkbox.</para></bullet_item><bullet_item><para>The NEAR_FROMX, NEAR_FROMY, NEAR_FROMZ, NEAR_X, NEAR_Y, and NEAR_Z fields will only be created/populated if you check the Location checkbox.</para></bullet_item></usage><scriptExamples><scriptExample><title>Near 3D Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Near 3D
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.Near3D_3d("points_3D.shp", "buildings_multipatch.shp", "30", "LOCATION", "ANGLE", "DELTA")
+                    </code></scriptExample><scriptExample><title>Near 3D Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Near 3D
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: Near3D Example
+# Description: The following stand-alone script demonstrates how to use 
+#              the Near3D tool to identify the nearest z-aware features
+#              that satisfy the results from a queried feature.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+inFC = "homes.shp"
+nearFC = "radiotowers.shp"
+
+# Set Script Variables
+# Query the field "MATERIAL" for the string 'Reinforced Concrete'
+SQL_Expression = "'"'MATERIAL'"' = 'Reinforced Concrete'" 
+# See the 'Building an SQL expression' topic for more information
+
+
+try:
+    #Execute Make Feature Layer
+    arcpy.MakeFeatureLayer_management(nearFC, "Near Layer", SQL_Expression)    
+    result = arcpy.GetCount_management("Near Layer")
+    if int(result.getOutput(0)) == 0:
+        print nearFC + " has no features that satisfy the query: " + SQL_Expression
+    else:
+        #Execute Near3D
+        arcpy.Near3D_3d(inFC, "nearLayer", "", "LOCATION", "ANGLE", )
+except:
+    # By default any other errors will be caught here
+    print arcpy.GetMessages(2)
+
+del arcpy, inFC, nearFC, SQL_Expression
+                    </code></scriptExample></scriptExamples></tool></metadata>

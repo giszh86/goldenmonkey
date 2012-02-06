@@ -1,0 +1,65 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">TIN Slope (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Extracts slope information from an input TIN into an output feature class.</para>
+			<para>Produces a polygon feature class whose polygons are determined by the input TIN's triangle slope values.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here to view archived documentation. This functionality has been added to the Surface Slope tool.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TinSlope" displayname="TIN Slope (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Extracts slope information from an input TIN into an output feature class.</para>
+			<para>Produces a polygon feature class whose polygons are determined by the input TIN's triangle slope values.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here to view archived documentation. This functionality has been added to the Surface Slope tool.</para>
+			
+		</summary><alink_name>TinSlope_3d</alink_name><parameters><param sync="true" name="in_tin" displayname="Input TIN" datatype="Tin Layer" direction="Input" expression="in_tin" type="Required"><pythonReference>
+						<para>The input TIN.</para>
+					</pythonReference><dialogReference>
+						<para>The input TIN.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class.</para>
+					</dialogReference></param><param sync="true" name="units" displayname="Slope Units" datatype="String" direction="Input" expression="units" type="Optional"><pythonReference>
+						<para>The units of measure for the slope values. Units are honored when a class breaks table is used.</para>
+					</pythonReference><dialogReference>
+						<para>The units of measure for the slope values. Units are honored when a class breaks table is used.</para>
+					</dialogReference></param><param sync="true" name="class_breaks_table" displayname="Class Breaks Table" datatype="Table" direction="Input" expression="class_breaks_table" type="Optional"><pythonReference>
+						<para>An input table containing the classification breaks that will be used to classify the output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>An input table containing the classification breaks that will be used to classify the output feature class. A comma-delimited text file is required for a class breaks table.</para>
+					</dialogReference></param><param sync="true" name="slope_field" displayname="Slope Field" datatype="String" direction="Input" expression="slope_field" type="Optional"><pythonReference>
+						<para>The field containing slope values.</para>
+					</pythonReference><dialogReference>
+						<para>The field containing slope values.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>The factor applied to the slope calculation to convert the TIN's z units to x and y units. By default, the z-factor is 1.</para>
+					</pythonReference><dialogReference>
+						<para>The factor applied to the slope calculation to convert the TIN's z units to x and y units. By default, the z-factor is 1.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Use {class_breaks_table} to constrain slope information into specific break intervals of the output feature class.</para>
+			</bullet_item><bullet_item>
+				<para>Use a comma-delimited TXT or DBF file for a class breaks table. The table requires one column for class break values and, optionally, a second column of class codes. Also, the table needs a header row so that the first row of true data is not skipped. An example is illustrated in the following link: .</para>
+			</bullet_item><bullet_item>
+				<para>Units are only honored when using a class breaks table.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TIN Slope Example (Python window)</title><para>The following Python Window script demonstrates how to use the TIN Slope
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcgisscripting
+gp = arcgisscripting.create()
+
+gp.CheckOutExtension("3D")
+gp.workspace = "C:/data"
+gp.TinSlope_3d("tin", "slope.shp")
+                    </code></scriptExample></scriptExamples></tool></metadata>

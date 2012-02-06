@@ -1,0 +1,57 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Alter Version (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Alters the database version's properties of name, description, and access permissions.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Access</keyword><keyword>Alternative</keyword><keyword>Change</keyword><keyword>Description</keyword><keyword>Edit</keyword><keyword>Geodatabase</keyword><keyword>Multiple</keyword><keyword>Name</keyword><keyword>Owner</keyword><keyword>Permission</keyword><keyword>Private</keyword><keyword>Protect</keyword><keyword>Public</keyword><keyword>Read</keyword><keyword>Sde</keyword><keyword>State</keyword><keyword>User</keyword><keyword>View</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AlterVersion" displayname="Alter Version (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Alters the database version's properties of name, description, and access permissions.</para>
+		</summary><alink_name>AlterVersion_management</alink_name><parameters><param sync="true" name="in_workspace" displayname="Input Workspace" datatype="Workspace" direction="Input" expression="in_workspace" type="Required"><pythonReference>
+						<para>The ArcSDE geodatabase where the version to be altered is located.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcSDE geodatabase where the version to be altered is located.</para>
+					</dialogReference></param><param sync="true" name="in_version" displayname="Input Version" datatype="String" direction="Input" expression="in_version" type="Required"><pythonReference>
+						<para>Name of the version to be altered.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the version to be altered.</para>
+					</dialogReference></param><param sync="true" name="name" displayname="Version Name" datatype="String" direction="Input" expression="name" type="Optional"><pythonReference>
+						<para>The new name of the version.</para>
+					</pythonReference><dialogReference>
+						<para>The new name of the version.</para>
+					</dialogReference></param><param sync="true" name="description" displayname="Version Description" datatype="String" direction="Input" expression="description" type="Optional"><pythonReference>
+						<para>The new description for the version.</para>
+					</pythonReference><dialogReference>
+						<para>The new description for the version.</para>
+					</dialogReference></param><param sync="true" name="access" displayname="Access Permission" datatype="String" direction="Input" expression="access" type="Optional"><pythonReference>
+						<para>Set/Change the access permissions.</para>
+						<bulletList><bullet_item>PRIVATE—Only the owner may view the version and modify available feature classes. This is the default.</bullet_item><bullet_item>PUBLIC—
+Any user may view the version and modify available feature classes.
+</bullet_item><bullet_item>PROTECTED—Any user may view the version, but only the owner may modify available feature classes.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Set/Change the access permissions.</para>
+						<bulletList><bullet_item>PRIVATE—Only the owner may view the version and modify available feature classes. This is the default.</bullet_item><bullet_item>PUBLIC—
+Any user may view the version and modify available feature classes.
+</bullet_item><bullet_item>PROTECTED—Any user may view the version, but only the owner may modify available feature classes.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+Versioning tools only work with ArcSDE data.  Personal and file geodatabases do not support versioning. 
+</bullet_item><bullet_item>
+Versions are not affected by changes occurring in other versions of the database.
+</bullet_item><bullet_item>
+A version's permission can only be changed by its owner.
+</bullet_item><bullet_item>
+				<para>Versions can only be created and edited with the ArcEditor and ArcInfo license levels.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title>
+					<para>
+The following stand-alone python script uses the Alter Version Goeprocessing Tool to alter a version.
+</para>
+				<code xml:space="preserve"># Name: AlterVersion_Example.py
+# Description: Changes the name of a version
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+inWorkspace = "Database Connections/ninefour@gdb.sde"
+versionName = "myVersion"
+newName = "myVersion2"
+
+# Execute AlterVersion
+arcpy.AlterVersion_management(inWorkspace, versionName, newName, "#", "PUBLIC")
+                    </code></scriptExample></scriptExamples></tool></metadata>

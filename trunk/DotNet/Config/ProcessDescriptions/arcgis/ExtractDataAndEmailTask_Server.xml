@@ -1,0 +1,133 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Extract Data and Email Task (Server)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Extracts the data in the specified layers and area of interest to the selected format and spatial reference, zips the data, and emails it to the specified address. This tool can be used to create a Data Extraction geoprocessing service. </para>
+			
+				<para> This tool is intended primarily for use as a part of a geoprocessing service. When using this tool as a part of a geoprocessing service, copy the tool into a custom toolbox, edit the model, and reconfigure it as necessary. It is important to note that this tool will not work unless you open and edit the model's unexposed input parameter options before publishing the model as a service.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" ExtractDataAndEmailTask " displayname=" Extract Data and Email Task (Server)" toolboxalias="Server" softwarerestriction="none"><summary>
+			<para> Extracts the data in the specified layers and area of interest to the selected format and spatial reference, zips the data, and emails it to the specified address. This tool can be used to create a Data Extraction geoprocessing service. </para>
+			
+				<para> This tool is intended primarily for use as a part of a geoprocessing service. When using this tool as a part of a geoprocessing service, copy the tool into a custom toolbox, edit the model, and reconfigure it as necessary. It is important to note that this tool will not work unless you open and edit the model's unexposed input parameter options before publishing the model as a service.</para>
+			
+		</summary><alink_name> ExtractDataAndEmailTask _Server</alink_name><parameters><param sync="true" name="Layers_to_Clip" displayname="Layers to Clip" datatype="Layer" direction="Input" expression="[Layers_to_Clip,...]" type="Required"><pythonReference>
+						<para> The Layers to be clipped. Layers should be either feature or raster layers. </para>
+					</pythonReference><dialogReference>
+						<para> The Layers to be clipped. Layers should be either feature or raster layers. </para>
+					</dialogReference></param><param sync="true" name="Area_of_Interest" displayname="Area of Interest" datatype="Feature Set" direction="Input" expression="Area_of_Interest" type="Required"><pythonReference>
+						<para> The area by which the layers will be clipped. </para>
+					</pythonReference><dialogReference>
+						<para> The area by which the layers will be clipped. </para>
+					</dialogReference></param><param sync="true" name="Feature_Format" displayname="Feature Format" datatype="String" direction="Input" expression="Feature_Format" type="Required"><pythonReference>
+						<para> The format in which the output features will be delivered. The string provided in the Feature Format parameter should be formatted as follows:<bulletList>
+								<bullet_item> Name or format - Short Name - extension (if any). </bullet_item>
+							</bulletList><para>The hyphen between the components is required, as well as the spaces around the hyphen.</para></para>
+						<para>For Example:<bulletList>
+								<bullet_item>File Geodatabase - GDB - .gdb</bullet_item>
+								<bullet_item>Shapefile - SHP - .shp</bullet_item>
+								<bullet_item>Autodesk AutoCAD - DXF_R2007 - .dxf </bullet_item>
+								<bullet_item>Autodesk AutoCAD - DWG_R2007 - .dwg</bullet_item>
+								<bullet_item>Bentley Microstation Design (V8) - DGN_V8 - .dgn</bullet_item>
+							</bulletList></para>
+						<para> Internally, this tool uses the Export to CAD tool to convert data to the .dgn, .dwg, and .dxf CAD formats. The list of short names supported includes DGN_V8, DWG_R14, DWG_R2000, DWG_R2004, DWG_R2005, DWG_R2006,
+DWG_R2007, DWG_R2010, DXF_R14, DXF_R2000, DXF_R2004, DXF_R2005,
+DXF_R2006, DXF_R2007, and DXF_R2010.</para>
+						<para>Exporting to non-default formats is supported using Quick Export Tool and that requires the Data Interoperability extension be installed. The Data Interoperability extension is not installed by default with ArcGIS Desktop or ArcGIS Server. If you have the Data Interoperability extension installed, here are the instructions to add another format to the default listadd, remove or modify default list</para></pythonReference><dialogReference>
+						<para> The format in which the output features will be delivered. The string provided in the Feature Format parameter should be formatted as follows:<bulletList>
+								<bullet_item> Name or format - Short Name - extension (if any). </bullet_item>
+							</bulletList><para>The hyphen between the components is required, as well as the spaces around the hyphen.</para></para>
+						<para>For Example:<bulletList>
+								<bullet_item>File Geodatabase - GDB - .gdb</bullet_item>
+								<bullet_item>Shapefile - SHP - .shp</bullet_item>
+								<bullet_item>Autodesk AutoCAD - DXF_R2007 - .dxf </bullet_item>
+								<bullet_item>Autodesk AutoCAD - DWG_R2007 - .dwg</bullet_item>
+								<bullet_item>Bentley Microstation Design (V8) - DGN_V8 - .dgn</bullet_item>
+							</bulletList></para>
+						<para> Internally, this tool uses the Export to CAD tool to convert data to the .dgn, .dwg, and .dxf CAD formats. The list of short names supported includes DGN_V8, DWG_R14, DWG_R2000, DWG_R2004, DWG_R2005, DWG_R2006,
+DWG_R2007, DWG_R2010, DXF_R14, DXF_R2000, DXF_R2004, DXF_R2005,
+DXF_R2006, DXF_R2007, and DXF_R2010.</para>
+						<para>Exporting to non-default formats is supported using Quick Export Tool and that requires the Data Interoperability extension be installed. The Data Interoperability extension is not installed by default with ArcGIS Desktop or ArcGIS Server. If you have the Data Interoperability extension installed, here are the instructions to add another format to the default listadd, remove or modify default list</para></dialogReference></param><param sync="true" name="Raster_Format" displayname="Raster Format" datatype="String" direction="Input" expression="Raster_Format" type="Required"><pythonReference>
+						<para> The format in which the output raster datasets will be delivered. The string provided in the Raster Format parameter should be formatted as follows:<bulletList>
+								<bullet_item>Name of format - Short Name - extension (if any)</bullet_item>
+							</bulletList></para>
+						<para>Any of the following strings will work:<bulletList>
+								<bullet_item>ESRI GRID - GRID</bullet_item>
+								<bullet_item>File Geodatabase - GDB - .gdb</bullet_item>
+								<bullet_item>ERDAS IMAGINE - IMG - .img</bullet_item>
+								<bullet_item>Tagged Image File Format - TIFF - .tif</bullet_item>
+								<bullet_item>Portable Network Graphics - PNG - .png</bullet_item>
+								<bullet_item>Graphic Interchange Format - GIF - .gif</bullet_item>
+								<bullet_item>Joint Photographics Experts Group - JPEG - .jpg</bullet_item>
+								<bullet_item>Joint Photographics Experts Group - JPEG - .jp2</bullet_item>
+								<bullet_item>Bitmap - BMP - .bmp</bullet_item>
+							</bulletList>
+								<para>Some of the above raster formats have limitations and not all data can be converted to the format. For a list of formats and their limitations please read Technical Specifications for Raster Datasets</para>
+							</para></pythonReference><dialogReference>
+						<para> The format in which the output raster datasets will be delivered. The string provided in the Raster Format parameter should be formatted as follows:<bulletList>
+								<bullet_item>Name of format - Short Name - extension (if any)</bullet_item>
+							</bulletList></para>
+						<para>Any of the following strings will work:<bulletList>
+								<bullet_item>ESRI GRID - GRID</bullet_item>
+								<bullet_item>File Geodatabase - GDB - .gdb</bullet_item>
+								<bullet_item>ERDAS IMAGINE - IMG - .img</bullet_item>
+								<bullet_item>Tagged Image File Format - TIFF - .tif</bullet_item>
+								<bullet_item>Portable Network Graphics - PNG - .png</bullet_item>
+								<bullet_item>Graphic Interchange Format - GIF - .gif</bullet_item>
+								<bullet_item>Joint Photographics Experts Group - JPEG - .jpg</bullet_item>
+								<bullet_item>Joint Photographics Experts Group - JPEG - .jp2</bullet_item>
+								<bullet_item>Bitmap - BMP - .bmp</bullet_item>
+							</bulletList>
+								<para>Some of the above raster formats have limitations and not all data can be converted to the format. For a list of formats and their limitations please read Technical Specifications for Raster Datasets</para>
+							</para></dialogReference></param><param sync="true" name="To" displayname="To" datatype="String" direction="Input" expression="To" type="Required"><pythonReference>
+						<para> The email address of the recipient. </para>
+						
+							<para>This tool will be able to email to this address if and only if the SMTP server has been configured within this model.</para>
+						
+					</pythonReference><dialogReference>
+						<para> The email address of the recipient. </para>
+						
+							<para>This tool will be able to email to this address if and only if the SMTP server has been configured within this model.</para>
+						
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>This tool will not function correctly unless it is edited and the email server is configured. To configure the email server settings, do the following:
+						<bullet_item>Right-click a copied version of this model and select Edit. The model window should appear.</bullet_item>
+						<bullet_item>Doubleclick the  in the model. The input dialog box for the tool should appear.</bullet_item>
+						<bullet_item>Enter values for From, Subject, Text, Max File Size, and SMTP Email Server. Hit OK to persist the values you entered in the model.</bullet_item>
+						<bullet_item>Save and exit the model.</bullet_item>
+					</para>
+				
+					<para> The above illustration shows the model after the unexposed input parameters are edited. Copy the original model from the Server Tools toolbox to your own custom toolbox before making any changes. </para>
+				
+			</bullet_item><bullet_item>
+				<para>The drop-down for the Feature and Raster Format parameters contain lists of default formats. These default formats are set from the Value List filter on the Parameters tab of the Model Properties. </para></bullet_item><bullet_item>
+				<para>You can add, modify or remove the list of formats for either the Feature Format parameter or the Raster Format parameter: </para>
+				<para>
+					
+						<bullet_item>Right-click a copied version of this tool and select  Properties.</bullet_item>
+						<bullet_item>In the properties dialog box that appears, click the Parameters tab.</bullet_item>
+						<bullet_item>Find the parameter of interest in the table of parameters. On the right side of the table click 
+								
+								
+							 to bring up its value list. The set of default formats should be listed.</bullet_item>
+						<bullet_item>Add, modify, or remove formats from the list as desired. The string you provide needs to be delimited in the following way: Name of format - Short Name - Extension.</bullet_item>
+						<bullet_item> Click OK to apply the changes and exit.</bullet_item>
+					
+				</para>
+				
+					<para>Copy this model to your own custom toolbox before making any changes.</para>
+				
+			</bullet_item><bullet_item>
+				<para> Internally, the  tool uses the  tool to convert data to the .dgn, .dwg, and .dxf CAD formats. Each of these formats is in the default list and exports to the latest version of that file type. To change the version, edit the "Short Name" in the values list. For example, to use DXF R2005 rather than DXF R2007, change the Short Name to DXF_R2005, like this:</para>
+				<para>
+					<bulletList>
+						<bullet_item>Change the string from Autodesk AutoCAD - DXF_R2007 - .dxf to Autodesk AutoCAD - DXF_R2005 - .dxf</bullet_item>
+					</bulletList>
+				</para>
+				<para>The list of short names can be found in the  tool.</para>
+			</bullet_item><bullet_item>
+				<para> By default, all supported raster formats are in the drop-down list of raster formats. </para>
+				
+					<para>There are limitations to some of the formats such that the software will not be able to convert to the format specified. For more details on the limitations of the various raster formats, please read .</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title></title>
+					
+				<code xml:space="preserve">
+                    </code></scriptExample></scriptExamples></tool></metadata>

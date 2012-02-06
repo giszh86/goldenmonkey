@@ -1,0 +1,99 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Thiessen Polygons (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates Thiessen polygons from point input features.</para>
+			<para>Each Thiessen polygon contains only a single point input feature. Any location within a Thiessen polygon is closer to its associated point than to any other point input feature.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Adjacent</keyword><keyword>Area</keyword><keyword>Associate</keyword><keyword>Boundary</keyword><keyword>Close</keyword><keyword>Delaunay</keyword><keyword>Distance</keyword><keyword>Divide</keyword><keyword>Euclidean</keyword><keyword>Far</keyword><keyword>Inside</keyword><keyword>Near</keyword><keyword>Neighbor</keyword><keyword>Proximal</keyword><keyword>Region</keyword><keyword>Theissen</keyword><keyword>Voronoi</keyword><keyword>Within</keyword><keyword>Zone</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateThiessenPolygons" displayname="Create Thiessen Polygons (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Creates Thiessen polygons from point input features.</para>
+			<para>Each Thiessen polygon contains only a single point input feature. Any location within a Thiessen polygon is closer to its associated point than to any other point input feature.</para>
+		</summary><alink_name>CreateThiessenPolygons_analysis</alink_name><toolIllust type="illustration" src="CreateThiessenPolygons_analysis_h.jpg" alt="Thiessen illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The point input features from which Thiessen polygons will be generated.</para>
+					</pythonReference><dialogReference>
+						<para>The point input features from which Thiessen polygons will be generated.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class containing the Thiessen polygons that are generated from the point input features.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class containing the Thiessen polygons that are generated from the point input features.</para>
+					</dialogReference></param><param sync="true" name="fields_to_copy" displayname="Output Fields" datatype="String" direction="Input" expression="fields_to_copy" type="Optional"><pythonReference>
+						<para>Determines which attributes from the point input features will be transferred to the output feature class.</para>
+						<bulletList><bullet_item>ONLY_FID—Only the FID field from the input features will be transferred to the output feature class. This is the default. </bullet_item><bullet_item>ALL—All attributes from the input features will be transferred to the output feature class. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines which attributes from the point input features will be transferred to the output feature class.</para>
+						<bulletList><bullet_item>ONLY_FID—Only the FID field from the input features will be transferred to the output feature class. This is the default. </bullet_item><bullet_item>ALL—All attributes from the input features will be transferred to the output feature class. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Geograpic_transformations" label="Geograpic transformations">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3"></environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is used to divide the area covered by the point input features into Thiessen or proximal zones. These zones represent full areas where any location within the zone is closer to its associated input point than to any other input point.</para>
+			</bullet_item><bullet_item>
+				
+					<para>The theoretical background for creating Thiessen polygons is as follows:</para>
+					<bulletList>
+						<bullet_item>Where <italics>S</italics> is a set of points in coordinate or Euclidean space (x,y), for any point <italics>p</italics> in that space, there is one point of <italics>S</italics> closest to <italics>p</italics>, except where point <italics>p</italics> is equidistant to two or more points of <italics>S</italics>. </bullet_item>
+						<bullet_item>A single proximal polygon (Voronoi cell) is defined by all points <italics>p</italics> closest to a single point in <italics>S</italics>, that is, the total area in which all points <italics>p</italics> are closer to a given point in <italics>S</italics> than to any other point in <italics>S</italics>.</bullet_item>
+					</bulletList>
+				
+			</bullet_item><bullet_item>
+				<para>Thiessen proximal polygons are constructed as follows:</para>
+				<bulletList>
+					<bullet_item>All points are triangulated into a triangulated irregular network (TIN) that meets the Delaunay criterion.</bullet_item>
+					<bullet_item>The perpendicular bisectors for each triangle edge are generated, forming the edges of the Thiessen polygons. The location at which the bisectors intersect determine the locations of the Thiessen polygon vertices.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>The outside boundary of the output Thiessen polygon feature class is the extent of the point input features plus an additional 10%. If the  environment is set to a specific extent window, this tool  tool will use the environment setting to set its outside boundary.</para>
+			</bullet_item><bullet_item>
+				
+					<para>This tool may produce unexpected results with data in a geographic coordinate system since the Delaunay triangulation method used by the tool works best with data in a projected coordinate system. </para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateThiessenPolygons Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the CreateThiessenPolygons tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data/data.gdb"
+arcpy.CreateThiessenPolygons_analysis("schools", "c:/output/output.gdb/thiessen1", "ALL")
+                    </code></scriptExample><scriptExample><title>CreateThiessenPolygons Example 2 (Stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the CreateThiessenPolygons function.</para>
+				<code xml:space="preserve">
+# Name: CreateThiessenPolygons_Example2.py
+# Description: Create symmetrical difference between input and update features
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data/data.gdb"
+ 
+# Set local variables
+inFeatures = "schools"
+outFeatureClass = "c:/output/output.gdb/thiessen1"
+outFields = "ALL"
+ 
+# Execute CreateThiessenPolygons
+arcpy.CreateThiessenPolygons_analysis(inFeatures, outFeatureClass, outFields)
+                    </code></scriptExample></scriptExamples></tool></metadata>

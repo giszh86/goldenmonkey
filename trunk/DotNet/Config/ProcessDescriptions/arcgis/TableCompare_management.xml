@@ -1,0 +1,99 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Table Compare (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Compares two tables or table views and returns the comparison results. This tool can report differences and similarities with tabular values and field definitions.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Base</keyword><keyword>Definition</keyword><keyword>Difference</keyword><keyword>Different</keyword><keyword>Field</keyword><keyword>Find</keyword><keyword>Identical</keyword><keyword>Properties</keyword><keyword>Schema</keyword><keyword>Search</keyword><keyword>Similar</keyword><keyword>Tabular</keyword><keyword>Test</keyword><keyword>Value</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TableCompare" displayname="Table Compare (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Compares two tables or table views and returns the comparison results. This tool can report differences and similarities with tabular values and field definitions.</para>
+		</summary><alink_name>TableCompare_management</alink_name><parameters><param sync="true" name="in_base_table" displayname="Input Base Table" datatype="Table View; Raster Layer" direction="Input" expression="in_base_table" type="Required"><pythonReference>
+						<para>The Input Base Table is compared with the Input Test Table. The Input Base Table refers to tabular data that you have declared valid. This base data has the correct field definitions and attribute values.</para>
+					</pythonReference><dialogReference>
+						<para>The Input Base Table is compared with the Input Test Table. The Input Base Table refers to tabular data that you have declared valid. This base data has the correct field definitions and attribute values.</para>
+					</dialogReference></param><param sync="true" name="in_test_table" displayname="Intput Test Table" datatype="Table View ; Raster Layer" direction="Input" expression="in_test_table" type="Required"><pythonReference>
+						<para>The Input Test Table is compared against the Input Base Table. The Input Test Table refers to data that you have made changes to by editing or compiling new fields, new records, or new attribute values.</para>
+					</pythonReference><dialogReference>
+						<para>The Input Test Table is compared against the Input Base Table. The Input Test Table refers to data that you have made changes to by editing or compiling new fields, new records, or new attribute values.</para>
+					</dialogReference></param><param sync="true" name="sort_field" displayname="Sort Field" datatype="Field" direction="Input" expression="[sort_field,...]" type="Optional"><pythonReference>
+						<para>The field or fields used to sort records in the Input Base Table and the Input Test Table. The records are sorted in ascending order. Sorting by a common field in both the Input Base Table and the Input Test Table ensures that you are comparing the same row from each input dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The field or fields used to sort records in the Input Base Table and the Input Test Table. The records are sorted in ascending order. Sorting by a common field in both the Input Base Table and the Input Test Table ensures that you are comparing the same row from each input dataset.</para>
+					</dialogReference></param><param sync="true" name="compare_type" displayname="Compare Type" datatype="String" direction="Input" expression="compare_type" type="Optional"><pythonReference>
+						<para>The comparison type. ALL is the default. The default will compare all properties of the tables being compared.</para>
+						<bulletList><bullet_item>ALL —Compare all properties. This is the default.</bullet_item><bullet_item>ATTRIBUTES_ONLY —Only compare the attributes and their values.</bullet_item><bullet_item>SCHEMA_ONLY —Only compare the schema.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The comparison type. ALL is the default. The default will compare all properties of the tables being compared.</para>
+						<bulletList><bullet_item>ALL —Compare all properties. This is the default.</bullet_item><bullet_item>ATTRIBUTES_ONLY —Only compare the attributes and their values.</bullet_item><bullet_item>SCHEMA_ONLY —Only compare the schema.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="ignore_options" displayname="Ignore Options" datatype="String" direction="Input" expression="ignore_options" type="Optional"><pythonReference>
+						<para>These properties will not be compared during comparison.</para>
+						<bulletList><bullet_item>IGNORE_EXTENSION_PROPERTIES—Do not compare extension properties.</bullet_item><bullet_item>IGNORE_SUBTYPES—Do not compare subtypes.</bullet_item><bullet_item>IGNORE_RELATIONSHIPCLASSES—Do not compare Relationship classes.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>These properties will not be compared during comparison.</para>
+						<bulletList><bullet_item>IGNORE_EXTENSION_PROPERTIES—Do not compare extension properties.</bullet_item><bullet_item>IGNORE_SUBTYPES—Do not compare subtypes.</bullet_item><bullet_item>IGNORE_RELATIONSHIPCLASSES—Do not compare Relationship classes.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="attribute_tolerances" displayname="Attribute Tolerance" datatype="Value Table" direction="Input" expression="[[Field, {Tolerance}],...]" type="Optional"><pythonReference>
+						<para>The numeric value that determines the range in which attribute values are considered equal. This only applies to numeric field types.</para>
+					</pythonReference><dialogReference>
+						<para>The numeric value that determines the range in which attribute values are considered equal. This only applies to numeric field types.</para>
+					</dialogReference></param><param sync="true" name="omit_field" displayname="Omit Fields" datatype="Field" direction="Input" expression="[omit_field,...]" type="Optional"><pythonReference>
+						<para>The field or fields that will be omitted during comparison. The field definitions and the tabular values for these fields will be ignored.</para>
+					</pythonReference><dialogReference>
+						<para>The field or fields that will be omitted during comparison. The field definitions and the tabular values for these fields will be ignored.</para>
+					</dialogReference></param><param sync="true" name="continue_compare" displayname="Continue Comparison" datatype="Boolean" direction="Input" expression="continue_compare" type="Optional"><pythonReference>
+						<para>Indicates whether to compare all properties after encountering the first mismatch.</para>
+						<bulletList><bullet_item>NO_CONTINUE_COMPARE—Stop after encountering the first mismatch. This is the default. </bullet_item><bullet_item>CONTINUE_COMPARE—Compare other properties after encountering the first mismatch. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether to compare all properties after encountering the first mismatch.<bulletList>
+								<bullet_item>Unchecked—Stop after encountering the first mismatch. This is the default.</bullet_item>
+								<bullet_item>Checked—Compare other properties after encountering the first mismatch.</bullet_item>
+							</bulletList></para>
+					</dialogReference></param><param sync="true" name="out_compare_file" displayname="Output Compare File" datatype="File" direction="Output" expression="out_compare_file" type="Optional"><pythonReference>
+						<para>This file will contain all similarities and differences between the Input Base Table and the Input Test Table. This file is a comma-delimited text file which can be viewed and used as a table in ArcGIS.</para>
+					</pythonReference><dialogReference>
+						<para>This file will contain all similarities and differences between the Input Base Table and the Input Test Table. This file is a comma-delimited text file which can be viewed and used as a table in ArcGIS.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para>The tool returns messages showing the comparison result. By default, the tool will stop executing after encountering the first miscompare. To report all differences, set the continue compare option to true.</para>
+			</bullet_item><bullet_item>
+				<para>Multiple sort fields may be specified. Both the Input Base Table and Input Test Table are sorted based on the fields you specify.  The first field is sorted, then the second field, and so on, in ascending order. Sorting by a common field in both the base and test table ensures that you are comparing the same row from each input dataset.</para>
+			</bullet_item><bullet_item>
+				<para>By default the compare type is set to ALL. This means all properties of the tables being compared will be checked, including such things as field properties and attributes. However, you may choose a different compare type to check only specific properties of the tables being compared.</para>
+			</bullet_item><bullet_item>
+				<para>The Ignore Options provide the flexibility to omit properties from the comparison. These properties include extension properties, , and . </para>
+			</bullet_item><bullet_item>
+				<para>When omitting fields that are not included in the field count comparison, and the field definitions and tabular values for those fields are ignored.</para>
+			</bullet_item><bullet_item>
+				<para>Attribute tolerances can only be specified for numeric field types.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Compare File will contain all similarities and differences between the Input Base Table and the Input Test Table. This file is a comma-delimited text file which can be viewed and used as a table in ArcGIS. For example, this table can be queried to obtain all the ObjectID values for all the rows that are different.</para>
+			</bullet_item><bullet_item>
+				<para>The comparison tools  will be 'true' when no differences are found and 'false' when differences are detected.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TableCompare Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the TableCompare function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.TableCompare_management(r'c:\Workspace\wells.dbf', r'c:\Workspace\wells_new.dbf', 'WELL_ID', 'ALL', 'IGNORE_EXTENSION_PROPERTIES', 'WELL_DEPTH 0.001', '#', 'CONTINUE_COMPARE', r'C:\Workspace\well_compare.txt' )
+                    </code></scriptExample><scriptExample><title>TableCompare tool example (stand-alone script)</title>
+					<para>Example of how to use the TableCompare tool in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: TableCompare.py
+# Description: Compare two dBASE tables and return comparison result.
+# Author: ESRI
+
+# import system modules 
+import arcpy
+
+try:
+    # Set local variables
+    base_table= "C:/Workspace/wells.dbf"
+    test_table = "C:/Workspace/wells_new.dbf"
+    sort_field = "WELL_ID"
+    compare_type = "ALL"
+    ignore_option = "IGNORE_EXTENSION_PROPERTIES"
+    attribute_tolerance = "WELL_DEPTH 0.001"
+    omit_field = "#"
+    continue_compare = "CONTINUE_COMPARE"
+    compare_file = "C:/Workspace/well_compare.txt"
+ 
+    # Process: FeatureCompare
+    compare_result = arcpy.TableCompare_management(base_table, test_table, sort_field, compare_type, ignore_option, attribute_tolerance, omit_field, continue_compare, compare_file)
+    print compare_result
+    print arcpy.GetMessages()
+ 
+except:
+    # Print error message if an error occurs
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

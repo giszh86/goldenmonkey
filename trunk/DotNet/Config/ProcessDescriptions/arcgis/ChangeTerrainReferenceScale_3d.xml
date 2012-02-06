@@ -1,0 +1,76 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Change Terrain Reference Scale (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Changes the reference scale used by a terrain pyramid level.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Edit</keyword><keyword>Lidar</keyword><keyword>Masspoints</keyword><keyword>Multipoints</keyword><keyword>Multiresolution Surface</keyword><keyword>Reference Scale</keyword><keyword>Scale Threshold</keyword><keyword>Surface</keyword><keyword>Terrain</keyword><keyword>Terrain Dataset</keyword><keyword>Terrains</keyword><keyword>Visible Scale Range</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ChangeTerrainReferenceScale" displayname="Change Terrain Reference Scale (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Changes the reference scale used by a terrain pyramid level.</para>
+		</summary><alink_name>ChangeTerrainReferenceScale_3d</alink_name><parameters><param sync="true" name="in_terrain" displayname="Input Terrain" datatype="Terrain Layer" direction="Input" expression="in_terrain" type="Required"><pythonReference>
+						<para>The input terrain dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input terrain dataset.</para>
+					</dialogReference></param><param sync="true" name="old_refscale" displayname="Old Reference Scale" datatype="Long" direction="Input" expression="old_refscale" type="Required"><pythonReference>
+						<para>The reference scale of an existing pyramid level.</para>
+					</pythonReference><dialogReference>
+						<para>The reference scale of an existing pyramid level.</para>
+					</dialogReference></param><param sync="true" name="new_refscale" displayname="New Reference Scale" datatype="Long" direction="Output" expression="new_refscale" type="Required"><pythonReference>
+						<para>The new reference scale for the pyramid level.</para>
+					</pythonReference><dialogReference>
+						<para>The new reference scale for the pyramid level.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is useful when an existing reference scale associated with a terrain pyramid level is known to be inappropriate and needs to be reset.</para>
+			</bullet_item><bullet_item>
+				<para>To add or remove a pyramid level, rather than change the definition of an existing pyramid level, use  or .</para>
+			</bullet_item><bullet_item>
+				<para>When used in an SDE database, the input terrain cannot be registered as versioned.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Change Terrain Reference Scale Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Change Terrain Reference Scale
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.ChangeTerrainReferenceScale_3d("C:/data/terrain.gdb/terrainFDS/terrain1", "1000", "2000")
+                    </code></scriptExample><scriptExample><title>Change Terrain Reference Scale Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Change Terrain Reference Scale
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: ChangeTerrainReferenceScale Example
+# Description: The following stand-alone script demonstrates how to add new points 
+#              to a terrain with the AppendTerrainPoints tool, and use the 
+#              ChangeTerrainReferenceScale tool to reduce the scale that a terrain
+#              pyramid is drawn at. Such a workflow may apply for situations where
+#              the addition results in a significant expansion of the terrain's extent.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension('3D')
+
+# Set environment settings
+env.workspace = 'C:/data'
+
+#Execute AppendTerrainPoints
+try:
+    # Set Local Variables
+    inTerrain = 'sample.gdb/featuredataset/terrain'
+    currentPts = 'existing_points'
+    newPts = 'updated_points.shp'
+    arcpy.AddMessage('Appending points from '+newPts+' to '+
+                     inTerrain+os.sep+currentPts+' ...')
+    arcpy.AppendTerrainPoints_3d(inTerrain, currentPts, newPts)
+    arcpy.AddMessage('Changing the terrain reference scale...')
+    arcpy.ChangeTerrainReferenceScale_3d(inTerrain, 1000, 500)
+    arcpy.ChangeTerrainReferenceScale_3d(inTerrain, 2500, 2000)
+
+except:
+    # Returns any other error messages
+    print arcpy.GetMessages(2)
+
+del arcpy
+                    </code></scriptExample></scriptExamples></tool></metadata>

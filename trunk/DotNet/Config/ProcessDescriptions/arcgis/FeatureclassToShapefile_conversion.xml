@@ -1,0 +1,84 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Feature Class To Shapefile (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Copies the features from one or more feature classes or layers to a folder of shapefiles.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Batch</keyword><keyword>Change</keyword><keyword>Convert</keyword><keyword>Coverage</keyword><keyword>Export</keyword><keyword>File</keyword><keyword>Format</keyword><keyword>Gdb</keyword><keyword>Geodatabase</keyword><keyword>Import</keyword><keyword>Make</keyword><keyword>Personal</keyword><keyword>Shp</keyword><keyword>Turn</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FeatureclassToShapefile" displayname="Feature Class To Shapefile (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Copies the features from one or more feature classes or layers to a folder of shapefiles.</para>
+		</summary><alink_name>FeatureclassToShapefile_conversion</alink_name><parameters><param sync="true" name="Input_Features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="[Input_Features,...]" type="Required"><pythonReference>
+						<para>The list of input feature classes or feature layers that will be converted and added to the output folder.</para>
+					</pythonReference><dialogReference>
+						<para>The list of input feature classes or feature layers that will be converted and added to the output folder.</para>
+					</dialogReference></param><param sync="true" name="Output_Folder" displayname="Output Folder" datatype="Folder" direction="Input" expression="Output_Folder" type="Required"><pythonReference>
+						<para>The output or destination folder.</para>
+					</pythonReference><dialogReference>
+						<para>The output or destination folder.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment><environment name="Qualified_field_names" label="Qualified field names">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The name of the output shapefile will be the name of the input feature class. For example, if the input is C:\base.gdb\rivers, the output shapefile will be named rivers.shp. To explicitly control the output shapefile name and for some additional conversion options, see the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>If the output shapefile already exists in the Output Folder, a number will be appended to the end to make it unique (for example, rivers_1.shp).</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FeatureClassToShapefile example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the FeatureClassToShapefile function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/airport.gdb"
+arcpy.FeatureClassToShapefile_conversion(["county", "parcels", "schools"],
+                                         "C:/output")
+                    </code></scriptExample><scriptExample><title>FeatureClassToShapefile example 2 (stand-alone script)</title>
+					<para>The following Stand-alone script demonstrates how to use the FeatureClassToShapefile function.</para>
+				<code xml:space="preserve"># Name: FeatureClassToShapefile_Example2.py
+# Description: Use FeatureClassToGeodatabase to copy feature classes
+#  to shapefiles
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data"
+ 
+# Set local variables
+inFeatures = ["climate.shp", "majorrds.shp"]
+outLocation = "C:/output"
+ 
+# Execute FeatureClassToGeodatabase
+arcpy.FeatureClassToShapefile_conversion(inFeatures, outLocation)
+                    </code></scriptExample></scriptExamples></tool></metadata>

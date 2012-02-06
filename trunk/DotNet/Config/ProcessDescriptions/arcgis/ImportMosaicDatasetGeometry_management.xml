@@ -1,0 +1,60 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Import Mosaic Dataset Geometry  (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Modifies the feature geometry for footprints, the boundary, or seamlines in a mosaic dataset to match those in a polygon feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" ImportMosaicDatasetGeometry " displayname=" Import Mosaic Dataset Geometry  (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Modifies the feature geometry for footprints, the boundary, or seamlines in a mosaic dataset to match those in a polygon feature class.</para>
+		</summary><alink_name> ImportMosaicDatasetGeometry _management</alink_name><toolIllust type="illustration" src="ImportMosaicDatasetGeometry_management_h.png" alt="Image clipped to footprint" /><parameters><param sync="true" name="in_mosaic_dataset" displayname="Mosaic Dataset" datatype="Mosaic Layer" direction="Input" expression="in_mosaic_dataset" type="Required"><pythonReference>
+						<para> Path and name of mosaic dataset. </para>
+					</pythonReference><dialogReference>
+						<para> Path and name of mosaic dataset. </para>
+					</dialogReference></param><param sync="true" name="target_featureclass_type" displayname="Target Feature Class" datatype="String" direction="Input" expression="target_featureclass_type" type="Optional"><pythonReference>
+						<para>The polygon feature class in the mosaic dataset whose geometry will be replaced. </para>
+						<bulletList><bullet_item>FOOTPRINT—The footprint polygons in the mosaic dataset.</bullet_item><bullet_item>SEAMLINE—The seamline polygons in the mosaic dataset.</bullet_item><bullet_item>BOUNDARY—The boundary polygon in the mosaic dataset.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The polygon feature class in the mosaic dataset whose geometry will be replaced. </para>
+						<bulletList><bullet_item>FOOTPRINT—The footprint polygons in the mosaic dataset.</bullet_item><bullet_item>SEAMLINE—The seamline polygons in the mosaic dataset.</bullet_item><bullet_item>BOUNDARY—The boundary polygon in the mosaic dataset.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="target_join_field" displayname="Target Join Field" datatype="Short ; Long ; Float ; Double ; Text ; Date ; OID" direction="Input" expression="target_join_field" type="Required"><pythonReference>
+						<para> Field in the mosaic dataset that will link to correct geometry in the input feature class. </para>
+					</pythonReference><dialogReference>
+						<para> Field in the mosaic dataset that will link to correct geometry in the input feature class. </para>
+					</dialogReference></param><param sync="true" name="input_featureclass" displayname="Input Feature Class" datatype="Feature Layer ; Raster Catalog" direction="Input" expression="input_featureclass" type="Required"><pythonReference>
+						<para> The polygon feature class with the new geometry for the mosaic dataset. </para>
+					</pythonReference><dialogReference>
+						<para> The polygon feature class with the new geometry for the mosaic dataset. </para>
+					</dialogReference></param><param sync="true" name="input_join_field" displayname="Input Join Field" datatype="Short ; Long ; Float ; Double ; Text ; Date ; OID" direction="Input" expression="input_join_field" type="Required"><pythonReference>
+						<para> Field in the input feature class that will link to the correct row in the mosaic dataset. </para>
+					</pythonReference><dialogReference>
+						<para> Field in the input feature class that will link to the correct row in the mosaic dataset. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para> This tool matches the feature in the mosaic dataset with the feature in the feature class based on a common attribute field.</para>
+			</bullet_item><bullet_item><para>The footprint is not always used to clip the image in the mosaic dataset. You can change the Always Clip The Image To Its Footprint property to Yes in the Mosaic Dataset Properties dialog box on the Defaults tab.</para></bullet_item></usage><scriptExamples><scriptExample><title>ImportMosaicDatasetGeometry example 1 (Python window)</title>
+					<para>This is a Python sample for ImportMosaicDatasetGeometry.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.ImportMosaicDatasetGeometry_management("c:/workspace/fgdb.gdb/md",\ 
+                                                   "FOOTPRINT", "OBJECTID",\ 
+                                                   "infootprint.shp", "FTID")
+                    </code></scriptExample><scriptExample><title>ImportMosaicDatasetGeometry example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for ImportMosaicDatasetGeometry.</para>
+				<code xml:space="preserve">##===========================
+##Import Mosaic Dataset Geometry
+##Usage: ImportMosaicDatasetGeometry_management in_mosaic_dataset FOOTPRINT | SEAMLINE
+##                                       | BOUNDARY target_join_field 
+##                                       input_featureclass input_join_field 
+
+try:
+    import arcpy
+    arcpy.env.workspace = "c:/PrjWorkspace/RasGP"
+    # Import shape file geometry as Mosaic Dataset Footprints
+    # Note: Feature class FID starts with 0
+    arcpy.ImportMosaicDatasetGeometry_management("Geometry.gdb/md", \
+                                                "FOOTPRINT", "OBJECTID",\ 
+                                                "infootprint.shp", "FTID")                                      
+    
+    # Import GDB feature class as Mosaic Dataset Boundary
+    arcpy.ImportMosaicDatasetGeometry_management("Geometry.gdb/md", "BOUNDARY", \
+                                          "OBJECTID", "Geometry.gdb/inboundary", \
+                                          "OBJECTID")
+    
+except:
+    print "Import Mosaic Dataset Geometry example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

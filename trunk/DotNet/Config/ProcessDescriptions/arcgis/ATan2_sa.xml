@@ -1,0 +1,87 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">ATan2 (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the inverse tangent (based on x,y) of cells in a raster.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Inverse</keyword><keyword>Math</keyword><keyword>Tangent</keyword><keyword>Trig</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ATan2" displayname="ATan2 (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates the inverse tangent (based on x,y) of cells in a raster.</para>
+		</summary><alink_name>ATan2_sa</alink_name><toolIllust type="illustration" src="ATan2_sa_h.png" alt="ATan2 illustration" /><parameters><param sync="true" name="in_raster_or_constant1" displayname="Input raster or constant value 1" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant1" type="Required"><pythonReference>
+						<para>The input that specifies the numerator, or y value, to use when calculating the inverse tangent.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para></pythonReference><dialogReference>
+						<para>The input that specifies the numerator, or y value, to use when calculating the inverse tangent.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para></dialogReference></param><param sync="true" name="in_raster_or_constant2" displayname="Input raster or constant value 2" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant2" type="Required"><pythonReference>
+						<para>The input that specifies the denominator, or x value, to use when calculating the inverse tangent.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The input that specifies the denominator, or x value, to use when calculating the inverse tangent.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>The values are the inverse tangent angle of the input values.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>The values are the inverse tangent angle of the input values.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>ATan2 converts rectangular coordinates (x,y) to polar (r,θ), where r is the distance from the origin and θ is the angle from the x-axis.</para>
+				
+					
+					
+					
+				
+				<para>The equation for determining ATan2 is: tanθ = y / x (where θ is the angle).</para>
+				<para>The ATan2 operation represents all quadrants in a Cartesian matrix (based on sign).</para>
+			</bullet_item><bullet_item>
+				<para>The values of the first specified input are used as the numerator in the calculation of the tangent angle (y). The values of the second specified input are used as the denominator in the calculation of the angle (x).</para>
+			</bullet_item><bullet_item><para>In mathematics, all Trigonometric functions have a defined range of valid input values, called the domain. The output values from each function also has a defined range. For this tool:</para><bulletList><bullet_item><para>The Domain is : -∞ &lt; [in_value] &lt; ∞ </para><para>This domain applies to both inputs.</para></bullet_item><bullet_item><para>The Range is : -pi &lt; [out_value] ≤ pi </para></bullet_item></bulletList><para>Note that here -∞ and ∞ represent the smallest negative and largest positive value supported by the particular raster format, respectively.</para></bullet_item><bullet_item>
+				<para>If both input values are 0, the output will be NoData.</para>
+				<para>If first input value is 0, the output will be 0.</para>
+			</bullet_item><bullet_item>
+				<para>The input values to ATan2 are interpreted as being in linear units, and to give meaningful results, they should both be in the same unit.</para>
+			</bullet_item><bullet_item><para>Output values are always floating point, regardless of the input data type.</para></bullet_item><bullet_item><para>The output values from this tool are in radians. If degrees are desired, the resulting raster must be multiplied by the radians-to-degrees conversion factor of 180/pi, or approximately 57.296.</para><para>See  for examples of converting output values from radians to degrees.</para></bullet_item></usage><scriptExamples><scriptExample><title>ATan2 example 1 (Python window)</title>
+					<para>This example calculates the inverse tangent for two input GRID rasters.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outATan2 = ATan2("degs", "negs")
+outATan2.save("C:/sapyexamples/output/outatan2")
+                    </code></scriptExample><scriptExample><title>ATan2 example 2 (stand-alone script)</title>
+					<para>This example calculates the inverse tangent for two input GRID rasters.</para>
+				<code xml:space="preserve"># Name: ATan2_Ex_02.py
+# Description: Calculates the inverse tangent of cells based
+#              on (y, x) values from two rasters
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster1 = "degs"
+inRaster2 = "negs"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ATan2
+outATan2 = ATan2(inRaster1, inRaster2)
+
+# Save the output 
+outATan2.save("C:/sapyexamples/output/outatan2.tif")
+                    </code></scriptExample></scriptExamples></tool></metadata>

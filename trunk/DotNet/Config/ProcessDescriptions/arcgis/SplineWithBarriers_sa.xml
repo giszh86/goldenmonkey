@@ -1,0 +1,93 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Spline with Barriers (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Interpolates a raster surface, using barriers, from points using a minimum curvature spline technique. The barriers are entered as either polygon or polyline features.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Breakline</keyword><keyword>Estimate</keyword><keyword>Faulted</keyword><keyword>Interpolate</keyword><keyword>Interpolation</keyword><keyword>Interpolator</keyword><keyword>Minimum Curvature</keyword><keyword>Predict</keyword><keyword>Radial Basis Function</keyword><keyword>Rbf</keyword><keyword>Surface</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SplineWithBarriers" displayname="Spline with Barriers (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Interpolates a raster surface, using barriers, from points using a minimum curvature spline technique. The barriers are entered as either polygon or polyline features.</para>
+			
+		</summary><alink_name>SplineWithBarriers_sa</alink_name><parameters><param sync="true" name="Input_point_features" displayname="Input point features" datatype="Feature Layer" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para>The input point features containing the z-values to be interpolated into a surface raster.</para></pythonReference><dialogReference>
+						<para>The input point features containing the z-values to be interpolated into a surface raster.</para></dialogReference></param><param sync="true" name="z_value_field" displayname="Z value field" datatype="Field" direction="Input" expression="z_value_field" type="Required"><pythonReference>
+						<para>The field that holds a height or magnitude value for each point.</para><para>This can be a numeric field or the Shape field if the input point features contain z-values.</para>
+					</pythonReference><dialogReference>
+						<para>The field that holds a height or magnitude value for each point.</para><para>This can be a numeric field or the Shape field if the input point features contain z-values.</para>
+					</dialogReference></param><param sync="true" name="input_barrier_features" displayname="Input barrier features" datatype="Feature Layer" direction="Input" expression="input_barrier_features" type="Optional"><pythonReference>
+						<para>The optional input barrier features to constrain the interpolation.</para>
+					</pythonReference><dialogReference>
+						<para>The optional input barrier features to constrain the interpolation.</para>
+					</dialogReference></param><param sync="true" name="Output_cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size at which the output raster will be created.</para><para>If a value of 0 is entered, the shorter of the width or the height of the extent of the input point features in the input spatial reference, divided by 250, will be used as the cell size.</para></pythonReference><dialogReference>
+						<para>The cell size at which the output raster will be created.</para><para>If a value of 0 is entered, the shorter of the width or the height of the extent of the input point features in the input spatial reference, divided by 250, will be used as the cell size.</para></dialogReference></param><param sync="true" name="smoothing_factor" displayname="Smoothing factor" datatype="Double" direction="Input" expression="smoothing_factor" type="Optional"><pythonReference>
+						<para>The parameter that influences the smoothing of the output surface.</para>
+						<para>No smoothing is applied when the value is zero and the maximum amount of smoothing is applied when the factor equals 1.</para>
+						<para>The default is 0.0.</para>
+					</pythonReference><dialogReference>
+						<para>The parameter that influences the smoothing of the output surface.</para>
+						<para>No smoothing is applied when the value is zero and the maximum amount of smoothing is applied when the factor equals 1.</para>
+						<para>The default is 0.0.</para>
+					</dialogReference></param><param sync="true" name="Output_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="Output_raster" type="Required"><pythonReference>
+							<para>The output interpolated surface raster.</para>
+						</pythonReference><dialogReference>
+							<para>The output interpolated surface raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool requires the Java runtime environment Version 6, or higher, to be installed. The Java Runtime Environment can be downloaded for free from .</para>
+			</bullet_item><bullet_item><para>If the tool fails to run with an error message stating that a "more recent version of Java needs to be installed", and you have multiple versions of Java installed, you need to update the PATH environment variable.</para></bullet_item><bullet_item>
+				<para>The resulting smooth surface from is constrained by the input barrier features.</para>
+			</bullet_item><bullet_item>
+				<para>Some input datasets may have several points with the same x,y coordinates. If the values of the points at the common location are the same, they are considered duplicates and have no affect on the output. If the values are different, they are considered 'coincident' points.</para><para>The various interpolation tools may handle this data condition differently. For example, in some cases the first coincident point encountered is used for the calculation; in other cases the last point encountered is used.  This may cause some locations in the output raster to have different values than what you might expect. The solution is to prepare your data by removing these coincident points. The  tool in the Spatial Statistics toolbox is useful for identifying any coincident points in your data.</para><para>For the Spline with Barriers tool, by default  the values for each set of coincident points will be averaged.</para></bullet_item><bullet_item>
+				<para>If a cell size of 0 is entered, the cell size actually used will be the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+			</bullet_item><bullet_item>
+				<para>The barrier features are rasterized and the cell center is used to decide whether the cell falls within a polygon or whether the cell becomes a barrier for polyline features.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SplineWithBarriers example 1 (Python window)</title>
+					<para>This example inputs a point shapefile and interpolates the output surface as a TIFF raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env  
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outSplineBarriers = SplineWithBarriers("ca_ozone_pts.shp", "ozone", 
+                                       "ca_ozone_barrier.shp", 2000)
+outSplineBarriers.save("C:/sapyexamples/output/splinebarrierout.tif")
+                    </code></scriptExample><scriptExample><title>SplineWithBarriers example 2 (stand-alone script)</title>
+					<para>This example inputs a point shapefile and interpolates the output surface as a GRID raster.</para><code xml:space="preserve"># Name: SplineWithBarriers_Ex_02.py
+# Description: Interpolate a series of point features onto a 
+#    rectangular raster, using optional barriers, using a 
+#    minimum curvature spline technique.
+# Requirements: Spatial Analyst Extension and Java Runtime 
+#    Environment Version 5.0, or higher.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inPointFeatures = "ca_ozone_pts.shp"
+zField = "ozone"
+inBarrierFeature = "ca_ozone_barrier.shp"
+cellSize = 2000.0
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Spline with Barriers
+outSplineBarriers = SplineWithBarriers(inPointFeatures, 
+                          zField, inBarrierFeature, cellSize)
+
+# Save the output 
+outSplineBarriers.save("C:/sapyexamples/output/splinebout02")
+                    </code></scriptExample></scriptExamples></tool></metadata>

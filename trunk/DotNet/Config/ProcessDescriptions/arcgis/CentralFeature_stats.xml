@@ -1,0 +1,86 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Central Feature (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Identifies the most centrally located feature in a point, line, or polygon feature class.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Accessible</keyword><keyword>Center</keyword><keyword>Distance</keyword><keyword>Middle</keyword><keyword>Other</keyword><keyword>Pattern</keyword><keyword>Point Pattern Analysis</keyword><keyword>Small</keyword><keyword>Summary</keyword><keyword>Tendency</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CentralFeature" displayname="Central Feature (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Identifies the most centrally located feature in a point, line, or polygon feature class.</para>
+			
+		</summary><alink_name>CentralFeature_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/CentralFeature_stats_v.gif" alt="Central Feature tool illustration" /><toolIllust type="illustration" src="CentralFeature_stats_h.gif" alt="Central Feature tool illustration" /><parameters><param sync="true" name="Input_Feature_Class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="Input_Feature_Class" type="Required"><pythonReference>
+						<para>The feature class containing a distribution of features from which to identify the most centrally located feature.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class containing a distribution of features from which to identify the most centrally located feature.</para>
+					</dialogReference></param><param sync="true" name="Output_Feature_Class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="Output_Feature_Class" type="Required"><pythonReference>
+						<para>The feature class that will contain the most centrally located feature in the Input Feature Class.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class that will contain the most centrally located feature in the Input Feature Class.</para>
+					</dialogReference></param><param sync="true" name="Distance_Method" displayname="Distance Method" datatype="String" direction="Input" expression="Distance_Method" type="Required"><pythonReference>
+						<para>Specifies how distances are calculated from each feature to neighboring features.</para>
+						<bulletList><bullet_item>EUCLIDEAN_DISTANCE—The straight-line distance between two points (as the crow flies) </bullet_item><bullet_item>MANHATTAN_DISTANCE—The distance between two points measured along axes at right angles (city block); calculated by summing the (absolute) difference between the x- and y-coordinates </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how distances are calculated from each feature to neighboring features.</para>
+						<bulletList><bullet_item>EUCLIDEAN_DISTANCE—The straight-line distance between two points (as the crow flies) </bullet_item><bullet_item>MANHATTAN_DISTANCE—The distance between two points measured along axes at right angles (city block); calculated by summing the (absolute) difference between the x- and y-coordinates </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Weight_Field" displayname="Weight Field" datatype="Field" direction="Input" expression="Weight_Field" type="Optional"><pythonReference>
+						<para>The numeric field used to weight distances in the origin-destination distance matrix.</para>
+					</pythonReference><dialogReference>
+						<para>The numeric field used to weight distances in the origin-destination distance matrix.</para>
+					</dialogReference></param><param sync="true" name="Self_Potential_Weight_Field" displayname="Self Potential Weight Field" datatype="Field" direction="Input" expression="Self_Potential_Weight_Field" type="Optional"><pythonReference>
+						<para>The field representing self-potential—the distance or weight between a feature and itself.</para>
+					</pythonReference><dialogReference>
+						<para>The field representing self-potential—the distance or weight between a feature and itself.</para>
+					</dialogReference></param><param sync="true" name="Case_Field" displayname="Case Field" datatype="Field" direction="Input" expression="Case_Field" type="Optional"><pythonReference>
+						<para>Field used to group features for separate central feature computations. The case field can be of integer, date, or string type.</para>
+					</pythonReference><dialogReference>
+						<para>Field used to group features for separate central feature computations. The case field can be of integer, date, or string type.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_coordinate_system" label="Output coordinate system">Feature geometry is projected to the Output Coordinate System prior to analysis.</environment><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Qualified_field_names" label="Qualified field names"></environment><environment name="Output_has_M_values" label="Output has M values"></environment><environment name="Output_has_Z_values" label="Output has Z values"></environment><environment name="Default_output_Z_value" label="Default output Z value"></environment></environments><usage><bullet_item>
+				<para>The feature associated with the smallest accumulated distance to all other features in the dataset is the most centrally located feature; this feature is selected and copied to a newly created Output Feature Class.</para>
+			</bullet_item><bullet_item>
+				<para>Calculations based on either Euclidean or Manhattan distance require  to accurately measure distances.</para>
+			</bullet_item><bullet_item>
+				<para>For line and polygon features, feature centroids are used in distance computations. For multipoints, polylines, or polygons with multiple parts, the centroid is computed using the weighted mean center of all feature parts. The weighting for point features is 1, for line features is length, and for polygon features is area.</para>
+			</bullet_item><bullet_item>
+				<para>Map layers can be used to define the Input Feature Class. When using a layer with a selection, only the selected features are included in the analysis.</para>
+			</bullet_item><bullet_item>
+				<para>The Case Field is used to group features for separate Central Feature computations. The Case Field can be of integer, date, or string type.</para>
+			</bullet_item><bullet_item>
+				<para>Self-potential is the distance or weight between a feature and itself. Often this weight is zero, but in some cases you may want to specify another fixed value or a different value for every feature (perhaps , for example).</para>
+			</bullet_item><bullet_item>
+				
+					<para>When using shapefiles, keep in mind that they cannot store null values. Tools or other procedures that create shapefiles from non-shapefile inputs may store or interpret null values as zero. This can lead to unexpected results.  See also .</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>Central Feature Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Central Feature tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = r"C:\data"
+arcpy.CentralFeature_stats("coffee_shops.shp", "coffee_CENTRALFEATURE.shp", "EUCLIDEAN_DISTANCE", "NUM_EMP", "#", "#")
+                    </code></scriptExample><scriptExample><title>Central Feature Example (Stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the Central Feature tool.</para>
+				<code xml:space="preserve">
+# Measure geographic distribution characteristics of coffee house locations weighted by the number of employees
+ 
+# Import system modules
+import arcpy
+ 
+# Local variables...
+workspace = "C:/data"
+input_FC = "coffee_shops.shp"
+CF_output = "coffee_CENTRALFEATURE.shp"
+MEAN_output = "coffee_MEANCENTER.shp"
+MED_output = "coffee_MEDIANCENTER.shp"
+weight_field = "NUM_EMP"
+ 
+try:
+    # Set the workspace to avoid having to type out full path names
+    arcpy.env.workspace = workspace
+ 
+    # Process: Central Feature...
+    arcpy.CentralFeature_stats(input_FC, CF_output, "EUCLIDEAN_DISTANCE", weight_field, "#", "#")
+ 
+    # Process: Mean Center...
+    arcpy.MeanCenter_stats(input_FC, MEAN_output, weight_field, "#", "#")
+
+    # Process: Median Center...
+    arcpy.MedianCenter_stats(input_FC, MED_output, weight_field, "#", "#")
+ 
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

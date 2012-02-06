@@ -1,0 +1,90 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Feature Class To Coverage (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a single ArcInfo coverage from one or more input feature classes or layers.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Arcinfo</keyword><keyword>Build</keyword><keyword>Change</keyword><keyword>Clean</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>File</keyword><keyword>Format</keyword><keyword>Gdb</keyword><keyword>Geodatabase</keyword><keyword>Import</keyword><keyword>Info</keyword><keyword>Label</keyword><keyword>Make</keyword><keyword>Personal</keyword><keyword>Region</keyword><keyword>Route</keyword><keyword>Sde</keyword><keyword>Shapefile</keyword><keyword>Shp</keyword><keyword>Tic</keyword><keyword>Turn</keyword><keyword>Workstation</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FeatureclassToCoverage" displayname="Feature Class To Coverage (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Creates a single ArcInfo coverage from one or more input feature classes or layers.</para>
+		</summary><alink_name>FeatureclassToCoverage_conversion</alink_name><parameters><param sync="true" name="in_features" displayname="Input Feature Classes" datatype="Value Table" direction="Input" expression="[[Featureclass, {Type}],...]" type="Required"><pythonReference>
+						<para>The input feature classes or layers used to create a single ArcInfo coverage, including the type of features of which the coverage will be composed.</para>
+						<bulletList><bullet_item>POINT—</bullet_item><bullet_item>LABEL—</bullet_item><bullet_item>NODE—</bullet_item><bullet_item>ARC—</bullet_item><bullet_item>ROUTE—</bullet_item><bullet_item>POLYGON—</bullet_item><bullet_item>REGION—</bullet_item><bullet_item>ANNO—</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>The input feature classes or layers used to create a single ArcInfo coverage, including the type of features of which the coverage will be composed.</para>
+						<bulletList><bullet_item>POINT—</bullet_item><bullet_item>LABEL—</bullet_item><bullet_item>NODE—</bullet_item><bullet_item>ARC—</bullet_item><bullet_item>ROUTE—</bullet_item><bullet_item>POLYGON—</bullet_item><bullet_item>REGION—</bullet_item><bullet_item>ANNO—</bullet_item></bulletList></dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The output coverage to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The output coverage to be created.</para>
+					</dialogReference></param><param sync="true" name="cluster_tolerance" displayname="XY Tolerance" datatype="Linear unit" direction="Input" expression="cluster_tolerance" type="Optional"><pythonReference>
+						<para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both). You can set the value to be higher for data that has less coordinate accuracy and lower for datasets with extremely high accuracy.</para>
+					</pythonReference><dialogReference>
+						<para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both). You can set the value to be higher for data that has less coordinate accuracy and lower for datasets with extremely high accuracy.</para>
+					</dialogReference></param><param sync="true" name="precision" displayname="Precision" datatype="Boolean" direction="Input" expression="precision" type="Optional"><pythonReference>
+						<para>The precision of the output ArcInfo coverage.</para>
+						<bulletList><bullet_item>DOUBLE— The out_cover will have double precison. This is the default. </bullet_item><bullet_item>SINGLE—The out_cover will have single precision. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The precision of the output ArcInfo coverage.</para>
+						<bulletList>
+							<bullet_item>Checked—The Output Coverage will have double precison. This is the default. </bullet_item>
+							<bullet_item>Unchecked—The Output Coverage will have single precision.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The cluster tolerance acts the same as the fuzzy tolerance in ArcInfo Workstation. The fuzzy tolerance of the output coverage will be the same as the cluster tolerance specified when executing this tool. If no cluster tolerance is specified, a default is calculated.</para>
+			</bullet_item><bullet_item>
+				<para>Coverages do not support null geometries. Null geometries will be dropped during conversion.</para>
+			</bullet_item><bullet_item>
+				<para>When one line feature class is entered as input, you can choose to build a coverage for arcs or routes. If the output contains a route subclass, it will be prefixed by ROUTE (for example, ROUTE.streets). The default type is ROUTE.</para>
+			</bullet_item><bullet_item>
+				<para>When one polygon feature class is entered as input, you can choose to build a coverage for polygons or regions. If the output contains a region subclass, it will be prefixed by REGION (for example, REGION.parcels). The default type is REGION.</para>
+			</bullet_item><bullet_item><para>The default precision of the output will be DOUBLE.</para>
+			</bullet_item><bullet_item>
+				<para>It is suggested you run the  tool after successfully executing this tool to ensure all polygon features have an accurate label.</para>
+			</bullet_item><bullet_item>
+				<para>If one point feature class and one polygon feature class are entered as inputs, the point feature class can represent labels for the output coverage. To do this, choose LABEL as the type of features for the input points.</para>
+			</bullet_item><bullet_item>
+				<para>When more than two line feature classes or layers are entered, only one of the feature classes can have arcs built in the output coverage. The remaining feature classes will contain routes.</para>
+			</bullet_item><bullet_item>
+				<para>When more than two polygon feature classes or layers are entered, only one of the feature classes can have polygons built in the output coverage. The remaining feature classes will contain regions.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FeatureClassToCoverage Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the FeatureclassToCoverage function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.FeatureclassToCoverage_conversion(
+        [["Montgomery.gdb/Landbase/parcels", "REGION"]], 
+        "C:/output/mont_parcel", "", "")
+
+
+                    </code></scriptExample><scriptExample><title>FeatureClassToCoverage Example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to convert several related feature classes to one coverage.  After the conversion finishes, the CreateLabels tool is run to correct the polygon labels in the output coverage.</para>
+				<code xml:space="preserve"># Name: FeatureclassToCvoerage_Example.py
+# Description: Converts several featureclasses to one coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inFeatures = [["Montgomery.gdb/Landbase/blocks", "POLYGON"],
+              ["Montgomery.gdb/Landbase/parcels", "REGION"],
+              ["Montgomery.gdb/Landbase/Road_cl", "ROUTE"],
+              ["Montgomery.gdb/Landbase/RoadNames", "ANNO"],
+              ["Montgomery.gdb/Water/Transmains", "ARC"]]
+outCover = "C:/output/Montgomery"
+clusterTolerance = 0.000656
+precision = "DOUBLE"
+
+# Execute FeatureclassToCoverage and CreateLabels
+arcpy.FeatureclassToCoverage_conversion(inFeatures, outCover, 
+                                        clusterTolerance, precision)
+
+arcpy.CreateLabels_arc(outCover, "")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

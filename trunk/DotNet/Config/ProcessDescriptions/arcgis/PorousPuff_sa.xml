@@ -1,0 +1,143 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Porous Puff (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the time-dependent, two-dimensional concentration distribution in mass per volume of a solute introduced instantaneously and at a discrete point into a vertically mixed aquifer.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Advection</keyword><keyword>Aquifer</keyword><keyword>Borehole</keyword><keyword>Capture Zone</keyword><keyword>Concentration Distribution</keyword><keyword>Contaminant</keyword><keyword>Contamination</keyword><keyword>Dispersion</keyword><keyword>Flow Field</keyword><keyword>Pollutant</keyword><keyword>Subsurface</keyword><keyword>Water</keyword><keyword>Well</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PorousPuff" displayname="Porous Puff (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates the time-dependent, two-dimensional concentration distribution in mass per volume of a solute introduced instantaneously and at a discrete point into a vertically mixed aquifer.</para>
+			
+		</summary><alink_name>PorousPuff_sa</alink_name><parameters><param sync="true" name="in_track_file" displayname="Input particle track file" datatype="File" direction="Input" expression="in_track_file" type="Required"><pythonReference>
+						<para>The input particle track path file.</para>
+						<para>This is an ASCII text file containing information about the position, the local velocity vector, and the cumulative length and time of travel along the path.</para>
+						<para>This file is generated using the Particle Track tool.</para>
+					</pythonReference><dialogReference>
+						<para>The input particle track path file.</para>
+						<para>This is an ASCII text file containing information about the position, the local velocity vector, and the cumulative length and time of travel along the path.</para>
+						<para>This file is generated using the Particle Track tool.</para>
+					</dialogReference></param><param sync="true" name="in_porosity_raster" displayname="Input effective formation porosity raster" datatype="Raster Layer" direction="Input" expression="in_porosity_raster" type="Required"><pythonReference>
+						<para>The input raster where each cell value represents the effective formation porosity at that location.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster where each cell value represents the effective formation porosity at that location.</para>
+					</dialogReference></param><param sync="true" name="in_thickness_raster" displayname="Input saturated thickness raster" datatype="Raster Layer" direction="Input" expression="in_thickness_raster" type="Required"><pythonReference>
+						<para>The input raster where each cell value represents the saturated thickness at that location.</para><para>The value for the thickness is interpreted from geological properties of the aquifer.</para></pythonReference><dialogReference>
+						<para>The input raster where each cell value represents the saturated thickness at that location.</para><para>The value for the thickness is interpreted from geological properties of the aquifer.</para></dialogReference></param><param sync="true" name="mass" displayname="Mass" datatype="Double" direction="Input" expression="mass" type="Required"><pythonReference>
+						<para>A value for the amount of mass released instantaneously at the source point, in units of mass.</para>
+					</pythonReference><dialogReference>
+						<para>A value for the amount of mass released instantaneously at the source point, in units of mass.</para>
+					</dialogReference></param><param sync="true" name="dispersion_time" displayname="Dispersion time" datatype="Double" direction="Input" expression="dispersion_time" type="Optional"><pythonReference>
+						<para>A value representing the time horizon for dispersion of the solute, in units of time.</para>
+						<para>The time must be less than or equal to the maximum time in the track file. If the requested time exceeds the available time from the track file, the tool is aborted. The default time is the latest time (corresponding to the terminal point) in the track file.</para>
+					</pythonReference><dialogReference>
+						<para>A value representing the time horizon for dispersion of the solute, in units of time.</para>
+						<para>The time must be less than or equal to the maximum time in the track file. If the requested time exceeds the available time from the track file, the tool is aborted. The default time is the latest time (corresponding to the terminal point) in the track file.</para>
+					</dialogReference></param><param sync="true" name="longitudinal_dispersivity" displayname="Longitudinal dispersivity" datatype="Double" direction="Input" expression="longitudinal_dispersivity" type="Optional"><pythonReference>
+						<para>A value representing the dispersivity parallel to the flow direction.</para>
+						<para>For details on how the default value is determined, and how it relates to the scale of the study, consult see the How Porous Puff works section in the documentation.</para>
+					</pythonReference><dialogReference>
+						<para>A value representing the dispersivity parallel to the flow direction.</para>
+						<para>For details on how the default value is determined, and how it relates to the scale of the study, consult see the How Porous Puff works section in the documentation.</para>
+					</dialogReference></param><param sync="true" name="dispersivity_ratio" displayname="Dispersivity ratio" datatype="Double" direction="Input" expression="dispersivity_ratio" type="Optional"><pythonReference>
+						<para>A value representing the ratio of longitudinal dispersivity over transverse dispersivity.</para>
+						<para>Transverse dispersivity is perpendicular to the flow direction in the same horizontal plane. The default value is three.</para>
+					</pythonReference><dialogReference>
+						<para>A value representing the ratio of longitudinal dispersivity over transverse dispersivity.</para>
+						<para>Transverse dispersivity is perpendicular to the flow direction in the same horizontal plane. The default value is three.</para>
+					</dialogReference></param><param sync="true" name="retardation_factor" displayname="Retardation factor" datatype="Double" direction="Input" expression="retardation_factor" type="Optional"><pythonReference>
+						<para>A dimensionless value representing the retardation of the solute in the aquifer.</para>
+						<para>Retardation varies between one and infinity, with one corresponding to no retardation. The default value is one.</para>
+					</pythonReference><dialogReference>
+						<para>A dimensionless value representing the retardation of the solute in the aquifer.</para>
+						<para>Retardation varies between one and infinity, with one corresponding to no retardation. The default value is one.</para>
+					</dialogReference></param><param sync="true" name="decay_coefficient" displayname="Decay coefficient" datatype="Double" direction="Input" expression="decay_coefficient" type="Optional"><pythonReference>
+						<para>Decay coefficient for solutes undergoing first-order exponential decay (for example, radionuclides) in units of inverse time.</para>
+						<para>The default is zero, corresponding to no decay.</para>
+					</pythonReference><dialogReference>
+						<para>Decay coefficient for solutes undergoing first-order exponential decay (for example, radionuclides) in units of inverse time.</para>
+						<para>The default is zero, corresponding to no decay.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster of the concentration distribution.</para>
+							<para>Each cell value represents the concentration at that location.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster of the concentration distribution.</para>
+							<para>Each cell value represents the concentration at that location.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The effective porosity field, a physical property of the aquifer, is generally estimated from geological data. It is defined as the volume of void space that contributes to fluid flow divided by the entire volume. Porosity is expressed as a number between 0.0 and 1.0, with typical values around 0.35, and is dimensionless. A value of effective porosity of 0.35 means that 35 percent of the volume of the porous medium contributes to fluid flow. The remaining 65 percent, consisting of solid matrix and unconnected pores, does not contribute to fluid flow.</para>
+			</bullet_item><bullet_item>
+				<para>No particular system of units is specified by this tool. It is important that all data be consistent, using the same unit for time (seconds, days, years), length (feet, meters), and mass (kilograms, slugs).</para>
+			</bullet_item><bullet_item>
+				<para>The saturated thickness, measured in units of length, is interpreted from geological information. For a confined aquifer, this measure is the thickness of the formation between the upper and lower confining layers. For an unconfined aquifer, the saturated thickness is the distance between the water table and the lower confining layer.</para>
+			</bullet_item><bullet_item>
+				<para>The decay coefficient λ is related to the half-life T1/2 as:</para>
+				
+					
+					
+				
+				<para>For example, the half-life of Carbon-14 is 5,730 years, so its decay coefficient is ln2 = 0.693. So the equation becomes 0.693/5730 = 1.21x10-4 /year. A stable constituent has a decay coefficient of zero, corresponding to an infinite half-life. Half-lives of radioisotopes are available from several sources, including the CRC Handbook of Chemistry and Physics from .</para>
+			</bullet_item><bullet_item>
+				<para>The requested time must not exceed the latest time recorded in the path file. Either a lesser time must be requested in Porous Puff, or a new path file with a greater time needs to be generated by Particle Track.</para>
+			</bullet_item><bullet_item>
+				<para>The time requested should not be reached before the completion of the first path step as recorded in the track file. Either a greater time should be requested in Porous Puff, or a new track file should be generated by Particle Track using a shorter step length.</para>
+			</bullet_item><bullet_item>
+				<para>The centroid of mass must not migrate to the edge of the raster or beyond. In this case, no data is available on which to base the dispersion, so the tool is aborted. Either a lesser time must be requested, or a larger raster must be generated to accommodate the migration.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>PorousPuff example 1 (Python window)</title>
+					<para>This example executes the tool on the required inputs and outputs a raster of the concentration distribution.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outPorousPuff = PorousPuff("trackfile.txt", "gwporo", "gwthick", 50, 10000, "", 3,
+                         "", "")
+outPorousPuff.save("c:/sapyexamples/output/outporpuff")
+                    </code></scriptExample><scriptExample><title>PorousPuff example 2 (stand-alone script)</title>
+					<para>This example executes the tool on the required inputs and outputs a raster of the concentration distribution.</para>
+				<code xml:space="preserve"># Name: PorousPuff_Ex_02.py
+# Description: Calculates the time-dependent, two-dimensional 
+#              concentration distribution in mass per volume of a 
+#              solute introduced instantaneously and at a discrete 
+#              point into a vertically mixed aquifer.
+
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inTrackFile = "trackfile.txt"
+inPorosityRaster = "gwporo"
+inThicknessRaster = "gwthick"
+mass = 50
+dispersionTime = 10000
+longitudinalDispersivity = ""
+dispersivityRatio = 3 
+retardationFactor = "" 
+decayCoefficient = 0
+
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute PorousPuff
+outPorousPuff = PorousPuff(inTrackFile, inPorosityRaster, inThicknessRaster, 
+                        mass, dispersionTime, longitudinalDispersivity,
+                        dispersivityRatio, retardationFactor, 
+                        decayCoefficient)
+
+# Save the output 
+outPorousPuff.save("c:/sapyexamples/output/outporpuff")
+                    </code></scriptExample></scriptExamples></tool></metadata>

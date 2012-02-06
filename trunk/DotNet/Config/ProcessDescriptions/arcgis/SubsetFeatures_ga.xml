@@ -1,0 +1,77 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Subset Features (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Divides the original dataset into two parts: one part to be used to model the spatial structure and produce a surface, the other to be used to compare and validate the output surface.   </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Sample</keyword><keyword>Split</keyword><keyword>Validate</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SubsetFeatures" displayname="Subset Features (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Divides the original dataset into two parts: one part to be used to model the spatial structure and produce a surface, the other to be used to compare and validate the output surface.   </para>
+			
+		</summary><alink_name>SubsetFeatures_ga</alink_name><parameters><param sync="true" name="in_features" displayname="Input feature class" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>Points, lines, or polygon features to create a subset from.</para>
+					</pythonReference><dialogReference>
+						<para>Points, lines, or polygon features to create a subset from.</para>
+					</dialogReference></param><param sync="true" name="out_training_feature_class" displayname="Output training feature class" datatype="Feature Class" direction="Output" expression="out_training_feature_class" type="Required"><pythonReference>
+						<para>The subset of training features to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The subset of training features to be created.</para>
+					</dialogReference></param><param sync="true" name="out_test_feature_class" displayname="Output test feature class" datatype="Feature Class" direction="Output" expression="out_test_feature_class" type="Optional"><pythonReference>
+						<para>The subset of test features to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The subset of test features to be created.</para>
+					</dialogReference></param><param sync="true" name="size_of_training_dataset" displayname="Size of the training feature subset" datatype="Double" direction="Input" expression="size_of_training_dataset" type="Optional"><pythonReference>
+						<para>The size of the output training feature class entered either as a percentage of the input features or as an absolute number of features.</para>
+					</pythonReference><dialogReference>
+						<para>The size of the output training feature class entered either as a percentage of the input features or as an absolute number of features.</para>
+					</dialogReference></param><param sync="true" name="subset_size_units" displayname="Subset size units" datatype="String" direction="Input" expression="subset_size_units" type="Optional"><pythonReference>
+						<para>Type of subset size.</para>
+						<bulletList><bullet_item>PERCENTAGE_OF_INPUT— the percentage of the input features that will be in the training dataset. </bullet_item><bullet_item>ABSOLUTE VALUE— the number of features that will be in the training dataset.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Type of subset size.</para>
+						<bulletList><bullet_item>PERCENTAGE_OF_INPUT— the percentage of the input features that will be in the training dataset. </bullet_item><bullet_item>ABSOLUTE VALUE— the number of features that will be in the training dataset.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Random_number_generator" label="Random number generator">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If multipart features are used as input, the output will be a subset of multipart features and not individual features.</para>
+			</bullet_item><bullet_item>
+				<para>If you want the random sequence used to create the subsets to be repeatable, you need to specify a nonzero seed value in the  environment variable. </para></bullet_item><bullet_item><para>The test feature class is often used in validation of a model created using the training feature class.</para></bullet_item></usage><scriptExamples><scriptExample><title>SubsetFeatures example 1 (Python window)</title><para></para>
+					<para>Randomly split the features into two feature classes.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapyexamples/data"
+arcpy.SubsetFeatures_ga("ca_ozone_pts", "C:/gapyexamples/output/training", "", "",
+                  "PERCENTAGE_OF_INPUT")
+
+                    </code></scriptExample><scriptExample><title>SubsetFeatures example 2 (stand-alone script)</title>
+					<para>Randomly split the features into two feature classes.</para>
+				<code xml:space="preserve"># Name: SubsetFeatures_Example_02.py
+# Description: Randomly split the features into two feature classes.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inPointFeatures = "ca_ozone_pts.shp"
+outtrainPoints = "C:/gapyexamples/output/training.shp"
+outtestPoints = ""
+trainData = ""
+subsizeUnits = "PERCENTAGE_OF_INPUT"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute SubsetFeatures
+arcpy.SubsetFeatures_ga(inPointFeatures, outtrainPoints, outtestPoints, trainData,
+                        subsizeUnits)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

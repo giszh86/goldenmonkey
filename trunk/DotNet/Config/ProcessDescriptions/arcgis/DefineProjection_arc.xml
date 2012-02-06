@@ -1,0 +1,57 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Define Projection (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Records the coordinate system information of the Input Coverage including any associated projection parameters, such as datum and spheroid.</para>
+			<para>It creates or modifies the Input Coverage's projection definition file (PRJ) that stores the projection parameters.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Coordinate System</keyword><keyword>Coordinates</keyword><keyword>Coverage</keyword><keyword>Data Management</keyword><keyword>Datum</keyword><keyword>Define Projection</keyword><keyword>Easting</keyword><keyword>Latitude</keyword><keyword>Map</keyword><keyword>Meridians</keyword><keyword>Northing</keyword><keyword>Parallels</keyword><keyword>Prj</keyword><keyword>Project</keyword><keyword>Projection</keyword><keyword>Projection File</keyword><keyword>Scale Factor</keyword><keyword>Spatial Reference</keyword><keyword>Spheroid</keyword><keyword>Surface</keyword><keyword>Transformation</keyword><keyword>Xshift</keyword><keyword>Yshift</keyword><keyword>Zone</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DefineProjection" displayname="Define Projection (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Records the coordinate system information of the Input Coverage including any associated projection parameters, such as datum and spheroid.</para>
+			<para>It creates or modifies the Input Coverage's projection definition file (PRJ) that stores the projection parameters.</para>
+			
+		</summary><alink_name>DefineProjection_arc</alink_name><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage for which the projection information is being defined.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage for which the projection information is being defined.</para>
+					</dialogReference></param><param sync="true" name="projection_file" displayname="Projection File" datatype="File" direction="Input" expression="projection_file" type="Required"><pythonReference>
+						<para>The name of a text file defining the input projection parameters.</para>
+					</pythonReference><dialogReference>
+						<para>The name of a text file defining the input projection parameters.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para> Can be used if the input dataset or feature class does not have a projection defined. If the input dataset or feature class already has a projection defined, a warning will be raised but the tool will execute successfully.</para>
+			</bullet_item><bullet_item>
+				<para>To actually project the dataset or transform the datum or spheroid, you need to use the  tool, which requires that your dataset have a PRJ file.</para>
+			</bullet_item><bullet_item>
+				<para>Define Projection will not change the coordinates of the output dataset. To project a dataset from one projection to another, you must use Project.</para>
+			</bullet_item><bullet_item>
+				<para>To find tables of predefined geographic coordinate system, projected coordinate system, and geographic (datum) transformations, see .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DefineProjection example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to define the projection on a global coverage. The coverage is stored in geographic coordinates. </para>
+				<code xml:space="preserve"># Name: DefineProjection_Example.py
+# Description: Defines the projection of a global coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "worldgrat"
+projectionFile = "newgeo.prj"
+
+# Execute DefineProjection
+arcpy.DefineProjection_arc (inCover, projectionFile)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

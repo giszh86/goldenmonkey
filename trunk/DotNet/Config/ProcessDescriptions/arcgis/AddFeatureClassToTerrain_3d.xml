@@ -1,0 +1,140 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Feature Class To Terrain (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds one or more feature classes to a terrain dataset. The feature classes must reside in the same feature dataset as the terrain dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Edit</keyword><keyword>Feature Class</keyword><keyword>Lidar</keyword><keyword>Load Features</keyword><keyword>Masspoints</keyword><keyword>Multipoints</keyword><keyword>Multiresolution Surface</keyword><keyword>Surface</keyword><keyword>Terrain</keyword><keyword>Terrain Dataset</keyword><keyword>Terrains</keyword><keyword>Update</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddFeatureClassToTerrain" displayname="Add Feature Class To Terrain (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Adds one or more feature classes to a terrain dataset. The feature classes must reside in the same feature dataset as the terrain dataset.</para>
+		</summary><alink_name>AddFeatureClassToTerrain_3d</alink_name><parameters><param sync="true" name="in_terrain" displayname="Input Terrain" datatype="Terrain Layer" direction="Input" expression="in_terrain" type="Required"><pythonReference>
+						<para>The terrain that feature classes will be added to.</para>
+					</pythonReference><dialogReference>
+						<para>The terrain that feature classes will be added to. The terrain dataset must already have one or more pyramid levels created.</para>
+					</dialogReference></param><param sync="true" name="in_features" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>Add references to one or more feature classes that will be included in the terrain dataset. The feature classes must live inside the same feature dataset as the terrain dataset. For each feature class you'll need to set properties that indicate how it's used to define the surface.</para>
+						<para>You can resize the dialog box to increase its width in case the default column width is too small.</para>
+						<para>Feature class properties:</para><para>in_feature_class - The name of the input feature class which is to be added to the terrain dataset.</para><para>height _source - The field supplying heights for the features. If z-values are coming from the feature geometry, then the Shape field is listed; otherwise, it will be either the name of a numeric field or, in the case of z-less features, the keyword &lt;None&gt;. Z-less features have no heights and their values are interpolated from the surface before they get added.</para>
+						<para>SF_type -This represents the Surface Feature Type. It defines how the feature geometry gets incorporated into the triangulation for the surface. There are mass points, breaklines, and several polygon types. Breaklines and polygons also have 'hard' and 'soft' qualifiers. These indicate to an interpolator whether the surface crosses over the features smoothly (soft) or with a potentially sharp discontinuity (hard).</para>
+						<para>group - Thematically similar data, representing the same geographic features but at different levels of detail, are placed into groups. Feature classes belonging to the same group are assigned the same group ID. An example is a study area boundary. One feature class may contain a very detailed boundary used for large-scale applications and another with a coarse boundary. Both are used the same way in the terrain, just at different scales, and thus are assigned the same group ID.</para>
+						<para>min_resolution and  max_resolution - These parameters are used for feature classes added as polyline or polygon surface feature types. They define the range of pyramid levels the features will be enforced in the surface. You provide the resolution thresholds, given in the resolution of the Terrain dataset's pyramid levels.</para>
+						<para>overview -  Indicates whether the feature class contributes measurements to the coarsest representation of the terrain dataset. The overview is what's drawn by default when zoomed to the full extent of the terrain dataset. Points are always used in the overview. The setting here is for line and polygon data sources. Only set those feature classes that must be represented in the overview to TRUE. For example, you probably don't need detailed breaklines but you might need a clip polygon, particularly if the data boundary is irregularly shaped. If the boundary you have is detailed, generalize it and use the coarser representation for the overview. The detailed version should be used in more detailed pyramid levels.</para>
+						<para>embedded - Feature classes that are embedded are contained by the terrain dataset itself. They will not be visible in ArcCatalog or the Add Data browser.  Only multipoint feature classes can be embedded. They can be accessed and modified through terrain dataset related tools.</para>
+						<para>embedded_fields - If the feature class is being embedded, and has LAS (i.e., lidar) attributes created via the LAS To Multipoint  import tool, you can have those attributes preserved. Specify here which LAS attributes to save with the embedded points.</para><para>anchored - A point feature class can be assigned the anchored property.  Anchor points remain through all pyramid levels of a terrain
+dataset. They are never filtered or thinned away. This ensures they
+are present in the terrain surface regardless of what resolution
+pyramid level is being used.
+</para>
+					</pythonReference><dialogReference>
+						<para>Add references to one or more feature classes that will be included in the terrain dataset. The feature classes must live inside the same feature dataset as the terrain dataset. For each feature class you'll need to set properties that indicate how it's used to define the surface.</para>
+						<para>You can resize the dialog box to increase its width in case the default column width is too small.</para>
+						<para>Feature class properties:</para><para>in_feature_class - The name of the input feature class which is to be added to the terrain dataset.</para><para>height _source - The field supplying heights for the features. If z-values are coming from the feature geometry, then the Shape field is listed; otherwise, it will be either the name of a numeric field or, in the case of z-less features, the keyword &lt;None&gt;. Z-less features have no heights and their values are interpolated from the surface before they get added.</para>
+						<para>SF_type -This represents the Surface Feature Type. It defines how the feature geometry gets incorporated into the triangulation for the surface. There are mass points, breaklines, and several polygon types. Breaklines and polygons also have 'hard' and 'soft' qualifiers. These indicate to an interpolator whether the surface crosses over the features smoothly (soft) or with a potentially sharp discontinuity (hard).</para>
+						<para>group - Thematically similar data, representing the same geographic features but at different levels of detail, are placed into groups. Feature classes belonging to the same group are assigned the same group ID. An example is a study area boundary. One feature class may contain a very detailed boundary used for large-scale applications and another with a coarse boundary. Both are used the same way in the terrain, just at different scales, and thus are assigned the same group ID.</para>
+						<para>min_resolution and  max_resolution - These parameters are used for feature classes added as polyline or polygon surface feature types. They define the range of pyramid levels the features will be enforced in the surface. You provide the resolution thresholds, given in the resolution of the Terrain dataset's pyramid levels.</para>
+						<para>overview -  Indicates whether the feature class contributes measurements to the coarsest representation of the terrain dataset. The overview is what's drawn by default when zoomed to the full extent of the terrain dataset. Points are always used in the overview. The setting here is for line and polygon data sources. Only set those feature classes that must be represented in the overview to TRUE. For example, you probably don't need detailed breaklines but you might need a clip polygon, particularly if the data boundary is irregularly shaped. If the boundary you have is detailed, generalize it and use the coarser representation for the overview. The detailed version should be used in more detailed pyramid levels.</para>
+						<para>embedded - Feature classes that are embedded are contained by the terrain dataset itself. They will not be visible in ArcCatalog or the Add Data browser.  Only multipoint feature classes can be embedded. They can be accessed and modified through terrain dataset related tools.</para>
+						<para>embedded_fields - If the feature class is being embedded, and has LAS (i.e., lidar) attributes created via the LAS To Multipoint  import tool, you can have those attributes preserved. Specify here which LAS attributes to save with the embedded points.</para><para>anchored - A point feature class can be assigned the anchored property.  Anchor points remain through all pyramid levels of a terrain
+dataset. They are never filtered or thinned away. This ensures they
+are present in the terrain surface regardless of what resolution
+pyramid level is being used.
+</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent"></environment></environments><usage><bullet_item>
+				<para>The feature classes must reside in the same feature dataset as the terrain dataset.</para>
+			</bullet_item><bullet_item>
+				<para>The terrain dataset may need to be rebuilt using  after using this tool. This depends on how the feature class is used to define the terrain dataset. The terrain dataset's Properties dialog box in ArcCatalog and the terrain layer's  Properties dialog box in ArcMap both provide an indication as to whether the dataset needs to be rebuilt.</para>
+			</bullet_item><bullet_item>
+				<para>When used in an SDE database, the input terrain cannot be registered as versioned.</para>
+			</bullet_item><bullet_item>
+				<para>The input feature class cannot be registered as versioned.</para>
+			</bullet_item><bullet_item>
+				<para>The terrain dataset must already have one or more pyramid levels created.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Add Feature Class To Terrain Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Add Feature Class To Terrain
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+params = ("C:/data/terrain.gdb/terrainFDS/points2 SHAPE masspoints 2 0 10 true false &lt;None&gt; &lt;None&gt;")
+arcpy.AddFeatureClassToTerrain_3d("C:/data/terrain.gdb/terrainFDS/terrain1", params)
+                    </code></scriptExample><scriptExample><title>Add Feature Class To Terrain Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Add Feature Class To Terrain
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: AddFeatureClassToTerrain Example
+# Description: The following stand-alone script demonstrates how to create a
+#              terrain dataset from a TIN. The TinDomain, TinLine, and TinNode 
+#              tools are used to extract the features from the TIN, and the 
+#              CreateTerrain, AddTerrainPyramidLevel, AddFeatureClassToTerrain, 
+#              and BuildTerrain tools are used to construct the terrain. This 
+#              process is helpful in situations where the data used in
+#              making the TIN is no longer available.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension('3D')
+
+# Set environment settings
+env.workspace = 'C:/data'
+
+try:
+    # Set Local Variables
+    sourceTIN = 'elevation'
+    newFGDB = 'sample.gdb' # name of the file geodatabase that will be created
+    newFD = 'data_from_TIN' # name of the feature dataset that will be created
+    # os.sep is used to denote the separator (e.g. '/')
+    # The clip polygon that will be extracted from the TIN
+    TIN_domain = newFGDB + os.sep + newFD + os.sep + 'boundary'
+    # The elevation points that will be extracted from the TIN
+    TIN_nodes = newFGDB + os.sep + newFD + os.sep + 'mass_points'
+    # The breaklines that will be extracted from the TIN
+    TIN_lines = newFGDB + os.sep + newFD + os.sep + 'breaklines'
+    # Name of the terrain that will be created
+    terrain = 'terrain_from_tin'
+    # Pyramid levels for the terrain
+    pyramids = '20 5000;25 10000;35 25000;50 50000'
+    # Properties for the terrain surfaces
+    PolyParams = TIN_domain + \
+               ' Shape softclip 1 0 10 true false boundary_embed &lt;None&gt; false'
+    PtParams = TIN_nodes + \
+             ' Shape masspoints 1 0 50 true false points_embed &lt;None&gt; false'
+    LineParams = TIN_lines + \
+               ' Shape softline 1 0 25 false false lines_embed &lt;None&gt; false'
+    arcpy.AddMessage('Creating file geodatabase...')
+    # Execute CreateFileGDB
+    arcpy.CreateFileGDB_management(env.workspace, newFGDB)
+    arcpy.AddMessage('Creating feature dataset...')
+    # Execute CreateFeatureDataset
+    arcpy.CreateFeatureDataset_management(newFGDB, newFD, sourceTIN)
+    arcpy.AddMessage('Exporting TIN footprint...')
+    # Execute TinDomain
+    arcpy.TinDomain_3d(sourceTIN, TIN_domain, 'POLYGON')
+    arcpy.AddMessage('Exporting TIN lines...')
+    # Execute TinLine
+    arcpy.TinLine_3d(sourceTIN, TIN_edges, 'Code')
+    arcpy.AddMessage('Exporting TIN nodes...')
+    # Execute TinNode
+    arcpy.TinNode_3d(sourceTIN, TIN_nodes)
+    # Execute CreateTerrain
+    arcpy.CreateTerrain_3d(newFGDB + os.sep + newFD, terrain, 10, 50000, '', \
+                           'WINDOWSIZE', 'ZMEAN', 'NONE', 1)
+    # Execute AddTerrainPyramidLevel
+    arcpy.AddTerrainPyramidLevel_3d(newFGDB + os.sep + newFD + os.sep + terrain,\
+                                    '', pyramids)
+    # Execute AddFeatureClassToTerrain
+    arcpy.AddFeatureClassToTerrain_3d(newFGDB + os.sep + newFD + os.sep + terrain,\
+                                      PolyParams + ';' + PtParams + ';' + LineParams) 
+    # Execute BuildTerrain
+    arcpy.BuildTerrain_3d(newFGDB + os.sep + newFD + os.sep + terrain, 'NO_UPDATE_EXTENT')
+except:
+    # Returns any other error messages
+    print arcpy.GetMessages(2)
+
+del arcpy, sourceTIN, newFGDB, newFD, TIN_domain, TIN_lines, TIN_nodes, terrain, \
+    pyramids, PolyParams, PtParams, LineParams
+                    </code></scriptExample></scriptExamples></tool></metadata>

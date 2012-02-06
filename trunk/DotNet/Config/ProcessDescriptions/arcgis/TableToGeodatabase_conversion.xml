@@ -1,0 +1,57 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Table To Geodatabase (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts one or more tables to geodatabase tables in an output personal, file, or SDE geodatabase. The inputs can be dBASE, INFO, VPF, OLE DB tables, or geodatabase tables, or table views.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Batch</keyword><keyword>Change</keyword><keyword>Convert</keyword><keyword>Copy</keyword><keyword>Db</keyword><keyword>Dbase</keyword><keyword>Dbf</keyword><keyword>Export</keyword><keyword>Feature Class</keyword><keyword>File</keyword><keyword>Format</keyword><keyword>Gdb</keyword><keyword>Import</keyword><keyword>Info</keyword><keyword>Load</keyword><keyword>Make</keyword><keyword>Many</keyword><keyword>Migrate</keyword><keyword>Ole</keyword><keyword>Personal</keyword><keyword>Record</keyword><keyword>Row</keyword><keyword>Sde</keyword><keyword>Turn</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TableToGeodatabase" displayname="Table To Geodatabase (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts one or more tables to geodatabase tables in an output personal, file, or SDE geodatabase. The inputs can be dBASE, INFO, VPF, OLE DB tables, or geodatabase tables, or table views.</para>
+		</summary><alink_name>TableToGeodatabase_conversion</alink_name><parameters><param sync="true" name="input_table" displayname="Input Table" datatype="Table View" direction="Input" expression="[input_table,...]" type="Required"><pythonReference>
+						<para>The list of tables to be converted to geodatabase tables. Input tables can be INFO, dBASE, OLE DB, or geodatabase tables, or table views.</para>
+					</pythonReference><dialogReference>
+						<para>The list of tables to be converted to geodatabase tables. Input tables can be INFO, dBASE, OLE DB, or geodatabase tables, or table views.</para>
+					</dialogReference></param><param sync="true" name="output_geodatabase" displayname="Output Geodatabase" datatype="Workspace" direction="Input" expression="output_geodatabase" type="Required"><pythonReference>
+						<para>The destination geodatabase where the output geodatabase tables will be placed.</para>
+					</pythonReference><dialogReference>
+						<para>The destination geodatabase where the output geodatabase tables will be placed.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The name of the output geodatabase tables will be based on the name of the input table. To control the output name and for additional conversion options use the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>The  and  tools can also be used to convert a table to a geodatabase table.</para>
+			</bullet_item><bullet_item>
+				<para>If the name of the output table already exists in the output geodatabase, a number will be appended to the end of the name to make it unique (for example, OutputTable_1).</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TableToGeodatabase Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the TableToGeodatabase tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.TableToGeodatabase_conversion(["accident.dbf", "vegtable.dbf"], "C:/output/output.gdb")
+                    </code></scriptExample><scriptExample><title>TableToGeodatabase Example (stand-alone Python script)</title>
+					<para>The following stand-alone script demonstrates how to use the TableToGeodatabase tool.</para>
+				<code xml:space="preserve"># Name: TableToGeodatabase_Example2.py
+# Description: Use TableToDBASE to copy tables to geodatabase format
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data"
+
+# Make list of all tables in workspace
+tables = arcpy.ListTables()
+# list of tables should be similar to this: ["accident.dbf", "vegtable.dbf"]
+ 
+# Set local variables
+outLocation = "C:/output/output.gdb"
+
+try: 
+    # Execute TableToGeodatabase
+    print "Importing tables to gdb: " + outLocation
+    arcpy.TableToGeodatabase_conversion(tables, outLocation)
+except:
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

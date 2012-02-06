@@ -1,0 +1,69 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Count Rendering (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Applies graduated circle rendering to a numeric field in a feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Apply</keyword><keyword>Change</keyword><keyword>Circle</keyword><keyword>Display</keyword><keyword>Graduate</keyword><keyword>Layer</keyword><keyword>Lyr</keyword><keyword>Quantity</keyword><keyword>Symbol</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CountRenderer" displayname="Count Rendering (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Applies graduated circle rendering to a numeric field in a feature class.</para>
+		</summary><alink_name>CountRenderer_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/CountRenderer_stats_v.gif" alt="Count Renderer illustration" /><toolIllust type="illustration" src="CountRenderer_stats_h.gif" alt="Count Renderer illustration" /><parameters><param sync="true" name="input_feature_class" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="input_feature_class" type="Required"><pythonReference>
+						<para>The feature layer containing count data to be rendered.</para>
+					</pythonReference><dialogReference>
+						<para>The feature layer containing count data to be rendered.</para>
+					</dialogReference></param><param sync="true" name="field_to_render" displayname="Field Name" datatype="Field" direction="Input" expression="field_to_render" type="Required"><pythonReference>
+						<para>The name of the field containing count data.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the field containing count data.</para>
+					</dialogReference></param><param sync="true" name="Output_Layer_File" displayname="Output Layer" datatype="Layer File" direction="Output" expression="Output_Layer_File" type="Required"><pythonReference>
+						<para>The new output layer file containing rendering information. You must include the .lyr extension as part of the file name.</para>
+					</pythonReference><dialogReference>
+						<para>The new output layer file containing rendering information. You must include the .lyr extension as part of the file name.</para>
+					</dialogReference></param><param sync="true" name="number_of_classes" displayname="Number of Classes" datatype="Long" direction="Input" expression="number_of_classes" type="Required"><pythonReference>
+						<para>The number of classes into which the input feature class will be classified.</para>
+					</pythonReference><dialogReference>
+						<para>The number of classes into which the input feature class will be classified.</para>
+					</dialogReference></param><param sync="true" name="symbol_color" displayname="Symbol Color" datatype="String" direction="Input" expression="symbol_color" type="Required"><pythonReference>
+						<para>The color of the graduated circles.</para>
+						<bulletList><bullet_item>MANGO—</bullet_item><bullet_item>BRIGHT_RED—</bullet_item><bullet_item>DARK_GREEN—</bullet_item><bullet_item>GREEN—</bullet_item><bullet_item>DARK_BLUE—</bullet_item><bullet_item>BRIGHT_PINK—</bullet_item><bullet_item>LIGHT_YELLOW—</bullet_item><bullet_item>SKY_BLUE—</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The color of the graduated circles.</para>
+						<bulletList><bullet_item>MANGO—</bullet_item><bullet_item>BRIGHT_RED—</bullet_item><bullet_item>DARK_GREEN—</bullet_item><bullet_item>GREEN—</bullet_item><bullet_item>DARK_BLUE—</bullet_item><bullet_item>BRIGHT_PINK—</bullet_item><bullet_item>LIGHT_YELLOW—</bullet_item><bullet_item>SKY_BLUE—</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="maximum_field_value" displayname="Maximum Field Value" datatype="Double" direction="Input" expression="maximum_field_value" type="Optional"><pythonReference>
+						<para>The maximum attribute value that will be rendered. Features with field values greater than this maximum value will not be drawn.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum attribute value that will be rendered. Features with field values greater than this maximum value will not be drawn.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>The Count Rendering tool renders quantities as circles; circle size reflects value magnitudes.  Tool output is a new layer file (.lyr).</para>
+			</bullet_item><bullet_item>
+				<para>Rendering features quantitatively may reveal spatial patterns in the input count data.</para>
+			</bullet_item><bullet_item>
+				<para>If no Maximum Field Value is provided, it is set to the largest value found in the Field to Render. Use the Maximum Field Value parameter when you want to compare several graduated circle maps; setting the same Maximum Field Value for a series of maps imposes a fixed circle size scaling even when the data ranges vary.</para>
+			</bullet_item><bullet_item>Beginning with the ArcGIS 10  release, this tool is a built-in tool (rather than a Visual Basic executable).  While every effort was made not to break custom model and script tools developed prior to 10, there may be cases where older models that use this tool must be rebuilt in order for the model to run.</bullet_item></usage><scriptExamples><scriptExample><title>CountRendering Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the CountRendering tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "c:/data"
+arcpy.CountRenderer_stats("autotheft_weighted.shp", "Count", "auto_weight_rendered.lyr", "5", "mango","#")
+                    </code></scriptExample><scriptExample><title>CountRendering Example (stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the CountRendering tool.</para>
+				<code xml:space="preserve"># Convert incident data to weighted point data and render
+ 
+# Import system modules
+import arcpy, sys, string, os
+ 
+# Local variables...
+workspace = "C:/data"
+input = "AutoTheft.shp"
+input_weighted = "autotheft_weighted.shp"
+results_field = "Count"
+input_weighted_rendered = "auto_weight_rendered.lyr"
+ 
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.env.workspace = workspace
+ 
+    # Process: Collect Events...
+    arcpy.CollectEvents_stats(input, input_weighted, results_field)
+ 
+    # Process: Count Rendering...
+    arcpy.CountRenderer_stats(input_weighted, results_field, input_weighted_rendered, "5", "MANGO", "#")
+ 
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

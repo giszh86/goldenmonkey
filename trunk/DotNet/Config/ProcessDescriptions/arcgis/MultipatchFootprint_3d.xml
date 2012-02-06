@@ -1,0 +1,72 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Multipatch Footprint (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts multipatches into polygons. The output polygons represent the 2D area covered by the multipatches when viewed from directly above.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Building Footprint</keyword><keyword>Convert</keyword><keyword>File</keyword><keyword>Footprint</keyword><keyword>Import</keyword><keyword>Polygon Footprint</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MultipatchFootprint" displayname="Multipatch Footprint (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Converts multipatches into polygons. The output polygons represent the 2D area covered by the multipatches when viewed from directly above.</para>
+		</summary><alink_name>MultipatchFootprint_3d</alink_name><toolIllust type="illustration" src="MultipatchFootprint_3d_h.gif" alt="Multipatch Footprint " /><parameters><param sync="true" name="in_feature_class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_feature_class" type="Required"><pythonReference>
+						<para>The input multipatch feature class</para>
+					</pythonReference><dialogReference>
+						<para>The input multipatch feature class</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output 2D polygon feature class</para>
+					</pythonReference><dialogReference>
+						<para>The output 2D polygon feature class</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Z_MIN and Z_MAX information for each shape will be output as attributes.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Multipatch Footprint Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Multipatch Footprint
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.MultiPatchFootprint_3d("multipatch.shp","multipatch_footprint.shp")
+                    </code></scriptExample><scriptExample><title>Multipatch Footprint Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Multipatch Footprint
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: MultiPatchFootprint Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              MultiPatchFootprint tool to create footprint polygons for all
+#              multipatche shapefiles in a target workspace.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Create list of multipatch feature classes
+    fcList = arcpy.ListFeatureClasses('*', 'multipatches')
+    # Determine if the list contains any feature classes
+    if len(fcList) &gt; 0:
+        # Iterate through the list
+        for fc in fcList:
+            outPoly = fc[:-4] + "_Footprint.shp"
+            #Execute MultiPatchFootprint
+            arcpy.MultiPatchFootprint_3d(fc,outPoly)
+    else:
+        print "There are no feature classes in " + env.workspace + "."
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

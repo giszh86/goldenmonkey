@@ -1,0 +1,96 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Solve (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Solves the network analysis layer problem based on its network locations and properties. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alter</keyword><keyword>Altered</keyword><keyword>Layer</keyword><keyword>Network Analyst Layer</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Solve" displayname="Solve (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Solves the network analysis layer problem based on its network locations and properties. </para>
+		</summary><alink_name>Solve_na</alink_name><parameters><param sync="true" name="in_network_analysis_layer" displayname="Input network analysis layer" datatype="Network Analyst Layer" direction="Input" expression="in_network_analysis_layer" type="Required"><pythonReference>
+						<para>The network analysis layer on which the analysis will be computed.</para>
+					</pythonReference><dialogReference>
+						<para>The network analysis layer on which the analysis will be computed.</para>
+					</dialogReference></param><param sync="true" name="ignore_invalids" displayname="Ignore invalid locations" datatype="Boolean" direction="Input" expression="ignore_invalids" type="Optional"><pythonReference>
+						<bulletList><bullet_item>SKIP—The solver will skip over network locations that are unlocated and solve the analysis layer from valid network locations only. It will also continue solving if locations are on nontraversable elements or have other errors. This is useful if you know your network locations are not all correct, but you want to solve with the network locations that are valid. </bullet_item><bullet_item>HALT—Do not solve if there are invalid locations. You can then correct these and re-run the analysis. </bullet_item></bulletList>
+						<para>For vehicle routing problem network analysis layer, use HALT as the parameter value since the vehicle routing problem solver requires all the network locations to be valid.</para>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked—The solver will skip over network locations that are unlocated and solve the analysis layer from valid network locations only. It will also continue solving if locations are on nontraversable elements or have other errors. This is useful if you know your network locations are not all correct, but you want to solve with the network locations that are valid.</bullet_item>
+							<bullet_item>Unchecked—Do not solve if there are invalid locations. You can then correct these and re-run the analysis.</bullet_item>
+						</bulletList>
+						<para>For vehicle routing problem network analysis layer, this parameter is disabled and unchecked since the vehicle routing problem solver requires all the network locations to be valid.</para>
+					</dialogReference></param><param sync="true" name="terminate_on_solve_error" displayname="Terminate on solve error" datatype="Boolean" direction="Input" expression="terminate_on_solve_error" type="Optional"><pythonReference>
+						<bulletList><bullet_item>TERMINATE—The tool will fail to execute when the solver encounters an error. This is the default. When you use this option, the result object is not created when the tool fails to execute due to a solver error. You should obtain the geoprocessing messages from the ArcPy object. </bullet_item><bullet_item>CONTINUE—The tool will not fail and continue execution even when the solver encounters an error. All of the error messages returned by the solver will be converted to warning messages. When you use this option, the result object is always created and the maxSeverity property of the result object is set to 1 even when the solver encounters an error. Use the getOutput method of the result object with an index value of 1 to determine if the solve was successful. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked—The tool will fail to execute when the solver encounters an error. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The tool will not fail and continue execution even when the solver encounters an error. All of the error messages returned by the solver will be converted to warning messages. You should use this option when background processing is enabled in your application.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>When the solve fails, the warning and error messages provide useful information about the reasons for the failure.</para>
+			</bullet_item><bullet_item>
+				<para>Be sure to specify all the parameters on the network analysis layer that are necessary to solve the problem before running this tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Solve example 1 (Python window)</title>
+					<para>Execute the tool using all the parameters.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.Solve_na("Route","HALT","TERMINATE")
+
+                    </code></scriptExample><scriptExample><title>Solve example 2 (workflow)</title>
+					<para>The following stand-alone Python script demonstrates how the Solve tool can be used to perform a closest facility analysis and save results to a layer file. </para>
+				<code xml:space="preserve"># Name: Solve_Workflow.py
+# Description: Solve a closest facility analysis to find the closest warehouse 
+#              from the store locations and save the results to a layer file on 
+#              disk.
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+try:
+    #Check out the Network Analyst extension license
+    arcpy.CheckOutExtension("Network")
+
+    #Set environment settings
+    env.workspace = "C:/data/Paris.gdb"
+    env.overwriteOutput = True
+    
+    #Set local variables
+    inNetworkDataset = "Transportation/ParisMultimodal_ND"
+    outNALayer = "ClosestWarehouse"
+    impedanceAttribute = "Drivetime"
+    accumulateAttributeName = ["Meters"]
+    inFacilities = "Analysis/Warehouses"
+    inIncidents = "Analysis/Stores"
+    fieldMappings = "Name NOM #"
+    outLayerFile = "C:/data/output" + "/" + outNALayer + ".lyr"
+    
+    #Create a new closest facility analysis layer. Apart from finding the drive 
+    #time to the closest warehouse, we also want to find the total distance. So
+    #we will accumulate the "Meters" impedance attribute.
+    arcpy.MakeClosestFacilityLayer_na(inNetworkDataset,outNALayer,
+                                      impedanceAttribute,"TRAVEL_TO","",1,
+                                      accumulateAttributeName,"NO_UTURNS")
+    
+    #Load the warehouses as Facilities using the default field mappings and 
+    #search tolerance
+    arcpy.AddLocations_na(outNALayer,"Facilities",inFacilities,"","")
+    
+    #Load the Stores as Incidents. Map the Name property from the NOM field
+    arcpy.AddLocations_na(outNALayer,"Incidents",inIncidents,fieldMappings,"")
+    
+    #Solve the closest facility layer
+    arcpy.Solve_na(outNALayer)
+    
+    #Save the solved closest facility layer as a layer file on disk using
+    #relative paths
+    arcpy.SaveToLayerFile_management(outNALayer,outLayerFile,"RELATIVE")
+    
+    print "Script completed successfully"
+
+except Exception as e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "An error occured on line %i" % tb.tb_lineno
+    print str(e)
+                    </code></scriptExample></scriptExamples></tool></metadata>

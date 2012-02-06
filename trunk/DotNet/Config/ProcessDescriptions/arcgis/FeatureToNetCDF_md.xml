@@ -1,0 +1,87 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Feature to NetCDF (Multidimension)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a point feature class to a netCDF file.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Climate</keyword><keyword>Climatology</keyword><keyword>Dimension</keyword><keyword>Meteorology</keyword><keyword>Oceanography</keyword><keyword>Scientific</keyword><keyword>Weather</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FeatureToNetCDF" displayname="Feature to NetCDF (Multidimension)" toolboxalias="md" softwarerestriction="none"><summary>
+			<para>Converts a point feature class to a netCDF file.</para>
+		</summary><alink_name>FeatureToNetCDF_md</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class.</para>
+					</dialogReference></param><param sync="true" name="fields_to_variables" displayname="Fields to Variables" datatype="Value Table" direction="Input" expression="[[field, {variable}, {units}],...]" type="Required"><pythonReference>
+						<para>The field or fields used to create variables in the netCDF file. Four special fields—Shape.X, Shape.Y, Shape.Z, and Shape.M—can be used for exporting x-coordinates or longitude, y-coordinates or latitude, Z values, and M values of input features, respectively.<bulletList>
+								<bullet_item>field—A field in the input feature attribute table.</bullet_item>
+								<bullet_item>{variable}—The netCDF variable name.</bullet_item>
+								<bullet_item>{units}—The units of the data represented by the field.</bullet_item>
+							</bulletList></para>
+					</pythonReference><dialogReference>
+						<para>The field or fields used to create variables in the netCDF file. Four special fields—Shape.X, Shape.Y, Shape.Z, and Shape.M—are available in the drop-down list. They can be used for exporting x-coordinates or longitude, y-coordinates or latitude, Z values, and M values of input features, respectively.<bulletList>
+								<bullet_item>field—A field in the input feature attribute table.</bullet_item>
+								<bullet_item>{variable}—The netCDF variable name.<para>{units}—The units of the data represented by the field.</para></bullet_item>
+							</bulletList></para>
+					</dialogReference></param><param sync="true" name="out_netCDF_file" displayname="Output NetCDF File" datatype="File" direction="Output" expression="out_netCDF_file" type="Required"><pythonReference>
+						<para>The output netCDF file. The filename must have a .nc extension.</para>
+					</pythonReference><dialogReference>
+						<para>The output netCDF file. The filename must have a .nc extension.</para>
+					</dialogReference></param><param sync="true" name="fields_to_dimensions" displayname="Fields to Dimensions" datatype="Value Table" direction="Input" expression="[[field, {dimension}, {units}],...]" type="Optional"><pythonReference>
+						<para>The field or fields used to create dimensions in the netCDF file.</para>
+						<bulletList>
+							<bullet_item>field—A field in the input feature attribute table.</bullet_item>
+							<bullet_item>{dimension}—The netCDF dimension name.</bullet_item>
+							<bullet_item>{units}—The units of the data represented by the field.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>The field or fields used to create dimensions in the netCDF file.</para>
+						<bulletList>
+							<bullet_item>field—A field in the input feature attribute table.</bullet_item>
+							<bullet_item>{dimension}—The netCDF dimension name.</bullet_item>
+							<bullet_item>{units}—The units of the data represented by the field.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The default variable name is the same as the input feature field name specified in the Fields to Variables parameter.</para>
+			</bullet_item><bullet_item>
+				<para>The type of variable is the same as the type of field.</para>
+			</bullet_item><bullet_item>
+				<para>Special fields Shape.X and Shape.Y are always available in the Fields to Variables drop-down list. They can be used for specifying variable names for x-coordinates and y-coordinates, respectively. If variable names are not specified or Shape.X and Shape.Y are not added to the list, the x- and y-coordinates are exported with default variable names. The default variable names for Shape.X and Shape.Y are lon and lat, respectively, when the feature is in a geographic coordinate system. In all other cases, the default variable names for Shape.X and Shape.Y are x and y, respectively.</para>
+			</bullet_item><bullet_item>
+				<para>Special fields Shape.Z and Shape.M are available in the Fields to Variables drop-down list for features with Z and M values. To export Z and M values, you must add Shape.Z and Shape.M to the list. The default variable names for Shape.Z and Shape.M are z and m, respectively.</para>
+			</bullet_item><bullet_item>
+				<para>The default dimension name is the same as the input feature field name specified in the Fields to Dimensions parameter.</para>
+			</bullet_item><bullet_item>
+				<para>The size of a dimension is equal to the number of unique values in the respective field.</para>
+			</bullet_item><bullet_item>
+				<para>If no field is specified as a row dimension, then a dimension RecordID is created in the output netCDF file with a size equal to the number of features.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FeatureToNetCDF example 1 (Python window)</title>
+					<para>Converts a feature class to a netCDF file.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.FeatureToNetCDF_md("c:/data/spotelev.shp", [["Shape.X", "lon"],
+                         "degree_east", ["Shape.Y", "lat", "degree_north"],
+                         ["elevation", "elevation", "meter"]],
+                         "c:/output/pointelev01.nc", "id")
+                    </code></scriptExample><scriptExample><title>FeatureToNetCDF example 2 (stand-alone script)</title>
+					<para>Converts a feature class to a netCDF file.</para><code xml:space="preserve"># FeatureToNetCDF_Ex_02.py
+# Description: Converts a feature class to a netCDF file.
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data/netcdfgisdata"
+
+# Set local variables
+inFeatures = "spotelev.shp"
+fieldToVariable = [["Shape.Y", "lat", "degree_north"],
+                   ["elevation", "elevation", "meter"]]
+outNetCDFFile = "c:/output/pointelev02.nc"
+fieldToDimension = "id"
+
+# Execute FeatureToNetCDF
+arcpy.FeatureToNetCDF_md(inFeatures, fieldToVariable, outNetCDFFile, 
+                         fieldToDimension)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

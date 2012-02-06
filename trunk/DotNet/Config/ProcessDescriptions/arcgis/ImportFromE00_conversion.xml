@@ -1,0 +1,61 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Import from E00 (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Imports an ArcInfo interchange file (.e00).   An interchange file is used to transport coverages, INFO tables, text files such as AML macros, and other ArcInfo files. For coverages, grids, and tins, it contains all  information, including appropriate INFO table information. Interchange files are designated with the .e00 file suffix. This is the ArcView 3.x version of the utility for importing .e00 files. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" ImportFromE00 " displayname=" Import from E00 (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Imports an ArcInfo interchange file (.e00).   An interchange file is used to transport coverages, INFO tables, text files such as AML macros, and other ArcInfo files. For coverages, grids, and tins, it contains all  information, including appropriate INFO table information. Interchange files are designated with the .e00 file suffix. This is the ArcView 3.x version of the utility for importing .e00 files. </para>
+		</summary><alink_name> ImportFromE00 _conversion</alink_name><parameters><param sync="true" name="input_e00_file" displayname="Input interchange file" datatype="File" direction="Input" expression="input_e00_file" type="Required"><pythonReference>
+						<para> ArcInfo Workstation interchange file to convert.</para>
+					</pythonReference><dialogReference>
+						<para> ArcInfo Workstation interchange file to convert.</para>
+					</dialogReference></param><param sync="true" name="out_path" displayname="Output folder" datatype="Folder" direction="Input" expression="out_path" type="Required"><pythonReference>
+						<para> The location in which the output will be created.
+</para></pythonReference><dialogReference>
+						<para> The location in which the output will be created.
+</para></dialogReference></param><param sync="true" name="out_name" displayname="Output name" datatype="String" direction="Input" expression="out_name" type="Required"><pythonReference>
+						<para> The name of the output.</para></pythonReference><dialogReference>
+						<para> The name of the output.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+					</environment></environments><usage><bullet_item>
+				<para> Does not enforce ArcInfo Workstation dataset naming limitations. If your .e00 file contains a coverage, grid, or tin, you should avoid using an output parameter that contains spaces, or has a name longer than 13 characters. INFO table names should be 32 characters or shorter.</para>
+			</bullet_item><bullet_item>
+				<para>When importing INFO tables, you do not need to use the ! naming convention when setting the output parameter. Simply set the parameter to include the path to the target workspace and the name of the table you desire. The table will be created in that workspace's INFO database. For example, instead of using D:/workspace/INFO!sometable, use D:/workspace/sometable. </para>
+			</bullet_item><bullet_item>
+				<para>Does not honor the Geoprocessing overwrite Output environment.  You must  delete any expected output before importing a .e00 file.</para>
+			</bullet_item><bullet_item>
+				<para>If you have an ArcInfo license and have installed ArcInfo Workstation, you can also use the  tool, which has more advanced capabilities.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ImportFromE00 example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the ImportFromE00 tool in immediate mode to import a coverage.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.ImportFromE00_conversion("citylim.e00", "C:/output", "citylim")
+
+                    </code></scriptExample><scriptExample><title>ImportFromE00 example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to import a file from an ArcInfo interchange file.</para>
+					<para> In this example, the .e00 file contains an aml, and an aml with the same name already exists in the output folder. The script first detects and deletes the existing aml and then replaces it by importing it from the .e00 file.</para>
+				<code xml:space="preserve"># Name: ImportFromE00_Example2.py
+# Description: Imports an e00 file that is known to contain an aml file.
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+importE00File = "flowaml.e00"
+outDirectory = "C:/output"
+outName = "flowtool.aml"
+
+# Delete pre-existing output
+if env.overwriteOutput :
+    if os.path.exists(outName):
+        os.remove(outName)
+
+# Execute ImportFromE00
+arcpy.ImportFromE00_conversion(importE00File, outDirectory, outName)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

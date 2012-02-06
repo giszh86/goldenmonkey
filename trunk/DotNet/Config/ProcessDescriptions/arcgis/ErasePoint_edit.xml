@@ -1,0 +1,105 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Erase Point (Editing)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Deletes points from the input that are either inside or outside the Remove Features, depending on the Operation Type.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Clip</keyword><keyword>Cut</keyword><keyword>Delete</keyword><keyword>Erase</keyword><keyword>Exist</keyword><keyword>Input</keyword><keyword>Inside</keyword><keyword>Modify</keyword><keyword>Outside</keyword><keyword>Remove</keyword><keyword>Update</keyword><keyword>Vertex</keyword><keyword>Vertices</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ErasePoint" displayname="Erase Point (Editing)" toolboxalias="edit" softwarerestriction="none"><summary>
+			<para>Deletes points from the input that are either inside or outside the Remove Features, depending on the Operation Type.</para>
+		</summary><alink_name>ErasePoint_edit</alink_name><toolIllust type="illustration" src="ErasePoint_edit_h.png" alt="Erase Point Illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input point features.</para>
+					</pythonReference><dialogReference>
+						<para>The input point features.</para>
+					</dialogReference></param><param sync="true" name="remove_features" displayname="Remove Features" datatype="Feature Layer" direction="Input" expression="remove_features" type="Required"><pythonReference>
+						<para>Input features inside or outside the Remove Features will be deleted, depending on the Operation Type parameter.</para>
+					</pythonReference><dialogReference>
+						<para>Input features inside or outside the Remove Features will be deleted, depending on the Operation Type parameter.</para>
+					</dialogReference></param><param sync="true" name="operation_type" displayname="Operation Type" datatype="String" direction="Input" expression="operation_type" type="Optional"><pythonReference>
+						<para>Determines if points INSIDE or OUTSIDE the Remove Features will be deleted.</para>
+						<bulletList><bullet_item>INSIDE—Input point features inside or on the boundary of the Remove Features will be deleted.</bullet_item><bullet_item>OUTSIDE—Input point features outside the Remove Features will be deleted.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines if points INSIDE or OUTSIDE the Remove Features will be deleted.</para>
+						<bulletList><bullet_item>INSIDE—Input point features inside or on the boundary of the Remove Features will be deleted.</bullet_item><bullet_item>OUTSIDE—Input point features outside the Remove Features will be deleted.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment></environments><usage><bullet_item>
+				
+					<para>This tool modifies the input data. See  for more information and strategies to avoid undesired data changes.</para>
+				
+			</bullet_item><bullet_item>
+				<para>To delete points inside or on the boundary of the Remove Features, use operation type INSIDE. To delete points outside the Remove Features, use operation type OUTSIDE.</para>
+			</bullet_item><bullet_item>
+				<para>For multipoint input features, only points inside or outside the Remove Features will be deleted, depending on the Operation Type.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ErasePoint Example 1 (stand-alone script)</title><code xml:space="preserve">
+# Name: ErasePoint_Example.py
+# Description: Erase points inside polygon features
+# Requirements: 
+# Author: ESRI
+
+import arcpy
+from arcpy import env
+env.workspace="C:/data"
+inFeatures="wells.shp"
+removeFeatures="land.shp"
+operationType="INSIDE"
+try:
+    arcpy.ErasePoint_edit(inFeatures, removeFeatures, operationType)
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample><scriptExample><title>ErasePoint Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the ErasePoint function.</para>
+				<code xml:space="preserve"># Name: ErasePoint_Example2.py
+# Description: Replacing low resolution elevation points inside 
+# lake areas by high resolution lidar points.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data/Portland.gdb/relief"
+ 
+# Set local variables
+inElevationFeatures = "elevation_points"
+inLidarFeatures = "lidar_points"
+inLakeFeatures = "lakes"
+ 
+# Erase elevation points inside lakes
+arcpy.ErasePoint_edit(inElevationFeatures, inLakeFeatures, "INSIDE")
+
+# Clip lidar points inside lakes
+arcpy.ErasePoint_edit(inLidarFeatures, inLakeFeatures, "OUTSIDE")
+  
+# Append the clipped lidar points to the remaining elevation points
+arcpy.Append_management(inElevationFeatures, inLidarFeatures, "NO_TEST")
+  
+
+                    </code></scriptExample><scriptExample><title>ErasePoint Example (Python Interactive Window)</title>
+					<para>The following Python window script demonstrates how to use the ErasePoint function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data"
+arcpy.ErasePoint_edit("trees.shp", "park_boundaries", "INSIDE") 
+                    </code></scriptExample></scriptExamples></tool></metadata>

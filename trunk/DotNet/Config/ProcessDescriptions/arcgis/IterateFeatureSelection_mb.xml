@@ -1,0 +1,47 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Iterate Feature Selection  (ModelBuilder)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Iterates over features in a feature class. </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" IterateFeatureSelection " displayname=" Iterate Feature Selection  (ModelBuilder)" toolboxalias="mb" softwarerestriction="none"><summary>
+			<para> Iterates over features in a feature class. </para>
+			
+		</summary><alink_name> IterateFeatureSelection _mb</alink_name><parameters><param sync="true" name="in_features" displayname="In Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para> Input feature class or layer containing features to iterate.</para>
+					</pythonReference><dialogReference>
+						<para> Input feature class or layer containing features to iterate.</para>
+					</dialogReference></param><param sync="true" name="fields" displayname="Group By Fields" datatype="Value Table" direction="Input" expression="[[Field, Null Value],...]" type="Optional"><pythonReference>
+						<para> Input field or fields used to group the features for selection. Any number of input fields can be defined, resulting in a selection based on a unique combination of the fields. If no field is specified, the OID is used to iterate over features.</para>
+						<para> Define the null value for the field. By default, null values are included in the selection unless specified or the option to skip all null values is checked. The default values are "" for strings and "0" for numbers.</para>
+					</pythonReference><dialogReference>
+						<para> Input field or fields used to group the features for selection. Any number of input fields can be defined, resulting in a selection based on a unique combination of the fields. If no field is specified, the OID is used to iterate over features.</para>
+						<para> Define the null value for the field. By default, null values are included in the selection unless specified or the option to skip all null values is checked. The default values are "" for strings and "0" for numbers.</para>
+					</dialogReference></param><param sync="true" name="skip_nulls" displayname="Skip Null Values" datatype="Boolean" direction="Input" expression="skip_nulls" type="Optional"><pythonReference>
+						<para> Determines if null values in the grouping field or fields are skipped during selection. </para>
+						<bulletList>
+							<bullet_item> Checked—Skip through all the null values in the grouping fields during selection.</bullet_item>
+							<bullet_item>Unchecked—Set as default. Include all the null values in the grouping fields during selection.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para> Determines if null values in the grouping field or fields are skipped during selection. </para>
+						<bulletList>
+							<bullet_item> Checked—Skip through all the null values in the grouping fields during selection.</bullet_item>
+							<bullet_item>Unchecked—Set as default. Include all the null values in the grouping fields during selection.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>This tool is intended for use in ModelBuilder and not in Python scripting.</para>
+			</bullet_item><bullet_item>
+				<para>Iterate Feature Selection calls Make Feature Layer to make a new selection and creates two outputs: Selected Features and Value. The output Selected Features is a feature layer and can be used in other geoprocessing tools that accept a feature layer in ModelBuilder.</para>
+			</bullet_item><bullet_item>
+				<para>Complex feature classes, such as annotation and dimensions, are not supported by this tool.</para>
+			</bullet_item><bullet_item>
+				<para>More than one group by field can be used for the selection. If one or more group by fields are selected, the number of iterations is determined by the number of unique combinations of the group by fields. For each iteration, the selection of the output feature layer is determined by the number of records that match the given combination of the group by fields. If more than one group by field are chosen, then the values are concatenated &lt;field value1&gt;_&lt;field value2&gt; in the output inline variable name. See an example below where two group fields: Name of the hurricane and the Category of the hurricane are used. The output Value is 'Katrina_H5' and so on for the other values.
+				</para>
+			</bullet_item><bullet_item>
+				<para>If no group by field is chosen, the output value is the group by ObjectID field, and the selection is one record per selection. If the table does not have an ObjectID (OID) field, such as an Excel table, then the value is blank.</para>
+			</bullet_item><bullet_item>
+				<para>The tool has two outputs: Output Selected Features and Group Value of the field for selected features, which could be used as 
+					%Value% in other tools.</para>
+			</bullet_item><bullet_item>
+				<para>The temporary feature layer can be saved as a layer file using the Save To Layer File tool or saved as a new feature class using the Copy Features  tool.</para>
+			</bullet_item><bullet_item>
+				<para>If an Iterator is added to a model, all tools in the model iterate for each value in the iterator. If you do not want to run each tool in the model for each iterated value, create a  that contains only the iterator and add it as a model tool into the main model.</para>
+			</bullet_item></usage><scriptExamples></scriptExamples></tool></metadata>

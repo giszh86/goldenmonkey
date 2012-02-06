@@ -1,0 +1,49 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate Representation Rule (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Applies existing representation rules to features in a feature class representation by calculating the RuleID field.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Apply</keyword><keyword>Cartography</keyword><keyword>Override</keyword><keyword>Representation</keyword><keyword>Symbology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateRepresentationRule" displayname="Calculate Representation Rule (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Applies existing representation rules to features in a feature class representation by calculating the RuleID field.</para>
+			</summary><alink_name>CalculateRepresentationRule_cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The feature class that contains the features for which representation rules will be calculated.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class that contains the features for which representation rules will be calculated.</para>
+					</dialogReference></param><param sync="true" name="representation" displayname="Representation" datatype="String" direction="Input" expression="representation" type="Required"><pythonReference>
+						<para>The feature class representation that contains the representation rules that will be applied to features. This feature class representation must belong to the input feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class representation that contains the representation rules that will be applied to features. This feature class representation must belong to the input feature class.</para>
+					</dialogReference></param><param sync="true" name="representation_rule" displayname="Representation Rule" datatype="String" direction="Input" expression="representation_rule" type="Required"><pythonReference>
+						<para>The representation rule to be applied to the input features by calculating the RuleID field.</para>
+					</pythonReference><dialogReference>
+						<para>The representation rule to be applied to the input features by calculating the RuleID field.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>The input must be a geodatabase feature class with at least one feature class representation.</para>
+			</bullet_item><bullet_item>
+				<para>Specify a representation rule to assign to a feature. The selected feature or features will have their Rule ID field populated with the specified rule.</para>
+			</bullet_item><bullet_item>
+				<para>If the specified Rule ID matches the current Rule ID for a selected feature or features, there will be no change.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CalculateRepresentationRule tool Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the CalculateRepresentationRule tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.CalculateRepresentationRule_cartography("footprints.lyr", "footprints_Rep", "Rule_3")
+                    </code></scriptExample><scriptExample><title>CalculateRepresentationRule tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the CalculateRepresentationRule tool.</para>
+				<code xml:space="preserve"># Name: CalculateRepresentationRule_standalone_script.py
+# Description: Applies existing representation rules to features in a feature class representation by calculating the RuleID field.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+in_features = "footprints.lyr"
+representation = "footprints_Rep"
+representation_rule = "Rule_3"
+
+# Execute Calculate Representation Rule
+arcpy.CalculateRepresentationRule_cartography(in_features, representation, representation_rule)
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,76 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Reconcile Version (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Reconciles a version against a another version in its lineage.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alternative</keyword><keyword>Change</keyword><keyword>Edit</keyword><keyword>Geodatabase</keyword><keyword>Integrate</keyword><keyword>Merge</keyword><keyword>Modify</keyword><keyword>Multiple</keyword><keyword>Owner</keyword><keyword>Sde</keyword><keyword>State</keyword><keyword>Update</keyword><keyword>User</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ReconcileVersion" displayname="Reconcile Version (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Reconciles a version against a another version in its lineage.</para>
+		</summary><alink_name>ReconcileVersion_management</alink_name><parameters><param sync="true" name="in_workspace" displayname="Input Workspace" datatype="Workspace" direction="Input" expression="in_workspace" type="Required"><pythonReference>
+						<para>The ArcSDE geodatabase containing the reconcilable version. The default is to use the workspace defined in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcSDE geodatabase containing the reconcilable version.</para>
+					</dialogReference></param><param sync="true" name="version_name" displayname="Version Name" datatype="String" direction="Input" expression="version_name" type="Required"><pythonReference>
+						<para>Name of the Edit Version to be reconciled with the Target Version.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the Edit Version to be reconciled with the Target Version.</para>
+					</dialogReference></param><param sync="true" name="target_name" displayname="Target Version" datatype="String" direction="Input" expression="target_name" type="Required"><pythonReference>
+						<para>Name of any version in the direct ancestry of the Edit version, such as the parent version or the default version.</para>
+					</pythonReference><dialogReference>
+						<para>Name of any version in the direct ancestry of the Edit version, such as the parent version or the default version.</para>
+					</dialogReference></param><param sync="true" name="conflict_definition" displayname="Conflict Definition" datatype="String" direction="Input" expression="conflict_definition" type="Optional"><pythonReference>
+						<para>Describes the conditions required for a conflict to occur:</para>
+						<bulletList><bullet_item>BY_OBJECT—Any changes to the same row or feature in the parent and child versions will conflict during reconcile. This is the default. </bullet_item><bullet_item>BY_ATTRIBUTE—Only changes to the same attribute of the same row or feature in the parent and child versions will be flagged as a conflict during reconcile. Changes to different attributes will not be considered a conflict during reconcile. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Describes the conditions required for a conflict to occur:</para><bulletList><bullet_item>Checked—Any changes to the same row or feature in the parent and child versions will conflict during reconcile. This is the default. </bullet_item><bullet_item>Unchecked—Only changes to the same attribute of the same row or feature in the parent and child versions will be flagged as a conflict during reconcile. Changes to different attributes will not be considered a conflict during reconcile. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="conflict_resolution" displayname="Conflict Resolution" datatype="String" direction="Input" expression="conflict_resolution" type="Optional"><pythonReference>
+						<para>Describes the behavior if a conflict is detected:</para>
+						<bulletList><bullet_item>FAVOR_TARGET_VERSION—For all conflicts, resolves in favor of the target version. This is the default. </bullet_item><bullet_item>FAVOR_EDIT_VERSION—For all conflicts, resolves in favor of the edit version. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Describes the behavior if a conflict is detected:</para>
+						<bulletList><bullet_item>Checked—For all conflicts, resolves in favor of the target version. This is the default.  </bullet_item><bullet_item>Unchecked—For all conflicts, resolves in favor of the edit version.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="acquire_locks" displayname="Acquire locks during reconcile" datatype="Boolean" direction="Input" expression="acquire_locks" type="Optional"><pythonReference>
+						<para>Determines whether feature locks will be acquired.</para>
+						<bulletList><bullet_item>LOCK_ACQUIRED—Acquires locks when there is no intention of posting the edit session. This is the default. </bullet_item><bullet_item>NO_LOCK_ACQUIRED—No locks are acquired and the edit session will be posted to the target version. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines whether feature locks will be acquired.</para>
+						<bulletList><bullet_item>Checked—Acquires locks when there is no intention of posting the edit session. This is the default.</bullet_item><bullet_item>Unchecked—No locks are acquired and the edit session will be posted to the target version. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="abort_if_conflicts" displayname="Abort if conflicts" datatype="Boolean" direction="Input" expression="abort_if_conflicts" type="Optional"><pythonReference>
+						<para>Determines if the reconcile process should be aborted if conflicts are found between the target version and the edit version.</para>
+						<bulletList><bullet_item>NO_ABORT—Does not abort the reconcile if conflicts are found. This is the default. </bullet_item><bullet_item>ABORT_CONFLICTS—Aborts the reconcile if conflicts are found. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines if the reconcile process should be aborted if conflicts are found between the target version and the edit version.</para>
+						<bulletList><bullet_item>Checked—Aborts the reconcile if conflicts are found.</bullet_item><bullet_item>Unchecked—Does not abort the reconcile if conflicts are found. This is the default.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="post" displayname="Post version after reconcile" datatype="Boolean" direction="Input" expression="post" type="Optional"><pythonReference>
+						<para>Posts the current edit session to the reconciled target version.</para>
+						<bulletList><bullet_item>NO_POST—Current edits will not be posted to the target version after the reconcile. This is the default.</bullet_item><bullet_item>POST—Current edits will be posted to the target version after the reconcile. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Posts the current edit session to the reconciled target version.</para>
+						<bulletList><bullet_item>Checked—Current edits will be posted to the target version after the reconcile.</bullet_item><bullet_item>Unchecked—Current edits will not be posted to the target version after the reconcile. This is the default.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The reconcile process requires that you are the only user currently editing the version and the only user able to edit the version throughout the reconcile process until you save or post.</para>
+			</bullet_item><bullet_item>
+				<para>The reconcile process requires that you have full permissions to all the feature classes that have been modified in the version being edited.</para>
+			</bullet_item><bullet_item>
+				<para>Versioning tools only work with ArcSDE data.  File and Personal geodatabases don't support versioning. </para>
+			</bullet_item><bullet_item>
+				<para>The geodatabase is designed to efficiently manage and support long transactions using versions.</para>
+			</bullet_item><bullet_item>
+				<para>The reconcile process detects differences between the edit version and the target version and flags these differences as conflicts. If conflicts exist, they should be resolved.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><para>The following stand-alone Python script uses the ReconcileVersion geoprocessing tool to reconcile a version with a version in the version's lineage and then posts that version.</para><code xml:space="preserve"># Name: ReconcileVersion_Example.py
+# Description: Reconciles a version with a version in the version lineage and then posts that version
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+inWorkspace = "Database Connections/ninefour@gdb.sde"
+versionName = "myVersion"
+targetVersion = "dbo.DEFAULT"
+
+# Execute ReconcileVersion
+arcpy.ReconcileVersion_management(inWorkspace, versionName, targetVersion, "BY_OBJECT", "FAVOR_TARGET_VERSION", "LOCK_acquireD", "NO_ABORT", "POST")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,93 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Set Model Parameter (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Sets parameter value(s) in an existing geostatistical model source.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Create Geostatistical Layer</keyword><keyword>Geostatistical Model</keyword><keyword>Model Parameter</keyword><keyword>Model Source</keyword><keyword>Modify</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GASetModelParameter" displayname="Set Model Parameter (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Sets parameter value(s) in an existing geostatistical model source.</para>
+		</summary><alink_name>GASetModelParameter_ga</alink_name><parameters><param sync="true" name="in_ga_model_source" displayname="Geostatistical model source" datatype="Geostatistical Layer ; Geostatistical Model" direction="Input" expression="in_ga_model_source" type="Required"><pythonReference>
+						<para>The geostatistical model source to be analyzed.</para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical model source to be analyzed.</para>
+					</dialogReference></param><param sync="true" name="model_param_xpath" displayname="Parameter XML Path" datatype="String" direction="Input" expression="model_param_xpath" type="Required"><pythonReference>
+						<para>XML path to the required model parameter.</para>
+					</pythonReference><dialogReference>
+						<para>XML path to the required model parameter.</para>
+					</dialogReference></param><param sync="true" name="in_param_value" displayname="Parameter value" datatype="String" direction="Input" expression="in_param_value" type="Required"><pythonReference>
+						<para>Value for the parameter defined by the XML path.</para>
+					</pythonReference><dialogReference>
+						<para>Value for the parameter defined by the XML path.</para>
+					</dialogReference></param><param sync="true" name="out_ga_model" displayname="Output model" datatype="Geostatistical Layer;Geostatistical Model" direction="Output" expression="out_ga_model" type="Required"><pythonReference>
+						<para>Geostatistical model created with the parameter value defined in the XML path.</para>
+					</pythonReference><dialogReference>
+						<para>Geostatistical model created with the parameter value defined in the XML path.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>This tool is generally used in a model or in scripting.</para>
+			</bullet_item><bullet_item>
+				<para>The geostatistical model source is either a geostatistical layer or a geostatistical model (XML).</para>
+			</bullet_item><bullet_item>
+				<para>The examples below can be used in the Parameter XML Path to specify which parameter will be set to a new value.</para>
+				
+					/model[@name = 'Kriging']/model[@name = 'Variogram']/value[@name = 'NumberOfLags'] - to change the number of lags parameter
+				
+				
+					/model[@name = 'LPI']/value[@name = 'Weight'] - to change the weight parameter for LPI
+				
+				
+					/model[@name = "Kriging"]/model[@name = "Variogram"]/value[@name = "Nugget"]/@auto - then specify a true or false value (true implies that a new nugget value will be calculated when the XML file is used).
+				
+				
+					/model[@name = 'Kriging']/model[@name = 'Variogram']/model[@name = 'VariogramModel']/value[@name = 'Range']/@auto - then specify a true or false value (true implies that a new range value will be calculated when the XML file is used).
+				
+				
+					/model[@name = 'Kriging']/model[@name = 'Variogram']/value[@name = 'Nugget'] - then specify a new nugget value.
+				
+			</bullet_item><bullet_item>
+				<para>The code snippet below sets multiple parameters via a single call to the tool.</para>
+				
+					
+params = "/model[@name = 'Kriging']/model[@name = 'Variogram']/value[@name = 'Nugget']/@auto;\
+
+          /model[@name = 'Kriging']/model[@name = 'Variogram']/model[@name = 'VariogramModel']/value[@name = 'Range'];\
+
+          /model[@name = 'Kriging']/model[@name = 'Variogram']/model[@name = 'VariogramModel']/value[@name = 'Sill']"
+
+vals = "true;5.5;777"
+
+gp.GASetModelParameter_ga(inXMLFile, params, vals, outXMLFile)
+
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>SetModelParameter example 1 (Python window)</title>
+					<para>Change the value of a parameter in a geostatistical model source.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/gapyexamples/data"
+newParam = arcpy.GASetModelParameter_ga("C:/gapyexamples/data/kriging.lyr", "/model[@name = 'Kriging']/model[@name = 'Variogram']/value[@name = 'Nugget']", "1", "C:/gapyexamples/output/outModel.xml")
+print newParam
+
+                    </code></scriptExample><scriptExample><title>SetModelParameter example 2 (stand-alone script)</title>
+					<para>Change the value of a parameter in a geostatistical model source.</para>
+				<code xml:space="preserve"># Name: GASetModelParameter_Example_02.py
+# Description: Sets parameter value in an existing geostatistical model source.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+modelSource = "C:/gapyexamples/data/kriging.lyr"
+xmlPath = "/model[@name = 'Kriging']/model[@name = 'Variogram']/value[@name = 'Nugget']"
+newValue = 1
+outModel = "C:/gapyexamples/output/outModel.xml"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute GASetModelParameter
+newParam = arcpy.GASetModelParameter_ga(modelSource, xmlPath, newValue, outModel)
+
+# Show results
+print newParam
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

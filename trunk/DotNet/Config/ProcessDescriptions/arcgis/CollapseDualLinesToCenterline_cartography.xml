@@ -1,0 +1,98 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Collapse Dual Lines To Centerline (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Derives centerlines from dual-line (or double-line) features, such as road casings, based on specified width tolerances.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cartography</keyword><keyword>Combine</keyword><keyword>Contextual</keyword><keyword>Generalisation</keyword><keyword>Generalise</keyword><keyword>Generalization</keyword><keyword>Generalize</keyword><keyword>Merge</keyword><keyword>Right-Of-Way</keyword><keyword>Road</keyword><keyword>Road Casing</keyword><keyword>Scale Change</keyword><keyword>Simplification</keyword><keyword>Simplify</keyword><keyword>Small Scale</keyword><keyword>Street</keyword><keyword>Transportation</keyword><keyword>Typification</keyword><keyword>Typify</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CollapseDualLinesToCenterline" displayname="Collapse Dual Lines To Centerline (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Derives centerlines from dual-line (or double-line) features, such as road casings, based on specified width tolerances.</para>
+		</summary><alink_name>CollapseDualLinesToCenterline_cartography</alink_name><toolIllust type="illustration" src="CollapseDualLinesToCenterline_cartography_h.gif" alt="Creating centerlines" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input dual-line features, such as road casings, from which centerlines are derived.</para>
+					</pythonReference><dialogReference>
+						<para>The input dual-line features, such as road casings, from which centerlines are derived.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class to be created.</para>
+					</dialogReference></param><param sync="true" name="maximum_width" displayname="Maximum Width" datatype="Linear Unit" direction="Input" expression="maximum_width" type="Required"><pythonReference>
+						<para>Sets the maximum width of the dual-line features to derive centerline. A value must be specified, and it must be greater than zero. You can choose a preferred unit; the default is the feature unit.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the maximum width of the dual-line features to derive centerline. A value must be specified, and it must be greater than zero. You can choose a preferred unit; the default is the feature unit.</para>
+					</dialogReference></param><param sync="true" name="minimum_width" displayname="Minimum Width" datatype="Linear Unit" direction="Input" expression="minimum_width" type="Optional"><pythonReference>
+						<para>Sets the minimum width of the dual-line features to derive centerline. The minimum width must be greater than or equal to zero, and it must be less than the maximum width. The default value is zero. You can specify a preferred unit; the default is the feature unit.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the minimum width of the dual-line features to derive centerline. The minimum width must be greater than or equal to zero, and it must be less than the maximum width. The default value is zero. You can specify a preferred unit; the default is the feature unit.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is intended for regular, near parallel pairs of lines, such as large-scale road casings. Centerlines will be created only between open-ended lines not inside closed lines which are likely street blocks. The tool is not intended to simplify multiple-lane highways with interchanges, ramps, overpasses and underpasses, or railways with multiple, merging tracks. Use the  tool instead.</para>
+			</bullet_item><bullet_item>
+				<para>This tool cannot be executed within an edit session.</para>
+			</bullet_item><bullet_item>
+				<para>The output feature class will not carry the geographic attributes from the input lines, but contain the following three new fields:</para>
+				<bulletList>
+					<bullet_item>LnType—Contains the following line type values:<bulletList>
+							<bullet_item>Value of 1 for derived centerlines</bullet_item>
+							<bullet_item>Value of 2 for outlines around relatively complicated intersections where centerlines are not generated, lines representing roads with a width beyond the specified range, and other broken or unpaired lines.</bullet_item>
+							<bullet_item>Value of 3 for lines with unclear source casings (they usually connect two closely located intersections which may belong to one large intersection in reality.)</bullet_item>
+						</bulletList></bullet_item>
+					<bullet_item>LeftLn_FID—Carries the object ID of the input line to the left of a derived centerline. This field value will be zero for lines of LnType 2 and 3.</bullet_item>
+					<bullet_item>RightLn_FID—Carries the object ID of the input line to the right of a derived centerline. This field value will be zero for lines of LnType 2 and 3.</bullet_item>
+				</bulletList>
+				<para>You can use the LnType values to further inspect the unresolved intersections and wider roads; and you can use the LeftLn_FID and RightLn_FID fields along with Join Field tool to transfer the attributes from source lines to the centerlines as needed.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CollapseDualLinesToCenterline Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the CollapseDualLinesToCenterline tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+import arcpy.cartography as CA
+env.workspace = "C:/data"
+CA.CollapseDualLinesToCenterline("dual_line_roads.shp", "C:/output/output.gdb/road_centerlines", 50)
+                    </code></scriptExample><scriptExample><title>CollapseDualLinesToCenterline Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the CollapseDualLinesToCenterline tool.</para>
+				<code xml:space="preserve"># Name: CollapseDualLinesToCenterline_Example2.py
+# Description: Create road centerlines and find buildings within a given distance
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+import arcpy.cartography as CA
+import arcpy.management as DM
+import arcpy.analysis as AN
+ 
+# Set environment settings
+env.workspace = "C:/data/Portland.gdb"
+ 
+# Set local variables
+inRoadCasingsFeatures = "road_casings"
+inHouseFeatures = "houses"
+
+centerlineFeatures = "C:/data/PortlandOutput.gdb/road_centerlines"
+bufferFeatures = "C:/data/PortlandOutput.gdb/road_buffers"
+
+# Create centerlines for road casings.
+CA.CollapseDualLinesToCenterline(inRoadCasingsFeatures, centerlineFeatures, 80)
+ 
+# Create buffers 100 units from around centerlines.
+AN.Buffer(centerlineFeatures, bufferFeatures, 100)
+
+# Select houses by buffers.
+DM.SelectByLocation(inHouseFeatures, bufferFeatures, ???)
+
+ 
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

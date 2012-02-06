@@ -1,0 +1,53 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">TIN Polygon Volume (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the volumetric and surface area between polygons of an input feature class and a TIN surface.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here to view archived documentation. This functionality has been added to the Polygon Volume tool.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TinPolygonVolume" displayname="TIN Polygon Volume (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Calculates the volumetric and surface area between polygons of an input feature class and a TIN surface.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here to view archived documentation. This functionality has been added to the Polygon Volume tool.</para>
+			
+		</summary><alink_name>TinPolygonVolume_3d</alink_name><parameters><param sync="true" name="in_tin" displayname="Input TIN" datatype="Tin Layer" direction="Input" expression="in_tin" type="Required"><pythonReference>
+						<para>The input TIN.</para>
+					</pythonReference><dialogReference>
+						<para>The input TIN.</para>
+					</dialogReference></param><param sync="true" name="in_feature_class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_feature_class" type="Required"><pythonReference>
+						<para>The input polygon feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The input polygon feature class.</para>
+					</dialogReference></param><param sync="true" name="in_height_field" displayname="Height Field" datatype="String" direction="Input" expression="in_height_field" type="Required"><pythonReference>
+						<para>The name of the field containing polygon reference plane heights.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the field containing polygon reference plane heights.</para>
+					</dialogReference></param><param sync="true" name="reference_plane" displayname="Reference Plane" datatype="String" direction="Output" expression="reference_plane" type="Optional"><pythonReference>
+						<para>The keyword used to indicate whether volume and surface area are calculated ABOVE the reference plane height of the polygons, or BELOW. The default is BELOW.</para>
+					</pythonReference><dialogReference>
+						<para>The keyword used to indicate whether volume and surface area are calculated ABOVE the reference plane height of the polygons, or BELOW. The default is BELOW.</para>
+					</dialogReference></param><param sync="true" name="out_volume_field" displayname="Volume Field" datatype="String" direction="Output" expression="out_volume_field" type="Optional"><pythonReference>
+						<para>The name of the output field used to store the volume result. The default is Volume.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output field used to store the volume result. The default is Volume.</para>
+					</dialogReference></param><param sync="true" name="surface_area_field" displayname="Surface Area Field" datatype="String" direction="Output" expression="surface_area_field" type="Optional"><pythonReference>
+						<para>The name of the output field used to store the surface area result. The default is SArea.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output field used to store the surface area result. The default is SArea.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input polygons and TIN need to overlap in horizontal extent in order for surface area or volume to be calculated.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TIN Polygon Volume Example (Python window)</title><para>The following Python Window script demonstrates how to use the TIN Polygon Volume
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcgisscripting
+gp = arcgisscripting.create()
+
+gp.CheckOutExtension("3D")
+gp.workspace = "C:/data"
+gp.TinPolygonVolume_3d("tin","PolyVol.shp", "Height", "ABOVE", "Volume", "S_Area")
+                    </code></scriptExample></scriptExamples></tool></metadata>

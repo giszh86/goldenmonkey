@@ -1,0 +1,98 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Simplify Building (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Simplifies the boundary or footprint of building polygons while maintaining their essential shape and size.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Area</keyword><keyword>Boundary</keyword><keyword>Bounding</keyword><keyword>Box</keyword><keyword>Complex</keyword><keyword>Detail</keyword><keyword>Footprint</keyword><keyword>Less</keyword><keyword>Orthogonal</keyword><keyword>Polygon</keyword><keyword>Rectangle</keyword><keyword>Reduce</keyword><keyword>Region</keyword><keyword>Regular</keyword><keyword>Remove</keyword><keyword>Scale</keyword><keyword>Shape</keyword><keyword>Small</keyword><keyword>Square</keyword><keyword>Straight</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SimplifyBuilding" displayname="Simplify Building (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Simplifies the boundary or footprint of building polygons while maintaining their essential shape and size.</para>
+			
+		</summary><alink_name>SimplifyBuilding_arc</alink_name><toolIllust type="illustration" src="SimplifyBuilding_arc_h.gif" alt="Simplify Building illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The input coverage containing building polygons.</para>
+					</pythonReference><dialogReference>
+						<para>The input coverage containing building polygons.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The output coverage containing simplified buildings as preliminary regions with a subclass BLDGSIM. The output coverage name must be different from the input coverage name.</para>
+					</pythonReference><dialogReference>
+						<para>The output coverage containing simplified buildings as preliminary regions with a subclass BLDGSIM. The output coverage name must be different from the input coverage name.</para>
+					</dialogReference></param><param sync="true" name="simplification_tolerance" displayname="Simplification Tolerance" datatype="Double" direction="Input" expression="simplification_tolerance" type="Required"><pythonReference>
+						<para>Sets the simplification tolerance in coverage units. A tolerance must be specified and must be greater than zero.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the simplification tolerance in coverage units. A tolerance must be specified and must be greater than zero.</para>
+					</dialogReference></param><param sync="true" name="minimum_area" displayname="Minimum Area" datatype="Double" direction="Input" expression="minimum_area" type="Optional"><pythonReference>
+						<para>Sets the minimum area to be retained in coverage units. The default is the square of the simplification tolerance. Enter 0 to include all buildings.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the minimum area to be retained in coverage units. The default is the square of the simplification tolerance. Enter 0 to include all buildings.</para>
+					</dialogReference></param><param sync="true" name="selection_file" displayname="Input Selection File" datatype="File" direction="Input" expression="selection_file" type="Optional"><pythonReference>
+						<para>A special file created using the ArcPlot command WRITESELECT (see ArcInfo Workstation Help for command reference). It identifies coverage features selected in ArcPlot. This option allows you to simplify selected buildings in the input coverage.</para>
+					</pythonReference><dialogReference>
+						<para>A special file created using the ArcPlot command WRITESELECT (see ArcInfo Workstation Help for command reference). It identifies coverage features selected in ArcPlot. This option allows you to simplify selected buildings in the input coverage.</para>
+					</dialogReference></param><param sync="true" name="CheckConflict" displayname="Check for spatial conflicts" datatype="Boolean" direction="Input" expression="CheckConflict" type="Optional"><pythonReference>
+						<para>Specifies whether or not to check for potential conflicts, that is, overlapping or touching, among buildings.</para>
+						<bulletList><bullet_item>NOT_CHECK—Specifies not to check for potential conflicts; the resulting buildings may overlap. </bullet_item><bullet_item>CHECK_CONFLICT—Specifies to check for potential conflicts so that some of the conflicts can be avoided and flagged. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether or not to check for potential conflicts, that is, overlapping or touching among buildings.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Specifies not to check for potential conflicts; the resulting buildings may overlap.</bullet_item>
+							<bullet_item>Checked—Specifies to check for potential conflicts so that some of the conflicts can be avoided and flagged.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input coverage must have a polygon topology.</para>
+			</bullet_item><bullet_item>
+				<para>Due to the possibility of creating overlapping boundaries, preliminary regions are used as the resulting features. To create fully built regions from the preliminary regions, use  with the POLY option on the out_cover.</para>
+			</bullet_item><bullet_item>
+				<para>This tool can run for quite a long time if the in_cover is large. To make it run faster, use the Arc command INDEX (see ArcInfo Workstation Help for command reference) on the input coverage to create a spatial index.</para>
+			</bullet_item><bullet_item>
+				<para>The following info tables will be created: output_coverage.bnd, output_coverage.tic, output_coverage.aat, and output_coverage.patbldgsim.</para>
+			</bullet_item><bullet_item>
+				<para>The out_cover.aat will store the new arcs and not carry any information from the input_coverage.aat.</para>
+			</bullet_item><bullet_item>
+				<para>All route and region attributes and topology from the in_cover will be lost.</para>
+			</bullet_item><bullet_item>
+				<para>All attributes in the input_coverage.pat, except AREA and PERIMETER, will be copied to the output_coverage.patbldgsim. The tool will not compute the AREA values of the preliminary regions, but set the AREA values in the output_coverage.PATBLDGSIM to zero and compute the PERIMETER. The  tool with the POLY option will calculate the AREA values.</para>
+			</bullet_item><bullet_item>
+				<para>The output_coverage.patbldgsim will also contain two new items: BDS-STATUS and BDS-GROUP. The item BDS-STATUS records the following simplification status:
+						<bullet_item>Simplified separate building</bullet_item>
+						<bullet_item>Separate building partially simplified due to spatial conflict</bullet_item>
+						<bullet_item>A short side found in the resulting building</bullet_item>
+						<bullet_item>Simplified or partially simplified buildings connected with straight lines</bullet_item>
+						<bullet_item>Not simplified</bullet_item>
+					</para>
+				<para>The item BDS-GROUP stores a unique positive value for each group of connected buildings. A single building will receive a BDS-GROUP value of 0. A single building with a hole will receive a unique negative value for both outer and inner boundaries.</para>
+			</bullet_item><bullet_item>
+				<para>If a selection file is not specified or if it contains no polygons, all polygons in the input coverage are selected for simplification. If the selection file does not contain the polygon feature class or if it does not match the input coverage (that is, the selection file was not derived from the input coverage), the program will stop.</para>
+			</bullet_item><bullet_item>
+				<para>If more than 500 adjacent polygons in a group are detected, the tool will stop and a message will be returned: "More than 500 adjacent polygons detected. The process has stopped."</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Buffer example (stand-alone script)</title><para>The following stand-alone script demonstrates how to simplify a building coverage.</para><code xml:space="preserve"># Name: SimplifyBuilding_Example.py
+# Description: Simplifies a building coverage
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "campus"
+outCover = "C:/output/cartocampus"
+simplificationTolerance = 6
+minimumArea = 55
+checkConflict = "CHECK_CONFLICT"
+
+# Execute SimplifyBuilding
+arcpy.SimplifyBuilding_arc(inCover, outCover, simplificationTolerance,
+                           minimumArea, "", checkConflict)
+arcpy.Clean_arc(outCover)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Version (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a new version in the specified geodatabase.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alternative</keyword><keyword>Base</keyword><keyword>Copy</keyword><keyword>Generate</keyword><keyword>Geodatabase</keyword><keyword>Multiple</keyword><keyword>New</keyword><keyword>Owner</keyword><keyword>Parent</keyword><keyword>Sde</keyword><keyword>State</keyword><keyword>User</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateVersion" displayname="Create Version (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a new version in the specified geodatabase.</para>
+		</summary><alink_name>CreateVersion_management</alink_name><parameters><param sync="true" name="in_workspace" displayname="Input Workspace" datatype="Workspace" direction="Input" expression="in_workspace" type="Required"><pythonReference>
+						<para>The ArcSDE geodatabase that contains the parent version and will contain the new version. The default is to use the workspace defined in the environment settings.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcSDE geodatabase that contains the parent version and will contain the new version. The default is to use the workspace defined in the environment settings.</para>
+					</dialogReference></param><param sync="true" name="parent_version" displayname="Parent Version" datatype="String" direction="Input" expression="parent_version" type="Required"><pythonReference>
+						<para>The geodatabase, or version of a geodatabase, on which the new version will be based.</para>
+					</pythonReference><dialogReference>
+						<para>The geodatabase, or version of a geodatabase, on which the new version will be based.</para>
+					</dialogReference></param><param sync="true" name="version_name" displayname="Version Name" datatype="String" direction="Input" expression="version_name" type="Required"><pythonReference>
+						<para>The name of the version to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the version to be created.</para>
+					</dialogReference></param><param sync="true" name="access_permission" displayname="Access Permission" datatype="String" direction="Input" expression="access_permission" type="Optional"><pythonReference>
+						<para>The permission access level for the version.</para>
+					</pythonReference><dialogReference>
+						<para>The permission access level for the version.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The output version name is prefixed by the SDE geodatabase user name—for example, SDE.arctoolbox.</para>
+			</bullet_item><bullet_item>
+				<para>The output version's permissions are set to private by default but can be changed using the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>Personal and File geodatabases do not support versioning. Versioning tools only work with ArcSDE geodatabases.</para>
+			</bullet_item><bullet_item>
+				<para>Versions are not affected by changes occurring in other versions of the database.</para>
+			</bullet_item><bullet_item>
+				<para>A version's permission can only be changed by its owner (the user who created it).</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title>
+					<para>
+ The following stand-alone script demonstrates how to create a new version.
+</para>
+				<code xml:space="preserve"># Name: CreateVersion_Example.py
+# Description: Creates a new version
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+inWorkspace = "Database Connections/ninefour@gdb.sde"
+parentVersion = "dbo.DEFAULT"
+versionName = "myVersion"
+
+# Execute CreateVersion
+arcpy.CreateVersion_management(inWorkspace, parentVersion, versionName, "PUBLIC")
+                    </code></scriptExample></scriptExamples></tool></metadata>

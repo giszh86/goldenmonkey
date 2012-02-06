@@ -1,0 +1,112 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Delineate TIN Data Area (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Defines the data area, or interpolation zone, of a TIN based on triangle edge length.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Area Of Interest</keyword><keyword>Clip Tin</keyword><keyword>Data Area</keyword><keyword>Delaunay</keyword><keyword>Edit</keyword><keyword>Modify</keyword><keyword>Tin</keyword><keyword>Triangulated Irregular Network</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DelineateTinDataArea" displayname="Delineate TIN Data Area (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Defines the data area, or interpolation zone, of a TIN based on triangle edge length.</para>
+			
+		</summary><alink_name>DelineateTinDataArea_3d</alink_name><toolIllust type="illustration" src="DelineateTinDataArea_3d_h.gif" alt="delineate tin data area illustration" /><parameters><param sync="true" name="in_tin" displayname="Input TIN" datatype="TIN Layer" direction="Input" expression="in_tin" type="Required"><pythonReference>
+						<para>The input TIN.</para>
+					</pythonReference><dialogReference>
+						<para>The input TIN.</para>
+					</dialogReference></param><param sync="true" name="max_edge_length" displayname="Maximum Edge Length" datatype="Double" direction="Input" expression="max_edge_length" type="Required"><pythonReference>
+						<para>Triangles with at least one edge that exceeds &lt;max_edge_length&gt; will be masked out as NODATA. These triangles will not be rendered in maps and will not be used in surface analysis such as interpolation. Length is the 2D distance.</para>
+					</pythonReference><dialogReference>
+						<para>Triangles with at least one edge that exceeds Maximum Edge Length will be masked out as NODATA. These triangles will not be rendered in maps and will not be used in surface analysis such as interpolation. Length is the 2D distance.</para>
+					</dialogReference></param><param sync="true" name="method" displayname="Method" datatype="String" direction="Input" expression="method" type="Optional"><pythonReference>
+						<para>The method used when processing triangles. PERIMETER_ONLY will iterate through triangles from the TIN's outer extent inward and will stop when the current iteration of boundary triangle edges don't exceed the Maximum Edge Length. ALL will classify the entire collection of TIN triangles by edge length. The default is PERIMETER_ONLY.</para>
+					</pythonReference><dialogReference>
+						<para>The method used when processing triangles. PERIMETER_ONLY will iterate through triangles from the TIN's outer extent inward and will stop when the current iteration of boundary triangle edges don't exceed the Maximum Edge Length. ALL will classify the entire collection of TIN triangles by edge length. The default is PERIMETER_ONLY.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool modifies the input TIN. If you prefer not to modify the input, use the standard Copy tool and operate on the copied TIN.</para>
+			</bullet_item><bullet_item>
+				<para>The value for Maximum Edge Length is best determined from the average spacing of nodes in the TIN within areas that are considered valid data zones. Provide a value that is larger than the average spacing.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Delineate TIN Data Area Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Delineate TIN Data Area
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.DelineateTinDataArea_3d("elevation", "10", "PERIMETER_ONLY")
+                    </code></scriptExample><scriptExample><title>Delineate TIN Data Area Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Delineate TIN Data Area
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: DelineateTinDataArea Example
+# Description: The following stand-alone script demonstrates how to create a TIN
+#              from Lidar files in a workspace. A SearchCursor is applied to the 
+#              PointFileInformation tool's output to obtain the smallest average 
+#              point spacing value, which is used as an input for LASToMultipoint
+#              to create the points that are used as inputs for CreateTIN. The
+#              resulting TIN is copied, then used as input to the DelineateTinDataArea 
+#              tool to limit the TIN's triangulation within the area of the points.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+import math
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/Data/LAS"
+
+try:
+    # Set Local Variables
+    LASInfo = "LASInfo.shp"
+    inFormat = "LAS"
+    fileSuffix = "las"
+    prj = 'Coordinate Systems/Projected Coordinate Systems/UTM/NAD 1983/'+\
+        'NAD 1983 UTM Zone 17N.prj'
+    folderRecursion = False
+    sumClass = False
+    extrude = False
+    decSep = "DECIMAL_POINT"
+    outputFC = "Lidar_Multipoint.shp"
+    class_code = "2" # Identifies all ground returns
+    zfactor = "0.3048" # Convert feet to meters
+    TIN_name = "Elevation"
+    Delaunay = "constrained_delaunay"
+    # Use the ListFiles method to identify all LAS files in the workspace
+    LidarList = arcpy.ListFiles("*.las")
+    if len(LidarList) &gt; 0:
+        # Execute PointFileInformation
+        arcpy.PointFileInformation_3d(LidarList, LASInfo, inFormat, fileSuffix, 
+                                      prj, folderRecursion, extrude, decSep, sumClass)
+        # Create SearchCursor and sort Pt_Spacing field in ascending order
+        LAScursor = arcpy.SearchCursor(LASInfo, "", "", "Pt_Spacing", "Pt_Spacing A")
+        for row in LAScursor:
+            # Gets the value in the Pt_Spacing field
+            ptSpacing = row.getValue("Pt_Spacing")
+            # Stop the for loop from looping for each row
+            break
+        MaxCursor
+        # Execute LASToMultipoint
+        print "Creating multipoint dataset."
+        arcpy.LASToMultipoint_3d(LidarList, outputFC, ptSpacing, class_code, 
+                                 "ANY_RETURNS", "", prj, inFormat, zfactor)
+        # Execute CreateTin
+        print "Creating TIN dataset."
+        arcpy.CreateTin_3d(TIN_name, prj, outputFC + " Shape.Z masspoints", Delaunay)
+        # Execute CopyTin
+        print "Copying TIN."
+        arcpy.CopyTin_3d(TIN_name, TIN_name + "_delineated", "CURRENT")
+        # Execute DelineateTinDataArea
+        MaxEdge = ptSpacing * 4
+        print "Delineating TIN boundary."
+        arcpy.DelineateTinDataArea_3d(TIN_name + "_delineated", MaxEdge, 
+                                      "PERIMETER_ONLY")
+        print "Finished"
+    else:
+        print "There are no LAS files in the " + env.workspace + " directory."    
+        
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,120 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Rotate (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool turns the raster dataset around the specified pivot point by angle specified in degrees; the raster dataset will rotate in a clockwise direction.</para>
+			<para>Valid values for the rotation angle is any number from 0 to 360, including floating point values. A negative value will rotate the image counterclockwise.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Angle</keyword><keyword>Around</keyword><keyword>Clockwise</keyword><keyword>Degree</keyword><keyword>Image</keyword><keyword>Orient</keyword><keyword>Pivot</keyword><keyword>Reorient</keyword><keyword>Rotation</keyword><keyword>Spin</keyword><keyword>Turn</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Rotate" displayname="Rotate (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>This tool turns the raster dataset around the specified pivot point by angle specified in degrees; the raster dataset will rotate in a clockwise direction.</para>
+			<para>Valid values for the rotation angle is any number from 0 to 360, including floating point values. A negative value will rotate the image counterclockwise.</para>
+		</summary><alink_name>Rotate_management</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/Rotate_management_v.gif" alt="Rotate illustration" /><toolIllust type="illustration" src="Rotate_management_h.gif" alt="Rotate illustration" /><parameters><param sync="true" name="in_raster" displayname="Input Raster" datatype="Raster layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster dataset.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output Raster Dataset" datatype="Raster dataset" direction="Output" expression="out_raster" type="Required"><pythonReference>
+						<para>The output raster dataset.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</pythonReference><dialogReference>
+						<para>The output raster dataset.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</dialogReference></param><param sync="true" name="angle" displayname="Angle" datatype="Double" direction="Input" expression="angle" type="Required"><pythonReference>
+						<para>The angle in degrees to rotate the raster. This can be any floating-point number.</para>
+					</pythonReference><dialogReference>
+						<para>The angle in degrees to rotate the raster. This can be any floating-point number.</para>
+					</dialogReference></param><param sync="true" name="pivot_point" displayname="Pivot Point" datatype="Point" direction="Input" expression="pivot_point" type="Optional"><pythonReference>
+						<para>The pivot point around which to rotate the raster. The default is the lower left corner of the input raster dataset. To add this variable, press F8 or right-click and click Insert Variable.</para>
+					</pythonReference><dialogReference>
+						<para>The pivot point around which to rotate the raster. The default is the lower left corner of the input raster dataset.</para>
+					</dialogReference></param><param sync="true" name="resampling_type" displayname="Resampling Technique" datatype="String" direction="Input" expression="resampling_type" type="Optional"><pythonReference>
+						<para>The resampling algorithm to be used. The default is NEAREST.</para>
+						<bulletList><bullet_item>NEAREST—Nearest neighbor assignment </bullet_item><bullet_item>BILINEAR—Bilinear interpolation </bullet_item><bullet_item>CUBIC—Cubic convolution </bullet_item><bullet_item>MAJORITY—Majority resampling </bullet_item></bulletList>
+						<para>The NEAREST and MAJORITY options are used for categorical data, such as a land use classification. The NEAREST option is the default since it is the quickest and also because it will not change the cell values. Do not use NEAREST or MAJORITY for continuous data, such as elevation surfaces.</para>
+						<para>The BILINEAR option and the CUBIC option are most appropriate for continuous data. It is not recommended that BILINEAR or CUBIC be used with categorical data because the cell values may be altered.</para>
+					</pythonReference><dialogReference>
+						<para>The resampling algorithm to be used. The default is NEAREST.</para>
+						<bulletList><bullet_item>NEAREST—Nearest neighbor assignment </bullet_item><bullet_item>BILINEAR—Bilinear interpolation </bullet_item><bullet_item>CUBIC—Cubic convolution </bullet_item><bullet_item>MAJORITY—Majority resampling </bullet_item></bulletList>
+						<para>The NEAREST and MAJORITY options are used for categorical data, such as a land use classification. The NEAREST option is the default since it is the quickest and also because it will not change the cell values. Do not use NEAREST or MAJORITY for continuous data, such as elevation surfaces.</para>
+						<para>The BILINEAR option and the CUBIC option are most appropriate for continuous data. It is not recommended that BILINEAR or CUBIC be used with categorical data because the cell values may be altered.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Pyramid" label="Pyramid">
+						
+					</environment><environment name="Raster_statistics" label="Raster statistics">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Tile_size" label="Tile size">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Rotation is, by default, around the lower left corner of the raster. The rotation point can be changed with the optional Pivot Point parameter.</para>
+			</bullet_item><bullet_item>
+				<para>Resampling is only done if the angle is not a multiple of 90.</para>
+			</bullet_item><bullet_item>
+				<para>The rotation angle specified must be between 0 and 360, and the dataset will be rotated clockwise.</para>
+			</bullet_item><bullet_item>
+				<para>You can save your output to BIL, BIP, BMP, BSQ, DAT, GIF, GRID, IMG, JPEG, JPEG 2000, PNG, TIFF, or any geodatabase raster dataset. </para>
+			</bullet_item><bullet_item>
+				<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, or a geodatabase, you can specify a Compression type and Compression Quality within the Environment Settings.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Rotate example 1 (Python window)</title>
+					<para>This is a Python sample for the Rotate tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.Rotate_management("c:/data/image.tif", "c:/output/rotate.tif", "30",\
+                        "1940000 304000", "BILINEAR")
+                    </code></scriptExample><scriptExample><title>Rotate example 2 (stand-alone window)</title>
+					<para>This is a Python script sample for the Rotate too.</para>
+				<code xml:space="preserve">##====================================
+##Rotate
+##Usage: Rotate_management in_raster out_raster angle {pivot_point} {NEAREST | BILINEAR | CUBIC | MAJORITY}
+    
+try:
+    import arcpy
+    
+    arcpy.env.workspace = r"C:/Workspace"
+    pivot_point = "1942602 304176"
+    
+    ##Rescael a TIFF image by a factor of 4 in both directions
+    arcpy.Rotate_management("image.tif", "rotate.tif", "30", pivot_point, "BILINEAR")
+    
+except:
+    print "Rotate example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

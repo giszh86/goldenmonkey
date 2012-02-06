@@ -1,0 +1,140 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Warp (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs a transformation on the raster based on the source and target control points using a polynomial transformation. This is similar to georeferencing using a text file.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Adjust</keyword><keyword>Control Point</keyword><keyword>Correction</keyword><keyword>Gcp</keyword><keyword>Geometric</keyword><keyword>Georeference</keyword><keyword>Image</keyword><keyword>Links</keyword><keyword>Manipulate</keyword><keyword>Orient</keyword><keyword>Polynomial</keyword><keyword>Proportion</keyword><keyword>Reorient</keyword><keyword>Skew</keyword><keyword>Spline</keyword><keyword>Transform</keyword><keyword>Twist</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Warp" displayname="Warp (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Performs a transformation on the raster based on the source and target control points using a polynomial transformation. This is similar to georeferencing using a text file.</para>
+			
+		</summary><alink_name>Warp_management</alink_name><toolIllust type="illustration" src="Warp_management_h.gif" alt="Polynomial transformations" /><parameters><param sync="true" name="in_raster" displayname="Input Raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster dataset.</para>
+					</dialogReference></param><param sync="true" name="source_control_points" displayname="Source Control Points" datatype="Point" direction="Input" expression="[source_control_point,...]" type="Required"><pythonReference>
+						<para>The source points are the "from" coordinates of the links.</para>
+					</pythonReference><dialogReference>
+						<para>The source points are the "from" coordinates of the links.</para>
+					</dialogReference></param><param sync="true" name="target_control_points" displayname="Target Control Points" datatype="Point" direction="Input" expression="[target_control_point,...]" type="Required"><pythonReference>
+						<para>The target points are the "to" coordinates of the links.</para>
+					</pythonReference><dialogReference>
+						<para>The target points are the "to" coordinates of the links.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output Raster Dataset" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Required"><pythonReference>
+						<para>Output raster dataset.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</pythonReference><dialogReference>
+						<para>Output raster dataset.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</dialogReference></param><param sync="true" name="transformation_type" displayname="Transformation Type" datatype="String" direction="Input" expression="transformation_type" type="Optional"><pythonReference>
+						<para>The geometric transformation type.</para>
+						<bulletList><bullet_item>POLYORDER1—A first order polynomial (affine) fits a flat plane to the input points. This is the default. </bullet_item><bullet_item>POLYORDER2—A second order polynomial fits a somewhat more complicated surface to the input points. </bullet_item><bullet_item>POLYORDER3—A third order polynomial fits a more complicated surface to the input points. </bullet_item><bullet_item>ADJUST—A transformation that optimizes for both global and local accuracy. It accomplishes this by first performing a polynomial transformation, then adjusting the control points locally, to better match the target control points, using a triangulated irregular network (TIN) interpolation technique. </bullet_item><bullet_item>SPLINE—A transformation that exactly transforms the source control points to the target control points. This means that the control points will be accurate, but the raster pixels that are between the control points are not. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The geometric transformation type.</para>
+						<bulletList><bullet_item>POLYORDER1—A first order polynomial (affine) fits a flat plane to the input points. This is the default. </bullet_item><bullet_item>POLYORDER2—A second order polynomial fits a somewhat more complicated surface to the input points. </bullet_item><bullet_item>POLYORDER3—A third order polynomial fits a more complicated surface to the input points. </bullet_item><bullet_item>ADJUST—A transformation that optimizes for both global and local accuracy. It accomplishes this by first performing a polynomial transformation, then adjusting the control points locally, to better match the target control points, using a triangulated irregular network (TIN) interpolation technique. </bullet_item><bullet_item>SPLINE—A transformation that exactly transforms the source control points to the target control points. This means that the control points will be accurate, but the raster pixels that are between the control points are not. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="resampling_type" displayname="Resampling Technique" datatype="String" direction="Input" expression="resampling_type" type="Optional"><pythonReference>
+						<para>The resampling algorithm to be used. The default is NEAREST.</para>
+						<bulletList><bullet_item>NEAREST—Nearest neighbor assignment </bullet_item><bullet_item>BILINEAR—Bilinear interpolation </bullet_item><bullet_item>CUBIC—Cubic convolution </bullet_item><bullet_item>MAJORITY—Majority resampling </bullet_item></bulletList>
+						<para>The NEAREST and MAJORITY options are used for categorical data, such as a land use classification. The NEAREST option is the default since it is the quickest and also because it will not change the cell values. Do not use NEAREST or MAJORITY for continuous data, such as elevation surfaces.</para>
+						<para>The BILINEAR option and the CUBIC option are most appropriate for continuous data. It is not recommended that BILINEAR or CUBIC be used with categorical data because the cell values may be altered.</para>
+					</pythonReference><dialogReference>
+						<para>The resampling algorithm to be used. The default is NEAREST.</para>
+						<bulletList><bullet_item>NEAREST—Nearest neighbor assignment </bullet_item><bullet_item>BILINEAR—Bilinear interpolation </bullet_item><bullet_item>CUBIC—Cubic convolution </bullet_item><bullet_item>MAJORITY—Majority resampling </bullet_item></bulletList>
+						<para>The NEAREST and MAJORITY options are used for categorical data, such as a land use classification. The NEAREST option is the default since it is the quickest and also because it will not change the cell values. Do not use NEAREST or MAJORITY for continuous data, such as elevation surfaces.</para>
+						<para>The BILINEAR option and the CUBIC option are most appropriate for continuous data. It is not recommended that BILINEAR or CUBIC be used with categorical data because the cell values may be altered.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Pyramid" label="Pyramid">
+						
+					</environment><environment name="Raster_statistics" label="Raster statistics">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Tile_size" label="Tile size">
+						
+					</environment></environments><usage><bullet_item>
+				<para>You must specify the source and target coordinates. The transformation type (polynomial order) from which to choose is dependent on the number of control points entered.</para>
+			</bullet_item><bullet_item>
+				<para>The default polynomial order (1) will perform an affine transformation.</para>
+			</bullet_item><bullet_item>
+				<para>Warp is useful when the raster requires a systematic geometric correction that can be modeled with a polynomial. A spatial transformation can invert or remove a distortion by using polynomial transformation of the proper order. The higher the order, the more complex the distortion that can be corrected. The higher orders of polynomial will involve progressively more processing time.</para>
+			</bullet_item><bullet_item><para>To determine the minimum number of links necessary for a given order of polynomial, use the following formula:</para>n = (p + 1) (p + 2) / 2 where n is the minimum number of links required for a transformation of polynomial order p. It is strongly suggested to use more than the minimum number of links. </bullet_item><bullet_item>
+				<para>You can save your output to BIL, BIP, BMP, BSQ, DAT, GIF, GRID, IMG, JPEG, JPEG 2000, PNG, TIFF, or any geodatabase raster dataset. </para>
+			</bullet_item><bullet_item>
+				<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, or a geodatabase, you can specify a Compression type and Compression Quality within the Environment Settings.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Warp example 1 (Python window)</title>
+					<para>This is a Python sample for the Warp tool.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "c:/data"
+source_pnt = "'234718 3804287';'241037 3804297';'244193 3801275'"
+target_pnt = "'246207 3820084';'270620 3824967';'302634 3816147'"
+arcpy.Warp_management("raster.img", source_pnt, target_pnt, "warp.tif", "POLYORDER1",\
+                          "BILINEAR")
+                    </code></scriptExample><scriptExample><title>Warp example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for the Warp tool.</para>
+				<code xml:space="preserve">##====================================
+##Warp
+##Usage: Warp_management in_raster source_control_points;source_control_points... 
+##                       target_control_points;target_control_points... out_raster
+##                       {POLYORDER1 | POLYORDER2 | POLYORDER3 | ADJUST | SPLINE} 
+##                       {NEAREST | BILINEAR | CUBIC | MAJORITY}
+    
+    
+try:
+    import arcpy
+    
+    arcpy.env.workspace = r"C:/Workspace"
+    
+    ##Warp a TIFF raster dataset with control points
+    ##Define source control points
+    source_pnt = "'234718 3804287';'241037 3804297';'244193 3801275'"
+    
+    ##Define target control points
+    target_pnt = outpnts = "'246207 3820084';'270620 3824967';'302634 3816147'"
+    
+    arcpy.Warp_management("raster.img", source_pnt, target_pnt, "warp.tif", "POLYORDER2",\
+                          "BILINEAR")
+    
+except:
+    print "Warp example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

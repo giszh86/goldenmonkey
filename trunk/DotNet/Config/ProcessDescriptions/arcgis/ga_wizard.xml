@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="utf-8"?>
+<res>
+<!--
+   1.<TAG name="item name" helpid="222000000">item's desription</TAG>
+       |          |            |                  | 
+     constant     |            |                  | 
+                  |         optional          translatable
+            translatable    <more> link        
+   ..................................................................     
+   2.<TAG>string</TAG>
+            |
+         translatable  
+   ..................................................................      
+   3.<TAG same_as="TAG2"/>
+                    |
+                 inherit all properties of <TAG2>. do not make loops "TAG1->TAG2->TAG1"
+  -->
+<!--first page-->
+   <GROUP_DETERMINISTIC>Deterministic methods</GROUP_DETERMINISTIC>
+
+   <GROUP_GEOSTATISTICAL>Geostatistical methods</GROUP_GEOSTATISTICAL>
+
+   <GROUP_BARRIERS>Interpolation with barriers</GROUP_BARRIERS>
+
+   <GROUP_AREAL>Areal Interpolation</GROUP_AREAL>
+
+   <METHOD_KRIGING name="Kriging / CoKriging" helpid="222000006">Kriging is an interpolator that can be exact or smoothed depending on the measurement error model. It is very flexible and allows you to investigate graphs of spatial auto- and cross-correlation. Kriging uses statistical models that allow a variety of output surfaces including predictions, prediction standard errors, probability and quantile. The flexibility of kriging can require a lot of decision-making. Kriging assumes the data come from a stationary stochastic process, and some methods assume normally-distributed data.</METHOD_KRIGING>
+
+   <METHOD_GPI name="Global Polynomial Interpolation" helpid="222000003">Global Polynomial (GPI) is a quick deterministic interpolator that is smooth (inexact). There are very few decisions to make regarding model parameters. It is best used for surfaces that change slowly and gradually. However, there is no assessment of prediction errors and it may be too smooth. Locations at the edge of the data can have a large effect on the surface. There are no assumptions required of the data.</METHOD_GPI>
+
+   <METHOD_IDW name="Inverse Distance Weighting" helpid="222000002">Inverse Distance Weighting (IDW) is a quick deterministic interpolator that is exact. There are very few decisions to make regarding model parameters. It can be a good way to take a first look at an interpolated surface. However, there is no assessment of prediction errors, and IDW can produce "bulls eyes" around data locations. There are no assumptions required of the data.</METHOD_IDW>
+
+   <METHOD_LPI name="Local Polynomial Interpolation" helpid="222000004">Local Polynomial (LPI) is a moderately quick interpolator that is smooth (inexact). It is more flexible than the global polynomial method, but there are more parameter decisions. The method provides prediction, prediction standard error and condition number surfaces that are comparable to ordinary kriging with measurement errors. Local polynomial methods do not allow you to investigate the autocorrelation of the data, making it less flexible and more automatic than kriging. There are no assumptions required of the data.</METHOD_LPI>
+
+   <METHOD_RBF name="Radial Basis Functions" helpid="222000005">Radial Basis Functions (RBF) are moderately quick deterministic interpolators that are exact. They are much more flexible than IDW, but there are more parameter decisions. There is no assessment of prediction errors. The method provides prediction surfaces that are comparable to the exact form of kriging. Radial Basis Functions do not allow you to investigate the autocorrelation of the data, making it less flexible and more automatic than kriging. Radial Basis Functions make no assumptions about the data.</METHOD_RBF>
+
+   <METHOD_LI name="Kernel Smoothing" helpid="222000007">Kernel Interpolation with Barriers is a moving window predictor that uses the shortest distance between points so that points on either side of the line barriers are connected.</METHOD_LI>
+
+   <METHOD_MA name="Diffusion Kernel" helpid="222000008">Diffusion kernel uses a kernel which is based upon the heat equation and allows one to use a combination of raster and feature datasets to act as a barrier.</METHOD_MA>
+
+   <CREATE_METHOD_BROWSE>Select Dataset</CREATE_METHOD_BROWSE>
+
+   <CREATE_METHOD_FIELD_X name="X Field"></CREATE_METHOD_FIELD_X>
+
+   <CREATE_METHOD_FIELD_Y name="Y Field"></CREATE_METHOD_FIELD_Y>
+
+   <CREATE_METHOD_FIELD_WEIGHT name="Weight Field"></CREATE_METHOD_FIELD_WEIGHT>
+
+   <CREATE_METHOD_FIELD_DATA name="Data Field"></CREATE_METHOD_FIELD_DATA>
+
+   <CREATE_METHOD_FIELD_SECOND name="Second Data Field"></CREATE_METHOD_FIELD_SECOND>
+
+   <CREATE_METHOD_NONE same_as="NAME_NONE"/>
+
+   <CREATE_METHOD_SOURCE name="Source Dataset"></CREATE_METHOD_SOURCE>
+
+   <CREATE_METHOD_PANEL_LEFT>Methods</CREATE_METHOD_PANEL_LEFT>
+
+   <CREATE_METHOD_PANEL_RIGHT>Input Data</CREATE_METHOD_PANEL_RIGHT>
+   
+<!--common-->
+   <RASTER_BARRIER_GROUP name="Barrier raster"></RASTER_BARRIER_GROUP>
+  
+   <NAME_TYPE>Type</NAME_TYPE>
+
+   <NAME_NONE>&lt;none&gt;</NAME_NONE>
+
+   <NAME_KRIGING>Kriging</NAME_KRIGING>
+
+   <NAME_COKRIGING>CoKriging</NAME_COKRIGING>
+  
+   <NAME_AUTO>Automatic</NAME_AUTO>
+  
+   <NAME_MANUAL>Manual</NAME_MANUAL>
+  
+   <GENERAL_SECTION name="General Properties"></GENERAL_SECTION>
+
+   <GENERAL_PREDICTED_SECTION name="Predicted Value">Click the Identify Value icon to see the prediction at a location.</GENERAL_PREDICTED_SECTION>
+
+   <GENERAL_PREDICTED_X name="X">Horizontal coordinate.</GENERAL_PREDICTED_X>
+
+   <GENERAL_PREDICTED_Y name="Y">Vertical coordinate.</GENERAL_PREDICTED_Y>
+
+   <GENERAL_PREDICTED_VALUE name="Value" helpid="222000011">Predicted value at the [X;Y] location.</GENERAL_PREDICTED_VALUE>
+
+   <GENERAL_PREDICTED_NEIGHBORS>Neighbors</GENERAL_PREDICTED_NEIGHBORS>
+
+   <GENERAL_WEIGHTS_SECTION name="Weights (%1!i! neighbors)">Lists the weight values that are used to estimate the value at the predicted value location. The weights can be copied by using a right click of the mouse.</GENERAL_WEIGHTS_SECTION>
+
+   <GENERAL_DATASET name="Dataset"></GENERAL_DATASET>
+
+   <GENERAL_BARRIER name="Barrier"></GENERAL_BARRIER>
+   
+   <DATASET_INFO_FORMAT>Location :%1!s!
+Name :%2!s!
+Data field: %3!s!</DATASET_INFO_FORMAT>
+
+<!-- Neighborhood -->   
+   <NS_SECTION name="Search Neighborhood" helpid="222000021">Assume that as the locations get farther from the prediction location, the measured values will have less influence on the prediction location.</NS_SECTION>
+
+   <NS_TYPE name="Neighborhood type" helpid="222000001">The Standard option will assign weights based on distance from the target location. The Smooth option adjusts the weights using a sigmoidal function defined by the smoothing factor.</NS_TYPE>
+
+   <NS_TYPE_STANDARD>Standard</NS_TYPE_STANDARD>
+
+   <NS_TYPE_SMOOTH>Smooth</NS_TYPE_SMOOTH>
+
+   <NS_MAJOR name="Major semiaxis">The length of the major semiaxis of the search ellipse.</NS_MAJOR>
+
+   <NS_MINOR name="Minor semiaxis">The length of the minor semiaxis of the search ellipse.</NS_MINOR>
+
+   <NS_ANGLE name="Angle">This is the orientation of the major semiaxis (in degrees from North).</NS_ANGLE>
+
+   <NS_MAX name="Maximum neighbors">The maximum number of data points to be included in each sector.</NS_MAX>
+
+   <NS_MIN name="Minimum neighbors">The minimum number of data points to be included in each sector. Notes: 
+1) The sectors will be projected outwards if the minimum number of points is not found inside the sector.
+2) If there are no points within the searching neighborhood, then for most of the interpolation methods it will mean that a prediction cannot be made at that location. 
+3) Although some interpolators, such as simple and disjunctive kriging, predict values in the areas without data points using the mean value, a common practice is to change the searching neighborhood so that some points are located in the searching neighborhood.</NS_MIN>
+
+   <NS_ANISOTROPY name="Anisotropy factor" helpid="222000010">The ratio of the major to the minor semiaxes lengths.</NS_ANISOTROPY>
+
+   <NS_SMOOTHING name="Smoothing factor">Determines how much smoothing will be performed. 0 is no smoothing, 1 is the maximum amount of smoothing.</NS_SMOOTHING>
+
+   <NS_RADIUS name="Radius"></NS_RADIUS>
+
+   <NS_SECTOR_TYPE name="Sector type">Allows a choice of 1, 4, 4 with an offset of 45º, or 8 sectors.</NS_SECTOR_TYPE>
+
+   <NS_COPY_FROM name="Copy from Variogram">The angle, major and minor semiaxis values are copied from the variogram’s angle, major and minor range parameters. If the flag is set to False then the angle, major and minor semiaxis values can be modified and will not be affected if changes are made to the variogram parameters.</NS_COPY_FROM>
+
+   <NS_SECTOR_1>1 Sector</NS_SECTOR_1>
+
+   <NS_SECTOR_4>4 Sectors</NS_SECTOR_4>
+
+   <NS_SECTOR_4w>4 Sectors with 45° offset</NS_SECTOR_4w>
+
+   <NS_SECTOR_8>8 Sectors</NS_SECTOR_8>
+
+<!-- IDW -->
+   <IDW_POWER name="Power" helpid="222000009">The power option lets you control the influence of known values on the interpolated values, based on their distance from the predicted point.</IDW_POWER>
+
+   <IDW_POWER_TT>Click to optimize Power value</IDW_POWER_TT>
+
+<!-- GPI -->
+   <GPI_POWER name="Order of polynomial" helpid="222000003">A flat plane is a first-order polynomial (linear). Allowing one bend is a second-order polynomial (quadratic), two bends a third-order (cubic), and so forth.</GPI_POWER>
+
+<!-- LPI -->
+   <LPI_ADVANCED_SECTION name="Advanced Properties">Manual input of property values</LPI_ADVANCED_SECTION>
+
+   <LPI_SLIDER name="Exploratory Trend Surface Analysis">This control is only available when the Advanced mode property is set to False. A value of zero is the same as using the Global Polynomial Interpolation method and any value greater than 0 and less than or equal to 100 uses Local Polynomial Interpolation. The control simultaneously varies the Bandwidth, Spatial Condition Number (if enabled) and Searching Neighborhood values. It can be used to perform exploratory trend surface analysis prior to detrending the data.</LPI_SLIDER>
+
+   <LPI_POWER name="Order of polynomial" helpid="222000004">The order of the polynomial function.</LPI_POWER>
+
+   <LPI_BANDWIDTH name="Bandwidth">A distance parameter that defines how large the kernel is.</LPI_BANDWIDTH>
+
+   <LPI_GOODNESS_FIT name="Goodness of Fit">This is a numeric measure of how well the polynomial surface fits the data. The lower the value, the better the fit. The value is based on the cross validation results and a subset of the data is used in the case of very large input datasets.</LPI_GOODNESS_FIT>
+
+   <LPI_OPTIMIZE name="Optimize Model">The Bandwidth, Spatial Condition Number and the Searching Neighborhood values are changed and the cross validation statistics are used to optimize the model. If the Spatial Condition Number Threshold flag is set to false then only the Bandwidth and Neighborhood values are varied. If the Neighborhood type is set to Standard then all data up to a maximum of 1000 points are used and the minimum number of neighbors set to zero. Optimization is only performed for Sector type equal to 1 Sector.</LPI_OPTIMIZE>
+
+   <LPI_OPTIMIZE_TT>Click to optimize entire model</LPI_OPTIMIZE_TT>
+
+   <LPI_OPTIMIZE_MSG name="Optimize Model">Pressing OK will calculate new values for the parameters 
+using an iterative cross validation technique.
+   
+   Do you want to proceed?</LPI_OPTIMIZE_MSG>
+
+   <LPI_ADVANCED name="Advanced mode">Change to True to enable the Advanced properties.</LPI_ADVANCED>
+
+   <LPI_RES_TYPE name="Result Type">Local Polynomial Interpolation can produce a prediction surface, an error of prediction surface, or a surface of spatial condition numbers and the latter two are only available when the Use Spatial Condition Number Threshold flag is set to true.</LPI_RES_TYPE>
+
+   <LPI_USE_SCN name="Use Spatial Condition Number Threshold">If this option is set to True, prediction and error values will not be created for locations where the predictions are unstable. This option is only available for polynomials of order 1, 2 and 3.</LPI_USE_SCN>
+
+   <LPI_SCNTRESHOLD name="Spatial Condition Number Threshold">Every invertible square matrix has a condition number that indicates how accurate or inaccurate the solution of the linear equations can be with a small change in the matrix coefficients (it can be due to imprecise data). If the condition number is large, a small change in the matrix coefficients results in a large change in the solution vector (regression coefficients). The spatial condition number/surface shows variation in the numerical model stability and provides additional information on the prediction uncertainty since the prediction standard error surface is created assuming that the model is correct, so that there is no reason for the model instability. A threshold for the spatial condition number value is data dependent. Also, the larger the power value, the larger the threshold value.  Note: This parameter only affects the Prediction and the Prediction Standard Error results.</LPI_SCNTRESHOLD>
+
+   <LPI_KERNEL_TYPE name="Kernel Function">Allows a selection of the kernel used to fit the surface.</LPI_KERNEL_TYPE>
+
+<!-- shared names for kernels -->
+   <K_EXP>Exponential</K_EXP>
+
+   <K_GAUS>Gaussian</K_GAUS>
+
+   <K_Q>Quartic</K_Q>
+
+   <K_PAN>Epanechnikov</K_PAN>
+
+   <K_POLY>PolynomialOrder5</K_POLY>
+
+   <K_IDW>Inverse Distance Weighting</K_IDW>
+
+   <K_CONST>Constant</K_CONST>
+
+<!-- Kriging Trend-->
+   <LPI_TREND name="Trend"></LPI_TREND>
+  
+   <LPI_TREND_MSG same_as="LPI_OPTIMIZE_MSG"></LPI_TREND_MSG>
+<!-- RBF -->
+   <RBF_KERNEL_PARAM name="Kernel Parameter">Controls the degree of small-scale variation in the surface. For all kernels except Inverse Multiquartic, the higher the parameter value, the smoother the surface. The Optimize button will find an optimal parameter value.</RBF_KERNEL_PARAM>
+
+   <RBF_KERNEL_TYPE name="Kernel Function" helpid="222000005">Select the type of Kernel that will be used to create the surface. Note: only the Inverse Multiquartic kernel allows a smooth search neighborhood.</RBF_KERNEL_TYPE>
+
+   <KERNELF_CRS>Completely Regularized Spline</KERNELF_CRS>
+
+   <KERNELF_INVMULTIQUADRIC>Inverse Multiquadric</KERNELF_INVMULTIQUADRIC>
+
+   <KERNELF_MULTIQUADRIC>Multiquadric</KERNELF_MULTIQUADRIC>
+
+   <KERNELF_TENSIONSPLINE>Spline with Tension</KERNELF_TENSIONSPLINE>
+
+   <KERNELF_THINPLATE>Thin Plate Spline</KERNELF_THINPLATE>
+
+<!-- LI -->
+   <LI_POWER name="Order of polynomial">Order of the polynomial</LI_POWER>
+
+   <LI_RIDGE name="Ridge">Ridge parameter is used to ensure stability when solving the system of linear equations. A value of 1 will produce an unstable result and a value of 100 will produce a more stable result.</LI_RIDGE>
+
+   <LI_PARAM name="Kernel Parameter">Allows a selection of the kernel used to fit the surface.</LI_PARAM>
+
+   <LI_BANDWIDTH name="Bandwidth">An argument of the kernel function that specifies the maximum distance at which data points are used for prediction. Prediction bias increases and prediction variance decreases with bandwidth increase.</LI_BANDWIDTH>
+
+   <LI_KERNEL_TYPE name="Kernel Function">Allows a selection of the kernel used to fit the surface.</LI_KERNEL_TYPE>
+
+<!--MA MOVINGAVERAGE-->
+   <MA_KERNEL_TYPE same_as="LI_KERNEL_TYPE"/>
+  
+   <MA_BANDWIDTH same_as="LI_BANDWIDTH" />
+
+   <MA_ITERATIONS name="Iterations">The model solves the diffusion equation numerically and this parameter controls the accuracy of the numerical solution. The larger the number, the more accurate the predictions and the longer the processing time will be. Also, the more complex the barriers geometry and the larger the bandwidth, the more iterations will be required for a accurate predictions.</MA_ITERATIONS>
+
+<!--Kriging-->
+   <KRIGING_COKRIGING_TYPE>CoKriging Type</KRIGING_COKRIGING_TYPE>
+
+   <KRIGING_KRIGING_TYPE>Kriging Type</KRIGING_KRIGING_TYPE>
+
+   <KRIGING_OUTPUT_TYPE>Output Type</KRIGING_OUTPUT_TYPE>
+
+   <KRIGING_TYPE_ORDINARY>Ordinary</KRIGING_TYPE_ORDINARY>
+
+   <KRIGING_TYPE_SIMPLE>Simple</KRIGING_TYPE_SIMPLE>
+
+   <KRIGING_TYPE_UNIVERSAL>Universal</KRIGING_TYPE_UNIVERSAL>
+
+   <KRIGING_TYPE_INDICATOR>Indicator</KRIGING_TYPE_INDICATOR>
+
+   <KRIGING_TYPE_PROBABILITY>Probability</KRIGING_TYPE_PROBABILITY>
+
+   <KRIGING_TYPE_DISJUNCTIVE>Disjunctive</KRIGING_TYPE_DISJUNCTIVE>
+
+   <KRIGING_DATASET_SECTION>Dataset #%1!i!</KRIGING_DATASET_SECTION>
+
+   <KRIGING_TRANS_NONE>None</KRIGING_TRANS_NONE>
+
+   <KRIGING_TRANS_LOG>Log</KRIGING_TRANS_LOG>
+
+   <KRIGING_TRANS_BOX_COX>Box-Cox</KRIGING_TRANS_BOX_COX>
+
+   <KRIGING_TRANS_BOX_COX_PARAM name="Power parameter">Power parameter for the Box-Cox transformation (also known as power transformation).</KRIGING_TRANS_BOX_COX_PARAM>
+
+   <KRIGING_TRANS_ARCSIN>Arcsin</KRIGING_TRANS_ARCSIN>
+
+   <KRIGING_TRANS_NORMAL_SCORE>Normal Score</KRIGING_TRANS_NORMAL_SCORE>
+
+   <KRIGING_TRANS_TYPE name="Transformation type" helpid="222000012">Using transformations makes variances more constant throughout your study area and the data closer to being normally distributed.</KRIGING_TRANS_TYPE>
+
+   <KRIGING_TREND_NONE>None</KRIGING_TREND_NONE>
+
+   <KRIGING_TREND_CONST>Constant</KRIGING_TREND_CONST>
+
+   <KRIGING_TREND_FIRST>First</KRIGING_TREND_FIRST>
+
+   <KRIGING_TREND_SECOND>Second</KRIGING_TREND_SECOND>
+
+   <KRIGING_TREND_THIRD>Third</KRIGING_TREND_THIRD>
+
+   <KRIGING_TREND_ORDER name="Order of trend removal" helpid="222000012">You may want to remove a surface trend from your data and use kriging or cokriging on the detrended (residual) data.</KRIGING_TREND_ORDER>
+
+   <KRIGING_THRESHOLD_SECTION name="Primary Threshold" helpid="222000017">This option is available for probability maps.</KRIGING_THRESHOLD_SECTION>
+
+   <KRIGING_THRESHOLD name="Threshold">A variable that is continuous may be made into a binary (0 or 1) variable by choosing a threshold. In Geostatistical Analyst, if values are above the threshold, they become a 1, and if they are below the threshold, they become a 0.</KRIGING_THRESHOLD>
+
+   <KRIGING_THRESHOLD_VALUE name="Threshold Value" helpid="222000017">Threshold value for the probability map creation.</KRIGING_THRESHOLD_VALUE>
+
+   <KRIGING_THRESHOLD_VALUE_ITEM1>Exceed</KRIGING_THRESHOLD_VALUE_ITEM1>
+
+   <KRIGING_THRESHOLD_VALUE_ITEM2>Not exceed</KRIGING_THRESHOLD_VALUE_ITEM2>
+
+   <KRIGING_CUTOFFS_SECTION name="Cutoffs">Indicator Kriging uses thresholds to create binary data (0 or 1 values, also called indicator values), and then uses ordinary kriging for this indicator data. Predictions using indicator kriging are interpreted as the probability of exceeding (or, depending on how the binary variables are defined, not exceeding) a threshold. Additional Cutoffs can compensate for the loss of information caused by coding data with indicator functions, but it requires fitting cross-covariances which requires more modeling decisions and parameter estimation. Indicator kriging is not recommended for data having a trend.</KRIGING_CUTOFFS_SECTION>
+
+   <KRIGING_CUTOFFS_NUMBER name="Number of Cutoffs">Indicator kriging with additional cutoffs and probability kriging are special cases of cokriging. In these cases, cutoffs act as additional variables. You may use up to three variables when cokriging. The sum of variables and cutoffs should be equal to three or less.</KRIGING_CUTOFFS_NUMBER>
+
+   <KRIGING_CUTOFFS_ITEM name="Cutoff #%1!i!"></KRIGING_CUTOFFS_ITEM>
+
+   <KRIGING_QUANTILE_SECTION name="Quantile Map" helpid="222000016">Quantile maps are produced when you specify a probability, and you want a map of the values where the predictions exceed (or do not exceed) the values at the specified probability. The threshold value is equal to the specified quantile of the predicted distribution at the predicted location.</KRIGING_QUANTILE_SECTION>
+
+   <KRIGING_QUANTILE name="Quantile (0...1)">Quantile maps are available for simple, ordinary and universal kriging.
+Example: if you set the quantile probability to 0.5, an output map will be produced with predictions of the median values at each unsampled location.  If you set the quantile probability to 0.75, an output map will be produced where there is a 75% chance that an unknown value lies below the surface and a 25% chance that the unknown value lies above the surface.
+Note: Multivariate normality is assumed to obtain quantile maps.</KRIGING_QUANTILE>
+
+   <KRIGING_DECLUSTER name="Decluster before transformation" helpid="222000019">For various reasons, the data may have been sampled preferentially, with a higher density of sample points in some places than in others. Declustering corrects the data distribution estimation.</KRIGING_DECLUSTER>
+
+   <KRIGING_MEAN_VALUE name="Mean Value" helpid="222000018">The mean value of the attribute to be mapped. By default this value is calculated from the dataset used for estimation. This option is available for simple and disjunctive kriging, techniques that requires the mean value to be constant and known.</KRIGING_MEAN_VALUE>
+
+<!--shared result type LPI, Kriging-->
+   <RTYPE_PREDICTION>Prediction</RTYPE_PREDICTION>
+
+   <RTYPE_PREDICTION_SE>Prediction Standard Error</RTYPE_PREDICTION_SE>
+
+   <RTYPE_CONDITIONNUMBER>Condition Number</RTYPE_CONDITIONNUMBER>
+
+   <RTYPE_QIANTILE>Quantile</RTYPE_QIANTILE>
+
+   <RTYPE_PROBABILITY>Probability</RTYPE_PROBABILITY>
+
+   <RTYPE_STDERR_IND>Standard Error of Indicators</RTYPE_STDERR_IND>
+
+   <VARIOGRAM2_EXPORT_V_GEOMETRICAL>Save geometrical values as table</VARIOGRAM2_EXPORT_V_GEOMETRICAL>
+
+   <VARIOGRAM_CHART_AXISX>Distance %1!s!, h</VARIOGRAM_CHART_AXISX>
+
+   <VARIOGRAM_CHART_AXISY>γ</VARIOGRAM_CHART_AXISY>
+
+   <VARIOGRAM_CHART_AXISY_C>C</VARIOGRAM_CHART_AXISY_C>
+
+   <VARIOGRAM_SURFACE_TOOLTIP>Value:	%1!s!
+Weight: %2!s!</VARIOGRAM_SURFACE_TOOLTIP>
+
+   <VARIOGRAM_SURFACE_TITLE_C>Covariance map</VARIOGRAM_SURFACE_TITLE_C>
+
+   <VARIOGRAM_SURFACE_TITLE_S>Semivariogram map</VARIOGRAM_SURFACE_TITLE_S>
+
+   <VARIOGRAM_GENERAL_SECTION name="General" helpid="222000006">Kriging is an interpolator that can be exact or smoothed depending on the measurement error model. It is very flexible and allows you to investigate graphs of spatial auto- and cross-correlation. Kriging uses statistical models that allow a variety of output surfaces including predictions, prediction standard errors, probability and quantile. The flexibility of kriging can require a lot of decision-making. Kriging assumes the data come from a stationary stochastic process, and some methods assume normally-distributed data.</VARIOGRAM_GENERAL_SECTION>
+
+   <VARIOGRAM_MODEL_SECTION name="Model #%1!i!"></VARIOGRAM_MODEL_SECTION>
+
+   <VARIOGRAM_VARIABLE name="Variable %1!s!" helpid="222000014">The semivariogram and covariance functions quantify the assumption that things nearby tend to be more similar than things that are farther apart. Semivariogram and covariance both measure the strength of statistical correlation as a function of distance.</VARIOGRAM_VARIABLE>
+
+   <VARIOGRAM_VARIABLE_S>Semivariogram</VARIOGRAM_VARIABLE_S>
+
+   <VARIOGRAM_VARIABLE_C>Covariance</VARIOGRAM_VARIABLE_C>
+
+   <VARIOGRAM_MODEL_COMBO name="Type" helpid="222000024">The selected model influences the prediction of the unknown values, particularly when the shape of the curve near the origin differs significantly. The steeper the curve near the origin, the more influence the closest neighbors will have on the prediction. It is desirable that the fitted model line be close to the average crosses on the semivariogram graph.</VARIOGRAM_MODEL_COMBO>
+
+   <VARIOGRAM_MODEL_NONE same_as="NAME_NONE"/>
+
+   <VARIOGRAM_MODEL_CIRCULAR>Circular</VARIOGRAM_MODEL_CIRCULAR>
+
+   <VARIOGRAM_MODEL_SPHERICAL>Spherical</VARIOGRAM_MODEL_SPHERICAL>
+
+   <VARIOGRAM_MODEL_TETRASPHERICAL>Tetraspherical</VARIOGRAM_MODEL_TETRASPHERICAL>
+
+   <VARIOGRAM_MODEL_PENTASPHERICAL>Pentaspherical</VARIOGRAM_MODEL_PENTASPHERICAL>
+
+   <VARIOGRAM_MODEL_EXPONENTIAL>Exponential</VARIOGRAM_MODEL_EXPONENTIAL>
+
+   <VARIOGRAM_MODEL_GAUSSIAN>Gaussian</VARIOGRAM_MODEL_GAUSSIAN>
+
+   <VARIOGRAM_MODEL_RATIONAL>Rational Quadratic</VARIOGRAM_MODEL_RATIONAL>
+
+   <VARIOGRAM_MODEL_HOLE>Hole Effect</VARIOGRAM_MODEL_HOLE>
+
+   <VARIOGRAM_MODEL_KBESSEL>K-Bessel</VARIOGRAM_MODEL_KBESSEL>
+
+   <VARIOGRAM_MODEL_JBESSEL>J-Bessel</VARIOGRAM_MODEL_JBESSEL>
+
+   <VARIOGRAM_MODEL_STABLE>Stable</VARIOGRAM_MODEL_STABLE>
+
+   <VARIOGRAM_MODEL_PARAM name="Parameter"></VARIOGRAM_MODEL_PARAM>
+
+   <VARIOGRAM_MODEL_PARAM_STABLE>The parameter for the Stable model should be greater than zero and less than or equal to two. If the parameter equals one, the Stable model is the same as the Exponential model and if the parameter equals two, it is the same as the Gaussian model.</VARIOGRAM_MODEL_PARAM_STABLE>
+
+   <VARIOGRAM_MODEL_PARAM_K>The parameter for the K-Bessel model is the order of the modified Bessel function of the second kind.</VARIOGRAM_MODEL_PARAM_K>
+
+   <VARIOGRAM_MODEL_PARAM_J>The parameter for J-Bessel model is the order of the J-Bessel function.</VARIOGRAM_MODEL_PARAM_J>
+
+   <VARIOGRAM_MODEL_MAJOR name="Major Range" helpid="222000023">A parameter of a covariance or semivariogram model that represents a distance beyond which there is little or no autocorrelation among variables.</VARIOGRAM_MODEL_MAJOR>
+
+   <VARIOGRAM_MODEL_ANISOTROPY name="Anisotropy" helpid="222000010">The semivariogram and covariance functions may change not only with distance but with direction as well. This is called anisotropy.</VARIOGRAM_MODEL_ANISOTROPY>
+
+   <VARIOGRAM_MODEL_MINOR name="Minor Range">The range is the distance at which the semivariogram levels off to the sill. The Minor Range can be larger than the Major Range: they are semi-axes of the ellipse.</VARIOGRAM_MODEL_MINOR>
+
+   <VARIOGRAM_MODEL_DIRECTION name="Direction">The direction for the major range.</VARIOGRAM_MODEL_DIRECTION>
+
+   <VARIOGRAM_SILL_CALC name="Calculate Partial Sill">If the option is set to True the weighted least square algorithm will be used to estimate a value and if the option is set to False the value can be entered manually.</VARIOGRAM_SILL_CALC>
+
+   <VARIOGRAM_SILL name="Partial Sill %1!s!" helpid="222000023">The value that the semivariogram model attains at the range (the value on the y-axis) is called the sill (Sill is equal to Partial Sill + Nugget).</VARIOGRAM_SILL>
+
+   <VARIOGRAM_SHIFT_SECTION name="Shifts"></VARIOGRAM_SHIFT_SECTION>
+
+   <VARIOGRAM_SHIFT_CALC name="Calculate">Edit or recalculate the shifts for calculating cross-covariance. The Calculate flag set to False allows you to edit the input values and the optimal values will be calculated if this flag is set to True. Notes: This option is only available for cross-covariance (cokriging), that is, you could make edits to X and Y shifts only for cross-covariance and not for covariance or semivariogram. A shift is present when the highest cross-covariance is calculated for two variables at different locations. The shift is the distance and direction when the calculated cross-covariance is at its maximum value.</VARIOGRAM_SHIFT_CALC>
+
+   <VARIOGRAM_SHIFT_X name="X%1!s!">This option is only available for cross-covariance (cokriging), that is, you could make edits to X and Y shifts only for cross-covariance and not for covariance or semivariogram.</VARIOGRAM_SHIFT_X>
+
+   <VARIOGRAM_SHIFT_Y name="Y%1!s!">This option is only available for cross-covariance (cokriging), that is, you could make edits to X and Y shifts only for cross-covariance and not for covariance or semivariogram.</VARIOGRAM_SHIFT_Y>
+
+   <VARIOGRAM_FORMULA>Model : %1!s!</VARIOGRAM_FORMULA>
+
+   <VARIOGRAM_BETWEEN name="Between:"></VARIOGRAM_BETWEEN>
+   
+   <VARIOGRAM_BETWEEN_ITEM_THRESHOLD name="Threshold"></VARIOGRAM_BETWEEN_ITEM_THRESHOLD>
+
+   <VARIOGRAM_BETWEEN_ITEM_INDICATOR name="Ind%1!i!"></VARIOGRAM_BETWEEN_ITEM_INDICATOR>
+
+   <VARIOGRAM_BETWEEN_ITEM name="Var%1!i!"></VARIOGRAM_BETWEEN_ITEM>
+
+   <VARIOGRAM_SAVE_AS_RASTER>Save variogram model as raster</VARIOGRAM_SAVE_AS_RASTER>
+
+   <VARIOGRAM_OPTIMIZE name="Optimize model">The model parameters, nugget, partial sill and other(s), are optimized using cross validation with focus on the estimation of the range parameter.</VARIOGRAM_OPTIMIZE>
+
+   <VARIOGRAM_OPTIMIZE_MSG name="Optimize variogram">Pressing OK will calculate new values for the parameters of Model #1 
+using an iterative cross validation technique. 
+   
+   Do you want to proceed?</VARIOGRAM_OPTIMIZE_MSG>
+
+   <VARIOGRAM_OPTIMIZE_TT>Click to optimize entire model</VARIOGRAM_OPTIMIZE_TT> 
+
+   <VARIOGRAM_BIVARIATE name="Examine bivariate distribution"  helpid="222000027">The Examine Bivariate Distribution dialog will appear next during the modeling process. This option is only available for simple and disjunctive kriging.</VARIOGRAM_BIVARIATE>
+
+   <VARIOGRAM_SAVE_AS_TABLE>Save variogram model as table</VARIOGRAM_SAVE_AS_TABLE>
+
+   <VARIOGRAM_NUGGET_SECTION name="Model Nugget"></VARIOGRAM_NUGGET_SECTION>
+
+   <VARIOGRAM_NUGGET_ON name="Enable">Choice to include or not to include the nugget value in the model.</VARIOGRAM_NUGGET_ON>
+
+   <VARIOGRAM_NUGGET_CALC name="Calculate Nugget">If the option is set to True the weighted least square algorithm will be used to estimate a value and if the option is set to False the value can be entered manually.</VARIOGRAM_NUGGET_CALC>
+
+   <VARIOGRAM_NUGGET name="Nugget %1!s!" helpid="222000023">At a very small separation distance, the semivariogram often exhibits a nugget effect, which is some value greater than zero. For example, if the semivariogram model intercepts the y-axis at 2, then the nugget is 2.</VARIOGRAM_NUGGET>
+
+   <VARIOGRAM2_ANGLE name="Angle">Indicates the direction in which the search sector is pointing (measured in degrees from North, rotating clockwise).</VARIOGRAM2_ANGLE>
+
+   <VARIOGRAM2_TOLERANCE name="Tolerance">Is is the aperture angle of the sector used by the Search Direction tool to select pairs of points. The search sector does not expand infinitely; its width is limited by the bandwidth parameter.</VARIOGRAM2_TOLERANCE>
+
+   <VARIOGRAM2_BANDWIDTH name="Bandwidth (lags)">Defines the width of the search sector. It is measured in terms of lags, which are defined in distance units of the primary input dataset (defined on the first page of the Geostatistical Wizard).</VARIOGRAM2_BANDWIDTH>
+
+   <VARIOGRAM_LAG_SECTION name="Lag">The sample distance used to group or bin pairs of points. Using an appropriate lag distance can be helpful in revealing scale-dependent spatial correlation.</VARIOGRAM_LAG_SECTION>
+
+   <VARIOGRAM_LAG_SIZE name="Lag Size" helpid="222000026">The selection of a lag size has important effects on the empirical semivariogram. For example, if the lag size is too large, short-range autocorrelation may be masked. If the lag size is too small, there may be many empty bins, and sample sizes within bins will be too small to get representative averages for bins.</VARIOGRAM_LAG_SIZE>
+
+   <VARIOGRAM_LAG_N name="Number of Lags" helpid="222000026">A rule of thumb is to multiply the lag size by the number of lags, which should be about half the largest distance among all points. Also, if the range of the fitted semivariogram model is very small relative to the extent of the empirical semivariogram, you can decrease the lag size. Conversely, if the range of the fitted semivariogram model is large relative to the extent of the empirical semivariogram, you can increase the lag size.</VARIOGRAM_LAG_N>
+
+   <VARIOGRAM2_SECTION name="View Settings"></VARIOGRAM2_SECTION>
+
+   <VARIOGRAM2_DIR name="Show search direction">Shows or hides the Search direction tool. This tool selects pairs of points that fall within a sector defined by an angle, a tolerance and a bandwidth.</VARIOGRAM2_DIR>
+
+   <VARIOGRAM2_LINES_ALL name="Show all lines">Adds local polynomial lines to the graph. Local polynomials are fitted to the empirical semivariogram/covariance in several directions. If the Show search direction option is on, then only the local polynomial fitted to the empirical semivariogram/covariance surface in the Show search direction tool’s central axis transect is displayed.</VARIOGRAM2_LINES_ALL>
+
+   <VARIOGRAM2_POINTS name="Show points">Binned points are generated by grouping (binning) empirical semivariogram/covariance points together using square cells that are one lag wide. Average points are generated by binning empirical semivariogram/covariance points that fall within angular sectors. The graph can display binned points, average points, or both. Binned points show local variation in the semivariogram/covariance values, whereas average values show smooth semivariogram/covariance value variation.</VARIOGRAM2_POINTS>
+
+   <VARIOGRAM2_POINTS_ALL>Binned and Averaged</VARIOGRAM2_POINTS_ALL>
+
+   <VARIOGRAM2_POINTS_BINNED>Binned</VARIOGRAM2_POINTS_BINNED>
+
+   <VARIOGRAM2_POINTS_AVERAGED>Averaged</VARIOGRAM2_POINTS_AVERAGED>
+   
+   <VARIOGRAM_LABEL_MODEL>Model</VARIOGRAM_LABEL_MODEL>
+
+   <VARIOGRAM_LABEL_BINNED same_as="VARIOGRAM2_POINTS_BINNED"/>
+
+   <VARIOGRAM_LABEL_AVERAGED same_as="VARIOGRAM2_POINTS_AVERAGED"/>
+
+   <VARIOGRAM_LABEL_BIVAR>Bivariate</VARIOGRAM_LABEL_BIVAR>
+
+   <VARIOGRAM_LABEL_ALL_LINES>All lines</VARIOGRAM_LABEL_ALL_LINES>
+
+   <VARIOGRAM2_EXPORT_SECTION name="Export"></VARIOGRAM2_EXPORT_SECTION>
+
+   <VARIOGRAM_MERROR name="Measurement Error %1!s!" helpid="222000015">Measurement error occurs when it is possible to have several differing observations at the same location. For example, you might extract a sample from the ground or air and then divide that sample into several subsamples to be measured. You may want to do this if the instrument that measures the samples has some variation. The default is 100% of the Nugget value, meaning that the microscale variation is zero.</VARIOGRAM_MERROR>
+
+   <VARIOGRAM_ME_P>Input as %% [%1!s!]</VARIOGRAM_ME_P>
+
+   <VARIOGRAM_ME_V>Input as value [%1!s!]</VARIOGRAM_ME_V>
+
+   <VARIOGRAM_ME_ESTIMATE>Estimate value</VARIOGRAM_ME_ESTIMATE>
+
+   <VARIOGRAM_ME_ERROR_TT>Measurement Error value more than Nugget</VARIOGRAM_ME_ERROR_TT>
+
+   <VARIOGRAM2_EXPORT_V_COMBO name="Variography">Copy as picture: This option places a copy of the semivariogram/covariance graph in the clipboard so that it can be pasted into any other application.
+
+Save binned values as table: Saves the binned empirical semivariogram/covariance values and the related distances and weights as a table. X,Y coordinates for the centers of the square bins are also included.
+
+Save averaged values as table: Saves the averaged empirical semivariogram/covariance values and the related distances and weighs as a table.
+
+Save geometrical values as table: Saves the empirical semivariogram/covariance values and the related distances and weights as a table. Geometrical empirical semivariogram/covariance values are obtained by using bins that grow in a geometric progression as the distance between data points increases. The table also contains X,Y coordinates for the empirical values. These values and not the binned or averaged values are used to fit the model.
+
+Save model as raster: The raster values are the semivariogram/covariance values defined by the model which was fitted to the empirical semivariogram/covariance points shown in the graph. 
+
+Save model as table: Saves the semivariogram/covariance model values and related distances in a table.</VARIOGRAM2_EXPORT_V_COMBO>
+
+   <VARIOGRAM2_EXPORT_NONE>&lt;select&gt;</VARIOGRAM2_EXPORT_NONE>
+
+   <VARIOGRAM2_EXPORT_V_WMF>Copy as Picture</VARIOGRAM2_EXPORT_V_WMF>
+
+   <VARIOGRAM2_EXPORT_V_TABLE>Save binned values as table...</VARIOGRAM2_EXPORT_V_TABLE>
+
+   <VARIOGRAM2_EXPORT_V_AVERAGE>Save averaged values as table...</VARIOGRAM2_EXPORT_V_AVERAGE>
+
+   <VARIOGRAM2_EXPORT_V_RASTER>Save model as raster...</VARIOGRAM2_EXPORT_V_RASTER>
+
+   <VARIOGRAM2_EXPORT_V_MODEL>Save model as table...</VARIOGRAM2_EXPORT_V_MODEL>
+
+   <VARIOGRAM2_EXPORT_S_COMBO name="Semivariogram/Covariance map">Save values as raster: This saves the semivariogram/covariance map as a raster.
+
+Save weights as raster: Saves the weights associated with each square bin shown in the semivariogram/covariance map as values in a raster.</VARIOGRAM2_EXPORT_S_COMBO>
+
+   <VARIOGRAM2_EXPORT_S_VALUES>Save values as raster...</VARIOGRAM2_EXPORT_S_VALUES>
+
+   <VARIOGRAM2_EXPORT_S_WEIGHTS>Save weights as raster...</VARIOGRAM2_EXPORT_S_WEIGHTS>
+
+   <BIVARIATE_QUANTILE name="Quantile">Specify the quantile value to be used to examine the bivariate condition.</BIVARIATE_QUANTILE>
+
+   <BIVARIATE_BETWEEN_COMBO name="Between">Select the attribute(s) for which an examination of the bivariate condition is required.</BIVARIATE_BETWEEN_COMBO>
+
+   <BIVARIATE_BETWEEN_COMBO_ITEM>Var%1!i! - Var%2!i! - %3!s!</BIVARIATE_BETWEEN_COMBO_ITEM>
+
+   <KRIGING_NS_DATASET_SECTION name="Dataset"></KRIGING_NS_DATASET_SECTION >
+<!--Declustering-->
+   <DECLUSTER_DLG_DATASET_SECTION name="Dataset"></DECLUSTER_DLG_DATASET_SECTION>
+
+   <DECLUSTER_DLG_CELL name="Cell size"  helpid="222000019">The graph shows the weighted mean value for all data for various cell sizes. Select the cell size that corresponds to the minimum weighted mean if the data have been preferentially sampled in areas of high values. Select the cell size that corresponds to the maximum weighted mean if the data have been preferentially sampled in areas of low values.</DECLUSTER_DLG_CELL>
+
+   <DECLUSTER_DLG_ANISOTROPY name="Anisotropy">The anisotropy factor is equal to the ratio of X and Y dimensions for the grid cell. Select the anisotropy factor that corresponds to the minimum weighted mean if the data have been preferentially sampled in areas of high values. Select the anisotropy factor that corresponds to the maximum weighted mean if the data have been preferentially sampled in areas of low values.</DECLUSTER_DLG_ANISOTROPY>
+
+   <DECLUSTER_DLG_ANGLE name="Angle">The rotated grid will be used to decluster the data. The graph shows the weighted mean value for all data for various angles of rotation. Select the angle of rotation that corresponds to the minimum weighted mean if the data have been preferentially sampled in areas of high values. Select the angle of rotation that corresponds to the maximum weighted mean if the data have been preferentially sampled in areas of low values.</DECLUSTER_DLG_ANGLE>
+
+   <DECLUSTER_DLG_SHIFT name="Shift">The shift value will move the origin of the grid that will be used to decluster the data. The numbers (1, 2, 3 to 16) correspond to the number of shifts applied to the grid in the X and Y directions. The grid is moved a distance equivalent to the selected shift multiplied by a distance less than one half of the cell size. For relatively small and clustered datasets, the declustering weights can change significantly with a relatively small shift of the origin (i.e. less than one half or one quarter of the cell size).</DECLUSTER_DLG_SHIFT>
+
+   <DECLUSTER_DLG_CLIP name="Clip layer">Specify an outline if the polygons need to be clipped.</DECLUSTER_DLG_CLIP>
+
+   <DECLUSTER_DLG_CLIP_NONE same_as="NAME_NONE"/>
+
+   <DECLUSTER_DLG_METHOD name="Declustering method" helpid="222000019">The data may have been sampled preferentially, with a higher density of sample points in some places than in others. For the normal score transform,i t is important that the histogram and the cumulative distribution of the sample properly reflect the histogram of the whole population.  The solution to preferential sampling is to weight the data, with data in densely sampled areas receiving less weight.</DECLUSTER_DLG_METHOD>
+
+   <DECLUSTER_DLG_METHOD_CELL>Cell</DECLUSTER_DLG_METHOD_CELL>
+
+   <DECLUSTER_DLG_METHOD_POLYGON>Polygonal</DECLUSTER_DLG_METHOD_POLYGON>
+
+   <DECLUSTER_DLG_LEGEND>N = %1!i!</DECLUSTER_DLG_LEGEND>
+
+<!--Normal Score transformation-->
+   <NST_KERNELS_N name="Number of kernels">Select the number of Gaussian kernels that will be used to model the probability density distribution.</NST_KERNELS_N>
+
+   <NST_KERNEL name="Kernel #%1!i!">When the Gaussian Kernels approximation method is selected, this panel shows the mean (µ) and standard deviation (σ) of each kernel.</NST_KERNEL>
+
+   <NST_MU name="μ">Mean</NST_MU>
+
+   <NST_SIGMA name="σ">Standard deviation</NST_SIGMA>
+
+   <NST_P name="π">Weight assigned to each kernel</NST_P>
+
+   <NST_CHART_DENSITY>Density</NST_CHART_DENSITY>
+
+   <NST_CHART_DENSITY_AXISX>Dataset</NST_CHART_DENSITY_AXISX>
+
+   <NST_CHART_DENSITY_AXISY same_as="NST_CHART_DENSITY" />
+
+   <NST_CHART_CUMULATIVE>Cumulative</NST_CHART_CUMULATIVE>
+
+   <NST_CHART_CUMULATIVE_AXISX same_as="NST_CHART_DENSITY_AXISX"/>
+
+   <NST_CHART_CUMULATIVE_AXISY same_as="NST_CHART_CUMULATIVE"/>
+
+   <NST_TRANSFORMATION_SECTION name="Transformation"></NST_TRANSFORMATION_SECTION>
+
+   <NST_VIEW_SECTION name="View properties"></NST_VIEW_SECTION>
+
+   <NST_VIEW_BINS name="Number of bins">This is the same as the histogram from Exploratory Spatial Data Analysis.  Note: Distribution modeling is based on the entire data set and the number of bins selected does not influence the parameters of the model used to transform the data.</NST_VIEW_BINS>
+
+   <NST_APPROXIMATION_SECTION name="Approximation method"></NST_APPROXIMATION_SECTION>
+
+   <NST_APPROXIMATION_TYPE name="Type">This option will be used to transform the attribute data to a standard normal univariate cumulative distribution. Three approximation methods are supported: Direct, Linear, and Gaussian Kernels. The direct method uses the observed cumulative distribution; the linear method fits lines between each "step" of the cumulative distribution; and the Gaussian Kernels method approximates the probability distribution by fitting a linear combination of normal probability distributions before calculating the cumulative distribution.</NST_APPROXIMATION_TYPE>
+
+   <NST_APPROXIMATION_TYPE_DIRECT>Direct</NST_APPROXIMATION_TYPE_DIRECT>
+
+   <NST_APPROXIMATION_TYPE_LINEAR>Linear</NST_APPROXIMATION_TYPE_LINEAR>
+
+   <NST_APPROXIMATION_TYPE_GAUSSIAN>Gaussian Kernels</NST_APPROXIMATION_TYPE_GAUSSIAN>
+
+<!--Cross Validatiomn-->
+   <CV_DLG_FUNC name="Regression function"></CV_DLG_FUNC>
+
+   <CV_DLG_ERRORS_SECTION name="Prediction Errors"></CV_DLG_ERRORS_SECTION>
+
+   <CV_DLG_EXPORT name="Export Result Table"></CV_DLG_EXPORT>
+
+   <CV_DLG_EXPORT_VAL>Export...</CV_DLG_EXPORT_VAL>
+
+   <CV_DLG_COUNT name="Samples">%1!i! of %2!i!</CV_DLG_COUNT>
+</res>
+

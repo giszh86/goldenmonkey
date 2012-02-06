@@ -1,0 +1,79 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Watershed (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Determines the contributing area above a set of cells in a raster.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Basin</keyword><keyword>Catchment</keyword><keyword>Contributing Area</keyword><keyword>Flow</keyword><keyword>Runoff</keyword><keyword>Subbasin</keyword><keyword>Subcatchment</keyword><keyword>Subwatershed</keyword><keyword>Surface Water</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Watershed" displayname="Watershed (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Determines the contributing area above a set of cells in a raster.</para>
+			
+		</summary><alink_name>Watershed_sa</alink_name><parameters><param sync="true" name="in_flow_direction_raster" displayname="Input flow direction raster" datatype="Raster Layer" direction="Input" expression="in_flow_direction_raster" type="Required"><pythonReference>
+						<para>The input raster that shows the direction of flow out of each cell.</para><para>The flow direction raster can be created using the Flow Direction tool.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster that shows the direction of flow out of each cell.</para><para>The flow direction raster can be created using the Flow Direction tool.</para>
+					</dialogReference></param><param sync="true" name="in_pour_point_data" displayname="Input raster or feature pour point data" datatype="Raster Layer | Feature Layer" direction="Input" expression="in_pour_point_data" type="Required"><pythonReference>
+						<para>The input pour point locations.</para>
+						<para>For a raster, this represents cells above which the contributing area, or catchment, will be determined. All cells that are not NoData will be used as source cells.</para>
+						<para>For a feature dataset, this represents locations above which the contributing area, or catchment, will be determined.</para></pythonReference><dialogReference>
+						<para>The input pour point locations.</para>
+						<para>For a raster, this represents cells above which the contributing area, or catchment, will be determined. All cells that are not NoData will be used as source cells.</para>
+						<para>For a feature dataset, this represents locations above which the contributing area, or catchment, will be determined.</para></dialogReference></param><param sync="true" name="pour_point_field" displayname="Pour point field" datatype="Field" direction="Input" expression="pour_point_field" type="Optional"><pythonReference>
+						<para>Field used to assign values to the pour point locations.</para><para>If the pour point dataset is a raster, use Value.</para><para>If the pour point dataset is a feature, use a numeric field. If the field contains floating-point values, they will be truncated into integers.</para></pythonReference><dialogReference>
+						<para>Field used to assign values to the pour point locations.</para><para>If the pour point dataset is a raster, use Value.</para><para>If the pour point dataset is a feature, use a numeric field. If the field contains floating-point values, they will be truncated into integers.</para></dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster that shows the contributing area.</para>
+							<para>It will be of integer type.</para></pythonReference><dialogReference>
+							<para>The output raster that shows the contributing area.</para>
+							<para>It will be of integer type.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The value of each watershed will be taken from the value of the source in the input raster or feature pour point data. When the pour point is a raster dataset, the cell values will be used. When the pour point is a point feature dataset, the values will come from the specified field.</para>
+			</bullet_item><bullet_item>
+				<para>Better results will be obtained if the  tool is used beforehand to help locate the pour points to cells of high accumulated flow.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Watershed example 1 (Python window)</title>
+					<para>This example determines the contributing area for selected pour point locations on a flow direction GRID raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outWatershed = Watershed("flowdir", "pourpoint")
+outWatershed.save("C:/sapyexamples/output/outwtrshd01")
+
+                    </code></scriptExample><scriptExample><title>Watershed example 2 (stand-alone script)</title>
+					<para>This example determines the contributing area for selected pour point locations on a flow direction GRID raster and outputs the watershed as a TIFF raster.</para>
+				<code xml:space="preserve"># Name: Watershed_Ex_02.py
+# Description: Determines the contributing area above a set of cells in a
+#     raster.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inFlowDirection = "flowdir"
+inPourPointData = "pourpoint"
+inPourPointField = "VALUE"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Watershed
+outWatershed = Watershed(inFlowDirection, inPourPointData, inPourPointField)
+
+# Save the output 
+outWatershed.save("C:/sapyexamples/output/outwtrshd02.tif")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,80 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Random Raster (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a raster of random floating point values between 0.0 and 1.0 within the extent and cell size of the analysis window.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Construct</keyword><keyword>Create</keyword><keyword>Generate</keyword><keyword>Make</keyword><keyword>Random</keyword><keyword>Raster</keyword><keyword>Rnd</keyword><keyword>Uniform Distribution</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateRandomRaster" displayname="Create Random Raster (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Creates a raster of random floating point values between 0.0 and 1.0 within the extent and cell size of the analysis window.</para>
+		</summary><alink_name>CreateRandomRaster_sa</alink_name><toolIllust type="illustration" src="CreateRandomRaster_sa_h.gif" alt="Create Random Raster illustration" /><parameters><param sync="true" name="seed_value" displayname="Seed value" datatype="Double" direction="Input" expression="seed_value" type="Optional"><pythonReference>
+						<para>A value to be used to reseed the random number generator.</para>
+						<para>This may be an integer or floating-point number. Rasters are not permitted as input.</para>
+						<para>The random number generator is automatically seeded with the current value of the system clock (seconds since January 1, 1970). The range of permissible values for the seed value is -231+1 to 231 (or -2,147,483,647 to 2,147,483,648).</para>
+					</pythonReference><dialogReference>
+						<para>A value to be used to reseed the random number generator.</para>
+						<para>This may be an integer or floating-point number. Rasters are not permitted as input.</para>
+						<para>The random number generator is automatically seeded with the current value of the system clock (seconds since January 1, 1970). The range of permissible values for the seed value is -231+1 to 231 (or -2,147,483,647 to 2,147,483,648).</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size for the output raster dataset.</para><para>This is the value in the environment if specifically set. If not specifically set, it is the shorter of the width or height of the environment extent in the output spatial reference, divided by 250.</para></pythonReference><dialogReference>
+						<para>The cell size for the output raster dataset.</para><para>This is the value in the environment if specifically set. If not specifically set, it is the shorter of the width or height of the environment extent in the output spatial reference, divided by 250.</para></dialogReference></param><param sync="true" name="extent" displayname="Output extent" datatype="Extent" direction="Input" expression="extent" type="Optional"><pythonReference><para>The extent for the output raster dataset.</para><para>The Extent is a Python class.</para><para>  In this tool it is in the form of: Extent(XMin, YMin, XMax, YMax)
+							<bulletList>
+								<bullet_item>where XMin and YMin define the lower-left coordinate of the extent, with XMax and YMax defining the upper-right coordinate.</bullet_item>
+							</bulletList></para><para>The coordinates are specified in the same map units as the in_raster.</para><para>The extent will be the value in the environment if specifically set. If not specifically set, the default is 0, 0, 250, 250.</para></pythonReference><dialogReference>
+						<para>The extent for the output raster dataset.</para><para>The extent will be the value in the environment if specifically set. If not specifically set, the default is 0, 0, 250, 250.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster of randomly distributed values with a range of 0.0 to 1.0</para>
+						</pythonReference><dialogReference>
+							<para>The output raster of randomly distributed values with a range of 0.0 to 1.0</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para>The Create Random Raster tool generates values for every cell in
+the output raster.</para></bullet_item><bullet_item><para>The output raster from this tool is always floating point.</para></bullet_item><bullet_item><para>The cell values will have up to 7 digits of precision after the decimal point.</para></bullet_item><bullet_item>
+				<para>Repeatedly using the same seed value or the default will not produce the same raster.</para>
+			</bullet_item><bullet_item><para>You can change the seed through a parameter to ensure you obtain different starting points for the random number generator.</para></bullet_item><bullet_item>
+				<para>To generate the values, the random number generator accompanying the standard C libraries from Microsoft is used. In Visual Studio 6, the source code is contained in the RAND.c file, which is generally located in  Program Files/Microsoft Visual Studio/VC98/CRT/SRC.</para>
+			</bullet_item><bullet_item><para>The Data Management toolbox has a  tool that offers some more options for the distribution of the values.</para></bullet_item></usage><scriptExamples><scriptExample><title>CreateRandomRaster example 1 (Python window)</title>
+					<para>This sample creates an output raster of random values at the defined cell size and extent.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outRandRaster = CreateRandomRaster(100, 2, Extent(0, 0, 150, 150))
+outRandRaster.save("C:/sapyexamples/output/outrandom")
+                    </code></scriptExample><scriptExample><title>CreateRandomRaster example 2 (stand-alone script)</title>
+					<para>This sample creates an output raster of random values at the defined cell size and extent.</para>
+				<code xml:space="preserve"># Name: CreateRandomRaster_Ex_02.py
+# Description: Creates a raster of random floating point values
+#              between 0 and 1
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+seedValue = 1
+cellSize = 2
+extent = Extent(0, 0, 150, 150)
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute CreateRandomRaster
+outRandomRaster = CreateRandomRaster(seedValue, cellSize, extent) 
+
+# Save the output 
+outRandomRaster.save("C:/sapyexamples/output/outrand")
+                    </code></scriptExample></scriptExamples></tool></metadata>

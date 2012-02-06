@@ -1,0 +1,44 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Set Representation Control Point By Angle (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Places a representation control point at vertices along a line or polygon boundary where the inner angle is less than or equal to a specified maximum angle.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Angle Deviation</keyword><keyword>Cartography</keyword><keyword>Dash</keyword><keyword>Dashed</keyword><keyword>Direction Change</keyword><keyword>Marker</keyword><keyword>Override</keyword><keyword>Representation</keyword><keyword>Symbol</keyword><keyword>Symbology</keyword><keyword>Vertex</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SetRepresentationControlPointByAngle" displayname="Set Representation Control Point By Angle (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Places a representation control point at vertices along a line or polygon boundary where the inner angle is less than or equal to a specified maximum angle.</para>
+		</summary><alink_name>SetRepresentationControlPointByAngle_cartography</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/SetRepresentationControlPointByAngle_cartography_v.png" alt="Set Representation By Control Point tool" /><toolIllust type="illustration" src="SetRepresentationControlPointByAngle_cartography_h.png" alt="Set Representation By Control Point tool" /><parameters><param sync="true" name="in_features" displayname="Input Features With Representations" datatype="Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature layer containing line or polygon representations.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature layer containing line or polygon representations.</para>
+					</dialogReference></param><param sync="true" name="maximum_angle" displayname="Maximum Angle (decimal degrees)" datatype="Double" direction="Input" expression="maximum_angle" type="Required"><pythonReference>
+						<para>The angle used to determine whether or not a vertex along a line or polygon boundary will be set as a representation control point. The angle value must be greater than zero and less than 180 decimal degrees.</para>
+					</pythonReference><dialogReference>
+						<para>The angle used to determine whether or not a vertex along a line or polygon boundary will be set as a representation control point. The angle value must be greater than zero and less than 180 decimal degrees.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>Input features must be a line or polygon layer symbolized with a representation.</para>
+			</bullet_item><bullet_item>
+				<para>The modification to vertices is stored as a geometry override on the feature representation.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SetRepresentationControlPointByAngle tool Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the SetRepresentationControlPointByAngle tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:\data"
+
+arcpy.SetRepresentationControlPointByAngle_cartography("trails.lyr", "135")
+                    </code></scriptExample><scriptExample><title>SetRepresentationControlPointByAngle tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the SetRepresentationControlPointByAngle tool.</para>
+				<code xml:space="preserve"># Name: SetRepresentationControlPointByAngle_standalone_script.py
+# Description: adds representation control points at locations where a feature has a sharp angle in its geometry
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+in_representations = "trails.lyr"
+minimum_angle_deviation = "135"
+
+# Execute Set Representation Control Point At Intersect
+arcpy.SetRepresentationControlPointAtIntersect_cartography(in_representations, minimum_angle_deviation)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

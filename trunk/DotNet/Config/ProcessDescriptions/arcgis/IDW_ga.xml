@@ -1,0 +1,156 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">IDW (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs><para> Uses the measured values surrounding the prediction location  to predict a value for any unsampled location, based on the assumption that things that are close to one another are more alike than those that are farther apart.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Esda</keyword><keyword>Estimate</keyword><keyword>Inverse Distance Weighting</keyword><keyword>Power</keyword><keyword>Predict</keyword><keyword>Smooth Interpolation</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="IDW" displayname="IDW (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary><para> Uses the measured values surrounding the prediction location  to predict a value for any unsampled location, based on the assumption that things that are close to one another are more alike than those that are farther apart.</para>
+			
+		</summary><alink_name>IDW_ga</alink_name><parameters><param sync="true" name="in_features" displayname="Input point features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input point features containing the z-values to be interpolated.</para>
+					</pythonReference><dialogReference>
+						<para>The input point features containing the z-values to be interpolated.</para>
+					</dialogReference></param><param sync="true" name="z_field" displayname="Z value field" datatype="Field" direction="Input" expression="z_field" type="Required"><pythonReference>
+						<para>Field that holds a height or magnitude value for each point. This can be a numeric field or the Shape field if the input features contains z-values or m-values.</para>
+					</pythonReference><dialogReference>
+						<para>Field that holds a height or magnitude value for each point. This can be a numeric field or the Shape field if the input features contains z-values or m-values.</para>
+					</dialogReference></param><param sync="true" name="out_ga_layer" displayname="Output geostatistical layer" datatype="Geostatistical Layer" direction="Output" expression="out_ga_layer" type="Required"><pythonReference>
+						<para>The geostatistical layer produced. This layer is required output only if no output raster is requested.</para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical layer produced. This layer is required output only if no output raster is requested.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Optional"><pythonReference>
+						<para>The output raster. This raster is required output only if no output geostatistical layer is requested.</para>
+					</pythonReference><dialogReference>
+						<para>The output raster. This raster is required output only if no output geostatistical layer is requested.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="power" displayname="Power" datatype="Double" direction="Input" expression="power" type="Optional"><pythonReference>
+						<para>The exponent of distance that controls the significance of surrounding points on the interpolated value. A higher power results in less influence from distant points.</para>
+						<para></para>
+					</pythonReference><dialogReference>
+						<para>The exponent of distance that controls the significance of surrounding points on the interpolated value. A higher power results in less influence from distant points.</para>
+						<para></para>
+					</dialogReference></param><param sync="true" name="search_neighborhood" displayname="Search neighborhood" datatype="Geostatistical Search Neighborhood" direction="Input" expression="search_neighborhood" type="Optional"><pythonReference>
+						
+						<para>Defines which surrounding points will be used to control the output. There are two options: STANDARD and SMOOTH. Standard is the default.</para>
+						<para>This is a Search Neighborhood class ( SearchNeighborhoodStandard  and SearchNeighborhoodSmooth).</para>
+						<para>STANDARD</para>
+						<bulletList>
+							<bullet_item>Major semiaxis — The major semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Minor semiaxis — The minor semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Angle — The angle of rotation for the axis (circle) or semi-major axis (ellipse) of the moving window.</bullet_item>
+							<bullet_item>Maximum neighbors — The maximum number of neighbors that will be used to estimate the value at the unknown location.</bullet_item>
+							<bullet_item>Minimum neighbors — The minimum number of neighbors that will be used to estimate the value at the unknown location.</bullet_item>
+							<bullet_item>Sector type — The geometry of the neighborhood. <bulletList>
+									<bullet_item>One sector - Single ellipse</bullet_item>
+									<bullet_item>Four sectors - Ellipse divided in four sectors.</bullet_item>
+									<bullet_item>Four sectors shifted - Ellipse divided in four sectors and shifted 45 degrees.</bullet_item>
+									<bullet_item>Eight sectors - Ellipse divided into eight sectors.</bullet_item>
+								</bulletList></bullet_item>
+						</bulletList>
+						<para>SMOOTH</para>
+						<bulletList>
+							<bullet_item>Major semiaxis — The major semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Minor semiaxis — The minor semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Angle — The angle of rotation for the axis (circle) or semi-major axis (ellipse) of the moving window.</bullet_item>
+							<bullet_item>Smoothing factor — The Smooth Interpolation option creates an outer ellipse and an inner ellipse at a distance equal to the Major Semiaxis multiplied by the Smoothing factor. The points that fall outside the smaller ellipse but inside the largest ellipse are weighted using a sigmoidal function with a value between zero and one.</bullet_item>
+						</bulletList>
+						
+					</pythonReference><dialogReference>
+						
+						<para>Defines which surrounding points will be used to control the output. There are two options: STANDARD and SMOOTH. Standard is the default.</para>
+						<para>STANDARD</para>
+						<bulletList>
+							<bullet_item>Major semiaxis — The major semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Minor semiaxis — The minor semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Angle — The angle of rotation for the axis (circle) or semi-major axis (ellipse) of the moving window.</bullet_item>
+							<bullet_item>Maximum neighbors — The maximum number of neighbors that will be used to estimate the value at the unknown location.</bullet_item>
+							<bullet_item>Minimum neighbors — The minimum number of neighbors that will be used to estimate the value at the unknown location.</bullet_item>
+							<bullet_item>Sector type — The geometry of the neighborhood. <bulletList>
+									<bullet_item>One sector - Single ellipse</bullet_item>
+									<bullet_item>Four sectors - Ellipse divided in four sectors.</bullet_item>
+									<bullet_item>Four sectors shifted - Ellipse divided in four sectors and shifted 45 degrees.</bullet_item>
+									<bullet_item>Eight sectors - Ellipse divided into eight sectors.</bullet_item>
+								</bulletList></bullet_item>
+						</bulletList>
+						<para>SMOOTH</para>
+						<bulletList>
+							<bullet_item>Major semiaxis — The major semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Minor semiaxis — The minor semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Angle — The angle of rotation for the axis (circle) or semi-major axis (ellipse) of the moving window.</bullet_item>
+							<bullet_item>Smoothing factor — The Smooth Interpolation option creates an outer ellipse and an inner ellipse at a distance equal to the Major Semiaxis multiplied by the Smoothing factor. The points that fall outside the smaller ellipse but inside the largest ellipse are weighted using a sigmoidal function with a value between zero and one.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="weight_field" displayname="Weight field" datatype="Field" direction="Input" expression="weight_field" type="Optional"><pythonReference>
+						<para>Used to emphasize an observation. The larger the weight, the more impact it has on the prediction. For coincident observations, assign the largest weight to the most reliable measurement.</para>
+					</pythonReference><dialogReference>
+						<para>Used to emphasize an observation. The larger the weight, the more impact it has on the prediction. For coincident observations, assign the largest weight to the most reliable measurement.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Coincident_points" label="Coincident points"></environment></environments><usage><bullet_item>
+				<para>The predicted value is limited to the range of the values used to interpolate. Because IDW is a weighted distance average, the average cannot be greater than the highest or less than the lowest input. Therefore, it cannot create ridges or valleys if these extremes have not already been sampled. </para>
+			</bullet_item><bullet_item>
+				<para>IDW can produce "bulls eyes" around data locations.</para>
+			</bullet_item><bullet_item>
+				<para>There are no assumptions required of the input data.</para>
+			</bullet_item><bullet_item>
+				<para>This method is well suited to be used with very large input datasets.</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>IDW (Python window)</title>
+					<para>Interpolate a series of point features onto a raster.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapyexamples/data"
+arcpy.IDW_ga("ca_ozone_pts", "OZONE", "outIDW", "C:/gapyexamples/output/idwout",
+             "2000", "2", arcpy.SearchNeighborhoodStandard(300000, 300000, 0, 15, 10, "ONE_SECTOR"), "")
+
+                    </code></scriptExample><scriptExample><title>IDW (stand-alone script)</title>
+					<para>Interpolate a series of point features onto a raster.</para>
+				<code xml:space="preserve"># Name: InverseDistanceWeighting_Example_02.py
+# Description: Interpolate a series of point features onto a rectangular raster
+#   using Inverse Distance Weighting (IDW).
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inPointFeatures = "ca_ozone_pts.shp"
+zField = "OZONE"
+outLayer = "outIDW"
+outRaster = "C:/gapyexamples/output/idwout"
+cellSize = 2000.0
+power = 2
+
+# Set variables for search neighborhood
+majSemiaxis = 300000
+minSemiaxis = 300000
+angle = 0
+maxNeighbors = 15
+minNeighbors = 10
+sectorType = "ONE_SECTOR"
+searchNeighbourhood = arcpy.SearchNeighborhoodStandard(majSemiaxis, minSemiaxis,
+                                                       angle, maxNeighbors,
+                                                       minNeighbors, sectorType)
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute IDW
+arcpy.IDW_ga(inPointFeatures, zField, outLayer, outRaster, cellSize, power,
+             searchNeighbourhood)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

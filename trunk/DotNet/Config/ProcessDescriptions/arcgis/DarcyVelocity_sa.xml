@@ -1,0 +1,94 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Darcy Velocity (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the groundwater seepage velocity vector (direction and magnitude) for steady flow in an aquifer.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Advection</keyword><keyword>Aquifer</keyword><keyword>Borehole</keyword><keyword>Capture Zone</keyword><keyword>Contaminant</keyword><keyword>Contamination</keyword><keyword>Darcy'S Law</keyword><keyword>Dispersion</keyword><keyword>Flow Field</keyword><keyword>Head</keyword><keyword>Pollutant</keyword><keyword>Subsurface</keyword><keyword>Water</keyword><keyword>Well</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DarcyVelocity" displayname="Darcy Velocity (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates the groundwater seepage velocity vector (direction and magnitude) for steady flow in an aquifer.</para>
+			
+		</summary><alink_name>DarcyVelocity_sa</alink_name><parameters><param sync="true" name="in_head_raster" displayname="Input groundwater head elevation raster" datatype="Raster Layer" direction="Input" expression="in_head_raster" type="Required"><pythonReference>
+						<para>The input raster where each cell value represents the groundwater head elevation at that location.</para><para>The head is typically an elevation above some datum, such as mean sea level.</para></pythonReference><dialogReference>
+						<para>The input raster where each cell value represents the groundwater head elevation at that location.</para><para>The head is typically an elevation above some datum, such as mean sea level.</para></dialogReference></param><param sync="true" name="in_porosity_raster" displayname="Input effective formation porosity raster" datatype="Raster Layer" direction="Input" expression="in_porosity_raster" type="Required"><pythonReference>
+						<para>The input raster where each cell value represents the effective formation porosity at that location.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster where each cell value represents the effective formation porosity at that location.</para>
+					</dialogReference></param><param sync="true" name="in_thickness_raster" displayname="Input saturated thickness raster" datatype="Raster Layer" direction="Input" expression="in_thickness_raster" type="Required"><pythonReference>
+						<para>The input raster where each cell value represents the saturated thickness at that location.</para><para>The value for the thickness is interpreted from geological properties of the aquifer.</para></pythonReference><dialogReference>
+						<para>The input raster where each cell value represents the saturated thickness at that location.</para><para>The value for the thickness is interpreted from geological properties of the aquifer.</para></dialogReference></param><param sync="true" name="in_transmissivity_raster" displayname="Input formation transmissivity raster" datatype="Raster Layer" direction="Input" expression="in_transmissivity_raster" type="Required"><pythonReference><para>The input raster where each cell value represents the formation transmissivity at that location.</para><para>The transmissivity of an aquifer is defined as the hydraulic conductivity K times the saturated aquifer thickness b, as units of length squared over time. This property is generally estimated from field experimental data such as pumping tests. Tables 1 and 2 in How Darcy Flow and Darcy Velocity work list ranges of hydraulic conductivities for some generalized geologic materials.</para>
+					</pythonReference><dialogReference><para>The input raster where each cell value represents the formation transmissivity at that location.</para><para>The transmissivity of an aquifer is defined as the hydraulic conductivity K times the saturated aquifer thickness b, as units of length squared over time. This property is generally estimated from field experimental data such as pumping tests. Tables 1 and 2 in How Darcy Flow and Darcy Velocity work list ranges of hydraulic conductivities for some generalized geologic materials.</para>
+					</dialogReference></param><param sync="true" name="out_magnitude_raster" displayname="Output magnitude raster" datatype="Raster Dataset" direction="Output" expression="out_magnitude_raster" type="Required"><pythonReference><para>The  output flow direction raster.</para><para>Each cell value represents the direction of the seepage velocity vector (average linear velocity) at the center of the cell, calculated as the average value of the seepage velocity through the four faces of the cell.</para><para>It is used with the output magnitude raster to describe the flow vector.</para>
+					</pythonReference><dialogReference><para>The  output flow direction raster.</para><para>Each cell value represents the direction of the seepage velocity vector (average linear velocity) at the center of the cell, calculated as the average value of the seepage velocity through the four faces of the cell.</para><para>It is used with the output magnitude raster to describe the flow vector.</para>
+					</dialogReference></param><param sync="true" name="out_direction_raster" displayname="Output direction raster" datatype="Raster" direction="Output" expression="out_direction_raster" type="Required"><pythonReference><para>The  output flow direction raster.</para><para>Each cell value represents the direction of the seepage velocity vector (average linear velocity) at the center of the cell, calculated as the average value of the seepage velocity through the four faces of the cell.</para><para>It is used with the output magnitude raster to describe the flow vector.</para>
+						</pythonReference><dialogReference><para>The  output flow direction raster.</para><para>Each cell value represents the direction of the seepage velocity vector (average linear velocity) at the center of the cell, calculated as the average value of the seepage velocity through the four faces of the cell.</para><para>It is used with the output magnitude raster to describe the flow vector.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The differences between Darcy Flow and Darcy Velocity are:</para><bulletList>
+					<bullet_item>Darcy Flow produces an output volume raster; Darcy Velocity does not.</bullet_item>
+					<bullet_item>Darcy Velocity outputs only direction and magnitude rasters as required output; Darcy Flow optionally produces these outputs.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>All input rasters must have the same extent and cell size.</para>
+			</bullet_item><bullet_item>
+				<para>All input rasters must be floating point.</para>
+			</bullet_item><bullet_item>
+				<para>The direction of the velocity vector is recorded in compass coordinates (degrees clockwise from north), the magnitude in units of length over time.</para>
+			</bullet_item><bullet_item>
+				<para>No particular system of units is specified by this tool. Data should be consistent, using the same unit for time (seconds, days, years) and length (feet, meters) for all data.</para>
+			</bullet_item><bullet_item>
+				<para>The head elevation raster can come from a variety of sources. It can be interpolated from observation well data by using one of the surface interpolation tools, such as Kriging or Spline. The head values can also be obtained from the results of a separate modeling program.</para><para>However the head elevation raster is obtained, the head must be consistent with the transmissivity raster; that is, the head must reflect the flow through the transmissivity field. It is not sufficient to use values obtained by measurement and testing in the field—the rasterized values must be analyzed for consistency with the aid of a proper porous medium flow program. Consistency implies that the heads would actually be produced by the modeled transmissivity field. Since the true and modeled transmissivity fields often differ in practice, the true and modeled head fields differ, as well. Check the heads for consistency by examining the residual raster produced by Darcy Flow. The residual will reflect the consistency of the dataset. Any analysis using Darcy Velocity on inconsistent datasets will produce meaningless results.</para>
+			</bullet_item><bullet_item>
+				<para>The effective porosity field, a physical property of the aquifer, is generally estimated from geological data. It is defined as the volume of void space that contributes to fluid flow divided by the entire volume. Porosity is expressed as a number between 0 and 1, with typical values around 0.35, and is dimensionless. A value of effective porosity of 0.35 means that 35 percent of the volume of the porous medium contributes to fluid flow. The remaining 65 percent, consisting of solid matrix and unconnected pores, does not contribute to fluid flow.</para>
+			</bullet_item><bullet_item>
+				<para>The saturated thickness, measured in units of length, is interpreted from geological information. For a confined aquifer, this measure is the thickness of the formation between the upper and lower confining layers. For an unconfined aquifer, the saturated thickness is the distance between the water table and the lower confining layer.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DarcyVelocity example 1 (Python window)</title>
+					<para>Calculates the groundwater seepage velocity (direction and magnitude) for steady flow in an aquifer.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outDarcyVelocity = DarcyVelocity("gwhead", "gwporo", "gwthick", "gwtrans", 
+                            "C:/sapyexamples/output/outdarcymag")
+outDarcyVelocity.save("c:/sapyexamples/output/outdarcyvel")
+                    </code></scriptExample><scriptExample><title>DarcyVelocity example 2 (stand-alone script)</title>
+					<para>Calculates the groundwater seepage velocity (direction and magnitude) for steady flow in an aquifer.</para>
+				<code xml:space="preserve"># Name: DarcyVelocity_Ex_02.py
+# Description: Calculates the groundwater seepage velocity 
+#              vector (direction and magnitude) for steady 
+#              flow in an aquifer.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inHeadRaster = "gwhead"
+inPorosityRaster = "gwporo"
+inThicknessRaster = "gwthick"
+inTransmissivityRaster = "gwtrans"
+outMagnitudeRaster = "C:/sapyexamples/output/outdarcymag"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute DarcyVelocity
+outDarcyVelocity = DarcyVelocity(inHeadRaster, inPorosityRaster, inThicknessRaster,
+                            inTransmissivityRaster, outMagnitudeRaster)
+
+# Save the output 
+outDarcyVelocity.save("C:/sapyexamples/output/outdarcyvel")
+                    </code></scriptExample></scriptExamples></tool></metadata>

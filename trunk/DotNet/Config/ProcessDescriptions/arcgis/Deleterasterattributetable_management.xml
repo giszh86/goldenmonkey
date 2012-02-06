@@ -1,0 +1,33 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Delete Raster Attribute Table (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Removes the raster attribute table associated with a raster dataset. Since raster attribute tables can only be built on single-band raster datasets, this tool is only valid for raster datasets with a single band.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Clear</keyword><keyword>Properties</keyword><keyword>Remove</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DeleteRasterAttributeTable" displayname="Delete Raster Attribute Table (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Removes the raster attribute table associated with a raster dataset. Since raster attribute tables can only be built on single-band raster datasets, this tool is only valid for raster datasets with a single band.</para>
+		</summary><alink_name>DeleteRasterAttributeTable_management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster Dataset" datatype="Raster layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The raster dataset containing the raster attribute table to be removed. The raster dataset must be a single-band raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The raster dataset containing the raster attribute table to be removed. The raster dataset must be a single-band raster dataset.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input raster dataset can only have a single band.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DeleteRasterAttributeTable Example (Python Window)</title>
+					<para>This is a Python sample for the DeleteRasterAttributeTable tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.DeleteRasterAttributeTable_management("c:/data/delrat.tif")
+                    </code></scriptExample><scriptExample><title>DeleteRasterAttributeTable Example 2 (Stand-alone script)</title>
+					<para>This is a Python script sample for the DeleteRasterAttributeTable tool.</para>
+				<code xml:space="preserve">##====================================
+##Delete Raster Attribute Table
+##Usage: DeleteRasterAttributeTable_management in_raster
+    
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:/Workspace"
+    
+    ##Delete the attribute table of single band image if exist
+    arcpy.DeleteRasterAttributeTable_management("image.tif")
+
+except:
+    print "Delete Raster Attribute Table example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

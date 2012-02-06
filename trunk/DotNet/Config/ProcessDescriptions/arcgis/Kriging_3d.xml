@@ -1,0 +1,128 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Kriging (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Interpolates a raster surface from points using kriging.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Estimate</keyword><keyword>Interpolate</keyword><keyword>Interpolation</keyword><keyword>Interpolator</keyword><keyword>Lag</keyword><keyword>Nugget</keyword><keyword>Predict</keyword><keyword>Range</keyword><keyword>Raster</keyword><keyword>Semivariogram</keyword><keyword>Sill</keyword><keyword>Surface</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Kriging" displayname="Kriging (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Interpolates a raster surface from points using kriging.</para>
+			
+		</summary><alink_name>Kriging_3d</alink_name><parameters><param sync="true" name="in_point_features" displayname="Input point features" datatype="Feature Layer" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para>The input point features containing the z-values to be interpolated into a surface raster.</para></pythonReference><dialogReference>
+						<para>The input point features containing the z-values to be interpolated into a surface raster.</para></dialogReference></param><param sync="true" name="z_field" displayname="Z value field" datatype="Field" direction="Input" expression="z_field" type="Required"><pythonReference>
+						<para>The field that holds a height or magnitude value for each point.</para><para>This can be a numeric field or the Shape field if the input point features contain z-values.</para>
+					</pythonReference><dialogReference>
+						<para>The field that holds a height or magnitude value for each point.</para><para>This can be a numeric field or the Shape field if the input point features contain z-values.</para>
+					</dialogReference></param><param sync="true" name="out_surface_raster" displayname="Output surface raster" datatype="Raster Dataset" direction="Output" expression="out_surface_raster" type="Required"><pythonReference>
+						<para>The output interpolated surface raster.</para></pythonReference><dialogReference>
+						<para>The output interpolated surface raster.</para></dialogReference></param><param sync="true" name="semiVariogram_props" displayname="Semivariogram properties" datatype="KrigingModel" direction="Input" expression="kriging_model" type="Required"><pythonReference>
+						<para>The Semivariogram model to be used.</para><para>There are two models for kriging, Ordinary and Universal. The Ordinary model  has five types of semivariograms available. The Universal model has two types of semivariograms available.  Each semivariogram has several optional parameters that can also be set.</para><bulletList><bullet_item>Ordinary model semivariograms:<bulletList>
+									<bullet_item>Spherical—Spherical semivariogram model. This is the default.</bullet_item>
+									<bullet_item>Circular—Circular semivariogram model.</bullet_item>
+									<bullet_item>Exponential—Exponential semivariogram model.</bullet_item>
+									<bullet_item>Gaussian—Gaussian (or normal distribution) semivariogram model.</bullet_item>
+									<bullet_item>Linear—Linear semivariogram model with a sill.</bullet_item>
+								</bulletList></bullet_item><bullet_item>Universal model semivariograms:<bulletList>
+									<bullet_item>LinearDrift—Universal Kriging with linear drift.</bullet_item>
+									<bullet_item>QuadraticDrift—Universal Kriging with quadratic drift.</bullet_item>
+								</bulletList></bullet_item></bulletList>
+						<bulletList><bullet_item>After the semivariogram model is defined, the remaining parameters are common between Ordinary and Universal kriging.  These are: <bulletList><bullet_item>Lag size—The default is the output raster cell size.</bullet_item><bullet_item>MajorRange—Represents a distance beyond which there is little or no correlation.</bullet_item><bullet_item>PartialSill—The difference between the nugget and the sill.</bullet_item><bullet_item>Nugget—Represents the error and variation at spatial scales too fine to detect. The nugget effect is seen as a discontinuity at the origin.</bullet_item></bulletList></bullet_item></bulletList><para>The form of the semivariogram is a text string: </para>"{semivariogramType},{lagSize},{majorRange},{partialSill},{nugget}"<para>For example: </para>"Circular, 2000, 2.6, 542"</pythonReference><dialogReference>
+						<para>The Semivariogram model to be used. There are two methods for kriging, Ordinary and Universal.</para>
+						<para>Ordinary kriging can use the following semivariogram models:</para>
+						<bulletList><bullet_item>Spherical— Spherical semivariogram model. This is the default.</bullet_item><bullet_item>Circular— Circular semivariogram model.</bullet_item><bullet_item>Exponential— Exponential semivariogram model.</bullet_item><bullet_item>Gaussian— Gaussian or normal distribution semivariogram model.</bullet_item><bullet_item>Linear— Linear semivariogram model with a sill.</bullet_item></bulletList>
+						<para>Universal kriging can use the following semivariogram models:</para>
+						<bulletList><bullet_item>Linear with Linear drift— Universal Kriging with linear drift.</bullet_item><bullet_item>Linear with Quadratic drift— Universal Kriging with quadratic drift.</bullet_item></bulletList>
+						<para>There are options available via the Advanced Parameters dialog box.  These parameters are:</para><bulletList><bullet_item>Lag size—  The default is the output raster cell size.</bullet_item><bullet_item>Major range—  Represents a distance beyond which there is little or no correlation.</bullet_item><bullet_item>Partial sill—  The difference between the nugget and the sill.</bullet_item><bullet_item>Nugget—Represents the error and variation at spatial scales too fine to detect. The nugget effect is seen as a discontinuity at the origin.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size at which the output raster will be created.</para><para>This will be the value in the environment if it is explicitly set;  otherwise, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size at which the output raster will be created.</para><para>This will be the value in the environment if it is explicitly set;  otherwise, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="search_radius" displayname="Search radius" datatype="Radius" direction="Input" expression="search_radius" type="Optional"><pythonReference><para>Defines which of the input points will be used to interpolate the value for each cell in the output raster.</para>
+						<para>There are two ways to specify the specify the searching neighborhood: Variable and Fixed.</para><para>Variable uses a variable search radius in order to find a specified number of input sample points for the interpolation. Fixed  uses a specified fixed distance within which all input points will be used. Variable is the default.</para><para>The syntax for these parameters are:</para>
+						<bulletList><bullet_item>Variable, number_of_points, maximum_distance, where:<bulletList><bullet_item>number_of_points—An integer value specifying the number of nearest input sample points to be used to perform interpolation. The default is 12 points.</bullet_item><bullet_item>maximum_distance—Specifies the distance, in map units, by which to limit the search for the nearest input sample points. The default value is the length of the extent's diagonal.</bullet_item></bulletList></bullet_item></bulletList><bulletList>
+							<bullet_item>
+								Fixed, distance, minimum_number_of_points, where:<bulletList><bullet_item>distance—Specifies the distance as a radius within which input sample points will be used to perform the interpolation. The value of the radius is expressed in map units. The default radius is five times the cell size of the output raster.</bullet_item><bullet_item>minimum_number_of_points—An integer defining the minimum number of points to be used for interpolation. The default value is 0.</bullet_item></bulletList>
+							</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>Defines which of the input points will be used to interpolate the value for each cell in the output raster.</para>
+						<para>There are two options: Variable and Fixed. Variable is the default.</para><bulletList>
+							<bullet_item>
+								Variable<para>Uses a variable search radius in order to find a specified number of input sample points for the interpolation.</para>
+								<bulletList>
+									<bullet_item>Number of points—An integer value specifying the number of nearest input sample points to be used to perform interpolation. The default is 12 points.</bullet_item>
+									<bullet_item>Maximum distance—Specifies the distance, in map units, by which to limit the search for the nearest input sample points. The default value is the length of the extent's diagonal.</bullet_item>
+								</bulletList>
+							</bullet_item>
+						</bulletList>
+						<bulletList>
+							<bullet_item>
+								Fixed<para>Uses a specified fixed distance within which all input points will be used for the interpolation.</para>
+								<bulletList>
+									<bullet_item>Distance—Specifies the distance as a radius within which input sample points will be used to perform the interpolation. <para>The value of the radius is expressed in map units. The default radius is five times the cell size of the output raster.</para></bullet_item>
+									<bullet_item>Minimum number of points—An integer defining the minimum number of points to be used for interpolation. The default value is 0.</bullet_item>
+								</bulletList>
+							</bullet_item>
+						</bulletList></dialogReference></param><param sync="true" name="out_variance_prediction_raster" displayname="Output variance of prediction raster" datatype="Raster Dataset" direction="Input" expression="out_variance_prediction_raster" type="Optional"><pythonReference>
+						<para>Optional output raster where each cell contains the predicted semi-variance values for that location.</para>
+					</pythonReference><dialogReference>
+						<para>Optional output raster where each cell contains the predicted semi-variance values for that location.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Mask" label="Mask"></environment></environments><usage><bullet_item>
+				<para>Kriging is a processor-intensive process. The speed of execution is dependent on the number of points in the input dataset and the size of the search window.</para>
+			</bullet_item><bullet_item>
+				<para>Low values within the optional output variance of prediction raster indicate a high degree of confidence in the predicted value. High values may indicate a need for more data points.</para>
+			</bullet_item><bullet_item>
+				<para>The Universal kriging types assume that there is a structural component present and that the local trend varies from one location to another.</para>
+			</bullet_item><bullet_item>
+				<para>The Advanced Parameters allow control of the semivariogram used for kriging. A default value for Lag size is initially set to the default output cell size. For Major range, Partial sill, and Nugget, a default value will be calculated internally if nothing is specified.</para>
+			</bullet_item><bullet_item>
+				<para>The optional output variance of prediction raster contains the kriging variance at each output raster cell. Assuming the kriging errors are normally distributed, there is a 95.5 percent probability that the actual z-value at the cell is the predicted raster value, plus or minus two times the square root of the value in the prediction raster.</para>
+			</bullet_item><bullet_item>
+				<para>Some input datasets may have several points with the same x,y coordinates. If the values of the points at the common location are the same, they are considered duplicates and have no affect on the output. If the values are different, they are considered 'coincident' points.</para><para>The various interpolation tools may handle this data condition differently. For example, in some cases the first coincident point encountered is used for the calculation; in other cases the last point encountered is used.  This may cause some locations in the output raster to have different values than what you might expect. The solution is to prepare your data by removing these coincident points. The  tool in the Spatial Statistics toolbox is useful for identifying any coincident points in your data.</para></bullet_item></usage><scriptExamples><scriptExample><title>Kriging example 1 (Python window)</title>
+					
+					<para>This example inputs a point shapefile and interpolates the output surface as a GRID raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.Kriging_3d("ca_ozone_pts.shp", "OZONE", "c:/output/krigout",
+                 "Spherical", 2000, "Variable 12")
+                    </code></scriptExample><scriptExample><title>Kriging example 2 (stand-alone script)</title>
+					
+					<para>This example inputs a point shapefile and interpolates the output surface as a GRID raster.</para>
+				<code xml:space="preserve"># Name: Kriging_3d_Ex_02.py
+# Description: Interpolates a surface from points using kriging.
+# Requirements: 3D Analyst Extension
+# Author: ESRI
+# Import system modules
+
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inFeatures = "ca_ozone_pts.shp"
+field = "OZONE"
+outRaster = "C:/output/krigoutput02"
+cellSize = 2000
+outVarRaster = "C:/output/outvariance"
+kModel = "CIRCULAR"
+kRadius = 20000
+
+# Check out the ArcGIS 3D Analyst extension license
+arcpy.CheckOutExtension("3D")
+
+# Execute Kriging
+arcpy.Kriging_3d(inFeatures, field, outRaster, kModel, 
+                 cellSize, kRadius, outVarRaster)
+                    </code></scriptExample></scriptExamples></tool></metadata>

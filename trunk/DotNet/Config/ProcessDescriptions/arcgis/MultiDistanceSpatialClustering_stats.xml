@@ -1,0 +1,159 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Multi-Distance Spatial Cluster Analysis (Ripley's K Function) (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Determines whether features, or the values associated with features, exhibit statistically significant clustering or dispersion over a range of distances.  </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Boundary Correction</keyword><keyword>Cluster</keyword><keyword>Disperse</keyword><keyword>Distribution</keyword><keyword>Geographic</keyword><keyword>Global</keyword><keyword>Multiple Scale</keyword><keyword>Point Pattern Analysis</keyword><keyword>Random</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MultiDistanceSpatialClustering" displayname="Multi-Distance Spatial Cluster Analysis (Ripley's K Function) (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Determines whether features, or the values associated with features, exhibit statistically significant clustering or dispersion over a range of distances.  </para>
+			
+		</summary><alink_name>MultiDistanceSpatialClustering_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/MultiDistanceSpatialClustering_stats_v.png" alt="K Function Graphic" /><toolIllust type="illustration" src="MultiDistanceSpatialClustering_stats_h.png" alt="K Function Graphic" /><parameters><param sync="true" name="Input_Feature_Class" displayname="Input Feature Class" datatype="Feature Class" direction="Input" expression="Input_Feature_Class" type="Required"><pythonReference>
+						<para>The feature class upon which the analysis will be performed.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class upon which the analysis will be performed.</para>
+					</dialogReference></param><param sync="true" name="Output_Table" displayname="Output Table" datatype="Table" direction="Output" expression="Output_Table" type="Required"><pythonReference>
+						<para>The table to which the results of the analysis will be written.</para>
+					</pythonReference><dialogReference>
+						<para>The table to which the results of the analysis will be written.</para>
+					</dialogReference></param><param sync="true" name="Number_of_Distance_Bands" displayname="Number of Distance Bands" datatype="Long" direction="Input" expression="Number_of_Distance_Bands" type="Required"><pythonReference>
+						<para>The number of times to increment the neighborhood size and analyze the dataset for clustering. The starting point and size of the increment are specified in the Beginning Distance and Distance Increment parameters, respectively.</para>
+					</pythonReference><dialogReference>
+						<para>The number of times to increment the neighborhood size and analyze the dataset for clustering. The starting point and size of the increment are specified in the Beginning Distance and Distance Increment parameters, respectively.</para>
+					</dialogReference></param><param sync="true" name="Compute_Confidence_Envelope" displayname="Compute Confidence Envelope" datatype="String" direction="Input" expression="Compute_Confidence_Envelope" type="Optional"><pythonReference>
+						<para>The confidence envelope is calculated by randomly placing feature points (or feature values) in the study area. The number of points/values randomly placed is equal to the number of points in the feature class. Each set of random placements is called a "permutation" and the confidence envelope is created from these permutations. This parameter allows you to select how many permutations you want to use to create the confidence envelope.</para>
+						<bulletList><bullet_item>0_PERMUTATIONS_-_NO_CONFIDENCE_ENVELOPE—Confidence envelopes are not created. </bullet_item><bullet_item>9_PERMUTATIONS—Nine sets of points/values are randomly placed. </bullet_item><bullet_item>99_PERMUTATIONS—99 sets of points/values are randomly placed. </bullet_item><bullet_item>999_PERMUTATIONS—999 sets of points/values are randomly placed. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The confidence envelope is calculated by randomly placing feature points (or feature values) in the study area. The number of points/values randomly placed is equal to the number of points in the feature class. Each set of random placements is called a "permutation" and the confidence envelope is created from these permutations. This parameter allows you to select how many permutations you want to use to create the confidence envelope.</para>
+						<bulletList><bullet_item>0_PERMUTATIONS_-_NO_CONFIDENCE_ENVELOPE—Confidence envelopes are not created. </bullet_item><bullet_item>9_PERMUTATIONS—Nine sets of points/values are randomly placed. </bullet_item><bullet_item>99_PERMUTATIONS—99 sets of points/values are randomly placed. </bullet_item><bullet_item>999_PERMUTATIONS—999 sets of points/values are randomly placed. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Generate_Report" displayname="Generate_Report" datatype="Boolean" direction="Input" expression="Generate_Report" type="Required"><pythonReference>
+						<bulletList><bullet_item>NO_REPORT—No graphical summary will be created (default).</bullet_item><bullet_item>GENERATE_REPORT—A graphical summary will be created as a graph layer.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether the tool will create a graph layer summarizing results.</para>
+						<bulletList>
+							<bullet_item>Checked—A graphical summary will be created as an HTML file. </bullet_item>
+							<bullet_item>Unchecked—No graphial summary will be created.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="Weight_Field" displayname="Weight Field" datatype="Field" direction="Input" expression="Weight_Field" type="Optional"><pythonReference>
+						<para>A numeric field with weights representing the number of features/events at each location.</para>
+					</pythonReference><dialogReference>
+						<para>A numeric field with weights representing the number of features/events at each location.</para>
+					</dialogReference></param><param sync="true" name="Beginning_Distance" displayname="Beginning Distance" datatype="Double" direction="Input" expression="Beginning_Distance" type="Optional"><pythonReference>
+						<para>The distance at which to start the cluster analysis and the distance from which to increment. The value entered for this parameter should be in the units of the Output Coordinate System.</para>
+					</pythonReference><dialogReference>
+						<para>The distance at which to start the cluster analysis and the distance from which to increment. The value entered for this parameter should be in the units of the Output Coordinate System.</para>
+					</dialogReference></param><param sync="true" name="Distance_Increment" displayname="Distance Increment" datatype="Long" direction="Input" expression="Distance_Increment" type="Optional"><pythonReference>
+						<para>The distance to increment during each iteration. The distance used in the analysis starts at the Beginning Distance and increments by the amount specified in the Distance Increment. The value entered for this parameter should be in the units of the Output Coordinate System.</para>
+					</pythonReference><dialogReference>
+						<para>The distance to increment during each iteration. The distance used in the analysis starts at the Beginning Distance and increments by the amount specified in the Distance Increment. The value entered for this parameter should be in the units of the Output Coordinate System.</para>
+					</dialogReference></param><param sync="true" name="Boundary_Correction_Method" displayname="Boundary Correction Method" datatype="String" direction="Input" expression="Boundary_Correction_Method" type="Optional"><pythonReference>
+						<para>Method to use to correct for underestimates in the number of neighbors for features near the edges of the study area.</para>
+						<bulletList><bullet_item>NONE—No edge correction is applied. However, if the input feature class already has points that fall outside the study area boundaries, these will be used in neighborhood counts for features near boundaries. </bullet_item><bullet_item>SIMULATE_OUTER_BOUNDARY_VALUES—This method simulates points outside the study area so that the number of neighbors near edges is not underestimated. The simulated points are the "mirrors" of points near edges within the study area boundary. </bullet_item><bullet_item>REDUCE_ANALYSIS_AREA—This method shrinks the study area such that some points are found outside of the study area boundary. Points found outside the study area are used to calculate neighbor counts but are not used in the cluster analysis itself. </bullet_item><bullet_item>RIPLEY'S_EDGE_CORRECTION_FORMULA—For all the points (j) in the neighborhood of point i, this method checks to see if the edge of the study area is closer to i, or if j is closer to i. If j is closer, extra weight is given to the point j. This edge correction method is only appropriate for square or rectangular shaped study areas. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Method to use to correct for underestimates in the number of neighbors for features near the edges of the study area.</para>
+						<bulletList><bullet_item>NONE—No edge correction is applied. However, if the input feature class already has points that fall outside the study area boundaries, these will be used in neighborhood counts for features near boundaries. </bullet_item><bullet_item>SIMULATE_OUTER_BOUNDARY_VALUES—This method simulates points outside the study area so that the number of neighbors near edges is not underestimated. The simulated points are the "mirrors" of points near edges within the study area boundary. </bullet_item><bullet_item>REDUCE_ANALYSIS_AREA—This method shrinks the study area such that some points are found outside of the study area boundary. Points found outside the study area are used to calculate neighbor counts but are not used in the cluster analysis itself. </bullet_item><bullet_item>RIPLEY'S_EDGE_CORRECTION_FORMULA—For all the points (j) in the neighborhood of point i, this method checks to see if the edge of the study area is closer to i, or if j is closer to i. If j is closer, extra weight is given to the point j. This edge correction method is only appropriate for square or rectangular shaped study areas. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Study_Area_Method" displayname="Study Area Method" datatype="String" direction="Input" expression="Study_Area_Method" type="Optional"><pythonReference>
+						<para>Specifies the region to use for the study area. The K Function is sensitive to changes in study area size so careful selection of this value is important.</para>
+						<bulletList><bullet_item>MINIMUM_ENCLOSING_RECTANGLE—Indicates that the smallest possible rectangle enclosing all of the points will be used. </bullet_item><bullet_item>USER_PROVIDED_STUDY_AREA_FEATURE_CLASS—Indicates that a feature class defining the study area will be provided in the Study Area Feature Class parameter.   Requires an ArcInfo license.  </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the region to use for the study area. The K Function is sensitive to changes in study area size so careful selection of this value is important.</para>
+						<bulletList><bullet_item>MINIMUM_ENCLOSING_RECTANGLE—Indicates that the smallest possible rectangle enclosing all of the points will be used. </bullet_item><bullet_item>USER_PROVIDED_STUDY_AREA_FEATURE_CLASS—Indicates that a feature class defining the study area will be provided in the Study Area Feature Class parameter.   Requires an ArcInfo license.  </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="Study_Area_Feature_Class" displayname="Study Area Feature Class" datatype="Feature Class" direction="Input" expression="Study_Area_Feature_Class" type="Optional"><pythonReference>
+						<para>Feature class that delineates the area over which the input feature class should be analyzed. Only to be specified if User-provided Study Area Feature Class is selected for the Study Area Method parameter.</para>
+					</pythonReference><dialogReference>
+						<para>Feature class that delineates the area over which the input feature class should be analyzed. Only to be specified if User-provided Study Area Feature Class is selected for the Study Area Method parameter.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_coordinate_system" label="Output coordinate system">Feature geometry is projected to the Output Coordinate System prior to analysis, so values entered for the Beginning Distance and Distance Increment parameters should match those specified in the Output Coordinate System. All mathematical computations are based on the Output Coordinate System spatial reference.</environment><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Random_number_generator" label="Random number generator"></environment></environments><usage><bullet_item>
+				<para>Tool output is a table with fields: <bold>ExpectedK</bold> and <bold>ObservedK</bold> containing the expected and observed K values, respectively. A field named <bold>DiffK</bold> contains the Observed K values minus the Expected K values. If a confidence interval option is specified, two additional fields named <bold>LwConfEnv</bold> and <bold>HiConfEnv</bold> will be included in the Output Table as well.  These fields contain confidence interval information for each iteration of the tool, as specified by the Number of Distance Bands parameter. The K function will optionally create a graph layer summarizing results.  </para>
+			</bullet_item><bullet_item>
+				<para>When the observed K value is larger than the expected K value for a particular distance, the distribution is more clustered than a random distribution at that distance (scale of analysis). When the observed K value is smaller than the expected K value, the distribution is more dispersed than a random distribution at that distance. When the observed K value is larger than the HiConfEnv value, spatial clustering for that distance is statistically significant. When the observed K value is smaller than the LwConfEnv value, spatial dispersion for that distance is statistically significant.  Additional information about interpretation is found in .</para>
+			</bullet_item><bullet_item><para>Enable  the Display Results Graphically parameter to create a line graph summarizing tool results.  The expected results will be represented by a blue line while the observed results will be a red line. Deviation of the observed line above the expected line indicates that the dataset is exhibiting clustering at that distance. Deviation of the observed line below the expected line indicates that the dataset is exhibiting dispersion at that distance.  The line graph is created as a graph layer; graph layers are temporary and will be deleted when you close ArcMap.  If you right-click the graph layer and select Save,  the graph can be written to a Graph File.  If you save your map document after saving your graph, a link to the graph file will be saved with your .mxd.  For more information about graph files, see .</para></bullet_item><bullet_item>
+				<para>For line and polygon features, feature centroids are used in distance computations. For multipoints, polylines, or polygons with multiple parts, the centroid is computed using the weighted mean center of all feature parts. The weighting for point features is 1, for line features is length, and for polygon features is area.</para>
+			</bullet_item><bullet_item>
+				<para>The Weight Field is most appropriately used when it represents the number of incidents or counts.</para>
+			</bullet_item><bullet_item>
+				<para>When no Weight Field is specified, the largest <bold>DiffK</bold> value tells you the distance where spatial processes promoting clustering are most pronounced, and may be an appropriate distance to use for the Fixed Distance conceptualization of spatial relationships when running the  or  tools.</para>
+			</bullet_item><bullet_item>
+				<para>When no Weight Field is specified, the <bold>confidence envelope</bold> is constructed by distributing points randomly in the study area and calculating k for that distribution. Each random distribution of the points is called a "permutation". If 99 permutations is selected, for example, the tool will randomly distribute the set of points 99 times for each iteration. After distributing the points 99 times the tool selects, for each distance, the k value that deviated above and below the Expected k value by the greatest amount; these values become the confidence interval.</para>
+			</bullet_item><bullet_item>
+				<para>When a Weight Field is specified, only the weight values are randomly redistributed to compute confidence envelopes; the point locations remain fixed. In essence, when a Weight Field is specified, locations remain fixed and the tool evaluates the clustering of feature values in space. On the other hand, when no Weight Field is specified the tool analyzes clustering/dispersion of feature locations.</para>
+			</bullet_item><bullet_item><para>Because the <bold>confidence envelope</bold> is constructed from random permutations, the values defining the confidence envelope will change from one run to the next, even when parameters are identical.   If you set a seed value, however, for the  geoprocessing environment, repeat analyses will produce consistent results.</para></bullet_item><bullet_item>
+				<para>The number of permutations selected for the Compute Confidence Envelope parameter may be loosely translated to confidence levels: 9 for 90%, 99 for 99%, and 999 for 99.9%.</para>
+			</bullet_item><bullet_item>
+				<para>When no study area is specified, the tool uses a minimum enclosing rectangle as the study area polygon. Unlike the extent, a minimum enclosing rectangle will not necessarily align with the x- and y-axes.</para>
+			</bullet_item><bullet_item>
+				<para>The k-function statistic is very sensitive to the size of the study area. Identical arrangments of points can exhibit clustering or dispersion depending on the size of the study area enclosing them. Therefore, it is imperative that the study area boundaries are carefully considered. The picture below is a classic example of how identical feature distributions can be dispersed or clustered depending on the study area specified.</para>
+				<para>
+					
+						
+						
+					
+				</para>
+			</bullet_item><bullet_item>
+				<para>A study area feature class is required if USER_PROVIDED_STUDY_AREA_FEATURE_CLASS is chosen for the Study Area Method parameter.  This option is only available with an ArcInfo license.</para>
+			</bullet_item><bullet_item>
+				<para>If a Study Area Feature Class is specified, it should have exactly one single part feature (the study area polygon).</para>
+			</bullet_item><bullet_item>
+				<para>If no Beginning Distance or Distance Increment is specified, then default values are calculated for you based on the extent of the Input Feature Class.</para>
+			</bullet_item><bullet_item>
+				<para>The K function has an undercount bias for features located near the study area boundary. The Boundary Correction Method parameter provides methods for addressing this bias: <bulletList>
+						<bullet_item>NONE<para>No specific boundary correction is applied. However, points in the Input Feature Class that fall outside the user-specified study area are used in neighbor counts. This method is appropriate if you've collected data from a very large study area but only need to analyze smaller areas well within the boundaries of data collection.</para></bullet_item>
+						<bullet_item>SIMULATE_OUTER_BOUNDARY_VALUES<para>This method creates points outside the study area boundary that mirror those found inside the boundary in order to correct for underestimates near the edges. Points that are within a distance equal to the maximum distance band of an edge of the study area are mirrored. The mirrored points are used so that edge points will have more accurate neighbor estimates. The diagram below illustrates what points will be used in the calculation and which will be used only for edge correction.</para>
+								
+								
+							</bullet_item>
+						<bullet_item>REDUCE_ANALYSIS_AREA<para>This edge correction technique shrinks the size of the analysis area by a distance equal to the largest distance band to be used in the analysis. After shrinking the study area, points found outside of the new study area will be considered only when neighbor counts are being assessed for points still inside the study area. They will not be used in any other way during the k-function calculation. The diagram below illustrates which points will be used in the calculation and which will be used only for edge correction.</para>
+								
+								
+							</bullet_item>
+						<bullet_item>RIPLEY'S_EDGE_CORRECTION_FORMULA<para>This method checks each point's distance from the edge of the study area and its distance to each of its neighbors. All neighbors that are further away from the point in question than the edge of the study area are given extra weighting. This edge correction method is only appropriate for square or rectangular shaped study areas, or when you select MINIMUM_ENCLOSING_RECTANGLE for the Study Area Method parameter. </para></bullet_item>
+					</bulletList></para>
+			</bullet_item><bullet_item>
+				<para>Mathematically, the Multi-Distance Spatial Cluster Analysis tool uses a common transformation of Ripley's k-function where the expected result with a random set of points is equal to the input distance. The transformation L(d) is shown below.</para>
+				
+					
+					
+				
+				<para>where A is area, N is the number of points, d is the distance and k(i, j) is the weight, which (if there is no edge correction) is 1 when the distance between i and j is less than or equal to d and 0 when the distance between i and j is greater than d. When edge correction is applied, the weight of k(i,j) is modified slightly.</para>
+			</bullet_item><bullet_item>
+				<para>Map layers can be used to define the Input Feature Class. When using a layer with a selection, only the selected features are included in the analysis.</para>
+			</bullet_item><bullet_item>
+				
+					<para>When using shapefiles, keep in mind that they cannot store null values. Tools or other procedures that create shapefiles from non-shapefile inputs may store or interpret null values as zero. This can lead to unexpected results.  See also .</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>Multi-DistanceSpatialClusterAnalysis Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Multi-DistanceSpatialClusterAnalysis tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = r"C:\data"
+arcpy.MultiDistanceSpatialClustering_stats("911Calls.shp","kFunResult.dbf", 11,"0_PERMUTATIONS_-_NO_CONFIDENCE_ENVELOPE","NO_REPORT", "#", 1000, 200,"REDUCE_ANALYSIS_AREA","MINIMUM_ENCLOSING_RECTANGLE", "#")
+                    </code></scriptExample><scriptExample><title>Multi-DistanceSpatialClusterAnalysis Example (stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the Multi-DistanceSpatialClusterAnalysis tool.</para>
+				<code xml:space="preserve"># Use Ripley's K-Function to analyze the spatial distribution of 911
+# calls in Portland Oregon 
+
+# Import system modules
+import arcpy
+
+# Set the geoprocessor object property to overwrite existing outputs
+arcpy.gp.overwriteOutput = True
+
+# Local variables...
+workspace = r"C:\Data"
+
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.env.workspace = workspace
+
+    # Set Distance Band Parameters: Analyze clustering of 911 calls from
+    # 1000 to 3000 feet by 200 foot increments
+    numDistances = 11
+    startDistance = 1000.0
+    increment = 200.0
+
+    # Process: Run K-Function...
+    kFun = arcpy.MultiDistanceSpatialClustering_stats("911Calls.shp",
+                        "kFunResult.dbf", numDistances,
+                        "0_PERMUTATIONS_-_NO_CONFIDENCE_ENVELOPE", 
+                        "NO_REPORT", "#", startDistance, increment,
+                        "REDUCE_ANALYSIS_AREA",
+                        "MINIMUM_ENCLOSING_RECTANGLE", "#")
+
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,111 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Point Statistics (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates a statistic on the points in a neighborhood around each output cell.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Annulus</keyword><keyword>Circle</keyword><keyword>Neighborhood</keyword><keyword>Neighborhood</keyword><keyword>Rectangle</keyword><keyword>Wedge</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PointStatistics" displayname="Point Statistics (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates a statistic on the points in a neighborhood around each output cell.</para>
+			
+		</summary><alink_name>PointStatistics_sa</alink_name><parameters><param sync="true" name="in_point_features" displayname="Input point features" datatype="Feature Layer" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para>The input point features for which to calculate the statistics in a neighborhood around each output cell.</para>
+						<para>The input can be either a point or multipoint feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The input point features for which to calculate the statistics in a neighborhood around each output cell.</para>
+						<para>The input can be either a point or multipoint feature class.</para>
+					</dialogReference></param><param sync="true" name="field" displayname="Field" datatype="Field" direction="Input" expression="field" type="Required"><pythonReference>
+						<para>Field can be any numeric field of the input point features.</para>
+						<para>It can be the Shape field if the input features contains z.</para>
+					</pythonReference><dialogReference>
+						<para>Field can be any numeric field of the input point features.</para>
+						<para>It can be the Shape field if the input features contains z.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>Cell size for output raster dataset.</para>
+						<para>This is the value in the environment if specifically set. If not set in the environment, it is the shorter of the width or height of the extent of the input feature  dataset, in the output spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>Cell size for output raster dataset.</para>
+						<para>This is the value in the environment if specifically set. If not set in the environment, it is the shorter of the width or height of the extent of the input feature  dataset, in the output spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="neighborhood" displayname="Neighborhood" datatype="Neighborhood" direction="Input" expression="neighborhood" type="Optional"><pythonReference>
+						<para>The Neighborhood class dictates the shape of the area around each input point used to calculate the statistic.</para>
+						<para>The different types of neighborhood available are: NbrAnnulus, NbrCircle, NbrRectangle, and  NbrWedge.</para><para>The following are the forms of the neighborhoods:</para>
+						<bulletList>
+							<bullet_item>NbrAnnulus({innerRadius}, {outerRadius}, {CELL | MAP})</bullet_item>
+							<bullet_item>NbrCircle({radius}, {CELL | MAP}</bullet_item>
+							<bullet_item>
+								NbrRectangle({width}, {height}, {CELL | MAP})</bullet_item>
+							<bullet_item>NbrWedge({radius}, {start_angle}, {end_angle}, {CELL | MAP})</bullet_item>
+						</bulletList>
+						<para>The {CELL | MAP} parameter defines the distance units as either being  Cell units or Map units.</para>
+						<para>The default neighborhood is a square NbrRectangle with a width and height of 3 cells.</para>
+					</pythonReference><dialogReference>
+						<para>Dictates the shape of the area around each input point location used to calculate the statistic.</para><para>The parameters and descriptions for each of the neighborhood types follow.</para>
+						<bulletList><bullet_item>Annulus Inner radius Outer radius Units<para>A torus (donut-shaped) neighborhood defined by an inner radius and an outer radius. The default annulus is an inner radius of one cell and an outer radius of three cells.</para></bullet_item><bullet_item>Circle Radius Units<para>A circular neighborhood with the given radius. The default radius is three cells.</para></bullet_item><bullet_item>Rectangle Height Width Units<para>A rectangular neighborhood defined by the height and width. The default is a square with a height and width of three cells.</para></bullet_item><bullet_item>Wedge Radius Start angle End angle Units<para>A wedge-shaped neighborhood defined by a radius, the start angle, and the  end angle. The wedge extends counterclockwise from the starting angle to the ending angle. Angles are specified in degrees, with 0 or 360 representing east. Negative angles may be used. The default wedge is from 0 to 90 degrees, with a radius of three cells.</para></bullet_item></bulletList><para>The distance Units for the parameters can be specified in Cell units or Map units.  Cell units is the default.</para><para>The default neighborhood is a square Rectangle with a width and height of three cells.</para>
+					</dialogReference></param><param sync="true" name="statistics_type" displayname="Overlay statistic" datatype="String" direction="Input" expression="statistics_type" type="Optional"><pythonReference>
+						<para>The statistic type to be calculated.</para>
+						<para>The calculation is performed on the values of the specified field of the point input in the neighborhood of each output raster cell.</para>
+						<bulletList><bullet_item>MEAN — Calculates the average of the field values in each neighborhood.</bullet_item><bullet_item>MAJORITY —  Determines the most frequently occurring field value in each neighborhood. In the case of a tie, the lower value is used.</bullet_item><bullet_item>MAXIMUM — Determines the largest field value in each neighborhood.</bullet_item><bullet_item>MEDIAN — Determines the median field value  in each neighborhood. In the case of an even number of points in the neighborhood, the result will be the lower of the two middle values.</bullet_item><bullet_item>MINIMUM — Determines the smallest field value in each neighborhood.</bullet_item><bullet_item>MINORITY — Determines the least frequently occurring field value in each neighborhood. In the case of a tie, the lower value is used.</bullet_item><bullet_item>RANGE — Calculates the range (difference between largest and smallest) of the field values in each neighborhood.</bullet_item><bullet_item>STD — Calculates the standard deviation of the field values in each neighborhood.</bullet_item><bullet_item>SUM — Calculates the total of the field values in each neighborhood.</bullet_item><bullet_item>VARIETY — Calculates the number of unique field values in each neighborhood.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The statistic type to be calculated.</para>
+						<para>The calculation is performed on the values of the specified field of the point input in the neighborhood of each output raster cell.</para>
+						<bulletList><bullet_item>MEAN — Calculates the average of the field values in each neighborhood.</bullet_item><bullet_item>MAJORITY —  Determines the most frequently occurring field value in each neighborhood. In the case of a tie, the lower value is used.</bullet_item><bullet_item>MAXIMUM — Determines the largest field value in each neighborhood.</bullet_item><bullet_item>MEDIAN — Determines the median field value  in each neighborhood. In the case of an even number of points in the neighborhood, the result will be the lower of the two middle values.</bullet_item><bullet_item>MINIMUM — Determines the smallest field value in each neighborhood.</bullet_item><bullet_item>MINORITY — Determines the least frequently occurring field value in each neighborhood. In the case of a tie, the lower value is used.</bullet_item><bullet_item>RANGE — Calculates the range (difference between largest and smallest) of the field values in each neighborhood.</bullet_item><bullet_item>STD — Calculates the standard deviation of the field values in each neighborhood.</bullet_item><bullet_item>SUM — Calculates the total of the field values in each neighborhood.</bullet_item><bullet_item>VARIETY — Calculates the number of unique field values in each neighborhood.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output point statistics raster.</para>
+						</pythonReference><dialogReference>
+							<para>The output point statistics raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>When the field is integer, the available overlay statistic choices are Mean, Majority, Maximum, Median, Minimum, Minority, Range, STD, Sum, and Variety. When the field is floating point, the only allowed statistics are Mean, Maximum, Minimum, Range, STD, and Sum.</para>
+			</bullet_item><bullet_item>
+				<para>For statistic types Majority, Maximum, Median, Minimum, Minority, Range, and Sum, the output data type of the raster will be the same as the input field type. For statistic types Mean and STD, the output raster will always be floating point. For Variety, the output raster will always be integer.</para>
+			</bullet_item><bullet_item>
+				<para>If there aren't any points in the neighborhood of a raster cell, the Variety statistic assigns it a value of 0. For the other statistics, NoData is assigned.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>PointStatistics example 1 (Python window)</title>
+					<para>This example determines a statistic (the sum) on the input shapefile point features that fall in a circular neighborhood around each output raster cell.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outPointStats = PointStatistics("ca_ozone_pts.shp", "OZONE", 500, 
+                                NbrCircle(10000, "MAP"), "SUM")
+outPointStats.save("C:/sapyexamples/output/pointstatsout")
+                    </code></scriptExample><scriptExample><title>PointStatistics example 2 (stand-alone script)</title>
+					<para>This example determines a statistic (the average) on the input shapefile point features that fall in a circular neighborhood around each output raster cell.</para><code xml:space="preserve"># Name: PointStatistics_Ex_02.py
+# Description: Calculates a statistic on points over a specified 
+#    neighborhood outputting a raster.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inPointFeatures = "ca_ozone_pts.shp"
+field = "OZONE"
+cellSize = 500
+neighborhood = NbrCircle(6000, "MAP")
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute PointStatistics
+outPointStatistics = PointStatistics(inPointFeatures, field, cellSize,
+                                     neighborhood, "MEAN")
+
+# Save the output 
+outPointStatistics.save("C:/sapyexamples/output/pointstatout")
+                    </code></scriptExample></scriptExamples></tool></metadata>

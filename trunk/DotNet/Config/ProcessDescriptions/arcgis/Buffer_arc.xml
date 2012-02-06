@@ -1,0 +1,122 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Buffer (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates buffer polygons around specified input coverage features.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Analysis Tools</keyword><keyword>Buffer</keyword><keyword>Buffer_Arc</keyword><keyword>Coverage Tools</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Buffer" displayname="Buffer (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Creates buffer polygons around specified input coverage features.</para>
+			
+		</summary><alink_name>Buffer_arc</alink_name><toolIllust type="illustration" src="Buffer_arc_h.gif" alt="Buffer illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage containing features to be buffered.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage containing features to be buffered.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The polygon buffer coverage to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The polygon buffer coverage to be created.</para>
+					</dialogReference></param><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Optional"><pythonReference>
+						<para>The feature class to be buffered:</para>
+						<bulletList><bullet_item>LINE—Arcs will be buffered. This is the default option. </bullet_item><bullet_item>POLY—Polygons will be buffered. </bullet_item><bullet_item>POINT—Points will be buffered. </bullet_item><bullet_item>NODE—Nodes will be buffered. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The feature class to be buffered:</para>
+						<bulletList><bullet_item>LINE—Arcs will be buffered. This is the default option. </bullet_item><bullet_item>POLY—Polygons will be buffered. </bullet_item><bullet_item>POINT—Points will be buffered. </bullet_item><bullet_item>NODE—Nodes will be buffered. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="buffer_item" displayname="Buffer Item" datatype="String" direction="Input" expression="buffer_item" type="Optional"><pythonReference>
+						<para>An item in the feature attribute table of input coverage whose value is used as the feature's buffer distance. If a buffer table is used, the buffer item functions as a lookup item in the buffer table.</para>
+					</pythonReference><dialogReference>
+						<para>An item in the feature attribute table of input coverage whose value is used as the feature's buffer distance. If a buffer table is used, the buffer item functions as a lookup item in the buffer table.</para>
+					</dialogReference></param><param sync="true" name="buffer_table" displayname="Buffer Table" datatype="ArcInfo Table" direction="Input" expression="buffer_table" type="Optional"><pythonReference>
+						<para>An INFO lookup table that lists a buffer distance for each buffer item. A buffer table can be specified only if the buffer item is specified. The buffer table contains at least two items:</para>
+						<bulletList>
+							<bullet_item>Buffer Item—Defined the same as buffer item in the input coverage feature attribute table. The buffer table must be sorted on this item in ascending order.</bullet_item>
+							<bullet_item>DIST—The buffer distance for each buffer item value. DIST must be defined as a numeric item (that is, N, I, F, or B). A lookup table will categorize item values.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>An INFO lookup table that lists a buffer distance for each buffer item. A buffer table can be specified only if the buffer item is specified. The buffer table contains at least two items:</para>
+						<bulletList>
+							<bullet_item>Buffer Item—Defined the same as buffer item in the input coverage feature attribute table. The buffer table must be sorted on this item in ascending order.</bullet_item>
+							<bullet_item>DIST—The buffer distance for each buffer item value. DIST must be defined as a numeric item (that is, N, I, F, or B). A lookup table will categorize item values.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="buffer_distance" displayname="Buffer Distance" datatype="Double" direction="Input" expression="buffer_distance" type="Optional"><pythonReference>
+						<para>The distance used to create buffer zones around input coverage features when buffer item and buffer table are not specified. The default buffer distance is 0.125 coverage units. This default buffer distance will be applied whenever a value for this parameter is not specified. </para>
+						<para>The smallest buffer distance that can be computed is 0.00000005 coverage units. Specifying a buffer distance below this threshold will result in an empty output coverage. For polygon features, if a negative buffer distance is used, buffers will be generated on the insides of polygons.</para>
+					</pythonReference><dialogReference>
+						<para>The distance used to create buffer zones around input coverage features when buffer item and buffer table are not specified. The default buffer distance is 0.125 coverage units. This default buffer distance will be applied whenever a value for this parameter is not specified. </para>
+						<para>The smallest buffer distance that can be computed is 0.00000005 coverage units. Specifying a buffer distance below this threshold will result in an empty output coverage. For polygon features, if a negative buffer distance is used, buffers will be generated on the insides of polygons.</para>
+					</dialogReference></param><param sync="true" name="fuzzy_tolerance" displayname="Fuzzy Tolerance" datatype="Double" direction="Input" expression="fuzzy_tolerance" type="Optional"><pythonReference>
+						<para>The minimum distance between coordinates in the out_cover. By default, the minimum fuzzy tolerance value from the in_cover is used.</para>
+					</pythonReference><dialogReference>
+						<para>The minimum distance between coordinates in the Output Coverage. By default, the minimum fuzzy tolerance value from the Input Coverage is used.</para>
+					</dialogReference></param><param sync="true" name="buffer_shape" displayname="Buffer Shape" datatype="String" direction="Input" expression="buffer_shape" type="Optional"><pythonReference>
+						<para>For lines, the shape of the buffer at the line endpoints.</para>
+						<bulletList><bullet_item>ROUND—Will make an end in the shape of a halfcircle. </bullet_item><bullet_item>FLAT—Will construct rectangular line endings with the middle of the short side of the rectangle coincident with the endpoint of the line. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>For lines, the shape of the buffer at the line endpoints.</para>
+						<bulletList><bullet_item>ROUND—Will make an end in the shape of a halfcircle. </bullet_item><bullet_item>FLAT—Will construct rectangular line endings with the middle of the short side of the rectangle coincident with the endpoint of the line. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="buffer_side" displayname="Buffer Side" datatype="String" direction="Input" expression="buffer_side" type="Optional"><pythonReference>
+						<para>For lines, the topological side on which the buffer may be generated.</para>
+						<bulletList><bullet_item>FULL—On all sides. This is the default. </bullet_item><bullet_item>LEFT—"Half buffer" on the topological left side of a line. </bullet_item><bullet_item>RIGHT—"Half buffer" on the topological right side of a line. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>For lines, the topological side on which the buffer may be generated.</para>
+						<bulletList><bullet_item>FULL—On all sides. This is the default. </bullet_item><bullet_item>LEFT—"Half buffer" on the topological left side of a line. </bullet_item><bullet_item>RIGHT—"Half buffer" on the topological right side of a line. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Negative and positive distances can be used for buffer distance with the POLY option. It is possible to shrink some polygons and grow others in the same coverage when the buffer item contains positive and negative numbers.</para>
+			</bullet_item><bullet_item>
+				<para>The ROUND, FLAT, FULL, LEFT, and RIGHT options apply only to line data.</para>
+			</bullet_item><bullet_item>
+				<para>Small sliver polygons may be created by the Buffer tool. They can cause problems when coded as nonbuffer areas inside buffer zones. Remove them with .</para>
+			</bullet_item><bullet_item>
+				<para>Features will not be buffered if their buffer distance is zero. If you do not want to buffer a feature in the input coverage, give it a buffer distance value of zero in a buffer item or of DIST in a buffer table.</para>
+			</bullet_item><bullet_item>
+				<para>When performing a buffer on a coverage that contains island polygons, all the polygons with a buffer distance greater than zero get buffered. However, since the island buffer is entirely within its surrounding polygon buffer, it is dissolved into the surrounding polygon during Buffer's dissolve phase and the island buffers will not be visible.</para>
+			</bullet_item><bullet_item>
+				<para>Nodes can be buffered on coverages with or without an NAT. If there is no NAT, the nodes in the AAT must be numbered (FNODE# and TNODE# must be greater than zero). Run  if the node numbers are zero.</para>
+			</bullet_item><bullet_item>
+				<para>The LEFT and RIGHT options generate buffers at the left or right of a line. Caution must be exercised in interpreting the "left" or "right" of a line. A single line segment defines two half planes, cutting a rectangular buffer into two clearly defined left and right sections. When connecting line segments, points that are on the left side of one segment may be on the right side of another connecting segment. This ambiguity can be prevented by a concept of "not crossing over the line".</para>
+			</bullet_item><bullet_item>
+				<para>The LEFT and RIGHT options use the topological left and right of the line, so line topology must be present for the use of these options. To access the Line buffer styles, use  on the input coverage with LINE and NODE.</para>
+			</bullet_item><bullet_item>
+				<para>The BUFFER function works in Euclidean space and uses a two-dimensional algorithm. A buffer will be the same width no matter what the coordinate system is. It will not reflect the curvature or the shape of the earth. For the best results, generate the buffer in a map projection that minimizes distortion in the area of interest.</para>
+			</bullet_item><bullet_item>
+				<para>For buffers around lines, the fuzzy tolerance for the output coverage may not be the same as the fuzzy tolerance for the input coverage. The output tolerance may be reset as a function of the buffer distance. This may happen for larger buffer distances and reflects the progressively courser approximation of a circle with a fixed number of straight line segments. If this effect is to be avoided, a buffer can be "grown" in a number of steps. First, run Buffer with the LINE option using a small buffer distance, then run a number of buffers on this using the POLY option until you achieve the desired resultant buffer distance. Fuzzy tolerance changes only for buffers around lines; it does not change for buffers around polygons.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of the output coverage is determined by the current processing rule as set by the  environment setting. If the processing rule has not been established during the current session, then the processing rule will be HIGHEST. This means that Buffer will create an output coverage in the same precision as the input coverage.</para>
+			</bullet_item><bullet_item>
+				<para>On both single-precision and double-precision coverages, Buffer calculates a minimum tolerance based on the mathematical precision of the coverage (based on the width of the BND and the number of decimal places). If the calculated minimum tolerance is greater than the entered fuzzy tolerance, the calculated minimum tolerance is used. </para>
+			</bullet_item><bullet_item>
+				<para>The projection file (PRJ) will be copied to the output coverage.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Buffer example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to create a buffer around a road coverage. </para>
+				<code xml:space="preserve"># Name: Buffer_Example.py
+# Description: Creates a buffer around a road coverage.
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "road"
+outCover = "C:/output/roadbuf"
+featureType = "LINE"
+bufferDistance = 200
+bufferShape = "ROUND"
+bufferSide = "FULL"
+
+# Execute Buffer
+arcpy.Buffer_arc(inCover, outCover, featureType, "", "", bufferDistance, "",
+                 bufferShape, bufferSide)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

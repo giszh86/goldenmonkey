@@ -1,0 +1,66 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Point Node (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs a spatial JOINITEM on the point coverage and the node coverage. It transfers the attributes from a point feature class to a node feature class. Each point feature in the point coverage is matched to the corresponding node feature in the node coverage. If any point is within the search radius of a node, the attributes are copied.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Analysis Tools</keyword><keyword>Coverage Tools</keyword><keyword>Node</keyword><keyword>Point</keyword><keyword>Pointnode</keyword><keyword>Proximity</keyword><keyword>Search Radius</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PointNode" displayname="Point Node (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Performs a spatial JOINITEM on the point coverage and the node coverage. It transfers the attributes from a point feature class to a node feature class. Each point feature in the point coverage is matched to the corresponding node feature in the node coverage. If any point is within the search radius of a node, the attributes are copied.</para>
+		</summary><alink_name>PointNode_arc</alink_name><toolIllust type="illustration" src="PointNode_arc_h.gif" alt="Point Node illustration" /><parameters><param sync="true" name="point_cover" displayname="Point Coverage" datatype="Coverage" direction="Input" expression="point_cover" type="Required"><pythonReference>
+						<para>The coverage containing point features to be transferred.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage containing point features to be transferred.</para>
+					</dialogReference></param><param sync="true" name="node_cover" displayname="Node Coverage" datatype="Coverage" direction="Input" expression="node_cover" type="Required"><pythonReference>
+						<para>An existing cover whose node attribute values will be updated or created if the NAT does not exist.</para>
+					</pythonReference><dialogReference>
+						<para>An existing cover whose node attribute values will be updated or created if the NAT does not exist.</para>
+					</dialogReference></param><param sync="true" name="search_radius" displayname="Search Radius" datatype="Double" direction="Input" expression="search_radius" type="Optional"><pythonReference>
+						<para>The maximum distance apart that points and nodes can be for the attributes of the point class to be transferred and recorded to the node coverage as a node class. The radius is given in coverage units. The default search radius is the width or height of the node coverage's BND divided by 100, whichever is larger.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum distance apart that points and nodes can be for the attributes of the point class to be transferred and recorded to the node coverage as a node class. The radius is given in coverage units. The default search radius is the width or height of the node coverage's BND divided by 100, whichever is larger.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If any point is within the search radius of a node, the attributes of that point are copied. If more than one point matches a node, then the nearest point is selected. If two or more points are the same distance from the node, then one is selected randomly. If two or more nodes are within the search radius of a single node, then the node nearest the point is matched.</para>
+			</bullet_item><bullet_item>
+				<para>The coverage-ID number for each matching point is stored as the node-ID number in the NAT. If there are no matches to a node, then the node-ID is equal to the internal node number.</para>
+			</bullet_item><bullet_item>
+				<para>If the node coverage does not have an NAT, then the NAT is first built with the  command using the NODE feature type.</para>
+			</bullet_item><bullet_item>
+				<para>Additional items from the PAT file are added to the NAT file. If an existing NAT file has additional attributes, items from the PAT will be appended after them. Item values with no matching points will be blank for character items and zero for numeric. Existing items and item values in the NAT file will be maintained.</para>
+			</bullet_item><bullet_item>
+				<para>The point cover must have a point attribute table for this command to work.</para>
+			</bullet_item><bullet_item>
+				<para>The node cover can be the same as the point cover, in which case, the attributes of the PAT are transferred to the NAT within the point coverage.</para>
+			</bullet_item><bullet_item>
+				<para>If an item in the PAT exists in the NAT, the item values in the NAT are updated with values from the PAT.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>PointNode example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the Point Node tool.
+
+					</para>
+				<code xml:space="preserve"># Name: PointNode_Example.py
+# Description: Performs PointNode on two coverages.
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+pointCover = "wells142"
+nodeCover = "county"
+searchRadius =  3600
+
+# Execute PointNode
+arcpy.PointNode_arc(pointCover, nodeCover, searchRadius)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

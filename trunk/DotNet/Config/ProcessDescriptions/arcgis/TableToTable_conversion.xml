@@ -1,0 +1,96 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Table to Table (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts an input table to a dBASE or geodatabase table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Convert</keyword><keyword>Copy</keyword><keyword>Db</keyword><keyword>Dbase</keyword><keyword>Dbf</keyword><keyword>Excel</keyword><keyword>Export</keyword><keyword>Expression</keyword><keyword>Feature Class</keyword><keyword>Field Map</keyword><keyword>File</keyword><keyword>Format</keyword><keyword>Gdb</keyword><keyword>Import</keyword><keyword>Info</keyword><keyword>Load</keyword><keyword>Make</keyword><keyword>Migrate</keyword><keyword>Ole</keyword><keyword>Personal</keyword><keyword>Record</keyword><keyword>Row</keyword><keyword>Sde</keyword><keyword>Sql</keyword><keyword>Subset</keyword><keyword>Turn</keyword><keyword>Where Clause</keyword><keyword>Xls</keyword><keyword>Xlsx</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TableToTable" displayname="Table to Table (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts an input table to a dBASE or geodatabase table.</para>
+		</summary><alink_name>TableToTable_conversion</alink_name><parameters><param sync="true" name="in_rows" displayname="Input Rows" datatype="Table View ;Raster Layer" direction="Input" expression="in_rows" type="Required"><pythonReference>
+						<para>The input table to be converted to a dBASE, personal, file, or SDE geodatabase table. Input Rows can be dBASE, INFO, VPF, OLE DB, personal, file, or SDE geodatabase tables, or table views. </para>
+					</pythonReference><dialogReference>
+						<para>The input table to be converted to a dBASE, personal, file, or SDE geodatabase table. Input Rows can be dBASE, INFO, VPF, OLE DB, personal, file, or SDE geodatabase tables, or table views. </para>
+					</dialogReference></param><param sync="true" name="out_path" displayname="Output Location" datatype="Workspace | Feature Dataset" direction="Input" expression="out_path" type="Required"><pythonReference>
+						<para>The destination where the output table will be written. If a folder is specified, a dBASE table will be created. If a geodatabase is specified, a geodatabase table will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The destination where the output table will be written. If a folder is specified, a dBASE table will be created. If a geodatabase is specified, a geodatabase table will be created.</para>
+					</dialogReference></param><param sync="true" name="out_name" displayname="Output Table" datatype="String" direction="Input" expression="out_name" type="Required"><pythonReference>
+						<para>The name of the output table.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output table.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Expression" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>An SQL expression used to select a subset of features. The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para>
+						<para>
+							"MY_FIELD"
+						</para>
+						<para> If you're querying personal geodatabases, enclose fields in square brackets: </para>
+						<para>
+							[MY_FIELD]
+						</para>
+						<para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para>
+						<para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</pythonReference><dialogReference>
+						<para>An SQL expression used to select a subset of features. The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para>
+						<para>
+							"MY_FIELD"
+						</para>
+						<para> If you're querying personal geodatabases, enclose fields in square brackets: </para>
+						<para>
+							[MY_FIELD]
+						</para>
+						<para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para>
+						<para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</dialogReference></param><param sync="true" name="field_mapping" displayname="Field Map" datatype="Field Mappings" direction="Input" expression="field_mapping" type="Optional"><dialogReference>
+						<para>The fields and field contents chosen from the inputs. Each of the unique input fields will be listed on the Field Map window and when expanded, you will see a list of all the input field occurrences (subfields). New fields can be added.</para>
+						<para>For each Field Map, you can add, rename, or delete output fields as well as set properties such as data type and merge rule. You can also delete an output field's subfields, and you can format any output field's values if the data type is text.</para>
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="Config Keyword" datatype="String" direction="Input" expression="config_keyword" type="Optional"><pythonReference>
+						<para>Specifies the default storage parameters (configurations) for geodatabases in a relational database management system (RDBMS). This setting is applicable only when using SDE geodatabase tables.</para>
+						<para>ArcSDE configuration keywords are set by the database administrator.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the default storage parameters (configurations) for geodatabases in a relational database management system (RDBMS). This setting is applicable only when using SDE geodatabase tables.</para>
+						<para>ArcSDE configuration keywords are set by the database administrator.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Table to Table tool accepts dBASE, INFO, VPF, OLE DB, personal, file, or SDE geodatabase tables or table views as input.</para>
+			</bullet_item><bullet_item>
+				<para>The Table to Table tool can convert a table to a dBASE, personal, file, or SDE geodatabase table. </para>
+			</bullet_item><bullet_item>
+				<para>All fields in the output table and the contents of those fields can be controlled using this tool's .</para>
+			</bullet_item><bullet_item>
+				<para>If the input table is a table view with a selection, only selected rows will be transferred to the output table.</para>
+			</bullet_item><bullet_item>
+				<para>The Configuration Keyword parameter specifies the default storage parameters (configurations) for geodatabases in a relational database management system (RDBMS). This setting is applicable only when using SDE geodatabase tables. For more on configuration keyword, see .</para>
+			</bullet_item><bullet_item>
+				<para></para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TableToTable Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the TableToTable tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.TableToTable_conversion("vegtable.dbf", "C:/output/output.gdb", "vegtable")
+                    </code></scriptExample><scriptExample><title>TableToTable Example (stand-alone Python script)</title>
+					<para>The following stand-alone script demonstrates how to use the TableToTable tool.</para>
+				<code xml:space="preserve"># Name: TableToTable_Example2.py
+# Description: Use TableToTable with an expression to create a subset
+#  of the original table.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data"
+ 
+# Set local variables
+inTable = "vegtable.dbf"
+outLocation = "C:/output/output.gdb"
+outTable = "estuarine"
+
+# Set the expression, with help from the AddFieldDelimiters function to select the appropriate field delimiters for the data type
+expression = arcpy.AddFieldDelimiters(env.workspace, "VEG_TYPE") + " = 'Estuarine'"
+ 
+# Execute TableToTable
+arcpy.TableToTable_conversion(inTable, outLocation, outTable, expression)
+                    </code></scriptExample></scriptExamples></tool></metadata>

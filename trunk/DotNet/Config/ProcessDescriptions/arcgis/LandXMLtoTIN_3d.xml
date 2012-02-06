@@ -1,0 +1,85 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> LandXML to TIN  (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool imports one or more triangulated irregular network (TIN) surfaces from a LandXML file and writes the TIN(s) to location on disk. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Convert</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" LandXMLtoTIN " displayname=" LandXML to TIN  (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool imports one or more triangulated irregular network (TIN) surfaces from a LandXML file and writes the TIN(s) to location on disk. </para>
+		</summary><alink_name> LandXMLtoTIN _3d</alink_name><parameters><param sync="true" name="in_landxml_path" displayname="Input" datatype="File" direction="Input" expression="in_landxml_path" type="Required"><pythonReference>
+						<para> The location of the LandXML file.</para>
+					</pythonReference><dialogReference>
+						<para> The location of the LandXML file.</para>
+					</dialogReference></param><param sync="true" name="out_tin_folder" displayname="Output Folder" datatype="Folder" direction="Output" expression="out_tin_folder" type="Required"><pythonReference>
+						<para> The folder where output files will be created.</para>
+					</pythonReference><dialogReference>
+						<para> The folder where output files will be created.</para>
+					</dialogReference></param><param sync="true" name="tin_basename" displayname="Output TIN base name" datatype="String" direction="Input" expression="tin_basename" type="Required"><pythonReference>
+						<para>The name of the TIN(s) to be output.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the TIN(s) to be output.</para>
+					</dialogReference></param><param sync="true" name="tinnames" displayname="TINs to Import" datatype="String" direction="Input" expression="tinnames" type="Optional"><pythonReference>
+						<para> If the LandXML contains more than one TIN, selects which one(s) to import.</para>
+					</pythonReference><dialogReference>
+						<para> If the LandXML contains more than one TIN, selects which one(s) to import.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Version" label="Version">
+						
+					</environment></environments><usage><bullet_item>
+				<para> Once the input LandXML file has been selected, the TINs to import parameter is populated with all the TIN surfaces found in the LandXML file.</para>
+			</bullet_item><bullet_item>
+				<para>If several TINs are selected to be output, they would be named in the following manner: &lt;basename&gt;, &lt;basename&gt;2, &lt;basename&gt;3, and so on. If &lt;basename&gt; already exists, the tool will not write anything. If &lt;basename&gt; does not exist but &lt;basename&gt;2 exists, the tool will create &lt;basename&gt; and &lt;basename&gt;2_1, instead of &lt;basename&gt;2.</para>
+			</bullet_item><bullet_item><para>If the TINs are not Delaunay conforming the tool outputs contstrained Delaunay TIN(s). </para></bullet_item><bullet_item><para>In script mode, the names inside the tinnames parameter can be
+specified in short form (only number or only name) for user
+convenience.
+  Instead of "1. Site0445; 2. &lt;unnamed&gt;; 3. &lt;unnamed&gt;;
+4. Site_09", you  can specify: "1;2;3;4" or "Site0445;
+Site_09;2;3", but not "&lt;unnamed&gt;;&lt;unnamed&gt;;1;4" since &lt;unnamed&gt; is not unique.
+</para></bullet_item></usage><scriptExamples><scriptExample><title>LandXML to TIN  Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the LandXML to TIN 
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.LandXMLToTin_3d("surfaces.xml", "TINs", "_", "1;2")
+                    </code></scriptExample><scriptExample><title>LandXML to TIN  Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the LandXML to TIN 
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: LandXMLToTin Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              ListFiles method to collect all LandXML (*.xml) files in a 
+#              workspace as input for the Import3DFiles tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Use ListFiles method to grab all xml files (assumedly LandXML files)
+    landList = arcpy.ListFiles("*.xml")
+    if len(landList) &gt; 0:
+        for file in landList:
+            # Set Local Variables
+            outputFolder = "TINs" # The folder that the TINs will be created in
+            outputBase = "Madagascar_" # Base name will be applied to all output TINs
+            grab = "1" # TIN selection can be chosen by enumerated values (e.g. 1;2)
+            # Execute Import3DFiles
+            arcpy.LandXMLToTin_3d(file, outputFolder, outputBase, grab)
+            print "Completed creating TIN(s) from " + file + "."
+    else:
+        "There are no xml files in the " + env.workspace + " directory."
+            
+except:
+    # Returns any other error messages
+    print arcpy.GetMessages(2)
+
+del arcpy, outputBase, outputFolder, grab
+                    </code></scriptExample></scriptExamples></tool></metadata>

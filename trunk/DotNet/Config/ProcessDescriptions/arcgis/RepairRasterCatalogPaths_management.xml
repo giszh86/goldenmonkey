@@ -1,0 +1,53 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Repair Raster Catalog Paths (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Repairs broken file paths or deletes broken links within an unmanaged raster catalog or a mosaic dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Broken</keyword><keyword>Collection</keyword><keyword>Contain</keyword><keyword>Fix</keyword><keyword>Footprint</keyword><keyword>Gdb</keyword><keyword>Geodatabase</keyword><keyword>Image Catalog</keyword><keyword>Link</keyword><keyword>Manage</keyword><keyword>New</keyword><keyword>Overlap</keyword><keyword>Remove</keyword><keyword>Unmanage</keyword><keyword>Unmanaged</keyword><keyword>Update</keyword><keyword>Url</keyword><keyword>Wire Frame</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RepairRasterCatalogPaths" displayname="Repair Raster Catalog Paths (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Repairs broken file paths or deletes broken links within an unmanaged raster catalog or a mosaic dataset.</para>
+		</summary><alink_name>RepairRasterCatalogPaths_management</alink_name><parameters><param sync="true" name="in_raster_catalog" displayname="Input Data" datatype="Raster Catalog Layer; Mosaic Dataset; Group Layer; Composite Layer" direction="Input" expression="in_raster_catalog" type="Required"><pythonReference>
+						<para>The unmanaged raster catalog or mosaic dataset to be repaired.</para>
+					</pythonReference><dialogReference>
+						<para>The unmanaged raster catalog or mosaic dataset to be repaired.</para>
+					</dialogReference></param><param sync="true" name="repair_mode" displayname="Repair Mode" datatype="String" direction="Input" expression="repair_mode" type="Required"><pythonReference>
+						<para>Choose the repair mode you would like to use.</para>
+						<bulletList><bullet_item>FIX—This option will allow you to fix the paths. </bullet_item><bullet_item>REMOVE—This option will remove any broken links that exist. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose the repair mode you would like to use.</para>
+						<bulletList><bullet_item>FIX—This option will allow you to fix the paths. </bullet_item><bullet_item>REMOVE—This option will remove any broken links that exist. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="original_path" displayname="Original Path" datatype="String" direction="Input" expression="original_path" type="Optional"><pythonReference>
+						<para>Type the original path that needs to be repaired. This is a required parameter if the FIX option was chosen.</para>
+						<para>If you want to change all your paths to the new path, you are able to use the asterisk (*) as the original path.</para>
+					</pythonReference><dialogReference>
+						<para>Type the original path that needs to be repaired. This is a required parameter if the FIX option was chosen.</para>
+						<para>If you want to change all your paths to the new path, you are able to use the asterisk (*) as the original path.</para>
+					</dialogReference></param><param sync="true" name="new_path" displayname="New Path" datatype="String" direction="Input" expression="new_path" type="Optional"><pythonReference>
+						<para>Type the new path to use. This is a required parameter if the FIX option was chosen.</para>
+					</pythonReference><dialogReference>
+						<para>Type the new path to use. This is a required parameter if the FIX option was chosen.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>It can also be used to delete any broken links that are no longer needed.</para>
+			</bullet_item><bullet_item>
+				<para>You need to know the file path location in order to change it. You can use the  to retrieve the original path names.</para>
+			</bullet_item><bullet_item>
+				<para>You can type an asterisk (*) as the original path if you wish to change all your paths.</para>
+			</bullet_item><bullet_item>
+				<para>If you need to repair a mosaic dataset, the Repair Mosaic Dataset dialog box can also achieve this task. To learn more about repairing mosaic datasets, see . </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RepairRasterCatalogPaths example (Python window)</title>
+					<para>This is a Python sample for the RepairRasterCatalogPaths tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.RepairRasterCatalogPaths_management("c:/data/RepairRC.gdb/bkrnlinks",\ 
+                                          "FIX", "*", "C:/data/newpath")
+                    </code></scriptExample><scriptExample><title>RepairRasterCatalogPaths example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for the RepairRasterCatalogPaths tool.</para>
+				<code xml:space="preserve">##=====================
+##Repair Raster Catalog Paths
+##Usage: RepairRasterCatalogPaths_management in_raster_catalog FIX | REMOVE {original_path} {new_path}
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:\PrjWorkspace"
+    ##Fix Broken Path - regardless of original paths
+    arcpy.RepairRasterCatalogPaths_management("RepairRC.gdb\\Unmanaged", "FIX", "*", r"C:\data")
+    ##Remove Broken Items
+    arcpy.RepairRasterCatalogPaths_management("RepairRC.gdb\\Unmanaged2", "REMOVE", "", "")
+except:
+    print "Repair Raster Catalog Items example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

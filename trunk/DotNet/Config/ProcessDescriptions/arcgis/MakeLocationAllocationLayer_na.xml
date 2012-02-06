@@ -1,0 +1,177 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make Location-Allocation Layer (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Makes a location-allocation network analysis layer and sets its analysis properties. A location-allocation analysis layer is useful for choosing a given number of facilities from a set of potential locations such that a demand will be allocated to facilities in an optimal and efficient manner.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alter</keyword><keyword>Altered</keyword><keyword>Analysis</keyword><keyword>Layer</keyword><keyword>Location-Allocation</keyword><keyword>Location-Allocation Layer</keyword><keyword>Network</keyword><keyword>Network Analyst</keyword><keyword>Network Analyst Layer</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeLocationAllocationLayer" displayname="Make Location-Allocation Layer (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Makes a location-allocation network analysis layer and sets its analysis properties. A location-allocation analysis layer is useful for choosing a given number of facilities from a set of potential locations such that a demand will be allocated to facilities in an optimal and efficient manner.</para>
+		</summary><alink_name>MakeLocationAllocationLayer_na</alink_name><parameters><param sync="true" name="in_network_dataset" displayname="Input analysis network" datatype="Network Dataset Layer" direction="Input" expression="in_network_dataset" type="Required"><pythonReference>
+						<para>The network dataset on which the location-allocation analysis will be performed.</para>
+					</pythonReference><dialogReference>
+						<para>The network dataset on which the location-allocation analysis will be performed.</para>
+					</dialogReference></param><param sync="true" name="out_network_analysis_layer" displayname="Output layer name" datatype="String" direction="Output" expression="out_network_analysis_layer" type="Required"><pythonReference>
+						<para>Name of the location-allocation network analysis layer to create.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the location-allocation network analysis layer to create.</para>
+					</dialogReference></param><param sync="true" name="impedance_attribute" displayname="Impedance attribute" datatype="String" direction="Input" expression="impedance_attribute" type="Required"><pythonReference>
+						<para>The cost attribute to be used as impedance in the analysis.</para>
+					</pythonReference><dialogReference>
+						<para>The cost attribute to be used as impedance in the analysis.</para>
+					</dialogReference></param><param sync="true" name="loc_alloc_from_to" displayname="Travel from" datatype="String" direction="Input" expression="loc_alloc_from_to" type="Optional"><pythonReference>
+						<para>Specifies the direction of travel between facilities and demand points when calculating the network costs.</para>
+						<bulletList><bullet_item>FACILITY_TO_DEMAND—Direction of travel is from facilities to demand points. </bullet_item><bullet_item>DEMAND_TO_FACILITY—Direction of travel is from demand points to facilities. </bullet_item></bulletList>
+						<para>Using this option can affect the allocation of the demand points to the facilities on a network with one-way restrictions and different impedances based on direction of travel. For instance, a facility may be a 15-minute drive from the demand point to the facility, but only a 10-minute trip when traveling from the facility to the demand point. </para>
+						<para>Fire departments commonly use the Facility to Demand setting, since they are concerned with the time it takes to travel from the fire station to the location of the emergency. A retail store is more concerned with the time it takes the shoppers to reach the store; therefore, stores commonly use the Demand to Facility option.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the direction of travel between facilities and demand points when calculating the network costs.</para>
+						<bulletList><bullet_item>FACILITY_TO_DEMAND—Direction of travel is from facilities to demand points. </bullet_item><bullet_item>DEMAND_TO_FACILITY—Direction of travel is from demand points to facilities. </bullet_item></bulletList>
+						<para>Using this option can affect the allocation of the demand points to the facilities on a network with one-way restrictions and different impedances based on direction of travel. For instance, a facility may be a 15-minute drive from the demand point to the facility, but only a 10-minute trip when traveling from the facility to the demand point. </para>
+						<para>Fire departments commonly use the Facility to Demand setting, since they are concerned with the time it takes to travel from the fire station to the location of the emergency. A retail store is more concerned with the time it takes the shoppers to reach the store; therefore, stores commonly use the Demand to Facility option.</para>
+					</dialogReference></param><param sync="true" name="loc_alloc_problem_type" displayname="Location-allocation problem type" datatype="String" direction="Input" expression="loc_alloc_problem_type" type="Optional"><pythonReference>
+						<para>The problem type that will be solved. The choice of the problem type depends on the kind of facility being located. Different kinds of facilities have different priorities and constraints.</para>
+						<bulletList><bullet_item>MINIMIZE_IMPEDANCE—This option solves the warehouse location problem. It selects a set of facilities such that the total sum of weighted impedances (demand at a location times the impedance to the closest facility) is minimized. This problem type is often known as the P-Median problem. </bullet_item><bullet_item>MAXIMIZE_COVERAGE—This option solves the fire station location problem. It chooses facilities such that all or the greatest amount of demand is within a specified impedance cutoff.</bullet_item><bullet_item>MINIMIZE_FACILITIES—This option solves the fire station location problem. It chooses the minimum number of facilities needed to cover all or the greatest amount of demand within a specified impedance cutoff. </bullet_item><bullet_item>MAXIMIZE_ATTENDANCE—This option solves the neighborhood store location problem where the proportion of demand allocated to the nearest chosen facility falls with increasing distance. The set of facilities that maximize the total allocated demand is chosen. Demand further than the specified impedance cutoff does not affect the chosen set of facilities.</bullet_item><bullet_item>MAXIMIZE_MARKET_SHARE—This option solves the competitive facility location problem. It chooses facilities to maximize market share in the presence of competitive facilities. Gravity model concepts are used to determine the proportion of demand allocated to each facility. The set of facilities that maximizes the total allocated demand is chosen.</bullet_item><bullet_item>TARGET_MARKET_SHARE—This option solves the competitive facility location problem. It chooses facilities to reach a specified target market share in the presence of competitive facilities. Gravity model concepts are used to determine the proportion of demand allocated to each facility. The minimum number of facilities needed to reach the specified target market share is chosen. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The problem type that will be solved. The choice of the problem type depends on the kind of facility being located. Different kinds of facilities have different priorities and constraints.</para>
+						<bulletList><bullet_item>MINIMIZE_IMPEDANCE—This option solves the warehouse location problem. It selects a set of facilities such that the total sum of weighted impedances (demand at a location times the impedance to the closest facility) is minimized. This problem type is often known as the P-Median problem. </bullet_item><bullet_item>MAXIMIZE_COVERAGE—This option solves the fire station location problem. It chooses facilities such that all or the greatest amount of demand is within a specified impedance cutoff.</bullet_item><bullet_item>MINIMIZE_FACILITIES—This option solves the fire station location problem. It chooses the minimum number of facilities needed to cover all or the greatest amount of demand within a specified impedance cutoff. </bullet_item><bullet_item>MAXIMIZE_ATTENDANCE—This option solves the neighborhood store location problem where the proportion of demand allocated to the nearest chosen facility falls with increasing distance. The set of facilities that maximize the total allocated demand is chosen. Demand further than the specified impedance cutoff does not affect the chosen set of facilities.</bullet_item><bullet_item>MAXIMIZE_MARKET_SHARE—This option solves the competitive facility location problem. It chooses facilities to maximize market share in the presence of competitive facilities. Gravity model concepts are used to determine the proportion of demand allocated to each facility. The set of facilities that maximizes the total allocated demand is chosen.</bullet_item><bullet_item>TARGET_MARKET_SHARE—This option solves the competitive facility location problem. It chooses facilities to reach a specified target market share in the presence of competitive facilities. Gravity model concepts are used to determine the proportion of demand allocated to each facility. The minimum number of facilities needed to reach the specified target market share is chosen. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="number_facilities_to_find" displayname="Number of facilities to find" datatype="Long" direction="Input" expression="number_facilities_to_find" type="Optional"><pythonReference>
+						<para>Specifies the number of facilities that the solver should locate. </para>
+						<para>The facilities with a FacilityType value of Required are always part of the solution when there are more facilities to find than required facilities; any excess facilities to choose are picked from candidate facilities.</para>
+						<para>Any facilities that have a FacilityType value of Chosen before solving are treated as candidate facilities at solve time.</para>
+						<para>The parameter value is not considered for the MINIMIZE_FACILITIES problem type since the solver determines the minimum number of facilities to locate to maximize coverage.</para>
+						<para>The parameter value is overridden for the TARGET_MARKET_SHARE problem type because the solver searches for the minimum number of facilities required to capture the specified market share.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the number of facilities that the solver should locate. </para>
+						<para>The facilities with a FacilityType value of Required are always part of the solution when there are more facilities to find than required facilities; any excess facilities to choose are picked from candidate facilities.</para>
+						<para>Any facilities that have a FacilityType value of Chosen before solving are treated as candidate facilities at solve time.</para>
+						<para>The parameter value is not considered for the MINIMIZE_FACILITIES problem type since the solver determines the minimum number of facilities to locate to maximize coverage.</para>
+						<para>The parameter value is overridden for the TARGET_MARKET_SHARE problem type because the solver searches for the minimum number of facilities required to capture the specified market share.</para>
+					</dialogReference></param><param sync="true" name="impedance_cutoff" displayname="Impedance cutoff" datatype="Double" direction="Input" expression="impedance_cutoff" type="Optional"><pythonReference>
+						
+						<para>Impedance Cutoff specifies the maximum impedance at which a demand point can be allocated to a facility. The maximum impedance is measured by the least-cost path along the network. If a demand point is outside the cutoff, it is left unallocated. This property might be used to model the maximum distance that people are willing to travel to visit your stores or the maximum time that is permitted for a fire department to reach anyone in the community.</para>
+						<para>Demand points have a Cutoff_[Impedance] property, which, if set, overrides the Impedance Cutoff property of the analysis layer. You might find that people in rural areas are willing to travel up to 10 miles to reach a facility while urbanites are only willing to travel up to two miles. You can model this behavior by setting the impedance cutoff value of the analysis layer to 10 and setting the Cutoff_Miles value of the demand points in urban areas to 2.</para>
+					</pythonReference><dialogReference>
+						
+						<para>Impedance Cutoff specifies the maximum impedance at which a demand point can be allocated to a facility. The maximum impedance is measured by the least-cost path along the network. If a demand point is outside the cutoff, it is left unallocated. This property might be used to model the maximum distance that people are willing to travel to visit your stores or the maximum time that is permitted for a fire department to reach anyone in the community.</para>
+						<para>Demand points have a Cutoff_[Impedance] property, which, if set, overrides the Impedance Cutoff property of the analysis layer. You might find that people in rural areas are willing to travel up to 10 miles to reach a facility while urbanites are only willing to travel up to two miles. You can model this behavior by setting the impedance cutoff value of the analysis layer to 10 and setting the Cutoff_Miles value of the demand points in urban areas to 2.</para>
+					</dialogReference></param><param sync="true" name="impedance_transformation" displayname="Impedance transformation" datatype="String" direction="Input" expression="impedance_transformation" type="Optional"><pythonReference>
+						<para> This sets the equation for transforming the network cost between facilities and demand points. This property, coupled with the Impedance Parameter, specifies how severely the network impedance between facilities and demand points influences the solver's choice of facilities.</para>
+						<bulletList><bullet_item>LINEAR—The transformed network impedance between the facility and the demand point is same as the shortest-path network impedance between them. With this option, the impedance parameter is always set to one. This is the default.</bullet_item><bullet_item>POWER—The transformed network impedance between the facility and the demand point is equal to the shortest-path network impedance raised to the power specified by the impedance parameter. Use the POWER option with a positive impedance parameter to specify higher weight to nearby facilities. </bullet_item><bullet_item>EXPONENTIAL —The transformed network impedance between the facility and the demand point is equal to the mathematical constant e raised to the power specified by the shortest-path network impedance multiplied with the impedance parameter. Use the EXPONENTIAL option with a positive impedance parameter to specify a very high weight to nearby facilities.Exponential transformations are commonly used in conjunction with an impedance cutoff.</bullet_item></bulletList>
+						<para>Demand points have an ImpedanceTransformation property, which if set, overrides the Impedance Transformation property of the analysis layer. You might determine the impedance transformation should be different for urban and rural residents. You can model this by setting the impedance transformation for the analysis layer to match that of rural residents and setting the impedance transformation for the demand points in urban areas to match that of urbanites.</para>
+					</pythonReference><dialogReference>
+						<para> This sets the equation for transforming the network cost between facilities and demand points. This property, coupled with the Impedance Parameter, specifies how severely the network impedance between facilities and demand points influences the solver's choice of facilities.</para>
+						<bulletList><bullet_item>LINEAR—The transformed network impedance between the facility and the demand point is same as the shortest-path network impedance between them. With this option, the impedance parameter is always set to one. This is the default.</bullet_item><bullet_item>POWER—The transformed network impedance between the facility and the demand point is equal to the shortest-path network impedance raised to the power specified by the impedance parameter. Use the POWER option with a positive impedance parameter to specify higher weight to nearby facilities. </bullet_item><bullet_item>EXPONENTIAL —The transformed network impedance between the facility and the demand point is equal to the mathematical constant e raised to the power specified by the shortest-path network impedance multiplied with the impedance parameter. Use the EXPONENTIAL option with a positive impedance parameter to specify a very high weight to nearby facilities.Exponential transformations are commonly used in conjunction with an impedance cutoff.</bullet_item></bulletList>
+						<para>Demand points have an ImpedanceTransformation property, which if set, overrides the Impedance Transformation property of the analysis layer. You might determine the impedance transformation should be different for urban and rural residents. You can model this by setting the impedance transformation for the analysis layer to match that of rural residents and setting the impedance transformation for the demand points in urban areas to match that of urbanites.</para>
+					</dialogReference></param><param sync="true" name="impedance_parameter" displayname="Impedance parameter" datatype="Double" direction="Input" expression="impedance_parameter" type="Optional"><pythonReference>
+						<para>Provides a parameter value to the equations specified in the Impedance transformation parameter. The parameter value is ignored when the impedance transformation is of type linear. For power and exponential impedance transformations, the value should be non-zero.</para>
+						<para>Demand points have an ImpedanceParameter property, which, if set, overrides the Impedance Parameter property of the analysis layer. You might determine that the impedance parameter should be different for urban and rural residents. You can model this by setting the impedance transformation for the analysis layer to match that of rural residents and setting the impedance transformation for the demand points in urban areas to match that of urbanites.</para>
+					</pythonReference><dialogReference>
+						<para>Provides a parameter value to the equations specified in the Impedance transformation parameter. The parameter value is ignored when the impedance transformation is of type linear. For power and exponential impedance transformations, the value should be non-zero.</para>
+						<para>Demand points have an ImpedanceParameter property, which, if set, overrides the Impedance Parameter property of the analysis layer. You might determine that the impedance parameter should be different for urban and rural residents. You can model this by setting the impedance transformation for the analysis layer to match that of rural residents and setting the impedance transformation for the demand points in urban areas to match that of urbanites.</para>
+					</dialogReference></param><param sync="true" name="target_market_share" displayname="Target market share" datatype="Double" direction="Input" expression="target_market_share" type="Optional"><pythonReference>
+						<para> Specifies the target market share in percentage to solve for when the Location-allocation problem type parameter is set to TARGET_MARKET_SHARE. It is the percentage of the total demand weight that you want your solution facilities to capture. The solver chooses the minimum number of facilities required to capture the target market share specified by this numeric value.</para>
+					</pythonReference><dialogReference>
+						<para> Specifies the target market share in percentage to solve for when the Location-allocation problem type parameter is set to TARGET_MARKET_SHARE. It is the percentage of the total demand weight that you want your solution facilities to capture. The solver chooses the minimum number of facilities required to capture the target market share specified by this numeric value.</para>
+					</dialogReference></param><param sync="true" name="accumulate_attribute_name" displayname="Accumulators" datatype="String" direction="Input" expression="[accumulate_attribute_name,...]" type="Optional"><pythonReference>
+						<para>List of cost attributes to be accumulated during analysis. These accumulation attributes are purely for reference; the solver only uses the cost attribute specified by the Impedance attribute parameter  to calculate the route.</para>
+						<para>For each cost attribute that is accumulated, a Total_[Impedance] property is added to the routes that are output by the solver.</para>
+					</pythonReference><dialogReference>
+						<para>List of cost attributes to be accumulated during analysis. These accumulation attributes are purely for reference; the solver only uses the cost attribute specified by the Impedance attribute parameter  to calculate the route.</para>
+						<para>For each cost attribute that is accumulated, a Total_[Impedance] property is added to the routes that are output by the solver.</para>
+					</dialogReference></param><param sync="true" name="UTurn_policy" displayname="U-Turn policy" datatype="String" direction="Input" expression="UTurn_policy" type="Optional"><pythonReference>
+						<para>Restrict or permit U-turns at junctions that could occur during network traversal between stops.</para>
+						<bulletList><bullet_item>ALLOW_UTURNS—U-turns are permitted at junctions with any number of adjacent edges.</bullet_item><bullet_item>NO_UTURNS—U-turns are prohibited at all junctions. Note, however, that U-turns are still permitted at network locations even when this setting is chosen; however, you can set the individual network locations' CurbApproach property to prohibit U-turns.</bullet_item><bullet_item>ALLOW_DEAD_ENDS_ONLY—U-turns are prohibited at all junctions, except those that have only one adjacent edge (a dead end). </bullet_item><bullet_item>ALLOW_DEAD_ENDS_AND_INTERSECTIONS_ONLY—U-turns are prohibited at junctions where exactly two adjacent edges meet but are permitted at intersections (any junction with three or more adjacent edges) or dead ends. (junctions with exactly one adjacent edge) </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Restrict or permit U-turns at junctions that could occur during network traversal between stops.</para>
+						<bulletList><bullet_item>ALLOW_UTURNS—U-turns are permitted at junctions with any number of adjacent edges.</bullet_item><bullet_item>NO_UTURNS—U-turns are prohibited at all junctions. Note, however, that U-turns are still permitted at network locations even when this setting is chosen; however, you can set the individual network locations' CurbApproach property to prohibit U-turns.</bullet_item><bullet_item>ALLOW_DEAD_ENDS_ONLY—U-turns are prohibited at all junctions, except those that have only one adjacent edge (a dead end). </bullet_item><bullet_item>ALLOW_DEAD_ENDS_AND_INTERSECTIONS_ONLY—U-turns are prohibited at junctions where exactly two adjacent edges meet but are permitted at intersections (any junction with three or more adjacent edges) or dead ends. (junctions with exactly one adjacent edge) </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="restriction_attribute_name" displayname="Restrictions" datatype="String" direction="Input" expression="[restriction_attribute_name,...]" type="Optional"><pythonReference>
+						<para>List of restriction attributes to apply during the analysis.</para>
+					</pythonReference><dialogReference>
+						<para>List of restriction attributes to apply during the analysis.</para>
+					</dialogReference></param><param sync="true" name="hierarchy" displayname="Use Hierarchy in analysis" datatype="Boolean" direction="Input" expression="hierarchy" type="Optional"><pythonReference>
+						<bulletList><bullet_item>USE_HIERARCHY— Use the hierarchy attribute for the analysis. Using a hierarchy results in the solver preferring higher-order edges to lower-order edges. Hierarchical solves are faster, and they can be used to simulate the preference of a driver who chooses to travel on freeways over local roads when possible—even if that means a longer trip. This option is valid only if the input network dataset has a hierarchy attribute.</bullet_item><bullet_item>NO_HIERARCHY—Do not use the hierarchy attribute for the analysis. Not using a hierarchy yields an exact route for the network dataset.</bullet_item></bulletList>
+						<para>The parameter is not used if a hierarchy attribute is not defined on the network dataset used to perform the analysis. In such cases, use "#" as the parameter value. </para></pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked -- Use the hierarchy attribute for the analysis. Using a hierarchy results in the solver preferring higher-order edges to lower-order edges. Hierarchical solves are faster, and they can be used to simulate the preference of a driver who chooses to travel on freeways over local roads when possible—even if that means a longer trip. This option is enabled only if the input network dataset has a hierarchy attribute.</bullet_item>
+							<bullet_item>Unchecked -- Do not use the hierarchy attribute for the analysis. Not using a hierarchy yields an exact route for the network dataset.</bullet_item>
+						</bulletList>
+						<para>The parameter is disabled if a hierarchy attribute is not defined on the network dataset used to perform the analysis.</para></dialogReference></param><param sync="true" name="output_path_shape" displayname="Output path shape" datatype="String" direction="Input" expression="output_path_shape" type="Optional"><pythonReference>
+						<bulletList><bullet_item>NO_LINES—No shape will be generated for the output of the analysis. </bullet_item><bullet_item>STRAIGHT_LINES—The output line shapes will be straight lines connecting the solution facilities to their allocated demand points. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList><bullet_item>NO_LINES—No shape will be generated for the output of the analysis. </bullet_item><bullet_item>STRAIGHT_LINES—The output line shapes will be straight lines connecting the solution facilities to their allocated demand points. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item><para>After creating the analysis layer with this tool, you can add network analysis objects to it using the  tool, solve the analysis using the  tool, and save the results on disk using  tool. </para></bullet_item><bullet_item><para>When using this tool in geoprocessing models, if the model is run as a tool, the output network analysis layer must be made  a model parameter. Otherwise the output layer is not added to the table of contents in ArcMap.</para></bullet_item></usage><scriptExamples><scriptExample><title>MakeLocationAllocationLayer example 1 (Python window)</title>
+					<para>Execute the tool using only the required parameters</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.MakeLocationAllocationLayer_na("Transportation/Streets_ND",
+                                     "StoreLocations","Minutes")
+
+                    </code></scriptExample><scriptExample><title>MakeLocationAllocationLayer example 2 (Python window)</title>
+					<para>Execute the tool using all parameters </para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.MakeLocationAllocationLayer_na("Transportation/Streets_ND","NewStores",
+                                     "Minutes","DEMAND_TO_FACILITY",
+                                     "MAXIMIZE_ATTENDANCE",3,5,"POWER",2,"",
+                                     ["Minutes","Meters"],"ALLOW_UTURNS",
+                                     ["Oneway"],"NO_HIERARCHY","STRAIGHT_LINES")
+
+                    </code></scriptExample><scriptExample><title>MakeLocationAllocationLayer example 3 (workflow)</title>
+					<para>The following stand-alone Python script demonstrates how the MakeLocationAllocationLayer tool can be used to choose the store locations that would generate the most business
+for a retail chain.
+ </para>
+				<code xml:space="preserve"># Name: MakeLocationAllocationLayer_Workflow.py
+# Description: Choose the store locations that would generate the most business 
+#              for a retail chain. For this scenario we will perform the 
+#              location-allocation analysis using maximize attendance problem 
+#              type. 
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+try:
+    #Check out the Network Analyst extension license
+    arcpy.CheckOutExtension("Network")
+
+    #Set environment settings
+    env.workspace = "C:/data/SanFrancisco.gdb"
+    env.overwriteOutput = True
+    
+    #Set local variables
+    inNetworkDataset = "Transportation/Streets_ND"
+    outNALayer = "NewStoreLocations"
+    impedanceAttribute = "TravelTime"
+    inFacilities = "Analysis/CandidateStores"
+    inDemandPoints = "Analysis/TractCentroids"
+    outLayerFile = "C:/data/output" + "/" + outNALayer + ".lyr"
+    
+    #Create a new location-allocation layer. In this case the demand travels to
+    #the facility. We wish to find 3 potential store locations out of all the
+    #candidate store locations using the maximize attendance model.
+    arcpy.MakeLocationAllocationLayer_na(inNetworkDataset, outNALayer,
+                                         impedanceAttribute,"DEMAND_TO_FACILITY",
+                                         "MAXIMIZE_ATTENDANCE",3,5, "LINEAR")
+    
+    #Load the candidate store locations as facilities
+    arcpy.AddLocations_na(outNALayer,"Facilities",inFacilities,"","")
+    
+    #Load the tract centroids as demand points
+    arcpy.AddLocations_na(outNALayer,"Demand Points",inDemandPoints,"","")
+    
+    #Solve the location-allocation layer
+    arcpy.Solve_na(outNALayer)
+    
+    #Save the solved location-allocation layer as a layer file on disk with 
+    #relative paths
+    arcpy.SaveToLayerFile_management(outNALayer,outLayerFile,"RELATIVE")
+    
+    print "Script completed successfully"
+
+except Exception as e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "An error occured on line %i" % tb.tb_lineno
+    print str(e)
+                    </code></scriptExample></scriptExamples></tool></metadata>

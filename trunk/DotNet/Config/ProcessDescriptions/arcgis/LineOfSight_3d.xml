@@ -1,0 +1,127 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Line Of Sight (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool uses an input 2D or 3D polyline feature class along with a raster, triangulated irregular network (TIN), or terrain dataset surface to determine visibility between observer and target points.   A multipatch feature class can optionally be supplied to  participate in the visibility analysis.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D</keyword><keyword>Line</keyword><keyword>Sight</keyword><keyword>Sight Analysis</keyword><keyword>Surface</keyword><keyword>Surface Analysis</keyword><keyword>Tin</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="LineOfSight" displayname="Line Of Sight (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool uses an input 2D or 3D polyline feature class along with a raster, triangulated irregular network (TIN), or terrain dataset surface to determine visibility between observer and target points.   A multipatch feature class can optionally be supplied to  participate in the visibility analysis.</para>
+			
+		</summary><alink_name>LineOfSight_3d</alink_name><parameters><param sync="true" name="in_surface" displayname="Input Surface" datatype="TIN Layer; Raster Layer; Terrain Layer" direction="Input" expression="in_surface" type="Required"><pythonReference>
+						<para>The input raster, TIN, or terrain surface on which calculations are based.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster, TIN, or terrain surface on which calculations are based.</para>
+					</dialogReference></param><param sync="true" name="in_line_feature_class" displayname="Input Line Feature Class" datatype="Feature Layer" direction="Input" expression="in_line_feature_class" type="Required"><pythonReference>
+						<para>The input polyline feature class along which visibility is calculated. This can be a 2D or 3D feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The input line feature class along which visibility is calculated. The input lines should be simple, straight lines with only two vertices each, representing observer and target positions. The input polyline feature class can be 2D or 3D. If it's 2D, the heights for the observer and target points are interpolated from the surface with a default offset of 1 applied to each observer to raise it above the surface. If the lines are 3D, the z-values of the vertices are used directly. The tool looks to see if OffsetA and OffsetB fields exist in the feature class. If so, the values of the offsets are applied, OffsetA to the observer, and OffsetB to the target.</para>
+					</dialogReference></param><param sync="true" name="out_los_feature_class" displayname="Output Line of Sight Feature Class" datatype="Feature Class" direction="Output" expression="out_los_feature_class" type="Required"><pythonReference>
+						<para>The output line feature class along which visibility has been determined. Two attribute fields are created. VisCode indicates visibility along the line, 1 being visible and 2 not visible. TarIsVis indicates the target visibility, 0 being not visible and 1 being visible.</para>
+					</pythonReference><dialogReference>
+						<para>The output line feature class along which visibility has been determined. Two attribute fields are created. VisCode indicates visibility along the line, 1 being visible and 2 not visible. TarIsVis indicates the target visibility, 0 being not visible and 1 being visible.</para>
+					</dialogReference></param><param sync="true" name="out_obstruction_feature_class" displayname="Output Obstruction Point Feature Class" datatype="Feature Class" direction="Output" expression="out_obstruction_feature_class" type="Optional"><pythonReference>
+						<para>The output point feature class indicating the first obstruction point along the line of sight if the target is not visible.</para>
+					</pythonReference><dialogReference>
+						<para>The output point feature class indicating the first obstruction point along the line of sight if the target is not visible.</para>
+					</dialogReference></param><param sync="true" name="use_curvature" displayname="Use Curvature" datatype="Boolean" direction="Input" expression="use_curvature" type="Optional"><pythonReference>
+						<para>
+						</para>
+					
+						<para>Indicates whether the earth's curvature should be taken into consideration for the line of sight analysis.   For this option to be enabled, the surface needs to have a defined spatial reference in projected coordinates with defined z-units.</para>
+						<bulletList><bullet_item>CURVATURE—The earth's curvature will be taken into consideration.</bullet_item><bullet_item>NO_CURVATURE—The earth's curvature will not be taken into consideration. This is the default.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>
+						</para>
+					
+						<para>Indicates whether the earth's curvature should be taken into consideration for the line of sight analysis.   For this option to be enabled, the surface needs to have a defined spatial reference in projected coordinates with defined z-units.</para>
+						<bulletList>
+							<bullet_item>Unchecked—The earth's curvature will not be taken into consideration. This is the default.</bullet_item>
+							<bullet_item>Checked—The earth's curvature will be taken into consideration.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="use_refraction" displayname="Use Refraction" datatype="Boolean" direction="Input" expression="use_refraction" type="Optional"><pythonReference>
+						<para>Indicates whether atmospheric refraction should be taken into consideration when generating a  line of sight  from a functional surface.</para>
+						<bulletList><bullet_item>NO_REFRACTION— Atmospheric refraction will not be taken into consideration. This is the default.</bullet_item><bullet_item>REFRACTION—Atmospheric refraction will be taken into consideration.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether atmospheric refraction should be taken into consideration when generating a  line of sight  from a functional surface.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Atmospheric refraction will not be taken into consideration. This is the default.</bullet_item>
+							<bullet_item>Checked—Atmospheric refraction will be taken into consideration.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="refraction_factor" displayname="Refraction Factor" datatype="Double" direction="Input" expression="refraction_factor" type="Optional"><pythonReference>
+						<para>Provides a value to be used in the refraction factor. The default refraction factor is 0.13.</para>
+					</pythonReference><dialogReference>
+						<para>Provides a value to be used in the refraction factor. The default refraction factor is 0.13.</para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Double" direction="Input" expression="pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The resolution of the terrain dataset pyramid level to use for geoprocessing. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The resolution of the terrain dataset pyramid level to use for geoprocessing. The default is 0, full resolution.</para>
+					</dialogReference></param><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Optional"><pythonReference>
+						<para>
+A feature class of multipatches which may obstruct the line(s) of sight. Default is blank.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+A feature class of multipatches which may obstruct the line(s) of sight. Default is blank.
+</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The observer is the point from which visibility is determined. The target is the opposite end of the line, to which visibility is determined.</para>
+			</bullet_item><bullet_item>
+				<para>Only the endpoints of the input line are used to define observer and target.</para>
+			</bullet_item><bullet_item><para>If one or more targets are not visible, the Line Of Sight tool produces an optional output point feature class. This contains the location of the first obstruction encountered for each line whose target is not visible.</para></bullet_item><bullet_item><para>It produces an output line feature class that contains line and target visibility information.</para></bullet_item></usage><scriptExamples><scriptExample><title>Line Of Sight Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Line Of Sight
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.LineOfSight_3d("tin", "line.shp", "los.shp", "buldings_multipatch.shp", "obstruction.shp")
+                    </code></scriptExample><scriptExample><title>Line Of Sight Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Line Of Sight
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: LineOfSight Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              LineOfSight tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+inSurface = "tin"
+inLine = "line.shp"
+inObstruction = "buildings_multipatch.shp"
+# Ensure output has unique name
+outFC = arcpy.CreateUniqueName("los.shp")
+outObstruction = arcpy.CreateUniqueName("obstruction.shp")
+curv = "NO_CURVATURE"
+ref = "NO_REFRACTION"
+
+#Execute LineOfSight
+arcpy.LineOfSight_3d(inSurface, inLine, outFC, outObstruction, curv, 
+                     ref, "", "", inObstruction)
+                    </code></scriptExample></scriptExamples></tool></metadata>

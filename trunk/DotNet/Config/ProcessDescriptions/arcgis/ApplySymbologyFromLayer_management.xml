@@ -1,0 +1,75 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Apply Symbology From Layer (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool applies the symbology from a layer to the Input Layer. It can be applied to feature, raster, network analysis, and TIN layer files or layers in the ArcMap table of contents. This tool is primarily for use in scripts or ModelBuilder.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Choropleth</keyword><keyword>Classified</keyword><keyword>Color</keyword><keyword>Graduate</keyword><keyword>Legend</keyword><keyword>Lyr</keyword><keyword>Memory</keyword><keyword>Model</keyword><keyword>Symbol</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ApplySymbologyFromLayer" displayname="Apply Symbology From Layer (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>This tool applies the symbology from a layer to the Input Layer. It can be applied to feature, raster, network analysis, and TIN layer files or layers in the ArcMap table of contents. This tool is primarily for use in scripts or ModelBuilder.</para>
+		</summary><alink_name>ApplySymbologyFromLayer_management</alink_name><toolIllust type="illustration" src="ApplySymbologyFromLayer_management_h.png" alt="The Apply Symbology From Layer tool" /><parameters><param sync="true" name="in_layer" displayname="Input Layer" datatype="Feature Layer;Raster Layer; TIN Layer;Network Analysis Layer" direction="Input" expression="in_layer" type="Required"><pythonReference>
+						<para>The layer to which the symbology will be applied.</para>
+					</pythonReference><dialogReference>
+						<para>The layer to which the symbology will be applied.</para>
+					</dialogReference></param><param sync="true" name="in_symbology_layer" displayname="Symbology Layer" datatype="Feature Layer; Raster Layer;TIN Layer; Network Analysis Layer" direction="Input" expression="in_symbology_layer" type="Required"><pythonReference>
+						<para>The symbology of this layer is applied to the Input Layer.</para>
+					</pythonReference><dialogReference>
+						<para>The symbology of this layer is applied to the Input Layer.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>In model or script use, the Symbology Layer most often comes from a layer file. The  tool or the  tool can be used to create a layer to apply symbology. Feature, raster, and TIN layers can also be created by right-clicking the layer in the ArcMap table of contents and clicking Save As Layer File. The layer is then saved in the desired location.</para>
+			</bullet_item><bullet_item>
+				<para>The Symbology Layer must match the data type of the Input Layer; for example, a feature layer cannot be applied to a raster layer and vice versa.</para>
+			</bullet_item><bullet_item>
+				<para>The Symbology Layer can only be applied to features of the same geometry; for example, a point layer cannot be applied to a polygon layer.</para>
+			</bullet_item><bullet_item>
+				<para>The field in the Input Layer that will be displayed must have the same name as that of the corresponding Symbology Layer field. If this field is missing, the output data is drawn with default symbology.</para>
+				<bulletList>
+					<bullet_item>You can name a field in the Input Layer to match the Symbology Layer field name using the  tool.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item><para>3D properties such as extrusion and offset are not supported with this tool.</para></bullet_item><bullet_item>
+				<para>Symbology methods can be dynamic; for example, the symbology is updated to reflect the characteristics of the Input Layer as shown in the illustration below. In this example, the five class Natural Breaks classification method from the Symbology Layer is applied to the Input Layer and the range values are updated to reflect the Shape_Area values of the Input Layer.</para>
+				
+					
+					
+				
+				<para>The following methods are dynamic:<bulletList>
+						<bullet_item>Unique values symbology to a feature<bulletList>
+								<bullet_item>The unique values are updated to reflect the Input Layer.</bullet_item>
+								<bullet_item>If you do not want the unique values classification to be updated, then choose the &lt;all other values&gt; default symbol in the Symbology Layer.</bullet_item>
+							</bulletList></bullet_item>
+					</bulletList><bulletList>
+						<bullet_item>Graduated color symbology to a feature<bulletList>
+								<bullet_item>The range values are updated to the values of the Input Layer.</bullet_item>
+								<bullet_item>If you do not want your range output to be updated, then choose manual classification.</bullet_item>
+							</bulletList></bullet_item>
+					</bulletList><bulletList>
+						<bullet_item>Classified value rendering to a raster<bulletList>
+								<bullet_item>The range values are updated to reflect the values of the Input Layer.</bullet_item>
+								<bullet_item>If you do not want your range output to be updated, then choose manual classification.</bullet_item>
+							</bulletList></bullet_item>
+					</bulletList></para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ApplySymbologyFromLayer Example 1 (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the ApplySymbologyFromLayer function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.ApplySymbologyFromLayer_management("sf_points", "sf_points_water.lyr")
+                    </code></scriptExample><scriptExample><title>ApplySymbologyFromLayer Example 2 (Stand-alone Script)</title>
+					<para>The following stand-alone script shows how to use the ApplySymbologyFromLayer function in scripting.</para>
+				<code xml:space="preserve"># Name: ApplySym.py
+# Purpose: apply the symbology from one layer to another
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set the current workspace
+env.workspace = "C:/data"
+
+# Set layer to apply symbology to
+inputLayer = "sf_points.lyr"
+
+# Set layer that output symbology will be based on
+symbologyLayer = "water_symbols_pnt.lyr"
+
+# Apply the symbology from the symbology layer to the input layer
+arcpy.ApplySymbologyFromLayer_management (inputLayer, symbologyLayer)
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Combine (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Combines multiple rasters so that a unique output value is assigned to each unique combination of input values.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>By Cell</keyword><keyword>Combination</keyword><keyword>Combinatorial Or</keyword><keyword>For Each</keyword><keyword>Per Cell</keyword><keyword>Pixel</keyword><keyword>Unique</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Combine" displayname="Combine (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Combines multiple rasters so that a unique output value is assigned to each unique combination of input values.</para>
+		</summary><alink_name>Combine_sa</alink_name><toolIllust type="illustration" src="Combine_sa_h.png" alt="Combine illustration" /><parameters><param sync="true" name="in_rasters" displayname="Input rasters" datatype="Raster Layer" direction="Input" expression="[in_raster,...]" type="Required"><pythonReference>
+						<para>The list of input rasters to be combined.</para>
+					</pythonReference><dialogReference>
+						<para>The list of input rasters to be combined.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output combined raster. A unique integer value is assigned to each unique combination of input values.</para>
+						</pythonReference><dialogReference>
+							<para>The output combined raster. A unique integer value is assigned to each unique combination of input values.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Combine works on integer values and their associated attribute tables. If the values on the input are floating point, they will be automatically truncated, tested for uniqueness with the other input, and sent to the output attribute table.</para>
+			</bullet_item><bullet_item>
+				<para>Combine is similar to the  tool. They both assign a new number to each unique combination of input values.</para>
+			</bullet_item><bullet_item>
+				<para>No more than 20 rasters can be used as input to Combine.</para>
+			</bullet_item><bullet_item>
+				<para>If a cell location contains NoData on any of the input rasters, that location will be assigned NoData on the output.</para>
+			</bullet_item><bullet_item>
+				<para>The output raster is always of integer type.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Combine example 1 (Python window)</title>
+					<para>This example takes several input rasters in different formats (GRID, IMG, TIFF) and outputs the unique combination values as an ESRI GRID raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outCombine = Combine(["filter", "zone", "source.img", "dec.tif"])
+outCombine.save("C:/sapyexamples/output/outcombine2")
+                    </code></scriptExample><scriptExample><title>Combine example 2 (stand-alone script)</title>
+					<para>This example takes several input rasters in different formats (GRID, IMG, TIFF) and outputs the unique combination values as an ESRI GRID raster.</para>
+				<code xml:space="preserve"># Name: Combine_Ex_02.py
+# Description: Combines multiple rasters such that a unique value is
+#              assigned to each unique combination of input values
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster01 = "filter"
+inRaster02 = "zone"
+inRaster03 = "source.img"
+inRaster04 = "dec.tif"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Combine
+outCombine = Combine([inRaster01,inRaster02,inRaster03,inRaster04])
+
+# Save the output 
+outCombine.save("C:/sapyexamples/output/outcombine")
+                    </code></scriptExample></scriptExamples></tool></metadata>

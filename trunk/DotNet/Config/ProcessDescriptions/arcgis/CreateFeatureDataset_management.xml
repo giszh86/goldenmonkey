@@ -1,0 +1,77 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Feature Dataset (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a feature dataset in the output location—an existing ArcSDE, file, or personal geodatabase.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Empty</keyword><keyword>Fds</keyword><keyword>Geodatabase</keyword><keyword>Location</keyword><keyword>Make</keyword><keyword>New</keyword><keyword>Storage</keyword><keyword>Store</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateFeatureDataset" displayname="Create Feature Dataset (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a feature dataset in the output location—an existing ArcSDE, file, or personal geodatabase.</para>
+		</summary><alink_name>CreateFeatureDataset_management</alink_name><parameters><param sync="true" name="out_dataset_path" displayname="Output Location" datatype="Workspace" direction="Input" expression="out_dataset_path" type="Required"><pythonReference>
+						<para>The ArcSDE, file, or personal geodatabase in which the Output Feature Dataset will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcSDE, file, or personal geodatabase in which the Output Feature Dataset will be created.</para>
+					</dialogReference></param><param sync="true" name="out_name" displayname="Output Feature Dataset" datatype="String" direction="Input" expression="out_name" type="Required"><pythonReference>
+						<para>The name of the feature dataset to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the feature dataset to be created.</para>
+					</dialogReference></param><param sync="true" name="spatial_reference" displayname="Coordinate System" datatype="Spatial Reference" direction="Input" expression="spatial_reference" type="Optional"><pythonReference>
+						<para></para>
+						<para>The spatial reference of the output feature dataset. You can specify the spatial reference in several ways: <bulletList>
+								<bullet_item> By entering the path to a .prj file, such as C:/workspace/watershed.prj.</bullet_item>
+								<bullet_item> By referencing a feature class or feature dataset whose spatial reference you want to apply, such as C:/workspace/myproject.gdb/landuse/grassland .</bullet_item>
+								<bullet_item> By defining a spatial reference object prior to using this tool, such as sr = arcpy.SpatialReference("C:/data/Africa/Carthage.prj") which you then use as the spatial reference parameter. Refer to the stand-alone code sample below.</bullet_item>
+							</bulletList></para>
+					</pythonReference><dialogReference>
+						<para>The spatial reference of the output feature dataset. On the Spatial Reference Properties dialog you can "Select...", "Import...", or create a "New" coordinate system. To set aspects of the spatial reference, such as the xy, z, or m domains, resolutions, or tolerances, use the Environments dialog. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage></usage><scriptExamples><scriptExample><title>CreateFeature Dataset Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the CreateFeature Dataset function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/data"
+arcpy.CreateFileGDB_management("C:/output", "HabitatAnalysis.gdb")
+arcpy.CreateFeatureDataset_management("C:/output/HabitatAnalysis.gdb", "analysisresults", "C:/workspace/landuse.prj")
+                    </code></scriptExample><scriptExample><title>CreateFeature Dataset Example 2 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the CreateFeature Dataset function in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: CreateFeaturedataset _Example2.py
+# Description: Create a feature dataset 
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/data"
+
+# Set local variables
+out_dataset_path = "C:/output/HabitatAnalysis.gdb" 
+out_name = "analysisresults"
+# Creating a spatial reference object
+sr = arcpy.SpatialReference("C:/data/studyarea.prj")
+
+# Create a FileGDB for the fds
+arcpy.CreateFileGDB_management("C:/output", "HabitatAnalysis.gdb")
+
+# Execute CreateFeaturedataset 
+arcpy.CreateFeatureDataset_management(out_dataset_path, out_name, sr)
+                    </code></scriptExample></scriptExamples></tool></metadata>

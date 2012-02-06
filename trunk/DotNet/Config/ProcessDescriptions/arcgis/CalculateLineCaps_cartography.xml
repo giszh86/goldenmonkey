@@ -1,0 +1,54 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate Line Caps (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Modifies the cap type (ending style) for representation stroke symbols and stores it as an override. </para>
+			
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Butt</keyword><keyword>Calculate Line Caps</keyword><keyword>Caps</keyword><keyword>Cartography</keyword><keyword>Cul-De-Sac</keyword><keyword>Line Caps</keyword><keyword>Override</keyword><keyword>Representation</keyword><keyword>Round</keyword><keyword>Square</keyword><keyword>Symbol</keyword><keyword>Symbology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateLineCaps" displayname="Calculate Line Caps (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Modifies the cap type (ending style) for representation stroke symbols and stores it as an override. </para>
+			
+			
+		</summary><alink_name>CalculateLineCaps_cartography</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/CalculateLineCaps_cartography_v.gif" alt="Calculate line caps" /><toolIllust type="illustration" src="CalculateLineCaps_cartography_h.gif" alt="Calculate Line Caps" /><parameters><param sync="true" name="in_features" displayname="Input Features With Representations" datatype="Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature layer containing line representations.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature layer containing line representations.</para>
+					</dialogReference></param><param sync="true" name="cap_type" displayname="Cap Type" datatype="String" direction="Input" expression="cap_type" type="Optional"><pythonReference>
+						<para>Defines how the ends of representation stroke symbols are drawn. The default cap type of representation strokes is round, where the symbol is terminated with a semicircle of radius equal to stroke width is centered at the line endpoint. This tool changes cap type to BUTT or SQUARE. </para>
+						<bulletList><bullet_item>BUTT—Specifies to end the representation stroke symbol exactly where the line geometry ends. This is the default. </bullet_item><bullet_item>SQUARE—Specifies to end the representation stroke symbol with closed, square caps that extend past the endpoint of the line by half of the symbol width. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Defines how the ends of representation stroke symbols are drawn. The default cap type of representation strokes is round, where the symbol is terminated with a semicircle of radius equal to stroke width is centered at the line endpoint. This tool changes cap type to BUTT or SQUARE. </para>
+						<bulletList><bullet_item>BUTT—Specifies to end the representation stroke symbol exactly where the line geometry ends. This is the default. </bullet_item><bullet_item>SQUARE—Specifies to end the representation stroke symbol with closed, square caps that extend past the endpoint of the line by half of the symbol width. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="dangle_option" displayname="Calculate true dangles only" datatype="String" direction="Input" expression="dangle_option" type="Optional"><pythonReference>
+						<para>The Dangle parameter controls how line caps are calculated for adjoining line features that share an endpoint but are drawn with different representation symbology. </para>
+						<bulletList><bullet_item>CASED_LINE_DANGLE—Modifies the cap style for dangling lines (those not connected at their endpoints to another line) and also for the lines where a cased-line representation stroke symbol is joined at the endpoint of a single-line representation stroke symbol. This is the default. </bullet_item><bullet_item>TRUE_DANGLE—Modifies the cap style only for endpoints that are not connected to another feature. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The Dangle parameter controls how line caps are calculated for adjoining line features that share an endpoint but are drawn with different representation symbology. </para>
+						<bulletList><bullet_item>CASED_LINE_DANGLE—Modifies the cap style for dangling lines (those not connected at their endpoints to another line) and also for the lines where a cased-line representation stroke symbol is joined at the endpoint of a single-line representation stroke symbol. This is the default. </bullet_item><bullet_item>TRUE_DANGLE—Modifies the cap style only for endpoints that are not connected to another feature. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>Representation stroke symbols that are relatively wide and drawn with multiple layers to display a "cased road" effect are often joined together at their endpoints with round line caps to prevent symbol gaps appearing at sharp angles between features. However, a round end cap is generally not desirable cartographic appearance for dead-end street (dangling line features that are not connected at their endpoint to another feature.) The line cap style is generally overriden to a butt or square style in these situations. This tool detects dangles and overrides the representation cap type of the stroke symbol.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CalculateLineCaps tool Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the CalculateLineCaps tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy inport env
+env.workspace = "C:\data"
+
+arcpy.CalculateLineCaps_cartography("roads.lyr", "BUTT", "CASED_LINE_DANGLE")
+                    </code></scriptExample><scriptExample><title>CalculateLineCaps tool Example (Stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the CalculateLineCaps tool.</para>
+				<code xml:space="preserve"># Name: CalculateLineCaps_standalone_script.py
+# Description: calculates a value for the line cap property of a representation stroke layer
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+in_features = "roads.lyr"
+cap_type = "BUTT"
+dangle_option = "CASED_LINE_DANGLE"
+
+# Execute Calculate Line Caps
+arcpy.CalculateLineCaps_cartography((in_features, cap_type, dangle_option)
+                    </code></scriptExample></scriptExamples></tool></metadata>

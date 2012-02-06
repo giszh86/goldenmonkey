@@ -1,0 +1,47 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Validate Topology (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Validates a geodatabase topology.  </para><para>Validate Topology performs the following operations:<bulletList>
+			<bullet_item>Cracking and clustering of feature vertices to find features that share geometry (have common coordinates)</bullet_item>
+			<bullet_item>Inserting common coordinate vertices into features that share geometry</bullet_item>
+			<bullet_item>Running a set of integrity checks to identify any violations of the rules that have been defined for the topology</bullet_item>
+			<bullet_item>Creating an error log of potential topological errors in your feature dataset</bullet_item>
+		</bulletList></para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Bad</keyword><keyword>Break</keyword><keyword>Build</keyword><keyword>Check</keyword><keyword>Clean</keyword><keyword>Cluster</keyword><keyword>Coincident</keyword><keyword>Confirm</keyword><keyword>Crack</keyword><keyword>Error</keyword><keyword>Find</keyword><keyword>Force</keyword><keyword>Geometry</keyword><keyword>Problem</keyword><keyword>Relationship</keyword><keyword>Rule</keyword><keyword>Share</keyword><keyword>Spatial</keyword><keyword>Valid</keyword><keyword>Vertex</keyword><keyword>Vertices</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ValidateTopology" displayname="Validate Topology (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Validates a geodatabase topology.  </para><para>Validate Topology performs the following operations:<bulletList>
+			<bullet_item>Cracking and clustering of feature vertices to find features that share geometry (have common coordinates)</bullet_item>
+			<bullet_item>Inserting common coordinate vertices into features that share geometry</bullet_item>
+			<bullet_item>Running a set of integrity checks to identify any violations of the rules that have been defined for the topology</bullet_item>
+			<bullet_item>Creating an error log of potential topological errors in your feature dataset</bullet_item>
+		</bulletList></para>
+		</summary><alink_name>ValidateTopology_management</alink_name><parameters><param sync="true" name="in_topology" displayname="Input Topology" datatype="Topology" direction="Input" expression="in_topology" type="Required"><pythonReference>
+						<para>The geodatabase topology to be validated.</para>
+					</pythonReference><dialogReference>
+						<para>The geodatabase topology to be validated.</para>
+					</dialogReference></param><param sync="true" name="visible_extent" displayname="Visible Extent" datatype="Boolean" direction="Input" expression="visible_extent" type="Optional"><pythonReference>
+						<para>In ArcMap, determines whether to use the current visible extent of the map or the full extent of the topology. If run in ArcCatalog or in a Python script, the entire extent of the topology will be validated regardless of this parameter setting.</para>
+						<bulletList><bullet_item>FULL_EXTENT—The entire extent of the topology will be validated. This is the default. </bullet_item><bullet_item>VISIBLE_EXTENT—Only the current visible extent will be validated. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>In ArcMap, determines whether to use the current visible extent of the map or the full extent of the topology. If run in ArcCatalog or in a Python script, the entire extent of the topology will be validated regardless of this parameter setting.<bulletList>
+								<bullet_item>Checked—Only the current visible extent will be validated </bullet_item>
+								<bullet_item>Unchecked—The entire extent of the topology will be validated. This is the default. </bullet_item>
+							</bulletList></para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If you validate an ArcSDE geodatabase topology in ArcCatalog, the feature dataset that the topology is within must not be registered as versioned.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will only process "dirty areas".  For details on "dirty areas" see 
+				</para>
+			</bullet_item><bullet_item><para>If the tool is being used in ArcMap, the Visible Extent parameter can be used  to limit validation to the extent visible in the map display.</para></bullet_item></usage><scriptExamples><scriptExample><title>ValidateTopology stand-alone script</title>
+					<para>The following stand-alone script demonstrates how to use the ValidateTopology function.</para>
+				<code xml:space="preserve">
+
+# Name: ValidateTopology_Example.py
+# Description: Validates a topology
+# Author: ESRI
+
+import arcpy
+from arcpy import env
+
+arcpy.ValidateTopology_management("D:\Calgary\Trans.mdb\Streets\Street_Topo")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

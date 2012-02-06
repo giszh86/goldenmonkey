@@ -1,0 +1,86 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Terrain to Raster (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a terrain dataset into a raster.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Convert</keyword><keyword>Interpolation</keyword><keyword>Lidar</keyword><keyword>Linear</keyword><keyword>Natural Neighbours</keyword><keyword>Points</keyword><keyword>Raster</keyword><keyword>Terrain</keyword><keyword>Terrain Dataset</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TerrainToRaster" displayname="Terrain to Raster (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Converts a terrain dataset into a raster.</para>
+		</summary><alink_name>TerrainToRaster_3d</alink_name><parameters><param sync="true" name="in_terrain" displayname="Input Terrain" datatype="Terrain Layer" direction="Input" expression="in_terrain" type="Required"><pythonReference>
+						<para>The terrain dataset to be converted.</para>
+					</pythonReference><dialogReference>
+						<para>The terrain dataset to be converted.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output Raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Required"><pythonReference>
+						<para>The raster to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The raster to be created.</para>
+					</dialogReference></param><param sync="true" name="data_type" displayname="Output Data Type" datatype="String" direction="Input" expression="data_type" type="Optional"><pythonReference>
+						<para>The data type of the output raster. It can be either 32 bit floating point or 32 bit integer.</para>
+					</pythonReference><dialogReference>
+						<para>The data type of the output raster. It can be either 32 bit floating point or 32 bit integer.</para>
+					</dialogReference></param><param sync="true" name="method" displayname="Method" datatype="String" direction="Input" expression="method" type="Optional"><pythonReference>
+						<para>The interpolation method. The default is LINEAR.</para>
+					</pythonReference><dialogReference>
+						<para>The interpolation method. The default is LINEAR.</para>
+					</dialogReference></param><param sync="true" name="sample_distance" displayname="Sampling Distance" datatype="String" direction="Input" expression="sample_distance" type="Optional"><pythonReference>
+						<para>Controls the cellsize of the output raster. The cellsize is set in one of two ways. You can use the OBSERVERS option to specify how many cells you want on the longest side. The tool will then calculate the cellsize for you. Alternately, you can use the CELLSIZE option to give an explicit value.</para>
+					</pythonReference><dialogReference>
+						<para>Controls the cellsize of the output raster. The cellsize is set in one of two ways. You can use the OBSERVERS option to specify how many cells you want on the longest side. The tool will then calculate the cellsize for you. Alternately, you can use the CELLSIZE option to give an explicit value.</para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Double" direction="Input" expression="pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The resolution, given in z-tolerance or window size, of the pyramid level to use for conversion. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The resolution, given in z-tolerance or window size, of the pyramid level to use for conversion. The default is 0, full resolution.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Cell_size" label="Cell size"></environment></environments><usage><bullet_item>
+				<para>The cellsize parameter controls the horizontal resolution of the output raster.</para>
+			</bullet_item><bullet_item>
+				<para>The resolution parameter indicates which pyramid level of the terrain to use for conversion. Pyramid levels are defined using the z-tolerance or window size  pyramid types.  For more information on terrain pyramids see .</para>
+			</bullet_item><bullet_item>
+				<para>To extract a subset of the terrain, define the extent using the geoprocessing environment settings.</para>
+			</bullet_item><bullet_item>
+				<para>The available interpolation options are LINEAR and NATURAL_NEIGHBORS. These are TIN-based methods applied through the triangulated terrain surface. The linear option finds the triangle encompassing each cell center and applies a weighted average of the triangle's nodes to interpolate a value. The  option uses area based weights on Voronoi neighbors.</para>
+			</bullet_item><bullet_item>
+				<para>The output raster may be file based or created as a raster dataset in a geodatabase. Supported file-based formats include ESRI GRID, ERDAS IMAGINE, and TIFF. The format is determined based on the output name. If the output path references a geodatabase, then a geodatabase raster will be created. If the output resides in a normal file folder and does not include a file extension, an ESRI GRID will be produced. Use of the extensions ".img" and ".tif" will produce IMAGINE or TIFF files.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Terrain to Raster Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Terrain to Raster
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.TerrainToRaster_3d("sample.gdb/featuredataset/terrain", "terrain.img", "INT", "LINEAR", "CELLSIZE 10", 2.5)
+                    </code></scriptExample><scriptExample><title>Terrain to Raster Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Terrain to Raster
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: TerrainToRaster Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              TerrainToRaster tool.
+#              
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+inTerrain = "sample.gdb/featuredataset/terrain"
+bitType = "INT"
+method = "LINEAR"
+sampling = "CELLSIZE 10"
+pyrLvl = 2.5
+# Ensure output raster has a unique name
+outRas = arcpy.CreateUniqueName("terrain_level.img")
+
+#Execute TerrainToRaster
+arcpy.TerrainToRaster_3d(inTerrain, outRas, bitType, method, sampling, pyrLvl)
+                    </code></scriptExample></scriptExamples></tool></metadata>

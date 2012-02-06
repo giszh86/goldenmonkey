@@ -1,0 +1,66 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">GA Layer To Contour (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a feature class of coutours from a geostatiscal analysis layer.  The output feature class can be either a line feature class of contour lines or a polygon feature class of filled contours.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Export</keyword><keyword>Isoline</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GALayerToContour" displayname="GA Layer To Contour (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Creates a feature class of coutours from a geostatiscal analysis layer.  The output feature class can be either a line feature class of contour lines or a polygon feature class of filled contours.</para>
+		</summary><alink_name>GALayerToContour_ga</alink_name><parameters><param sync="true" name="in_geostat_layer" displayname="Input geostatistical layer" datatype="Geostatistical Layer" direction="Input" expression="in_geostat_layer" type="Required"><pythonReference>
+						<para>The geostatistical layer to be analyzed.</para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical layer to be analyzed.</para>
+					</dialogReference></param><param sync="true" name="contour_type" displayname="Contour type" datatype="String" direction="Input" expression="contour_type" type="Required"><pythonReference>
+						<para>Type of contour to represent the geostatistical layer.</para>
+						<bulletList><bullet_item>CONTOUR— The contour or isoline representation of the geostatistical layer. Displays the lines in either draft or presentation quality. </bullet_item><bullet_item>FILLED CONTOUR—The polygon representation of the geostatistical layer. It assumes for the graphical display that the values between contour lines are the same for all locations within the polygon. Displays the lines in either draft or presentation quality. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Type of contour to represent the geostatistical layer.</para>
+						<bulletList><bullet_item>CONTOUR— The contour or isoline representation of the geostatistical layer. Displays the lines in either draft or presentation quality. </bullet_item><bullet_item>FILLED CONTOUR—The polygon representation of the geostatistical layer. It assumes for the graphical display that the values between contour lines are the same for all locations within the polygon. Displays the lines in either draft or presentation quality. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output feature class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class will either be a polyline or a polygon, depending on the selected Contour type.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class will either be a polyline or a polygon, depending on the selected Contour type.</para>
+					</dialogReference></param><param sync="true" name="contour_quality" displayname="Countour quality" datatype="String" direction="Input" expression="contour_quality" type="Optional"><pythonReference>
+						<para>Determines the smoothness of contour line representation. </para><para></para>
+						<bulletList><bullet_item>DRAFT— The default Draft quality presents generalized version of isolines for faster display. </bullet_item><bullet_item>PRESENTATION—The Presentation option ensures more detailed isolines for the output feature class. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines the smoothness of contour line representation. </para><para></para>
+						<bulletList><bullet_item>DRAFT— The default Draft quality presents generalized version of isolines for faster display. </bullet_item><bullet_item>PRESENTATION—The Presentation option ensures more detailed isolines for the output feature class. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item><para>For data formats that support Null values, such as file and personal geodatabase feature classes, a Null value will be used to indicate that a prediction could not be made for that location or that the value showed be ignored when used as input. For data formats that do not support Null values, such as shapefiles, the value of  -1.7976931348623158e+308 is used (this is the negative of the C++ defined constant DBL_MAX)  to indicate that a prediction could not be made for that location.</para></bullet_item></usage><scriptExamples><scriptExample><title>GALayerToContour interactive window example</title>
+					<para>Export a geostatistical layer to a contour feature class.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/gapyexamples/data"
+arcpy.GALayerToContour_ga("C:/gapyexamples/data/kriging.lyr", "Contour",
+                          "C:/gapyexamples/output/krig_cont", "Presentation")
+
+                    </code></scriptExample><scriptExample><title>GALayerToContour script example</title>
+					<para>Export a geostatistical layer to a contour feature class.</para>
+				<code xml:space="preserve"># Name: GALayerToContour_Example_02.py
+# Description: Exports a geostatistical layer to contours.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inLayer = "C:/gapyexamples/data/kriging.lyr"
+contType = "Contour"
+outCont = "C:/gapyexamples/output/krig_cont"
+contQuality = "Presentation"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute GALayerToContour
+arcpy.GALayerToContour_ga(inLayer, contType, outCont, contQuality)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,67 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Pivot Table (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a new table from an input table.  The fields on the output table are based on the input pivot field.  Values in the new fields are based on the  input value field.  </para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Record</keyword><keyword>Row</keyword><keyword>Sort</keyword><keyword>Summarize</keyword><keyword>Summary</keyword><keyword>Switch</keyword><keyword>Tbl</keyword><keyword>Value</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PivotTable" displayname="Pivot Table (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a new table from an input table.  The fields on the output table are based on the input pivot field.  Values in the new fields are based on the  input value field.  </para>
+			</summary><alink_name>PivotTable_management</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/PivotTable_management_v.gif" alt="Pivot Table illustration" /><toolIllust type="illustration" src="PivotTable_management_h.gif" alt="Pivot Table illustration" /><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The table whose records will be pivoted.</para>
+					</pythonReference><dialogReference>
+						<para>The table whose records will be pivoted.</para>
+					</dialogReference></param><param sync="true" name="fields" displayname="Input Field(s)" datatype="Field" direction="Input" expression="[fields,...]" type="Required"><pythonReference><para>The fields that define records to be included in the output table.</para>
+					</pythonReference><dialogReference>
+						<para>The fields that define records to be included in the output table.</para>
+						<para>The Add Field button—used only in ModelBuilder—loads expected field(s) from the previous process into the Input Field(s) list.</para>
+					</dialogReference></param><param sync="true" name="pivot_field" displayname="Pivot Field" datatype="Field" direction="Input" expression="pivot_field" type="Required"><pythonReference>
+						<para>The field whose record values are used to generate the field names in the output table.</para>
+					</pythonReference><dialogReference>
+						<para>The field whose record values are used to generate the field names in the output table.</para>
+					</dialogReference></param><param sync="true" name="value_field" displayname="Value Field" datatype="Field" direction="Input" expression="value_field" type="Required"><pythonReference>
+						<para>The field whose values populate the pivoted fields in the output table.</para>
+					</pythonReference><dialogReference>
+						<para>The field whose values populate the pivoted fields in the output table.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>The table to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The table to be created.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool  is typically used to reduce redundant records and flatten one-to-many relationships.</para>
+			</bullet_item><bullet_item>
+				<para>If the pivot field is a numeric type, its value will be appended to its original field name in the output table.</para>
+			</bullet_item><bullet_item>
+				<para>The Input Field(s) parameter's Add Field button is used only in ModelBuilder to access and load the expected fields of a preceding process that has not yet been run into the Input Field(s) list so you can complete the Pivot Table dialog box and continue to build the model.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>PivotTable Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the PivotTable function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/data"
+arcpy.PivotTable_management("attributes.dbf", "OwnerID", "AttrTagNam", "AttrValueS", C:/output/attribPivoted.dbf)
+                    </code></scriptExample><scriptExample><title>PivotTable Example 2 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the PivotTable function in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: PivotTable_Example2.py
+# Description: Pivot the attributes table by the specified fields
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/data"
+
+# Set local variables
+in_table = "attributes.dbf"
+fields = "OwnerID"
+pivot_field = "AttrTagNam"
+value_field = "AttrValueS"
+out_table = "C:/output/attribPivot.dbf"
+
+# Execute PivotTable
+arcpy.PivotTable_management(in_table, fields, pivot_field, value_field, out_table)
+                    </code></scriptExample></scriptExamples></tool></metadata>

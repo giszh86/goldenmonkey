@@ -1,0 +1,72 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">InList (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Determines which values from the first input are contained in a set of other inputs, on a cell-by-cell basis.</para>
+			<para>For each cell, if the value of the first input raster is found in any of the list of other inputs, that value will be assigned to the output raster. If it is not found, the output cell will be NoData</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Contained</keyword><keyword>False</keyword><keyword>Include</keyword><keyword>Math</keyword><keyword>True</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="InList" displayname="InList (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Determines which values from the first input are contained in a set of other inputs, on a cell-by-cell basis.</para>
+			<para>For each cell, if the value of the first input raster is found in any of the list of other inputs, that value will be assigned to the output raster. If it is not found, the output cell will be NoData</para>
+		</summary><alink_name>InList_sa</alink_name><toolIllust type="illustration" src="InList_sa_h.png" alt="InList illustration" /><parameters><param sync="true" name="in_raster_or_constant" displayname="Input raster or constant value" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant" type="Required"><pythonReference>
+						<para>The input raster whose values will be looked for in the input list.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster whose values will be looked for in the input list.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="in_raster_or_constants" displayname="Input rasters or constant values" datatype="Raster Layer | Constant" direction="Input" expression="[in_raster_or_constant,...]" type="Required"><pythonReference>
+						<para>A list of input rasters in which the cell values from the first input will be looked for.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para></pythonReference><dialogReference>
+						<para>A list of input rasters in which the cell values from the first input will be looked for.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para></dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para> If all of the inputs are integer, the output raster will be integer. If any of the inputs are floating point, the output will be floating point.</para></bullet_item><bullet_item><para>In the list of input rasters, the order is not relevant to the outcome of this tool.</para></bullet_item></usage><scriptExamples><scriptExample><title>InList example 1 (Python window)</title>
+					<para>This example determines which cell values in the first input are found in the set of other input rasters.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outInList = InList("redlandsc1", ["redlandsc2", "redlandsc3"])
+outInList.save("C:/sapyexamples/output/outinlist.tif")
+                    </code></scriptExample><scriptExample><title>InList example 2 (stand-alone script)</title>
+					<para>This example determines which cell values in the first input are found in the set of other input rasters.</para>
+				<code xml:space="preserve"># Name: InList_Ex_02.py
+# Description: Determines which values from the first input are
+#              contained in the other inputs
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster1 = "redlandsc1"
+inRaster2 = "redlandsc2"
+inRaster3 = "redlandsc3"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute InList
+outInList = InList(inRaster1, [inRaster2, inRaster3])
+
+# Save the output 
+outInList.save("C:/sapyexamples/output/outinlist")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,102 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Feature Class Z to ASCII (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Exports 3D points, multipoints, polylines, or polygons to ASCII text files in XYZ or GENERATE format.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Convert</keyword><keyword>Export To Ascii</keyword><keyword>File</keyword><keyword>Generate</keyword><keyword>Import</keyword><keyword>Text File</keyword><keyword>Xyz</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FeatureClassZToASCII" displayname="Feature Class Z to ASCII (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Exports 3D points, multipoints, polylines, or polygons to ASCII text files in XYZ or GENERATE format.</para>
+		</summary><alink_name>FeatureClassZToASCII_3d</alink_name><parameters><param sync="true" name="in_feature_class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_feature_class" type="Required"><pythonReference>
+						<para>The feature class to export.</para>
+					</pythonReference><dialogReference>
+						<para>The 3D feature class to export. Supported types are z enabled points, multipoints, polylines, and polygons.</para>
+					</dialogReference></param><param sync="true" name="output_location" displayname="Output Location" datatype="String" direction="Input" expression="output_location" type="Required"><pythonReference>
+						<para>The folder where the file(s) will be written.</para>
+					</pythonReference><dialogReference>
+						<para>The folder where the file(s) will be written.</para>
+					</dialogReference></param><param sync="true" name="out_file" displayname="Output Text File" datatype="File | Folder" direction="Output" expression="out_file" type="Required"><pythonReference>
+						<para>The output file name. The file name is used as a template when exporting a feature class containing multiple lines or polygons to XYZ format.</para>
+					</pythonReference><dialogReference>
+						<para>The output file name.</para>
+						<para>The file name is used as a template when exporting a feature class containing lines or polygons to XYZ format. This is because the XYZ format's simplicity only supports one line or polygon per file. The restriction actually reaches to the part level, so if a feature has multiple parts, each part will be written to a separate file. The files will be given the prefix and suffix specified in the dialog box along with the OID of each feature as well as additional characters, as needed, to make each file name unique.</para>
+					</dialogReference></param><param sync="true" name="format" displayname="Output File Format" datatype="String" direction="Output" expression="format" type="Optional"><pythonReference>
+						<para>ASCII text formats for 3D feature data. These include GENERATE, XYZ, and PROFILE.</para>
+					</pythonReference><dialogReference>
+						<para>ASCII text formats for 3D feature data. These include GENERATE, XYZ, and PROFILE. The profile format will only be enabled when a polyline feature class has been enabled.</para>
+					</dialogReference></param><param sync="true" name="delimiter" displayname="Delimiter" datatype="String" direction="Output" expression="delimiter" type="Optional"><pythonReference>
+						<para>The text character used to separate numbers.</para>
+					</pythonReference><dialogReference>
+						<para>The text character used to separate numbers. They can be SPACE or COMMA delimited.</para>
+					</dialogReference></param><param sync="true" name="decimal_format" displayname="Decimal Notation" datatype="String" direction="Input" expression="decimal_format" type="Optional"><pythonReference>
+						<para>The decimal format of the output floating point values. AUTOMATIC determines how many digits are needed to preserve available precision while removing unnecessary trailing zeros. FIXED will write a specific number of digits after the decimal. The default is 3. This can be changed via the digits_after_decimal parameter.</para>
+					</pythonReference><dialogReference>
+						<para>The decimal format of the output floating point values. AUTOMATIC determines how many digits are needed to preserve available precision while removing unnecessary trailing zeros. FIXED will write a specific number of digits after the decimal. The default is 3. This can be changed via the Digits after Decimal parameter.</para>
+					</dialogReference></param><param sync="true" name="digits_after_decimal" displayname="Digits after Decimal" datatype="Long" direction="Input" expression="digits_after_decimal" type="Optional"><pythonReference>
+						<para>Used when the decimal_format is set to FIXED, this determines how many digits after the decimal are written for the floating point values written to the output file(s).</para>
+					</pythonReference><dialogReference>
+						<para>Used when the Decimal Format is set to FIXED, this determines how many digits after the decimal are written for the floating point values written to the output file(s).</para>
+					</dialogReference></param><param sync="true" name="decimal_separator" displayname="Decimal Separator" datatype="String" direction="Input" expression="decimal_separator" type="Optional"><pythonReference>
+						<para>The ASCII file separator. The default is DECIMAL_POINT.</para>
+					</pythonReference><dialogReference>
+						<para>Separator symbol used in ASCII files. The default is decimal point. Allows user to declare if decimal symbol used in file(s) is a point or comma.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool will also export polylines to a profile ASCII output format. The text file for the profile output format will contain distance for y and z for x. The profile format enables 3D data to be exported into more specialized graphing applications.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Feature Class Z to ASCII Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Feature Class Z to ASCII
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.FeatureClassZToASCII_3d("LidarPts.shp",env.workspace,"ASCII_LidarPts.txt","GENERATE","COMMA","FIXED","6", "DECIMAL_POINT")
+                    </code></scriptExample><scriptExample><title>Feature Class Z to ASCII Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Feature Class Z to ASCII
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: FeatureClassZToASCII Example
+# Description: The following stand-alone script demonstrates how to use the
+#              FeatureClassZToASCII tool to create generate files for all
+#              z-aware point features in a given workspace.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy, string
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # List all points in the target workspace
+    fcList = arcpy.ListFeatureClasses("*", "POINT")
+    if len(fcList) &gt; 0:
+        # Set Local Variables
+        outFolder = "C:/output"
+        outFormat = "GENERATE"
+        delimeter = "SPACE"
+        decimal = "FIXED"
+        digits = 3
+        dec_sep = "DECIMAL_POINT"
+        for fc in fcList:    
+            # Use Describe method to evaluate whether the feature class is z-aware
+            desc = arcpy.Describe(fc)
+            if desc.hasZ == True:
+                # Define the output file name by replacing '.shp' with _ascii.txt
+                outName = fc.replace('.shp', '') + "_ascii.txt"
+                #Execute FeatureClassZToASCII_3d
+                arcpy.FeatureClassZToASCII_3d(fc, outFolder, outName, outFormat, 
+                                              delimeter, decimal, digits, dec_sep)
+    else:
+        print "There are no feature classes in the " + env.workspace + " directory."
+
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

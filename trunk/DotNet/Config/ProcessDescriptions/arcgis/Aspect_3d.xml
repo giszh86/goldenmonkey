@@ -1,0 +1,68 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Aspect (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Derives aspect from a raster surface. The aspect identifies the downslope direction of the maximum rate of change in value from each cell to its neighbors.</para>
+			<para>Aspect can be thought of as the slope direction. The values of the output raster will be the compass direction of the aspect.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Bearing</keyword><keyword>Compass</keyword><keyword>Dem</keyword><keyword>Digital Elevation Model</keyword><keyword>Direction</keyword><keyword>Downslope</keyword><keyword>Elevation</keyword><keyword>Face</keyword><keyword>Flat</keyword><keyword>Maximum Rate Of Change</keyword><keyword>Relief</keyword><keyword>Slope Direction</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Aspect" displayname="Aspect (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Derives aspect from a raster surface. The aspect identifies the downslope direction of the maximum rate of change in value from each cell to its neighbors.</para>
+			<para>Aspect can be thought of as the slope direction. The values of the output raster will be the compass direction of the aspect.</para>
+			
+		</summary><alink_name>Aspect_3d</alink_name><toolIllust type="illustration" src="Aspect_3d_h.gif" alt="Aspect illustration" /><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input surface raster.</para></pythonReference><dialogReference>
+						<para>The input surface raster.</para></dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Required"><pythonReference>
+						<para>The output aspect raster.</para></pythonReference><dialogReference>
+						<para>The output aspect raster.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Aspect is the direction of the maximum rate of change in the z-value from each cell in a raster surface.</para>
+			</bullet_item><bullet_item>
+				<para>Aspect is expressed in positive degrees from 0 to 359.9, measured clockwise from north.</para>
+			</bullet_item><bullet_item>
+				<para>Cells in the input raster that are flat—with zero slope—are assigned an aspect of -1.</para>
+			</bullet_item><bullet_item>
+				<para>If the center cell in the immediate neighborhood (3 x 3 window) is NoData, the output is NoData.</para>
+			</bullet_item><bullet_item>
+				<para>If any neighborhood cells are NoData, they are first assigned the value of the center cell, then the aspect is computed.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Aspect example 1 (Python window)</title>
+					<para>This example creates an aspect raster from an input surface raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env  
+env.workspace = "C:/data"
+arcpy.Aspect_3d("elevation", "C:/output/outaspect.img")
+
+                    </code></scriptExample><scriptExample><title>Aspect example 2 (stand-alone script)</title>
+					<para>This example creates an aspect raster from an input surface raster.</para>
+				<code xml:space="preserve"># Name: Aspect_3d_Ex_02.py
+# Description: Derives aspect from a raster surface.
+# Requirements: 3D Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inRaster = "elevation"
+outAspect = "C:/output/outaspect2"
+
+# Check out the ArcGIS 3D Analyst extension license
+arcpy.CheckOutExtension("3D")
+
+# Execute Aspect
+arcpy.Aspect_3d(inRaster, outAspect)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

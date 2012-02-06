@@ -1,0 +1,160 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">
+Contour Annotation (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>
+Creates annotation for contour features.</para><para>The tool creates an annotation feature class with corresponding mask polygons based on input contour features.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Barrier</keyword><keyword>Create</keyword><keyword>Generate</keyword><keyword>Geodatabase</keyword><keyword>Label</keyword><keyword>Mask</keyword><keyword>Text</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="&#xA;ContourAnnotation&#xA;		" displayname="&#xA;Contour Annotation (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>
+Creates annotation for contour features.</para><para>The tool creates an annotation feature class with corresponding mask polygons based on input contour features.</para>
+		</summary><alink_name>
+ContourAnnotation
+		_cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference><para>
+The contour line  feature class for which the annotation will be created.
+</para>
+					</pythonReference><dialogReference><para>
+The contour line  feature class for which the annotation will be created.
+</para>
+					</dialogReference></param><param sync="true" name="out_geodatabase" displayname="Output Geodatabase" datatype="Workspace; Feature Dataset" direction="Input" expression="out_geodatabase" type="Required"><pythonReference>
+						<para>
+The workspace where the output feature classes will be saved. The workspace can be an existing geodatabase or an existing feature dataset. 
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The workspace where the output feature classes will be saved. The workspace can be an existing geodatabase or an existing feature dataset. 
+</para>
+					</dialogReference></param><param sync="true" name="contour_label_field" displayname="Contour Label Field" datatype="Field" direction="Input" expression="contour_label_field" type="Optional"><pythonReference>
+						<para>
+The field in the input layer attribute table upon which the annotation text will be based.</para>
+					</pythonReference><dialogReference>
+						<para>
+The field in the input layer attribute table upon which the annotation text will be based.</para>
+					</dialogReference></param><param sync="true" name="reference_scale_value" displayname="Reference Scale" datatype="Double" direction="Input" expression="reference_scale_value" type="Required"><pythonReference>
+						<para>
+Enter the scale to use as a reference for the annotation. This sets the scale to which all symbol and text sizes in the annotation will be based.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Enter the scale to use as a reference for the annotation. This sets the scale to which all symbol and text sizes in the annotation will be based.
+</para>
+					</dialogReference></param><param sync="true" name="out_layer" displayname="Output Layer Name" datatype="Group Layer" direction="Output" expression="out_layer" type="Required"><pythonReference>
+						<para>
+The group layer that will contain the contour layer, the annotation, and the mask layer. When working in ArcCatalog, you can use the Save To Layer File tool to write the output group layer to a layer file. When using ArcMap, the tool adds the group layer to the display if this option is checked in the geoprocessing options. The group layer that is created is temporary and will not persist after the session ends unless the document is saved.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The group layer that will contain the contour layer, the annotation, and the mask layer. When working in ArcCatalog, you can use the Save To Layer File tool to write the output group layer to a layer file. When using ArcMap, the tool adds the group layer to the display if this option is checked in the geoprocessing options. The group layer that is created is temporary and will not persist after the session ends unless the document is saved.
+</para>
+					</dialogReference></param><param sync="true" name="contour_color" displayname="Contour and Label Color" datatype="String" direction="Input" expression="contour_color" type="Required"><pythonReference>
+						<para>
+The color of the output contour layer and annotation features.
+</para>
+						<bulletList><bullet_item>BLACK—The output contour layer and annotation features will be drawn in black.  This is the default.</bullet_item><bullet_item>BROWN—The output contour layer and annotation features will be drawn in brown.</bullet_item><bullet_item>BLUE—The output contour layer and annotation features will be drawn in blue.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>
+The color of the output contour layer and annotation features.
+</para>
+						<bulletList><bullet_item>BLACK—The output contour layer and annotation features will be drawn in black.  This is the default.</bullet_item><bullet_item>BROWN—The output contour layer and annotation features will be drawn in brown.</bullet_item><bullet_item>BLUE—The output contour layer and annotation features will be drawn in blue.</bullet_item></bulletList></dialogReference></param><param sync="true" name="contour_type_field" displayname="Contour Type Field" datatype="Field" direction="Input" expression="contour_type_field" type="Optional"><pythonReference>
+						<para>
+The field in the input layer attribute table containing a value for the type of contour feature.  An annotation class will be created for each type value.</para>
+					</pythonReference><dialogReference>
+						<para>
+The field in the input layer attribute table containing a value for the type of contour feature.  An annotation class will be created for each type value.</para>
+					</dialogReference></param><param sync="true" name="contour_alignment" displayname="Contour Alignment" datatype="String" direction="Input" expression="contour_alignment" type="Optional"><pythonReference><para>This parameter is only available with the Maplex extension.</para>
+						<para>
+The annotation can be aligned to the contour elevations so that
+the top of the text is always placed uphill. This option allows
+the annotation to be placed upside down. The contour annotation can also be
+aligned to the page, ensuring that the text is never placed upside
+down.
+
+</para>
+						<bulletList><bullet_item>PAGE—  The annotation will be
+aligned to the page, ensuring that the text is never placed upside
+down.
+
+This is the default.</bullet_item><bullet_item>UPHILL—The annotation will be aligned to the contour elevations so that
+the top of the text is always placed uphill. This option allows
+the annotation to be placed upside down.</bullet_item></bulletList></pythonReference><dialogReference><para>This parameter is only available with the Maplex extension.</para>
+						<para>
+The annotation can be aligned to the contour elevations so that
+the top of the text is always placed uphill. This option allows
+the annotation to be placed upside down. The contour annotation can also be
+aligned to the page, ensuring that the text is never placed upside
+down.
+
+</para>
+						<bulletList><bullet_item>PAGE—  The annotation will be
+aligned to the page, ensuring that the text is never placed upside
+down.
+
+This is the default.</bullet_item><bullet_item>UPHILL—The annotation will be aligned to the contour elevations so that
+the top of the text is always placed uphill. This option allows
+the annotation to be placed upside down.</bullet_item></bulletList></dialogReference></param><param sync="true" name="enable_laddering" displayname="Enable Laddering" datatype="Boolean" direction="Input" expression="enable_laddering" type="Optional"><pythonReference><para>This parameter is only available with the Maplex extension.</para><para>Placing annotation in ladders will place the text so it appears to
+step up and step down the contours in a straight  path.
+These ladders will run from the top of a hill to the bottom, will
+not cross each other, will belong to a single slope, and will not
+cross any other slope.
+</para><bulletList><bullet_item>ENABLE_LADDERING—Annotation will step up and down the contours in a straight path.</bullet_item><bullet_item>NOT_ENABLE_LADDERING—Annotation will not be placed up and down the contours in a straight path.  This is the default.</bullet_item></bulletList></pythonReference><dialogReference><para>This parameter is only available with the Maplex extension.  </para>
+						<para>
+Placing annotation in ladders will place the text so it appears to
+step up and step down the contours in a straight  path.
+These ladders will run from the top of a hill to the bottom, will
+not cross each other, will belong to a single slope, and will not
+cross any other slope.
+<bulletList><bullet_item>Checked—Annotation will step up and down the contours in a straight path.</bullet_item><bullet_item>Unchecked—Annotation will not be placed up and down the contours in a straight path.  This is the default.</bullet_item></bulletList></para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Reference_scale" label="Reference scale">
+					</environment></environments><usage><bullet_item><para> The output of this tool is a group layer.  The group layer will contain the input contour features, the annotation layer, and the mask polygons.</para></bullet_item><bullet_item><para>An existing group layer will be overwritten if the same layer name is specified and if you explicitly state that overwriting outputs is allowed.</para></bullet_item><bullet_item>
+				<para>When working in ArcCatalog or ModelBuilder, you can use the  tool to write the output group layer to a layer file. When using ArcMap, the tool adds the group layer to the display if this option is checked in the geoprocessing options. The group layer that is created is temporary and will not persist after the session ends unless the document is saved.</para></bullet_item><bullet_item><para>Group layers created in ArcCatalog cannot be used in ArcMap unless they are saved to a layer file using the  tool.</para></bullet_item><bullet_item><para>Annotation feature classes will not be overwritten if the tool is run multiple times on a single contour feature class. In this case, a number will be added to the annotation feature class  (e.g., ContourAnno, ContourAnno_1, and so on).</para>
+			</bullet_item><bullet_item><para>Each mask will be created with a two-point margin around the annotation feature and a mask type of exact simplified, meaning that the mask will be a generalized polygon representing the exact shape of the annotation.</para></bullet_item><bullet_item><para>There are three choices for the color of the contour layer and output annotation: black, brown, and blue.</para></bullet_item><bullet_item><para>Contours that have been created using the  tool contain a Type field.    The Type field contains one or more of the following values:     1 for contours
+     2 for indexed contours
+     3 for explicit contours </para><para>This Type field can be used as input for the Contour Type Field parameter.   A separate annotation class will be created for annotation of each type.</para></bullet_item></usage><scriptExamples><scriptExample><title>ContourAnnotation Example (Python Window)</title><para>The following stand-alone script demonstrates how to use the ContourAnnotation function.</para><code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace = "C:/data/data.gdb"
+arcpy.ContourAnnotation_cartography("Contours", "C:/data/data.gdb", "Contour", 50000, "ContourGroupLayer", "BLACK", 
+"NONE", "PAGE", "")
+                    </code></scriptExample><scriptExample><title>ContourAnnotation Example2 (workflow script)</title><para>This sample executes the ContourWithBarriers command and uses the output from that tool as input into the ContourAnnotation tool.</para><code xml:space="preserve"># Name: ContourAnnotation_Example2.py
+# Description: Create a contour with barriers feature class and then create annotation for the contours.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/data/data.gdb"
+
+# Set local variables
+inRaster = "elevation"
+inBarrier = "ridges"
+inTextFile = ""
+explicitValues = "NO_EXPLICIT_VALUES_ONLY"
+contourInterval = 200
+indexInterval = 1000
+contourList = [1500, 3000]
+baseContour = 0
+outContours = "C:/data/data.gdb/outcontourwithbarriers"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ContourWithBarriers
+arcpy.sa.ContourWithBarriers(inRaster, outContours, inBarrier, "POLYLINES", inTextFile,
+                             explicitValues, baseContour, contourInterval, indexInterval, contourList, "")
+
+# Set local variables
+inFeatures = "C:/data/data.gdb/outcontourwithbarriers"
+inWorkspace = "C:/data/data.gdb"
+LabelField = "Contour"
+RefScaleValue = 50000
+outLayer = "Contours"
+Color = "BROWN"
+TypeField = "Type"
+Alignment = "PAGE"
+Laddering = "NOT_ENABLE_LADDERING"
+
+# Execute ContourAnnotation
+arcpy.ContourAnnotation_cartography(inFeatures, inWorkspace, LabelField, RefScaleValue, outLayer, Color,  
+                                     TypeField, Alignment, Laddering)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,69 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Convert Spatial Weights Matrix to Table (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a binary spatial weights matrix file (.swm) to a table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Copy</keyword><keyword>Dbase</keyword><keyword>Dbf</keyword><keyword>Export</keyword><keyword>File</keyword><keyword>Gdb</keyword><keyword>Geodatabase</keyword><keyword>Import</keyword><keyword>Info</keyword><keyword>Personal</keyword><keyword>Swm</keyword><keyword>Turn</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ConvertSpatialWeightsMatrixtoTable" displayname="Convert Spatial Weights Matrix to Table (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Converts a binary spatial weights matrix file (.swm) to a table.</para>
+		</summary><alink_name>ConvertSpatialWeightsMatrixtoTable_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/ConvertSpatialWeightsMatrixtoTable_stats_v.png" alt="Swm to DBF conversion" /><toolIllust type="illustration" src="ConvertSpatialWeightsMatrixtoTable_stats_h.png" alt="Swm to DBF conversion" /><parameters><param sync="true" name="Input_Spatial_Weights_Matrix_File" displayname="Input Spatial Weights Matrix File" datatype="File" direction="Input" expression="Input_Spatial_Weights_Matrix_File" type="Required"><pythonReference>
+						<para>The full pathname for the spatial weights matrix file (.swm) you want to convert.</para>
+					</pythonReference><dialogReference>
+						<para>The full pathname for the spatial weights matrix file (.swm) you want to convert.</para>
+					</dialogReference></param><param sync="true" name="Output_Table" displayname="Output Table" datatype="Table" direction="Output" expression="Output_Table" type="Required"><pythonReference>
+						<para>A full pathname to the table you want to create.</para>
+					</pythonReference><dialogReference>
+						<para>A full pathname to the table you want to create.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>This tool allows you to edit a spatial weights matrix file, if necessary: <bulletList>
+						<bullet_item>Create a spatial weights matrix file using the  or  tool.</bullet_item>
+						<bullet_item>Convert the resultant spatial weights matrix file to a table using this tool. </bullet_item>
+						<bullet_item>Edit the table and modify the spatial relationships as desired. </bullet_item>
+						<bullet_item>Use the  tool to convert the modified table back to the binary  format.</bullet_item>
+					</bulletList></para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Convert Spatial Weights Matrix to Table Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Convert Spatial Weights Matrix to Table tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "c:/data"
+arcpy.ConvertSpatialWeightsMatrixtoTable_stats("euclidean6Neighs.swm","euclidean6Neighs.dbf")
+                    </code></scriptExample><scriptExample><title>Convert Spatial Weights Matrix to Table Example (Stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the Convert Spatial Weights Matrix to Table tool.</para>
+				<code xml:space="preserve"># Create a Spatial Weights Matrix based on Network Data 
+
+# Import system modules
+import arcpy
+
+# Set the geoprocessor object property to overwrite existing output
+arcpy.gp.overwriteOutput = True
+
+# Local variables...
+workspace = r"C:\Data\USCounties\US"
+
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.env.workspace = workspace
+
+    # Create Spatial Weights Matrix 
+    # Process: Generate Spatial Weights Matrix... 
+    swm = arcpy.GenerateSpatialWeightsMatrix_stats("USCounties.shp", "MYID",
+                        "euclidean6Neighs.swm",
+                        "K_NEAREST_NEIGHBORS",
+                        "#", "#", "#", 6) 
+
+    # Dump Spatial Weights to Database Table
+    # Process: Convert Spatial Weights Matrix to Table...       
+    dbf = arcpy.ConvertSpatialWeightsMatrixtoTable_stats("euclidean6Neighs.swm",
+                        "euclidean6Neighs.dbf")
+
+    # Now you can edit the spatial weights (add, subtract and alter
+    # neighbors and weights)
+
+    # Read weights from table back into Spatial Weights Matrix format
+    # Process: Generate Spatial Weights Matrix... 
+    swm = arcpy.GenerateSpatialWeightsMatrix_stats("USCounties.shp", "MYID",
+                        "euclidean6Neighs.swm",
+                        "CONVERT_TABLE",
+                        "#", "#", "#",
+                        "#", "#", "#",
+                        "euclidean6Neighs.dbf") 
+
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

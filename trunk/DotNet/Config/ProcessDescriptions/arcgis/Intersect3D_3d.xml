@@ -1,0 +1,63 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Intersect 3D  (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Computes the geometric intersection of two volumes defined by closed multipatch features, based upon the geometric intersection of their patches. Features or portions of features which overlap in the two layers and/or feature classes will be written to the Output Feature Class. </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Analysis</keyword><keyword>3D Features</keyword><keyword>3D Geometry</keyword><keyword>3D Set Operators</keyword><keyword>Closed Multipatch</keyword><keyword>Multipatch</keyword><keyword>Set Operators</keyword><keyword>Solids</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" Intersect3D " displayname=" Intersect 3D  (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para> Computes the geometric intersection of two volumes defined by closed multipatch features, based upon the geometric intersection of their patches. Features or portions of features which overlap in the two layers and/or feature classes will be written to the Output Feature Class. </para>
+			
+		</summary><alink_name> Intersect3D _3d</alink_name><parameters><param sync="true" name="in_feature_class_1" displayname="Input Multipatch Features" datatype="Feature Layer" direction="Input" expression="in_feature_class_1" type="Required"><pythonReference>
+						<para> The first set of multipatch features. </para>
+					</pythonReference><dialogReference>
+						<para> The first set of multipatch features. </para>
+					</dialogReference></param><param sync="true" name="in_feature_class_2" displayname="Input Multipatch Features" datatype="Feature Layer" direction="Input" expression="in_feature_class_2" type="Optional"><pythonReference>
+						<para> An optional second set of multipatch features to be intersected with the first. </para>
+					</pythonReference><dialogReference>
+						<para> An optional second set of multipatch features to be intersected with the first. </para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Input" expression="out_feature_class" type="Required"><pythonReference>
+						<para> The feature class to be created where the resulting features will be written. </para>
+					</pythonReference><dialogReference>
+						<para> The feature class to be created where the resulting features will be written. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para> Requires two input feature classes or layers, which must have multipatch geometry. </para>
+			</bullet_item><bullet_item>
+				<para>Only closed multipatches will be processed. </para>
+			</bullet_item><bullet_item>
+				<para>Intersect 3D can create very complex features in the output feature class. These features may cause display problems and/or have poor performance when displayed. </para>
+			</bullet_item><bullet_item>
+				<para>All attributes of the input features will be lost. </para>
+			</bullet_item><bullet_item><para>Intersect 3D is a 3D set operator as part of the  3D Features toolset. See  for more information on what set operators are and how to use them.</para></bullet_item></usage><scriptExamples><scriptExample><title>Intersect 3D Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Intersect 3D
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+env.workspace = "C:/data"
+arcpy.Intersect3D_3d("inMultipatch1.shp", "outMultipatch.shp", "inMultipatch2.shp")
+                    </code></scriptExample><scriptExample><title>Intersect 3D Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Intersect 3D
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: Intersect3D Example
+# Description: The following stand-alone script demonstrates how to use the
+#              Intersect3D tool
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+inMP1 = "Boston_MP_Small.shp"
+inMP2 = "Boston_MP.shp"
+# Ensure output has a unique name
+outMP = arcpy.CreateUniqueName("Intersect.shp")
+
+# Execute Intersect 3D
+arcpy.Intersect3D_3d(inMP1, outMP, inMP2)
+
+del arcpy, inMP1, inMP2, outMP
+                    </code></scriptExample></scriptExamples></tool></metadata>

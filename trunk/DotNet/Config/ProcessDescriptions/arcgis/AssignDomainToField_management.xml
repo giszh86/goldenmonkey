@@ -1,0 +1,90 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Assign Domain to Field (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Sets the domain for a particular field and, optionally, for a subtype. If no subtype is specified, the domain is only assigned to the specified field.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Constrain</keyword><keyword>Designate</keyword><keyword>Field</keyword><keyword>Integrity</keyword><keyword>Limit</keyword><keyword>Match</keyword><keyword>Restrict</keyword><keyword>Set</keyword><keyword>Specify</keyword><keyword>Subtype</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AssignDomainToField" displayname="Assign Domain to Field (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Sets the domain for a particular field and, optionally, for a subtype. If no subtype is specified, the domain is only assigned to the specified field.</para>
+		</summary><alink_name>AssignDomainToField_management</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The name of the table or feature class containing the field that will be assigned a domain.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the table or feature class containing the field that will be assigned a domain.</para>
+					</dialogReference></param><param sync="true" name="field_name" displayname="Field Name" datatype="Field" direction="Input" expression="field_name" type="Required"><pythonReference>
+						<para>The name of the field to be assigned a domain.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the field to be assigned a domain.</para>
+					</dialogReference></param><param sync="true" name="domain_name" displayname="Domain Name" datatype="String" direction="Input" expression="domain_name" type="Required"><pythonReference>
+						<para>The name of a geodatabase domain to assign to the field name. Available domains will automatically be loaded.</para>
+					</pythonReference><dialogReference>
+						<para>The name of a geodatabase domain to assign to the field name. Available domains will automatically be loaded.</para>
+					</dialogReference></param><param sync="true" name="subtype_code" displayname="Subtype" datatype="String" direction="Input" expression="[subtype_code,...]" type="Optional"><pythonReference><para>The subtype code to be assigned a domain. </para></pythonReference><dialogReference>
+						<para>The subtype code to be assigned a domain. </para>
+						<para>The Add Value button, which is used only in ModelBuilder, allows you to add expected values so you can complete the dialog and continue to build your model.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Domain management involves the following steps:</para>
+				
+					<bullet_item>Create the domain using the  tool.</bullet_item>
+					<bullet_item>Add values to or set the range of values for the domain using the   tool or  tool.</bullet_item>
+					<bullet_item>Associate the domain with a feature class using this tool.</bullet_item>
+				
+			</bullet_item><bullet_item>
+				<para>When an attribute domain is associated with a table or feature class, an attribute validation rule is created in the database. This attribute validation rule describes and constrains the valid values of a field type.</para>
+			</bullet_item><bullet_item>
+				<para>One attribute domain can be associated with multiple fields in the same table, feature class, or subtype as well as in multiple tables and feature classes.</para>
+			</bullet_item><bullet_item>
+				<para>Feature layers or table views may be used to define the Input Table.</para>
+			</bullet_item><bullet_item>
+				<para>Workspace domains can also be managed in ArcCatalog or the Catalog window. Domains can be created and modified through the Domains tab on the Database Properties dialog box.</para>
+			</bullet_item><bullet_item>
+				<para>The Subtype parameter Add Value button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run, or its derived data does not exist, the Subtype parameter may not be populated with values. The Add Value button allows you to add expected values so you can complete the Assign Domain To Field dialog and continue to build your model.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Assign Domain to Field Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the AssignDomainToField function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.AssignDomainToField_management("montgomery.gdb/Landbase/Parcels", "ZONING_S", "ZoningFields", "1: government")
+                    </code></scriptExample><scriptExample><title>Assign Domain to Field Example 2 (Stand-alone Script)</title>
+					<para>The following script uses the AssignDomainToField function as part of a workflow to create an attribute domain, assign values to the domain, and assign the domain to a field.</para>
+				<code xml:space="preserve"># Name: MakeDomain.py
+# Description: Create an attribute domain to constrain pipe material values
+# Author: ESRI
+
+ 
+#Import system modules
+import arcpy
+from arcpy import env
+ 
+try:
+    # Set the workspace (to avoid having to type in the full path to the data every time)
+    env.workspace = "C:/data"
+ 
+    # Set local parameters
+    domName = "Material4"
+    gdb = "montgomery.gdb"
+    inFeatures = "Montgomery.gdb/Water/Distribmains"
+    inField = "Material"
+ 
+    # Process: Create the coded value domain
+    arcpy.CreateDomain_management("montgomery.gdb", domName, "Valid pipe materials", "TEXT", "CODED")
+    
+    #Store all the domain values in a dictionary with the domain code as the "key" and the 
+    #domain description as the "value" (domDict[code])
+    domDict = {"CI":"Cast iron", "DI": "Ductile iron", "PVC": "PVC", \
+                "ACP": "Asbestos concrete", "COP": "Copper"}
+    
+    # Process: Add valid material types to the domain
+    #use a for loop to cycle through all the domain codes in the dictionary
+    for code in domDict:        
+        arcpy.AddCodedValueToDomain_management(gdb, domName, code, domDict[code])
+    
+    # Process: Constrain the material value of distribution mains
+    arcpy.AssignDomainToField_management(inFeatures, inField, domName)
+ 
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

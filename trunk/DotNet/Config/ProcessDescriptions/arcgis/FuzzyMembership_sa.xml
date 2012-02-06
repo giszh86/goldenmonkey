@@ -1,0 +1,111 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Fuzzy Membership (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Transforms  the input raster   into a 0 to 1 scale indicating the strength of a membership in a set, based on a specified fuzzification algorithm.</para>
+			<para>A value of 1 indicates full membership in the fuzzy set, with membership decreasing to 0 indicating it is not a member of the fuzzy set.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Combine</keyword><keyword>Fuzzification</keyword><keyword>Logic</keyword><keyword>Memberships</keyword><keyword>Normalize</keyword><keyword>Scale</keyword><keyword>Set Theory</keyword><keyword>Site Selection</keyword><keyword>Siting</keyword><keyword>Suitability</keyword><keyword>Suitability Modeling</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FuzzyMembership" displayname=" Fuzzy Membership (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para> Transforms  the input raster   into a 0 to 1 scale indicating the strength of a membership in a set, based on a specified fuzzification algorithm.</para>
+			<para>A value of 1 indicates full membership in the fuzzy set, with membership decreasing to 0 indicating it is not a member of the fuzzy set.</para>
+		</summary><alink_name>FuzzyMembership_sa</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para> The input raster whose values will be scaled from 0 to 1.</para>
+					</pythonReference><dialogReference>
+						<para> The input raster whose values will be scaled from 0 to 1.</para>
+					</dialogReference></param><param sync="true" name="fuzzy_function" displayname="Membership type" datatype="FuzzyMembership" direction="Input" expression="fuzzy_function" type="Optional"><pythonReference>
+						<para>Specifies the algorithm used in fuzzification of the input raster.</para>
+						<para>The fuzzy classes are used to specify the type of membership.</para><para>The types of membership classes are:  <bulletList><bullet_item> FuzzyGaussian,  FuzzyLarge,  FuzzyLinear, FuzzyMSLarge, FuzzyMSSmall, FuzzyNear, and FuzzySmall.</bullet_item></bulletList></para><para>The following are the forms of the  membership classes:<bulletList>
+								<bullet_item>
+									FuzzyGaussian({midpoint},{spread})</bullet_item>
+								<bullet_item>FuzzyLarge({midpoint},{spread})</bullet_item>
+								<bullet_item>
+									FuzzyLinear({min},{max})</bullet_item>
+								<bullet_item>FuzzyMSLarge({mean_multiplier},{std_multiplier})</bullet_item>
+								<bullet_item>
+									FuzzyMSSmall({mean_multiplier},{std_multiplier})</bullet_item>
+								<bullet_item>FuzzyNear({midpoint},{spread})</bullet_item>
+								<bullet_item>
+									FuzzySmall({midpoint},{spread})</bullet_item>
+							</bulletList></para>
+					</pythonReference><dialogReference>
+						<para> Specifies the algorithm used in fuzzification of the input raster.</para><para>Certain settings for Membership type employ a Spread parameter to determine how rapidly the fuzzy membership values decrease from 1 to 0.  The default values for the spread are detailed in the table below.</para>
+						<bulletList><bullet_item>Gaussian—Assigns a membership value of 1 at the midpoint.The membership decreases to 0 for values that deviate from the midpoint according to a normal curve. Gaussian is similar to the Near function but has a more narrow spread.<bulletList><bullet_item>Midpoint—Defaults to the mean of the input raster.</bullet_item><bullet_item>Spread—Default is 0.1. Typically, the values
+vary between [0.01–1].</bullet_item></bulletList></bullet_item><bullet_item>Small—Used to indicate that small values of the input raster have high membership in the fuzzy set.Assigns a membership value of 0.5 at the midpoint.<bulletList><bullet_item>Midpoint—Defaults to the mean of the input raster.</bullet_item><bullet_item>Spread—Default is 5.</bullet_item></bulletList></bullet_item><bullet_item>Large—Used to indicate that large values of the input raster have high membership in the fuzzy set. Assigns a membership value of 0.5 at the midpoint.<bulletList><bullet_item>Midpoint—Defaults to the mean of the input raster.</bullet_item><bullet_item>Spread—Default is 5.</bullet_item></bulletList></bullet_item><bullet_item>Near—Calculates memberships for values near some intermediate value. Assigns a membership value of 1 at the midpoint. The membership decreases to 0 for values that deviate from the midpoint.<bulletList><bullet_item>Midpoint—Defaults to the mean of the input raster.</bullet_item><bullet_item>Spread—Default is 0.1. Typically, the values
+vary within the range of [0.001–1].</bullet_item></bulletList></bullet_item><bullet_item>MSLarge—Calculates membership based on the mean and standard deviation of the input data where large values have high membership. The result can be similar to the Large function, depending on how the multipliers of the mean and standard deviation are defined.<bulletList><bullet_item>Mean multiplier—Default is 1.</bullet_item><bullet_item>Standard deviation multiplier—Default is 2.</bullet_item></bulletList></bullet_item><bullet_item>MSSmall—Calculates membership based on the mean and standard deviation of the input data where small values have high membership. The result can be similar to the Small function, depending on how the multipliers of the mean and standard deviation are defined.<bulletList><bullet_item>Mean multiplier—Default is 1.</bullet_item><bullet_item>Standard deviation multiplier—Default is 2.</bullet_item></bulletList></bullet_item><bullet_item>Linear—Calculates membership based on the linear transformation of the input raster. Assigns a membership value of 0 at the minimum and a membership of 1 at the maximum.<bulletList><bullet_item>Minimum—Default is 1.</bullet_item><bullet_item>MaximumMaximum—Default is 2.</bullet_item></bulletList></bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="hedge" displayname="Hedge" datatype="String" direction="Input" expression="hedge" type="Optional"><pythonReference>
+						<para> Defining a hedge helps to modify the fuzzy membership values—for example, transforms the statement "John is old" to "John is very old."</para>
+						<bulletList><bullet_item>NONE —No hedge is applied. This is the default.</bullet_item><bullet_item>SOMEWHAT —Known as dilation or "More or Less", defined as the square root of the fuzzy membership function. The somewhat hedge  increases the fuzzy membership functions.</bullet_item><bullet_item>VERY—Also known as concentration, defined as the fuzzy membership function squared.  This hedge  decreases the fuzzy membership functions.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Defining a hedge helps to modify the fuzzy membership values—for example, transforms the statement "John is old" to "John is very old."</para>
+						<bulletList><bullet_item>NONE —No hedge is applied. This is the default.</bullet_item><bullet_item>SOMEWHAT —Known as dilation or "More or Less", defined as the square root of the fuzzy membership function. The somewhat hedge  increases the fuzzy membership functions.</bullet_item><bullet_item>VERY—Also known as concentration, defined as the fuzzy membership function squared.  This hedge  decreases the fuzzy membership functions.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para> The output will be a floating-point raster with values ranging from 0 to 1.</para></pythonReference><dialogReference>
+							<para> The output will be a floating-point raster with values ranging from 0 to 1.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment></environments><usage><bullet_item>
+				<para> This tool does not scale categorical data. To include categorical data into fuzzy overlay analysis, a preprocessing step is necessary.    You can create a model or run the following geoprocessing tools. First, use the  tool to provide a new range of values (for example, 1 to 100).     Then  the result by a factor  (for example, by100) to normalize the output values to be between 0.0 and 1.0.</para>
+			</bullet_item><bullet_item><para>Spread determines how rapidly the fuzzy membership values
+decrease from 1 to 0. The larger the value, the steeper the
+fuzzification around the midpoint.  Said another way, as the spread gets smaller, the fuzzy memberships approach 0 more slowly.  The selection of the appropriate spread value is a subjective process that is dependent on the range of the crisp values. For Gaussian and Near, the
+default value of 0.1 is a good starting point. Typically, the values
+vary within the ranges of [0.01–1] or [0.001-1], respectively. For Small
+and Large, the default value of 5 is a good starting point where,
+typically, the values vary between 1 and 10.</para><para></para></bullet_item><bullet_item>
+				<para> If it is desired to scale the fuzzy membership values from a maximum of less than 1, then the fuzzy membership values from these algorithms can always be rescaled.  For example, multiplication by 0.75 would reduce the maximum fuzzy membership value to 0.75.</para>
+			</bullet_item><bullet_item>
+				<para> The hedges implemented are Very and Somewhat. Very is also known as concentration and is defined as the fuzzy membership function squared. Somewhat is known as dilation, or "More or Less", and is the square root of the fuzzification membership function. The very and somewhat hedges decrease and increase, respectively, the fuzzy membership functions.</para>
+			</bullet_item><bullet_item>
+				<para>  Negative values are not accepted in the Small and Large membership functions.</para>
+			</bullet_item><bullet_item>
+				<para> For the Linear membership function, the input raster must be ordered data.</para><para>The minimum can be less than the maximum to create a positive slope, or greater than the maximum to create a negative slope for the transformation.</para><para>If the minimum is less than the maximum, a positive-sloped function is used for the transformation; if the minimum is less than the maximum, a negative-sloped function is used.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FuzzyMembership example 1 (Python window)</title>
+					<para>This example creates a fuzzy membership raster using the Gaussian function where elevation values closer to the midpoint (1,200 ft) have a higher membership value.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy.sa import *
+from arcpy import env
+env.workspace = "c:/sapyexamples/data"
+outFzyMember = FuzzyMembership("elevation", FuzzyGaussian(1200, 0.06))
+outFzyMember.save("c:/sapyexamples/fzymemb")
+
+                    </code></scriptExample><scriptExample><title>FuzzyMembership example 2 (stand-alone script)</title>
+					<para>This example creates a fuzzy membership raster using the Gaussian function and a spread of 0.4, where elevation values closer to the midpoint (1,000 ft) have a higher membership value.</para>
+				<code xml:space="preserve"># Name: FuzzyMembership_Ex_02.py
+# Description: Scales input raster data into values ranging from zero to one
+#     indicating the strength of a membership in a set. 
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "elevation"
+
+# Create the FuzzyGaussian algorithm object
+midpoint = 1000
+spread = 0.4
+myFuzzyAlgorithm = FuzzyGaussian(midpoint, spread)
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute FuzzyMembership
+outFuzzyMember = FuzzyMembership(inRaster, myFuzzyAlgorithm)
+
+# Save the output
+outFuzzyMember.save("c:/sapyexamples/fzymemb2")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,80 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Table To Domain (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates or updates a coded value domain with values from a table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Append</keyword><keyword>Attribute</keyword><keyword>Constrain</keyword><keyword>Create</keyword><keyword>Export</keyword><keyword>Field</keyword><keyword>Import</keyword><keyword>Integrity</keyword><keyword>Limit</keyword><keyword>Replace</keyword><keyword>Restrict</keyword><keyword>Subtype</keyword><keyword>Update</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TableToDomain" displayname="Table To Domain (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates or updates a coded value domain with values from a table.</para>
+		</summary><alink_name>TableToDomain_management</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The database table from which to derive domain values.</para>
+					</pythonReference><dialogReference>
+						<para>The database table from which to derive domain values.</para>
+					</dialogReference></param><param sync="true" name="code_field" displayname="Code Field" datatype="Field" direction="Input" expression="code_field" type="Required"><pythonReference>
+						<para>The field in the database table from which to derive domain code values.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the database table from which to derive domain code values.</para>
+					</dialogReference></param><param sync="true" name="description_field" displayname="Description Field" datatype="Field" direction="Input" expression="description_field" type="Required"><pythonReference>
+						<para>The field in the database table from which to derive domain description values.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the database table from which to derive domain description values.</para>
+					</dialogReference></param><param sync="true" name="in_workspace" displayname="Input Workspace" datatype="Workspace" direction="Input" expression="in_workspace" type="Required"><pythonReference>
+						<para>The workspace that contains the domain to be created or updated.</para>
+					</pythonReference><dialogReference>
+						<para>The workspace that contains the domain to be created or updated.</para>
+					</dialogReference></param><param sync="true" name="domain_name" displayname="Domain Name" datatype="String" direction="Input" expression="domain_name" type="Required"><pythonReference>
+						<para>The name of the domain to be created or updated.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the domain to be created or updated.</para>
+					</dialogReference></param><param sync="true" name="domain_description" displayname="Domain Description" datatype="String" direction="Input" expression="domain_description" type="Required"><pythonReference>
+						<para>The description of the domain to be created or updated. Domain descriptions of existing domains are not updated.</para>
+					</pythonReference><dialogReference>
+						<para>The description of the domain to be created or updated. Domain descriptions of existing domains are not updated.</para>
+					</dialogReference></param><param sync="true" name="update_option" displayname="Update Option" datatype="String" direction="Input" expression="update_option" type="Optional"><pythonReference>
+						<para>If the domain already exists, specifies how the domain will be updated.</para>
+						<bulletList><bullet_item>APPEND—Appends to the domain values from the database table. </bullet_item><bullet_item>REPLACE—Replaces the values in the domain with values from the database table. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>If the domain already exists, specifies how the domain will be updated.</para>
+						<bulletList><bullet_item>APPEND—Appends to the domain values from the database table. </bullet_item><bullet_item>REPLACE—Replaces the values in the domain with values from the database table. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>A domain can also be created with the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>Workspace domains can also be managed in ArcCatalog or the Catalog window. Domains can be created and modified through the Domains tab on the Database Properties dialog box.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TableToDomain Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the TableToDomain function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace =  "C:/data"
+arcpy.TableToDomain_management ("diameter.dbf", "code", "descript", "montgomery.gdb", "diameters", "Valid pipe diameters")
+                    </code></scriptExample><scriptExample><title>TableToDomain Example 2 (Stand-alone script)</title>
+					<para>This stand-alone script uses the TableToDomain function as part of a workflow.</para>
+				<code xml:space="preserve">#Name: TableToDomain.py
+# Purpose: Update an attribute domain to constrain valid pipe material values
+#Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+try:
+    # Set the workspace (to avoid having to type in the full path to the data every time)
+    env.workspace = "C:/data"
+    
+    #Set local parameters
+    domTable = "diameter.dbf"
+    codeField = "code"
+    descField = "descript"
+    dWorkspace = "Montgomery.gdb"
+    domName = "diameters"
+    domDesc = "Valid pipe diameters"
+ 
+    # Process: Create a domain from an existing table
+    arcpy.TableToDomain_management(domTable, codeField, descField, dWorkspace, domName, domDesc) 
+ 
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

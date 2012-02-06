@@ -1,0 +1,77 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Aggregate Polygons (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Combines disjoint and adjacent polygons into new area features based on a distance.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Area</keyword><keyword>Border</keyword><keyword>Boundary</keyword><keyword>Building</keyword><keyword>Cluster</keyword><keyword>Collect</keyword><keyword>Combine</keyword><keyword>Complex</keyword><keyword>Connect</keyword><keyword>Detail</keyword><keyword>Distance</keyword><keyword>Group</keyword><keyword>Join</keyword><keyword>Less</keyword><keyword>Orthogonal</keyword><keyword>Reduce</keyword><keyword>Region</keyword><keyword>Remove</keyword><keyword>Scale</keyword><keyword>Within</keyword><keyword>Zone</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AggregatePolygons" displayname="Aggregate Polygons (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Combines disjoint and adjacent polygons into new area features based on a distance.</para>
+			
+		</summary><alink_name>AggregatePolygons_arc</alink_name><toolIllust type="illustration" src="AggregatePolygons_arc_h.gif" alt="Aggregate Polygons illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage containing polygons to be aggregated.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage containing polygons to be aggregated.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The output coverage containing aggregated features as preliminary regions with a subclass AREAAGG. The output coverage name must be different from the input coverage name.</para>
+					</pythonReference><dialogReference>
+						<para>The output coverage containing aggregated features as preliminary regions with a subclass AREAAGG. The output coverage name must be different from the input coverage name.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Cell Size" datatype="Double" direction="Input" expression="cell_size" type="Required"><pythonReference>
+						<para>Sets cell size in coverage units for grid conversion. Cell size must be greater than 0.</para>
+					</pythonReference><dialogReference>
+						<para>Sets cell size in coverage units for grid conversion. Cell size must be greater than 0.</para>
+					</dialogReference></param><param sync="true" name="distance" displayname="Aggregation Distance" datatype="Double" direction="Input" expression="distance" type="Required"><pythonReference>
+						<para>Sets the aggregation distance in coverage units. A distance must be equal to or greater than the cell size.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the aggregation distance in coverage units. A distance must be equal to or greater than the cell size.</para>
+					</dialogReference></param><param sync="true" name="orthogonal_option" displayname="Preserve orthogonal shape" datatype="Boolean" direction="Input" expression="orthogonal_option" type="Optional"><pythonReference>
+						<para>Specifies the characteristic of the input features that will be preserved when constructing the aggregated boundaries.</para>
+						<bulletList><bullet_item>NON_ORTHOGONAL—Specifies natural features, such as vegetation or soil polygons, which unlikely contain orthogonal shapes. This is the default. </bullet_item><bullet_item>ORTHOGONAL—Specifies building-like features for which orthogonal shapes will be preserved and constructed. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the characteristic of the input features that will be preserved when constructing the aggregated boundaries.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Specifies natural features, such as vegetation or soil polygons, which unlikely contain orthogonal shapes. This is the default.</bullet_item>
+							<bullet_item>Checked—Specifies building-like features for which orthogonal shapes will be preserved and constructed. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool involves GRID functions and requires the Spatial Analyst extension software license.</para>
+			</bullet_item><bullet_item>
+				<para>The Input Coverage must have a polygon topology.</para>
+			</bullet_item><bullet_item>
+				<para>Due to the possibility of creating overlapping boundaries, preliminary regions are used as the resulting features. To create fully built regions from the preliminary regions, use the  tool with the POLY option on the Output Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>The output coverage will not contain any attributes from the input coverage but will have a one-to-many relationship table, output_coverage.RXP (an INFO file), that links the aggregated preliminary regions to their source polygons. The .RXP extension stands for regions (output) cross-referencing polygons (input). This table will contain two items: output_coverage# and input_coverage#. With this link, you can derive attributes for the output features. The link can become incorrect when using the Clean tool to obtain region topology with a large fuzzy tolerance that causes small regions to collapse and disappear; the output_coverage# numbers will be reordered and not match the .RXP table.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AggregatePolygons example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the AggregatePolygons tool.
+</para>
+				<code xml:space="preserve"># Name: AggregatePolygons_Example.py
+# Description: Aggregates city limits polygons into a county boundary
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "citylim"
+outCover = "c:/output/countybnd"
+cellSize = 10
+distance = 150
+orthogonalOption = "NON_ORTHOGONAL"
+
+# Execute AggregatePolygons
+arcpy.AggregatePolygons_arc(inCover, outCover, cellSize, distance, 
+                            orthogonalOption)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

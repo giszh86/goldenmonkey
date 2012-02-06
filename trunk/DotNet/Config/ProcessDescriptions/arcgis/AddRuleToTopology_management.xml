@@ -1,0 +1,50 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Rule to Topology (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds a new rule to a topology.</para>
+			<para>The rules you choose to add depend on the spatial relationships that you wish to monitor for the feature classes that participate in the topology.  </para><para>For a complete list and description of the available topology rules see Geodatabase topology rules and topology error fixes</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Area</keyword><keyword>Boundary</keyword><keyword>Coincident</keyword><keyword>Contain</keyword><keyword>Control</keyword><keyword>Cover</keyword><keyword>Dangle</keyword><keyword>End</keyword><keyword>Gap</keyword><keyword>Geometry</keyword><keyword>Inside</keyword><keyword>Interior</keyword><keyword>Intersect</keyword><keyword>Line</keyword><keyword>Node</keyword><keyword>Overlap</keyword><keyword>Part</keyword><keyword>Point</keyword><keyword>Polygon</keyword><keyword>Pseudo</keyword><keyword>Relationship</keyword><keyword>Rule</keyword><keyword>Self</keyword><keyword>Share</keyword><keyword>Single</keyword><keyword>Spatial</keyword><keyword>Touch</keyword><keyword>Valid</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddRuleToTopology" displayname="Add Rule to Topology (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Adds a new rule to a topology.</para>
+			<para>The rules you choose to add depend on the spatial relationships that you wish to monitor for the feature classes that participate in the topology.  </para><para>For a complete list and description of the available topology rules see Geodatabase topology rules and topology error fixes</para>
+		</summary><alink_name>AddRuleToTopology_management</alink_name><parameters><param sync="true" name="in_topology" displayname="Input Topology" datatype="Topology" direction="Input" expression="in_topology" type="Required"><pythonReference>
+						<para>The topology to which the new rule will be added.</para>
+					</pythonReference><dialogReference>
+						<para>The topology to which the new rule will be added.</para>
+					</dialogReference></param><param sync="true" name="rule_type" displayname="Rule Type" datatype="String" direction="Input" expression="rule_type" type="Required"><pythonReference>
+						<para>The topology rule to be added.  For a complete list of the rules and what they do, see the tool's help page.</para>
+					</pythonReference><dialogReference>
+						<para>The topology rule to be added.  For a complete list of the rules and what they do, see the tool's help page.</para>
+					</dialogReference></param><param sync="true" name="in_featureclass" displayname="Input Feature Class" datatype="Feature Class" direction="Input" expression="in_featureclass" type="Required"><pythonReference>
+						<para>The input or origin feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The input or origin feature class.</para>
+					</dialogReference></param><param sync="true" name="subtype" displayname="Input Subtype" datatype="String" direction="Input" expression="subtype" type="Optional"><pythonReference>
+						<para>The subtype for the input or origin  feature class.  Enter the subtype's description (not the code). If subtypes do not exist on the origin feature class, or you want the rule to be applied to all subtypes in the feature class leave this blank.  </para>
+					</pythonReference><dialogReference>
+						<para>The subtype for the input or origin  feature class.  Enter the subtype's description (not the code). If subtypes do not exist on the origin feature class, or you want the rule to be applied to all subtypes in the feature class leave this blank.  </para>
+					</dialogReference></param><param sync="true" name="in_featureclass2" displayname="Input Feature Class" datatype="Feature Class" direction="Input" expression="in_featureclass2" type="Optional"><pythonReference>
+						<para>The destination feature class for the topology rule.</para>
+					</pythonReference><dialogReference>
+						<para>The destination feature class for the topology rule.</para>
+					</dialogReference></param><param sync="true" name="subtype2" displayname="Input Subtype" datatype="String" direction="Input" expression="subtype2" type="Optional"><pythonReference>
+						<para>The subtype for the destination feature class.  Enter the subtype's description (not the code). If subtypes do not exist on the origin feature class, or you want the rule to be applied to all subtypes in the feature class leave this blank.</para>
+					</pythonReference><dialogReference>
+						<para>The subtype for the destination feature class.  Enter the subtype's description (not the code). If subtypes do not exist on the origin feature class, or you want the rule to be applied to all subtypes in the feature class leave this blank.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>To add a rule to a topology, the input topology cannot be registered as versioned.</para>
+			</bullet_item><bullet_item>
+				<para>You can enter the name of the subtype value to which you want a topology rule to be applied.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AddFeatureClassToTopology stand-alone script</title>
+					<para>The following stand-alone script demonstrates how to use the AddRuleToTopology function.</para>
+				<code xml:space="preserve">
+
+# Name: AddRuleToTopology_Example.py
+# Description: Adds a rule to a topology
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Any intersection of ParcelOutline (BlockLines subtype only) needs to be reviewed
+arcpy.AddRuleToTopology_management("C:/Landbase.mdb/LegalFabric/topology", "Must Not Intersect (Line)", "C:/Landbase.mdb/LegalFabric/ParcelOutline", "BlockLines", "", "", )
+                    </code></scriptExample></scriptExamples></tool></metadata>

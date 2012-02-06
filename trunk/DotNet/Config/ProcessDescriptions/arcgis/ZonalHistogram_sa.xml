@@ -1,0 +1,77 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Zonal Histogram (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Creates a table and a histogram graph that show the frequency distribution of cell values on the Value input for each unique Zone.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ZonalHistogram" displayname="Zonal Histogram (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para> Creates a table and a histogram graph that show the frequency distribution of cell values on the Value input for each unique Zone.</para>
+		</summary><alink_name>ZonalHistogram_sa</alink_name><toolIllust type="illustration" src="ZonalHistogram_sa_h.png" alt="Zonal Histogram illustration" /><parameters><param sync="true" name="in_zone_data" displayname="Input raster or feature zone data" datatype="Raster Layer | Feature Layer" direction="Input" expression="in_zone_data" type="Required"><pythonReference>
+						<para>Dataset that defines the zones.</para>
+						<para>The zones can be defined by an integer raster or a feature layer.</para></pythonReference><dialogReference>
+						<para>Dataset that defines the zones.</para>
+						<para>The zones can be defined by an integer raster or a feature layer.</para></dialogReference></param><param sync="true" name="zone_field" displayname="Zone field" datatype="Field" direction="Input" expression="zone_field" type="Required"><pythonReference><para>
+Field that holds the values that define each zone.</para><para>It can be an integer or a string field of the zone dataset.</para>
+					</pythonReference><dialogReference><para>
+Field that holds the values that define each zone.</para><para>It can be an integer or a string field of the zone dataset.</para>
+					</dialogReference></param><param sync="true" name="in_value_raster" displayname="Input value raster" datatype="Raster Layer" direction="Input" expression="in_value_raster" type="Required"><pythonReference>
+						<para> The raster values to create the histograms.</para>
+					</pythonReference><dialogReference>
+						<para> The raster values to create the histograms.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output table" datatype="Table" direction="Input" expression="out_table" type="Required"><pythonReference>
+						<para> The output table file.</para><para>The optional graph is created from the information in the  table.</para>
+					</pythonReference><dialogReference>
+						<para> The output table file.</para><para>The optional graph is created from the information in the  table.</para>
+					</dialogReference></param><param sync="true" name="out_graph" displayname="Output graph name" datatype="GPGraph" direction="Input" expression="out_graph" type="Optional"><pythonReference>
+						<para> The name of the output graph for display.</para><para>The graph is temporary.  To persist it, use the Save Graph tool.</para>
+					</pythonReference><dialogReference>
+						<para> The name of the output graph for display.</para><para>The graph is temporary.  To persist it, use the Save Graph tool.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>A zonal histogram enables you to investigate the frequency distribution of values in  one dataset within classes of another dataset. Examples include slope distribution within land use classes, rainfall distribution within elevation classes, or crime distribution by police beat.</para>
+			</bullet_item><bullet_item><para>A zone is defined as all areas in the input that have the same value.  The areas do not have to be contiguous.  Both raster and feature datasets can be used for the zone input.</para></bullet_item><bullet_item><para>The Zone field must be either integer or string type.</para></bullet_item><bullet_item><para>A zonal histogram graph is not generated by default.  To have it be created when the tool is run, specify the Output graph name.</para><para>The graph is temporary (in-memory) only.  To make a permanent version of it, use the  tool to create a .grf graph file, or  one of the other output formats available in that tool.</para></bullet_item></usage><scriptExamples><scriptExample><title>ZonalHistogram example 1 (Python window)</title><para>This example creates a zonal histogram .dbf table.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+
+outZonHisto = ZonalHistogram("zoneras", "zonfield", "valueras", znhist_tbl.dbf)
+
+
+                    </code></scriptExample><scriptExample><title>ZonalHistogram example 2 (stand-alone script)</title>
+					<para>This example creates a zonal histogram .dbf table and a graph file.</para><code xml:space="preserve"># Name: ZonalHistogram_Ex_02.py
+# Description: Creates a zonal histogram output table and
+#              a graph showing the amount of value cells 
+#              for each unique input zone. 
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inZoneData = "zonras"
+zoneField = "zonfield"
+inValueRaster = "valueras" 
+outTable = "C:/sapyexamples/output/zonehist_tbl.dbf" 
+outGraph = "zonehist_gra" 
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ZonalHistogram
+ZonalHistogram(inZoneData, zoneField, inValueRaster, outTable, outGraph)
+                    </code></scriptExample></scriptExamples></tool></metadata>

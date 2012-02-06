@@ -1,0 +1,85 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">VPF Tile Topology (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates cross-tile topology for all tiled coverages in a Vector Product Format (VPF) database library, or topology for an individual tile in a VPF library.</para>
+			<para>The tool is used for postprocessing of a coverage to Export to VPF output. For efficiency purposes, it's recommended that you build cross-tile topology only after you have converted all coverages in your VPF library from ArcInfo to VPF.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc_Vpftile</keyword><keyword>Coverage</keyword><keyword>Data Management Tools</keyword><keyword>Tile</keyword><keyword>Topology</keyword><keyword>Vpf</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="VPFTile" displayname="VPF Tile Topology (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Creates cross-tile topology for all tiled coverages in a Vector Product Format (VPF) database library, or topology for an individual tile in a VPF library.</para>
+			<para>The tool is used for postprocessing of a coverage to Export to VPF output. For efficiency purposes, it's recommended that you build cross-tile topology only after you have converted all coverages in your VPF library from ArcInfo to VPF.</para>
+			
+		</summary><alink_name>VPFTile_arc</alink_name><parameters><param sync="true" name="VPF_library" displayname="VPF Library" datatype="Folder; VPF Library" direction="Input" expression="VPF_library" type="Required"><pythonReference>
+						<para>Location of the VPF database library for which cross-tile topology is to be created.</para>
+					</pythonReference><dialogReference>
+						<para>Location of the VPF database library for which cross-tile topology is to be created.</para>
+					</dialogReference></param><param sync="true" name="sig_digits" displayname="Significant Digits" datatype="Long" direction="Input" expression="sig_digits" type="Optional"><pythonReference>
+						<para>The number of digits the software will use when trying to match node coordinates at tile boundaries. The larger the number, the smaller the search tolerance. The default value is 4.</para>
+					</pythonReference><dialogReference>
+						<para>The number of digits the software will use when trying to match node coordinates at tile boundaries. The larger the number, the smaller the search tolerance. The default value is 4.</para>
+					</dialogReference></param><param sync="true" name="VPF_standard" displayname="VPF Standard" datatype="Long" direction="Input" expression="VPF_standard" type="Optional"><pythonReference>
+						<para>The VPF Standard to be used. The VPF Standard has two ways of defining cross-tile topology.</para>
+						<bulletList><bullet_item>93—Creates cross-tile topology based on the September 30, 1993, version of the VPF Standard (MIL-STD-2407). 93 is the default option. </bullet_item><bullet_item>96—Creates cross-tile topology based on the June 28, 1996, version of the VPF Standard (MIL-STD-2407). </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The VPF Standard to be used. The VPF Standard has two ways of defining cross-tile topology.</para>
+						<bulletList><bullet_item>93—Creates cross-tile topology based on the September 30, 1993, version of the VPF Standard (MIL-STD-2407). 93 is the default option. </bullet_item><bullet_item>96—Creates cross-tile topology based on the June 28, 1996, version of the VPF Standard (MIL-STD-2407). </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="spec_cover" displayname="Specified Coverage" datatype="Folder;VPF Library" direction="Input" expression="spec_cover" type="Optional"><pythonReference>
+						<para>Specifies whether to process all the coverages in the VPF library or only the specified coverage.</para>
+						<bulletList><bullet_item>ALL—Process all the coverages in the VPF library </bullet_item><bullet_item>VPF_cover—Process only the specified coverage </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether to process all the coverages in the VPF library or only the specified coverage.</para>
+						<bulletList><bullet_item>ALL—Process all the coverages in the VPF library </bullet_item><bullet_item>VPF_cover—Process only the specified coverage </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Military Standard MIL-STD-2407 (June 28, 1996) refines the definition of cross-tile topology. The VPF Tile Topology command has been updated to meet the new specification. You may use the optional parameter to choose the 93 or 96 VPF Standard.</para>
+			</bullet_item><bullet_item>
+				<para>VPF Tile Topology works on all tiled coverages of a VPF library or a single coverage within that library. The last optional parameter, VPF_cover, allows you to select a particular coverage in which cross-tile topology should be populated. It is more efficient, however, to implement VPF Tile Topology after all coverages for a library have been converted from ARC/INFO to VPF format.</para>
+			</bullet_item><bullet_item>
+				<para>VPF Tile Topology using the 1993 VPF Standard does not handle the situation where more than two edges coincide along a tile boundary. It is impossible for VPF Tile Topology to know how to assign left-face and right-face values to each edge.</para>
+			</bullet_item><bullet_item>
+				<para>The 1996 VPF Standard requires that cross-tile topology be implemented on the connected nodes. For cross-tile to work correctly, the "first_edge" column in the connected node tables must be a Triplet type.</para>
+			</bullet_item><bullet_item>
+				<para>Since VPF Tile Topology makes modifications to the primitive file in your VPF database, it is important to understand the requirements of the VPF data before the cross-tile process can occur correctly. The most important things to remember about creating 1996 cross-tile topology are the following:<bulletList>
+						<bullet_item>If an edge touches a tile boundary, the point at which it touches must be a node.</bullet_item>
+						<bullet_item>All nodes that exist on a tile boundary must exist in the adjacent tile if such tile exists.</bullet_item>
+						<bullet_item>All edges that are coincident with an interior tile must exist in both tiles.</bullet_item>
+						<bullet_item>All tile boundary edges must be totally straight edges.</bullet_item>
+					</bulletList></para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>VPFTile example (stand-alone script)</title><para>The following stand-alone script demonstrates how to export two coverages to VPF and then create cross-tile topology for the VPF covereages.</para>
+				<code xml:space="preserve"># Name: VPFTile_Example.py
+# Description: Exports two coverages to VPF format then builds tile topology
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover1 = "coastb"
+inCover2 = "coastc"
+outFile1 = "C:/output/vpfdb/wlib/coast2"
+outFile2 = "C:/output/vpfdb/wlib/coast3"
+
+vpfLibrary = "C:/output/vpfdb"
+vpfStandard = 96
+specCover = "ALL"
+
+# Execute VPFExport
+arcpy.VPFExport_arc(inCover1, outFile1)
+arcpy.VPFExport_arc(inCover2, outFile2)
+
+# Execute VPFTile
+arcpy.VPFTile_arc(vpfLibrary, "", vpfStandard, specCover)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

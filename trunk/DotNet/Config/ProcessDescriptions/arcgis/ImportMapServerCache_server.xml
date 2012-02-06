@@ -1,0 +1,191 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Import Map Server Cache (Server)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Imports tiles from a folder on disk into a map cache. The source folder can be a child of a registered server cache directory or it can be some other folder into which tiles have been previously exported. The target map service must have the same tiling scheme and the storage format as the source map cache.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ImportMapServerCache" displayname=" Import Map Server Cache (Server)" toolboxalias="Server" softwarerestriction="none"><summary>
+			<para> Imports tiles from a folder on disk into a map cache. The source folder can be a child of a registered server cache directory or it can be some other folder into which tiles have been previously exported. The target map service must have the same tiling scheme and the storage format as the source map cache.</para>
+		</summary><alink_name>ImportMapServerCache_Server</alink_name><parameters><param sync="true" name="server_name" displayname="Host" datatype="String" direction="Input" expression="server_name" type="Required"><pythonReference>
+						<para>The ArcGIS Server machine hosting the service into which tiles will be imported.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcGIS Server machine hosting the service into which tiles will be imported.</para>
+					</dialogReference></param><param sync="true" name="object_name" displayname="Map Server" datatype="String" direction="Input" expression="object_name" type="Required"><pythonReference>
+						<para> The name of the map service into which tiles will be imported. This  map service must have a tiling scheme defined that matches the tiling scheme of the tiles being imported. </para>
+					</pythonReference><dialogReference>
+						<para> The name of the map service into which tiles will be imported. This  map service must have a tiling scheme defined that matches the tiling scheme of the tiles being imported. </para>
+					</dialogReference></param><param sync="true" name="data_frame" displayname="Data Frame" datatype="String" direction="Input" expression="data_frame" type="Required"><pythonReference>
+						<para> The source data frame for the map service.</para>
+					</pythonReference><dialogReference>
+						<para> The source data frame for the map service.</para>
+					</dialogReference></param><param sync="true" name="source_cache_dataset" displayname="Source Map Server Cache" datatype="Raster Dataset" direction="Input" expression="source_cache_dataset" type="Required"><pythonReference>
+						<para> The path to the tiles that will be imported. This is represented by a raster dataset icon in the tool user interface. If you are scripting, it is the path to the cache folder matching the data frame name. You do not have to point this parameter at a registered server cache directory; in fact, most of the time you'll be pointing at a location on disk where tiles have been previously exported.</para>
+					</pythonReference><dialogReference>
+						<para> The path to the tiles that will be imported. This is represented by a raster dataset icon in the tool user interface. If you are scripting, it is the path to the cache folder matching the data frame name. You do not have to point this parameter at a registered server cache directory; in fact, most of the time you'll be pointing at a location on disk where tiles have been previously exported.</para>
+					</dialogReference></param><param sync="true" name="import_extent" displayname="Import Extent" datatype="Extent" direction="Input" expression="import_extent" type="Optional"><pythonReference>
+						<para> A rectangular extent defining the tiles to be imported. By default the extent is set to the full extent of the map service into which you are importing. Note the optional parameter on this tool that allows you to alternatively constrain tile import to a feature class boundary.</para>
+					</pythonReference><dialogReference>
+						<para> A rectangular extent defining the tiles to be imported. By default the extent is set to the full extent of the map service into which you are importing. Note the optional parameter on this tool that allows you to alternatively constrain tile import to a feature class boundary.</para>
+					</dialogReference></param><param sync="true" name="levels" displayname="Scales" datatype="Double" direction="Input" expression="[levels,...]" type="Optional"><pythonReference>
+						<para> A list of scale levels at which tiles will be imported. </para>
+					</pythonReference><dialogReference>
+						<para> A list of scale levels at which tiles will be imported. </para>
+					</dialogReference></param><param sync="true" name="thread_count" displayname="Number of MapServer Instances" datatype="Long" direction="Input" expression="thread_count" type="Required"><pythonReference>
+						<para> Number of map service instances to use while importing the cache. By default the maximum allowable number of instances will be used (default for an ArcGIS Server service is 2). If you have more server power, you can raise the maximum allowable number of instances in the Service Properties, then raise this parameter when you run the tool.</para>
+					</pythonReference><dialogReference>
+						<para> Number of map service instances to use while importing the cache. By default the maximum allowable number of instances will be used (default for an ArcGIS Server service is 2). If you have more server power, you can raise the maximum allowable number of instances in the Service Properties, then raise this parameter when you run the tool.</para>
+					</dialogReference></param><param sync="true" name="import_feature_class" displayname="Import Extents Feature Class" datatype="Feature Class" direction="Input" expression="import_feature_class" type="Optional"><pythonReference>
+						<para> A polygon feature class that defines where tiles are imported into the cache. This is useful if you want to import tiles for irregularly shaped areas.</para>
+					</pythonReference><dialogReference>
+						<para> A polygon feature class that defines where tiles are imported into the cache. This is useful if you want to import tiles for irregularly shaped areas.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para> Use the Import Map Server Cache tool to import all or portions of a cache from one folder to another.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title>
+					<para>To Import Map Cache using default values.</para>
+				<code xml:space="preserve"># ImportMapServerCache example (stand-alone script)
+
+# Name: ImportMapServerCache.py
+# Description: The following stand-alone script demonstrates how to import map
+#               server cache from a source directory to an existing service for 
+#               the default number of scales specified
+# To Import cache tiles for the scales specified for given feature class
+
+# Requirements: os, sys, time and traceback modules
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default value.
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, datetime, traceback, string
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of input variables for map service properties
+server = "MyServer"
+service = "Rainfall"
+dataFrame = "" 
+cacheDir = "c:\\arcgisserver\\arcgiscache\\"
+importExtents = ""
+scaleValues = [500000,250000,125000,64000]
+threadCount = "2"
+sourceCache= "C:/data/destination_folder/Layers"
+specifiedFeatureClass = "C:/data/94/Portland/Portland_Metro.shp"
+
+currentTime = datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+
+# print results of the script to a report
+report = open(file,'w')
+
+# use "scaleValues[0]","scaleValues[-1]","scaleValues[0:3]"
+
+try:
+    starttime = time.clock()
+    result = arcpy.ImportMapServerCache_server(server, service, dataFrame, sourceCache,
+                                      threadCount, importExtents , scaleValues,
+                                      specifiedFeatureClass )
+    finishtime = time.clock()
+    elapsedtime = finishtime - starttime
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+
+    print "Imported Map server Cache Tiles successfully for " + service + "  from "
+    + sourceCache + " to " + cacheDir + service + "\n using "+ specifiedFeatureClass
+    + " in " + str(elapsedtime) + " sec \n on  " + arg2 
+    
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 2 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+report.close()
+
+print "Imported Map server Cache Tiles for the given feature class"
+
+
+
+
+                    </code></scriptExample><scriptExample><title></title>
+					<para>To Import Map Cache constrained along given feature class boundaries.</para>
+				<code xml:space="preserve"># ImportMapServerCache example (stand-alone script)
+
+# Name: ImportMapServerCache.py
+# Description: The following stand-alone script demonstrates how to import map
+#               server cache from a source directory to an existing service for 
+#               the default number of scales specified
+# To Import cache tiles for the scales specified for given feature class
+
+# Requirements: os, sys, time and traceback modules
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default value.
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, datetime, traceback, string
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of input variables for map service properties
+server = "MyServer"
+service = "Rainfall"
+dataFrame = "" 
+cacheDir = "c:\\arcgisserver\\arcgiscache\\"
+importExtents = ""
+scaleValues = [500000,250000,125000,64000]
+threadCount = "2"
+sourceCache= "C:/data/destination_folder/Layers"
+specifiedFeatureClass = "C:/data/94/Portland/Portland_Metro.shp"
+
+currentTime = datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+
+# print results of the script to a report
+report = open(file,'w')
+
+# use "scaleValues[0]","scaleValues[-1]","scaleValues[0:3]"
+
+try:
+    starttime = time.clock()
+    result = arcpy.ImportMapServerCache_server(server, service, dataFrame, sourceCache,
+                                      threadCount, importExtents , scaleValues,
+                                      specifiedFeatureClass )
+    finishtime = time.clock()
+    elapsedtime = finishtime - starttime
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+
+    print "Imported Map server Cache Tiles successfully for " + service + "  from "
+    + sourceCache + " to " + cacheDir + service + "\n using "+ specifiedFeatureClass
+    + " in " + str(elapsedtime) + " sec \n on  " + arg2 
+    
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 2 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+report.close()
+
+print "Imported Map server Cache Tiles for the given feature class"
+
+
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

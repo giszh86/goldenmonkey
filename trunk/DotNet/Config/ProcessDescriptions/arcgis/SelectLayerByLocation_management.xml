@@ -1,0 +1,107 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Select Layer By Location (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds, updates, or removes a layer's selection based on a spatial relationship to features in another layer.</para>
+			<para>Each features in the Input Feature Layer is evaluated against the features in the  Selecting Features layer or feature class, if the specified Relationship is met, the input feature is selected.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Boundary</keyword><keyword>Buffer</keyword><keyword>Center</keyword><keyword>Clementini</keyword><keyword>Contain</keyword><keyword>Criteria</keyword><keyword>Cross</keyword><keyword>Distance</keyword><keyword>Find</keyword><keyword>Get</keyword><keyword>Identical</keyword><keyword>Inside</keyword><keyword>Intersect</keyword><keyword>Meet</keyword><keyword>Memory</keyword><keyword>Outside</keyword><keyword>Pick</keyword><keyword>Proximity</keyword><keyword>Relational Operator</keyword><keyword>Relationship</keyword><keyword>Remove</keyword><keyword>Selection</keyword><keyword>Share</keyword><keyword>Spatial</keyword><keyword>Subset</keyword><keyword>Topological Operator</keyword><keyword>Topological Relationship</keyword><keyword>Touch</keyword><keyword>Update</keyword><keyword>Within</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SelectLayerByLocation" displayname="Select Layer By Location (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Adds, updates, or removes a layer's selection based on a spatial relationship to features in another layer.</para>
+			<para>Each features in the Input Feature Layer is evaluated against the features in the  Selecting Features layer or feature class, if the specified Relationship is met, the input feature is selected.</para>
+			
+		</summary><alink_name>SelectLayerByLocation_management</alink_name><parameters><param sync="true" name="in_layer" displayname="Input Feature Layer" datatype="Feature Layer" direction="Input" expression="in_layer" type="Required"><pythonReference>
+						<para>The layer containing the features which be evaluated against the Selecting Features.  The selection will be applied to this layer.  The input can be a layer in the ArcMap table of contents, or a layer created in ArcCatalog or in scripts using the Make Feature Layer tool.  The input cannot be the path to a feature class on disk.</para>
+					</pythonReference><dialogReference>
+						<para>The layer containing the features which be evaluated against the Selecting Features.  The selection will be applied to this layer.  The input can be a layer in the ArcMap table of contents, or a layer created in ArcCatalog or in scripts using the Make Feature Layer tool.  The input cannot be the path to a feature class on disk.</para>
+					</dialogReference></param><param sync="true" name="overlap_type" displayname="Relationship" datatype="String" direction="Input" expression="overlap_type" type="Optional"><pythonReference>
+						<para>The spatial relationship to be evaluated.</para>
+						<bulletList><bullet_item>INTERSECT—The features in the input layer will be selected if they intersect a selecting feature. This is the default. </bullet_item><bullet_item>INTERSECT_3D —The features in the input layer will be selected if they intersect a selecting feature in three-dimensional space (x, y, and z).</bullet_item><bullet_item>WITHIN_A_DISTANCE—The features in the input layer will be selected if they are within a specified distance of a selecting feature. Specify a distance in the Search Distance parameter. </bullet_item><bullet_item>WITHIN_A_DISTANCE_3D—The features in the input layer will be selected if they are within a specified distance of a selecting feature in three-dimensional space. Specify a distance in the Search Distance parameter. </bullet_item><bullet_item>CONTAINS—The features in the input layer will be selected if they contain a selecting feature. The input features must be polygons. </bullet_item><bullet_item>COMPLETELY_CONTAINS—The features in the input layer will be selected if they completely contain a selecting feature. The input features must be polygons. </bullet_item><bullet_item>CONTAINS_CLEMENTINI—This spatial relationship yeilds the same results as COMPLETELY_CONTAINS with the exception that if the selecting feature is entirely on the boundary of the input feature (no part is properly inside or outside) the feature will not be selected. CLEMENTINI defines the boundary polygon as the line separating inside and outside, the boundary of a line is defined as it's end points, and the boundary of a point is always empty.</bullet_item><bullet_item>WITHIN—The features in the input layer will be selected if they are within a selecting feature. The selecting features must be polygons.</bullet_item><bullet_item>COMPLETELY_WITHIN—The features in the input layer will be selected if they are completely within or contained by a selecting feature. The selecting features must be polygons. </bullet_item><bullet_item>WITHIN_CLEMENTINI—The result will be identical to WITHIN except if the entirety of the feature in the input layer is on the boundary of the feature in the selecting layer the feature will not be selected. CLEMENTINI defines the boundary polygon as the line separating inside and outside, the boundary of a line is defined as it's end points, and the boundary of a point is always empty.</bullet_item><bullet_item>ARE_IDENTICAL_TO—The features in the input layer will be selected if they are identical (in geometry) to a selecting feature. </bullet_item><bullet_item>BOUNDARY_TOUCHES—The features in the input layer will be selected if they have a boundary that touches a selecting feature. The input and selecting features must be lines or polygons. Additionally, the feature in the input layer must be either completely inside or outside the polygon from the selecting layer. </bullet_item><bullet_item>SHARE_A_LINE_SEGMENT_WITH—The features in the input layer will be selected if they share a line segment with a selecting feature. The input and selecting features must be lines or polygons. </bullet_item><bullet_item>CROSSED_BY_THE_OUTLINE_OF—The features in the input layer will be selected if they are crossed by the outline of a selecting feature. The input and selecting features must be lines or polygons. If polygons are used for the input or selecting layer, the polygon's boundary (line) will be used. Lines that cross at a point will be selected, not lines which share a line segment. </bullet_item><bullet_item>HAVE_THEIR_CENTER_IN—The features in the input layer will be selected if their center falls within a selecting feature. The center of the feature is calculated as follows: for polygon and multipoint the geometry's centroid is used and for line input the geometry's midpoint is used. </bullet_item><bullet_item>CONTAINED_BY—This returns the same result as WITHIN. CONTAINED_BY is maintained to support backward compatibility with models and scripts built in releases prior to ArcGIS 9.3.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The spatial relationship to be evaluated.</para>
+						<bulletList><bullet_item>INTERSECT—The features in the input layer will be selected if they intersect a selecting feature. This is the default. </bullet_item><bullet_item>INTERSECT_3D —The features in the input layer will be selected if they intersect a selecting feature in three-dimensional space (x, y, and z).</bullet_item><bullet_item>WITHIN_A_DISTANCE—The features in the input layer will be selected if they are within a specified distance of a selecting feature. Specify a distance in the Search Distance parameter. </bullet_item><bullet_item>WITHIN_A_DISTANCE_3D—The features in the input layer will be selected if they are within a specified distance of a selecting feature in three-dimensional space. Specify a distance in the Search Distance parameter. </bullet_item><bullet_item>CONTAINS—The features in the input layer will be selected if they contain a selecting feature. The input features must be polygons. </bullet_item><bullet_item>COMPLETELY_CONTAINS—The features in the input layer will be selected if they completely contain a selecting feature. The input features must be polygons. </bullet_item><bullet_item>CONTAINS_CLEMENTINI—This spatial relationship yeilds the same results as COMPLETELY_CONTAINS with the exception that if the selecting feature is entirely on the boundary of the input feature (no part is properly inside or outside) the feature will not be selected. CLEMENTINI defines the boundary polygon as the line separating inside and outside, the boundary of a line is defined as it's end points, and the boundary of a point is always empty.</bullet_item><bullet_item>WITHIN—The features in the input layer will be selected if they are within a selecting feature. The selecting features must be polygons.</bullet_item><bullet_item>COMPLETELY_WITHIN—The features in the input layer will be selected if they are completely within or contained by a selecting feature. The selecting features must be polygons. </bullet_item><bullet_item>WITHIN_CLEMENTINI—The result will be identical to WITHIN except if the entirety of the feature in the input layer is on the boundary of the feature in the selecting layer the feature will not be selected. CLEMENTINI defines the boundary polygon as the line separating inside and outside, the boundary of a line is defined as it's end points, and the boundary of a point is always empty.</bullet_item><bullet_item>ARE_IDENTICAL_TO—The features in the input layer will be selected if they are identical (in geometry) to a selecting feature. </bullet_item><bullet_item>BOUNDARY_TOUCHES—The features in the input layer will be selected if they have a boundary that touches a selecting feature. The input and selecting features must be lines or polygons. Additionally, the feature in the input layer must be either completely inside or outside the polygon from the selecting layer. </bullet_item><bullet_item>SHARE_A_LINE_SEGMENT_WITH—The features in the input layer will be selected if they share a line segment with a selecting feature. The input and selecting features must be lines or polygons. </bullet_item><bullet_item>CROSSED_BY_THE_OUTLINE_OF—The features in the input layer will be selected if they are crossed by the outline of a selecting feature. The input and selecting features must be lines or polygons. If polygons are used for the input or selecting layer, the polygon's boundary (line) will be used. Lines that cross at a point will be selected, not lines which share a line segment. </bullet_item><bullet_item>HAVE_THEIR_CENTER_IN—The features in the input layer will be selected if their center falls within a selecting feature. The center of the feature is calculated as follows: for polygon and multipoint the geometry's centroid is used and for line input the geometry's midpoint is used. </bullet_item><bullet_item>CONTAINED_BY—This returns the same result as WITHIN. CONTAINED_BY is maintained to support backward compatibility with models and scripts built in releases prior to ArcGIS 9.3.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="select_features" displayname="Selecting Features" datatype="Feature Layer" direction="Input" expression="select_features" type="Optional"><pythonReference>
+						<para>The features in the Input Feature Layer will be selected based on their relationship to the features from this layer or feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The features in the Input Feature Layer will be selected based on their relationship to the features from this layer or feature class.</para>
+					</dialogReference></param><param sync="true" name="search_distance" displayname="Search Distance" datatype="Linear unit" direction="Input" expression="search_distance" type="Optional"><pythonReference>
+						<para>This parameter is only valid if the Relationship parameter is set to one of the following: WITHIN_A_DISTANCE, WITHIN_A_DISTANCE_3D, INTERSECT, INTERSECT_3D, HAVE_THEIR_CENTER_IN, CONTAINS, WITHIN. </para>
+					</pythonReference><dialogReference>
+						<para>This parameter is only valid if the Relationship parameter is set to one of the following: WITHIN_A_DISTANCE, WITHIN_A_DISTANCE_3D, INTERSECT, INTERSECT_3D, HAVE_THEIR_CENTER_IN, CONTAINS, WITHIN. </para>
+					</dialogReference></param><param sync="true" name="selection_type" displayname="Selection type" datatype="String" direction="Input" expression="selection_type" type="Optional"><pythonReference>
+						<para>Determines how the selection will be applied to the input, and how to combine with an existing selection.  Note that there is no option here to clear an existing selection.  To clear a selection use the CLEAR_SELECTION option on the  Select Layer By Attribute Tool.</para>
+						<bulletList><bullet_item>NEW_SELECTION—The resulting selection replaces any existing selection. This is the default. </bullet_item><bullet_item>ADD_TO_SELECTION—The resulting selection is added to an existing selection if one exists. If no selection exists, this is the same as the NEW_SELECTION option. </bullet_item><bullet_item>REMOVE_FROM_SELECTION—The resulting selection is removed from an existing selection. If no selection exists, the operation will have no effect. </bullet_item><bullet_item>SUBSET_SELECTION—The resulting selection is combined with the existing selection. Only records that are common to both remain selected. </bullet_item><bullet_item>SWITCH_SELECTION—Switches the selection. All records that were selected are removed from the selection, and all records that were not selected are added to the selection. The Selecting Features and Relationship parameters are ignored when this option is selected. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines how the selection will be applied to the input, and how to combine with an existing selection.  Note that there is no option here to clear an existing selection.  To clear a selection use the CLEAR_SELECTION option on the  Select Layer By Attribute Tool.</para>
+						<bulletList><bullet_item>NEW_SELECTION—The resulting selection replaces any existing selection. This is the default. </bullet_item><bullet_item>ADD_TO_SELECTION—The resulting selection is added to an existing selection if one exists. If no selection exists, this is the same as the NEW_SELECTION option. </bullet_item><bullet_item>REMOVE_FROM_SELECTION—The resulting selection is removed from an existing selection. If no selection exists, the operation will have no effect. </bullet_item><bullet_item>SUBSET_SELECTION—The resulting selection is combined with the existing selection. Only records that are common to both remain selected. </bullet_item><bullet_item>SWITCH_SELECTION—Switches the selection. All records that were selected are removed from the selection, and all records that were not selected are added to the selection. The Selecting Features and Relationship parameters are ignored when this option is selected. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input must be a feature layer; it cannot be a feature class.</para>
+			</bullet_item><bullet_item>
+				<para>This tool works on layers in the ArcMap table of contents, and also on layers created in ArcCatalog or in scripts using the  tool. </para>
+			</bullet_item><bullet_item>
+				<para> The coordinate system in which the spatial relationship is evaluated can affect the result. Features which intersect when projected to one coordinate system may not intersect in another. Spatial relationships are evaluated  in the coordinate system of the Input Feature Layer's data source.  Setting the  will cause the evaluation of the spatial relationship to in a specified coordinate system.  The Select By Location functionality available from the Selection menu in ArcMap, ArcScene and ArcGlobe all perform the operation in the same coordinate system as the application's display.  To match this coordinate system with this tool set the output coordinate system to "same as display"). </para>
+			</bullet_item><bullet_item>
+				<para>This tool can be used to select features based on their spatial relationships to other features within the same layer. For examples see: </para>
+				<para>
+				</para>
+			</bullet_item><bullet_item>
+				<para>The  tool can be used to find the number of features selected by the Select Layer By Location tool. This can be useful for determining if any features were selected before continuing to further analysis in a script or model.</para>
+			</bullet_item><bullet_item>
+				<para>For more information about using the three-dimensional spatial relationships (INTERSECT_3D, WITHIN_A_DISTANCE_3D), see .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Select Layer By Location Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the SelectLayerByLocation function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+
+# First, make a layer from the feature class
+arcpy.MakeFeatureLayer_management("c:/kamsack.gdb/parcel", "parcel_lyr")
+
+# Then add a selection to the layer based on location to features in another feature class 
+arcpy.SelectLayerByLocation_management ("parcel_lyr", "have_their_center_in", "c:/kamsack.gdb/city_limits")
+
+
+                    </code></scriptExample><scriptExample><title>Select Layer By Location Example 2 (Stand-alone Script)</title>
+					<para>The following stand-alone script shows how to use the SelectLayerByLocation function in a workflow to extract features to a new feature class based on location and an attribute query.</para>
+				<code xml:space="preserve"># Name: ExtactFeaturesByLocationAndAttribute.py
+# Description: Extract features to a new feature class based on a Location and an attribute query
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set the workspace
+env.workspace = "c:/data/mexico.mdb"
+
+# Set local parameters
+inFeatures = "cities"
+lyrFile = "lyr"
+rel = "intersect"
+selectFeatures = "chihuahua"
+whereClause = " [population] &gt; 10000 "
+outFeatures = "c:/mexico.mdb/chihuahua_10000plus"
+
+# Put in error trapping in case an error occurs when running tool
+try:
+    # Make a layer from the feature class
+    arcpy.MakeFeatureLayer_management(inFeatures, lyrFile) 
+ 
+    # Select all cities which overlap the chihuahua polygon
+    arcpy.SelectLayerByLocation_management(lyrFile, rel, selectFeatures)
+ 
+    # Within the selection (done above) further select only those 
+    # cities which have a population &gt; 10,000   
+    arcpy.SelectLayerByAttribute_management(lyrFile, "SUBSET_SELECTION", whereClause)
+ 
+    # Write the selected features to a new featureclass
+    arcpy.CopyFeatures_management(lyrFile, outFeatures)
+ 
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys, os
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+    os.system("pause") # wait until the any key is pressed
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

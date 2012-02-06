@@ -1,0 +1,55 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Update by Alternate ID Fields (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Updates all the edge references in turn feature classes using an alternate ID field. This tool should be used after making edits to the input line features that are referenced by the turn features to synchronize the turn features based on the alternate ID fields. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Analysis</keyword><keyword>Edges</keyword><keyword>Field</keyword><keyword>Layer</keyword><keyword>Network</keyword><keyword>Network Analyst</keyword><keyword>Network Analyst Layer</keyword><keyword>Turn</keyword><keyword>Turn Feature Class</keyword><keyword>Turn Features</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="UpdateByAlternateIDFields" displayname="Update by Alternate ID Fields (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para> Updates all the edge references in turn feature classes using an alternate ID field. This tool should be used after making edits to the input line features that are referenced by the turn features to synchronize the turn features based on the alternate ID fields. </para>
+		</summary><alink_name>UpdateByAlternateIDFields_na</alink_name><parameters><param sync="true" name="in_network_dataset" displayname="Input Network Dataset" datatype="Network Dataset Layer" direction="Input" expression="in_network_dataset" type="Required"><pythonReference>
+						<para>The network dataset whose turn feature classes are being updated by their alternate ID fields.</para>
+					</pythonReference><dialogReference>
+						<para>The network dataset whose turn feature classes are being updated by their alternate ID fields.</para>
+					</dialogReference></param><param sync="true" name="alternate_ID_field_name" displayname="Alternate ID Field Name" datatype="String" direction="Input" expression="alternate_ID_field_name" type="Required"><pythonReference>
+						<para>The name of the alternate ID field on the edge feature sources of the network dataset. All edge feature sources referenced by turns must have the same name for the alternate ID field.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the alternate ID field on the edge feature sources of the network dataset. All edge feature sources referenced by turns must have the same name for the alternate ID field.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool updates the Edge#FID field values on the turn feature class based on the alternate IDs stored on each turn feature. If the turn feature classes do not reference the edges based on alternate IDs, use the  tool first to create and populate alternate ID fields. </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>UpdateByAlternateIDFields example 1 (Python window)</title>
+					<para>Execute the tool using all parameters </para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.UpdateByAlternateIDFields_na("Transportation/Streets_ND","ID")
+
+                    </code></scriptExample><scriptExample><title>UpdateByAlternateIDFields example 2 (stand-alone Python script)</title>
+					<para>The following Python script demonstrates how to use the UpdateByAlternateID Fields tool in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: UpdateByAlternateIDFields_ex02.py
+# Description: Update the edge references in the turn feature classes using
+#              alternate IDs and build the network dataset.
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+
+#Check out the Network Analyst extension license
+arcpy.CheckOutExtension("Network")
+
+#Set environment settings
+env.workspace = "C:/data/SanFrancisco.gdb"
+
+#Set local variables
+inNetworkDataset = "Transportation/Streets_ND"
+altIDFieldName = "ID"
+
+#Update the edge references in the turn features using alternate ID fields
+arcpy.UpdateByAlternateIDFields_na(inNetworkDataset, altIDFieldName)
+
+#Since we have modified the edge references for turn sources, we should rebuild 
+#the network dataset so that the turn features are correctly interpreted by the 
+#network dataset
+arcpy.BuildNetwork_na(inNetworkDataset)
+
+print "Script completed successfully."
+                    </code></scriptExample></scriptExamples></tool></metadata>

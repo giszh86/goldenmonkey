@@ -1,0 +1,70 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">
+Transpose Fields
+ (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>
+Shifts  data entered in fields or columns into rows in a table or feature class.</para><para>This tool is useful when your table or feature class stores values in field names (such as Field1, Field2, Field3) and you want to transpose the field names and the corresponding data values in the fields into a row format.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Animation</keyword><keyword>Attribute</keyword><keyword>Column</keyword><keyword>Date</keyword><keyword>Row</keyword><keyword>Shift</keyword><keyword>Switch</keyword><keyword>Table</keyword><keyword>Temporal</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TransposeFields" displayname="&#xA;Transpose Fields&#xA; (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>
+Shifts  data entered in fields or columns into rows in a table or feature class.</para><para>This tool is useful when your table or feature class stores values in field names (such as Field1, Field2, Field3) and you want to transpose the field names and the corresponding data values in the fields into a row format.</para></summary><alink_name>TransposeFields_management</alink_name><toolIllust type="illustration" src="TransposeFields_management_h.png" alt="Transpose time fields illustration" /><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The input feature class or table for which the fields containing data values will be transposed.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class or table for which the fields containing data values will be transposed.</para>
+					</dialogReference></param><param sync="true" name="in_field" displayname="Fields To Transpose" datatype="Value Table" direction="Input" expression="[[field, {value}],...]" type="Required"><pythonReference>
+						<para>The fields or columns containing data values in the input table that need to be transposed.</para>
+						<para>Depending on your needs, you can select multiple fields that need to be transposed. By default, the value is the same as the field name. However, you can choose to specify your own value. For example, if the field names of the fields you want to transpose are Pop1991, Pop1992, and so on, by default, the  values for these field will be the same ( Pop1991, Pop1992, and so forth). However, you can choose to specify your own values such as 1991 and 1992.</para>
+					</pythonReference><dialogReference>
+						<para>The fields or columns containing data values in the input table that need to be transposed.</para>
+						<para>Depending on your needs, you can select multiple fields that need to be transposed. By default, the value is the same as the field name. However, you can choose to specify your own value. For example, if the field names of the fields you want to transpose are Pop1991, Pop1992, and so on, by default, the  values for these field will be the same ( Pop1991, Pop1992, and so forth). However, you can choose to specify your own values such as 1991 and 1992.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference><para>The output feature class or table. The output feature class or table will contain the transposed  field, a value field, and any number of attribute fields specified that need to be inherited from the input table.</para><para>What is specified for out_table will be a table, unless the in_table value is a feature class and the Shape field is selected in the attribute_fields parameter.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class or table. The output feature class or table will contain the transposed  field, a value field, and any number of attribute fields specified that need to be inherited from the input table.</para><para>What is specified for Output Table will be a table, unless the value for Input Table is a feature class and the Shape field is selected in the Attribute Fields parameter.</para>
+					</dialogReference></param><param sync="true" name="in_transposed_field_name" displayname="Transposed Field" datatype="String" direction="Input" expression="in_transposed_field_name" type="Required"><pythonReference>
+						<para>The name of the field that will be created to store field name values of the fields that are selected to be transposed. Any valid field name can be used.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the field that will be created to store field name values of the fields that are selected to be transposed. Any valid field name can be used.</para>
+					</dialogReference></param><param sync="true" name="in_value_field_name" displayname="Value Field" datatype="String" direction="Input" expression="in_value_field_name" type="Required"><pythonReference>
+						<para>The name of the value field that will be created to store the values from the input table. Any valid field name can be set, as long as it does not conflict with existing field names from the input table or feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the value field that will be created to store the values from the input table. Any valid field name can be set, as long as it does not conflict with existing field names from the input table or feature class.</para>
+					</dialogReference></param><param sync="true" name="attribute_fields" displayname="Attribute Fields" datatype="Field" direction="Input" expression="[attribute_fields,...]" type="Optional"><pythonReference>
+						<para>Attribute fields from the input table to be included in the output table. If you want to output a feature class,  choose the Shape field.</para>
+					</pythonReference><dialogReference>
+						<para>Attribute fields from the input table to be included in the output table. If you want to output a feature class,  choose the Shape field.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>By default, the  output is a  table. However, if you want to transpose the fields in a feature class, you can choose to output either a  table or a feature class with the transposed fields.  To output a feature class, you should choose the Shape field under Attribute Fields.</para>
+			</bullet_item><bullet_item><para> If the feature class is an input, the only way you can get a feature class output is to select the Shape field in the Attribute Fields parameter.</para></bullet_item></usage><scriptExamples><scriptExample><title>TransposeFields example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the TransposeFields tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.TransposeFields_management("C:/Data/TemporalData.gdb/Input","Field1 newField1;Field2 newField2;Field3 newField3",
+                                 "C:/Data/TemporalData.gdb/Output_Time","Transposed_Field", "Value","Shape;Type")
+
+                    </code></scriptExample><scriptExample><title>TransposeFields example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the TransposeFields tool.</para>
+				<code xml:space="preserve"># Name: TransposeFields_Ex_02.py
+# Description: Tranpose field names from column headers to values in one column
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# set workspace
+arcpy.env.workspace = "C:/Data/TemporalData.gdb"
+
+# Set local variables
+inTable = "Input"
+# Specify fields to transpose
+fieldsToTranspose = "Field1 newField1;Field2 newField2;Field3 newField3"
+# Set a variable to store output feature class or table
+outTable = "Output_Time"
+# Set a variable to store time field name
+transposedFieldName = "Transposed_Field"
+# Set a variable to store value field name
+valueFieldName = "Value"
+# Specify attribute fields to be included in the output
+attrFields = "Shape;Type"
+
+# Execute TransposeTimeFields
+arcpy.TransposeFields_management(inTable, fieldsToTranspose, outTable, transposedFieldName, valueFieldName, attrFields)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

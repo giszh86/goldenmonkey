@@ -1,0 +1,86 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make Table View (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a table view from an input table or feature class. The table view that is created by the tool is temporary and will not persist after the session ends unless the document is saved.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Copy</keyword><keyword>Create</keyword><keyword>Expression</keyword><keyword>Memory</keyword><keyword>Query</keyword><keyword>Select</keyword><keyword>Sql</keyword><keyword>Subset</keyword><keyword>Temporary</keyword><keyword>Where Clause</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeTableView" displayname="Make Table View (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a table view from an input table or feature class. The table view that is created by the tool is temporary and will not persist after the session ends unless the document is saved.</para>
+		</summary><alink_name>MakeTableView_management</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View;Raster Layer" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The input table or feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The input table or feature class.</para>
+					</dialogReference></param><param sync="true" name="out_view" displayname="Table Name" datatype="Table View ;Raster Layer" direction="Output" expression="out_view" type="Required"><pythonReference>
+						<para>The name of the table view to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the table view to be created.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Expression" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>An SQL expression used to select a subset of records. The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, coverages, dBase, or INFO tables, enclose field names in double quotes:</para>
+						<para>
+							"MY_FIELD"
+						</para>
+						<para> If you're querying personal geodatabases, enclose fields in square brackets: </para>
+						<para>
+							[MY_FIELD]
+						</para>
+						<para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para>
+						<para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para></pythonReference><dialogReference>
+						<para>An SQL expression used to select a subset of records. The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, coverages, dBase, or INFO tables, enclose field names in double quotes:</para>
+						<para>
+							"MY_FIELD"
+						</para>
+						<para> If you're querying personal geodatabases, enclose fields in square brackets: </para>
+						<para>
+							[MY_FIELD]
+						</para>
+						<para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para>
+						<para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para></dialogReference></param><param sync="true" name="workspace" displayname="Input Workspace" datatype="Workspace" direction="Input" expression="workspace" type="Optional"><pythonReference>
+						<para>The input workspace used to validate the field names. If the input is a geodatabase table and the output workspace is a dBASE table, the field names may be truncated, since dBASE fields can only have names of ten characters or less. The new names may be reviewed and altered using the field information control.</para>
+					</pythonReference><dialogReference>
+						<para>The input workspace used to validate the field names. If the input is a geodatabase table and the output workspace is a dBASE table, the field names may be truncated, since dBASE fields can only have names of ten characters or less. The new names may be reviewed and altered using the field information control.</para>
+					</dialogReference></param><param sync="true" name="field_info" displayname="Field Info" datatype="Field Info" direction="Input" expression="field_info" type="Optional"><pythonReference>
+						<para>Specifies which fields from the input table to rename and make visible in the output table view.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies which fields from the input table to rename and make visible in the output table view.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para>This tool is commonly used to create a table view with a selected set of attributes or fields.</para>
+			</bullet_item><bullet_item>
+				<para>ArcCatalog does not display these table views, but they can be used as inputs to other geoprocessing tools in the current ArcGIS session. Once the ArcGIS application is exited, the table views are deleted.</para>
+			</bullet_item><bullet_item>
+				<para>Table views created in ArcCatalog cannot be used in ArcMap.</para>
+			</bullet_item><bullet_item><para> If an SQL expression is used but returns nothing, the output will be empty.</para></bullet_item><bullet_item><para>Field names can be given a new name by using the Field Info control. The second column on the control lists the existing field names from the input. To rename a field, click the field name and type in a new one.</para><para>New field names defined in the Field Info control will be honored in subsequent tools. However, if this tool is the last tool in a model, the field names will be obtained from the source data on disk. To maintain new field names, the new layer has to be written out to a new data using  or  tools.</para></bullet_item><bullet_item><para>The field names will be validated by specifying an input workspace. Thus, if the input is a geodatabase feature class, and the output workspace is a folder, the field names may be truncated, since shapefile attributes can only have names of ten characters or less. The new names may be reviewed and altered using the Field Info control.</para></bullet_item><bullet_item><para>A subset of fields can be made unavailable in the new layer by using the Field Info control's visible property. The third column in the control provides a dropdown option to specify whether a field will be visible or hidden in the new layer. The default is TRUE. Selecting FALSE will hide that field. You cannot use the hidden fields in a workflow if the newly created layer is input to a subsequent process or tool.  If the output is saved to disk, only the fields listed as visible will appear in the new data.</para></bullet_item><bullet_item>
+				<para>The split policy option on the Field Info control does not apply to this tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeTableView Example 1 (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the MakeTableView function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+
+arcpy.MakeTableView_management("C:/data/input/crimefrequency.dbf", "crimefreq_tview")
+                    </code></scriptExample><scriptExample><title>MakeTableView example 2 (stand-alone script)</title><para>The following stand-alone script demonstrates how to use MakeTableView with a FieldInfo object to filter fields in the output.</para><code xml:space="preserve"># Name: MakeTableView_Example2.py
+# Description: Uses a FieldInfo object to select a subset of fields and renaming one field's name.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set data path
+intable = "C:/data/tables.gdb/crimefreq"
+
+# Get the fields from the input
+fields= arcpy.ListFields(intable)
+
+# Create a fieldinfo object
+fieldinfo = arcpy.FieldInfo()
+
+# Iterate through the fields and set them to fieldinfo
+for field in fields:
+    if field.name == "FREQUENCY":
+        fieldinfo.addField(field.name, "NEWFREQ", "VISIBLE", "")
+    elif field.name == "CRIME_CAT":
+        fieldinfo.addField(field.name, field.name, "HIDDEN", "")
+    elif field.name == "BEAT":
+        fieldinfo.addField(field.name, field.name, "VISIBLE", "")
+
+# The created crime_view layer will have fields as set in fieldinfo object
+arcpy.MakeTableView_management(intable, "crime_view", "", "", fieldinfo)
+
+# Persist the layer on disk
+arcpy.CopyRows_management("crime_view", "C:/temp/newfreq.dbf")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

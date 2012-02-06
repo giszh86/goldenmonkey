@@ -1,0 +1,79 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Build Seamlines  (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Automatically generates seamlines for your mosaic dataset. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Amd</keyword><keyword>Blend</keyword><keyword>Edge</keyword><keyword>Feather</keyword><keyword>Mosaic Dataset</keyword><keyword>Radiometry</keyword><keyword>Viewpoint</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" BuildSeamlines " displayname=" Build Seamlines  (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Automatically generates seamlines for your mosaic dataset. </para>
+		</summary><alink_name> BuildSeamlines _management</alink_name><parameters><param sync="true" name="in_mosaic_dataset" displayname="Mosaic Dataset" datatype="Mosaic Layer" direction="Input" expression="in_mosaic_dataset" type="Required"><pythonReference>
+						<para> Path and name of the mosaic dataset. </para>
+					</pythonReference><dialogReference>
+						<para> Path and name of the mosaic dataset. </para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Cell Size" datatype="Double" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para> The cell size affects the granularity at which the seamlines will be calculated. </para>
+						<para>This can affect the length of time it takes to generate the seamline. If this value is the same as the raster's cell size, it will take longer than if it is set to a larger cell size. </para>
+					</pythonReference><dialogReference>
+						<para> The cell size affects the granularity at which the seamlines will be calculated. </para>
+						<para>This can affect the length of time it takes to generate the seamline. If this value is the same as the raster's cell size, it will take longer than if it is set to a larger cell size. </para>
+					</dialogReference></param><param sync="true" name="sort_method" displayname="Sort Method" datatype="String" direction="Input" expression="sort_method" type="Required"><pythonReference>
+						<para> The sort method is similar to the mosaic method in that it defines the order in which the rasters will be fused together to generate the image used to create the seamlines. </para>
+						<bulletList><bullet_item>NORTH_WEST—Orders rasters in a view-independent way where rasters with their centers most northwest are displayed on top. This is the default.</bullet_item><bullet_item>CLOSEST_TO_VIEWPOINT—Orders rasters based on a user-defined location and nadir location for the rasters using the Viewpoint tool.</bullet_item><bullet_item>BY_ATTRIBUTE—Orders rasters based on an attribute and its difference from a base value.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> The sort method is similar to the mosaic method in that it defines the order in which the rasters will be fused together to generate the image used to create the seamlines. </para>
+						<bulletList><bullet_item>NORTH_WEST—Orders rasters in a view-independent way where rasters with their centers most northwest are displayed on top. This is the default.</bullet_item><bullet_item>CLOSEST_TO_VIEWPOINT—Orders rasters based on a user-defined location and nadir location for the rasters using the Viewpoint tool.</bullet_item><bullet_item>BY_ATTRIBUTE—Orders rasters based on an attribute and its difference from a base value.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="order_by_attribute" displayname="Sort Attribute" datatype="String" direction="Input" expression="order_by_attribute" type="Required"><pythonReference>
+						<para> The attribute fielded to order rasters when the sort method is BY_ATTRIBUTE. The default attribute is ObjectID.</para>
+					</pythonReference><dialogReference>
+						<para> The attribute fielded to order rasters when the sort method is BY_ATTRIBUTE. The default attribute is ObjectID.</para>
+					</dialogReference></param><param sync="true" name="order_by_base_value" displayname="Sort Base Value" datatype="Double" direction="Input" expression="order_by_base_value" type="Optional"><pythonReference>
+						<para> The rasters are sorted based on the difference between their value and the value from the Sort Attribute field. </para>
+					</pythonReference><dialogReference>
+						<para> The rasters are sorted based on the difference between their value and the value from the Sort Attribute field. </para>
+					</dialogReference></param><param sync="true" name="sort_order" displayname="Sort Ascending" datatype="Boolean" direction="Input" expression="sort_order" type="Optional"><pythonReference>
+						<para> When using the BY_ATTRIBUTE sort method, the rasters will be sorted in ascending order as defined by the Sort Attribute. </para>
+						<bulletList><bullet_item>ASCENDING— The rasters will be sorted in ascending order. This is the default. </bullet_item><bullet_item>DESCENDING— The rasters will be sorted in descending order. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> When using the ATTRIBUTE sort method, the rasters will be sorted in ascending order as defined by the Sort Attribute.<bulletList>
+								<bullet_item>Checked—The rasters will be sorted in ascending order. This is the default.</bullet_item>
+								<bullet_item>Unchecked—The rasters will be sorted in descending order. </bullet_item>
+							</bulletList></para>
+					</dialogReference></param><param sync="true" name="view_point" displayname="View Point" datatype="Point" direction="Input" expression="view_point" type="Optional"><pythonReference>
+						<para> The coordinate location to use when the sort method is CLOSEST_TO_VIEWPOINT. </para>
+					</pythonReference><dialogReference>
+						<para> The coordinate location to use when the sort method is CLOSEST_TO_VIEWPOINT. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent">
+						
+					</environment></environments><usage><bullet_item><para>The seamlines are generated from the footprints, with one seamline per footprint.</para></bullet_item><bullet_item>
+				<para>You cannot build seamlines for a referenced mosaic dataset.</para>
+			</bullet_item><bullet_item><para>To remove seamlines, right-click the mosaic dataset in ArcCatalog or the Catalog window and click RemoveRemove Seamlines.</para></bullet_item></usage><scriptExamples><scriptExample><title>BuildSeamlines example 1 (Python window)</title>
+					<para>This is a Python sample for BuildSeamlines.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.BuildSeamlines_management("c:/workspace/fgdb.gdb/md", "40", \
+                                "NORTH_WEST", "#", "#", "#", "#")
+                    </code></scriptExample><scriptExample><title>BuildSeamlines example 2 (stand-alone window)</title>
+					<para>This is a Python script sample for BuildSeamlines.</para>
+				<code xml:space="preserve">##===========================
+##Build Seamlines
+##Usage: BuildSeamlines_management in_mosaic_dataset {cell_size} NORTH_WEST
+##                                 | CLOSEST_TO_VIEWPOINT | BY_ATTRIBUTE order_by_attribute
+##                                 {order_by_base_value} {ASCENDING | DESCENDING}
+##                                 {view_point}
+
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:\Workspace"
+    # Build Seamlines through three different methods
+    # Build Seamlines use NORTH_WEST
+    arcpy.BuildSeamlines_management("Seamlines.gdb/md", "40", "NORTH_WEST",\
+                                    "#", "#", "#", "#")
+    
+    # Build Seamlines use BY_ATTRIBUTE
+    arcpy.BuildSeamlines_management("Seamlines.gdb/md", "#", "BY_ATTRIBUTE",\
+                                    "OBJECTID", "1", "DESCENDING", "#")
+    
+    # Build Seamlines use VIEW_POINT
+    arcpy.BuildSeamlines_management("Seamlines.gdb/md", "#", "CLOSEST_TO_VIEWPOINT",\
+                                    "#", "#", "#", "-12699965 3896282")
+    
+    
+except:
+    print "Build Seamlines example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

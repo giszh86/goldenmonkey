@@ -1,0 +1,182 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate Field (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the values of a field for a feature class, feature layer, or raster catalog. </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Attribute</keyword><keyword>Blob</keyword><keyword>Calc</keyword><keyword>Calculator</keyword><keyword>Code Block</keyword><keyword>Code Snippet</keyword><keyword>Column</keyword><keyword>Compute</keyword><keyword>Date</keyword><keyword>Divide</keyword><keyword>Double</keyword><keyword>Expression</keyword><keyword>Feature</keyword><keyword>Figure</keyword><keyword>Float</keyword><keyword>Integer</keyword><keyword>Item</keyword><keyword>Math</keyword><keyword>Modify</keyword><keyword>Multiply</keyword><keyword>Numeric</keyword><keyword>Python</keyword><keyword>Set</keyword><keyword>Sql</keyword><keyword>String</keyword><keyword>Subtract</keyword><keyword>Sum</keyword><keyword>Table</keyword><keyword>Text</keyword><keyword>Times</keyword><keyword>Update</keyword><keyword>Value</keyword><keyword>Vb</keyword><keyword>Visual Basic</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateField" displayname="Calculate Field (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Calculates the values of a field for a feature class, feature layer, or raster catalog. </para>
+			
+		</summary><alink_name>CalculateField_management</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View;Raster Layer" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The table containing the field that will be updated with the new calculation.</para>
+					</pythonReference><dialogReference>
+						<para>The table containing the field that will be updated with the new calculation.</para>
+					</dialogReference></param><param sync="true" name="field" displayname="Field Name" datatype="Field" direction="Input" expression="field" type="Required"><pythonReference>
+						<para>The field that will be updated with the new calculation.</para>
+					</pythonReference><dialogReference>
+						<para>The field that will be updated with the new calculation.</para>
+					</dialogReference></param><param sync="true" name="expression" displayname="Expression" datatype="SQL Expression" direction="Input" expression="expression" type="Required"><pythonReference>
+						<para>The simple calculation expression used to create a value that will populate the selected rows.</para>
+					</pythonReference><dialogReference>
+						<para>The simple calculation expression used to create a value that will populate the selected rows.</para>
+					</dialogReference></param><param sync="true" name="expression_type" displayname="Expression Type" datatype="String" direction="Input" expression="expression_type" type="Optional"><pythonReference>
+						<para>Specify the type of expression that will be used.</para>
+						<bulletList><bullet_item>VB—The expression will be written in a standard VB format. This is the default. </bullet_item><bullet_item>PYTHON—The expression will be written in a standard Python format. Use of geoprocessor methods and properties is the same as creating a 9.2 version geoprocessor. </bullet_item><bullet_item>PYTHON_9.3—The expression will be written in a standard Python format. Use of geoprocessor methods and properties is the same as creating a 9.3 version geoprocessor. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specify the type of expression that will be used.</para>
+						<bulletList><bullet_item>VB—The expression will be written in a standard VB format. This is the default. </bullet_item><bullet_item>PYTHON—The expression will be written in a standard Python format. Use of geoprocessor methods and properties is the same as creating a 9.2 version geoprocessor. </bullet_item><bullet_item>PYTHON_9.3—The expression will be written in a standard Python format. Use of geoprocessor methods and properties is the same as creating a 9.3 version geoprocessor. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="code_block" displayname="Code Block" datatype="String" direction="Input" expression="code_block" type="Optional"><pythonReference>
+						<para>Allows for a block of code to be entered for complex expressions.</para>
+					</pythonReference><dialogReference>
+						<para>Allows for a block of code to be entered for complex expressions.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Python expressions can be created using properties from the  (Type, Extent, Centroid, FirstPoint, LastPoint, Area, Length, IsMultipart, and PartCount).</para>
+			</bullet_item><bullet_item>
+				<para>Python expressions can use the geometry Area and Length properties with an areal or linear unit to convert the value to a different unit of measure.</para>
+				
+					!shape.area@acres!
+				
+				<bulletList>
+					<bullet_item>Areal unit of measure keywords: <bulletList>
+							<bullet_item>ACRES | ARES | HECTARES | SQUARECENTIMETERS | SQUAREDECIMETERS | SQUAREINCHES | SQUAREFEET | SQUAREKILOMETERS | SQUAREMETERS | SQUAREMILES | SQUAREMILLIMETERS | SQUAREYARDS | SQUAREMAPUNITS | UNKNOWN</bullet_item>
+						</bulletList></bullet_item>
+					<bullet_item>Linear unit of measure keywords: <bulletList>
+							<bullet_item>CENTIMETERS | DECIMALDEGREES | DECIMETERS | FEET | INCHES | KILOMETERS | METERS | MILES | MILLIMETERS | NAUTICALMILES | POINTS | UNKNOWN | YARDS</bullet_item>
+						</bulletList></bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>In the tool dialog, an expression can be entered directly into the Expression parameter, or interactively built using the Field Calculator.</para>
+			</bullet_item><bullet_item>
+				<para>When used with a selected set of features, such as those created from a query in  or , this tool will only update the selected records.</para>
+			</bullet_item><bullet_item>
+				<para>The calculation can only be applied to one field per operation.</para>
+			</bullet_item><bullet_item>
+				<para>Existing field values will be overwritten. A copy of the input table should be made if you want to preserve the original values</para>
+			</bullet_item><bullet_item>
+				<para>For Python calculations, field names must be enclosed in exclamation points (!fieldname!).</para>
+				<para>For VB calculations, field names must be enclosed in square brackets ([fieldname]).</para>
+			</bullet_item><bullet_item>
+				<para>To calculate strings to text or character fields, in the dialog box the string must be double-quoted ("string"), or in scripting, the double-quoted string must also be encapsulated in single quotes ('"string"').</para>
+			</bullet_item><bullet_item>
+				<para>This tool can also be used to update character items. Expressions using character string should be wrapped, using single quotes—for example, [CHARITEM] = 'NEW STRING'. However, if the character string has embedded single quotes, wrap the string using double quotes—for example, [CHARITEM] = "TYPE'A'".</para>
+			</bullet_item><bullet_item>
+				<para>To calculate a field to be a numeric value, enter the numeric value in the Expression parameter; no quotes around the value are required.</para>
+			</bullet_item><bullet_item>
+				<para>The arcgis.rand() function is supported by this tool when a Python expression is specified. The arcgis.rand() function has been created for ArcGIS tools and should not be confused with the Python Rand() function. The syntax for the available distributions for the arcgis.rand() function can be found at .</para>
+			</bullet_item><bullet_item>
+				<para>The expression and code block are connected. The code block must relate back to the expression; the result of the code block should be passed into the expression.</para>
+			</bullet_item><bullet_item>
+				<para>The Code Block parameter allows you to create complex expressions. You can enter the code block directly on the dialog, or as a continuous string in scripting.</para>
+			</bullet_item><bullet_item>
+				<para>The Python math module and formatting are available for use in the Code Block parameter.  You can import additional  modules. The math module provides number-theoretic and representation functions, power and logarithmic functions, trigonometric functions, angular conversion functions, hyberbolic functions, and mathematical constants. To learn more about the math module, see Python's help.</para>
+			</bullet_item><bullet_item>
+				<para>When calculating joined data, you cannot calculate the joined columns directly. However, you can directly calculate the columns of the origin table. To calculate the joined data, you must first add the joined tables or layers to ArcMap. You can then perform calculations on this data separately. These changes will be reflected in the joined columns.</para>
+			</bullet_item><bullet_item>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>CalculateField Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the CalculateField function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.AddField_management("vegtable.dbf", "VEG_TYP2", "TEXT", "", "", "20")
+arcpy.CalculateField_management("vegtable.dbf", "VEG_TYP2", 
+                                '!VEG_TYPE!.split(" ")[-1]', "PYTHON")
+                    </code></scriptExample><scriptExample><title>CalculateField Example: Calculate Centroids</title>
+					<para>Use CalculateField to assign centroid values to new fields.</para>
+				<code xml:space="preserve"># Name: CalculateField_Centroids.py
+# Description: Use CalculateField to assign centroid values to new fields
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+try: 
+    # Set environment settings
+    env.workspace = "C:/data/airport.gdb"
+ 
+    # Set local variables
+    inFeatures = "parcels"
+    fieldName1 = "xCentroid"
+    fieldName2 = "yCentroid"
+    fieldPrecision = 18
+    fieldScale = 11
+    # Expressions are calculated using the Shape Field's geometry property
+    expression1 = "float(!SHAPE.CENTROID!.split()[0])"
+    expression2 = "float(!SHAPE.CENTROID!.split()[1])"
+ 
+    # Execute AddField
+    arcpy.AddField_management(inFeatures, fieldName1, "DOUBLE", 
+                              fieldPrecision, fieldScale)
+    arcpy.AddField_management(inFeatures, fieldName2, "DOUBLE", 
+                              fieldPrecision, fieldScale)
+ 
+    # Execute CalculateField 
+    arcpy.CalculateField_management(inFeatures, fieldName1, expression1,
+                                    "PYTHON")
+    arcpy.CalculateField_management(inFeatures, fieldName2, expression2,
+                                    "PYTHON")
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys+
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+
+
+                    </code></scriptExample><scriptExample><title>CalculateField Example: Calculate Ranges</title>
+					<para> Use CalculateField with a codeblock to calculate values based on ranges.</para>
+				<code xml:space="preserve"># Name: CalculateField_Ranges.py
+# Description: Use CalculateField with a codeblock to calculate values
+#  based on ranges
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data/airport.gdb"
+ 
+# Set local variables
+inTable = "parcels"
+fieldName = "areaclass"
+expression = "getClass(float(!SHAPE.area!))"
+codeblock = """def getClass(area):
+    if area &lt;= 1000:
+        return 1
+    if area &gt; 1000 and area &lt;= 10000:
+        return 2
+    else:
+        return 3"""
+ 
+# Execute AddField
+arcpy.AddField_management(inTable, fieldName, "SHORT")
+ 
+# Execute CalculateField 
+arcpy.CalculateField_management(inTable, fieldName, expression, "PYTHON", 
+                                codeblock)
+                    </code></scriptExample><scriptExample><title>CalculateField Example: Calculate Random Values</title>
+					<para>Use CalculateField to assign random values to a new field.</para>
+				<code xml:space="preserve"># Name: CalculateField_Random.py
+# Description: Use CalculateField to assign random values to a new field
+# Author: ESRI 
+  
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data/airport.gdb"
+  
+# Set local variables
+inFeatures = "parcels"
+fieldName = "RndValue"
+expression = "arcgis.rand('Integer 0 10')"
+ 
+# Execute AddField
+arcpy.AddField_management(inFeatures, fieldName, "LONG")
+ 
+# Execute CalculateField 
+arcpy.CalculateField_management(inFeatures, fieldName, expression, "PYTHON")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>
