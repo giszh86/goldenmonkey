@@ -1,0 +1,52 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">
+KML To Layer
+ (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>
+Converts a KML or KMZ file into a feature class along with a layer file derived from the source renderer information inside the KML/KMZ.
+</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="&#xA;KMLToLayer&#xA;" displayname="&#xA;KML To Layer&#xA; (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>
+Converts a KML or KMZ file into a feature class along with a layer file derived from the source renderer information inside the KML/KMZ.
+</para>
+		</summary><alink_name>
+KMLToLayer
+_conversion</alink_name><parameters><param sync="true" name="in_kml_file" displayname="Input KML File" datatype="File" direction="Input" expression="in_kml_file" type="Required"><pythonReference>
+						<para>
+The KML or KMZ file to translate.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The KML or KMZ file to translate.
+</para>
+					</dialogReference></param><param sync="true" name="output_folder" displayname="Output Location" datatype="Folder" direction="Input" expression="output_folder" type="Required"><pythonReference>
+						<para>
+The destination folder for the File Geodatabase and layer (.lyr) file.
+
+ </para>
+					</pythonReference><dialogReference>
+						<para>
+The destination folder for the File Geodatabase and layer (.lyr) file.
+
+ </para>
+					</dialogReference></param><param sync="true" name="output_data" displayname="Output Data Name" datatype="String" direction="Output" expression="output_data" type="Optional"><pythonReference>
+						<para>
+The name of the output File Geodatabase and layer file (.lyr). Defaults to the name of the input KML file.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The name of the output File Geodatabase and layer file (.lyr). Defaults to the name of the input KML file.
+</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item><para>This tool creates a file geodatabase containing a feature class within a feature dataset.  The  feature class name will have _point, _line or _polygon appended to the end, based on output feature type. At the same folder level as the file geodatabase will be a layer (.lyr) file which will render the output features similar to the original KML input (features inside a group layer).</para></bullet_item><bullet_item>
+				<para>
+Input up to KMZ version 2.2 supported. </para>
+			</bullet_item><bullet_item><para>Output will be generated in the WGS84 coordinate system. The output features can be reprojected to another coordinate system if desired using the  tool.</para></bullet_item><bullet_item>
+				<para>
+Note: Not all KML/KMZ files provide valid geographic features for use within a GIS. Some files, for example, only store images with  approximate worldly locations, not georeferenced imagery. Some files may not conform to the  standard and will not translate into geographic features as expected. Manual validation of KML/KMZ files may be required before using this tool.  </para>
+				</bullet_item></usage><scriptExamples><scriptExample><title>KMLToLayer Example 1 (Python window)</title>
+					<para>Converts a KMZ file into an FGDB from the Python window.</para>
+				<code xml:space="preserve">import arcpy
+
+arcpy.KMLToLayer_conversion(r'C:\kmls\earthquakes.kml',r'C:\gisdata\fromkmls','earthquake_09')
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Populate Alternate ID Fields (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates and populates additional fields on the turn feature classes that reference the edges by alternate IDs. The alternate IDs allow for another set of IDs that can help maintain the integrity of the turn features in case the source edges are being edited.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Analysis</keyword><keyword>Edges</keyword><keyword>Field</keyword><keyword>Layer</keyword><keyword>Network</keyword><keyword>Network Analyst</keyword><keyword>Network Analyst Layer</keyword><keyword>Turn</keyword><keyword>Turn Feature Class</keyword><keyword>Turn Features</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PopulateAlternateIDFields" displayname="Populate Alternate ID Fields (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Creates and populates additional fields on the turn feature classes that reference the edges by alternate IDs. The alternate IDs allow for another set of IDs that can help maintain the integrity of the turn features in case the source edges are being edited.</para>
+		</summary><alink_name>PopulateAlternateIDFields_na</alink_name><parameters><param sync="true" name="in_network_dataset" displayname="Input Network Dataset" datatype="Network Dataset Layer" direction="Input" expression="in_network_dataset" type="Required"><pythonReference>
+						<para>The network dataset whose turn feature classes are to receive alternate ID fields. The fields will be created on all of the turn feature classes added as a turn source to the network dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The network dataset whose turn feature classes are to receive alternate ID fields. The fields will be created on all of the turn feature classes added as a turn source to the network dataset.</para>
+					</dialogReference></param><param sync="true" name="alternate_ID_field_name" displayname="Alternate ID Field Name" datatype="String" direction="Input" expression="alternate_ID_field_name" type="Required"><pythonReference>
+						<para>The name of the alternate ID field on the edge feature sources of the network dataset. All edge feature sources referenced by turns must have the same name for the alternate ID field.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the alternate ID field on the edge feature sources of the network dataset. All edge feature sources referenced by turns must have the same name for the alternate ID field.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The tool creates and populates new fields called AltID&lt;n&gt;, where n is the maximum number of edges per turn. For example, for two-edge turn feature classes, the tool creates and populates fields called AltID1 and AltID2.</para>
+			</bullet_item><bullet_item>
+				<para>Shapefiles do not have a persistent unique identifier, unlike the geodatabase's ObjectID field. Alternate IDs can avoid the ID shift problem commonly encountered when working with turn feature classes in a shapefile workspace. </para>
+			</bullet_item><bullet_item>
+				<para>If the edge feature sources do not have an alternate ID field, for example, a unique identifier provided by a data vendor, then you must create and populate such a field so that it can used by this tool to reference the turn features.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>PopulateAlternateID Fields example 1 (Python window)</title>
+					<para>Execute the tool using all parameters </para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.PopulateAlternateIDFields_na("Transportation/Streets_ND","ID")
+
+                    </code></scriptExample><scriptExample><title>PopulateAlternateID Fields example 2 (stand-alone Python script)</title><para>The following Python script demonstrates how to use the PopulateAlternateID Fields tool in a stand-alone script.</para><code xml:space="preserve"># Name: PopulateAlternateIDFields_ex02.py
+# Description: Create and populate the alternate ID fields for all turn sources
+#              in the network dataset.
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+
+#Check out the Network Analyst extension license
+arcpy.CheckOutExtension("Network")
+
+#Set environment settings
+env.workspace = "C:/data/SanFrancisco.gdb/Transportation"
+
+#Set local variables
+inNetworkDataset = "Streets_ND"
+altIDFieldName = "ID"
+
+#Populate alternate IDs on all turn sources in the network dataset
+arcpy.PopulateAlternateIDFields_na(inNetworkDataset,altIDFieldName)
+
+print "Script completed successfully."
+                    </code></scriptExample></scriptExamples></tool></metadata>

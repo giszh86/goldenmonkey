@@ -1,0 +1,102 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Join Info Tables (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Joins the item definitions and values of two tables based on a shared item. Joining involves appending items (fields) of one table to those of another through an attribute or item common to both tables. A join is usually used to attach more attributes to the attribute table of a geographic layer. </para>
+			<para>A record in the Join Info Table is matched to each record of the Input Info Table when the Relate Item and Start Item values are equal. The item values from the two records are copied to the output table.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coverage Tools</keyword><keyword>Data Management Tools</keyword><keyword>Info</keyword><keyword>Items</keyword><keyword>Join Info Tables</keyword><keyword>Joinitem</keyword><keyword>Linear</keyword><keyword>Link</keyword><keyword>Ordered</keyword><keyword>Relate</keyword><keyword>Tables</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="JoinItem" displayname="Join Info Tables (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Joins the item definitions and values of two tables based on a shared item. Joining involves appending items (fields) of one table to those of another through an attribute or item common to both tables. A join is usually used to attach more attributes to the attribute table of a geographic layer. </para>
+			<para>A record in the Join Info Table is matched to each record of the Input Info Table when the Relate Item and Start Item values are equal. The item values from the two records are copied to the output table.</para>
+			
+		</summary><alink_name>JoinItem_arc</alink_name><toolIllust type="illustration" src="JoinItem_arc_h.gif" alt="Join Info Tables illustration" /><parameters><param sync="true" name="in_info_table" displayname="Input Info Table" datatype="ArcInfo Table" direction="Input" expression="in_info_table" type="Required"><pythonReference>
+						<para>The INFO data file to which items and their values are to be added.</para>
+					</pythonReference><dialogReference>
+						<para>The INFO data file to which items and their values are to be added.</para>
+					</dialogReference></param><param sync="true" name="join_info_table" displayname="Join Info Table" datatype="ArcInfo Table" direction="Input" expression="join_info_table" type="Required"><pythonReference>
+						<para>The INFO data file that contains the items and values to be added.</para>
+					</pythonReference><dialogReference>
+						<para>The INFO data file that contains the items and values to be added.</para>
+					</dialogReference></param><param sync="true" name="out_info_table" displayname="Output Info Table" datatype="ArcInfo Table" direction="Output" expression="out_info_table" type="Required"><pythonReference>
+						<para>The INFO data file produced by Join Info Tables. If Output Info Table already exists, it will be replaced.</para>
+					</pythonReference><dialogReference>
+						<para>The INFO data file produced by Join Info Tables. If Output Info Table already exists, it will be replaced.</para>
+					</dialogReference></param><param sync="true" name="relate_item" displayname="Relate Item" datatype="ArcInfo Item" direction="Input" expression="relate_item" type="Required"><pythonReference>
+						<para>An item contained in the Input Info Table that is used as an index to records in the Join Info Table. This can be a redefined item.</para>
+					</pythonReference><dialogReference>
+						<para>An item contained in the Input Info Table that is used as an index to records in the Join Info Table. This can be a redefined item.</para>
+					</dialogReference></param><param sync="true" name="start_item" displayname="Start Item" datatype="ArcInfo Item" direction="Input" expression="start_item" type="Optional"><pythonReference>
+						<para>The item in the Input Info Table list after which the Join Info Table items will be inserted. The default Start Item is the last item in the Input Info Table.</para>
+					</pythonReference><dialogReference>
+						<para>The item in the Input Info Table list after which the Join Info Table items will be inserted. The default Start Item is the last item in the Input Info Table.</para>
+					</dialogReference></param><param sync="true" name="relate_type" displayname="Relate Type" datatype="String" direction="Input" expression="relate_type" type="Optional"><pythonReference>
+						<para>How Join Info Table records are matched to Input Info Table records.</para>
+						<bulletList><bullet_item>LINEAR—The values written to the Output Info Table are merged from the Input Info Table and Join Info Table records with matching Relate Item values. The Relate Item must exist for both files. Both files can be sorted in any order. This is the default option. </bullet_item><bullet_item>ORDERED—The Join Info Table must be sorted on Relate Item. Both the Join Info Table and Input Info Table must contain the Relate Item. </bullet_item><bullet_item>LINK—Only the Input Info Table must contain Relate Item. The Input Info Table can be sorted in any order. The Relate Item value in each record of the Input Info Table indicates the record number in the Join Info Table that is to be merged. This method is used when relating an INFO file to another file on the basis of its internal record number. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>How Join Info Table records are matched to Input Info Table records.</para>
+						<bulletList><bullet_item>LINEAR—The values written to the Output Info Table are merged from the Input Info Table and Join Info Table records with matching Relate Item values. The Relate Item must exist for both files. Both files can be sorted in any order. This is the default option. </bullet_item><bullet_item>ORDERED—The Join Info Table must be sorted on Relate Item. Both the Join Info Table and Input Info Table must contain the Relate Item. </bullet_item><bullet_item>LINK—Only the Input Info Table must contain Relate Item. The Input Info Table can be sorted in any order. The Relate Item value in each record of the Input Info Table indicates the record number in the Join Info Table that is to be merged. This method is used when relating an INFO file to another file on the basis of its internal record number. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>To maintain the integrity of a feature INFO table, do not insert items before the Input INFO Table-ID (when the Output INFO Table equals the Input INFO Table).</para>
+			</bullet_item><bullet_item>
+				<para>It is recommended that you use a Relate Item of the same definition in the two tables to be joined.</para>
+			</bullet_item><bullet_item>
+				<para>If the same item name is encountered in both tables, the item from the Input INFO Table is maintained and the Join INFO Table item is excluded.</para>
+			</bullet_item><bullet_item>
+				<para>To avoid loss of information and redundant data storage, ensure that items in the two tables match one-to-one. If this one-to-one correspondence does not exist, one of the following will occur:<bulletList>
+						<bullet_item>If an Input Info Table record matches more than one record in the Join Info Table, only one match is saved to the Output Info Table. The record that is saved may or may not be the first match of the file, depending on whether the item is indexed.</bullet_item>
+						<bullet_item>If an Input Info Table record does not match any record in the Join Info Table, the values of the Join Info Table items in the corresponding Output Info Table record are set to zero or left blank.</bullet_item>
+						<bullet_item>If a Join Info Table record matches more than one record in the Input Info Table, the Join Info Table record is merged with every matching Input Info Table record.</bullet_item>
+						<bullet_item>If a Join Info Table record does not match any record in the Input Info Table, it will not appear in the Output Info Table.</bullet_item>
+					</bulletList></para>
+			</bullet_item><bullet_item>
+				<para>When specifying the Start Item, do not insert the items to be joined before the Input Info Table-ID in any feature INFO table.</para>
+			</bullet_item><bullet_item>
+				<para>If the Input Info Table and Join Info Table have identical fields, then Join Info Tables will return a message "No Non-duplicate items in join.file". It means there were no new items to join.</para>
+			</bullet_item><bullet_item>
+				<para>The speed of execution will depend on the organization of the files being joined. In general, LINK is the fastest matching operation, then LINEAR with an indexed Relate Item, then ORDERED. Although the fastest option, LINK cannot be applied to most cases.</para>
+			</bullet_item><bullet_item>
+				<para>The LINEAR option is optimized if the Relate Item has been indexed.</para>
+			</bullet_item><bullet_item>
+				<para>The Input Info Table and Join Info Table can contain redefined items. A redefined item can be used as the Relate Item in most cases. When a redefined item contains items of different types and is numeric, its use as the Relate Item is not recommended. Such a redefined item can result in illogical or untranslatable numbers.</para>
+			</bullet_item><bullet_item>
+				<para>If the Join Info Table contains more than one record for each Relate Item value, the first record encountered by Join Info Tables will be used. This only applies to the LINEAR option.</para>
+			</bullet_item><bullet_item>
+				<para>The alternate item names of the Relate Item need not be the same for Join Info Tables to work.</para>
+			</bullet_item><bullet_item>
+				<para>You can match an integer item to a numeric item as long as the values are identical. For example, an integer item with a value of 123 will match a numeric item with a value of 123.00 but fail to match a value of 123.01 or 122.99.</para>
+			</bullet_item><bullet_item>
+				<para>You can match a numeric item to another numeric item having a different number of decimal places as long as the values match. For example, a numeric item with two decimal places with a value of 123.45 will match a numeric item with four decimal places carrying a value of 123.4500. However, it will fail to match a value of 123.4501 or 123.4499. The number of decimal places in the Relate Item of the Output INFO Table will be the same as the number of decimal places in the Relate Item of the Input INFO Table.</para>
+			</bullet_item><bullet_item>
+				<para>To maintain the input table, name the output table differently.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>JoinItem example (stand-alone script)</title><para>The following stand-alone script demonstrates how to join two INFO tables.</para>
+				<code xml:space="preserve"># Name: JoinItem_Example.py
+# Description: Joins two INFO tables
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inInfoTable = "maritime1/us5tx51m_p/point"
+joinInfoTable = "maritime1/us5tx51m.lights_ncode"
+outInfoTable = "C:/output/lightpoints"
+relateItem = "RCID"
+
+# Execute JoinItem
+arcpy.JoinItem_arc(inInfoTable, joinInfoTable, outInfoTable, 
+                   relateItem, "", "")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

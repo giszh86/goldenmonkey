@@ -1,0 +1,68 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Find Conflicts (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Finds where simplified buildings overlap or are too close to each other, based on a specified distance.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Building Simplification</keyword><keyword>Buildingsimplify</keyword><keyword>Conflict</keyword><keyword>Findconflicts</keyword><keyword>Generalization</keyword><keyword>Overlap</keyword><keyword>Simplify Building</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FindConflicts" displayname="Find Conflicts (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Finds where simplified buildings overlap or are too close to each other, based on a specified distance.</para>
+		</summary><alink_name>FindConflicts_arc</alink_name><toolIllust type="illustration" src="FindConflicts_arc_h.gif" alt="Find Conflicts illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The input coverage containing buildings as regions, with the subclass BLDGSIM and the item BDS-GROUP, obtained by the Simplify Building tool followed by the Clean tool with the POLY option.</para>
+					</pythonReference><dialogReference>
+						<para>The input coverage containing buildings as regions, with the subclass BLDGSIM and the item BDS-GROUP, obtained by the Simplify Building tool followed by the Clean tool with the POLY option.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The output coverage containing overlapping region buffers, with a subclass BUF, that show spatial conflicts among buildings. This coverage will only be created when conflicts are found. The &lt;out_cover&gt; name must be different from the &lt;in_cover&gt; name.</para>
+					</pythonReference><dialogReference>
+						<para>The output coverage containing overlapping region buffers, with a subclass BUF, that show spatial conflicts among buildings. This coverage will only be created when conflicts are found. The Output Coverage name must be different from the Input Coverage name.</para>
+					</dialogReference></param><param sync="true" name="conflict_distance" displayname="Conflict Distance" datatype="Double" direction="Input" expression="conflict_distance" type="Required"><pythonReference>
+						<para>Sets the conflict distance in coverage units. Buildings within this distance are considered in spatial conflict. The distance must be greater than 0.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the conflict distance in coverage units. Buildings within this distance are considered in spatial conflict. The distance must be greater than 0.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Finding conflicts among simplified buildings is a part of the postprocessing of the  tool. Therefore, the input coverage must have buildings as regions created by the Simplify Building tool followed by the  tool with the POLY option.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will help you locate where buildings are within the specified distance. A buffer will be created around each building or group of connected buildings. Overlapping buffers indicate a conflict. An item, FREQUENCY, will be added to the out_cover.PAT, carrying the number of buffers that share each polygon. A FREQUENCY value of 1 means no conflict; a value of 2 or more, according to how many buffers overlap, indicates a conflict area. Buildings connected in one group are not considered conflicting with each other. Only the outer boundary of such a group will be checked with neighboring buildings or groups of buildings.</para>
+			</bullet_item><bullet_item>
+				<para>The output coverage is created only if conflicts are identified. Since the input buildings are regions, the buffers in the output coverage are also regions with a subclass BUF. You can select and view the conflict areas (the polygons with a FREQUENCY value of 2 or more) and make necessary edits.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FindConflicts example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the FindConflicts tool.
+</para>
+				<code xml:space="preserve"># Name: SimplifyBuilding_Example.py
+# Description: Simplifies a building coverage and finds conflicts in the output
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables for SimplifyBuilding
+inSimplifyCover = "campus"
+outSimplifyCover = "C:/output/tempcampus"
+simplificationTolerance = 6
+minimumArea = 55
+
+# Set local variables for FindConflicts
+inCover = outSimplifyCover
+outCover = "C:/output/cartocampus"
+conflictDistance = 5.5
+
+# Execute SimplifyBuilding and Clean
+arcpy.SimplifyBuilding_arc(inSimplifyCover, outSimplifyCover, 
+                           simplificationTolerance, minimumArea, "", "")
+arcpy.Clean_arc(outSimplifyCover)
+
+# Execute FindConflicts
+arcpy.FindConflicts_arc(inCover, outCover, conflictDistance)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

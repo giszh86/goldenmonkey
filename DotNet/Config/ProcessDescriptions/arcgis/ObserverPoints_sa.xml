@@ -1,0 +1,100 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Observer Points (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Identifies which observer points are visible from each raster surface location.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Blocked</keyword><keyword>Dem</keyword><keyword>Digital Elevation Model</keyword><keyword>Elevation</keyword><keyword>Hidden</keyword><keyword>Horizon</keyword><keyword>Line Of Sight</keyword><keyword>Observation Point</keyword><keyword>Observer</keyword><keyword>Obstruction</keyword><keyword>Offset</keyword><keyword>Reception</keyword><keyword>Skyline</keyword><keyword>Topography</keyword><keyword>Transmission</keyword><keyword>Visible</keyword><keyword>Z-Factor</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ObserverPoints" displayname="Observer Points (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Identifies which observer points are visible from each raster surface location.</para>
+			
+		</summary><alink_name>ObserverPoints_sa</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input surface raster.</para></pythonReference><dialogReference>
+						<para>The input surface raster.</para></dialogReference></param><param sync="true" name="in_observer_point_features" displayname="Input point observer features" datatype="Feature Layer" direction="Input" expression="in_observer_point_features" type="Required"><pythonReference>
+						<para>The point feature class that identifies the observer locations.</para>
+						<para>The maximum number of points allowed is 16.</para>
+					</pythonReference><dialogReference>
+						<para>The point feature class that identifies the observer locations.</para>
+						<para>The maximum number of points allowed is 16.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>Number of ground x,y units in one surface z unit.</para>
+						<para>The z-factor adjusts the units of measure for the z units when they are different from the x,y units of the input surface. The z-values of the input surface are multiplied by the z-factor when calculating the final output surface.</para>
+						<para>If the x,y units and z units are in the same units of measure, the z-factor is 1. This is the default.</para>
+						<para>If the x,y units and z units are in different units of measure, the z-factor must be set to the appropriate factor, or the results will be incorrect. For example, if your z units are feet and your x,y units are meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</pythonReference><dialogReference>
+						<para>Number of ground x,y units in one surface z unit.</para>
+						<para>The z-factor adjusts the units of measure for the z units when they are different from the x,y units of the input surface. The z-values of the input surface are multiplied by the z-factor when calculating the final output surface.</para>
+						<para>If the x,y units and z units are in the same units of measure, the z-factor is 1. This is the default.</para>
+						<para>If the x,y units and z units are in different units of measure, the z-factor must be set to the appropriate factor, or the results will be incorrect. For example, if your z units are feet and your x,y units are meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</dialogReference></param><param sync="true" name="curvature_correction" displayname="Use earth curvature corrections" datatype="Boolean" direction="Input" expression="curvature_correction" type="Optional"><pythonReference>
+						<para>Allows correction for the earth's curvature.</para>
+						<bulletList><bullet_item>FLAT_EARTH — No curvature correction will be applied. This is the default.</bullet_item><bullet_item>CURVED_EARTH — Curvature correction will be applied.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Allows correction for the earth's curvature.</para>
+						<bulletList>
+							<bullet_item>Unchecked—No curvature correction will be applied. This is the default.</bullet_item>
+							<bullet_item>Checked—Curvature correction will be applied.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="refractivity_coefficient" displayname="Refractivity coefficient" datatype="Double" direction="Input" expression="refractivity_coefficient" type="Optional"><pythonReference>
+						<para>Coefficient of the refraction of visible light in air.</para><para>The default value is 0.13.</para>
+					</pythonReference><dialogReference>
+						<para>Coefficient of the refraction of visible light in air.</para><para>The default value is 0.13.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para><para>The output identifies exactly which observer points are visible from each raster surface location.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para><para>The output identifies exactly which observer points are visible from each raster surface location.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Determining observer points is a computer-intensive process. The processing time is dependent on the resolution. For preliminary studies, you may want to use a coarser cell size to reduce the number of cells in the input. Use the full resolution raster when the final results are ready to be generated.</para>
+			</bullet_item><bullet_item>
+				<para>If the input raster contains undesirable noise caused by sampling errors, you can smooth the raster with a low-pass filter, such as the Mean option of Focal Statistics, before running this tool.</para></bullet_item><bullet_item>
+				<para>The visibility of each cell center is determined by comparing the altitude angle to the cell center with the altitude angle to the local horizon. The local horizon is computed by considering the intervening terrain between the point of observation and the current cell center. If the point lies above the local horizon, it is considered visible.</para>
+			</bullet_item><bullet_item>
+				<para>This tool does respect the  environment.</para></bullet_item></usage><scriptExamples><scriptExample><title>ObserverPoints example 1 (Python window)</title>
+					<para>This example identifies exactly which observer points are visible from each raster surface location.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outObsPoints = ObserverPoints("elevation","observers.shp", 1, "CURVED_EARTH", 0.13)
+outObsPoints.save("C:/sapyexamples/output/outobspnt01")
+                    </code></scriptExample><scriptExample><title>ObserverPoints example 2 (stand-alone script)</title>
+					<para>This example identifies exactly which observer points are visible from each raster surface location.</para><code xml:space="preserve"># Name: ObserverPoints_Ex_02.py
+# Description:  Identifies exactly which observer points are visible 
+# from each raster surface location.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "elevation"
+inObsPoints = "observers.shp"
+zFactor = 1
+useEarthCurv = "CURVED_EARTH"
+refractionVal = 0.13
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ObserverPoints
+outObsPoints = ObserverPoints(inRaster, inObsPoints, zFactor, 
+                              useEarthCurv, refractionVal)
+
+# Save the output 
+outObsPoints.save("C:/sapyexamples/output/outobspnt02")
+                    </code></scriptExample></scriptExamples></tool></metadata>

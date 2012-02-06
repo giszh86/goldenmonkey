@@ -1,0 +1,353 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Map Server Cache (Server)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates the tiling scheme and preparatory folders for a  map service cache. After running this tool, run Manage Map Server Cache Tiles to add tiles to the cache.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateMapServerCache" displayname="Create Map Server Cache (Server)" toolboxalias="Server" softwarerestriction="none"><summary>
+			<para>Creates the tiling scheme and preparatory folders for a  map service cache. After running this tool, run Manage Map Server Cache Tiles to add tiles to the cache.</para>
+		</summary><alink_name>CreateMapServerCache_Server</alink_name><parameters><param sync="true" name="server_name" displayname="Host" datatype="String" direction="Input" expression="server_name" type="Required"><pythonReference>
+						<para>The ArcGIS Server machine hosting the service to be cached.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcGIS Server machine hosting the service to be cached.</para>
+					</dialogReference></param><param sync="true" name="object_name" displayname="Map Server" datatype="String" direction="Input" expression="object_name" type="Required"><pythonReference>
+						<para>The map service to be cached.</para>
+					</pythonReference><dialogReference>
+						<para>The map service to be cached.</para>
+					</dialogReference></param><param sync="true" name="data_frame" displayname="Data Frame" datatype="String" direction="Input" expression="data_frame" type="Required"><pythonReference>
+						<para>The map data frame to be cached.</para>
+					</pythonReference><dialogReference>
+						<para>The map data frame to be cached.</para>
+					</dialogReference></param><param sync="true" name="out_folder" displayname="Server Cache Directory" datatype="String" direction="Input" expression="out_folder" type="Required"><pythonReference>
+						<para>The parent directory for the cache. This must be a registered ArcGIS Server cache directory.</para>
+					</pythonReference><dialogReference>
+						<para>The parent directory for the cache. This must be a registered ArcGIS Server cache directory.</para>
+					</dialogReference></param><param sync="true" name="tiling_scheme_type" displayname="Tiling Scheme" datatype="String" direction="Input" expression="tiling_scheme_type" type="Required"><pythonReference><para>Choose to use a NEW or PREDEFINED tiling scheme. You can define a new tiling scheme with this tool or browse to  a predefined tiling scheme file (.xml). A predefined scheme can be created by running the Generate Map Server Cache Tiling Scheme tool.</para><bulletList><bullet_item>NEW—You will define a new tiling scheme using the various other parameters in this tool to define scale levels, image format, storage format, and so on. This is the default.</bullet_item><bullet_item>PREDEFINED—You will specify a tiling scheme .xml file that already exists on disk. You can create a tiling scheme file using Generate Map Server Cache Tiling Scheme.</bullet_item></bulletList>
+					</pythonReference><dialogReference><para>Choose to use a NEW or PREDEFINED tiling scheme. You can define a new tiling scheme with this tool or browse to  a predefined tiling scheme file (.xml). A predefined scheme can be created by running the Generate Map Server Cache Tiling Scheme tool.</para><bulletList><bullet_item>NEW—You will define a new tiling scheme using the various other parameters in this tool to define scale levels, image format, storage format, and so on. This is the default.</bullet_item><bullet_item>PREDEFINED—You will specify a tiling scheme .xml file that already exists on disk. You can create a tiling scheme file using Generate Map Server Cache Tiling Scheme.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="scales_type" displayname="Scales" datatype="String" direction="Input" expression="scales_type" type="Required"><pythonReference>
+						<para>Specify how you will define the scales for the tiles.</para>
+						<bulletList><bullet_item>STANDARD—Auto-generates the scales based on the number defined in the "Number of Scales" field. It will use levels that increase or decrease by half from 1:1000000 and will start with a level closest to the extent of the source map document. For example, if the source map document has an extent of 1:121,000,000 and 3 scale levels are defined, the map service will create a cache with scale-levels at 1:128,000,000; 1:64,000,000; and 1:32,000,000. This is the default. </bullet_item><bullet_item>CUSTOM—Permits the cache designer to enter any scales desired. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specify how you will define the scales for the tiles.</para>
+						<bulletList><bullet_item>STANDARD—Auto-generates the scales based on the number defined in the "Number of Scales" field. It will use levels that increase or decrease by half from 1:1000000 and will start with a level closest to the extent of the source map document. For example, if the source map document has an extent of 1:121,000,000 and 3 scale levels are defined, the map service will create a cache with scale-levels at 1:128,000,000; 1:64,000,000; and 1:32,000,000. This is the default. </bullet_item><bullet_item>CUSTOM—Permits the cache designer to enter any scales desired. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="num_of_scales" displayname="Number of Scales" datatype="Long" direction="Input" expression="num_of_scales" type="Required"><pythonReference>
+						<para>The number of scale levels to create in the cache. This option is disabled if you create a custom list of scales.</para>
+					</pythonReference><dialogReference>
+						<para>The number of scale levels to create in the cache. This option is disabled if you create a custom list of scales.</para>
+					</dialogReference></param><param sync="true" name="dpi" displayname="Dots(Pixels) Per Inch" datatype="Long" direction="Input" expression="dpi" type="Required"><pythonReference>
+						<para>The dots per inch of the intended output device. If a DPI is chosen that does not match the resolution of the output device, the scale of the map tile will appear incorrect. The default value is 96.</para>
+					</pythonReference><dialogReference>
+						<para>The dots per inch of the intended output device. If a DPI is chosen that does not match the resolution of the output device, the scale of the map tile will appear incorrect. The default value is 96.</para>
+					</dialogReference></param><param sync="true" name="tile_width" displayname="Tile Width (in pixels)" datatype="Long" direction="Input" expression="tile_width" type="Required"><pythonReference>
+						<para>The width of the cache tiles in pixels. The default is 256. For the best balance between performance and manageability, avoid deviating from standard widths of 256 or 512.</para>
+					</pythonReference><dialogReference>
+						<para>The width of the cache tiles in pixels. The default is 256. For the best balance between performance and manageability, avoid deviating from standard widths of 256 or 512.</para>
+					</dialogReference></param><param sync="true" name="tile_height" displayname="Tile Height (in pixels)" datatype="Long" direction="Input" expression="tile_height" type="Required"><pythonReference>
+						<para>The height of the cache tiles in pixels. The default is 256. For the best balance between performance and manageability, avoid deviating from standard widths of 256 or 512.</para>
+					</pythonReference><dialogReference>
+						<para>The height of the cache tiles in pixels. The default is 256. For the best balance between performance and manageability, avoid deviating from standard widths of 256 or 512.</para>
+					</dialogReference></param><param sync="true" name="map_or_layers" displayname="Cache Type" datatype="String" direction="Input" expression="map_or_layers" type="Optional"><pythonReference>
+						<para>Choose to generate a FUSED or MULTI_LAYER cache:</para>
+						<bulletList><bullet_item>FUSED — Choose this option if you want to create each tile as a fused image of all the layers in the source map document. This is the most efficient method of caching your map and is the default option. Since all layers are fused into one image, client applications of this service cannot turn individual layers on or off. If you need to toggle a layer's visibility you must separate it into its own service and cache.</bullet_item><bullet_item>MULTI_LAYER—Choose this option if you want to organize tiles into sub-caches, each depicting a layer in the source map document. This method of caching allows client applications of this service to turn individual layers on or off. However, a larger number of tiles will be created and client will need to do the work of retrieving and overlaying the separate images. This option should be avoided for caches that will be consumed in Web clients.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose to generate a FUSED or MULTI_LAYER cache:</para>
+						<bulletList><bullet_item>FUSED — Choose this option if you want to create each tile as a fused image of all the layers in the source map document. This is the most efficient method of caching your map and is the default option. Since all layers are fused into one image, client applications of this service cannot turn individual layers on or off. If you need to toggle a layer's visibility you must separate it into its own service and cache.</bullet_item><bullet_item>MULTI_LAYER—Choose this option if you want to organize tiles into sub-caches, each depicting a layer in the source map document. This method of caching allows client applications of this service to turn individual layers on or off. However, a larger number of tiles will be created and client will need to do the work of retrieving and overlaying the separate images. This option should be avoided for caches that will be consumed in Web clients.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="tiling_schema" displayname="Predefined Tiling Scheme" datatype="File" direction="Input" expression="tiling_schema" type="Optional"><pythonReference>
+						<para>Path to a predefined tiling scheme file (usually named conf.xml).</para>
+					</pythonReference><dialogReference>
+						<para>Path to a predefined tiling scheme file (usually named conf.xml).</para>
+					</dialogReference></param><param sync="true" name="tile_origin" displayname="Tile origin in map units" datatype="Point" direction="Input" expression="tile_origin" type="Optional"><pythonReference>
+						<para>The origin (upper left corner) of the tiling scheme in the coordinates of the spatial reference of the source map document. The extent of the source map document must be within (but does not need to coincide) with this region.</para>
+					</pythonReference><dialogReference>
+						<para>The origin (upper left corner) of the tiling scheme in the coordinates of the spatial reference of the source map document. The extent of the source map document must be within (but does not need to coincide) with this region.</para>
+					</dialogReference></param><param sync="true" name="levels" displayname="Scales" datatype="String" direction="Output" expression="[levels,...]" type="Optional"><pythonReference>
+						<para>Scale levels available for the cache. These are not represented as fractions. Instead, use 500 to represent a scale of 1:500, and so on.</para>
+					</pythonReference><dialogReference>
+						<para>Scale levels available for the cache. These are not represented as fractions. Instead, use 500 to represent a scale of 1:500, and so on.</para>
+					</dialogReference></param><param sync="true" name="Layer" displayname="Input Layers" datatype="String" direction="Input" expression="[Layer,...]" type="Optional"><pythonReference>
+						<para>Layers to include in the cache if MULTI_LAYER cache type is chosen.</para>
+					</pythonReference><dialogReference>
+						<para>Layers to include in the cache if MULTI_LAYER cache type is chosen.</para>
+					</dialogReference></param><param sync="true" name="Antialiasing" displayname="Antialiasing" datatype="Boolean" direction="Output" expression="Antialiasing" type="Optional"><pythonReference><para>Specifies whether to use antialiasing when rendering the tiles. If antialiasing is chosen, edges of lines, borders, and text will be smoothed. There is a performance cost for this option. The performance cost  is greater when using MXD-based map services (as opposed to MSD-based map services that have antialiasing defined in the MSD file). Antialiasing provides no benefit with raster imagery.</para>
+						<para>If the source for your map service is an MSD file and you defined antialiasing within the MSD, antialiasing will be applied in your cache whether or not you choose the option in this tool.</para><bulletList><bullet_item>NONE—Antialiasing will not be applied. This is the default.</bullet_item><bullet_item>ANTIALIASING—Antialiasing will be applied.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>Specifies whether to use antialiasing when rendering the tiles. If antialiasing is chosen, edges of lines, borders, and text will be smoothed. There is a performance cost for this option. The performance cost  is greater when using MXD-based map services (as opposed to MSD-based map services that have antialiasing defined in the MSD file). Antialiasing provides no benefit with raster imagery.</para>
+						<para>If the source for your map service is an MSD file and you defined antialiasing within the MSD, antialiasing will be applied in your cache whether or not you choose the option in this tool.</para></dialogReference></param><param sync="true" name="cache_format" displayname="Cache tile format" datatype="String" direction="Input" expression="cache_format" type="Optional"><pythonReference>
+						<para>Choose either PNG8, PNG24, PNG32, JPEG, or MIXED file format for the tiles in the cache. PNG8 is the default.</para>
+						<bulletList><bullet_item>PNG8—A lossless, 8-bit color, image format that uses an indexed color palette and an alpha table. Each pixel stores a value (0–255) that is used to look up the color in the color-palette and the transparency in the alpha table. 8-bit PNGs are similar to GIF images and enjoy the best support for transparent background by most Web browsers. </bullet_item><bullet_item>PNG24—A lossless, three-channel image format that supports large color variations (16 million colors) and has limited support for transparency. Each pixel contains three 8-bit color channels and the file header contains the single color that represents the transparent background. The color representing the transparent background color can be set in ArcMap. Versions of Internet Explorer less than version 7 do not support this type of transparency. Caches using PNG24 are significantly larger than those using PNG8 or JPEG and will take more disk space and require greater bandwidth to serve clients. </bullet_item><bullet_item>PNG32—A lossless, four-channel image format that supports large color variations (16 million colors) and transparency. Each pixel contains three 8-bit color channels and one 8-bit alpha channel that represents the level of transparency for each pixel. While the PNG32 format allows for partially transparent pixels in the range from 0 to 255, the ArcGIS Server cache generation tool only writes fully transparent (0) or fully opaque (255) values in the transparency channel. Caches using PNG32 are significantly larger than the other supported formats and will take more disk space and require greater bandwidth to serve clients. </bullet_item><bullet_item>JPEG—A lossy, three-channel image format that supports large color variations (16 million colors) but does not support transparency. Each pixel contains three 8-bit color channels. Caches using JPEG provide control over output quality and size. </bullet_item><bullet_item>MIXED—Creates PNG 32 anywhere that transparency is detected (in other words, anywhere that the data frame background is visible). Creates  JPEG for the remaining tiles. This keeps the average file size down while providing you with a clean overlay on top of other caches.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose either PNG8, PNG24, PNG32, JPEG, or MIXED file format for the tiles in the cache. PNG8 is the default.</para>
+						<bulletList><bullet_item>PNG8—A lossless, 8-bit color, image format that uses an indexed color palette and an alpha table. Each pixel stores a value (0–255) that is used to look up the color in the color-palette and the transparency in the alpha table. 8-bit PNGs are similar to GIF images and enjoy the best support for transparent background by most Web browsers. </bullet_item><bullet_item>PNG24—A lossless, three-channel image format that supports large color variations (16 million colors) and has limited support for transparency. Each pixel contains three 8-bit color channels and the file header contains the single color that represents the transparent background. The color representing the transparent background color can be set in ArcMap. Versions of Internet Explorer less than version 7 do not support this type of transparency. Caches using PNG24 are significantly larger than those using PNG8 or JPEG and will take more disk space and require greater bandwidth to serve clients. </bullet_item><bullet_item>PNG32—A lossless, four-channel image format that supports large color variations (16 million colors) and transparency. Each pixel contains three 8-bit color channels and one 8-bit alpha channel that represents the level of transparency for each pixel. While the PNG32 format allows for partially transparent pixels in the range from 0 to 255, the ArcGIS Server cache generation tool only writes fully transparent (0) or fully opaque (255) values in the transparency channel. Caches using PNG32 are significantly larger than the other supported formats and will take more disk space and require greater bandwidth to serve clients. </bullet_item><bullet_item>JPEG—A lossy, three-channel image format that supports large color variations (16 million colors) but does not support transparency. Each pixel contains three 8-bit color channels. Caches using JPEG provide control over output quality and size. </bullet_item><bullet_item>MIXED—Creates PNG 32 anywhere that transparency is detected (in other words, anywhere that the data frame background is visible). Creates  JPEG for the remaining tiles. This keeps the average file size down while providing you with a clean overlay on top of other caches.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="tile_compression_quality" displayname="Tile Compression Quality" datatype="Long" direction="Input" expression="tile_compression_quality" type="Optional"><pythonReference>
+						<para>Enter a value between 1 and 100 for the JPEG compression quality. The default value is 75 for JPEG tile format and zero for other formats.</para>
+						<para>Compression is supported only for JPEG format. Choosing a higher value will result in a larger file size with a higher-quality image. Choosing a lower value will result in a smaller file size with a lower-quality image.</para>
+					</pythonReference><dialogReference>
+						<para>Enter a value between 1 and 100 for the JPEG compression quality. The default value is 75 for JPEG tile format and zero for other formats.</para>
+						<para>Compression is supported only for JPEG format. Choosing a higher value will result in a larger file size with a higher-quality image. Choosing a lower value will result in a smaller file size with a lower-quality image.</para>
+					</dialogReference></param><param sync="true" name="storage_format" displayname="Storage Format" datatype="String" direction="Input" expression="storage_format" type="Optional"><pythonReference>
+						<para>Choose whether to group your tiles into large .bundle files using "Compact" storage format,  instead of storing each tile as a separate file using "Exploded" format. Compact storage format is more efficient in terms of  storage and mobility.  </para>
+					</pythonReference><dialogReference>
+						<para>Choose whether to group your tiles into large .bundle files using "Compact" storage format,  instead of storing each tile as a separate file using "Exploded" format. Compact storage format is more efficient in terms of  storage and mobility.  </para>
+					</dialogReference></param><param sync="true" name="use_local_cache_dir" displayname="Use Local Cache Directory" datatype="Boolean" direction="Input" expression="use_local_cache_dir" type="Required"><pythonReference><para>Choose 
+whether bundle files should be written into a local directory on the server when creating a compact cache, instead of being written directly into the shared cache directory. If you choose this option, the bundle files will be copied into the shared cache directory as they are completed. This option improves performance when multiple machines are working on the caching job.</para><bulletList><bullet_item>TRUE—Tiles stored in bundles are written into a local directory, then copied into the shared cache directory as bundles are completed. This is the default when the storage format is Compact.</bullet_item><bullet_item>FALSE—Tiles are written directly into the shared cache directory. This is the only valid option when the storage format is Exploded.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>
+Choose 
+whether bundle files should be written into a local directory on the server when creating a compact cache, instead of being written directly into the shared cache directory. If you choose this option, the bundle files will be copied into the shared cache directory as they are completed. This option improves performance when multiple machines are working on the caching job.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>This tool only works with ArcGIS Server map services.</para>
+			</bullet_item><bullet_item>
+				<para>Only one data frame can be cached at a time. If you need maps from multiple data frames, you must create separate map services and caches for each data frame.</para>
+			</bullet_item><bullet_item>
+				<para>Once you create the tiling scheme you cannot modify it. However, you can add or delete scales using the Manage Map Server Cache Scales tool.</para>
+			</bullet_item><bullet_item>
+				<para>For best performance, use fused caches. Always use fused caches for tiles that will be consumed in Web applications. </para>
+			</bullet_item><bullet_item>
+				<para>Raster data is best served with JPEG or MIXED image format. When using JPEG or MIXED with vector maps, use a high compression quality value (such as 90) to reduce blurring of lines and text. Vector data can also be served in PNG format, although PNG 24 should be avoided for caches that will be used in Web applications.</para>
+			</bullet_item><bullet_item>
+				<para>JPEG file format is not supported for multilayer caches.</para>
+			</bullet_item><bullet_item>
+				<para>The cache image format cannot be changed once the cache is generated. The cache must first be deleted before switching to a different  format.</para>
+			</bullet_item><bullet_item>
+				<para>The Antialiasing option smoothes out the edges of lines and text, but offers little enhancement for raster images.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><para>This example creates a map cache using the "standard" scale type.</para><code xml:space="preserve"># CreateMapServerCache example (stand-alone script)
+
+# Name: CreateMapServerCache.py
+# Description: The following stand-alone script demonstrates how to create map
+#               using Custom scales &amp; jpg image format with Antialiasing feature turned on
+# Requirements: os, sys, time &amp; traceback modules
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default value.
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, string, datetime, traceback
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of input variables for map service properties
+server = "MyServer"
+service = "Rainfall"
+dataFrame = "" 
+cacheDir = "C:\\arcgisserver\\arcgiscache\\"
+tilingScheme = "NEW"
+scalesType = "CUSTOM"
+extents = ""
+tileOrigin = ""
+scales = "4"
+dpi = "96"
+scaleValues = "600265;350200;225400;44000"
+tileWidth = "256"
+tileHeight = "256"
+cacheType = "FUSED"
+inputLayers = ""
+pathToXML = ""
+antialiasing = "ANTIALIASING"
+tileFormat = "JPEG"
+tileCompressionQuality = "75"
+storageFormat = "Compact"
+useLocalCacheDir = "True"
+
+currentTime = datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+
+# print results of the script to a report
+report = open(file,'w')
+
+try:
+    starttime = time.clock()
+    result = arcpy.CreateMapServerCache_server(server, service, dataFrame, cacheDir,
+                                      tilingScheme, scalesType, scales, dpi,
+                                      tileWidth, tileHeight, cacheType,
+                                      pathToXml, tileOrigin, scaleValues,
+                                      inputLayers, antialiasing, tileFormat,
+                                      tileCompressionQuality,
+                                      storageFormat, useLocalCacheDir)
+    finishtime = time.clock()
+    elapsedtime = finishtime - starttime
+
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+
+    print "Created cache schema with custom scales successfully for "
+    + service + " in " + str(elapsedtime) + " sec \n on " + arg2 
+
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 1 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+print "Executed creation of map server Cache schema using custom scales"
+
+report.close()
+
+                    </code></scriptExample><scriptExample><title></title><para>This example creates a map cache using "custom" scales.</para><code xml:space="preserve"># CreateMapServerCache example (stand-alone script)
+
+# Name: CreateMapServerCache.py
+# Description: The following stand-alone script demonstrates how to create map
+#               using Custom scales &amp; jpg image format with Antialiasing feature turned on
+# Requirements: os, sys, time &amp; traceback modules
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default value.
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, string, datetime, traceback
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of input variables for map service properties
+server = "MyServer"
+service = "Rainfall"
+dataFrame = "" 
+cacheDir = "C:\\arcgisserver\\arcgiscache\\"
+tilingScheme = "NEW"
+scalesType = "CUSTOM"
+extents = ""
+tileOrigin = ""
+scales = "4"
+dpi = "96"
+scaleValues = "600265;350200;225400;44000"
+tileWidth = "256"
+tileHeight = "256"
+cacheType = "FUSED"
+inputLayers = ""
+pathToXML = ""
+antialiasing = "ANTIALIASING"
+tileFormat = "JPEG"
+tileCompressionQuality = "75"
+storageFormat = "Compact"
+useLocalCacheDir = "True"
+
+currentTime = datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+
+# print results of the script to a report
+report = open(file,'w')
+
+try:
+    starttime = time.clock()
+    result = arcpy.CreateMapServerCache_server(server, service, dataFrame, cacheDir,
+                                      tilingScheme, scalesType, scales, dpi,
+                                      tileWidth, tileHeight, cacheType,
+                                      pathToXml, tileOrigin, scaleValues,
+                                      inputLayers, antialiasing, tileFormat,
+                                      tileCompressionQuality,
+                                      storageFormat, useLocalCacheDir)
+    finishtime = time.clock()
+    elapsedtime = finishtime - starttime
+
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+
+    print "Created cache schema with custom scales successfully for "
+    + service + " in " + str(elapsedtime) + " sec \n on " + arg2 
+
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 1 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+print "Executed creation of map server Cache schema using custom scales"
+
+report.close()
+
+                    </code></scriptExample><scriptExample><title></title><para>This example creates a map cache using a predefined tiling scheme.</para><code xml:space="preserve"># CreateMapServerCache example (stand-alone script)
+
+# Name: CreateMapServerCache.py
+# Description: The following stand-alone script demonstrates how to create map
+#               using Custom scales &amp; jpg image format with Antialiasing feature turned on
+# Requirements: os, sys, time &amp; traceback modules
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default value.
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, string, datetime, traceback
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of input variables for map service properties
+server = "MyServer"
+service = "Rainfall"
+dataFrame = "" 
+cacheDir = "C:\\arcgisserver\\arcgiscache\\"
+tilingScheme = "NEW"
+scalesType = "CUSTOM"
+extents = ""
+tileOrigin = ""
+scales = "4"
+dpi = "96"
+scaleValues = "600265;350200;225400;44000"
+tileWidth = "256"
+tileHeight = "256"
+cacheType = "FUSED"
+inputLayers = ""
+pathToXML = ""
+antialiasing = "ANTIALIASING"
+tileFormat = "JPEG"
+tileCompressionQuality = "75"
+storageFormat = "Compact"
+useLocalCacheDir = "True"
+
+currentTime = datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+
+# print results of the script to a report
+report = open(file,'w')
+
+try:
+    starttime = time.clock()
+    result = arcpy.CreateMapServerCache_server(server, service, dataFrame, cacheDir,
+                                      tilingScheme, scalesType, scales, dpi,
+                                      tileWidth, tileHeight, cacheType,
+                                      pathToXml, tileOrigin, scaleValues,
+                                      inputLayers, antialiasing, tileFormat,
+                                      tileCompressionQuality,
+                                      storageFormat, useLocalCacheDir)
+    finishtime = time.clock()
+    elapsedtime = finishtime - starttime
+
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+
+    print "Created cache schema with custom scales successfully for "
+    + service + " in " + str(elapsedtime) + " sec \n on " + arg2 
+
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 1 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+print "Executed creation of map server Cache schema using custom scales"
+
+report.close()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

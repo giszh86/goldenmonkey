@@ -1,0 +1,87 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Feature Vertices To Points (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a feature class containing points generated from specified vertices or locations of the input features. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Begin</keyword><keyword>Connect</keyword><keyword>Dangle</keyword><keyword>Dot</keyword><keyword>End</keyword><keyword>From</keyword><keyword>Geometry</keyword><keyword>Half</keyword><keyword>Intersection</keyword><keyword>Mid</keyword><keyword>Midpoint</keyword><keyword>Node</keyword><keyword>Origin</keyword><keyword>Start</keyword><keyword>To</keyword><keyword>Topology</keyword><keyword>Transform</keyword><keyword>Vector</keyword><keyword>Vertex</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FeatureVerticesToPoints" displayname="Feature Vertices To Points (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a feature class containing points generated from specified vertices or locations of the input features. </para>
+		</summary><alink_name>FeatureVerticesToPoints_management</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/FeatureVerticesToPoints_management_v.png" alt="Feature Vertices To Points illustration" /><toolIllust type="illustration" src="FeatureVerticesToPoints_management_h.png" alt="Feature Vertices To Points" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para> The input features that can be line or polygon.</para>
+					</pythonReference><dialogReference>
+						<para> The input features that can be line or polygon.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output point feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output point feature class.</para>
+					</dialogReference></param><param sync="true" name="point_location" displayname="Point Type" datatype="String" direction="Input" expression="point_location" type="Optional"><pythonReference>
+						<para> Specifies where an output point will be created.</para>
+						<bulletList><bullet_item>ALL—A point will be created at each input feature vertex. This is the default. </bullet_item><bullet_item>MID—A point will be created at the midpoint, not necessarily a vertex, of each input line or polygon boundary. </bullet_item><bullet_item>START—A point will be created at the start point (first vertex) of each input feature. </bullet_item><bullet_item>END—A point will be created at the end point (last vertex) of each input feature. </bullet_item><bullet_item>BOTH_ENDS—Two points will be created, one at the start point and another at the endpoint of each input feature.</bullet_item><bullet_item>DANGLE —A dangle point will be created for any start or end point of an input line, if that point is not connected to another line at any location along that line. This option does not apply to polygon input.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Specifies where an output point will be created.</para>
+						<bulletList><bullet_item>ALL—A point will be created at each input feature vertex. This is the default. </bullet_item><bullet_item>MID—A point will be created at the midpoint, not necessarily a vertex, of each input line or polygon boundary. </bullet_item><bullet_item>START—A point will be created at the start point (first vertex) of each input feature. </bullet_item><bullet_item>END—A point will be created at the end point (last vertex) of each input feature. </bullet_item><bullet_item>BOTH_ENDS—Two points will be created, one at the start point and another at the endpoint of each input feature.</bullet_item><bullet_item>DANGLE —A dangle point will be created for any start or end point of an input line, if that point is not connected to another line at any location along that line. This option does not apply to polygon input.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para> The attributes of the input features will be maintained in the output feature class. A new field, ORIG_FID, will be added to the output feature class and set to the input feature IDs. </para>
+			</bullet_item><bullet_item>
+				<para>For multipart lines or polygons, each part will be treated as a line. Therefore, each part will have its own start, end, and mid points, as well as possible dangle point(s).</para>
+			</bullet_item><bullet_item>
+				<para>A parametric (true) curve has only the start and end points and will not be densified.</para>
+			</bullet_item><bullet_item>
+				<para>For the DANGLE option of the Point Type parameter on the dialog box (the point_location parameter in scripting), an additional field, DANGLE_LEN carrying the dangle length values in feature unit, will be added to the output feature class. For an isolated line, both endpoints are dangle points; therefore, the dangle length is the line length itself. For a dangle line that intersects another line at one of its endpoints, the dangle length is measured from the dangling endpoint to the intersection.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FeatureVerticesToPoints Example 1 (Python window)</title>
+					<para>The following Python window script demonstrates how to use the FeatureVerticesToPoints function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.FeatureVerticesToPoints_management("parcels.shp",
+                                         "c:/output/output.gdb/parcels_corner", 
+                                         "ALL")
+                    </code></scriptExample><scriptExample><title>FeatureVerticesToPoints Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script is a simple example of how to apply the FeatureVerticesToPoints function in a scripting environment.</para>
+				<code xml:space="preserve"># Name: FeatureVerticesToPoints_Example2.py
+# Description: Use FeatureVerticesToPoints function to get the mid-points
+#              of input line features
+# Author: ESRI
+ 
+# import system modules 
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+ 
+# Set local variables
+inFeatures = "majorrds.shp"
+outFeatureClass = "c:/output/output.gdb/majorrds_midpt"
+
+# Execute FeatureVerticesToPoints
+arcpy.FeatureVerticesToPoints_management(inFeatures, outFeatureClass, "MID")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,69 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Metadata Publisher (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Publishes metadata to a metadata catalog such as an ArcIMS Metadata Service.</para>
+			<para>The Metadata Publisher tool retrieves the source item's metadata, then a copy of this metadata document is passed to the Publisher specified in the tool. If the source item is a stand-alone XML file, a copy of the file itself will be passed to the Publisher. The Publisher uses information from the tool parameters and from the metadata document to create a request to publish the document to the specified metadata catalog.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arcims</keyword><keyword>Change</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>Fgdc</keyword><keyword>Format</keyword><keyword>Import</keyword><keyword>Iso</keyword><keyword>Make</keyword><keyword>Service</keyword><keyword>Standard</keyword><keyword>Style</keyword><keyword>Transfer</keyword><keyword>Turn</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MDPublisher" displayname="Metadata Publisher (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Publishes metadata to a metadata catalog such as an ArcIMS Metadata Service.</para>
+			<para>The Metadata Publisher tool retrieves the source item's metadata, then a copy of this metadata document is passed to the Publisher specified in the tool. If the source item is a stand-alone XML file, a copy of the file itself will be passed to the Publisher. The Publisher uses information from the tool parameters and from the metadata document to create a request to publish the document to the specified metadata catalog.</para>
+		</summary><alink_name>MDPublisher_conversion</alink_name><parameters><param sync="true" name="source" displayname="Source Metadata" datatype="Data Element; Layer" direction="Input" expression="source" type="Required"><pythonReference>
+						<para>The item whose metadata will be published, or a stand-alone XML file that will be published.</para>
+					</pythonReference><dialogReference>
+						<para>The item whose metadata will be published, or a stand-alone XML file that will be published.</para>
+					</dialogReference></param><param sync="true" name="publisher" displayname="Publisher" datatype="File" direction="Input" expression="publisher" type="Required"><pythonReference>
+						<para>An XML file that defines how the metadata will be published.</para>
+					</pythonReference><dialogReference>
+						<para>An XML file that defines how the metadata will be published.</para>
+					</dialogReference></param><param sync="true" name="url" displayname="Service URL" datatype="String" direction="Input" expression="url" type="Optional"><pythonReference>
+						<para>The URL of a Web Service that hosts the metadata catalog, if appropriate. </para>
+						<para>For example, the URL of an ArcIMS Server that provides a Metadata Service.</para>
+					</pythonReference><dialogReference>
+						<para>The URL of a Web Service that hosts the metadata catalog, if appropriate. </para>
+						<para>For example, the URL of an ArcIMS Server that provides a Metadata Service.</para>
+					</dialogReference></param><param sync="true" name="service" displayname="Service Name" datatype="String" direction="Input" expression="service" type="Optional"><pythonReference>
+						<para>The name of the service to which you want to publish, if appropriate. </para>
+						<para>For example, for an ArcIMS Metadata Service this is the case-sensitive name of the Metadata Service.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the service to which you want to publish, if appropriate. </para>
+						<para>For example, for an ArcIMS Metadata Service this is the case-sensitive name of the Metadata Service.</para>
+					</dialogReference></param><param sync="true" name="user" displayname="User Name" datatype="String" direction="Input" expression="user" type="Optional"><pythonReference>
+						<para>The name used to access the metadata catalog when publishing documents, if appropriate. </para>
+						<para>For example, when publishing documents to an ArcIMS Metadata Service you must log in to the service using a name that has been granted metadata_publisher privileges or a higher privilege.</para>
+					</pythonReference><dialogReference>
+						<para>The name used to access the metadata catalog when publishing documents, if appropriate. </para>
+						<para>For example, when publishing documents to an ArcIMS Metadata Service you must log in to the service using a name that has been granted metadata_publisher privileges or a higher privilege.</para>
+					</dialogReference></param><param sync="true" name="password" displayname="Password" datatype="String" direction="Input" expression="password" type="Optional"><pythonReference>
+						<para>The password you used to access the metadata catalog when publishing documents, if appropriate.</para>
+						<para>For example, when publishing documents to an ArcIMS Metadata Service, this is the password required to log in with the specified User Name.</para>
+					</pythonReference><dialogReference>
+						<para>The password you used to access the metadata catalog when publishing documents, if appropriate.</para>
+						<para>For example, when publishing documents to an ArcIMS Metadata Service, this is the password required to log in with the specified User Name.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item><para>A publisher is provided with ArcGIS Desktop that supports publishing ArcGIS metadata to an ArcIMS Metadata Service. This publisher, named arcimsmd.xml, can be found in the &lt;ArcGIS Install Location&gt;\Metadata\Publisher folder. </para>
+				<para>This publisher uses the contents of the metadata to construct an appropriate ArcXML PUBLISH_METADATA request. FGDC metadata content is checked first. If appropriate information isn't found, the publisher then checks ArcGIS metadata content. The metadata will be published even if it does not contain the information required by the ArcIMS Metadata Explorer application.</para>
+			</bullet_item><bullet_item>
+				<para>Documents in an ArcIMS Metadata Service are uniqely identified using a GUID. When you publish a document to an ArcIMS Metadata Service, if the document doesn't already have a GUID in the &lt;rootElement&gt;/Esri/PublishedDocID element one will be generated and stored in that location if you have write access to the metadata. This identifier ensures that when the document is later updated and republished, the existing copy on the server is replaced.</para>
+				<para>If you publish metadata using a custom model that removes private information before publishing and if the Source Metadata item did not previously have a unique identifier, the identifier created by this tool will be saved to the model's intermediate data but not to the original item.</para>
+				<para>To avoid this problem, you can add a unique identifier to an item's metadata before it is published using the  tool with the add unique identifier.xslt file provided in the &lt;ArcGIS Install Location&gt;\Metadata\Stylesheets\gpTools folder. This operation is safe—if the metadata already has a unique identifier the existing identifier will remain untouched. Be sure to save the version of the metadata containing the new identifier with the original ArcGIS item; otherwise, the next time its metadata is published the ArcIMS Metadata Service will have two documents describing the same item with two different identifiers.</para>
+			</bullet_item><bullet_item>
+				<para>If you publish metadata to an ArcIMS Metadata Service you must provide credentials for a user who has been given permission to publish documents to that service. If you have trouble publishing, connect to ArcIMS server in the Catalog window with the same credentials. If you have permission to publish documents with those credentials the Metadata Service's icon will show a hand holding a pencil 
+						
+						
+					.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will not publish metadata associated with some ArcGIS items such as map, globe, and scene documents; layer files; text files; Excel files; file types; ArcIMS services; and geoprocessing tools. Publishing these items will produce an Unsupported source error message.</para>
+			</bullet_item><bullet_item>
+				<para>If the metadata document does not consist of well-formed XML and the metadata is published with this tool, the tool will produce an Unsupported source error message.</para>
+			</bullet_item><bullet_item>
+				<para>The Source Metadata parameter has a complex data type. If you use this tool in a model, create a variable for the Source Metadata parameter in ModelBuilder by right-clicking the tool, pointing to Make VariableFrom ParameterSource Metadata.</para>
+			</bullet_item><bullet_item>
+				<para> When using this tool in ModelBuilder, the Output Metadata parameter is derived from the Source Metadata parameter.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Publish an ArcGIS item's metadata to an ArcIMS Metadata Service</title>
+					
+					<para>An ArcGIS item's metadata is published to an ArcIMS Metadata Service. This sample won't complete successfully unless a valid ArcIMS Metadata Service is identified and a valid User Name and Password with sufficient privileges are provided. </para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/data.gdb"
+#set local variables
+dir = arcpy.GetInstallInfo("desktop")["InstallDir"]
+pub = dir + "Metadata/Publisher/arcimsmd.xml"
+arcpy.MDPublisher_conversion("locations", pub, "http://myserver", "Metadata",
+    "myUsername", "myPassword")
+                    </code></scriptExample></scriptExamples></tool></metadata>

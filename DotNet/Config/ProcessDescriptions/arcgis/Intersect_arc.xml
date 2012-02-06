@@ -1,0 +1,97 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Intersect (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Computes the geometric intersection of two coverages. Only those features in the area common to both coverages will be preserved in the output coverage.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Analysis</keyword><keyword>Arc</keyword><keyword>Coverage</keyword><keyword>Intersect</keyword><keyword>Overlay</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Intersect" displayname="Intersect (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Computes the geometric intersection of two coverages. Only those features in the area common to both coverages will be preserved in the output coverage.</para>
+			
+		</summary><alink_name>Intersect_arc</alink_name><toolIllust type="illustration" src="Intersect_arc_h.gif" alt="Intersect Illustration" /><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage whose polygon, line, or point features will be intersected with the intersect coverage.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage whose polygon, line, or point features will be intersected with the intersect coverage.</para>
+					</dialogReference></param><param sync="true" name="intersect_cover" displayname="Intersect Coverage" datatype="Coverage" direction="Input" expression="intersect_cover" type="Required"><pythonReference>
+						<para>The intersect coverage. This coverage must contain polygon features.</para>
+					</pythonReference><dialogReference>
+						<para>The intersect coverage. This coverage must contain polygon features.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The coverage that will be created to contain the results.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage that will be created to contain the results.</para>
+					</dialogReference></param><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Optional"><pythonReference>
+						<para>The input coverage feature class to be overlaid and preserved in the output coverage.</para>
+						<bulletList><bullet_item>POLY—The input coverage's polygon feature class will be used as input. This is the default option. </bullet_item><bullet_item>LINE—The input coverage's line (arc) feature class will be used as input. </bullet_item><bullet_item>POINT—The input coverage's point feature class will be used as input. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The input coverage feature class to be overlaid and preserved in the output coverage.</para>
+						<bulletList><bullet_item>POLY—The input coverage's polygon feature class will be used as input. This is the default option. </bullet_item><bullet_item>LINE—The input coverage's line (arc) feature class will be used as input. </bullet_item><bullet_item>POINT—The input coverage's point feature class will be used as input. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="fuzzy_tolerance" displayname="Fuzzy Tolerance" datatype="Double" direction="Input" expression="fuzzy_tolerance" type="Optional"><pythonReference>
+						<para>The minimum distance between coordinates in the output coverage. By default, the minimum fuzzy tolerance value from the input and erase coverages is used.</para>
+						
+					</pythonReference><dialogReference>
+						<para>The minimum distance between coordinates in the output coverage. By default, the minimum fuzzy tolerance value from the input and erase coverages is used.</para>
+						
+					</dialogReference></param><param sync="true" name="join_attributes" displayname="Join Attributes" datatype="Boolean" direction="Input" expression="join_attributes" type="Optional"><pythonReference>
+						<para>Specifies whether all items in both the input coverage feature attribute and identity coverage will be joined to the output coverage feature attribute table.</para>
+						<bulletList><bullet_item>JOIN—All feature attribute items from both coverages will appear in the output coverage feature attribute table. If a duplicate item is encountered, the item in the input coverage will be maintained and the one in the join file will be dropped. This is the default option. </bullet_item><bullet_item>NO_JOIN—Only the feature's internal number (cover#) from the input coverage and the intersect coverage are joined in the output coverage feature attribute table. This option is useful in reducing the size of the output coverage feature attribute table. The Add Join tool can then be used to get the attributes to the output coverage features. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether all items in both the input coverage feature attribute and identity coverage will be joined to the output coverage feature attribute table.</para>
+						<bulletList>
+							<bullet_item>Checked—All feature attribute items from both coverages will appear in the output coverage feature attribute table. If a duplicate item is encountered, the item in the input coverage will be maintained and the one in the join file will be dropped. This is the default option.</bullet_item>
+							<bullet_item>Unchecked—Only the feature's internal number (cover#) from the input coverage and the intersect coverage are joined in the output coverage feature attribute table. This option is useful in reducing the size of the output coverage feature attribute table. The Add Join tool can then be used to get the attributes to the output coverage features.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The intersect coverage must have polygon topology.</para>
+			</bullet_item><bullet_item>
+				<para>The input coverage, intersect coverage, and output coverage must have different names, even when in different workspaces.</para>
+			</bullet_item><bullet_item>
+				<para>Label points are generated in each output coverage polygon when the POLY option is used. The new polygon User-IDs are set equal to the polygon internal number minus one.</para>
+			</bullet_item><bullet_item>
+				<para>Route systems in the input coverage will be maintained in the output coverage when using the LINE option. However, INTERSECT on routes and sections themselves is not permitted.</para>
+			</bullet_item><bullet_item>
+				<para>Region subclasses from both input coverage and intersect coverage are maintained with the POLY option. Subclasses with identical names and attribute schemas are appended. Output regions are clipped by the extent of the output coverage.</para>
+			</bullet_item><bullet_item>
+				<para>Annotation is copied from the input coverage and saved in the output coverage.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of the output coverage is determined by the  environment.</para>
+			</bullet_item><bullet_item>
+				<para>Projection files will be compared for similarity using the level of comparison specified in the  environment.</para>
+			</bullet_item><bullet_item>
+				<para>The output coverage inherits the items from the point attribute table, tics, and the projection file data model contents from the input coverage.</para>
+			</bullet_item><bullet_item>
+				<para>When the input coverage contains linear data belonging to different planar graphs, the data will be maintained in the output coverage. For example, with coincident or colinear arcs such as arcs representing utility cables at different levels or a road following a stream, the coincident and colinear line segments will be preserved. However, additional vertices may be inserted. In the case of intersecting arcs such as a road passing over a stream, nodes will not be inserted at the apparent intersection.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Intersect example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to intersect two coverages.</para>
+					
+				<code xml:space="preserve"># Name: Intersect_Example.py
+# Description: Intersects two coverages
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "stream"
+intersectCover = "citylim"
+outCover = "C:/output/citystreams"
+featureType = "LINE"
+joinAttributes = "NO_JOIN"
+
+# Execute Intersect
+arcpy.Intersect_arc(inCover, intersectCover, outCover, featureType, "", 
+                    joinAttributes)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

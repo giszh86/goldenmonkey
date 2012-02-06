@@ -1,0 +1,32 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Delete Raster Catalog Items (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Deletes raster catalog items, including all its contents, or a subset of its contents if there is a selection.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Collection</keyword><keyword>Contain</keyword><keyword>Empty</keyword><keyword>Erase</keyword><keyword>Footprint</keyword><keyword>Gdb</keyword><keyword>Geodatabase</keyword><keyword>Image Catalog</keyword><keyword>Manage</keyword><keyword>Overlap</keyword><keyword>Record</keyword><keyword>Remove</keyword><keyword>Row</keyword><keyword>Unmanage</keyword><keyword>Wire Frame</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DeleteRasterCatalogItems" displayname="Delete Raster Catalog Items (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Deletes raster catalog items, including all its contents, or a subset of its contents if there is a selection.</para>
+		</summary><alink_name>DeleteRasterCatalogItems_management</alink_name><parameters><param sync="true" name="in_raster_catalog" displayname="Input Raster Catalog" datatype="Raster Catalog Layer" direction="Input" expression="in_raster_catalog" type="Required"><pythonReference>
+						<para>The input raster catalog that will have its items deleted.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster catalog that will have its items deleted.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Only geodatabase raster catalogs are valid inputs.</para>
+			</bullet_item><bullet_item>
+				<para>When using ArcMap, you can use the Selection tool to choose which items to delete.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DeleteRasterCatalogItems example 1 (Python window)</title>
+					<para>This is a Python sample for the DeleteRasterCatalogItems tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.DeleteRasterCatalogItems_management("c:/data/DeleteRC.gdb/RC_managed")
+                    </code></scriptExample><scriptExample><title>DeleteRasterCatalogItems example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for the DeleteRasterCatalogItems tool.</para>
+				<code xml:space="preserve">##===================
+##Delete Raster Catalog Items
+##Usage: DeleteRasterCatalogItems_management in_raster_catalog
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:\PrjWorkspace"
+    ##Delete FGDB Managed Raster Catalog - Support Selection in ArcMap
+    arcpy.DeleteRasterCatalogItems_management("DeleteRC.gdb\\Managed")
+except:
+    print "Delete Raster Catalog Items example failed."
+    print arcpy.GetMessages()    
+                    </code></scriptExample></scriptExamples></tool></metadata>

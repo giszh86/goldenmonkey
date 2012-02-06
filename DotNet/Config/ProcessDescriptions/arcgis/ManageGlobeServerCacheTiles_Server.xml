@@ -1,0 +1,112 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Manage Globe Server Cache Tiles (Server)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates and updates tiles in an existing globe service cache. This tool is used to create new tiles or to replace missing tiles, overwrite outdated tiles, or add new tiles.  All these actions can be defined by rectangular extents or by a polygon feature class. When creating new tiles, you can choose whether to create only empty tiles or re-create all tiles.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ManageGlobeServerCacheTiles" displayname="Manage Globe Server Cache Tiles (Server)" toolboxalias="Server" softwarerestriction="none"><summary>
+			<para>Creates and updates tiles in an existing globe service cache. This tool is used to create new tiles or to replace missing tiles, overwrite outdated tiles, or add new tiles.  All these actions can be defined by rectangular extents or by a polygon feature class. When creating new tiles, you can choose whether to create only empty tiles or re-create all tiles.</para>
+		</summary><alink_name>ManageGlobeServerCacheTiles_Server</alink_name><parameters><param sync="true" name="server_name" displayname="Host" datatype="String" direction="Input" expression="server_name" type="Required"><pythonReference>
+						<para>The ArcGIS Server machine hosting the globe service whose tiles you are managing.</para>
+					</pythonReference><dialogReference>
+						<para>The ArcGIS Server machine hosting the globe service whose tiles you are managing.</para>
+					</dialogReference></param><param sync="true" name="object_name" displayname="GlobeServer Object" datatype="String" direction="Input" expression="object_name" type="Required"><pythonReference>
+						<para>The globe service whose tiles will be modified.</para>
+					</pythonReference><dialogReference>
+						<para>The globe service whose tiles will be modified.</para>
+					</dialogReference></param><param sync="true" name="update_extent" displayname="Update Extent" datatype="Extent" direction="Input" expression="update_extent" type="Optional"><pythonReference>
+						<para>Rectangular extent at which tiles should be created or deleted, depending on the Update Mode. You can type the extent values or choose an extent from an existing data source.</para>
+					</pythonReference><dialogReference>
+						<para>Rectangular extent at which tiles should be created or deleted, depending on the Update Mode. You can type the extent values or choose an extent from an existing data source.</para>
+					</dialogReference></param><param sync="true" name="in_layers" displayname="Input Layers" datatype="Value Table" direction="Input" expression="[in_layers,...]" type="Required"><pythonReference>
+						<para>Select the layers to include in the cache.</para>
+						<para>For each layer, you need to provide a level_from, which is the level of detail at which you would like to begin caching the layer, and a level_to, which is the level of detail at which you would like to end caching the layer. If the smallest and largest levels of detail are used for  level_from and level_to, respectively, a full cache will be built for the layer. </para></pythonReference><dialogReference>
+						<para>Select the layers to include in the cache.</para>
+						<para>For each layer, you need to provide a level_from, which is the level of detail at which you would like to begin caching the layer, and a level_to, which is the level of detail at which you would like to end caching the layer. If the smallest and largest levels of detail are used for  level_from and level_to, respectively, a full cache will be built for the layer. </para></dialogReference></param><param sync="true" name="thread_count" displayname="Number of GlobeServer instances" datatype="Long" direction="Input" expression="thread_count" type="Optional"><pythonReference>
+						<para>Number of globe service instances to use while running this tool. By default the maximum allowable number of instances will be used (default for an ArcGIS Server service is 2) . If you have more server power, you can raise the maximum allowable number of instances in the Service Properties, then raise this parameter when you run the tool.</para>
+					</pythonReference><dialogReference>
+						<para>Number of globe service instances to use while running this tool. By default the maximum allowable number of instances will be used (default for an ArcGIS Server service is 2) . If you have more server power, you can raise the maximum allowable number of instances in the Service Properties, then raise this parameter when you run the tool.</para>
+					</dialogReference></param><param sync="true" name="update_mode" displayname="Update Mode" datatype="String" direction="Input" expression="update_mode" type="Required"><pythonReference>
+						<para>Choose a mode for updating the cache. The two modes are:</para>
+						<bulletList><bullet_item>Recreate Empty Tiles—Only tiles that are empty will be created. Existing tiles will be left unchanged.</bullet_item><bullet_item>Recreate All Tiles—All tiles, including existing tiles, will be replaced. Additionally, new tiles will be added if a layer's data extent has changed or new layers have been added to the globe service and listed in this tool.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose a mode for updating the cache. The two modes are:</para>
+						<bulletList><bullet_item>Recreate Empty Tiles—Only tiles that are empty will be created. Existing tiles will be left unchanged.</bullet_item><bullet_item>Recreate All Tiles—All tiles, including existing tiles, will be replaced. Additionally, new tiles will be added if a layer's data extent has changed or new layers have been added to the globe service and listed in this tool.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="update_feature_class" displayname="Input Feature Class" datatype="Feature Class" direction="Input" expression="update_feature_class" type="Optional"><pythonReference>
+						<para>You can use a polygon feature class to manage tiles (create/update) based on the extents of features in a feature class. For example, if you are caching a country, you might supply a feature class of major urban areas. By doing so, you are requesting that the server only pre-create tiles that cover those urban areas. The rest of the areas can be cached on demand when requested by clients. This can save you time and disk space that would be consumed by creating unneeded tiles in rural areas.</para>
+					</pythonReference><dialogReference>
+						<para>You can use a polygon feature class to manage tiles (create/update) based on the extents of features in a feature class. For example, if you are caching a country, you might supply a feature class of major urban areas. By doing so, you are requesting that the server only pre-create tiles that cover those urban areas. The rest of the areas can be cached on demand when requested by clients. This can save you time and disk space that would be consumed by creating unneeded tiles in rural areas.</para>
+					</dialogReference></param><param sync="true" name="ignore_status" displayname="Cache areas for all features and ignore completion status field" datatype="Boolean" direction="Input" expression="ignore_status" type="Optional"><pythonReference><para>This parameter allows you to track the status of your caching if you are creating tiles based on feature class boundaries (see the update_feature_class parameter). </para><bulletList><bullet_item>IGNORE_COMPLETION_STATUS_FIELD—The feature class's Completed field is ignored and tiles are created for all features in the feature class. This is the default.</bullet_item><bullet_item>TRACK_COMPLETION_STATUS—The feature class's Completed field is read (and created if it doesn't exist yet). Features marked No or null in this field are cached and marked Yes when caching has completed for the feature. Features already marked Yes in this field are not cached.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>This parameter allows you to track the status of your caching if you are creating tiles based on feature class boundaries (see the Input Feature Class parameter). </para><bulletList><bullet_item>Checked—The feature class's Completed field is ignored and tiles are created for all features in the feature class. This is the default.</bullet_item><bullet_item>Unchecked—The feature class's Completed field is read (and created if it doesn't exist yet). Features marked No or null in this field are cached and marked Yes when caching has completed for the feature. Features already marked Yes in this field are not cached.</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>This tool should be used to update an existing globe server cache. To update a cache, specify the ArcGIS Server hosting the globe service. The tool will automatically list all globe services available on that server.</para>
+			</bullet_item><bullet_item>
+				<para>Running update without specifying an extent will update the entire extent of the service.</para>
+			</bullet_item><bullet_item>
+				<para>Update is useful to run when you need to update only a portion of the globe service cache. When specifying level_from and level_to, make sure you specify all levels at which you want tiles generated. The level_from defines the lowest level of detail you want your data cache to begin with. The level_to defines the highest resolution you want your data caching to have.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><para>This example creates a full cache for a globe service.</para><code xml:space="preserve">#ManageGlobeServerCacheTiles example (stand-alone script)
+
+# Name: ManageGlobeServerCacheTiles.py
+# Description: The following stand-alone script demonstrates how to update the
+#               globe map server cache tiles
+# Requirements: os, sys, time &amp; traceback modules 
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default values
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, datetime, traceback, string
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of input variables for map service properties
+server = "MyServer"
+globeServerObject = "tstGlobeService"
+inputLayers = ""
+extents = ""
+cacheDir = "C:\\arcgisserver\\arcgiscache\\GlobeCache"
+threadCount = "2"
+updateMode = "Recreate All Tiles"
+pathToFeatureClass = ""
+ignoreStatus = "IGNORE_COMPLETION_STATUS_FIELD"
+
+currentTime = datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+
+# print results of the script to a report
+report = open(file,'w')
+
+try:
+    starttime= time.clock()
+    result = arcpy.ManageGlobeServerCacheTiles_server (server, globeServerObject, 
+                                              extents, updateMode,
+                                              inputLayers, threadCount,
+                                              pathToFeatureClass,
+                                              ignoreStatus)
+    finishtime = time.clock()
+    elapsedtime = finishtime - starttime
+
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+
+    print "Created the GlobeServer cache successfully for mapservice "
+    + globeServerObject + "\n   at " + cacheDir + globeServerObject
+    + " in " + str(elapsedtime) + " sec \n on " + arg2
+
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 1 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+report.close()
+    
+print "Created the globe server cache successfully"
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

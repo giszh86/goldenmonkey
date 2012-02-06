@@ -1,0 +1,125 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Basic Tiger Conversion (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a set of U.S. Bureau of Census TIGER/Line files into one or more ArcInfo coverages.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Conversion</keyword><keyword>Coverage</keyword><keyword>Tiger</keyword><keyword>Tigerarc</keyword><keyword>U.S. Bureau Of Census</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TigerArc" displayname="Basic Tiger Conversion (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Converts a set of U.S. Bureau of Census TIGER/Line files into one or more ArcInfo coverages.</para>
+			
+		</summary><alink_name>TigerArc_arc</alink_name><parameters><param sync="true" name="in_tiger_file_prefix" displayname="Input TIGER File Prefix" datatype="String" direction="Input" expression="in_tiger_file_prefix" type="Required"><pythonReference>
+						<para>The filename prefix, common to all files in the set of TIGER/Line files being converted. The prefix may include a directory path.</para>
+					</pythonReference><dialogReference>
+						<para>The filename prefix, common to all files in the set of TIGER/Line files being converted. The prefix may include a directory path.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The name of the output coverage to be created containing the basic line features and attribute data from the set of TIGER/Line files.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output coverage to be created containing the basic line features and attribute data from the set of TIGER/Line files.</para>
+					</dialogReference></param><param sync="true" name="out_point_cover" displayname="Output Point Coverage" datatype="Coverage" direction="Output" expression="out_point_cover" type="Optional"><pythonReference>
+						<para>The name of the output coverage that contains point features that represent polygon label points for polygons in out_cover.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output coverage that contains point features that represent polygon label points for polygons in the output coverage.</para>
+					</dialogReference></param><param sync="true" name="out_landmark_cover" displayname="Output Landmark Coverage" datatype="Coverage" direction="Output" expression="out_landmark_cover" type="Optional"><pythonReference>
+						<para>The name of the output point coverage containing landmark features.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output point coverage containing landmark features.</para>
+					</dialogReference></param><param sync="true" name="tiger_version" displayname="TIGER/Line File Version" datatype="String" direction="Input" expression="tiger_version" type="Optional"><pythonReference>
+						<para>The input TIGER/Line files version.</para>
+						<bulletList><bullet_item>1995—
+										
+									</bullet_item><bullet_item>1997—
+										
+									</bullet_item><bullet_item>1998—
+										
+									</bullet_item><bullet_item>1999—
+										
+									</bullet_item><bullet_item>2000—
+										
+									</bullet_item><bullet_item>2002—
+										
+									</bullet_item><bullet_item>2003—
+										
+									</bullet_item><bullet_item>20041—
+										
+									</bullet_item><bullet_item>20042—
+										
+									</bullet_item><bullet_item>20051—
+										
+									</bullet_item><bullet_item>20052—
+										
+									</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The input TIGER/Line files version.</para>
+						<bulletList><bullet_item>1995—
+										
+									</bullet_item><bullet_item>1997—
+										
+									</bullet_item><bullet_item>1998—
+										
+									</bullet_item><bullet_item>1999—
+										
+									</bullet_item><bullet_item>2000—
+										
+									</bullet_item><bullet_item>2002—
+										
+									</bullet_item><bullet_item>2003—
+										
+									</bullet_item><bullet_item>20041—
+										
+									</bullet_item><bullet_item>20042—
+										
+									</bullet_item><bullet_item>20051—
+										
+									</bullet_item><bullet_item>20052—
+										
+									</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Creates up to three output coverages. Both the out_point_cover and out_landmark_cover coverages are created only when the dataset contains area point and landmark features:</para>
+				<bulletList>
+					<bullet_item>out_cover—Basic line features</bullet_item>
+					<bullet_item>out_point_cover—Polygon location points</bullet_item>
+					<bullet_item>out_landmark_cover—Landmark point features</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>At least one output coverage must be specified.</para>
+			</bullet_item><bullet_item>
+				<para>Converts all versions released after April 1989. The minimum input required by this  tool is Record Types 1 and 2.</para>
+			</bullet_item><bullet_item>
+				<para>This  tool does not support Record Types F and G, released with the 1992 School District version. These are temporary record types, not found in earlier or subsequent versions.</para>
+			</bullet_item><bullet_item>
+				<para>Only those files in the workspace directory specified by the input TIGER file prefix will be used in the conversion. If the file prefix does not include a path, files in the current workspace directory will be used. Files that are not required for your particular application can be renamed or deleted. Files on CD-ROM will have to be copied to disk before they can be renamed or deleted.</para>
+			</bullet_item><bullet_item>
+				<para>The output coverages for this  tool will always be in double precision. TIGER/Line files often contain tiny line segments that would be lost if converted to single precision.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TigerArc example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to import a set of TIGER/Line files to coverage format. </para>
+				<code xml:space="preserve"># Name: TigerArc_Example.py
+# Description: Imports a set of TIGER/Line files into three coverages
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inTigerFilePrefix = "TGR12043.RT"
+outCover = "C:/output/tgr12043line"
+outPointCover = "C:/output/tgr12043pnt"
+outLandmarkCover = "C:/output/tgr12043land"
+
+# Execute TigerArc
+arcpy.TigerArc_arc(inTigerFilePrefix, outCover, outPointCover, 
+                   outLandmarkCover)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,90 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Select Layer By Attribute (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds, updates, or removes a selection on a layer or table view based on an attribute query.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Criteria</keyword><keyword>Expression</keyword><keyword>Get</keyword><keyword>Meet</keyword><keyword>Memory</keyword><keyword>Pick</keyword><keyword>Query</keyword><keyword>Remove</keyword><keyword>Selection</keyword><keyword>Sql</keyword><keyword>Subset</keyword><keyword>Update</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SelectLayerByAttribute" displayname="Select Layer By Attribute (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Adds, updates, or removes a selection on a layer or table view based on an attribute query.</para>
+		</summary><alink_name>SelectLayerByAttribute_management</alink_name><parameters><param sync="true" name="in_layer_or_view" displayname="Input Layer or Table View" datatype="Table View" direction="Input" expression="in_layer_or_view" type="Required"><pythonReference>
+						<para>The feature layer or table view to which the selection will be applied. </para>
+						<para>The input can be a layer or table view in the ArcMap table of contents, or a layer or table view created in ArcCatalog or in scripts using the Make Feature Layer or Make Table View tools.</para>
+					</pythonReference><dialogReference>
+						<para>The feature layer or table view to which the selection will be applied. </para>
+						<para>The input can be a layer or table view in the ArcMap table of contents, or a layer or table view created in ArcCatalog or in scripts using the Make Feature Layer or Make Table View tools.</para>
+					</dialogReference></param><param sync="true" name="selection_type" displayname="Selection Type" datatype="String" direction="Input" expression="selection_type" type="Optional"><pythonReference>
+						<para>Determines how the selection will be applied and what to do if a selection already exists.</para>
+						<bulletList><bullet_item>NEW_SELECTION—The resulting selection replaces any existing selection. This is the default. </bullet_item><bullet_item>ADD_TO_SELECTION—The resulting selection is added to an existing selection if one exists. If no selection exists, this is the same as the NEW_SELECTION option. </bullet_item><bullet_item>REMOVE_FROM_SELECTION—The resulting selection is removed from an existing selection. If no selection exists, this option has no effect. </bullet_item><bullet_item>SUBSET_SELECTION—The resulting selection is combined with the existing selection. Only records that are common to both remain selected. </bullet_item><bullet_item>SWITCH_SELECTION—Switches the selection. All records that were selected are removed from the selection; all records that were not selected are added to the selection. The Expression is ignored when this option is specified. </bullet_item><bullet_item>CLEAR_SELECTION—Clears or removes any selection. The Expression is ignored when this option is specified. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines how the selection will be applied and what to do if a selection already exists.</para>
+						<bulletList><bullet_item>NEW_SELECTION—The resulting selection replaces any existing selection. This is the default. </bullet_item><bullet_item>ADD_TO_SELECTION—The resulting selection is added to an existing selection if one exists. If no selection exists, this is the same as the NEW_SELECTION option. </bullet_item><bullet_item>REMOVE_FROM_SELECTION—The resulting selection is removed from an existing selection. If no selection exists, this option has no effect. </bullet_item><bullet_item>SUBSET_SELECTION—The resulting selection is combined with the existing selection. Only records that are common to both remain selected. </bullet_item><bullet_item>SWITCH_SELECTION—Switches the selection. All records that were selected are removed from the selection; all records that were not selected are added to the selection. The Expression is ignored when this option is specified. </bullet_item><bullet_item>CLEAR_SELECTION—Clears or removes any selection. The Expression is ignored when this option is specified. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Expression" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>A Structured Query Language (SQL) expression used to select a subset of records.</para>
+						<para>The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para><para>
+							"MY_FIELD"
+						</para><para> If you're querying personal geodatabases, enclose fields in square brackets: </para><para>
+							[MY_FIELD]
+						</para><para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para><para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</pythonReference><dialogReference>
+						<para>A Structured Query Language (SQL) expression used to select a subset of records.</para>
+						<para>The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para><para>
+							"MY_FIELD"
+						</para><para> If you're querying personal geodatabases, enclose fields in square brackets: </para><para>
+							[MY_FIELD]
+						</para><para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para><para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input must be a feature layer or a table view. The input cannot be a feature class or table.</para>
+			</bullet_item><bullet_item>
+				<para>This tool works on layers or table views in the ArcMap table of contents, and also on layers or table views created in a scripts using the  or  tools. </para>
+			</bullet_item><bullet_item>
+				<para>If an is specified, or if a definition query is present on the Input Layer or Table View, only the features or rows within the extent or matching the definition query may be selected. </para>
+			</bullet_item><bullet_item>
+				<para>The  tool can be used to determine the number of features or rows selected.  This can be especially useful in a script or model to determine if further processing is desired.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Select Layer By Attribute Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the SelectLayerByAttribute function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.MakeFeatureLayer_management ("C:/data/data.mdb/states", "stateslyr")
+arcpy.SelectLayerByAttribute_management ("stateslyr", "NEW_SELECTION", " [NAME] = 'California' ")
+                    </code></scriptExample><scriptExample><title>Select Layer By Attribute Example 2 (Stand-alone Script)</title>
+					<para>The following stand-alone script shows how to use the SelectLayerByAttributes function in a workflow to extract features to a new feature class based on location and an attribute query.</para>
+				<code xml:space="preserve"># Name: ExtactFeaturesByLocationAndAttribute.py
+# Description: Extract features to a new feature class based on a Location and an attribute query
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set the workspace
+env.workspace = "c:/data/mexico.mdb"
+
+# Set local parameters
+inFeatures = "cities"
+lyrFile = "lyr"
+selectFeatures = "chihuahua"
+selDist = 0
+whereClause = " [population] &gt; 10000 "
+outFeatures = "c:/mexico.gdb/chihuahua_10000plus"
+
+# Put in error trapping in case an error occurs when running tool
+try:
+    # Make a layer from the feature class
+    arcpy.MakeFeatureLayer_management(inFeatures, lyrFile) 
+ 
+    # Select all cities which overlap the chihuahua polygon
+    arcpy.SelectLayerByLocation_management(lyrFile, "intersect", selectFeatures, selDist, "new_selection")
+ 
+    # Within the selection (done above) further select only those 
+    # cities which have a population &gt; 10,000   
+    arcpy.SelectLayerByAttribute_management(lyrFile, "SUBSET_SELECTION", whereClause)
+ 
+    # Write the selected features to a new featureclass
+    arcpy.CopyFeatures_management(lyrFile, outFeatures)
+ 
+except Exception, e:
+    # If an error occurred, print line number and error message  
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Equal To (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs a Relational equal-to operation on two inputs on a cell-by-cell basis.</para>
+			<para>Returns 1 for cells where the first raster equals the second raster and 0 for cells where it does not.</para>
+			Learn more about how the Relational Math tools work
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>=</keyword><keyword>Eq</keyword><keyword>False</keyword><keyword>Math</keyword><keyword>Math Operator</keyword><keyword>Relational</keyword><keyword>True</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="EqualTo" displayname="Equal To (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Performs a Relational equal-to operation on two inputs on a cell-by-cell basis.</para>
+			<para>Returns 1 for cells where the first raster equals the second raster and 0 for cells where it does not.</para>
+			Learn more about how the Relational Math tools work
+		</summary><alink_name>EqualTo_sa</alink_name><toolIllust type="illustration" src="EqualTo_sa_h.png" alt="Equal To (Relational) illustration" /><parameters><param sync="true" name="in_raster_or_constant1" displayname="Input raster or constant value 1" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant1" type="Required"><pythonReference>
+						<para>The input that will be compared to for equality by the second input.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para></pythonReference><dialogReference>
+						<para>The input that will be compared to for equality by the second input.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para></dialogReference></param><param sync="true" name="in_raster_or_constant2" displayname="Input raster or constant value 2" datatype="Raster Layer | Constant" direction="Input" expression="in_raster_or_constant2" type="Required"><pythonReference>
+						<para>The input that will be compared from for equality by the first input.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</pythonReference><dialogReference>
+						<para>The input that will be compared from for equality by the first input.</para>
+						<para>A number can be used as an input for this parameter, provided a raster is specified for the other parameter. To be able to specify a number for both inputs, the cell size and extent must first be set in the environment.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference><para>The output raster.</para><para>The output cell values will be either integer 0 or 1; or NoData if any input cell value is NoData.</para>
+						</pythonReference><dialogReference><para>The output raster.</para><para>The output cell values will be either integer 0 or 1; or NoData if any input cell value is NoData.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para>Two inputs are necessary for this relational evaluation to take place.</para></bullet_item><bullet_item>
+				<para>The order of inputs is irrelevant for this tool.</para>
+			</bullet_item><bullet_item>
+				<para>In Map Algebra, the equivalent  symbol for this tool is "==" ().</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>EqualTo example 1 (Python window)</title>
+					<para>This example performs a Relational equal-to operation on two GRID rasters and outputs the result as a TIFF raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outEqualTo = EqualTo("degs", "negs")
+outEqualTo.save("C:/sapyexamples/output/outequalto.tif")
+                    </code></scriptExample><scriptExample><title>EqualTo example 2 (stand-alone script)</title>
+					<para>This example performs a Relational equal-to operation on two GRID rasters.</para>
+				<code xml:space="preserve"># Name: EqualTo_Ex_02.py
+# Description: Performs a relational equal-to operation on two inputs
+#              on a cell-by-cell basis within the Analysis window
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster1 = "degs"
+inRaster2 = "negs"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute EqualTo
+outEqualTo = EqualTo(inRaster1, inRaster2)
+
+# Save the output 
+outEqualTo.save("C:/sapyexamples/output/outequalto")
+                    </code></scriptExample></scriptExamples></tool></metadata>

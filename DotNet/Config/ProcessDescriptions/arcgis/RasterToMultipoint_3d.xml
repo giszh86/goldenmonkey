@@ -1,0 +1,96 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Raster to Multipoint (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool converts a raster into a new multipoint feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D</keyword><keyword>Convert</keyword><keyword>Create</keyword><keyword>Multipoint</keyword><keyword>Raster</keyword><keyword>Raster Conversion</keyword><keyword>Terrain Dataset</keyword><keyword>Z Tolerance</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RasterToMultipoint" displayname="Raster to Multipoint (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool converts a raster into a new multipoint feature class.</para>
+		</summary><alink_name>RasterToMultipoint_3d</alink_name><parameters><param sync="true" name="in_raster" displayname="Input Raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="String" direction="Output" expression="out_feature_class" type="Optional"><pythonReference>
+						<para>The output multipoint feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output multipoint feature class.</para>
+					</dialogReference></param><param sync="true" name="out_vip_table" displayname="Output VIP table" datatype="Feature Class" direction="Input" expression="out_vip_table" type="Required"><pythonReference>
+						<para> The output VIP feature class table.  </para>
+					</pythonReference><dialogReference>
+						<para> The output VIP feature class table.  </para>
+					</dialogReference></param><param sync="true" name="method" displayname="Method" datatype="String" direction="Input" expression="method" type="Optional"><pythonReference>
+						<para>The thinning method used to generate the new multipoint feature class. Select from either NO_THIN, ZTOLERANCE, KERNEL, VIP_HISTOGRAM, or VIP.</para>
+					</pythonReference><dialogReference>
+						<para>The thinning method used to generate the new multipoint feature class. Select from either NO_THIN, ZTOLERANCE, KERNEL, VIP_HISTOGRAM, or VIP.</para>
+						<para>NO_THIN: The full resolution data will be output into a new multipoint feature class.</para>
+						<para>ZTOLERANCE: The maximum allowable difference in (z units) between the height of the input raster and the height of the output multipoint feature class. By default, the z tolerance is 1/10 of the z range of the input raster.  The larger the tolerance, the more thinning, the fewer points output.</para>
+						<para>KERNEL: Defines the number of cells for a window. The default is 3, which translates into a 3x3 set of cells in the input raster. The individual cell values in each of these windows are evaluated. Then just one or two cells are chosen, depending on the KERNEL selection method. The larger the kernel size, the more thinning will be carried out, and the fewer points output.</para>
+						<para>VIP: select a percentage of points from the input raster based on their significance. The significance is assessed using a roving 3x3 window. You can chose the VIP_HISTOGRAM option to write out a table to view the actual significance values and the corresponding number of points associated with those values. </para>
+					</dialogReference></param><param sync="true" name="kernal_method" displayname="Kernel Method" datatype="String" direction="Input" expression="kernal_method" type="Optional"><pythonReference>
+						<para>The kernel selection method for thinning. Select either MIN, MAX, MINMAX, or MEAN.</para>
+						<para>This is ignored when the Method is set to anything other than KERNAL.</para></pythonReference><dialogReference>
+						<para>The kernel selection method for thinning. Select either MIN, MAX, MINMAX, or MEAN.</para>
+						<para>This is ignored when the Method is set to anything other than KERNAL.</para></dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para> Multiplies the z of the input by this factor.  Generally used to convert units between feet and meters.</para>
+					</pythonReference><dialogReference>
+						<para> Multiplies the z of the input by this factor.  Generally used to convert units between feet and meters.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item><para>Raster to Multipoint converts raster cell centers into 3D points, where their z is given the cell values, groups the points into multipoints, and writes them to an output feature class.</para></bullet_item><bullet_item>
+				<para>This tool is useful for incorporating a raster DEM into points that can be used as ancillary data for creating a Terrain dataset or TIN.</para>
+			</bullet_item><bullet_item><para>All the cell centers can be converted, using the NO_THIN option, or one of several filters can be applied to exclude those cells which are less significant. The thinning options include ZTOLERANCE, KERNEL, and VIP.</para><bulletList><bullet_item>The ZTOLERANCE thinning method represents the maximum allowable difference (in z-units) between the height of the input raster and the height of the output multipoint feature class. By default, the Z tolerance is 1/10 of the z-range of the input raster. The larger the tolerance, the more thinning, and the fewer points output.</bullet_item><bullet_item>The KERNEL thinning method defines the number of cells for a window. The default is 3, which translates into a 3x3 set of cells in the input raster. The individual cell values in each of these windows are evaluated. Then just one or two cells are chosen, depending on the KERNEL selection method. The larger the kernel size, the more thinning will be carried out, and the fewer points output.</bullet_item><bullet_item>The VIP method is used to select a percentage of points from the input raster based on their significance. The significance is assessed using a roving 3x3 window. You can chose the VIP_HISTOGRAM option to write out a table to view the actual significance values and the corresponding number of points associated with those values. </bullet_item></bulletList>
+			</bullet_item><bullet_item>
+				<para>Use the ZTOLERANCE thinning method when it is important to preserve vertical accuracy. Use the KERNEL thinning method when it is important to control the horizontal sample distance.</para>
+			</bullet_item><bullet_item>
+				<para>Consider applying a thinning method when converting from raster to multipoints. There are two thinning methods used to generate a new multipoint feature class: ZTOLERANCE and KERNEL. If NO_THIN is selected, the full resolution data will be output into a new multipoint feature class.</para>
+			</bullet_item><bullet_item>
+				<para>The VIP method is relatively fast, outputs a predictable number points, and is good at selecting local peaks and pits. However, it is sensitive to noise and insensitive to topographic features that are larger than the 3x3 window.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Raster to Multipoint Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Raster to Multipoint
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.RasterToMultipoint_3d("elevation.tif", "","elev_VIP.dbf", "VIP_HISTOGRAM", "", "1")
+                    </code></scriptExample><scriptExample><title>Raster to Multipoint Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Raster to Multipoint
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: RasterToMultipoint Example
+# Description: The following stand-alone script demonstrates how to use
+#              the RasterToMultipoint tool to create multipoint datasets
+#              fot all IMG rasters in a target workspace.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Create the list of IMG rasters
+    rasterList = arcpy.ListRasters("*", "IMG")
+    # Loop the process for each raster
+    if len(rasterList) &gt; 0:
+        for raster in rasterList:
+            # Set Local Variables
+            # [:-4] strips the last 4 characters (.img) from the raster name
+            outTbl = "VIP_" + raster[:-4] + ".dbf"
+            method = "VIP_HISTOGRAM"
+            zfactor = 1
+            #Execute RasterToMultipoint
+            arcpy.RasterToMultipoint_3d(raster, "",outTbl, method, "", zfactor)
+    else:
+        "There are no IMG rasters in the " + env.workspace + " directory."
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,225 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calibrate Routes (Linear Referencing)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Recalculates route measures using points.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Adjust</keyword><keyword>Alter</keyword><keyword>Amend</keyword><keyword>Calibrate Measures</keyword><keyword>Change</keyword><keyword>Correct</keyword><keyword>Extrapolate</keyword><keyword>Fix</keyword><keyword>Improve</keyword><keyword>Interpolate</keyword><keyword>M Value</keyword><keyword>Make Corrections</keyword><keyword>Measures</keyword><keyword>Modify</keyword><keyword>More Accurate</keyword><keyword>Nan</keyword><keyword>Polylinem</keyword><keyword>Recalculate Measures</keyword><keyword>Recalibrate</keyword><keyword>Recalibrate Measures</keyword><keyword>Recalibrate Routes</keyword><keyword>Repair</keyword><keyword>Reword</keyword><keyword>Route</keyword><keyword>Tune</keyword><keyword>Tweak</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalibrateRoutes" displayname="Calibrate Routes (Linear Referencing)" toolboxalias="lr" softwarerestriction="none"><summary>
+			<para>Recalculates route measures using points.</para>
+		</summary><alink_name>CalibrateRoutes_lr</alink_name><parameters><param sync="true" name="in_route_features" displayname="Input Route Features" datatype="Feature Layer" direction="Input" expression="in_route_features" type="Required"><pythonReference>
+						<para>The route features to be calibrated.</para>
+					</pythonReference><dialogReference>
+						<para>The route features to be calibrated.</para>
+					</dialogReference></param><param sync="true" name="route_id_field" displayname="Route Identifier Field" datatype="Field" direction="Input" expression="route_id_field" type="Required"><pythonReference>
+						<para>The field containing values that uniquely identify each route. This field can be numeric or character.</para>
+					</pythonReference><dialogReference>
+						<para>The field containing values that uniquely identify each route. This field can be numeric or character.</para>
+					</dialogReference></param><param sync="true" name="in_point_features" displayname="Input Point Features" datatype="Feature Layer" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para>The point features used to calibrate the routes.</para>
+					</pythonReference><dialogReference>
+						<para>The point features used to calibrate the routes.</para>
+					</dialogReference></param><param sync="true" name="point_id_field" displayname="Point Identifier Field" datatype="Field" direction="Input" expression="point_id_field" type="Required"><pythonReference>
+						<para>The field that identifies the route on which each calibration point is located. The values in this field match those in the route identifier field. This field can be numeric or character.</para>
+					</pythonReference><dialogReference>
+						<para>The field that identifies the route on which each calibration point is located. The values in this field match those in the route identifier field. This field can be numeric or character.</para>
+					</dialogReference></param><param sync="true" name="measure_field" displayname="Measure Field" datatype="Field" direction="Input" expression="measure_field" type="Required"><pythonReference>
+						<para>The field containing the measure value for each calibration point. This field must be numeric.</para>
+					</pythonReference><dialogReference>
+						<para>The field containing the measure value for each calibration point. This field must be numeric.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Route Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The feature class to be created. It can be a shapefile or a geodatabase feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class to be created. It can be a shapefile or a geodatabase feature class.</para>
+					</dialogReference></param><param sync="true" name="calibrate_method" displayname="Measure Calculation Method" datatype="String" direction="Input" expression="calibrate_method" type="Optional"><pythonReference>
+						<para>Specifies how route measures will be recalculated.</para>
+						<bulletList><bullet_item>DISTANCE—Measures will be recalculated using the shortest path distance between the calibration points. This is the default. </bullet_item><bullet_item>MEASURES—Measures will be recalculated using the pre-existing measure distance between the calibration points. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how route measures will be recalculated.</para>
+						<bulletList><bullet_item>DISTANCE—Measures will be recalculated using the shortest path distance between the calibration points. This is the default. </bullet_item><bullet_item>MEASURES—Measures will be recalculated using the pre-existing measure distance between the calibration points. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="search_radius" displayname="Search Radius" datatype="Linear unit" direction="Input" expression="search_radius" type="Optional"><pythonReference>
+						<para>Limits how far a calibration point can be from a route by specifying the distance and its unit of measure. If the units of measure are Unknown, the same units as the coordinate system of the route feature class will be used.</para>
+					</pythonReference><dialogReference>
+						<para>Limits how far a calibration point can be from a route by specifying the distance and its unit of measure. If the units of measure are Unknown, the same units as the coordinate system of the route feature class will be used.</para>
+					</dialogReference></param><param sync="true" name="interpolate_between" displayname="Interpolate between calibration points" datatype="Boolean" direction="Input" expression="interpolate_between" type="Optional"><pythonReference>
+						<para>Specifies whether measure values will be interpolated between the calibration points.</para>
+						<bulletList><bullet_item>BETWEEN—Interpolate between the calibration points. This is the default. </bullet_item><bullet_item>NO_BETWEEN—Do not interpolate between the calibration points. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether measure values will be interpolated between the calibration points.</para>
+						<bulletList>
+							<bullet_item>Checked—Interpolate between the calibration points. This is the default. </bullet_item>
+							<bullet_item>Unchecked—Do not interpolate between the calibration points.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="extrapolate_before" displayname="Extrapolate before calibration points" datatype="Boolean" direction="Input" expression="extrapolate_before" type="Optional"><pythonReference>
+						<para>Specifies whether measure values will be extrapolated before the calibration points.</para>
+						<bulletList><bullet_item>BEFORE—Extrapolate before the calibration points. This is the default. </bullet_item><bullet_item>NO_BEFORE—Do not extrapolate before the calibration points. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether measure values will be extrapolated before the calibration points.</para>
+						<bulletList>
+							<bullet_item>Checked—Extrapolate before the calibration points. This is the default. </bullet_item>
+							<bullet_item>Unchecked—Do not extrapolate before the calibration points.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="extrapolate_after" displayname="Extrapolate after calibration points" datatype="Boolean" direction="Input" expression="extrapolate_after" type="Optional"><pythonReference>
+						<para>Specifies whether measure values will be extrapolated after the calibration points.</para>
+						<bulletList><bullet_item>AFTER—Extrapolate after the calibration points. This is the default. </bullet_item><bullet_item>NO_AFTER—Do not extrapolate after the calibration points. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether measure values will be extrapolated after the calibration points.</para>
+						<bulletList>
+							<bullet_item>Checked—Extrapolate after the calibration points. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Do not extrapolate after the calibration points.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="ignore_gaps" displayname="Ignore spatial gaps" datatype="Boolean" direction="Input" expression="ignore_gaps" type="Optional"><pythonReference>
+						<para>Specifies whether spatial gaps will be ignored when recalculating the measures on disjointed routes.</para>
+						<bulletList><bullet_item>IGNORE—Spatial gaps will be ignored. Measure values will be continuous for disjointed routes. This is the default. </bullet_item><bullet_item>NO_IGNORE—Do not ignore spatial gaps. The measure values on disjointed routes will have gaps. The gap distance is calculated using the straight-line distance between the endpoints of the disjointed parts. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether spatial gaps will be ignored when recalculating the measures on disjointed routes.</para>
+						<bulletList>
+							<bullet_item>Checked—Spatial gaps will be ignored. Measure values will be continuous for disjointed routes. This is the default. </bullet_item>
+							<bullet_item>Unchecked—Do not ignore spatial gaps. The measure values on disjointed routes will have gaps. The gap distance is calculated using the straight-line distance between the endpoints of the disjointed parts. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="keep_all_routes" displayname="Include all features in the output feature class" datatype="Boolean" direction="Input" expression="keep_all_routes" type="Optional"><pythonReference>
+						<para>Specifies whether route features that do not have any calibration points will be excluded from the output feature class.</para>
+						<bulletList><bullet_item>KEEP—Keep all route features in the output feature class. This is the default. </bullet_item><bullet_item>NO_KEEP—Do not keep all route features in the output feature class. Features that have no calibration points will be excluded. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether route features that do not have any calibration points will be excluded from the output feature class.</para>
+						<bulletList>
+							<bullet_item>Checked—Keep all route features in the output feature class. This is the default. </bullet_item>
+							<bullet_item>Unchecked—Do not keep all route features in the output feature class. Features that have no calibration points will be excluded.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="build_index" displayname="Build index" datatype="Boolean" direction="Input" expression="build_index" type="Optional"><pythonReference>
+						<para>Specifies whether an attribute index will be created for the route identifier field that is written to the Output Route Feature Class.</para>
+						<bulletList><bullet_item>INDEX—Create an attribute index. This is the default. </bullet_item><bullet_item>NO_INDEX—Do not create an attribute index. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether an attribute index will be created for the route identifier field that is written to the Output Route Feature Class.</para>
+						<bulletList>
+							<bullet_item>Checked—Create an attribute index. This is the default. </bullet_item>
+							<bullet_item>Unchecked—Do not create an attribute index.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Either whole or partial routes can be calibrated. You can choose to interpolate between the input points, extrapolate before the input points, extrapolate after the input points, or use any combination of these three methods.</para>
+			</bullet_item><bullet_item>
+				<para>Use  or  to effectively reduce the routes that will be calibrated.</para>
+			</bullet_item><bullet_item>
+				<para>If the Output Route Feature Class will be written to a geodatabase, an appropriate , , and  should be set.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Route Feature Class will include all the fields from the Input Route Features.</para>
+			</bullet_item><bullet_item>
+				<para>The  environment setting will be ignored. The Output Route Feature Class will have M (measure) values.</para>
+			</bullet_item><bullet_item>
+				<para>A search radius of infinity cannot be specified.</para>
+			</bullet_item><bullet_item>
+				<para>An attribute index on the route identifier field speeds up the dynamic segmentation process. If you will be using the Output Route Feature Class for , it is recommended that you choose to have an attribute index created.</para>
+			</bullet_item><bullet_item>
+				<para>If any features are rejected by the Calibrate Routes process, a text file is created in the temporary file path to store information about those features. For example, C:\Documents and Settings\patrickb\Local Settings\Temp\Calibrate_Output0.txt (where 'Calibrate_Output' is the name of the Output Route Feature Class).</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CalibrateRoutes Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the CalibrateRoutes function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+env.workspace = "C:/data"
+arcpy.CalibrateRoutes_lr("hwy.shp", "RID", "cal_pts.shp", "RID", "MEASURE", "C:/output/hwy_new.shp","DISTANCE", "5.0 Feet", "BETWEEN", "BEFORE", "AFTER", "#", "NO_KEEP")
+                    </code></scriptExample><scriptExample><title>CalibrateRoutes Example #2 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the CalibrateRoutes function with file geodatabase data in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name CalibrateRoutes_Example2.py
+# Description: Calibrate personal geodatabase routes with file geodatabase points.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/Pitt.gdb"
+
+# Set local variables
+rts = "roads/hwy"         # hwy is in the roads feature dataset
+rid = "ROUTE1" 
+pts = "roads/cal_pts"     # cal_pts is in the roads feature dataset
+mfield = "MEASURE"
+radius = "2.5 Meters"
+out_fc = "roads/hwy_new"  # new feature class in the roads feature dataset
+
+# Execute CalibrateRoutes
+arcpy.CalibrateRoutes_lr (rts, rid, pts, rid, mfield, out_fc, "DISTANCE", radius, \
+                           "BETWEEN", "NO_BEFORE", "NO_AFTER")
+
+ 
+ 
+
+                    </code></scriptExample><scriptExample><title>CalibrateRoutes Example #3 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the CalibrateRoutes function with personal geodatabase data in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name CalibrateRoutes_Example3.py
+# Description: Calibrate personal geodatabase routes with personal geodatabase points.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/Pitt.mdb"
+
+# Set local variables
+rts = "roads/hwy"         # hwy is in the roads feature dataset
+rid = "ROUTE1" 
+pts = "roads/cal_pts"     # cal_pts is in the roads feature dataset
+mfield = "MEASURE"
+radius = "2.5 Meters"
+out_fc = "roads/hwy_new"  # new feature class in a feature dataset
+
+# Execute CalibrateRoutes
+arcpy.CalibrateRoutes_lr (rts, rid, pts, rid, mfield, out_fc, "DISTANCE", radius, \
+                           "BETWEEN", "NO_BEFORE", "NO_AFTER")
+ 
+
+                    </code></scriptExample><scriptExample><title>CalibrateRoutes Example #4 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the CalibrateRoutes function with SDE data in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name Example 4:
+# Description: Calibrate enterprise geodatabase routes using enterprise geodatabase points.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+wkspc = "Database Connections/Connection to Jerry.sde"
+env.workspace = wkspc 
+
+# Set local variables
+rts = gp.QualifyTableName("hwy", wkspc)      # standalone feature class
+rid = "ROUTE1"
+pts = gp.QualifyTableName("cal_pts", wkspc)  # standalone feature class
+mfield = "MEASURE"
+radius = "5.0 Feet"
+out_fc = "hwy_new"                           #new standalone feature class 
+
+# Execute CalibrateRoutes
+arcpy.CalibrateRoutes_lr (rts, rid, pts, rid, mfield, out_fc, "DISTANCE", radius, \
+                           "#", "#", "#", "#", "NO_KEEP")
+except:
+    print gp.GetMessages(2)
+                    </code></scriptExample></scriptExamples></tool></metadata>

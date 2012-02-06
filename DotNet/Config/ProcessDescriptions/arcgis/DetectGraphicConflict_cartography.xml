@@ -1,0 +1,74 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Detect Graphic Conflict (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates polygons where two or more symbolized features graphically conflict.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Annotation</keyword><keyword>Cartography</keyword><keyword>Conflict Detection</keyword><keyword>Conflict Resolution</keyword><keyword>Geometry Override</keyword><keyword>Graphic Conflict</keyword><keyword>Overlap</keyword><keyword>Representation</keyword><keyword>Shape Override</keyword><keyword>Symbol</keyword><keyword>Symbol Conflict</keyword><keyword>Symbol Footprint</keyword><keyword>Symbolisation</keyword><keyword>Symbolization</keyword><keyword>Symbology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DetectGraphicConflict" displayname="Detect Graphic Conflict (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Creates polygons where two or more symbolized features graphically conflict.</para>
+		</summary><alink_name>DetectGraphicConflict_cartography</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/DetectGraphicConflict_cartography_v.gif" alt="Detect Graphic Conflict tool" /><toolIllust type="illustration" src="DetectGraphicConflict_cartography_h.gif" alt="Detect graphic quality" /><parameters><param sync="true" name="in_features" displayname="Input Layer" datatype="Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature layer containing symbolized features.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature layer containing symbolized features.</para>
+					</dialogReference></param><param sync="true" name="conflict_features" displayname="Conflict Layer" datatype="Layer" direction="Input" expression="conflict_features" type="Required"><pythonReference>
+						<para>The feature layer containing symbolized features potentially in conflict with symbolized features  in the input layer.</para>
+					</pythonReference><dialogReference>
+						<para>The feature layer containing symbolized features potentially in conflict with symbolized features  in the input layer.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class to be created to store conflict polygons. It cannot be one of the feature classes associated with the input layers.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class to be created to store conflict polygons. It cannot be one of the feature classes associated with the input layers.</para>
+					</dialogReference></param><param sync="true" name="conflict_distance" displayname="Conflict Distance" datatype="Linear unit" direction="Input" expression="conflict_distance" type="Optional"><pythonReference>
+						<para>Sets the conflict distance. Temporary buffers one-half the size of the conflict distance value
+are created around symbols in both the
+input and conflict layers. Conflict polygons will be generated
+where these buffers overlap. Conflict distance is measured in page units (Points, Inches, Millimeters,  Centimeters). If you enter a conflict distance in map units, it will be converted to page units using the reference scale. The default conflict distance is 0, where no buffers are created and only symbols that physically overlap one another are detected as conflicts. </para>
+					</pythonReference><dialogReference>
+						<para>Sets the conflict distance. Temporary buffers one-half the size of the conflict distance value
+are created around symbols in both the
+input and conflict layers. Conflict polygons will be generated
+where these buffers overlap. Conflict distance is measured in page units (Points, Inches, Millimeters,  Centimeters). If you enter a conflict distance in map units, it will be converted to page units using the reference scale. The default conflict distance is 0, where no buffers are created and only symbols that physically overlap one another are detected as conflicts. </para>
+					</dialogReference></param><param sync="true" name="line_connection_allowance" displayname="Line Connection Allowance" datatype="Linear unit" direction="Input" expression="line_connection_allowance" type="Optional"><pythonReference>
+						<para>The radius of a circle, centered where lines join, within which graphic overlaps won't be detected. This parameter is only considered when the input layer and the conflict layer are identical. Zero allowance will detect a conflict at each line join (if end caps are overlapping). Line connection allowance is calculated in page units (Points, Inches, Millimeters, Centimeters). If you enter a conflict distance in map units, it will be converted to page units using the reference scale. The value cannot be negative; the default value is 1 Point.</para>
+					</pythonReference><dialogReference>
+						<para>The radius of a circle, centered where lines join, within which graphic overlaps won't be detected. This parameter is only considered when the input layer and the conflict layer are identical. Zero allowance will detect a conflict at each line join (if end caps are overlapping). Line connection allowance is calculated in page units (Points, Inches, Millimeters, Centimeters). If you enter a conflict distance in map units, it will be converted to page units using the reference scale. The value cannot be negative; the default value is 1 Point.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cartographic_coordinate_system" label="Cartographic coordinate system">
+						
+					</environment><environment name="Reference_scale" label="Reference scale">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The tool assesses conflicts among symbols, not geometry. The input layer and the conflict layer can be the same. </para>
+			</bullet_item><bullet_item><para>Input layers can be symbolized with standard symbols or representation symbology. Input layers can include feature class annotation, including symbol substitution. Shapefile, coverage, and CAD layers are also acceptable inputs. </para><para>The following inputs are not accepted by the tool: CAD, coverage, or VPF annotation, dimensions, charts, dot-density or proportional symbols, raster layers, network analyst layers, or 3D symbols.  </para></bullet_item><bullet_item><para>The output feature class stores polygons, each representing an area of graphic conflict between a symbolized input feature and a symbolized conflict feature. The feature IDs associated to the two conflicting features are stored with the conflict polygon in the FID_&lt;input_layer_name&gt; and FID_&lt;conflict_layer_name&gt; fields. In the event that the conflict layer is the same as the input layer, the second field will be named  FID_&lt;input_layer_name&gt;_1. If no graphic conflicts are found, the output feature class will be empty.</para></bullet_item><bullet_item>
+				<para>Use the Conflict Distance parameter to detect areas where input and conflict symbology is closer than a certain distance. Temporary buffers one-half the size of the conflict distance value are created around symbols. Conflict polygons will be generated anywhere these buffers overlap. When the conflict distance is zero, conflicts are detected anywhere that  symbology itself actually overlaps; this is the default. The conflict calculation is based on a reference scale. If you access this tool from ArcMap, the reference scale of the data frame containing the input layers will be used, unless the Reference Scale environment setting has been set. This environment setting must be specified to execute this tool from ArcCatalog.</para>
+			</bullet_item><bullet_item>
+				<para>Use the Line Connection Allowance parameter to disregard symbol overlaps where line ends meet. This is useful if you use line symbol end caps to ensure that lines connect visually, but you don't want each instance detected as a conflict. The line connection allowance is in page units, related to the reference scale. It is equal to the radius of a circle, centered where lines join, within which graphic overlaps won't be detected; the default value is 1 point. Use a value that is at least one-half the line-width of  line symbols to disregard these connections. A value of zero means no allowance, and will detect a conflict at each line join in this case. This parameter is only considered when the input layer and the conflict layer are identical.</para>
+			</bullet_item><bullet_item><para> This tool operates by assessing graphic conflicts of symbolized features. The symbology extent and the reference scale are considered in conjunction with one another. Run this tool only after you have finalized the appearance of your symbols, and ensure that the reference scale corresponds to the final intended output scale.</para></bullet_item></usage><scriptExamples><scriptExample><title>DetectGraphicConflict tool Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the DetectGraphicConflict tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/cartography.gdb/buildings"
+env.referenceScale = "50000"
+arcpy.DetectGraphicConflict_cartography("footprints.lyr", "roads.lyr",
+                                        "C:/data/cartography.gdb/buildings/dgc_polys",
+                                        "25 meters", "0 meters")
+
+                    </code></scriptExample><scriptExample><title>DetectGraphicConflict tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the DetectGraphicConflict tool.</para>
+				<code xml:space="preserve"># Name: DetectGraphicConflict_standalone_script.py
+# Description: Detects graphic conflicts between feature representations and stores the overlaps as polygons in the output feature class.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data/cartography.gdb/buildings"
+env.referenceScale = "50000"
+
+# Set local variables
+in_features = "footprints.lyr"
+conflict_features = "roads.lyr"
+out_feature_class = "C:/data/cartography.gdb/buildings/dgc_polys"
+conflict_distance = "25 meters"
+line_connection_allowance = "0 meters"
+
+# Execute Detect Graphic Conflict
+arcpy.DetectGraphicConflict_cartography(in_features, conflict_features, out_feature_class, conflict_distance, line_connection_allowance)
+                    </code></scriptExample></scriptExamples></tool></metadata>

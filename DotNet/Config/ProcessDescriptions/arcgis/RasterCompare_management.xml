@@ -1,0 +1,104 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Raster Compare (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Compares the properties of two raster datasets, two raster catalogs, or two mosaic dataset and then returns the comparison result.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Base</keyword><keyword>Difference</keyword><keyword>Different</keyword><keyword>Find</keyword><keyword>Identical</keyword><keyword>Metadata</keyword><keyword>Pixel Type</keyword><keyword>Properties</keyword><keyword>Search</keyword><keyword>Similar</keyword><keyword>Test</keyword><keyword>Value</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RasterCompare" displayname="Raster Compare (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Compares the properties of two raster datasets, two raster catalogs, or two mosaic dataset and then returns the comparison result.</para>
+		</summary><alink_name>RasterCompare_management</alink_name><parameters><param sync="true" name="in_base_raster" displayname="Input Base Raster" datatype="Raster Layer; Raster Catalog Layer; Mosaic Layer" direction="Input" expression="in_base_raster" type="Required"><pythonReference>
+						<para>The input raster that will be compared to the test raster. </para><para>Valid inputs include a raster dataset, a raster catalog or a mosaic dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster that will be compared to the test raster. </para><para>Valid inputs include a raster dataset, a raster catalog or a mosaic dataset.</para>
+					</dialogReference></param><param sync="true" name="in_test_raster" displayname="Input Test Raster" datatype="Raster Layer; Raster Catalog Layer; Mosaic Layer" direction="Input" expression="in_test_raster" type="Required"><pythonReference>
+						<para>The test raster that will be compared to the input base raster.</para>
+						<para>Valid inputs include a raster dataset, a raster catalog or a mosaic dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The test raster that will be compared to the input base raster.</para>
+						<para>Valid inputs include a raster dataset, a raster catalog or a mosaic dataset.</para>
+					</dialogReference></param><param sync="true" name="compare_type" displayname="Compare Type" datatype="String" direction="Input" expression="compare_type" type="Optional"><pythonReference>
+						<para>The type of comparison.</para>
+						<bulletList><bullet_item>RASTER_DATASET—Compares raster dataset properties. </bullet_item><bullet_item>GDB_RASTER_DATASET—Compares properties of raster datasets in a geodatabase. </bullet_item><bullet_item>GDB_RASTER_CATALOG—Compares properties of raster catalogs in a geodatabase. </bullet_item><bullet_item>MOSAIC_DATASET—Compares properties of mosaic datasets.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of comparison.</para>
+						<bulletList><bullet_item>RASTER_DATASET—Compares raster dataset properties. </bullet_item><bullet_item>GDB_RASTER_DATASET—Compares properties of raster datasets in a geodatabase. </bullet_item><bullet_item>GDB_RASTER_CATALOG—Compares properties of raster catalogs in a geodatabase. </bullet_item><bullet_item>MOSAIC_DATASET—Compares properties of mosaic datasets.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="ignore_option" displayname="Ignore Options" datatype="String" direction="Input" expression="[ignore_option,...]" type="Optional"><pythonReference>
+						<para>The properties specified will not be compared during comparison.</para>
+						<para>Open the tool dialog to view a list of values for the Ignore Options parameter. Your Compare Type will determine which Ignore Options are valid.</para></pythonReference><dialogReference>
+						<para>The properties that are checked will not be compared during comparison.</para>
+					</dialogReference></param><param sync="true" name="continue_compare" displayname="Continue Comparison" datatype="Boolean" direction="Input" expression="continue_compare" type="Optional"><pythonReference>
+						<para>Indicates whether to compare all properties after encountering the first mismatch.</para>
+						<bulletList><bullet_item>NO_CONTINUE_COMPARE—Stop after encountering the first mismatch. This is the default. </bullet_item><bullet_item>CONTINUE_COMPARE—Compare other properties after encountering the first mismatch. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether to compare all properties after encountering the first mismatch.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Stop after encountering the first mismatch. This is the default. </bullet_item>
+							<bullet_item>Checked—Compare other properties after encountering the first mismatch. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_compare_file" displayname="Output Compare File" datatype="Text File" direction="Output" expression="out_compare_file" type="Optional"><pythonReference>
+						<para>The name and path of the text file which will contain the comparison results.</para>
+					</pythonReference><dialogReference>
+						<para>The name and path of the text file which will contain the comparison results.</para>
+					</dialogReference></param><param sync="true" name="parameter_tolerances" displayname="Parameter Tolerance" datatype="Value Table" direction="Input" expression="[[Parameter, Tolerance, Type],...]" type="Optional"><pythonReference><para>The Parameter Tolerance allows you to compare your parameter values with some leeway on accuracy. This allows you to account for any slight changes that might have occurred in processing your data.</para><para>For a list of Parameter types, choose the parameters for which you would like to have a tolerance. For each parameter you will need a tolerance and tolerance type. The tolerance type is either the value of the tolerance or a fraction of it. When using the fraction type, the fraction is based on the base value; therefore, the tolerance value for comparison would be the fraction times the base value. For example, if your base value is 100 and you set the fraction tolerance to 0.00001, the compare tolerance will be 100 * 0.00001 = 0.001</para><bulletList><bullet_item>All—This option will apply the same  tolerance to the extent, pixel value, minimum pixel value, maximum pixel value, mean pixel value, and standard deviation pixel value.</bullet_item><bullet_item>Extent—The extent of the raster will have an allowable tolerance.</bullet_item><bullet_item>Pixel_Value—The pixel values of the raster will have an allowable tolerance.</bullet_item><bullet_item>Statistics_Minimum—The minimum pixel value of the raster will have an allowable tolerance.</bullet_item><bullet_item>Statistics_Maximum—The maximum pixel value of the raster will have an allowable tolerance.</bullet_item><bullet_item>Statistics_Mean—The mean pixel value of the raster will have an allowable tolerance.</bullet_item><bullet_item>Statistics_Standard_Deviation—The standard deviation pixel value of the raster will have an allowable tolerance.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>The Parameter Tolerance allows you to compare your parameter values with some leeway on accuracy. This allows you to account for any slight changes that might have occurred in processing your data.</para>
+						<para>Choose the parameters for which you would like to have a tolerance. For each parameter you will need a tolerance and tolerance type. The tolerance type is either the value of the tolerance or a fraction of it. When using the fraction type, the fraction is based on the base value; therefore, the tolerance value for comparison would be the fraction times the base value. For example, if your base value is 100 and you set the fraction tolerance to 0.00001, the compare tolerance will be 100 * 0.00001 = 0.001</para>
+						<bulletList><bullet_item>All—This option will apply the same  tolerance to all the items in this drop-down list.</bullet_item><bullet_item>Extent—The extent of the raster will have an allowable tolerance.</bullet_item><bullet_item>Pixel_Value—The pixel values of the raster will have an allowable tolerance.</bullet_item><bullet_item>Statistics_Minimum—The minimum pixel value of the raster will have an allowable tolerance.</bullet_item><bullet_item>Statistics_Maximum—The maximum pixel value of the raster will have an allowable tolerance.</bullet_item><bullet_item>Statistics_Mean—The mean pixel value of the raster will have an allowable tolerance.</bullet_item><bullet_item>Statistics_Standard_Deviation—The standard deviation pixel value of the raster will have an allowable tolerance.</bullet_item></bulletList></dialogReference></param><param sync="true" name="attribute_tolerances" displayname="Attribute Tolerance" datatype="Value Table" direction="Input" expression="[[Field, Tolerance],...]" type="Optional"><pythonReference>
+						<para>The Attribute Tolerance allows you to compare your attribute values with some leeway on accuracy. This allows you to account for any slight changes that might have occurred in processing your data.</para>
+						<para>Type the field name and tolerance value for each parameter for which you want to have a tolerance. The tolerance value is the actual value of the tolerance, not a fraction.</para>
+					</pythonReference><dialogReference>
+						<para>The Attribute Tolerance allows you to compare your attribute values with some leeway on accuracy. This allows you to account for any slight changes that might have occurred in processing your data.</para>
+						<para>Choose the field name for which you would like to have a tolerance. The tolerance value is an actual value, not a fraction.</para>
+					</dialogReference></param><param sync="true" name="omit_field" displayname="Omit Fields" datatype="String" direction="Input" expression="[omit_field,...]" type="Optional"><pythonReference>
+						<para>These are the fields you would like to Omit in the comparison results. Type in the fields to omit in the comparison.</para>
+						<para>When dealing with a raster catalog scenario, you are comparing attribute columns of the raster catalogs, not any attributes within the catalog items.</para>
+					</pythonReference><dialogReference>
+						<para>These are the fields you would like to Omit in the comparison results. Check the fields you want to omit in the comparison.</para>
+						<para>When dealing with a raster catalog scenario, you are comparing attribute columns of the raster catalogs, not any attributes within the catalog items.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The tool returns messages showing the comparison result.</para>
+			</bullet_item><bullet_item>
+				<para>The parameter and attribute tolerances allow your comparisons to have a specified amount of leeway.</para>
+			</bullet_item><bullet_item><para>For Python syntax, you will need to open the tool dialog to view a list of values for the Ignore Options parameter.  Your Compare Type will determine which Ignore Options are valid.</para></bullet_item></usage><scriptExamples><scriptExample><title>RasterCompare example 1 (Python window)</title>
+					<para>This is a Python sample for RasterCompare.</para>
+				<code xml:space="preserve">import arcpy
+RasterCompare_management("C:/workspace/image1.tif","C:/workspace/image2.tif",\
+                         "RASTER_DATASET","'Pyramids Exist'",\
+                         "CONTINUE_COMPARE","C:/workspace/compare01.txt",\
+                         "Pixel_Value 1 Value","Count 5","OID")
+                    </code></scriptExample><scriptExample><title>RasterCompare example 2 (stand-alone script)</title>
+					<para>This is a Python sample for RasterCompare.</para>
+				<code xml:space="preserve">##====================================
+##Raster Compare
+##Usage: RasterCompare_management in_base_raster in_test_raster {RASTER_DATASET |
+##                                GDB_RASTER_DATASET | GDB_RASTER_CATALOG |
+##                                MOSAIC_DATASET} {ignore_option;ignore_option...}
+##                                {NO_CONTINUE_COMPARE | CONTINUE_COMPARE} 
+##                                {out_compare_file} {Parameter {Tolerance} {Type};
+##                                Parameter {Tolerance} {Type}...} {Field {Tolerance};
+##                                Field {Tolerance}...} {omit_field;omit_field...} 
+    
+    
+try:
+    import arcpy
+    
+    arcpy.env.workspace = "c:/workspace"
+    
+    ##Compare two Raster dataset
+    arcpy.RasterCompare_management("raster_base.tif","raster_test.tif","RASTER_DATASET",\
+                                   "","CONTINUE_COMPARE","compareresult.txt","","","")
+    
+    ##Compare two Raster Catalog with ignore options
+    arcpy.RasterCompare_management("fgdb.gdb/rc_base","fgdb.gdb/rc_test","RASTER_CATALOG",\
+                                   "IsManaged;Extent","CONTINUE_COMPARE","compareresult2.txt",\
+                                   "","","DATE")
+    
+    ##Compare two Mosaic Dataset with torelance
+    arcpy.RasterCompare_management("fgdb.gdb/md_base","fgdb.gdb/md_test","MOSAIC_DATASET",\
+                                   "IsEmbedded;Seamline","CONTINUE_COMPARE","compareresult3.txt",\
+                                   "All 0.00001 Fraction","HighPS 0.0001;LowPS 0.0001",\
+                                   "ItemTS;UriHash")
+    
+except:
+    print "Raster Compare exsample failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

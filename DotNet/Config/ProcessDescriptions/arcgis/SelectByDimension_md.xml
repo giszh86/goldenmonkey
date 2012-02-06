@@ -1,0 +1,65 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Select by Dimension (Multidimension)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Updates the netCDF layer display or netCDF table view based on the dimension value.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Climate</keyword><keyword>Climatology</keyword><keyword>Dimension</keyword><keyword>Meteorology</keyword><keyword>Netcdf</keyword><keyword>Oceanography</keyword><keyword>Scientific</keyword><keyword>Weather</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SelectByDimension" displayname="Select by Dimension (Multidimension)" toolboxalias="md" softwarerestriction="none"><summary>
+			<para>Updates the netCDF layer display or netCDF table view based on the dimension value.</para>
+		</summary><alink_name>SelectByDimension_md</alink_name><parameters><param sync="true" name="in_layer_or_table" displayname="Input Layer or Table" datatype="Raster Layer; Feature Layer; Table View" direction="Input" expression="in_layer_or_table" type="Required"><pythonReference>
+						<para>The input netCDF raster layer, netCDF feature layer, or netCDF table view.</para>
+					</pythonReference><dialogReference>
+						<para>The input netCDF raster layer, netCDF feature layer, or netCDF table view.</para>
+					</dialogReference></param><param sync="true" name="dimension_values" displayname="Dimension Values" datatype="Value Table" direction="Input" expression="[[dimension, {value}],...]" type="Optional"><pythonReference>
+						<para>A set of dimension–value pairs used to specify a slice of a multidimensional variable.</para>
+						<bulletList>
+							<bullet_item>dimension—A netCDF dimension.</bullet_item>
+							<bullet_item>{value}—A value of the dimension to specify a slice of a multidimensional variable.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>A set of dimension–value pairs used to specify a slice of a multidimensional variable.</para>
+						<bulletList>
+							<bullet_item>dimension—A netCDF dimension.</bullet_item>
+							<bullet_item>{value}—A value of the dimension to specify a slice of a multidimensional variable.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="value_selection_method" displayname="Value Selection Method" datatype="String" direction="Input" expression="value_selection_method" type="Optional"><pythonReference>
+						<para>Specifies the dimension value selection method.</para>
+						<bulletList><bullet_item>BY_VALUE—The input value is matched with the actual dimension value. </bullet_item><bullet_item>BY_INDEX—The input value is matched with the position or index of a dimension value. The index is 0 based, that is, the position starts at 0. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the dimension value selection method.</para>
+						<bulletList><bullet_item>BY_VALUE—The input value is matched with the actual dimension value. </bullet_item><bullet_item>BY_INDEX—The input value is matched with the position or index of a dimension value. The index is 0 based, that is, the position starts at 0. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Inputs for this tool can be created using the Make NetCDF Feature Layer, Make NetCDF Raster Layer, or Make NetCDF Table View tools.</para>
+			</bullet_item><bullet_item>
+				<para>If a dimension is not specified, its value is set to the first value. The first value is considered the default value.</para>
+			</bullet_item><bullet_item>
+				<para>Auxiliary coordinate variables are not listed in the Dimension Values parameter drop-down list and cannot be set as the value of this parameter in a script.</para>
+			</bullet_item><bullet_item>
+				<para>The BY_INDEX option matches the input value with the position or index of a dimension value. The index is 1 based, that is, the position starts at 1.</para>
+			</bullet_item><bullet_item>
+				<para>This tool updates the input. In ModelBuilder, an output variable appears that can chain the updated input as input to another tool in the model, but the tool does not produce a new output.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SelectByDimension example 1 (Python window)</title>
+					<para>Updates the layer based on the dimension value.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.SelectByDimension_md("rainfall",[["lat", 20]],"BY_VALUE")
+                    </code></scriptExample><scriptExample><title>SelectByDimension example 2 (stand-alone script)</title>
+					<para>Updates the layer based on the dimension value.</para>
+				<code xml:space="preserve"># Name: SelectBydimension_Ex_02.py
+# Description: Updates the netCDF layer display based on the dimension value.
+# Requirements: none
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+inNetCDFLayer = "rainfall" 
+valueSelect01 = ["lat", 20]
+valueSelect02 = ["lon", 45]  
+dimensionValues = [valueSelect01, valueSelect02]
+valueSelectionMethod = ""
+
+# Execute SelectByDimension
+arcpy.SelectByDimension_md(inNetCDFLayer, dimensionValues, valueSelectionMethod)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

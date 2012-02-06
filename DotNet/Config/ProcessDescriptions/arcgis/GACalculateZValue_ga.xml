@@ -1,0 +1,49 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate Z-Value (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs><para>Uses the interpolation model in a geostatistical layer to predict a value at a single location.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Estimate</keyword><keyword>Geostatistics</keyword><keyword>Interpolation</keyword><keyword>Predict</keyword><keyword>Z Value</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GACalculateZValue" displayname="Calculate Z-Value (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary><para>Uses the interpolation model in a geostatistical layer to predict a value at a single location.</para>
+		</summary><alink_name>GACalculateZValue_ga</alink_name><parameters><param sync="true" name="in_geostat_layer" displayname="Input geostatistical layer" datatype="Geostatistical Layer" direction="Input" expression="in_geostat_layer" type="Required"><pythonReference>
+						<para>The geostatistical layer to be analyzed.</para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical layer to be analyzed.</para>
+					</dialogReference></param><param sync="true" name="point_coord" displayname="The x,y coordinate of the point where the Z value is required." datatype="Point" direction="Input" expression="point_coord" type="Required"><pythonReference>
+						<para>The x,y coordinate of the point where the Z value is required.</para>
+					</pythonReference><dialogReference>
+						<para>The x,y coordinate of the point where the Z value is required.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>This tool is generally used in a model or in scripting.</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>GACalculateZValue (Python window)</title>
+					<para>Predict a value at a location using a kriging geostatistical layer.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapyexamples/data"
+outCZV = arcpy.GACalculateZValue_ga("C:/gapyexamples/data/Kriging.lyr", "-2000000 -50000")
+print outCZV
+
+                    </code></scriptExample><scriptExample><title>GACalculateZValue (stand-alone script)</title>
+					<para>Predict a value at a location using a kriging geostatistical layer.</para>
+				<code xml:space="preserve"># Name: CalculateZValue_Example_02.py
+# Description: Uses the interpolation model in a geostatistical layer to predict
+#   a value at a single location.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inGALayer = "C:/gapyexamples/data/Kriging.lyr"
+pointCoord = "-2000000 -50000"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute CalculateZValue
+outCZV = arcpy.GACalculateZValue_ga(inGALayer, pointCoord)
+
+# Print results
+print outCZV
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

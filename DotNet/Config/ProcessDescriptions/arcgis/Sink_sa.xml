@@ -1,0 +1,72 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Sink (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a raster identifying all sinks or areas of internal drainage.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Catchment</keyword><keyword>Depressionless</keyword><keyword>Drain</keyword><keyword>Drainage</keyword><keyword>Fill</keyword><keyword>Flow</keyword><keyword>Hole</keyword><keyword>Karst</keyword><keyword>Lowest Point</keyword><keyword>Surface Water</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Sink" displayname="Sink (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Creates a raster identifying all sinks or areas of internal drainage.</para>
+			
+		</summary><alink_name>Sink_sa</alink_name><parameters><param sync="true" name="in_flow_direction_raster" displayname="Input flow direction raster" datatype="Raster Layer" direction="Input" expression="in_flow_direction_raster" type="Required"><pythonReference>
+						<para>The input raster that shows the direction of flow out of each cell.</para><para>The flow direction raster can be created using the Flow Direction tool.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster that shows the direction of flow out of each cell.</para><para>The flow direction raster can be created using the Flow Direction tool.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster that shows all the sinks (areas of internal drainage) on the input surface.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster that shows all the sinks (areas of internal drainage) on the input surface.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item><para>A sink is a cell or set of spatially connected cells whose flow
+direction cannot be assigned one of the eight valid values in a
+flow direction raster. This can occur when all neighboring cells
+are higher than the processing cell or when two cells flow into
+each other, creating a two-cell loop.
+</para></bullet_item><bullet_item>
+				<para>The output of the Sink tool is an integer raster with each sink being assigned a unique value. Sinks are numbered between one and the number of sinks.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Sink example 1 (Python window)</title>
+					<para>This example identifies the sinks on an input flow direction GRID raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outSink = Sink("flowdir")
+outSink.save("C:/sapyexamples/output/outsink01")
+
+                    </code></scriptExample><scriptExample><title>Sink example 2 (stand-alone script)</title>
+					<para>This example identifies the sinks on an input flow direction GRID raster.</para>
+				<code xml:space="preserve"># Name: Sink_Ex_02.py
+# Description: Creates a raster identifying all sinks or areas of internal drainage.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inFlowDirectionRaster = "flowdir"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute FlowDirection
+outSink = Sink(inFlowDirectionRaster)
+
+# Save the output 
+outSink.save("C:/sapyexamples/output/outsink02")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

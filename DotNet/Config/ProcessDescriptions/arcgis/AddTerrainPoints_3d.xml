@@ -1,0 +1,55 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Terrain Points (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds multipoints to an embedded terrain feature class by appending them or by using them to replace existing multipoints that fall within the same extent.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here to view archived documentation. This functionality has been added to the Append Terrain Points tool.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddTerrainPoints" displayname="Add Terrain Points (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Adds multipoints to an embedded terrain feature class by appending them or by using them to replace existing multipoints that fall within the same extent.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here to view archived documentation. This functionality has been added to the Append Terrain Points tool.</para>
+			</summary><alink_name>AddTerrainPoints_3d</alink_name><parameters><param sync="true" name="in_terrain" displayname="Input Terrain" datatype="Terrain Layer" direction="Input" expression="in_terrain" type="Required"><pythonReference>
+						<para>The terrain dataset to be modified.</para>
+					</pythonReference><dialogReference>
+						<para>The terrain dataset to be modified.</para>
+					</dialogReference></param><param sync="true" name="terrain_feature_class" displayname="Embedded Feature Class" datatype="String" direction="Input" expression="terrain_feature_class" type="Required"><pythonReference>
+						<para>The embedded feature class to which points will be added.</para>
+					</pythonReference><dialogReference>
+						<para>The embedded feature class to which points will be added.</para>
+					</dialogReference></param><param sync="true" name="in_feature_class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_feature_class" type="Required"><pythonReference>
+						<para>The feature class containing the points to be added.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class containing the points to be added.</para>
+					</dialogReference></param><param sync="true" name="method" displayname="Method" datatype="String" direction="Input" expression="method" type="Optional"><pythonReference>
+						<para>Indicates whether points are appended to the target or used to replace those in the target.</para>
+					</pythonReference><dialogReference>
+						<para>Indicates whether points are appended to the target or used to replace those in the target.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool adds multipoints to a feature class embedded in a terrain. The terrain and the embedded feature class must already exist.</para>
+			</bullet_item><bullet_item>
+				<para>Only multipoints can be embedded in a terrain. Therefore, the input feature class must be of type multipoint.</para>
+			</bullet_item><bullet_item>
+				<para>This tool performs two types of operations: APPEND and REPLACE. Use the method argument to indicate which mode of operation you want to use.</para>
+			</bullet_item><bullet_item>
+				<para>Either operation uses a rectangular Area Of Interest (AOI). By default, the AOI is equal to the extent of the input feature class. The Geoprocessing Environment can be used to define a specific extent if a subset of the input feature class is desired. In the case of APPEND, the vertices of the input feature class that fall within the AOI will be added. REPLACE works in two phases. First, vertices of the embedded feature class that fall within the AOI are deleted. Then, those within the AOI of the source feature class are added. If a multipoint crosses the AOI boundary only those vertices within the boundary are operated on.</para>
+			</bullet_item><bullet_item>
+				<para>If you want to add points to a regular feature class, potentially referenced by a terrain but not embedded in it, use the Append tool.</para>
+			</bullet_item><bullet_item>
+				<para>Add Terrain Points looks for an existing edit session to piggy-back on. This supports undo if the edit session was initialized to support undo (e.g., using the Editor inside ArcMap™). If there's no edit session, it starts and stops one itself, in which case there is no chance for an undo.</para>
+			</bullet_item><bullet_item>
+				<para>In order to use this tool on a terrain inside an SDE™ database, the terrain needs to be registered as versioned. You do this by registering the feature dataset the terrain lives in as versioned.</para>
+			</bullet_item><bullet_item>
+				<para>Adding points to an embedded feature class will invalidate the terrain. Run  after adding points.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Add Terrain Points Example (Python window)</title><para>The following Python Window script demonstrates how to use the Add Terrain Points
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcgisscripting
+gp = arcgisscripting.create()
+
+gp.CheckOutExtension("3D")
+gp.workspace = "C:/data"
+gp.AddTerrainPoints_3d("sample.gdb/featuredataset/terrain", "mass_points", "new_points.shp", "APPEND")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,161 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Point File Information (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Generates a new output feature class containing statistical information about one or more point files.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Feature Class</keyword><keyword>3D Files</keyword><keyword>3D Point Information</keyword><keyword>Ascii</keyword><keyword>Convert</keyword><keyword>Las</keyword><keyword>Las Files</keyword><keyword>Lidar</keyword><keyword>Point Count</keyword><keyword>Point File Information</keyword><keyword>Point Spacing</keyword><keyword>Xyz</keyword><keyword>Xyz Data</keyword><keyword>Z Max</keyword><keyword>Z Maximum</keyword><keyword>Z Min</keyword><keyword>Z Minimum</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="PointFileInformation" displayname="Point File Information (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Generates a new output feature class containing statistical information about one or more point files.</para>
+		</summary><alink_name>PointFileInformation_3d</alink_name><toolIllust type="illustration" src="PointFileInformation_3d_h.gif" alt="Point file information output" /><parameters><param sync="true" name="input" displayname="Input" datatype="File; Folder" direction="Input" expression="input" type="Required"><pythonReference>
+						<para>One or more point data files or folders.</para>
+					</pythonReference><dialogReference>
+						<para>One or more point data files or folders.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class.</para>
+					</dialogReference></param><param sync="true" name="in_file_type" displayname="Input File Format" datatype="String" direction="Input" expression="in_file_type" type="Required"><pythonReference>
+						<para>The format of the input file(s). Input file(s) must be in either a LAS, XYZ, XYZI, or GENERATE format.</para>
+					</pythonReference><dialogReference>
+						<para>The format of the input file(s). Input file(s) must be in either a LAS, XYZ, XYZI, or GENERATE format.</para>
+					</dialogReference></param><param sync="true" name="file_suffix" displayname="File Suffix" datatype="String" direction="Input" expression="file_suffix" type="Required"><pythonReference>
+						<para>The suffix of the files to import when a folder is specified on input.</para>
+					</pythonReference><dialogReference>
+						<para>The suffix of the files to import when a folder is specified on input.</para>
+					</dialogReference></param><param sync="true" name="input_coordinate_system" displayname="Input Coordinate System" datatype="Coordinate System" direction="Input" expression="input_coordinate_system" type="Optional"><pythonReference>
+						<para>The coordinate system of the input data.</para>
+					</pythonReference><dialogReference>
+						<para>The coordinate system of the input data.</para>
+					</dialogReference></param><param sync="true" name="summarize_by_class_code" displayname="Summarize by class code" datatype="Boolean" direction="Input" expression="summarize_by_class_code" type="Optional"><pythonReference>
+						<para>Scans through the LAS files and analyzes the class code values. The attribute table of the output feature class will contain statistical information for each class code encountered. </para>
+						<bulletList><bullet_item> NO_ SUMMARIZE —The LAS files will not be analyzes based on the class code values. This is the default.</bullet_item><bullet_item>  SUMMARIZE—The LAS files will be analyzes based on the class code values. The attribute table of the output feature class will contain statistical information for each class code encountered.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Scans through the LAS files and analyzes the class code values. The attribute table of the output feature class will contain statistical information for each class code encountered. </para>
+						<bulletList>
+							<bullet_item>Unchecked—The LAS files will not be analyzes based on the class code values. This is the default.</bullet_item>
+							<bullet_item>Checked—The LAS files will be analyzes based on the class code values. The attribute table of the output feature class will contain statistical information for each class code encountered. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="folder_recursion" displayname="Process input folders recursively" datatype="Boolean" direction="Input" expression="folder_recursion" type="Optional"><pythonReference>
+						<para>Scans through subfolders when an input folder is selected containing data in a subfolders directory. The output feature class will be generated with a column row for each file encountered in the directory structure.</para>
+						<bulletList><bullet_item> NO_RECURSION —The subfolders of the selected  input folder will not be scanned and the data files encountered will be used to generate the results. This is the default.</bullet_item><bullet_item>RECURSION—The subfolders of the selected  input folder will be scanned and the data files encountered will be used to generate the results.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Scans through subfolders when an input folder is selected containing data in a subfolders directory. The output feature class will be generated with a column row for each file encountered in the directory structure.</para>
+						<bulletList>
+							<bullet_item>Unchecked—The subfolders of the selected  input folder will not be scanned and the data files encountered will be used to generate the results. This is the default.</bullet_item>
+							<bullet_item>Checked—The subfolders of the selected  input folder will be scanned and the data files encountered will be used to generate the results.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="extrude_geometry" displayname="Create extruded geometry shapes" datatype="Boolean" direction="Output" expression="extrude_geometry" type="Optional"><pythonReference>
+						<para>A 3D multipatch feature class will be generated based on the z minimum / maximum values of each input file.</para>
+						<bulletList><bullet_item> NO_EXTRUSION —A 3D multipatch feature class will not be  generated as output. This is the default.</bullet_item><bullet_item> EXTRUSION—A 3D multipatch feature class will be  generated as output.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>A 3D multipatch feature class will be generated based on the z minimum / maximum values of each input file.</para>
+						<bulletList>
+							<bullet_item>Unchecked—A 3D multipatch feature class will not be  generated as output. This is the default.</bullet_item>
+							<bullet_item>Checked—A 3D multipatch feature class will be  generated as output.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="decimal_separator" displayname="Decimal separator" datatype="String" direction="Input" expression="decimal_separator" type="Optional"><pythonReference>
+						<para>Separator symbol used in ASCII files. The default is decimal point. Allows user to declare if decimal symbol used in file(s) is a point or comma.</para>
+					</pythonReference><dialogReference>
+						<para>Separator symbol used in ASCII files. The default is decimal point. Allows user to declare if decimal symbol used in file(s) is a point or comma.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Input file(s) must be in either a LAS, XYZ, XYZI, or GENERATE format.</para>
+			</bullet_item><bullet_item>
+				<para>When a folder containing point data files is selected as input the suffix must be entered. If a single file is selected as input the suffix is not a requirement.</para>
+			</bullet_item><bullet_item>
+				<para>When the summarize option is not used the statistical information presented in the feature attribute table consists of the point count, average point spacing, z minimum, and z maximum of each point file entered. A separate row is created for each input file encountered. The point spacing is an estimate that assumes the points within the input file are evenly spaced over the XY extent of each input file.</para>
+			</bullet_item><bullet_item>
+				<para>An output polygon feature class is created with the XY extents of the input file(s). Alternatively, Multipatch features can be generated by utilizing z minimum and z maximum extent information for each input file. These provide a 3D bounding box representation that can be viewed in ArcScene or ArcGlobe.</para>
+			</bullet_item><bullet_item><para>The summarize option is useful to statistical summarize  information for each class code in the input file, but can is  expensive as  each file must be scanned and analyzed.  </para></bullet_item><bullet_item><para> The point spacing reported by Point File Information is not  exact, it is an estimate. The point spacing given is a  summary when looking at trends for collections of files.  The tool uses a rough estimate that simply compares the area of the file's bounding box with the point count. It  is most accurate when the rectangular extent of the file being examined is filled with data. Files with points over large water bodies or on the perimeter of a study area, only partially occupied with data, will not produce accurate estimates.  </para></bullet_item></usage><scriptExamples><scriptExample><title>Point File Information Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Point File Information
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.PointFileInformation_3d(env.workspace, "Test.gdb/two_las", "LAS", "las", "Coordinate Systems/Projected Coordinate Systems/UTM/NAD 1983/NAD 1983 UTM Zone 17N.prj", True, True, "DECIMAL_POINT", True)
+                    </code></scriptExample><scriptExample><title>Point File Information Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Point File Information
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: PointFileInformation Example
+# Description: The following stand-alone script demonstrates how to obtain the 
+#              average spacing of LAS files using the PointFileInformation tool. 
+#              The spacing value is pulled from the output and used in the 
+#              LAStoMultipoint tool to load the ground class readings.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Set Local Variables
+    LASInfo = "LASInfo.shp"
+    inFormat = "LAS"
+    fileSuffix = "las"
+    prj = 'Coordinate Systems/Projected Coordinate Systems/UTM/NAD 1983/'+\
+        'NAD 1983 UTM Zone 17N.prj'
+    folderRecursion = False
+    sumClass = False
+    extrude = False
+    decSep = "DECIMAL_POINT"
+    outputFC = "Lidar_Multipoint1.shp"
+    class_code = "2" # Identifies all ground returns    
+    Delaunay = "NO_constrained_delaunay"
+    # Use the ListFiles method to identify all LAS files in the workspace
+    LidarList = arcpy.ListFiles("*.las")
+    if len(LidarList) &gt; 0:
+        # Execute PointFileInformation
+        arcpy.PointFileInformation_3d(LidarList, LASInfo, inFormat, fileSuffix, prj, 
+                                      folderRecursion, extrude, decSep, sumClass)
+        # Create SearchCursor and sort Pt_Spacing values in descending order
+        LAScursor = arcpy.SearchCursor(LASInfo, "", "", "Pt_Spacing", "Pt_Spacing D")
+        for row in LAScursor:
+            # Sets the ptSpacing variable to the largest value in the Pt_Spacing field
+            ptSpacing = row.getValue("Pt_Spacing")
+            # Stop the for loop from looping for each row
+            break
+        # Execute LASToMultipoint
+        print "Creating multipoint dataset."
+        arcpy.LASToMultipoint_3d(LidarList, outputFC, ptSpacing, class_code, 
+                                 "ANY_RETURNS", "", prj, inFormat, "1")
+        print "Finished"
+    else:
+        print "There are no LAS files in the " + env.workspace + " directory."    
+        
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

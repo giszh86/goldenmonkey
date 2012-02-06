@@ -1,0 +1,59 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Composite Address Locator (Geocoding)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a composite address locator. A composite address locator consists of two or more individual address locators that allow addresses to be matched against the multiple address locators. </para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Address</keyword><keyword>Address Attribute</keyword><keyword>Address Locator</keyword><keyword>Address Locator Style</keyword><keyword>Address Matching</keyword><keyword>Build</keyword><keyword>Cascade Geocoding</keyword><keyword>Composite</keyword><keyword>Composite Address Locator</keyword><keyword>Create</keyword><keyword>Fall Back Geocoding</keyword><keyword>Field Map</keyword><keyword>Geocode</keyword><keyword>Geocoding</keyword><keyword>Loc</keyword><keyword>Locator</keyword><keyword>Matching</keyword><keyword>Multiple</keyword><keyword>Multiple Address Locators</keyword><keyword>Participating Address Locator</keyword><keyword>Selection Criteria</keyword><keyword>Street</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateCompositeAddressLocator" displayname="Create Composite Address Locator (Geocoding)" toolboxalias="geocoding" softwarerestriction="none"><summary>
+			<para>Creates a composite address locator. A composite address locator consists of two or more individual address locators that allow addresses to be matched against the multiple address locators. </para>
+			
+		</summary><alink_name>CreateCompositeAddressLocator_geocoding</alink_name><parameters><param sync="true" name="in_address_locators" displayname="Address Locators" datatype="Value Table" direction="Input" expression="[[in_address_locator, name],...]" type="Required"><pythonReference>
+						<para>The order of the participating address locators determines how candidates are searched and an address is matched. When you geocode a single address, the address will be matched against all participating address locators unless the locator is  specified with a selection criterion. All the found candidates will be displayed based on the order of the listed participating address locators. If you geocode a table of  addresses, addresses are matched automatically to the first best candidate found from the first participating address locators. If the address fails to match, it will fall back to the subsequent locator in the list.</para>
+						<para>A reference name for each participating address locator is required. This is the name of the address locator referred to by the composite address locator. The name should contain no space or special symbols. The maximum length of the name is 14 characters.</para>
+					</pythonReference><dialogReference>
+						<para>The order of the participating address locators determines how candidates are searched and an address is matched. When you geocode a single address, the address will be matched against all participating address locators unless the locator is  specified with a selection criterion. All the found candidates will be displayed based on the order of the listed participating address locators. If you geocode a table of  addresses, addresses are matched automatically to the first best candidate found from the first participating address locators. If the address fails to match, it will fall back to the subsequent locator in the list.</para>
+						<para>A reference name for each participating address locator is required. This is the name of the address locator referred to by the composite address locator. The name should contain no space or special symbols. The maximum length of the name is 14 characters.</para>
+					</dialogReference></param><param sync="true" name="in_field_map" displayname="Field Map" datatype="Field Mappings" direction="Input" expression="in_field_map" type="Required"><pythonReference>
+						<para>The mapping of input fields used by each participating address locator to the input fields of the composite address locator. </para>
+					</pythonReference><dialogReference>
+						<para>The mapping of input fields used by each participating address locator to the input fields of the composite address locator. </para><para> The fields and field contents that are generated by the participating address locators. Each of the unique input fields is listed on the Field Map section, and when expanded, you will see a list of all the input field occurrences (subfields) for each participating address locator. These fields are the input fields for the composite address locator. If there are duplicate fields such as ZIP and Postcode because of the unique names populated from the participating address locators, you may group the subfields by dragging and dropping them to the appropriate Field or use the Arrow Up  or  Arrow Down button to move the subfield. </para>
+					</dialogReference></param><param sync="true" name="in_selection_criteria" displayname="Selection criteria" datatype="Value Table" direction="Input" expression="[in_address_locator, selection_criteria]" type="Optional"><pythonReference>
+						<para>Selection criteria for each participating address locator. Only one selection criterion is supported for each participating address locator. </para><para> Using selection criteria will disqualify participating address locators that do not meet the criteria on a particular address so that the geocoding process will be more efficient. Refer to the topic Creating a   composite address locator to learn more about the use of selection criteria in the geocoding process. </para>
+					</pythonReference><dialogReference><para>Selection criteria for each participating address locator. Only one selection criterion is supported for each participating address locator.</para>
+						<para>When building a composite address locator, you may wish to specify which address locators are used based on the values of input address fields. For example, if your composite address locator uses an address locator that contains street data for a specific city, you may want to filter out any addresses that do not have that particular city name. Using selection criteria will disqualify participating address locators that do not meet the criteria on a particular address so that the geocoding process will be more efficient. For instance, if a street address locator is specified with a selection criterion as "City" = 'Atlanta', only  addresses that contain the city name "Atlanta" will be geocoded against this locator.</para><para> To specify a selection criterion, click the box under the Selection Criteria column next to the address locator you want to apply the criterion. You can enter an expression such as "City" = 'Atlanta' in the text box or click the ... button to open the Specify Locator Selection Criteria dialog box and define the criteria.</para></dialogReference></param><param sync="true" name="out_composite_address_locator" displayname="Output Composite Address Locator" datatype="Address Locator" direction="Output" expression="out_composite_address_locator" type="Required"><pythonReference>
+						<para>The composite address locator to create.</para>
+					</pythonReference><dialogReference>
+						<para>The composite address locator to create.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system"></environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Prior to creating composite address locators, use the  tool to create participating address locators.</para>
+			</bullet_item><bullet_item>
+				<para>Spatial reference for a composite address locator is required. The spatial reference of the first participating address locator is used unless you specify a different  in the tool's .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateCompositeAddressLocator Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the CreateCompositeAddressLocator function in immediate mode. </para>
+				<code xml:space="preserve"># Example 1:
+
+# Create a composite address locator using the StreetMap US Streets and Tutorial Atlanta locators.
+
+# Import system modules
+import arcpy 
+from arcpy import env 
+env.workspace = "C:/ArcTutor/Geocoding/atlanta.gdb"
+
+# Set local variables:
+US_Streets_locator = "C:/dm_stmap_dvd/streetmap_na/data/Street_Addresses_US"
+Atlanta_locator = Atlanta
+
+arcpy.CreateCompositeAddressLocator_geocoding(
+"Atlanta_locator Atlanta;US_Streets_locator US_Streets", 
+"Address 'Street or Intersection' true true false 100 Text 0 0 ,First,#,Atlanta_locator,Address,0,0,US_Streets_locator,Street,0,0;
+City 'City or Placename' true true false 40 Text 0 0 ,First,#,Atlanta_locator,City,0,0,US_Streets_locator,City,0,0;
+State 'State' true true false 20 Text 0 0 ,First,#,Atlanta_locator,State,0,0,US_Streets_locator,State,0,0;
+Zip 'Zipcode' true true false 10 Text 0 0 ,First,#,Atlanta_locator,Zip,0,0,US_Streets_locator,ZIP,0,0", 
+"Atlanta '\"City\" = 'Atlanta'';US_Streets #", Atlanta_Composite) 
+
+ 
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,111 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Ordinary Least Squares (OLS) (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs global Ordinary Least Squares (OLS) linear regression to generate predictions or to model a dependent variable in terms of its relationships to a set of explanatory variables.  Results are accessible from the Results window.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cause</keyword><keyword>Colinearity</keyword><keyword>Correlation</keyword><keyword>Dependent</keyword><keyword>Effect</keyword><keyword>Global</keyword><keyword>Heteroskedasticity</keyword><keyword>Linear</keyword><keyword>Multiple</keyword><keyword>Negative</keyword><keyword>Ols</keyword><keyword>Positive</keyword><keyword>Predict</keyword><keyword>R Squared</keyword><keyword>Regression</keyword><keyword>Relate</keyword><keyword>Square</keyword><keyword>Value</keyword><keyword>Variable</keyword><keyword>Vary</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="OrdinaryLeastSquares" displayname="Ordinary Least Squares (OLS) (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Performs global Ordinary Least Squares (OLS) linear regression to generate predictions or to model a dependent variable in terms of its relationships to a set of explanatory variables.  Results are accessible from the Results window.</para>
+			
+		</summary><alink_name>OrdinaryLeastSquares_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/OrdinaryLeastSquares_stats_v.png" alt="OLS Regression" /><toolIllust type="illustration" src="OrdinaryLeastSquares_stats_h.png" alt="OLS Regression" /><parameters><param sync="true" name="Input_Feature_Class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="Input_Feature_Class" type="Required"><pythonReference>
+						<para>The feature class containing the dependent and independent variables for analysis.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class containing the dependent and independent variables for analysis.</para>
+					</dialogReference></param><param sync="true" name="Unique_ID_Field" displayname="Unique ID Field" datatype="Field" direction="Input" expression="Unique_ID_Field" type="Required"><pythonReference>
+						<para>An integer field containing a different value for every feature in the Input Feature Class.</para>
+					</pythonReference><dialogReference>
+						<para>An integer field containing a different value for every feature in the Input Feature Class.</para>
+					</dialogReference></param><param sync="true" name="Output_Feature_Class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="Output_Feature_Class" type="Required"><pythonReference>
+						<para>The output feature class to receive dependent variable estimates and residuals.  </para>
+					</pythonReference><dialogReference>
+						<para>The output feature class to receive dependent variable estimates and residuals.  </para>
+					</dialogReference></param><param sync="true" name="Dependent_Variable" displayname="Dependent Variable" datatype="Field" direction="Input" expression="Dependent_Variable" type="Required"><pythonReference>
+						<para>The numeric field containing values for what you are trying to model.</para>
+					</pythonReference><dialogReference>
+						<para>The numeric field containing values for what you are trying to model.</para>
+					</dialogReference></param><param sync="true" name="Explanatory_Variables" displayname="Explanatory Variables" datatype="Field" direction="Input" expression="Explanatory_Variables" type="Required"><pythonReference>
+						<para>A list of fields representing explanatory variables in your regression model.</para>
+					</pythonReference><dialogReference>
+						<para>A list of fields representing explanatory variables in your regression model.</para>
+					</dialogReference></param><param sync="true" name="Coefficient_Output_Table" displayname="Coefficient Output Table" datatype="Table" direction="Output" expression="Coefficient_Output_Table" type="Optional"><pythonReference>
+						<para>The full pathname to an optional table that will receive model coefficients, standard errors, and probabilities for each explanatory variable.</para>
+					</pythonReference><dialogReference>
+						<para>The full pathname to an optional table that will receive model coefficients, standard errors, and probabilities for each explanatory variable.</para>
+					</dialogReference></param><param sync="true" name="Diagnostic_Output_Table" displayname="Diagnostic Output Table" datatype="Table" direction="Output" expression="Diagnostic_Output_Table" type="Optional"><pythonReference>
+						<para>The full pathname to an optional table that will receive model summary diagnostics.</para>
+					</pythonReference><dialogReference>
+						<para>The full pathname to an optional table that will receive model summary diagnostics.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Output_coordinate_system" label="Output coordinate system"></environment><environment name="Qualified_field_names" label="Qualified field names"></environment><environment name="Output_has_M_values" label="Output has M values"></environment><environment name="Output_has_Z_values" label="Output has Z values"></environment><environment name="Default_output_Z_value" label="Default output Z value"></environment></environments><usage><bullet_item>
+				<para><para>The primary output for this tool is the OLS summary report which is written to the .  Right-clicking on the  in the Results window and selecting <bold>View</bold> will display the OLS summary report in a <bold>Message dialog box</bold>.</para>
+				</para><para>The OLS tool also produces an output feature class and optional tables with coefficient information and diagnostics. All of these are accessible from the Results window. The output feature class is automatically added to the Table of Contents, with a hot/cold rendering scheme applied to model .  A full explanation of each output is provided in .</para><para>If this tool is part of a custom model tool, the optional tables will only appear in the Results window if they are set as  prior to running the tool.</para>
+			</bullet_item><bullet_item>
+				<para>Results from OLS regression are only trustworthy if your data and regression model satisfy all of the assumptions inherently required by this method. Consult the table,  in  to ensure your model is properly specified.</para>
+			</bullet_item><bullet_item>
+				<para>Dependent and Explanatory variables should be numeric fields containing a variety of values. OLS cannot solve when variables have all the same value (all the values for a field are 9.0, for example). Linear regression methods, like OLS, are not appropriate for predicting binary outcomes (e.g., all of the values for the dependent variable are either 1 or 0).</para>
+			</bullet_item><bullet_item>
+				<para>The Unique ID field links model predictions to each feature. Consequently, the Unique ID values must be unique for every feature, and typically should be a permanent field that remains with the feature class. If you don't have a Unique ID field, you can easily create one by adding a new integer field to your feature class table and calculating the field values to be equal to the FID/OID field. You cannot use the FID/OID field directly for the Unique ID parameter.</para>
+			</bullet_item><bullet_item>
+				<para>Whenever there is statistically signficant spatial autocorrelation of the regression residuals the OLS model will be considered misspecified and, consequently, results from OLS regression are unreliable. Be sure to run the  tool on your regression residuals to assess this potential problem. Statistically significant spatial autocorrelation of regression residuals almost always indicates a key missing explanatory variable.</para>
+			</bullet_item><bullet_item>
+				<para>You should visually inspect the over and under predictions evident in your regression residuals to see if they provide clues about potential missing variables from your regression model. It sometimes helps to run  on the residuals to help you visualize spatial clustering of the over and under predictions.</para>
+			</bullet_item><bullet_item>
+				<para>When misspecification is the result of trying to model nonstationary variables using a global model (OLS is a global model), then  may be used to improve predictions and to better understand the  (regional variation) inherent in your explanatory variables.</para>
+			</bullet_item><bullet_item>
+				<para>When the result of a computation is infinity or undefined, the output for non-shapefiles will be Null; for shapefiles the output will be -DBL_MAX = -1.7976931348623158e+308.</para>
+			</bullet_item><bullet_item>
+				<para>The optional coefficient and/or diagnostic output tables, if they already exist, will be overwritten when the Geoprocessing Option to  is checked ON.</para>
+			</bullet_item><bullet_item>
+				<para>Map layers can be used to define the Input Feature Class. When using a layer with a selection, only the selected features are included in the analysis.</para>
+			</bullet_item><bullet_item>
+				
+					<para>When using shapefiles, keep in mind that they cannot store null values. Tools or other procedures that create shapefiles from non-shapefile inputs may store or interpret null values as zero. This can lead to unexpected results.  See also .</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>OrdinaryLeastSquares Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the OrdinaryLeastSquares tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = r"c:\data"
+arcpy.OrdinaryLeastSquares_stats("USCounties.shp", "MYID","olsResults.shp", "GROWTH","LOGPCR69;SOUTH;LPCR_SOUTH;PopDen69","olsCoefTab.dbf","olsDiagTab.dbf")
+                    </code></scriptExample><scriptExample><title>OrdinaryLeastSquares Example (stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the OrdinaryLeastSquares tool.</para>
+				<code xml:space="preserve"># Analyze the growth of regional per capita incomes in US
+# Counties from 1969 -- 2002 using Ordinary Least Squares Regression
+
+# Import system modules
+import arcpy
+
+# Set the geoprocessor object property to overwrite existing outputs
+arcpy.gp.overwriteOutput = True
+
+# Local variables...
+workspace = r"C:\Data"
+
+try:
+    # Set the current workspace (to avoid having to specify the full path to the feature classes each time)
+    arcpy.workspace = workspace
+
+    # Growth as a function of {log of starting income, dummy for South
+    # counties, interaction term for South counties, population density}
+    # Process: Ordinary Least Squares... 
+    ols = arcpy.OrdinaryLeastSquares_stats("USCounties.shp", "MYID", 
+                        "olsResults.shp", "GROWTH",
+                        "LOGPCR69;SOUTH;LPCR_SOUTH;PopDen69",
+                        "olsCoefTab.dbf",
+                        "olsDiagTab.dbf")
+
+    # Create Spatial Weights Matrix (Can be based off input or output FC)
+    # Process: Generate Spatial Weights Matrix... 
+    swm = arcpy.GenerateSpatialWeightsMatrix_stats("USCounties.shp", "MYID",
+                        "euclidean6Neighs.swm",
+                        "K_NEAREST_NEIGHBORS",
+                        "#", "#", "#", 6) 
+                        
+
+    # Calculate Moran's Index of Spatial Autocorrelation for 
+    # OLS Residuals using a SWM File.  
+    # Process: Spatial Autocorrelation (Morans I)...      
+    moransI = arcpy.SpatialAutocorrelation_stats("olsResults.shp", "Residual",
+                        "NO_REPORT", "GET_SPATIAL_WEIGHTS_FROM_FILE", 
+                        "EUCLIDEAN_DISTANCE", "NONE", "#", 
+                        "euclidean6Neighs.swm")
+
+except:
+    # If an error occurred when running the tool, print out the error message.
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

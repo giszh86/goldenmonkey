@@ -1,0 +1,44 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Drop Representation (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Deletes a feature class representation from a geodatabase feature class.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cartography</keyword><keyword>Delete</keyword><keyword>Override</keyword><keyword>Remove</keyword><keyword>Representation</keyword><keyword>Symbology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DropRepresentation" displayname="Drop Representation (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Deletes a feature class representation from a geodatabase feature class.</para>
+			
+		</summary><alink_name>DropRepresentation_cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature layer containing representation(s).</para>
+					</pythonReference><dialogReference>
+						<para>The input feature layer containing representation(s).</para>
+					</dialogReference></param><param sync="true" name="representation" displayname="Representation" datatype="String" direction="Input" expression="representation" type="Required"><pythonReference>
+						<para>The feature class representation to be deleted.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class representation to be deleted.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>Once a feature class representation is deleted from a feature class, all representation rules and feature overrides associated with that representation are deleted. No features from the source feature class are deleted.</para>
+			</bullet_item><bullet_item>
+				<para>A feature class representation cannot be deleted from a feature class during an editing session. Deleting a representation is a schema change and schema changes are prevented during an editing session.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DropRepresentation tool Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the DropRepresentation tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.DropRepresentation_cartography("footprints.lyr", "footprints_Rep")
+                    </code></scriptExample><scriptExample><title>DropRepresentation tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the DropRepresentation tool.</para>
+				<code xml:space="preserve"># Name: DropRepresentation_standalone_script.py
+# Description: Deletes a feature class representation from a geodatabase feature class.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+in_features = "footprints.lyr"
+representation = "footprints_Rep"
+
+# Execute Drop Representation
+arcpy.DropRepresentation_cartography(in_features, representation)
+                    </code></scriptExample></scriptExamples></tool></metadata>

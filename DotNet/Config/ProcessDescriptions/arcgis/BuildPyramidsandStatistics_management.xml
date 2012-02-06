@@ -1,0 +1,104 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Build Pyramids and Statistics (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Traverses a folder structure, building pyramids and calculating statistics for all the raster datasets it contains. It can also build pyramids and calculate statistics for all the items in a raster catalog or mosaic dataset. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BuildPyramidsandStatistics" displayname="Build Pyramids and Statistics (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Traverses a folder structure, building pyramids and calculating statistics for all the raster datasets it contains. It can also build pyramids and calculate statistics for all the items in a raster catalog or mosaic dataset. </para>
+		</summary><alink_name>BuildPyramidsandStatistics_management</alink_name><parameters><param sync="true" name="in_workspace" displayname="Input Data" datatype="Workspace" direction="Input" expression="in_workspace" type="Required"><pythonReference>
+						<para>The workspace that contains all the raster datasets to be processed. </para>
+						<para>Raster catalogs and mosaic datasets must be specified as the input workspace. If the workspace includes a raster catalog or mosaic dataset, then these items will not be included when the tool runs.</para>
+					</pythonReference><dialogReference>
+						<para>The workspace that contains all the raster datasets to be processed. </para>
+						<para>Raster catalogs and mosaic datasets must be specified as the input workspace. If the workspace includes a raster catalog or mosaic dataset, then these items will not be included when the tool runs.</para>
+					</dialogReference></param><param sync="true" name="include_subdirectories" displayname="Include Sub-directories" datatype="Boolean" direction="Input" expression="include_subdirectories" type="Optional"><pythonReference>
+						<para>Specify whether to include subdirectories.</para>
+						<bulletList><bullet_item>NONE—Does not include subdirectories. </bullet_item><bullet_item>INCLUDE_SUBDIRECTORIES—Includes all the raster datasets within the subdirectories when loading. This is the default. </bullet_item></bulletList>
+						<para>Raster catalogs and mosaic datasets must be specified as the input workspace. If the workspace includes a raster catalog or mosaic dataset, then these items will not be included when the tool runs.</para>
+					</pythonReference><dialogReference>
+						<para>Specify whether to include subdirectories.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Does not include subdirectories.</bullet_item>
+							<bullet_item>Checked—Includes all the raster datasets within the subdirectories when loading. This is the default.</bullet_item>
+						</bulletList>
+						<para>Raster catalogs and mosaic datasets must be specified as the input workspace. If the workspace includes a raster catalog or mosaic dataset, then these items will not be included when the tool runs.</para>
+					</dialogReference></param><param sync="true" name="build_pyramids" displayname="Build Pyramids" datatype="Boolean" direction="Input" expression="build_pyramids" type="Optional"><pythonReference>
+						<para>Specify whether to build pyramids.</para>
+						<bulletList><bullet_item>NONE—Does not build pyramids. </bullet_item><bullet_item>BUILD_PYRAMIDS—Builds pyramids. This is the default. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specify whether to build pyramids.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Does not build pyramids. </bullet_item>
+							<bullet_item>Checked—Builds pyramids. This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="calculate_statistics" displayname="Calculate Statistics" datatype="Boolean" direction="Input" expression="calculate_statistics" type="Optional"><pythonReference>
+						<para>Specify whether to calculate statistics.</para>
+						<bulletList><bullet_item>NONE—Does not calculate statistics. </bullet_item><bullet_item>CALCULATE_STATISTICS—Calculates statistics. This is the default. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specify whether to calculate statistics.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Does not calculate statistics.</bullet_item>
+							<bullet_item>Checked—Calculates statistics. This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="build_on_source" displayname="Include Source Datasets" datatype="Boolean" direction="Input" expression="build_on_source" type="Required"><pythonReference><para>Specify whether to build pyramids and calculate statistics on the source datasets.
+This option is only applicable to mosaic datasets. </para><bulletList><bullet_item>NONE—Only builds pyramids and calculates statistics for the overviews. This is the default.  </bullet_item><bullet_item>BUILD_ON_SOURCE—Builds pyramids and calculates statistics on the source data. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specify whether to build pyramids and calculate statistics on the source datasets.
+This option is only applicable to mosaic datasets. </para><bulletList>
+							<bullet_item>Unchecked—Does not build pyramids or calculate statistics for the source data of the mosaic dataset. This means that pyramids and statistics are only built for the overviews. This is the default.</bullet_item>
+							<bullet_item>Checked—Builds pyramids and calculates statistics on the source data of the mosaic dataset. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Pyramid" label="Pyramid">
+						
+					</environment><environment name="Raster_statistics" label="Raster statistics">
+						
+					</environment><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>Building  improves the display performance of raster datasets.</para>
+			</bullet_item><bullet_item>
+				<para>Calculating  allows ArcGIS applications to properly stretch and symbolize raster data for display.</para>
+			</bullet_item><bullet_item>
+				<para>All supported raster formats will be processed.</para>
+			</bullet_item><bullet_item>
+				<para>Raster catalogs and mosaic datasets must be specified as the input workspace. If the workspace includes a raster catalog or mosaic dataset, then these items will not be included when the tool runs.</para>
+			</bullet_item><bullet_item>
+				<para>Wavelet compressed raster datasets, such as ECW, and MrSID, do not need to have pyramids built. These formats have internal pyramids that are created upon encoding.</para>
+			</bullet_item><bullet_item>
+				<para>Skip factors and pyramid resampling can be set in the geoprocessing environment .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>BuildPyramidsandStatistics example 1 (Python window)</title>
+					<para>This is a Python sample for the BuildPyramidsandStatistics tool.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "c:/data"
+arcpy.env.pyramid = "PYRAMIDS 3 BILINEAR JPEG"
+arcpy.env.rasterStatistics = "STATISTICS 4 6 (0)"
+arcpy.BuildPyramidsandStatistics_management("folder", "INCLUDE_SUBDIRECTORIES",\
+                                            "BUILD_PYRAMIDS", "CALCULATE_STATISTICS")
+                    </code></scriptExample><scriptExample><title>BuildPyramidsandStatistics example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for the BuildPyramidsandStatistics tool.</para>
+				<code xml:space="preserve">##====================================
+##Build Pyramids and Statistics
+##Usage: BuildPyramidsandStatistics_management in_workspace {INCLUDE_SUBDIRECTORIES
+##                                                 | NONE} {BUILD_PYRAMIDS | NONE}
+##                                                 {CALCULATE_STATISTICS | NONE}
+    
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:/Workspace"
+
+    ##Define parameters for build pyramids and calculate statitics in environment setting
+    arcpy.env.pyramid = "PYRAMIDS 3 BILINEAR JPEG"
+    arcpy.env.rasterStatistics = "STATISTICS 4 6 (0)"
+    
+    ##Build pyramids and calculate statistics for all raster in a folder
+    arcpy.BuildPyramidsandStatistics_management("folder", "INCLUDE_SUBDIRECTORIES",\
+                                                "BUILD_PYRAMIDS", "CALCULATE_STATISTICS")
+    
+    ##Build pyramids and calculate statistics for all raster in a GDB
+    arcpy.BuildPyramidsandStatistics_management("fgdb.gdb", "INCLUDE_SUBDIRECTORIES",\
+                                                "BUILD_PYRAMIDS", "CALCULATE_STATISTICS")
+    
+    ##Build pyramids and calculate statistics for all raster in a Mosaic Dataset
+    arcpy.BuildPyramidsandStatistics_management("fgdb.gdb/md", "INCLUDE_SUBDIRECTORIES",\
+                                                "BUILD_PYRAMIDS", "CALCULATE_STATISTICS")
+
+except:
+    print "Build Pyramids and Statistics example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

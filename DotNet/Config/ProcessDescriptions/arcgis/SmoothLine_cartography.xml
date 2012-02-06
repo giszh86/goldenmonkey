@@ -1,0 +1,98 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Smooth Line (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Smooths sharp angles in lines to improve aesthetic or cartographic quality.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Bezier</keyword><keyword>Cartography</keyword><keyword>Contextual</keyword><keyword>Generalisation</keyword><keyword>Generalise</keyword><keyword>Generalization</keyword><keyword>Generalize</keyword><keyword>Interpolation</keyword><keyword>Line Smoothing</keyword><keyword>Paek</keyword><keyword>Scale Change</keyword><keyword>Simplification</keyword><keyword>Simplify</keyword><keyword>Small Scale</keyword><keyword>Typification</keyword><keyword>Typify</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SmoothLine" displayname="Smooth Line (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Smooths sharp angles in lines to improve aesthetic or cartographic quality.</para>
+		</summary><alink_name>SmoothLine_cartography</alink_name><toolIllust type="illustration" src="SmoothLine_cartography_h.gif" alt="Smooth Line illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The line features to be smoothed.</para>
+					</pythonReference><dialogReference>
+						<para>The line features to be smoothed.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class to be created.</para>
+					</dialogReference></param><param sync="true" name="algorithm" displayname="Smoothing Algorithm" datatype="String" direction="Input" expression="algorithm" type="Required"><pythonReference>
+						<para>Specifies the smoothing algorithm.</para>
+						<bulletList><bullet_item>PAEK—Acronym for Polynomial Approximation with Exponential Kernel. It calculates a smoothed line that will not pass through the input line vertices. This is the default. </bullet_item><bullet_item>BEZIER_INTERPOLATION—Fits Bezier curves between vertices. The resulting line passes through the vertices of the input line. This algorithm does not require a tolerance. Bezier curves will be approximated in shapefile output.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the smoothing algorithm.</para>
+						<bulletList><bullet_item>PAEK—Acronym for Polynomial Approximation with Exponential Kernel. It calculates a smoothed line that will not pass through the input line vertices. This is the default. </bullet_item><bullet_item>BEZIER_INTERPOLATION—Fits Bezier curves between vertices. The resulting line passes through the vertices of the input line. This algorithm does not require a tolerance. Bezier curves will be approximated in shapefile output.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="tolerance" displayname="Smoothing Tolerance" datatype="Linear Unit" direction="Input" expression="tolerance" type="Required"><pythonReference>
+						<para>Sets a tolerance used by the PAEK algorithm. A tolerance must be specified, and it must be greater than zero. You can choose a preferred unit; the default is the feature unit. You must enter a 0 as a placeholder when using the BEZIER_INTERPOLATION smoothing algorithm.</para>
+					</pythonReference><dialogReference>
+						<para>Sets a tolerance used by the PAEK algorithm. A tolerance must be specified, and it must be greater than zero. You can choose a preferred unit; the default is the feature unit. This parameter will be disabled when BEZIER_INTERPOLATION is used.</para>
+					</dialogReference></param><param sync="true" name="endpoint_option" displayname="Preserve endpoint for closed lines" datatype="Boolean" direction="Input" expression="endpoint_option" type="Optional"><pythonReference>
+						<para>Specifies whether to preserve the endpoints for closed lines. This option works with the PAEK algorithm only.</para>
+						<bulletList><bullet_item>FIXED_CLOSED_ENDPOINT—Preserves the endpoint of a closed line. This is the default. </bullet_item><bullet_item>NO_FIXED—Smooths through the endpoint of a closed line. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether to preserve the endpoints for closed lines. This option works with the PAEK algorithm only.</para>
+						<bulletList><bullet_item>Checked—Preserves the endpoint of a closed line. This is the default. </bullet_item><bullet_item>Unchecked—Smooths through the endpoint of a closed line. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="error_option" displayname="Handling Topological Errors" datatype="String" direction="Input" expression="error_option" type="Optional"><pythonReference>
+						<para>Specifies how the topological errors (possibly introduced in the process, such as line crossing) will be handled.</para>
+						<bulletList><bullet_item>NO_CHECK—Specifies not to check for topological errors. This is the default. </bullet_item><bullet_item>FLAG_ERRORS—Specifies to flag topological errors, if any are found. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how the topological errors (possibly introduced in the process, such as line crossing) will be handled.</para>
+						<bulletList><bullet_item>NO_CHECK—Specifies not to check for topological errors. This is the default. </bullet_item><bullet_item>FLAG_ERRORS—Specifies to flag topological errors, if any are found. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para> There are two smoothing methods to choose from:</para>
+				<bulletList>
+					<bullet_item>The PAEK  (Polynomial Approximation with Exponential Kernel) method smooths lines based on a smoothing tolerance. Each smoothed line may have more vertices than its source line. The Smoothing Tolerance parameter controls the length of a "moving" path used in calculating the new vertices. The shorter the length the more detail that will be preserved and the longer the processing time.   </bullet_item>
+					<bullet_item>The BEZIER_INTERPOLATION method smooths lines without using a tolerance by creating Bezier curves to match the input lines.  If the output is a shapefile, the Bezier curves will be approximated, since true Bezier curves cannot be storied in shapefiles.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>Smoothing may introduce topological errors such as line crossings. Use the FLAG_ERRORS option in the Handle Topological Errors parameter to identify these errors. Two fields will be added—InLine_FID and  SmoLnFlag—to contain input feature IDs and topological errors. Values of 1 in the  SmoLnFlag field indicate a topology error; 0 (zero) indicates no error. The InLineFID field links the output lines to their input lines. The FLAG_ERRORS option cannot be used within an edit session.</para>
+			</bullet_item><bullet_item>
+				<para>Invalid (self-intersecting) geometry may be created during the smoothing process and will be repaired but not improved. For example, if a line self-crosses it will become a multipart line but will still appear self-crossing.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SmoothLine Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the SmoothLine tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+import arcpy.cartography as CA
+env.workspace = "C:/data"
+CA.SmoothLine("contours.shp", "C:/output/output.gdb/smoothed_contours", "PAEK", 100)
+                    </code></scriptExample><scriptExample><title>SmoothLine Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the SmoothLine tool.</para>
+				<code xml:space="preserve"># Name: SmoothLine_Example2.py
+# Description: Simplify and then Smooth coastlines
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+import arcpy.cartography as CA
+ 
+# Set environment settings
+env.workspace = "C:/data/Portland.gdb/Hydrography"
+ 
+# Set local variables
+inCoastlineFeatures = "coastlines"
+simplifiedFeatures = "C:/data/PortlandOutput.gdb/coastlines_simplified"
+smoothedFeatures = "C:/data/PortlandOutput.gdb/coastlines_smoothed"
+
+# Simplify coastlines.
+CA.SimplifyLine(inCoastlineFeatures, simplifiedFeatures, "POINT_REMOVE", 50, "RESOLVE_ERRORS", "KEEP_COLLAPSED_POINTS", "CHECK")
+ 
+# Smooth coastlines.
+CA.SmoothLine(simplifiedFeatures, smoothedFeatures, "PAEK", 100, "FLAG_ERRORS")
+ 
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

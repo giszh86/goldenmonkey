@@ -1,0 +1,141 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Build Footprints (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Computes the footprints for each raster dataset in a mosaic dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Amd</keyword><keyword>Border</keyword><keyword>Create</keyword><keyword>Geometry</keyword><keyword>Make</keyword><keyword>Mosaic Dataset</keyword><keyword>Outline</keyword><keyword>Radiometry</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BuildFootprints" displayname="Build Footprints (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Computes the footprints for each raster dataset in a mosaic dataset.</para>
+		</summary><alink_name>BuildFootprints_management</alink_name><parameters><param sync="true" name="in_mosaic_dataset" displayname="Mosaic Dataset" datatype="Mosaic Layer" direction="Input" expression="in_mosaic_dataset" type="Required"><pythonReference>
+						<para>The mosaic dataset for which the footprints will be calculated.</para>
+					</pythonReference><dialogReference>
+						<para>The mosaic dataset for which the footprints will be calculated.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Query Definition" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para> Using SQL, you can define a query or use the Query Builder to build a query. </para>
+					</pythonReference><dialogReference>
+						<para> Using SQL, you can define a query or use the Query Builder to build a query. </para>
+					</dialogReference></param><param sync="true" name="min_data_value" displayname="Minimum Data Value" datatype="Double" direction="Input" expression="min_data_value" type="Optional"><pythonReference>
+						<para>The lowest pixel value representing valid image data. This value is determined by the bit depth of the raster dataset.</para>
+						<para>For example, with 8-bit data, the values can range from 0 to 255. A value around 0 represents very dark colors, like black border pixels. When you specify 1, then the only value less than 1 is 0, so all 0 values will be considered invalid data and will be removed from the perimeter of the footprint. If the imagery is compressed using a lossy compression method, then you should define a value slightly greater than 1 to remove all the black pixels. When dark areas, such as shadows, have been incorrectly removed from the footprint, this value should be decreased.</para>
+					</pythonReference><dialogReference>
+						<para>The lowest pixel value representing valid image data. This value is determined by the bit depth of the raster dataset.</para>
+						<para>For example, with 8-bit data, the values can range from 0 to 255. A value around 0 represents very dark colors, like black border pixels. When you specify 1, then the only value less than 1 is 0, so all 0 values will be considered invalid data and will be removed from the perimeter of the footprint. If the imagery is compressed using a lossy compression method, then you should define a value slightly greater than 1 to remove all the black pixels. When dark areas, such as shadows, have been incorrectly removed from the footprint, this value should be decreased.</para>
+					</dialogReference></param><param sync="true" name="max_data_value" displayname="Maximum Data Value" datatype="Double" direction="Input" expression="max_data_value" type="Optional"><pythonReference>
+						<para>Highest value representing valid data. This value is determined by the bit depth of the raster dataset.</para>
+						<para>For example, with 8-bit data, the values can range from 0 to 255. A value around 255 represents very bright colors, such as white clouds and snow. If you specify 245, then all values between 246 and 255 will be removed from the perimeter of the footprint.</para>
+					</pythonReference><dialogReference>
+						<para>Highest value representing valid data. This value is determined by the bit depth of the raster dataset.</para>
+						<para>For example, with 8-bit data, the values can range from 0 to 255. A value around 255 represents very bright colors, such as white clouds and snow. If you specify 245, then all values between 246 and 255 will be removed from the perimeter of the footprint.</para>
+					</dialogReference></param><param sync="true" name="approx_num_vertices" displayname="Approximate Number Of Vertices" datatype="Long" direction="Input" expression="approx_num_vertices" type="Optional"><pythonReference>
+						<para> Approximate number of vertices with which the new footprint polygon will be created.</para>
+						<para>The minimum value is 4 and the maximum value is 10000. The greater this value, the more accurate and irregular the polygon and the longer the processing time. </para>
+						<para>You can choose to specify a value of -1, which will not generalize your polygon footprint.</para></pythonReference><dialogReference>
+						<para> Approximate number of vertices with which the new footprint polygon will be created.</para>
+						<para>The minimum value is 4 and the maximum value is 10000. The greater this value, the more accurate and irregular the polygon and the longer the processing time. </para>
+						<para>You can choose to specify a value of -1, which will not generalize your polygon footprint.</para></dialogReference></param><param sync="true" name="shrink_distance" displayname="Shrink Distance" datatype="Double" direction="Input" expression="shrink_distance" type="Optional"><pythonReference>
+						<para>Distance value specified in the units of the mosaic dataset's coordinate system by which the overall polygon will be reduced in size.</para>
+						<para>Shrinking of the polygon is used to counteract effects of lossy compression, which causes edges of the image to overlap into NoData areas.</para>
+					</pythonReference><dialogReference>
+						<para>Distance value specified in the units of the mosaic dataset's coordinate system by which the overall polygon will be reduced in size.</para>
+						<para>Shrinking of the polygon is used to counteract effects of lossy compression, which causes edges of the image to overlap into NoData areas.</para>
+					</dialogReference></param><param sync="true" name="maintain_edges" displayname="Maintain Sheet Edges" datatype="Boolean" direction="Input" expression="maintain_edges" type="Optional"><pythonReference>
+						<para>Use this parameter when using raster datasets that have been tiled and are butt joined (or line up along the seams with little to no overlap).</para>
+						<bulletList><bullet_item>NO_MAINTAIN_EDGES—All footprints will be altered, regardless of their neighboring footprints. This is the default. </bullet_item><bullet_item>MAINTAIN_EDGES—An analysis of the image edges is performed so that the sheet edges are not removed.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Use this parameter when using raster datasets that have been tiled and are butt joined (or line up along the seams with little to no overlap).</para>
+						<bulletList>
+							<bullet_item>Unchecked—All footprints will be altered, regardless of their neighboring footprints. This is the default.</bullet_item>
+							<bullet_item>Checked—An analysis of the image edges is performed so that the sheet edges are not removed.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="reset_footprint" displayname="Reset Footprints To Default" datatype="Boolean" direction="Input" expression="reset_footprint" type="Optional"><pythonReference>
+						<para> The footprints will be redefined using the original parameters to generate them when the rasters were added. </para>
+						<bulletList><bullet_item>NO_RESET_FOOTPRINT—Footprints will not be returned to their original geometry. This is the default.</bullet_item><bullet_item>RESET_FOOTPRINT—Footprints will be returned to their original geometry.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> The footprints will be redefined using the original parameters to generate them when the rasters were added. </para>
+						<bulletList>
+							<bullet_item>Unchecked—Footprints will not be returned to their original geometry. This is the default.</bullet_item>
+							<bullet_item>Checked—Footprints will be returned to their original geometry.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="skip_derived_images" displayname="Skip Overviews" datatype="Boolean" direction="Input" expression="skip_derived_images" type="Optional"><pythonReference>
+						<para>Adjust the footprints for derived images, such as service overviews.</para>
+						<bulletList><bullet_item>SKIP_DERIVED_IMAGES—Derived images, such as service overviews, will not be adjusted. This is the default. </bullet_item><bullet_item>NO_SKIP_DERIVED_IMAGES—Footprints of any derived images will be adjusted along with the base images. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Adjusts the footprints for derived images, such as service overviews.</para>
+						<bulletList>
+							<bullet_item>Checked—Derived images, such as service overviews, will not be adjusted. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Footprints of any derived images will be adjusted along with the base images. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="update_boundary" displayname="Update Boundary" datatype="Boolean" direction="Input" expression="update_boundary" type="Optional"><pythonReference>
+						<para>Generates or updates the boundary polygon of a mosaic dataset. By default, the boundary merges all the footprint polygons to create a single boundary representing the extent of the valid pixels.</para>
+						<bulletList><bullet_item>UPDATE_BOUNDARY—The boundary will be generated or updated. This is the default.</bullet_item><bullet_item>NO_BOUNDARY—The boundary will not be generated or updated.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Generates or updates the boundary polygon of a mosaic dataset. By default, the boundary merges all the footprint polygons to create a single boundary representing the extent of the valid pixels.</para>
+						<bulletList>
+							<bullet_item>Checked—The boundary will be generated or updated. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The boundary will not be generated or updated.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="request_size" displayname="Request Size" datatype="Long" direction="Input" expression="request_size" type="Optional"><pythonReference>
+						<para> The size to which the raster will be resampled when it is examined using this process. The value (such as 2000) defines the dimension of rows and columns.</para><para>The minimum value is 0 and the maximum value is 5000.</para>
+						<para>You can increase or decrease this value based on the complexity of your raster data. Greater image resolution provides more detail in the raster dataset and thereby increases the processing time.</para>
+						<para>If the size specified is larger than the raster contained by the footprints, than it will be super sampled.</para></pythonReference><dialogReference>
+						<para> The size to which the raster will be resampled when it is examined using this process. The value (such as 2000) defines the dimension of rows and columns.</para><para>The minimum value is 0 and the maximum value is 5000.</para>
+						<para>You can increase or decrease this value based on the complexity of your raster data. Greater image resolution provides more detail in the raster dataset and thereby increases the processing time.</para>
+						<para>If the size specified is larger than the raster contained by the footprints, than it will be super sampled.</para></dialogReference></param><param sync="true" name="min_region_size" displayname="Minimum Region Size" datatype="Long" direction="Input" expression="min_region_size" type="Optional"><pythonReference>
+						<para> Determines a filter used to remove holes created in the footprint. </para>
+						<para>This value is specified in pixels, and it is directly related to the Request Size, not to the pixel resolution of the source raster.</para>
+					</pythonReference><dialogReference>
+						<para> Determines a filter used to remove holes created in the footprint. </para>
+						<para>This value is specified in pixels, and it is directly related to the Request Size, not to the pixel resolution of the source raster.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent"></environment></environments><usage><bullet_item>
+				<para>If there is a selection, only those selected footprints will be recalculated.</para>
+			</bullet_item><bullet_item>
+				<para>The footprint is used to calculate the boundary. If you modify the shape of the footprints along the perimeter of the mosaic dataset, you need to recalculate the boundary. If you don't choose to use this tool, then you can do it later using the .</para>
+			</bullet_item><bullet_item>
+				<para>You cannot rebuild footprints for a referenced mosaic dataset.</para>
+			</bullet_item><bullet_item>
+				<para>The Approximate Number of Vertices parameter is used to define the complexity of the footprints. The higher the number of vertices will mean the footprint is more accurate and more irregular. Valid values range from 4 to 10000. You can set your value to be -1, to that no generalization will take place, but this may mean your footprint will have a very large number of vertices.</para>
+			</bullet_item><bullet_item>
+				<para>This tool does not support the environment settings.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>BuildFootprints example (Python window)</title>
+					<para>This is a Python sample for the BuildFootprints.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.BuildFootprints_management("c:/workspace/fGDB.gdb/md_1", "#",\
+                                 "NO_RESET_FOOTPRINT", "1", "254", "25", "0",\
+                                 "#", "SKIP_DERIVED_IMAGES", "BUILD_BOUNDARY",\
+                                 "#", "#")
+                    </code></scriptExample><scriptExample><title>BuildFootPrints example 2 (stand-alone window)</title>
+					<para>This is a Python script sample for the BuildFootprints.</para>
+				<code xml:space="preserve">#===========================
+#Build Footprints
+#Usage: BuildFootprints_management in_mosaic_dataset {where_clause} {NO_RESET_FOOTPRINT
+#                                  | RESET_FOOTPRINT} {min_data_value} {max_data_value}
+#                                  {approx_num_vertices} {shrink_distance} 
+#                                  {NO_MAINTAIN_EDGES | MAINTAIN_EDGES} {SKIP_DERIVED_IMAGES
+#                                  | NO_SKIP_DERIVED_IMAGES} {UPDATE_BOUNDARY | 
+#                                  NO_BOUNDARY} {request_size} {min_region_size}
+
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:\Workspace"
+    # Build Footprint by setting the valid pixel value range from 1 to 254
+    # Allow 25 vertices to be used to draw a single footprint polygon
+    # Skip the overviews image
+    # Build new boundary afterwards
+    arcpy.BuildFootprints_management("Footprints.gdb/md", "#", "NO_RESET_FOOTPRINT",\
+                                     "1", "254", "25", "0", "#", "SKIP_DERIVED_IMAGES",\
+                                     "UPDATE_BOUNDARY", "#", "#")
+    
+    # Reset the footprint to default
+    arcpy.BuildFootprints_management("Footprints.gdb/md", "#", "RESET_FOOTPRINT",\
+                                     "#", "#", "#", "#", "#", "#", "UPDATE_BOUNDARY",\
+                                     "#", "#")
+    
+    
+    # Shrink distance while maintaining sheet edge
+    # Define request size for resampling
+    # Define the minimum region size
+    arcpy.BuildFootprints_management("Footprints.gdb/md16b", "#", "NO_RESET_FOOTPRINT",\
+                                     "1", "65534", "25", "5", "MAINTAIN_EDGES",\
+                                     "#", "UPDATE_BOUNDARY", "2000", "10")
+    
+except:
+    print "Build Footprints example failed."
+    print arcpy.GetMessages()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

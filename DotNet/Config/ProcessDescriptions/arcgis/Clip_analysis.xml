@@ -1,0 +1,106 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Clip (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Extracts input features that overlay the clip features.</para>
+			<para>Use this tool to cut out a piece of one feature class using one or more of the features in another feature class as a "cookie cutter". This is particularly useful for creating a new feature class—also referred to as study area or area of interest (AOI)—that contains a geographic subset of the features in another, larger feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Area Of Interest</keyword><keyword>Boundary</keyword><keyword>Cookie</keyword><keyword>Crop</keyword><keyword>Cut</keyword><keyword>Delete</keyword><keyword>Divide</keyword><keyword>Eliminate</keyword><keyword>Erase</keyword><keyword>Inclusive</keyword><keyword>Inside</keyword><keyword>Intersect</keyword><keyword>On Top Of</keyword><keyword>Outside</keyword><keyword>Overlay</keyword><keyword>Portion</keyword><keyword>Remove</keyword><keyword>Stamp Out</keyword><keyword>Study Area</keyword><keyword>Subset</keyword><keyword>Trim</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Clip" displayname="Clip (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Extracts input features that overlay the clip features.</para>
+			<para>Use this tool to cut out a piece of one feature class using one or more of the features in another feature class as a "cookie cutter". This is particularly useful for creating a new feature class—also referred to as study area or area of interest (AOI)—that contains a geographic subset of the features in another, larger feature class.</para>
+		</summary><alink_name>Clip_analysis</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/Clip_analysis_v.gif" alt="Clip gaphic" /><toolIllust type="illustration" src="Clip_analysis_h.gif" alt="Clip illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The features to be clipped.</para>
+					</pythonReference><dialogReference>
+						<para>The features to be clipped.</para>
+					</dialogReference></param><param sync="true" name="clip_features" displayname="Clip Features" datatype="Feature Layer" direction="Input" expression="clip_features" type="Required"><pythonReference>
+						<para>The features used to clip the input features.</para>
+					</pythonReference><dialogReference>
+						<para>The features used to clip the input features.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Featureclass" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The feature class to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class to be created.</para>
+					</dialogReference></param><param sync="true" name="cluster_tolerance" displayname="XY Tolerance" datatype="Linear unit" direction="Input" expression="cluster_tolerance" type="Optional"><pythonReference>
+						<para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both). Set the value to be higher for data with less coordinate accuracy and lower for data with extremely high accuracy.</para>
+					</pythonReference><dialogReference>
+						<para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both). Set the value to be higher for data with less coordinate accuracy and lower for data with extremely high accuracy.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword"></environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3"></environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Clip Features dataset must be polygons.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Feature Class will contain all the attributes of the Input Features.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will use a tiling process to handle very large datasets for better performance and scalability. For more details, see .</para>
+			</bullet_item><bullet_item>
+				<para>Line features clipped by polygon features
+						
+						
+					</para>
+			</bullet_item><bullet_item>
+				<para>Point features clipped by polygon features
+						
+						
+					</para>
+			</bullet_item><bullet_item>
+				<para>Attribute values from the input feature class(es) will be copied to the output feature class.  However, if the input is a layer(s) created by the  tool and a field's "Use Ratio Policy" is checked, then a ratio of the input attribute value is calculated for the output attribute value.    When "Use Ratio Policy" is enabled, whenever a feature in an overlay operation is split, the attributes of the resulting features are a ratio of the attribute value of the input feature. The output value  is based on the ratio in which the input feature  geometry was divided. For example, If the input geometry was divided equally, each new feature's attribute value is assigned one-half of the value of the input feature's attribute value. "Use Ratio Policy" only applies to numeric field types. </para><para>Geoprocessing tools do not honor geodatabase feature class or table field split policies.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "c:/basedata/vegetation.gdb"
+arcpy.Clip_analysis("vegetation", "stream_buffers", "veg_within_stream_buffers")
+                    </code></scriptExample><scriptExample><title>Clip Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Clip function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+env.workspace = "C:/data"
+arcpy.Clip_analysis("majorrds.shp", "study_quads.shp", "C:/output/studyarea.shp")
+                    </code></scriptExample><scriptExample><title>Clip Example 2 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the Clip function in a stand-alone script.</para>
+				<code xml:space="preserve">
+# Name: Clip_Example2.py
+# Description: Clip major roads that fall within the gnatcatcher habitat study area. 
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/data"
+
+# Set local variables
+in_features = "majorrds.shp"
+clip_features = "study_quads.shp"
+out_feature_class = "C:/output/studyarea.shp"
+xy_tolerance = ""
+
+# Execute Clip
+arcpy.Clip_analysis(in_features, clip_features, out_feature_class, xy_tolerance)
+
+    
+                    </code></scriptExample></scriptExamples></tool></metadata>

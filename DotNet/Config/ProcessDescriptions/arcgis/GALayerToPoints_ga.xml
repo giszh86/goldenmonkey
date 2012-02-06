@@ -1,0 +1,79 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">GA Layer To Points (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Exports a geostatistical layer to points. The tool can also be used to predict values at unmeasured locations or to validate predictions made at measured locations.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Estimate</keyword><keyword>Export</keyword><keyword>Predict</keyword><keyword>Validate</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GALayerToPoints" displayname="GA Layer To Points (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Exports a geostatistical layer to points. The tool can also be used to predict values at unmeasured locations or to validate predictions made at measured locations.</para>
+		</summary><alink_name>GALayerToPoints_ga</alink_name><parameters><param sync="true" name="in_geostat_layer" displayname="Input geostatistical layer" datatype="Geostatistical Layer" direction="Input" expression="in_geostat_layer" type="Required"><pythonReference>
+						<para>The geostatistical layer to be analyzed.</para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical layer to be analyzed.</para>
+					</dialogReference></param><param sync="true" name="in_locations" displayname="Point observation locations" datatype="Feature Layer" direction="Input" expression="in_locations" type="Required"><pythonReference>
+						<para>Point  locations where predictions or validations will be performed.</para>
+					</pythonReference><dialogReference>
+						<para>Point  locations where predictions or validations will be performed.</para>
+					</dialogReference></param><param sync="true" name="z_field" displayname="Field to validate on" datatype="Field" direction="Input" expression="z_field" type="Optional"><pythonReference>
+						<para>If this field is left blank, predictions are made at the location points. If a field is selected, predictions are made at the location points and compared to their Z_value_field values, then a validation analysis is performed.</para>
+					</pythonReference><dialogReference>
+						<para>If this field is left blank, predictions are made at the location points. If a field is selected, predictions are made at the location points and compared to their Z_value_field values, then a validation analysis is performed.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output statistics at point locations" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class containing either the predictions or the predictions and the validation results.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class containing either the predictions or the predictions and the validation results.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item><para>For data formats that support Null values, such as file and personal geodatabase feature classes, a Null value will be used to indicate that a prediction could not be made for that location or that the value showed be ignored when used as input. For data formats that do not support Null values, such as shapefiles, the value of  -1.7976931348623158e+308 is used (this is the negative of the C++ defined constant DBL_MAX)  to indicate that a prediction could not be made for that location.</para></bullet_item><bullet_item>
+				<para></para>
+				<para>The fields in the output feature class can include the following (where applicable):</para>
+				<bulletList>
+					<bullet_item><bold>Source_ID</bold><bulletList>
+							<bullet_item>The feature or object identifier of the input dataset that was used.</bullet_item>
+						</bulletList></bullet_item>
+					<bullet_item><bold>Included</bold>—The values in this field can be one of the following:<bulletList>
+							<bullet_item><bold>Yes</bold>—There are no problems making a prediction at this point.</bullet_item><bullet_item><bold>Not enough neighbors</bold>—There are not enough neighbors to make a prediction.</bullet_item><bullet_item><bold>Weight parameter is too small</bold>—The weight parameter is too small.</bullet_item><bullet_item><bold>Overfilling</bold>—Overflow of floating point calculations.</bullet_item><bullet_item><bold>Problem with data transformation</bold>—The value to be transformed is outside of supported range for the selected transformation (only in kriging).</bullet_item>
+						</bulletList></bullet_item>
+					<bullet_item><bold>Predicted</bold>—The prediction value at this location.</bullet_item>
+					<bullet_item><bold>Error</bold>—The predicted value minus the value in the validation field.</bullet_item>
+					<bullet_item><bold>StdError</bold>—The kriging standard error.</bullet_item>
+					<bullet_item><bold>Stdd_Error</bold>—The standardized prediction errors. Ideally, the standardized prediction errors are distributed normally.</bullet_item>
+					<bullet_item><bold>NormValue</bold>—The normal distribution value (x axis) that corresponds to the standardized prediction errors (y axis) in the normal QQplot.</bullet_item>
+				</bulletList>
+			</bullet_item></usage><scriptExamples><scriptExample><title>GALayerToPoints (Python window)</title>
+					<para>Export a geostatistical layer to a point feature class.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapyexamples/data"
+arcpy.GALayerToPoints_ga("C:/gapyexamples/data/kriging.lyr", "C:/gapyexamples/data/obs_pts.shp",
+                   "", "C:/gapyexamples/output/krig_pts")
+ 
+
+                    </code></scriptExample><scriptExample><title>GALayerToPoints (stand-alone script)</title>
+					<para>Export a geostatistical layer to a point feature class.</para>
+				<code xml:space="preserve"># Name: GALayerToPoints_Example_02.py
+# Description: Exports a geostatistical layer to points.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inLayer = "C:/gapyexamples/data/kriging.lyr"
+inPoints = "C:/gapyexamples/data/obs_pts.shp"
+zField = ""
+outPoints = "C:/gapyexamples/output/krig_pts"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute GALayerToPoints
+arcpy.GALayerToPoints_ga(inLayer, inPoints, zField, outPoints)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

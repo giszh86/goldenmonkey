@@ -1,0 +1,93 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Snap (Editing)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Moves points or vertices to coincide exactly with the vertices, edges, or end points of other features. Snapping rules can be specified to control whether the input vertices are snapped to the nearest vertex, edge, or endpoint within a specified distance.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Boundary</keyword><keyword>Change</keyword><keyword>Coincide</keyword><keyword>Common</keyword><keyword>Distance</keyword><keyword>Exist</keyword><keyword>Grab</keyword><keyword>Input</keyword><keyword>Magnet</keyword><keyword>Match</keyword><keyword>Modify</keyword><keyword>Move</keyword><keyword>Pull</keyword><keyword>Rectify</keyword><keyword>Update</keyword><keyword>Vertex</keyword><keyword>Vertices</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Snap" displayname="Snap (Editing)" toolboxalias="edit" softwarerestriction="none"><summary>
+			<para>Moves points or vertices to coincide exactly with the vertices, edges, or end points of other features. Snapping rules can be specified to control whether the input vertices are snapped to the nearest vertex, edge, or endpoint within a specified distance.</para>
+		</summary><alink_name>Snap_edit</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/Snap_edit_v.png" alt="Snap illustration" /><toolIllust type="illustration" src="Snap_edit_h.png" alt="Snap Illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input features whose vertices will be snapped to the vertices, edges, or end points of other features. The input features can be points, multipoints, lines, or polygons.</para>
+					</pythonReference><dialogReference>
+						<para>The input features whose vertices will be snapped to the vertices, edges, or end points of other features. The input features can be points, multipoints, lines, or polygons.</para>
+					</dialogReference></param><param sync="true" name="snap_environment" displayname="Snap Environment" datatype="Value Table" direction="Input" expression="[[Features, Type, Distance],...]" type="Required"><pythonReference>
+						<para>Snapping Environment Components:</para>
+						<bulletList>
+							<bullet_item>Features -- Features that the input features' vertices will be snapped to. These features can be points, multipoints, lines, or polygons.</bullet_item>
+							<bullet_item>Type -- Type of feature part that the input features' vertices can be snapped to (END | VERTEX | EDGE). </bullet_item>
+							<bullet_item>Distance -- Distance within which the input features' vertices will be snapped to the nearest vertex, edge, or end point.</bullet_item>
+						</bulletList>
+						<para>Snapping Environment Type Options:</para>
+						<bulletList><bullet_item>END—Input feature vertices will be snapped to feature ends.</bullet_item><bullet_item>VERTEX—Input feature vertices will be snapped to feature vertices.</bullet_item><bullet_item>EDGE—Input feature vertices will be snapped to feature edges.</bullet_item></bulletList>
+						
+							<para>In the Snap Environment parameter, if no unit is entered with the Distance (i.e., '10' instead of '10 Meters'), the linear or angular unit from the input feature's coordinate system will be used as default. If the input features have a projected coordinate system, the linear unit will be used.</para>
+						
+					</pythonReference><dialogReference>
+						<para>Snapping Environment Components:</para>
+						<bulletList>
+							<bullet_item>Features -- Features that the input features' vertices will be snapped to. These features can be points, multipoints, lines, or polygons.</bullet_item>
+							<bullet_item>Type -- Type of feature part that the input features' vertices can be snapped to (END | VERTEX | EDGE). </bullet_item>
+							<bullet_item>Distance -- Distance within which the input features' vertices will be snapped to the nearest vertex, edge, or end point.</bullet_item>
+						</bulletList>
+						<para>Snapping Environment Type Options:</para>
+						<bulletList><bullet_item>END—Input feature vertices will be snapped to feature ends.</bullet_item><bullet_item>VERTEX—Input feature vertices will be snapped to feature vertices.</bullet_item><bullet_item>EDGE—Input feature vertices will be snapped to feature edges.</bullet_item></bulletList>
+						
+							<para>In the Snap Environment parameter, if no unit is entered with the Distance (i.e., '10' instead of '10 Meters'), the linear or angular unit from the input feature's coordinate system will be used as default. If the input features have a projected coordinate system, the linear unit will be used.</para>
+						
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				
+					<para>This tool modifies the input data. See  for more information and strategies to avoid undesired data changes.</para>
+				
+			</bullet_item><bullet_item>
+				<para>The Snap Environment parameter allows for the vertices of the input features to be snapped to the vertices, edges, and end points of multiple layers or feature classes. When multiple snapping rules are given, they are prioritized as follows: from top to bottom in the tool dialog or from left to right in scripting.</para>
+			</bullet_item><bullet_item>
+				<para>The input features' vertices will be snapped to the nearest vertex, edge, or end point within the specified distance.</para>
+			</bullet_item><bullet_item>
+				<para>In the Snap Environment parameter, multiple snap rules can be designated using the same layer or feature class with a different type (END | VERTEX | EDGE).</para>
+			</bullet_item><bullet_item>
+				<para>If a layer or feature class with a selection is used as the input, only vertices of the selected features will be snapped.</para>
+			</bullet_item><bullet_item>
+				<para>When snapping features in one feature class to features in the same feature class, the feature with the lower Object or Feature ID will <italics>usually</italics> be snapped to the feature with the higher Object ID. For example, if points OBJECTID 1 and OBJECTID 2 are within the snapping distance, the point with OBJECTID 1 will be snapped to the location of the point with OBJECTID 2 (and not vice versa). Use the Sort tool to rearrange features so this snapping behavior can be controlled.</para>
+			</bullet_item><bullet_item>
+				<para>When the tool is used in ArcMap, the Snap Environment of the application is defaulted into the Snap Environment parameter, where it can be modified if desired.</para>
+			</bullet_item><bullet_item>
+				
+					<para>One use case for this tool is to rectify the differences in shared or common boundaries between two datasets by snapping the vertices in one boundary to the vertices, edges, or end points of the other. If the input features do not have enough vertices to match the exact curvature of the other boundary, vertices can be added to the input features using the  tool to allow for an added level of detail.</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>Snap Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Snap tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data"
+arcpy.Snap_edit("climate.shp", [["Habitat_Analysis.gdb/vegtype", "VERTEX", "30 Feet"], ["Habitat_Analysis.gdb/vegtype", "EDGE", "20 Feet"]])
+                    </code></scriptExample><scriptExample><title>Snap Example (Stand-alone script)</title>
+					<para>Snap climate regions boundary to vegetation layer boundary to ensure common boundary is coincident</para>
+				<code xml:space="preserve"># Name: Snap.py
+# Description: Snap climate regions boundary to vegetation layer boundary 
+#                    to ensure common boundary is coincident
+# Author: ESRI
+
+# import system modules 
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Make backup copy of climate regions feature class, since modification with 
+#  the Editing tools below is permanent
+climate = "climate.shp"
+climateBackup = "C:/output/Output.gdb/climateBackup"
+arcpy.CopyFeatures_management(climate, climateBackup)
+
+# Densify climate regions feature class to make sure there are enough vertices 
+#  to match detail of vegetation layer when layers are snapped
+arcpy.Densify_edit(climate, "DISTANCE", "10 Feet")
+
+# Snap climate regions feature class to  vegetation layer vertices and edge
+veg = "Habitat_Analysis.gdb/vegtype"
+# first, snap climate region vertices to the nearest vegetation layer vertex within 30 Feet
+snapEnv1 = [veg, "VERTEX", "30 Feet"]
+# second, snap climate region vertices to the nearest vegetation layer edge within 20 Feet
+snapEnv2 = [veg, "EDGE", "20 Feet"]
+arcpy.Snap_edit(climate, [snapEnv1, snapEnv2])
+                    </code></scriptExample></scriptExamples></tool></metadata>

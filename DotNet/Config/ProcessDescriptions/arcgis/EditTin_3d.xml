@@ -1,0 +1,85 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Edit TIN (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds feature classes to an existing TIN and creates surface features of a TIN based on an input feature class.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Conforming</keyword><keyword>Constrained</keyword><keyword>Delaunay</keyword><keyword>Edit</keyword><keyword>Modify</keyword><keyword>Tin</keyword><keyword>Triangulated Irregular Network</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="EditTin" displayname="Edit TIN (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Adds feature classes to an existing TIN and creates surface features of a TIN based on an input feature class.</para>
+			
+		</summary><alink_name>EditTin_3d</alink_name><toolIllust type="illustration" src="EditTin_3d_h.gif" alt="Add Feature Class To TIN illustration" /><parameters><param sync="true" name="in_tin" displayname="Input TIN" datatype="TIN Layer" direction="Input" expression="in_tin" type="Required"><pythonReference>
+						<para>The TIN to which features will be added.</para>
+					</pythonReference><dialogReference>
+						<para>The TIN to which features will be added.</para>
+					</dialogReference></param><param sync="true" name="in_features" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>Add references to one or more feature classes that will be included in the TIN. For each feature class you'll need to set properties that indicate how it's used to define the surface.</para>
+					</pythonReference><dialogReference>
+						<para>Add references to one or more feature classes that will be included in the TIN. For each feature class you'll need to set properties that indicate how it's used to define the surface.</para>
+						<para>Height Field: The height_field supplying heights for the features. If z-values are coming from the feature geometry, then the Shape field is listed; otherwise, it will be either the name of a numeric field or, in the case of z-less features, the keyword &lt;None&gt;. Z-less features have no heights and their values are interpolated from the surface before they get added.</para>
+						<para>Tag Field: The tag_value fill polygons assign integer values, which are used as a simple form of attribution, to triangles. Their boundaries are enforced in the triangulation as breaklines. Triangles inside these polygons are attributed with the tag values. Specify the name of the feature class attribute to use as tag values in the TIN. If tag values are not to be used, specify &lt;none&gt;.</para>
+						<para>Surface Feature Type: The SF_type defines how the feature geometry gets incorporated into the triangulation for the surface. There are mass points, breaklines, and several polygon types. Breaklines and polygons also have 'hard' and 'soft' qualifiers. These indicate to an interpolator whether the surface crosses over the features smoothly (soft) or with a potentially sharp discontinuity (hard).</para>
+						<para>Use Z: If the SHAPE field of the input feature class is indicated as the height source, choose whether Z's (true) or Ms (false) will be used. By default, Z's are used.</para>
+					</dialogReference></param><param sync="true" name="constrained_delaunay" displayname="Constrained Delaunay" datatype="Boolean" direction="Input" expression="constrained_delaunay" type="Optional"><pythonReference>
+						<para>A constrained Delaunay triangulation conforms to Delaunay rules everywhere except along breaklines. When using conforming Delaunay triangulation, breaklines are densified by the software, therefore one input breakline segment can result in multiple triangle edges. When using constrained Delaunay triangulation no densication occurs and each breakline segment is added as a single edge.</para>
+						<bulletList><bullet_item>NO_ constrained_delaunay— The triangulation will fully conform to the Delaunay rules. This is the default.</bullet_item><bullet_item> constrained_delaunay—The Delaunay triangulation will be constrained.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> A constrained Delaunay triangulation conforms to Delaunay rules everywhere except along breaklines. When using conforming Delaunay triangulation, breaklines are densified by the software, therefore one input breakline segment can result in multiple triangle edges. When using constrained Delaunay triangulation no densication occurs and each breakline segment is added as a single edge.</para>
+						<bulletList>
+							<bullet_item>Unchecked— The triangulation will fully conform to the Delaunay rules. This is the default.</bullet_item>
+							<bullet_item>Checked— The Delaunay triangulation will be constrained.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Version" label="Version"></environment></environments><usage><bullet_item>
+				<para>Multiple feature classes can be added at the same time.</para>
+			</bullet_item><bullet_item>
+				<para>Before features can be added to a TIN, the TIN must be defined using the Create TIN function.</para>
+			</bullet_item><bullet_item>
+				<para>Features may be added to a newly created or existing TIN.</para>
+			</bullet_item><bullet_item>
+				<para>You can resize the Input Feature Class properties dialog box to increase its width in case the default column width is too small.</para>
+			</bullet_item><bullet_item>
+				<para>The maximum allowable size of a TIN varies relative to free, contiguous, memory resources. Ten to 15 million nodes represents the largest size achievable under normal operating conditions with Win32. Regardless, it's strongly recommended to cap the size at a few million for the sake of usability and performance. Anything larger than this is best represented using a Terrain dataset.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Edit TIN Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Edit TIN
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data/LAS"
+arcpy.EditTin_3d("C:/data/my_tin", "Clip_Polygon.shp &lt;None&gt; &lt;None&gt; hardclip false; new_points.shp Shape &lt;None&gt; masspoints true", Delaunay)
+                    </code></scriptExample><scriptExample><title>Edit TIN Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Edit TIN
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: EditTin Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              EditTin tool to add features to a output of the CopyTin tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension('3D')
+
+# Set environment settings
+env.workspace = 'C:/data'
+
+try:
+    # Set Local Variables
+    origTin = 'elevation'
+    copyTin = 'elev_copy'
+    inFCs = 'Clip_Polygon.shp &lt;None&gt; &lt;None&gt; hardclip false; '+\
+          'new_points.shp Shape &lt;None&gt; masspoints true'
+    # Execute CopyTin
+    arcpy.CopyTin_3d(origTin, copyTin, 'CURRENT')
+    # Execute EditTin
+    arcpy.EditTin_3d(copyTin, inFCs, Delaunay)
+    
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

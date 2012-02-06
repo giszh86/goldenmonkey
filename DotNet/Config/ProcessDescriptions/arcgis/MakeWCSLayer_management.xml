@@ -1,0 +1,75 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make WCS Layer (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a temporary raster layer from a WCS service.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Copy</keyword><keyword>Create</keyword><keyword>Image</keyword><keyword>Memory</keyword><keyword>Service</keyword><keyword>Temporary</keyword><keyword>Url</keyword><keyword>Web Coverage Service</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeWCSLayer" displayname="Make WCS Layer (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a temporary raster layer from a WCS service.</para>
+		</summary><alink_name>MakeWCSLayer_management</alink_name><parameters><param sync="true" name="in_wcs_coverage" displayname="Input WCS Service" datatype="WCS Coverage; String" direction="Input" expression="in_wcs_coverage" type="Required"><pythonReference>
+						<para>The name of the input WCS service, or the URL that references the WCS service.</para>
+						<para>If a WCS server URL is used, the URL should include the coverage name and version information. If only URL is entered, the tool will automatically take the first coverage and use default version (1.0.0) to create the WCS layer.</para>
+						<para>An example of a URL that includes the coverage name and version is below:</para>
+						<para>http://ServerName/arcgis/services/serviceName/ImageServer/WCSServer?coverage=rasterDRGs&amp;version=1.1.1</para>
+						<para>In this example, "http://ServerName/arcgis/services/serviceName/ImageServer/WCSServer?" is the URL. The coverage specified is "coverage=rasterDRGs", and the version is "&amp;version=1.1.1".</para>
+						<para>To get the coverage names on a WCS server, use the WCS GetCapabilities request. An example of WCS request is http://ServerName/arcgis/services/serviceName/ImageServer/WCSServer?request=getcapabilities&amp;service=wcs</para>
+					</pythonReference><dialogReference>
+						<para>Navigate to the input WCS service. This tool can also accept a URL that references the WCS service.</para>
+						<para>If a WCS server URL is used, the URL should include the coverage name and version information. If only URL is entered, the tool will automatically take the first coverage and use default version (1.0.0) to create the WCS layer.</para>
+						<para>An example of a URL that includes the coverage name and version is below:</para>
+						<para>http://ServerName/arcgis/services/serviceName/ImageServer/WCSServer?coverage=rasterDRGs&amp;version=1.1.1</para>
+						<para>In this example, "http://ServerName/arcgis/services/serviceName/ImageServer/WCSServer?" is the URL. The coverage specified is "coverage=rasterDRGs", and the version is "&amp;version=1.1.1".</para>
+						<para>To get the coverage names on a WCS server, use the WCS GetCapabilities request. An example of WCS request is http://ServerName/arcgis/services/serviceName/ImageServer/WCSServer?request=getcapabilities&amp;service=wcs.</para>
+					</dialogReference></param><param sync="true" name="out_wcs_layer" displayname="Output WCS Layer" datatype="Raster layer" direction="Output" expression="out_wcs_layer" type="Required"><pythonReference>
+						<para>The name of the output WCS layer.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output WCS layer.</para>
+					</dialogReference></param><param sync="true" name="template" displayname="Template Extent" datatype="Extent" direction="Input" expression="template" type="Optional"><pythonReference>
+						<para>The output extent of the WCS layer.</para>
+						<para>The output extent can either be specified by defining the area to be clipped (X-Minimum, Y-Minimum, X-Maximum, and Y-Maximum) or by using the extent of an existing layer.</para>
+					</pythonReference><dialogReference>
+						<para>The output extent of the WCS layer.</para>
+						<para>The output extent can either be specified by defining the four coordinates or by using the extent of an existing layer.</para>
+					</dialogReference></param><param sync="true" name="band_index" displayname="Bands" datatype="Value Table" direction="Input" expression="ID" type="Optional"><pythonReference>
+						<para>Choose which bands to export for the layer. If no bands are specified, then all the bands will be used in the output.</para>
+					</pythonReference><dialogReference>
+						<para>Choose which bands to export for the layer. If no bands are specified, then all the bands will be used in the output.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>This is one of the few tools that can accept a WCS service as an input; therefore, this tool can be used to convert a WCS service to a raster layer, which can then be used by a geoprocessing tool. The layer that is created by the tool is temporary and will not persist after the session ends unless the document is saved.</para>
+			</bullet_item><bullet_item>
+				<para>The input can also be a URL to a WCS server. The WCS server URL should also include the coverage and version information. If only URL is entered, the tool will automatically take the first coverage and use default version (1.0.0) to create the WCS layer.</para>
+			</bullet_item><bullet_item>
+				<para>The output can be the entire image service or a portion of it.</para>
+			</bullet_item><bullet_item>
+				<para>You can clip out a portion of the image service by choosing an output extent layer or by specifying the rectangle extent. If you choose an output extent layer, the clip extent will be based upon extent of that layer.</para>
+			</bullet_item><bullet_item>
+				<para>The output can be created with only a subset of the bands. This will help save on time and disk space.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeWCSLayer example 1 (Python window)</title>
+					<para>This is a Python sample for MakeWCSLayer.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/Workspace"
+input1 = "GIS Servers/File_TIFF_Amberg on server3/090160_1"
+arcpy.MakeWCSLayer_management(input1, "wcslayer1", "11.844983 49.445367 11.858321 49.453887",\
+                              "1;2;3")
+                    </code></scriptExample><scriptExample><title>MakeWCSLayer example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for MakeWCSLayer.</para>
+				<code xml:space="preserve">##====================================
+##Make WCS Layer
+##Usage: MakeWCSLayer_management in_wcs_coverage out_wcs_layer {template} {ID;ID...}
+    
+try:
+    import arcpy
+    
+    arcpy.env.workspace = r"C:/Workspace"
+    input1 = r"GIS Servers\File_TIFF_Amberg on server3\090160_1"
+    input2 = "http://server3/arcgis/services/File_TIFF_Amberg/ImageServer/WCSServer"
+    
+    ##Create WCS layer from WCS connection file
+    arcpy.MakeWCSLayer_management(input1, "wcslayer1", "11.844983 49.445367 11.858321 49.453887",\
+                                  "1;2;3")
+    
+    ##Create WCS layer from URL with clipping feature
+    arcpy.MakeWCSLayer_management(input2, "wcslayer2", "clip.shp", "1;2;3")
+    
+    print arcpy.GetMessages()
+except:
+    print "Make WCS Layer example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,122 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">
+Bearing 
+Distance To Line (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>
+This tool converts a table to two-point lines based on an x-coordinate field, y-coordinate field, bearing field, and distance field.
+
+</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Azimuth</keyword><keyword>Geodesic</keyword><keyword>Geodesy</keyword><keyword>Geometry</keyword><keyword>Great Circle</keyword><keyword>Length</keyword><keyword>Loxodrome</keyword><keyword>Normal Section</keyword><keyword>Rhumb</keyword><keyword>True Earth</keyword><keyword>Vector</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BearingDistanceToLine" displayname="&#xA;Bearing &#xA;Distance To Line (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>
+This tool converts a table to two-point lines based on an x-coordinate field, y-coordinate field, bearing field, and distance field.
+
+</para>
+		</summary><alink_name>BearingDistanceToLine_management</alink_name><toolIllust type="illustration" src="BearingDistanceToLine_management_h.png" alt="&#xA;Bearing Distance To Line overview graphic&#xA;" /><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>
+Table containing input parameters to create two-point lines based on a bearing and distance. Each row creates one line feature.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Table containing input parameters to create two-point lines based on a bearing and distance. Each row creates one line feature.
+</para>
+					</dialogReference></param><param sync="true" name="out_featureclass" displayname="Output Feature Class" datatype="Feature Class" direction="Input" expression="out_featureclass" type="Required"><pythonReference>
+						<para>
+Output line feature class.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Output line feature class.
+</para>
+					</dialogReference></param><param sync="true" name="x_field" displayname="X Field" datatype="Field" direction="Input" expression="x_field" type="Required"><pythonReference>
+						<para>
+Input table field containing the x-values (longitude) of the starting point.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Input table field containing the x-values (longitude) of the starting point.
+</para>
+					</dialogReference></param><param sync="true" name="y_field" displayname="Y Field" datatype="Field" direction="Input" expression="y_field" type="Required"><pythonReference>
+						<para>
+Input table field containing the y-values (latitude) of the starting point.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Input table field containing the y-values (latitude) of the starting point.
+</para>
+					</dialogReference></param><param sync="true" name="distance_field" displayname="Distance Field" datatype="Field" direction="Input" expression="distance_field" type="Required"><pythonReference>
+						<para>
+Field in the input table containing values of the length of the output line.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Field in the input table containing values of the length of the output line.
+</para>
+					</dialogReference></param><param sync="true" name="distance_units" displayname="Distance Units" datatype="String" direction="Input" expression="distance_units" type="Optional"><pythonReference>
+						<para>
+Units of measurement of the Distance field. The default is METERS.
+</para>
+						<bulletList><bullet_item>METERS—Distance measure in meters</bullet_item><bullet_item>KILOMETERS—Distance measure in kilometers</bullet_item><bullet_item>MILES—Distance measure in miles</bullet_item><bullet_item>NAUTICAL_MILES—Distance measure in nautical miles</bullet_item><bullet_item>FEET—Distance measure in International feet</bullet_item><bullet_item>US_SURVEY_FEET—Distance measure in U.S. Survey feet</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>
+Units of measurement of the Distance field. The default is METERS.
+</para>
+						<bulletList><bullet_item>METERS—Distance measure in meters</bullet_item><bullet_item>KILOMETERS—Distance measure in kilometers</bullet_item><bullet_item>MILES—Distance measure in miles</bullet_item><bullet_item>NAUTICAL_MILES—Distance measure in nautical miles</bullet_item><bullet_item>FEET—Distance measure in International feet</bullet_item><bullet_item>US_SURVEY_FEET—Distance measure in U.S. Survey feet</bullet_item></bulletList></dialogReference></param><param sync="true" name="bearing_field" displayname="Bearing Field" datatype="Field" direction="Input" expression="bearing_field" type="Required"><pythonReference>
+						<para>
+Field in the input table containing direction values of the output line.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Field in the input table containing direction values of the output line.
+</para>
+					</dialogReference></param><param sync="true" name="bearing_units" displayname="Bearing Units" datatype="String" direction="Input" expression="bearing_units" type="Optional"><pythonReference>
+						<para>
+Units of measurement of the Bearing field. The default is DEGREES.
+</para>
+						<bulletList><bullet_item>DEGREES—Direction measure in decimal degrees</bullet_item><bullet_item>MILS—Direction measure in mils</bullet_item><bullet_item>RADS—Direction measure in radians</bullet_item><bullet_item>GRADS—Direction measure in gradians</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>
+Units of measurement of the Bearing field. The default is DEGREES.
+</para>
+						<bulletList><bullet_item>DEGREES—Direction measure in decimal degrees</bullet_item><bullet_item>MILS—Direction measure in mils</bullet_item><bullet_item>RADS—Direction measure in radians</bullet_item><bullet_item>GRADS—Direction measure in gradians</bullet_item></bulletList></dialogReference></param><param sync="true" name="line_type" displayname="Line Type" datatype="String" direction="Input" expression="line_type" type="Optional"><pythonReference>
+						<para>
+Type of two-point lines to construct. The default line type is GEODESIC.
+</para>
+						<bulletList><bullet_item>GEODESIC—Straight line based on a spheroid</bullet_item><bullet_item>GREAT_CIRCLE—Straight line on a sphere</bullet_item><bullet_item>RHUMB_LINE—Line of constant bearing (direction)</bullet_item><bullet_item>NORMAL_SECTION—Straight line on a spheroid</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>
+Type of two-point lines to construct. The default line type is GEODESIC.
+</para>
+						<bulletList><bullet_item>GEODESIC—Straight line based on a spheroid</bullet_item><bullet_item>GREAT_CIRCLE—Straight line on a sphere</bullet_item><bullet_item>RHUMB_LINE—Line of constant bearing (direction)</bullet_item><bullet_item>NORMAL_SECTION—Straight line on a spheroid</bullet_item></bulletList></dialogReference></param><param sync="true" name="id_field" displayname="ID" datatype="Field" direction="Input" expression="id_field" type="Optional"><pythonReference>
+						<para>
+ID field from the input table. This can be used to join the output features to the input table.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+ID field from the input table. This can be used to join the output features to the input table.
+</para>
+					</dialogReference></param><param sync="true" name="spatial_reference" displayname="Spatial Reference" datatype="Spatial Reference" direction="Input" expression="spatial_reference" type="Optional"><pythonReference>
+						<para>
+Spatial reference of the starting point coordinates.
+The default is GCS_WGS_1984.</para>
+					</pythonReference><dialogReference>
+						<para>
+Spatial reference of the starting point coordinates.
+The default is GCS_WGS_1984.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>
+Each row in the input table creates one two-point line in the output feature class.
+</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title> Bearing Distance To Line example (stand-alone script)</title>
+					<para>Converts bearing and distance info into a line</para>
+				<code xml:space="preserve">
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Local variables
+input_table = r"c:\workspace\LOBtraffic.dbf"
+output_fc = r"c:\workspace\SOPA.gdb\lob_traf001"
+
+#BearingDistanceToLine
+arcpy.BearingDistanceToLine_management(input_table, output_fc, "X", "Y", 
+"NAUTICAL_MILES", "azim", "DEGREES", "GEODESIC","recnum")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

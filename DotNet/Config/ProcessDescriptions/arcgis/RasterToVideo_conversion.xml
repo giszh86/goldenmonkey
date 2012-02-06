@@ -1,0 +1,66 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Raster To Video  (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a video file from a set of images. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Bitmap</keyword><keyword>Bmp</keyword><keyword>Cell</keyword><keyword>Change</keyword><keyword>Convert</keyword><keyword>Erdas</keyword><keyword>Export</keyword><keyword>Format</keyword><keyword>Gif</keyword><keyword>Grid</keyword><keyword>Image</keyword><keyword>Img</keyword><keyword>Import</keyword><keyword>Jp2</keyword><keyword>Jpeg</keyword><keyword>Jpg</keyword><keyword>Make</keyword><keyword>Pixel</keyword><keyword>Png</keyword><keyword>Surface</keyword><keyword>Tif</keyword><keyword>Turn</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" RasterToVideo " displayname=" Raster To Video  (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Creates a video file from a set of images. </para>
+		</summary><alink_name> RasterToVideo _conversion</alink_name><parameters><param sync="true" name="input_folder" displayname="Input Folder" datatype="Folder" direction="Input" expression="input_folder" type="Required"><pythonReference>
+						<para> The folder containing the images. The images in the folder should be of the same type (BMP or JPEG).</para>
+					</pythonReference><dialogReference>
+						<para> The folder containing the images. The images in the folder should be of the same type (BMP or JPEG).</para>
+					</dialogReference></param><param sync="true" name="out_video_file" displayname="Output Video File" datatype="File" direction="Output" expression="out_video_file" type="Required"><pythonReference>
+						<para>The output video file (*.avi or *.mov).</para>
+					</pythonReference><dialogReference>
+						<para>The output video file (*.avi or *.mov).</para>
+					</dialogReference></param><param sync="true" name="image_format" displayname="Image Format" datatype="String" direction="Input" expression="image_format" type="Optional"><pythonReference>
+						<para> The format of the images files in the folder. The output video will be created using the images of the chosen format.</para>
+						<bulletList><bullet_item>BMP— Windows Bitmap (*.bmp) </bullet_item><bullet_item>JPG—JPEG (*.jpg) </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> The format of the images files in the folder. The output video will be created using the images of the chosen format.</para>
+						<bulletList><bullet_item>BMP— Windows Bitmap (*.bmp) </bullet_item><bullet_item>JPG—JPEG (*.jpg) </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="codec" displayname="Codec" datatype="String" direction="Input" expression="codec" type="Optional"><pythonReference>
+						<para> The codec used for compressing the frames while writing the video file. The list of codecs can vary on different machines. </para>
+					</pythonReference><dialogReference>
+						<para> The codec used for compressing the frames while writing the video file. The list of codecs can vary on different machines. </para>
+					</dialogReference></param><param sync="true" name="duration_method" displayname="Output Duration Method" datatype="String" direction="Input" expression="duration_method" type="Optional"><pythonReference>
+						<para> The method to be used for defining the output video duration. </para>
+						<bulletList><bullet_item>FRAME_RATE— Defines the duration of the output video based on the number of frames per second</bullet_item><bullet_item>TIME— Defines the duration of the output video in seconds</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> The method to be used for defining the output video duration. </para>
+						<bulletList><bullet_item>FRAME_RATE— Defines the duration of the output video based on the number of frames per second</bullet_item><bullet_item>TIME— Defines the duration of the output video in seconds</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="time" displayname="Frame Rate Or Time" datatype="Double" direction="Input" expression="time" type="Optional"><pythonReference>
+						<para> Duration of the video to be output.</para>
+					</pythonReference><dialogReference>
+						<para> Duration of the video to be output.</para>
+					</dialogReference></param><param sync="true" name="quality" displayname="Quality" datatype="Long" direction="Input" expression="quality" type="Optional"><pythonReference>
+						<para> The quality of the output video. The video can be exported at different qualities ranging from 1 to 100. The default value is 100.</para>
+					</pythonReference><dialogReference>
+						<para> The quality of the output video. The video can be exported at different qualities ranging from 1 to 100. The default value is 100.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>When creating a video from images in a folder, make sure that the folder specified has more than one image file of the same type (BMP or JPEG).</bullet_item><bullet_item>This tool reads the images in the folder in alphabetical order. The output video will contain frames in the order the images were read from the disk.</bullet_item><bullet_item>
+				<para> Keeping in mind that the images are read alphabetically, you can insert images in the folder of images such as a title image for your video. For example, if the folder of images has images with names image_1.bmp, image_2.bmp, and image_20.bmp, you can add an image named _image_1.bmp. Since the tool reads the images in an alphabetical order,_image_1.bmp will appear before image_1.bmp in the output video.</para>
+			</bullet_item><bullet_item>
+				<para>The resolution (width x height) of the output video is based on the resolution of the first image in the folder of images supplied to the tool. If the first image has a smaller or larger resolution than the others, the rest of the images will be stretched to fit the resolution of the first image. So try to keep the resolution of the images in the folder consistent. </para>
+			</bullet_item><bullet_item>
+				<para>Since AVI and QuickTime formats are supported on Windows only, this tool will not work on a non-Windows platform. </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title>
+					<para>RasterTo Video Python example</para>
+				<code xml:space="preserve"># Name: RasterToVideo_AVI.py
+# Description: Creates an AVI video from a folder of images
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "c:/data"
+
+#Set local variables
+inFolder = "images"
+outputVideoFile = "outputVideo.avi"
+
+#Execute RaserToVideo
+arcpy.RasterToVideo_conversion(inFolder, outputVideoFile, "BMP", "Microsoft Video 1", "FRAME_RATE", "2", "90")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

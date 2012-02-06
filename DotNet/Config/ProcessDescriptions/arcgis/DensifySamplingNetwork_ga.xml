@@ -1,0 +1,98 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Densify Sampling Network (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Uses <italics>inter alia</italics>, the Standard Error of Prediction surface on a predefined geostatistical kriging layer to determine where new locations are required or which can be removed.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Candidate</keyword><keyword>Monitoring</keyword><keyword>Threshold</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DensifySamplingNetwork" displayname="Densify Sampling Network (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Uses <italics>inter alia</italics>, the Standard Error of Prediction surface on a predefined geostatistical kriging layer to determine where new locations are required or which can be removed.</para>
+		</summary><alink_name>DensifySamplingNetwork_ga</alink_name><parameters><param sync="true" name="in_geostat_layer" displayname="Input geostatistical layer" datatype="Geostatistical Layer" direction="Input" expression="in_geostat_layer" type="Required"><pythonReference>
+						<para>Input a geostatistical layer resulting from a Kriging model.</para>
+					</pythonReference><dialogReference>
+						<para>Input a geostatistical layer resulting from a Kriging model.</para>
+					</dialogReference></param><param sync="true" name="number_output_points" displayname="Number of output points" datatype="Long" direction="Input" expression="number_output_points" type="Required"><pythonReference>
+						<para>Specify how many sample locations to generate.</para>
+					</pythonReference><dialogReference>
+						<para>Specify how many sample locations to generate.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output feature class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The name of the output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output feature class.</para>
+					</dialogReference></param><param sync="true" name="selection_criteria" displayname="Selection criteria" datatype="String" direction="Input" expression="selection_criteria" type="Optional"><pythonReference>
+						<para>Methods to densify a sampling network.</para>
+					</pythonReference><dialogReference>
+						<para>Methods to densify a sampling network.</para>
+					</dialogReference></param><param sync="true" name="threshold" displayname="Threshold value" datatype="Double" direction="Input" expression="threshold" type="Optional"><pythonReference>
+						<para>The threshold value used to densify the sampling network, applicable only when STDERR_THRESHOLD or QUARTILE_THRESHOLD selection criteria are used.</para>
+					</pythonReference><dialogReference>
+						<para>The threshold value used to densify the sampling network, applicable only when STDERR_THRESHOLD or QUARTILE_THRESHOLD selection criteria are used.</para>
+					</dialogReference></param><param sync="true" name="in_weight_raster" displayname="Input weight raster [0;Inf]" datatype="Raster Layer" direction="Input" expression="in_weight_raster" type="Optional"><pythonReference>
+						<para>A raster used to determine which locations to weight for  preference.</para>
+					</pythonReference><dialogReference>
+						<para>A raster used to determine which locations to weight for  preference.</para>
+					</dialogReference></param><param sync="true" name="in_candidate_point_features" displayname="Input candidate point features" datatype="Feature Layer" direction="Output" expression="in_candidate_point_features" type="Optional"><pythonReference>
+						<para>Sample locations to pick from.</para>
+					</pythonReference><dialogReference>
+						<para>Sample locations to pick from.</para>
+					</dialogReference></param><param sync="true" name="inhibition_distance" displayname="Inhibition distance" datatype="Linear unit" direction="Input" expression="inhibition_distance" type="Optional"><pythonReference>
+						<para>Used to prevent any samples being placed within this distance from each other.</para>
+					</pythonReference><dialogReference>
+						<para>Used to prevent any samples being placed within this distance from each other.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input geostatistical layer must be a kriging layer.</para>
+			</bullet_item><bullet_item>
+				<para>The selection criteria are based upon;<bulletList>
+						<bullet_item>
+							STDERR = O0(s)
+						</bullet_item>
+						<bullet_item>
+							STDERR_THRESHOLD = O1(s)
+						</bullet_item>
+						<bullet_item>
+							QUARTILE_THRESHOLD = O2(s)
+						</bullet_item>
+					</bulletList>
+						
+						
+					</para>
+			</bullet_item><bullet_item>
+				<para>The case might arise where only a single new location is generated when more were requested. This happens when the new location keeps on being selected based on the selection criteria. This can be prevented by specifying a value for the Inhibition distance parameter.  </para>
+			</bullet_item><bullet_item>
+				<para>To decide which locations have the least influence on the prediction surface you may use the feature class that was used to create the kriging layer for the Input candidate point features parameter.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>DensifySamplingNetwork example 1 (Python window)</title>
+					<para>Densify a sampling network based on a predefined geostatistical kriging layer.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapyexamples/data"
+arcpy.DensifySamplingNetwork_ga("C:/gapyexamples/data/Kriging.lyr", 2, "C:/gapyexamples/output/outDSN")
+
+                    </code></scriptExample><scriptExample><title>DensifySamplingNetwork example 2 (stand-alone script)</title>
+					<para>Densify a sampling network based on a predefined geostatistical kriging layer.</para>
+				<code xml:space="preserve"># Name: DensifySamplingNetwork_Example_02.py
+# Description: Densify a sampling network based on a predefined geostatistical
+#   kriging layer. It uses, inter alia, the Standard Error of Prediction map to
+#   determine where new locations are required.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inLayer = "C:/gapyexamples/data/Kriging.lyr"
+numberPoints = 2
+outPoints = "C:/gapyexamples/output/outDSN"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute DensifySamplingNetworks
+arcpy.DensifySamplingNetwork_ga(inLayer, numberPoints, outPoints)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

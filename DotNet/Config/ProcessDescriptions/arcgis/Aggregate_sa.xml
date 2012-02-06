@@ -1,0 +1,104 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Aggregate (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Generates a reduced-resolution version of a raster. Each output cell contains the Sum, Minimum, Maximum, Mean, or Median of the input cells that are encompassed by the extent of that cell.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alter</keyword><keyword>Clean</keyword><keyword>Coarse</keyword><keyword>Generalize</keyword><keyword>Image Processing</keyword><keyword>Reduce</keyword><keyword>Resample</keyword><keyword>Resolution</keyword><keyword>Simplify</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Aggregate" displayname="Aggregate (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Generates a reduced-resolution version of a raster. Each output cell contains the Sum, Minimum, Maximum, Mean, or Median of the input cells that are encompassed by the extent of that cell.</para>
+			
+		</summary><alink_name>Aggregate_sa</alink_name><toolIllust type="illustration" src="Aggregate_sa_h.png" alt="Aggregate illustration" /><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster to aggregate.</para>
+						<para>It can be of integer or floating point type.</para></pythonReference><dialogReference>
+						<para>The input raster to aggregate.</para>
+						<para>It can be of integer or floating point type.</para></dialogReference></param><param sync="true" name="cell_factor" displayname="Cell factor" datatype="Long" direction="Input" expression="cell_factor" type="Required"><pythonReference>
+						<para>The factor by which to multiply the cell size of the input raster to obtain the desired resolution for the output raster.</para>
+						<para>For example, a cell factor value of three would result in an output cell size three times larger than that of the input raster.</para><para>The value must be an integer greater than 1.</para>
+					</pythonReference><dialogReference>
+						<para>The factor by which to multiply the cell size of the input raster to obtain the desired resolution for the output raster.</para>
+						<para>For example, a cell factor value of three would result in an output cell size three times larger than that of the input raster.</para><para>The value must be an integer greater than 1.</para>
+					</dialogReference></param><param sync="true" name="aggregation_type" displayname="Aggregation technique" datatype="String" direction="Input" expression="aggregation_type" type="Optional"><pythonReference>
+						<para>Establishes how the value for each output cell will be determined.</para>
+						<para>The values of the input cells encompassed by the coarser output cell are aggregated by one of the following statistics:</para>
+						<bulletList><bullet_item>SUM—The sum (total) of the input cell values. This is the default.</bullet_item><bullet_item>MAXIMUM— The largest value of the input cells.</bullet_item><bullet_item>MEAN— The average value of the input cells.</bullet_item><bullet_item>MEDIAN— The median value of the input cells.</bullet_item><bullet_item>MINIMUM— The smallest value of the input cells.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Establishes how the value for each output cell will be determined.</para>
+						<para>The values of the input cells encompassed by the coarser output cell are aggregated by one of the following statistics:</para>
+						<bulletList><bullet_item>SUM—The sum (total) of the input cell values. This is the default.</bullet_item><bullet_item>MAXIMUM— The largest value of the input cells.</bullet_item><bullet_item>MEAN— The average value of the input cells.</bullet_item><bullet_item>MEDIAN— The median value of the input cells.</bullet_item><bullet_item>MINIMUM— The smallest value of the input cells.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="extent_handling" displayname="Expand extent if needed" datatype="Boolean" direction="Input" expression="extent_handling" type="Optional"><pythonReference>
+						<para>Defines how to handle the boundaries of the input raster when its rows or columns are not a multiple of the cell factor.</para>
+						<bulletList><bullet_item>EXPAND — Expands the bottom or right boundaries of the input raster so the total number of cells in a row or column is a multiple of the cell factor. Expanded cells are given a value of NoData.With this option, the output raster can cover a larger spatial extent than the input raster. This is the default.
+This is the default.</bullet_item><bullet_item>TRUNCATE — Reduces the number of rows or columns in the output raster by 1. This will truncate the remaining cells on the bottom or right boundaries of the input raster, making the number of rows or columns in the input raster a multiple of the cell factor.With this option, the output raster can cover a smaller spatial extent than the input raster.</bullet_item></bulletList>
+						<para>If the number of rows and columns in the input raster is a multiple of the cell_factor, these keywords are not used.</para>
+					</pythonReference><dialogReference>
+						<para>Defines how to handle the boundaries of the input raster when its rows or columns are not a multiple of the cell factor.</para>
+						<bulletList>
+							<bullet_item>Checked—Expands the bottom or right boundaries of the input raster so the total number of cells in a row or column is a multiple of the cell factor. Expanded cells are given a value of NoData.<para>With this option, the output raster can cover a larger spatial extent than the input raster.</para><para>
+This is the default.</para></bullet_item>
+							<bullet_item>Unchecked—Reduces the number of rows or columns in the output raster by 1. This will truncate the remaining cells on the bottom or right boundaries of the input raster, making the number of rows or columns in the input raster a multiple of the cell factor. <para>With this option, the output raster can cover a smaller spatial extent than the input raster.</para></bullet_item>
+						</bulletList>
+						<para>If the number of rows and columns in the input raster is a multiple of the Cell factor, these keywords are not used.</para>
+					</dialogReference></param><param sync="true" name="ignore_nodata" displayname="Ignore NoData in calculations" datatype="Boolean" direction="Input" expression="ignore_nodata" type="Optional"><pythonReference>
+						<para>Denotes whether NoData values are ignored by the aggregation calculation.</para>
+						<bulletList><bullet_item>DATA — Specifies that if NoData values exist for any of the cells that fall within the spatial extent of a larger cell on the output raster, the NoData values will be ignored when determining the value for output cell locations. Only input cells within the extent of the output cell that have data values will be used in determining the value of the output cell.
+This is the default.</bullet_item><bullet_item>NODATA — Specifies that if any cell that falls within the spatial extent of a larger cell on the output raster has a value of NoData, the value for that output cell location will be NoData.When the NODATA keyword is used, it is implied that when cells within an aggregation contain the NoData value, there is insufficient information to perform the specified calculations necessary to determine an output value.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Denotes whether NoData values are ignored by the aggregation calculation.</para>
+						<bulletList>
+							<bullet_item>Checked—Specifies that if NoData values exist for any of the cells that fall within the spatial extent of a larger cell on the output raster, the NoData values will be ignored when determining the value for output cell locations. Only input cells within the extent of the output cell that have data values will be used in determining the value of the output cell. <para>
+This is the default.</para></bullet_item>
+							<bullet_item>Unchecked—Specifies that if any cell that falls within the spatial extent of a larger cell on the output raster has a value of NoData, the value for that output cell location will be NoData. <para>When Unchecked is used, it is implied that when cells within an aggregation contain the NoData value, there is insufficient information to perform the specified calculations necessary to determine an output value.</para></bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output aggregated raster.</para><para>It is a reduced-resolution version of the input raster.</para>
+						</pythonReference><dialogReference>
+							<para>The output aggregated raster.</para><para>It is a reduced-resolution version of the input raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If the values of the input raster are integer and any statistics type option other than Mean is used, the output raster will be integer. If the values of the input raster are floating point or the statistics type is Mean, the output raster will be floating point.</para>
+			</bullet_item><bullet_item>
+				<para>The geoprocessing analysis environments  and  are recognized by this tool. To determine the output raster's resolution when an integer cell size has been specified, multiply the cell resolution of the analysis environment by the input cell factor parameter. If the cell size for the analysis environment is set to the minimum or maximum of the inputs, the resolution of the output raster will be the product of the input raster's resolution multiplied by the specified cell factor.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Aggregate example 1 (Python window)</title>
+					<para>This example aggregates a raster by averaging the values with a cell factor of 3 and outputs a TIFF raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outAggreg = Aggregate("highres", 3, "MAXIMUM", "TRUNCATE", "DATA")
+outAggreg.save("C:/sapyexamples/output/aggregate.tif")
+                    </code></scriptExample><scriptExample><title>Aggregate example 2 (stand-alone script)</title>
+					<para>This example aggregates a raster by averaging the values with a cell factor of 3 and outputs a GRID raster.</para>
+				<code xml:space="preserve"># Name: Aggregate_Ex_02.py
+# Description: Generates a reduced resolution version of a raster.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "highres"
+cellFactor = 3
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Aggregate
+outAggreg = Aggregate(inRaster, cellFactor, "MEAN", "TRUNCATE", "NODATA")
+
+# Save the output 
+outAggreg.save("C:/sapyexamples/output/aggregate02")
+                    </code></scriptExample></scriptExamples></tool></metadata>

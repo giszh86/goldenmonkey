@@ -1,0 +1,87 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Flow Accumulation (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a raster of accumulated flow into each cell. A weight factor can optionally be applied.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Catchment</keyword><keyword>Flow</keyword><keyword>Runoff</keyword><keyword>Surface Water</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FlowAccumulation" displayname="Flow Accumulation (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Creates a raster of accumulated flow into each cell. A weight factor can optionally be applied.</para>
+			
+		</summary><alink_name>FlowAccumulation_sa</alink_name><toolIllust type="illustration" src="FlowAccumulation_sa_h.png" alt="Flow Accumulation illustration" /><parameters><param sync="true" name="in_flow_direction_raster" displayname="Input flow direction raster" datatype="Raster Layer" direction="Input" expression="in_flow_direction_raster" type="Required"><pythonReference>
+						<para>The input raster that shows the direction of flow out of each cell.</para><para>The flow direction raster can be created using the Flow Direction tool.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster that shows the direction of flow out of each cell.</para><para>The flow direction raster can be created using the Flow Direction tool.</para>
+					</dialogReference></param><param sync="true" name="in_weight_raster" displayname="Input weight raster" datatype="Raster Layer" direction="Input" expression="in_weight_raster" type="Optional"><pythonReference>
+						<para>An optional input raster for applying a weight to each cell.</para><para>If no weight raster is specified, a default weight of 1 will be applied to each cell. For each cell in the output raster, the result will be the number of cells that flow into it.</para></pythonReference><dialogReference>
+						<para>An optional input raster for applying a weight to each cell.</para><para>If no weight raster is specified, a default weight of 1 will be applied to each cell. For each cell in the output raster, the result will be the number of cells that flow into it.</para></dialogReference></param><param sync="true" name="data_type" displayname="Data type" datatype="String" direction="Output" expression="data_type" type="Optional"><pythonReference>
+						<para>The output accumulation raster can be integer or floating point type.</para>
+						<bulletList><bullet_item>FLOAT — The output raster will be floating point type. This is the default. </bullet_item><bullet_item>INTEGER — The output raster will be integer type. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The output accumulation raster can be integer or floating point type.</para>
+						<bulletList><bullet_item>FLOAT — The output raster will be floating point type. This is the default. </bullet_item><bullet_item>INTEGER — The output raster will be integer type. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="out_accumulation_raster" displayname="Output accumulation raster" datatype="Raster" direction="Output" expression="out_accumulation_raster" type="Required"><pythonReference>
+							<para>The output raster that shows the accumulated flow to each cell.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster that shows the accumulated flow to each cell.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The result of Flow Accumulation is a raster of accumulated flow to each cell, as determined by accumulating the weight for all cells that flow into each downslope cell.</para>
+			</bullet_item><bullet_item>
+				<para>Cells of undefined flow direction will only receive flow; they will not contribute to any downstream flow. A cell is considered to have an undefined flow direction if its value in the flow direction raster is anything other than 1, 2, 4, 8, 16, 32, 64, or 128.</para>
+			</bullet_item><bullet_item>
+				<para>The accumulated flow is based on the number of cells flowing into each cell in the output raster. The current processing cell is not considered in this accumulation.</para>
+			</bullet_item><bullet_item>
+				<para>Output cells with a high flow accumulation are areas of concentrated flow and can be used to identify stream channels.</para>
+			</bullet_item><bullet_item>
+				<para>Output cells with a flow accumulation of zero are local topographic highs and can be used to identify ridges.</para>
+			</bullet_item><bullet_item>
+				<para>If the input flow direction raster is not created with the  tool, there is a chance that the defined flow could loop. If the flow direction does loop, Flow Accumulation will go into an infinite loop and never finish.</para>
+			</bullet_item><bullet_item><para> The Flow Accumulation tool does not honour the  environment setting. The output raster will always be uncompressed.</para></bullet_item></usage><scriptExamples><scriptExample><title>FlowAccumulation example 1 (Python window)</title>
+					<para>This example creates a raster of accumulated flow into each cell of an input flow direction GRID raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outFlowAccumulation = FlowAccumulation("flowdir")
+outFlowAccumulation.save("C:/sapyexamples/output/outflowacc01")
+
+                    </code></scriptExample><scriptExample><title>FlowAccumulation example 2 (stand-alone script)</title>
+					<para>This example creates a raster of accumulated flow into each cell of an input flow direction IMG raster.</para>
+				<code xml:space="preserve"># Name: FlowAccumulation_Ex_02.py
+# Description: Creates a raster of accumulated flow to each cell.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inFlowDirRaster = "flowdir"
+inWeightRaster = ""
+dataType = "INTEGER"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute FlowDirection
+outFlowAccumulation = FlowAccumulation(inFlowDirRaster, inWeightRaster, dataType)
+
+# Save the output 
+outFlowAccumulation.save("C:/sapyexamples/output/outflowacc02.img")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

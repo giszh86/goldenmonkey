@@ -1,0 +1,62 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate Distance Band from Neighbor Count (Spatial Statistics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Returns the minimum, the maximum, and the average distance to the specified Nth nearest neighbor (N is an input parameter) for a set of features.  Results are accessible from the Results window.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Adjacent</keyword><keyword>Average</keyword><keyword>Closest</keyword><keyword>Compute</keyword><keyword>Max</keyword><keyword>Mean</keyword><keyword>Min</keyword><keyword>Near</keyword><keyword>Proximity</keyword><keyword>Surround</keyword><keyword>Threshold</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateDistanceBand" displayname="Calculate Distance Band from Neighbor Count (Spatial Statistics)" toolboxalias="stats" softwarerestriction="none"><summary>
+			<para>Returns the minimum, the maximum, and the average distance to the specified Nth nearest neighbor (N is an input parameter) for a set of features.  Results are accessible from the Results window.</para>
+		</summary><alink_name>CalculateDistanceBand_stats</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/CalculateDistanceBand_stats_v.png" alt="Calculate Distance Band from Neighbor Count illustration" /><toolIllust type="illustration" src="CalculateDistanceBand_stats_h.png" alt="Calculate Distance Band from Neighbor Count illustration" /><parameters><param sync="true" name="Input_Features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="Input_Features" type="Required"><pythonReference>
+						<para>The feature class or layer used to calculate distance statistics.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class or layer used to calculate distance statistics.</para>
+					</dialogReference></param><param sync="true" name="Neighbors" displayname="Neighbors" datatype="Long" direction="Input" expression="Neighbors" type="Required"><pythonReference>
+						<para>The number of neighbors (N) to consider for each feature. This number should be any integer between one and the total number of features in the feature class. A list of distances between each feature and its Nth neighbor is compiled, and the maximum, minimum, and average distances are output to the Results window.</para>
+					</pythonReference><dialogReference>
+						<para>The number of neighbors (N) to consider for each feature. This number should be any integer between one and the total number of features in the feature class. A list of distances between each feature and its Nth neighbor is compiled, and the maximum, minimum, and average distances are output to the Results window.</para>
+					</dialogReference></param><param sync="true" name="Distance_Method" displayname="Distance Method" datatype="String" direction="Input" expression="Distance_Method" type="Required"><pythonReference>
+						<para>Specifies how distances are calculated from each feature to neighboring features.</para>
+						<bulletList><bullet_item>EUCLIDEAN_DISTANCE—The straight-line distance between two points (as the crow flies) </bullet_item><bullet_item>MANHATTAN_DISTANCE—The distance between two points measured along axes at right angles (city block); calculated by summing the (absolute) difference between the x- and y-coordinates </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how distances are calculated from each feature to neighboring features.</para>
+						<bulletList><bullet_item>EUCLIDEAN_DISTANCE—The straight-line distance between two points (as the crow flies) </bullet_item><bullet_item>MANHATTAN_DISTANCE—The distance between two points measured along axes at right angles (city block); calculated by summing the (absolute) difference between the x- and y-coordinates </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment><environment name="Output_coordinate_system" label="Output coordinate system">Feature geometry is projected to the Output Coordinate System prior to analysis. All mathematical computations are based on the Output Coordinate System spatial reference.</environment></environments><usage><bullet_item>
+				<para>Given a set of features, this tool returns three numbers: the minimum, the maximum, and the average distance to a specified number of neighbors (N). Example: if you specify 8 for the Neighbors parameter, this tool creates a list of distances between every feature and its 8th nearest neighbor; from this list of distances it then calculates  the minimum, maximum, and average distance. <bulletList>
+						<bullet_item>The maximum value is the distance you would have to travel away from each feature to ensure every feature has at least N neighbors.</bullet_item>
+						<bullet_item>The minimum value is the distance you would travel away from each feature to ensure that at least one feature has N neighbors.</bullet_item>
+						<bullet_item>The average value is the average distance you would travel away from each feature to find its N nearest neighbors.</bullet_item>
+					</bulletList></para>
+			</bullet_item><bullet_item>
+				<para>The output from this tool is written as messages to the .  Right-click on the <bold>Messages</bold> entry and select <bold>View</bold> to see results in a <bold>Message dialog box</bold>.</para>
+			</bullet_item><bullet_item>
+				<para>Some tools, such as  and , allow you to specify a neighborhood Distance Band or Threshold Distance value. By using the Maximum Distance output value from this tool for the Distance Band or Threshold Distance parameter, you ensure every feature in the input feature class has at least N neighbors. </para>
+			</bullet_item><bullet_item>
+				<para>This tool provides one strategy for determining a Distance Band or Threshold Distance value to use with tools in the Spatial Statistics Toolbox such as  or . See  for additional strategies.  </para>
+			</bullet_item><bullet_item>
+				<para>The distances returned by this tool are in the units of the geoprocessing environment .</para>
+			</bullet_item><bullet_item>
+				<para>Calculations based on either Euclidean or Manhattan distance require  to accurately measure distances.</para>
+			</bullet_item><bullet_item>
+				<para>For line and polygon features, feature centroids are used in distance computations. For multipoints, polylines, or polygons with multiple parts, the centroid is computed using the weighted mean center of all feature parts. The weighting for point features is 1, for line features is length, and for polygon features is area.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CalculateDistanceBandfromNeighborCount Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the CalculateDistanceBandfromNeighborCount tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "c:/data"
+mindist, avgdist, maxdist = arcpy.CalculateDistanceBand_stats("Blocks", 10, "EUCLIDEAN_DISTANCE")
+                    </code></scriptExample><scriptExample><title>CalculateDistanceBandfromNeighborCount Example (stand-alone Python script)</title>
+					<para>The following stand-alone Python script demonstrates how to use the CalculateDistanceBandfromNeighborCount tool.</para>
+				<code xml:space="preserve"># import module
+import arcpy
+
+# Set geoprocessing environment Workspace
+arcpy.env.workspace = "c:/data"
+
+# Set variables 
+infc = "Blocks"
+field = "POP2000"
+outfc = "PopHotSpots"
+neighbors = 10
+ 
+# Run the CalculateDistanceBand tool to get a distance for use with the Hot Spot tool from the tool result object
+mindist, avgdist, maxdist = arcpy.CalculateDistanceBand_stats(infc, neighbors, "EUCLIDEAN_DISTANCE")
+ 
+# Run the Hot Spot Analysis tool, using the maxdist output from the Calculate Distance Band tool as an input
+arcpy.HotSpots_analysis(infc, field, outfc, "Fixed Distance Band", "EUCLIDEAN_DISTANCE", "None", maxdist)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

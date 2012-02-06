@@ -1,0 +1,83 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Surface Volume (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool calculates the area and volume of a raster, triangulated area network (TIN), or terrain dataset surface above or below a given reference plane.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D</keyword><keyword>Calculate Volume</keyword><keyword>Surface</keyword><keyword>Surface</keyword><keyword>Surface Analysis</keyword><keyword>Tin</keyword><keyword>Volume</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SurfaceVolume" displayname="Surface Volume (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool calculates the area and volume of a raster, triangulated area network (TIN), or terrain dataset surface above or below a given reference plane.</para>
+			
+		</summary><alink_name>SurfaceVolume_3d</alink_name><toolIllust type="illustration" src="SurfaceVolume_3d_h.gif" alt="Surface Volume" /><parameters><param sync="true" name="in_surface" displayname="Input Surface" datatype="TIN Layer; Raster Layer; Terrain Layer" direction="Input" expression="in_surface" type="Required"><pythonReference>
+						<para>The input raster, TIN, or terrain dataset surface used for calculating area and volume.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster, TIN, or terrain dataset surface used for calculating area and volume.</para>
+					</dialogReference></param><param sync="true" name="out_text_file" displayname="Output Text File" datatype="File" direction="Output" expression="out_text_file" type="Optional"><pythonReference>
+						<para>The output text file containing the results.</para>
+					</pythonReference><dialogReference>
+						<para>The output text file containing the results.</para>
+					</dialogReference></param><param sync="true" name="reference_plane" displayname="Reference Plane" datatype="String" direction="Input" expression="reference_plane" type="Optional"><pythonReference>
+						<para>Choose whether to calculate above or below a given height. By default, volume is calculated above base z.</para>
+					</pythonReference><dialogReference>
+						<para>Choose whether to calculate above or below a given height. By default, volume is calculated above base z.</para>
+					</dialogReference></param><param sync="true" name="base_z" displayname="Plane Height" datatype="Double" direction="Input" expression="base_z" type="Optional"><pythonReference>
+						<para>The surface value from which the area and volume will be calculated. By default, the value is the surface minimum for ABOVE and the surface maximum for BELOW.</para>
+					</pythonReference><dialogReference>
+						<para>The surface value from which the area and volume will be calculated. By default, the value is the surface minimum for ABOVE and the surface maximum for BELOW.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>The factor by which the heights of the input surface will be multiplied to calculate surface volume; used for converting z-units to match x,y units.</para>
+					</pythonReference><dialogReference>
+						<para>The factor by which the heights of the input surface will be multiplied to calculate surface volume; used for converting z-units to match x,y units.</para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Double" direction="Input" expression="pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The resolution of the terrain dataset pyramid level to use for geoprocessing. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The resolution of the terrain dataset pyramid level to use for geoprocessing. The default is 0, full resolution.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>To determine the volume of an isolated portion of a TIN or terrain dataset  surface, use the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>Using a Z Factor is essential for correct volume calculations when the surface z-units are expressed in a different unit of measure than the ground units. Using a Z Factor does not modify the original data.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Surface Volume Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Surface Volume
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.SurfaceVolume_3d("sample.gdb/featuredataset/terrain", "surf_vol.txt", "ABOVE", "300", "1", "5")
+                    </code></scriptExample><scriptExample><title>Surface Volume Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Surface Volume
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: Surface Volume Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              Surface Volume tool to determine the area and volume of a
+#              TIN dataset using planes of 100, 200, and 300 feet.
+#              
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Set Local Variables
+    inSurface = "sample.gdb/featuredataset/elevation_terrain"
+    z_factor = 3.28
+    pyramid_level = 5
+    for plane in range(100, 301, 100):
+        #Execute SurfaceVolume
+        result = arcpy.SurfaceVolume_3d(inSurface, "", "ABOVE", plane, 
+                                        z_factor, pyramid_level)
+    print result.GetMessage(0)
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

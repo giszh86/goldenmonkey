@@ -1,0 +1,114 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Semivariogram Sensitivity (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs a sensitivity analysis with varying Nugget, Partial Sill, and Range values.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Error</keyword><keyword>Lag</keyword><keyword>Nugget</keyword><keyword>Range</keyword><keyword>Semivariogram</keyword><keyword>Sensitivity</keyword><keyword>Sill</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GASemivariogramSensitivity" displayname="Semivariogram Sensitivity (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Performs a sensitivity analysis with varying Nugget, Partial Sill, and Range values.</para>
+			
+		</summary><alink_name>GASemivariogramSensitivity_ga</alink_name><parameters><param sync="true" name="in_ga_model_source" displayname="Geostatistical model source" datatype="Geostatistical Layer ; Geostatistical Model" direction="Input" expression="in_ga_model_source" type="Required"><pythonReference>
+						<para>The geostatistical model source to be analyzed.</para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical model source to be analyzed.</para>
+					</dialogReference></param><param sync="true" name="in_datasets" displayname="Input dataset(s)" datatype="Geostatistical Value Table" direction="Input" expression="[in_dataset,...]" type="Required"><pythonReference>
+						<para>Input dataset(s) displays two pieces:</para>
+						<bulletList>
+							<bullet_item>Dataset — The path and the name of the input data.</bullet_item>
+							<bullet_item>Field — The name of the required field.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>The name of the input dataset(s) and field name(s) used in the creation of the output layer.</bullet_item>
+						</bulletList>
+						<bulletList>
+							<bullet_item> When checked, the  Always reset input datasets when the geostatistical model source changes parameter ensures when a different geostatistical model source is specified its associated dataset(s) are automatically inserted into the tool. If unchecked and the geostatistical model source is changed, the displayed input dataset(s) remain unchanged. This can lead to problems if the model is incompatible with the dataset, for example, a model was created to predict temperature and a new dataset with rainfall data is specified.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="in_locations" displayname="Point observation locations" datatype="Feature Layer" direction="Input" expression="in_locations" type="Required"><pythonReference>
+						<para>Points locations where the sensitivity analysis is performed.</para>
+					</pythonReference><dialogReference>
+						<para>Points locations where the sensitivity analysis is performed.</para>
+					</dialogReference></param><param sync="true" name="nugget_span_percents" displayname="Nugget span (% of model value)" datatype="Double" direction="Input" expression="nugget_span_percents" type="Optional"><pythonReference>
+						<para>The percentage subtracted and added to the Nugget parameter to create a range for subsequent random Nugget parameter selection.</para>
+					</pythonReference><dialogReference>
+						<para>The percentage subtracted and added to the Nugget parameter to create a range for subsequent random Nugget parameter selection.</para>
+					</dialogReference></param><param sync="true" name="nugget_calc_times" displayname="Number of calculations for Nugget" datatype="Long" direction="Input" expression="nugget_calc_times" type="Optional"><pythonReference>
+						<para>Number of random Nugget values drawn from the Nugget span.</para>
+					</pythonReference><dialogReference>
+						<para>Number of random Nugget values drawn from the Nugget span.</para>
+					</dialogReference></param><param sync="true" name="partialsill_span_percents" displayname="Partial Sill span (% of model value)" datatype="Double" direction="Input" expression="partialsill_span_percents" type="Optional"><pythonReference>
+						<para>Percentage subtracted from and added to the Partial Sill parameter to create a range for random Partial Sill selection.</para>
+					</pythonReference><dialogReference>
+						<para>Percentage subtracted from and added to the Partial Sill parameter to create a range for random Partial Sill selection.</para>
+					</dialogReference></param><param sync="true" name="partialsill_calc_times" displayname="Number of calculations for Partial Sill" datatype="Long" direction="Input" expression="partialsill_calc_times" type="Optional"><pythonReference>
+						<para>Number of random Partial Sill values drawn from the Partial Sill span.</para>
+					</pythonReference><dialogReference>
+						<para>Number of random Partial Sill values drawn from the Partial Sill span.</para>
+					</dialogReference></param><param sync="true" name="range_span_percents" displayname="Major Range span (% of model value)" datatype="Double" direction="Input" expression="range_span_percents" type="Optional"><pythonReference>
+						<para>Percentage subtracted and added to the Major Range parameter to create a range for a random Major Range selection.</para>
+					</pythonReference><dialogReference>
+						<para>Percentage subtracted and added to the Major Range parameter to create a range for a random Major Range selection.</para>
+					</dialogReference></param><param sync="true" name="range_calc_times" displayname="Number of calculations for Major Range" datatype="Long" direction="Input" expression="range_calc_times" type="Optional"><pythonReference>
+						<para>Number of random Major Range values drawn from the Major Range span.</para>
+					</pythonReference><dialogReference>
+						<para>Number of random Major Range values drawn from the Major Range span.</para>
+					</dialogReference></param><param sync="true" name="minrange_span_percents" displayname="Minor Range span" datatype="Double" direction="Input" expression="minrange_span_percents" type="Optional"><pythonReference>
+						<para>Percentage subtracted and added to the Minor Range parameter to create a range for random Minor Range selection.</para>
+					</pythonReference><dialogReference>
+						<para>Percentage subtracted and added to the Minor Range parameter to create a range for random Minor Range selection.</para>
+					</dialogReference></param><param sync="true" name="minrange_calc_times" displayname="Number of calculations for Minor Range" datatype="Long" direction="Input" expression="minrange_calc_times" type="Optional"><pythonReference>
+						<para>Number of random Minor Range values drawn from the Minor Range span. If Anisotropy has been set in &lt;in_geostat_layer&gt;, a value is required.</para>
+					</pythonReference><dialogReference>
+						<para>Number of random Minor Range values drawn from the Minor Range span. If Anisotropy has been set in &lt;in_geostat_layer&gt;, a value is required.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>Table storing the  sensitivity results.</para>
+					</pythonReference><dialogReference>
+						<para>Table storing the  sensitivity results.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Random_number_generator" label="Random number generator">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The geostatistical model source is either a geostatistical layer or a geostatistical model (XML).</para>
+			</bullet_item><bullet_item>
+				<para>Set the environment variable  equal to a nonzero value if the random sequence should be repeatable.</para>
+			</bullet_item><bullet_item>
+				<para>For data formats that support Null values, such as file and personal geodatabase feature classes, a Null value will be used to indicate that a prediction could not be made for that location or that the value showed be ignored when used as input. For data formats that do not support Null values, such as shapefiles, the value of  -1.7976931348623158e+308 is used (this is the negative of the C++ defined constant DBL_MAX)  to indicate that a prediction could not be made for that location.</para></bullet_item></usage><scriptExamples><scriptExample><title>SemivariogramSensitivity example 1 (Python window)</title><para>Performs a sensitivity analysis by varying the Nugget, Partial Sill, and Range values.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapyexamples/data"
+arcpy.GASemivariogramSensitivity_ga("C:/gapyexamples/data/kriging.lyr", "C:/gapyexamples/data/ca_ozone_pts.shp OZONE",
+                              "C:/gapyexamples/data/obs_pts.shp", "", "", "", "",
+                              "", "", "", "", "C:/gapyexamples/output/outtabSS") 
+
+                    </code></scriptExample><scriptExample><title>SemivariogramSensitivity example 2 (stand-alone script)</title>
+					<para>Performs a sensitivity analysis by varying the Nugget, Partial Sill, and Range values.</para>
+				<code xml:space="preserve"># Name: SemivariogramSensitivity_Example_02.py
+# Description: The semivariogram parameters Nugget, Partial Sill and Range can
+#   be varied to perform a sensitivity analysis.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inLayer = "C:/gapyexamples/data/kriging.lyr"
+inData = "C:/gapyexamples/data/ca_ozone_pts.shp OZONE"
+inObs = "C:/gapyexamples/data/obs_pts.shp"
+nugPercents = ""
+nugCalc = ""
+sillPercents = ""
+sillCalc = ""
+rangePercents = ""
+rangeClac = ""
+minrangePercent = ""
+midrangeCalc = ""
+outTable = "C:/gapyexamples/output/outtabSS"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute SemivariogramSensitivity
+arcpy.GASemivariogramSensitivity_ga(inLayer, inData, inObs, nugPercents, nugCalc,
+                                    sillPercents, sillCalc, rangePercents, rangeClac,
+                                    minrangePercent, midrangeCalc, outTable)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

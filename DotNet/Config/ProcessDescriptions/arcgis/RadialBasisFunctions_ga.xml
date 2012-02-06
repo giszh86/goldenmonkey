@@ -1,0 +1,154 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Radial Basis Functions (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs><para>Uses one of five basis functions to process each measured sample value, thus creating an exact interpolation surface.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Esda</keyword><keyword>Estimate</keyword><keyword>Multiquadratic</keyword><keyword>Predict</keyword><keyword>Rbf</keyword><keyword>Regularized</keyword><keyword>Smooth Interpolation</keyword><keyword>Spline</keyword><keyword>Tension</keyword><keyword>Thin Plate</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RadialBasisFunctions" displayname="Radial Basis Functions (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary><para>Uses one of five basis functions to process each measured sample value, thus creating an exact interpolation surface.</para>
+			
+		</summary><alink_name>RadialBasisFunctions_ga</alink_name><parameters><param sync="true" name="in_features" displayname="Input feature class" datatype="Feature Class" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input features containing the z-values to be interpolated.</para>
+					</pythonReference><dialogReference>
+						<para>The input features containing the z-values to be interpolated.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="out_ga_layer" displayname="Output geostatistical layer" datatype="Geostatistical Layer" direction="Output" expression="out_ga_layer" type="Required"><pythonReference>
+						<para>The geostatistical layer produced. This layer is required output only if no output raster is requested.</para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical layer produced. This layer is required output only if no output raster is requested.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Optional"><pythonReference>
+						<para>The output raster. This raster is required output only if no output geostatistical layer is requested.</para>
+					</pythonReference><dialogReference>
+						<para>The output raster. This raster is required output only if no output geostatistical layer is requested.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="search_neighborhood" displayname="Search neighborhood" datatype="Geostatistical Search Neighborhood" direction="Input" expression="search_neighborhood" type="Optional"><pythonReference>
+						
+						<para>Defines which surrounding points will be used to control the output. There are two options: STANDARD and SMOOTH. Standard is the default.</para>
+						<para>This is a Search Neighborhood class ( SearchNeighborhoodStandard  and SearchNeighborhoodSmooth).</para>
+						<para>STANDARD</para>
+						<bulletList>
+							<bullet_item>Major semiaxis — The major semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Minor semiaxis — The minor semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Angle — The angle of rotation for the axis (circle) or semi-major axis (ellipse) of the moving window.</bullet_item>
+							<bullet_item>Maximum neighbors — The maximum number of neighbors that will be used to estimate the value at the unknown location.</bullet_item>
+							<bullet_item>Minimum neighbors — The minimum number of neighbors that will be used to estimate the value at the unknown location.</bullet_item>
+							<bullet_item>Sector type — The geometry of the neighborhood. <bulletList>
+									<bullet_item>One sector - Single ellipse</bullet_item>
+									<bullet_item>Four sectors - Ellipse divided in four sectors.</bullet_item>
+									<bullet_item>Four sectors shifted - Ellipse divided in four sectors and shifted 45 degrees.</bullet_item>
+									<bullet_item>Eight sectors - Ellipse divided into eight sectors.</bullet_item>
+								</bulletList></bullet_item>
+						</bulletList>
+						<para>SMOOTH</para>
+						<bulletList>
+							<bullet_item>Major semiaxis — The major semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Minor semiaxis — The minor semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Angle — The angle of rotation for the axis (circle) or semi-major axis (ellipse) of the moving window.</bullet_item>
+							<bullet_item>Smoothing factor — The Smooth Interpolation option creates an outer ellipse and an inner ellipse at a distance equal to the Major Semiaxis multiplied by the Smoothing factor. The points that fall outside the smaller ellipse but inside the largest ellipse are weighted using a sigmoidal function with a value between zero and one.</bullet_item>
+						</bulletList>
+						
+					</pythonReference><dialogReference>
+						
+						<para>Defines which surrounding points will be used to control the output. There are two options: STANDARD and SMOOTH. Standard is the default.</para>
+						<para>STANDARD</para>
+						<bulletList>
+							<bullet_item>Major semiaxis — The major semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Minor semiaxis — The minor semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Angle — The angle of rotation for the axis (circle) or semi-major axis (ellipse) of the moving window.</bullet_item>
+							<bullet_item>Maximum neighbors — The maximum number of neighbors that will be used to estimate the value at the unknown location.</bullet_item>
+							<bullet_item>Minimum neighbors — The minimum number of neighbors that will be used to estimate the value at the unknown location.</bullet_item>
+							<bullet_item>Sector type — The geometry of the neighborhood. <bulletList>
+									<bullet_item>One sector - Single ellipse</bullet_item>
+									<bullet_item>Four sectors - Ellipse divided in four sectors.</bullet_item>
+									<bullet_item>Four sectors shifted - Ellipse divided in four sectors and shifted 45 degrees.</bullet_item>
+									<bullet_item>Eight sectors - Ellipse divided into eight sectors.</bullet_item>
+								</bulletList></bullet_item>
+						</bulletList>
+						<para>SMOOTH</para>
+						<bulletList>
+							<bullet_item>Major semiaxis — The major semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Minor semiaxis — The minor semi-axis value of the searching neighborhood.</bullet_item>
+							<bullet_item>Angle — The angle of rotation for the axis (circle) or semi-major axis (ellipse) of the moving window.</bullet_item>
+							<bullet_item>Smoothing factor — The Smooth Interpolation option creates an outer ellipse and an inner ellipse at a distance equal to the Major Semiaxis multiplied by the Smoothing factor. The points that fall outside the smaller ellipse but inside the largest ellipse are weighted using a sigmoidal function with a value between zero and one.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="radial_basis_functions" displayname="Radial basis function" datatype="String" direction="Input" expression="radial_basis_functions" type="Optional"><pythonReference>
+						<para>Available Radial basis functions.</para>
+						<bulletList><bullet_item> THIN_PLATE_SPLINE —Thin-plate spline </bullet_item><bullet_item> SPLINE_WITH_TENSION — Spline with tension</bullet_item><bullet_item>COMPLETELY_REGULARIZED_SPLINE — Completely regularized spline</bullet_item><bullet_item>MULTIQUADRIC_FUNCTION — Multiquadric function</bullet_item><bullet_item>INVERSE_MULTIQUADRIC_ FUNCTION —Inverse multiquadric function </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Available Radial basis functions.</para>
+						<bulletList><bullet_item> THIN_PLATE_SPLINE —Thin-plate spline </bullet_item><bullet_item> SPLINE_WITH_TENSION — Spline with tension</bullet_item><bullet_item>COMPLETELY_REGULARIZED_SPLINE — Completely regularized spline</bullet_item><bullet_item>MULTIQUADRIC_FUNCTION — Multiquadric function</bullet_item><bullet_item>INVERSE_MULTIQUADRIC_ FUNCTION —Inverse multiquadric function </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="small_scale_parameter" displayname="Small scale parameter" datatype="Double" direction="Input" expression="small_scale_parameter" type="Optional"><pythonReference>
+						<para>Used to calculate the weights assigned to the points located in the moving window. Each of the radial basis functions has a parameter that controls the degree of small-scale variation of the surface. The (“optimal”) parameter is determined by finding the value that minimizes the root mean square prediction error (RMSPE).</para>
+					</pythonReference><dialogReference>
+						<para>Used to calculate the weights assigned to the points located in the moving window. Each of the radial basis functions has a parameter that controls the degree of small-scale variation of the surface. The (“optimal”) parameter is determined by finding the value that minimizes the root mean square prediction error (RMSPE).</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Coincident_points" label="Coincident points"></environment></environments><usage><bullet_item>
+				<para>The smooth search neighborhood is only available for the Inverse multiquadric function.</para>
+			</bullet_item><bullet_item>
+				<para>For all methods except the Inverse multiquadric function, the higher the parameter value, the smoother the surface. The opposite is true for the Inverse multiquadric function.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RadialBasisFunctions example 1 (Python window)</title>
+					<para>Interpolate point features onto a rectangular raster.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapyexamples/data"
+arcpy.RadialBasisFunctions_ga("ca_ozone_pts", "OZONE", "outRBF", "C:/gapyexamples/output/rbfout",
+                              "2000", arcpy.SearchNeighborhoodStandard(300000, 300000, 0, 15, 10, "ONE_SECTOR"),
+                              "THIN_PLATE_SPLINE", "")
+
+                    </code></scriptExample><scriptExample><title>RadialBasisFunctions example 2 (stand-alone script)</title>
+					<para>Interpolate point features onto a rectangular raster.</para>
+				<code xml:space="preserve"># Name: RadialBasisFunctions_Example_02.py
+# Description: RBF methods are a series of exact interpolation techniques;
+#   that is, the surface must go through each measured sample value.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inPointFeatures = "ca_ozone_pts.shp"
+zField = "OZONE"
+outLayer = "outRBF"
+outRaster = "C:/gapyexamples/output/rbfout"
+cellSize = 2000.0
+rbf = "THIN_PLATE_SPLINE"
+smallscaleParam = ""
+
+# Set variables for search neighborhood
+majSemiaxis = 300000
+minSemiaxis = 300000
+angle = 0
+maxNeighbors = 15
+minNeighbors = 10
+sectorType = "ONE_SECTOR"
+searchNeighbourhood = arcpy.SearchNeighborhoodStandard(majSemiaxis, minSemiaxis, angle, maxNeighbors,
+                                                 minNeighbors, sectorType)
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute RadialBasisFunctions
+arcpy.RadialBasisFunctions_ga(inPointFeatures, zField, outLayer, outRaster, cellSize, searchNeighbourhood,
+                              rbf, smallscaleParam)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

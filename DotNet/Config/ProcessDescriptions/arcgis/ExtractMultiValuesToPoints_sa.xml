@@ -1,0 +1,85 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Extract Multi Values to Points (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Extracts cell values at locations specified in a point feature class from one or more rasters, and records the values to the attribute table of the point feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Latticespot</keyword><keyword>Sample</keyword><keyword>Select</keyword><keyword>Subset</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" ExtractMultiValuesToPoints " displayname=" Extract Multi Values to Points (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para> Extracts cell values at locations specified in a point feature class from one or more rasters, and records the values to the attribute table of the point feature class.</para>
+		</summary><alink_name> ExtractMultiValuesToPoints _sa</alink_name><parameters><param sync="true" name="in_point_features" displayname="Input point features" datatype="Feature Layer" direction="Input" expression="in_point_features" type="Required"><pythonReference>
+						<para> The input point features to which you want to add raster values.</para>
+					</pythonReference><dialogReference>
+						<para> The input point features to which you want to add raster values.</para>
+					</dialogReference></param><param sync="true" name="in_rasters" displayname="Input rasters" datatype="Value Table" direction="Input" expression="[[Raster, {Output Field Name}],...]" type="Required"><pythonReference>
+						<para> The input raster (or rasters) values you want to extract based on the input point feature location.</para><para>Optionally, you can supply the name for the field to store the raster value. By default, a unique field name will be created based on the input raster dataset name.</para>
+					</pythonReference><dialogReference>
+						<para> The input raster (or rasters) values you want to extract based on the input point feature location.</para><para>Optionally, you can supply the name for the field to store the raster value. By default, a unique field name will be created based on the input raster dataset name.</para>
+					</dialogReference></param><param sync="true" name="bilinear_interpolate_values" displayname="Bilinear interpolation of values at point locations" datatype="Boolean" direction="Input" expression="bilinear_interpolate_values" type="Optional"><pythonReference>
+						<para>Specifies whether or not interpolation will be used.</para>
+						<bulletList><bullet_item>NONE — No interpolation will be applied; the value of the cell center will be used.</bullet_item><bullet_item>BILINEAR — The value of the cell will be calculated from the adjacent cells with valid values using bilinear interpolation. NoData values will be ignored in the interpolation unless all adjacent cells are NoData.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether or not interpolation will be used.</para>
+						<bulletList>
+							<bullet_item>Unchecked—No interpolation will be applied; the value of the cell center will be used.</bullet_item>
+							<bullet_item>Checked—The value of the cell will be calculated from the adjacent cells with valid values using bilinear interpolation. NoData values will be ignored in the interpolation unless all adjacent cells are NoData.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>
+					
+						<para>This tool modifies the input data. See  for more information and strategies to avoid undesired data modification.</para>
+					
+				</para>
+			</bullet_item><bullet_item>
+				<para> Any combination of rasters (single band or multiband) can be specified as input.</para>
+			</bullet_item><bullet_item>
+				<para> A cell value will be extracted for each input raster and a new field containing the cell values for each input raster are appended to the input point feature class.</para>
+			</bullet_item><bullet_item>
+				<para> Output field names are created from the name of the input raster by default. Otherwise you can specify a unique name for each field to store raster values.</para>
+			</bullet_item><bullet_item>
+				<para> When the input is a multiband raster, a field will be added for all bands with a "b1_, b2_, …bn" prefix added to the name of the output field denoting the band number.</para>
+			</bullet_item><bullet_item>
+				<para> The interpolation option determines how the values will be obtained from the raster. The default option is to use the value at the center of the cell being sampled. The interpolation option will use bilinear interpolation to interpolate a value for the cell center.</para>
+			</bullet_item><bullet_item>
+				<para> Shapefile formats have a field limitation of maximum 10 characters in length. Output fields appended to input shapefile will be truncated and made unique by default. This may make it hard to distinguish between input rasters if the names are long or very similar. In this case it is suggested to convert the features to a file geodatabase.</para>
+			</bullet_item><bullet_item>
+				<para> NoData cells in the value raster will be given a NULL Value. For shapefiles, NULL is not supported and a value of 0 (zero) will be given.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ExtractMultiValuesToPoints example 1 (Python window)</title>
+					<para>Extract the cell values from multiple rasters to attributes in a point shapefile feature class.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy.sa import *
+from arcpy import env 
+env.workspace = "c:/sapyexamples/data"
+ExtractMultiValuesToPoints("observers.shp", [["elevation", "ELEV"], 
+                           ["costraster", "COST"], ["flowdir", "DIR"]], "NONE")
+                    </code></scriptExample><scriptExample><title>ExtractMultiValuesToPoints example 2 (stand-alone script)</title>
+					<para>Extract the cell values from multiple rasters to attributes in a point shapefile feature class using interpolation.</para>
+				<code xml:space="preserve"># Name: ExtractMultiValuesToPoints_Ex_02.py
+# Description: Extracts the cells of multiple rasters as attributes in
+#    an output point feature class.  This example takes a multiband IMG
+#    and two GRID files as input.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inPointFeatures = "poi.shp"
+inRasterList = [["doqq.img", "doqqval"], ["redstd", "focalstd"], 
+                ["redmin", "focalmin"]]
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ExtractValuesToPoints
+ExtractMultiValuesToPoints(inPointFeatures, inRasterList, "BILINEAR")
+                    </code></scriptExample></scriptExamples></tool></metadata>

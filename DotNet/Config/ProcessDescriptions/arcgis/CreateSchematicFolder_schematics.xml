@@ -1,0 +1,47 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Schematic Folder (Schematics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a schematic folder in a schematic dataset or schematic folder.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Diagram</keyword><keyword>Folder</keyword><keyword>New</keyword><keyword>Schema</keyword><keyword>Schematic</keyword><keyword>Schematic Folder</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateSchematicFolder" displayname="Create Schematic Folder (Schematics)" toolboxalias="schematics" softwarerestriction="none"><summary>
+			<para>Creates a schematic folder in a schematic dataset or schematic folder.</para>
+		</summary><alink_name>CreateSchematicFolder_schematics</alink_name><parameters><param sync="true" name="out_location" displayname="Output Location" datatype="Schematic Dataset;Schematic Folder" direction="Input" expression="out_location" type="Required"><pythonReference>
+						<para>The schematic dataset or schematic folder in which the folder will be created. This container must already exist.</para>
+					</pythonReference><dialogReference>
+						<para>The schematic dataset or schematic folder in which the folder will be created. This container must already exist.</para>
+					</dialogReference></param><param sync="true" name="out_name" displayname="Output Schematic Folder Name" datatype="String" direction="Output" expression="out_name" type="Required"><pythonReference>
+						<para>Name of the output schematic folder.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the output schematic folder.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>The output schematic folder must not exist. (The Overwrite output of geoprocessing setting has no effect.)</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Create schematic folder and subfolder</title>
+					<para>Create a schematic folder</para>
+				<code xml:space="preserve"># Name: CreateSchematicFolder.py
+# Description: Create a schematic folder and subfolder
+# Author: ESRI
+
+# import system modules
+import arcpy
+msgNoLicenseAvailable = "Schematics license required"
+
+try:
+	# Check out the ArcGIS Schematic extension licence
+	if arcpy.CheckExtension("Schematics") == "Available":
+		arcpy.CheckOutExtension("Schematics")
+	else:
+		raise Exception(msgNoLicenseAvailable)
+	
+	# Set environnement settings
+	arcpy.OverWriteOutput = True
+	arcpy.env.workspace = "C:\ArcGIS\ArcTutor\Schematics\Schematics_In_ArcMap\ElecDemo.gdb"
+
+	# Process: CreateSchematicFolder to create a main root schematic folder
+	arcpy.CreateSchematicFolder_schematics("ElecDemo", "MySchematicRootFolder")
+
+	# Process: CreateSchematicFolder to create a sub schematic folder in the newly created main folder
+	arcpy.CreateSchematicFolder_schematics("ElecDemo\MySchematicRootFolder", "MySchematicSubFolder")
+
+	# Returns the schematic licence
+	arcpy.CheckInExtension("Schematics")
+
+except Exception as exc:
+		print exc
+                    </code></scriptExample></scriptExamples></tool></metadata>

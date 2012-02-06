@@ -1,0 +1,123 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Extract Data  (Server)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Extracts selected  layers in the specified area of interest to a specific format and spatial reference.   The extracted data is then written to a zip file. </para>
+			
+				<para>This script tool is not intended for general use. This tool is intended specifically  for the use of a Clip and Ship \ Data Extraction geoprocessing service. This tool can be used as part of a Clip and Ship model tool, such as the server model tool Extract Data Task. To create your own Extract Data tool which expands this tool's capabilities, you can copy this tool and its Python script into your project folder and modify it there. If you are only looking for simple tools to subset feature data without specifying selected layers, output format,  and spatial reference, look in the Extract toolset  or at the  Clip tool.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExtractData" displayname=" Extract Data  (Server)" toolboxalias="Server" softwarerestriction="none"><summary>
+			<para> Extracts selected  layers in the specified area of interest to a specific format and spatial reference.   The extracted data is then written to a zip file. </para>
+			
+				<para>This script tool is not intended for general use. This tool is intended specifically  for the use of a Clip and Ship \ Data Extraction geoprocessing service. This tool can be used as part of a Clip and Ship model tool, such as the server model tool Extract Data Task. To create your own Extract Data tool which expands this tool's capabilities, you can copy this tool and its Python script into your project folder and modify it there. If you are only looking for simple tools to subset feature data without specifying selected layers, output format,  and spatial reference, look in the Extract toolset  or at the  Clip tool.</para>
+		</summary><alink_name>ExtractData_Server</alink_name><parameters><param sync="true" name="Layers_to_Clip" displayname="Layers to Clip" datatype="Feature Layer; Raster Layer" direction="Input" expression="[Layers_to_Clip,...]" type="Required"><pythonReference>
+						<para> The Layers to be clipped. Layers should be either feature or raster layers.</para>
+					</pythonReference><dialogReference>
+						<para> The Layers to be clipped. Layers should be either feature or raster layers.</para>
+					</dialogReference></param><param sync="true" name="Area_of_Interest" displayname="Area of Interest" datatype="Feature Set" direction="Input" expression="Area_of_Interest" type="Required"><pythonReference>
+						<para> The area by which the layers will be clipped.</para>
+					</pythonReference><dialogReference>
+						<para> The area by which the layers will be clipped.</para>
+					</dialogReference></param><param sync="true" name="Feature_Format" displayname="Feature Format" datatype="String" direction="Input" expression="Feature_Format" type="Required"><pythonReference>
+						<para> The format in which the output features will be delivered.  </para>
+						<para>The string provided in the Feature Format parameter should be formatted as follows:<bulletList>
+								<bullet_item> Name or format - Short Name - extension (if any). </bullet_item>
+							</bulletList><para>The hyphen between the components is required, as well as the spaces around the hyphen.</para></para>
+						<para>For example:<bulletList>
+								<bullet_item>File Geodatabase - GDB - .gdb</bullet_item>
+								<bullet_item>Shapefile - SHP - .shp</bullet_item>
+								<bullet_item>Autodesk AutoCAD - DXF_R2007 - .dxf </bullet_item>
+								<bullet_item>Autodesk AutoCAD - DWG_R2007 - .dwg</bullet_item>
+								<bullet_item>Bentley Microstation Design (V8) - DGN_V8 - .dgn</bullet_item>
+							</bulletList></para>
+						<para> Internally, this tool uses the Export to CAD tool to convert data to the .dgn, .dwg, and .dxf CAD formats. The list of short names supported includes: DGN_V8, DWG_R14, DWG_R2000, DWG_R2004, DWG_R2005, DWG_R2006,
+DWG_R2007, DWG_R2010, DXF_R14, DXF_R2000, DXF_R2004, DXF_R2005,
+DXF_R2006, DXF_R2007, and DXF_R2010.</para>
+						<para>The formats described in the example are the supported default formats. Exporting to non-default formats is supported using Quick Export Tool and that requires the Data Interoperability extension be installed. The Data Interoperability extension is not installed by default with ArcGIS Desktop or ArcGIS Server. If you have the Data Interoperability extension installed, here are the instructions to add another format to the default listadd, remove or modify default list</para>
+						
+						</pythonReference><dialogReference>
+						<para> The format in which the output features will be delivered.  </para>
+						<para>The string provided in the Feature Format parameter should be formatted as follows:<bulletList>
+								<bullet_item> Name or format - Short Name - extension (if any). </bullet_item>
+							</bulletList><para>The hyphen between the components is required, as well as the spaces around the hyphen.</para></para>
+						<para>For example:<bulletList>
+								<bullet_item>File Geodatabase - GDB - .gdb</bullet_item>
+								<bullet_item>Shapefile - SHP - .shp</bullet_item>
+								<bullet_item>Autodesk AutoCAD - DXF_R2007 - .dxf </bullet_item>
+								<bullet_item>Autodesk AutoCAD - DWG_R2007 - .dwg</bullet_item>
+								<bullet_item>Bentley Microstation Design (V8) - DGN_V8 - .dgn</bullet_item>
+							</bulletList></para>
+						<para> Internally, this tool uses the Export to CAD tool to convert data to the .dgn, .dwg, and .dxf CAD formats. The list of short names supported includes: DGN_V8, DWG_R14, DWG_R2000, DWG_R2004, DWG_R2005, DWG_R2006,
+DWG_R2007, DWG_R2010, DXF_R14, DXF_R2000, DXF_R2004, DXF_R2005,
+DXF_R2006, DXF_R2007, and DXF_R2010.</para>
+						<para>The formats described in the example are the supported default formats. Exporting to non-default formats is supported using Quick Export Tool and that requires the Data Interoperability extension be installed. The Data Interoperability extension is not installed by default with ArcGIS Desktop or ArcGIS Server. If you have the Data Interoperability extension installed, here are the instructions to add another format to the default listadd, remove or modify default list</para>
+						
+						</dialogReference></param><param sync="true" name="Raster_Format" displayname="Raster Format" datatype="String" direction="Input" expression="Raster_Format" type="Required"><pythonReference>
+						<para>The format in which the output raster datasets will be delivered. </para>
+						<para>The string provided in the Raster Format parameter should be formatted as follows:<bulletList>
+								<bullet_item>Name of format - Short Name - extension (if any)</bullet_item>
+							</bulletList></para>
+						<para>Any of the following strings will work:<bulletList>
+								<bullet_item>ESRI GRID - GRID</bullet_item>
+								<bullet_item>File Geodatabase - GDB - .gdb</bullet_item>
+								<bullet_item>ERDAS IMAGINE - IMG - .img</bullet_item>
+								<bullet_item>Tagged Image File Format - TIFF - .tif</bullet_item>
+								<bullet_item>Portable Network Graphics - PNG - .png</bullet_item>
+								<bullet_item>Graphic Interchange Format - GIF - .gif</bullet_item>
+								<bullet_item>Joint Photographics Experts Group - JPEG - .jpg</bullet_item>
+								<bullet_item>Joint Photographics Experts Group - JPEG - .jp2</bullet_item>
+								<bullet_item>Bitmap - BMP - .bmp</bullet_item>
+							</bulletList>
+								<para>Some of the above raster formats have limitations and not all data can be converted to the format. For a list of formats and their limitations please read Technical Specifications for Raster Datasets.</para>
+							</para>
+					</pythonReference><dialogReference>
+						<para>The format in which the output raster datasets will be delivered. </para>
+						<para>The string provided in the Raster Format parameter should be formatted as follows:<bulletList>
+								<bullet_item>Name of format - Short Name - extension (if any)</bullet_item>
+							</bulletList></para>
+						<para>Any of the following strings will work:<bulletList>
+								<bullet_item>ESRI GRID - GRID</bullet_item>
+								<bullet_item>File Geodatabase - GDB - .gdb</bullet_item>
+								<bullet_item>ERDAS IMAGINE - IMG - .img</bullet_item>
+								<bullet_item>Tagged Image File Format - TIFF - .tif</bullet_item>
+								<bullet_item>Portable Network Graphics - PNG - .png</bullet_item>
+								<bullet_item>Graphic Interchange Format - GIF - .gif</bullet_item>
+								<bullet_item>Joint Photographics Experts Group - JPEG - .jpg</bullet_item>
+								<bullet_item>Joint Photographics Experts Group - JPEG - .jp2</bullet_item>
+								<bullet_item>Bitmap - BMP - .bmp</bullet_item>
+							</bulletList>
+								<para>Some of the above raster formats have limitations and not all data can be converted to the format. For a list of formats and their limitations please read Technical Specifications for Raster Datasets.</para>
+							</para>
+					</dialogReference></param><param sync="true" name="Spatial_Reference" displayname="Spatial Reference" datatype="String" direction="Input" expression="Spatial_Reference" type="Required"><pythonReference>
+						<para>The spatial reference of the output data delivered by the tool.</para>
+						<para>For standard ESRI spatial references, the name you provide here should be the name of the desired coordinate system. This name corresponds to the name of the spatial reference's projection file. Alternatively, you can use the Well Known ID (WKID) of the coordinate system.</para>
+						<para>For example: <bulletList>
+								<bullet_item>Sinusoidal (world)</bullet_item>
+								<bullet_item>WGS 1984 Web Mercator</bullet_item>
+								<bullet_item>NAD 1983 HARN StatePlane Oregon North FIPS 3601</bullet_item>
+								<bullet_item>WGS 1984 UTM Zone 11N</bullet_item>
+								<bullet_item>102003</bullet_item>
+								<bullet_item>54001</bullet_item>
+								<bullet_item>If you want the output to have the same coordinate system as the input, then use the string "Same As Input".</bullet_item>
+							</bulletList></para>
+						<para>For any custom projection, the name specified should be the name of the custom projection file (without extension). The location of the custom projection file(s) should be specified in the Custom Spatial Reference Folder parameter.</para>
+					</pythonReference><dialogReference>
+						<para>The spatial reference of the output data delivered by the tool.</para>
+						<para>For standard ESRI spatial references, the name you provide here should be the name of the desired coordinate system. This name corresponds to the name of the spatial reference's projection file. Alternatively, you can use the Well Known ID (WKID) of the coordinate system.</para>
+						<para>For example: <bulletList>
+								<bullet_item>Sinusoidal (world)</bullet_item>
+								<bullet_item>WGS 1984 Web Mercator</bullet_item>
+								<bullet_item>NAD 1983 HARN StatePlane Oregon North FIPS 3601</bullet_item>
+								<bullet_item>WGS 1984 UTM Zone 11N</bullet_item>
+								<bullet_item>102003</bullet_item>
+								<bullet_item>54001</bullet_item>
+								<bullet_item>If you want the output to have the same coordinate system as the input, then use the string "Same As Input".</bullet_item>
+							</bulletList></para>
+						<para>For any custom projection, the name specified should be the name of the custom projection file (without extension). The location of the custom projection file(s) should be specified in the Custom Spatial Reference Folder parameter.</para>
+					</dialogReference></param><param sync="true" name="Custom_Spatial_Reference_Folder" displayname="Custom Spatial Reference Folder" datatype="Folder" direction="Input" expression="Custom_Spatial_Reference_Folder" type="Optional"><pythonReference>
+						<para> The location of any custom projection file or files referenced in the Spatial Reference parameter. This is only necessary if the custom projection file is not in the default install Coordinate System folder. </para>
+					</pythonReference><dialogReference>
+						<para> The location of any custom projection file or files referenced in the Spatial Reference parameter. This is only necessary if the custom projection file is not in the default install Coordinate System folder. </para>
+					</dialogReference></param><param sync="true" name="Output_Zip_File" displayname="Output Zip File" datatype="File" direction="Output" expression="Output_Zip_File" type="Required"><pythonReference>
+						<para> The output Zip File that will contain the extracted data. </para>
+					</pythonReference><dialogReference>
+						<para> The output Zip File that will contain the extracted data. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>A custom spatial reference name can also be entered into the Spatial Reference parameter provided that the folder containing the custom spatial reference is specified in the Custom Spatial Reference Folder parameter.</para>
+			</bullet_item><bullet_item><para></para></bullet_item><bullet_item><para></para></bullet_item><bullet_item><para></para></bullet_item></usage><scriptExamples></scriptExamples></tool></metadata>

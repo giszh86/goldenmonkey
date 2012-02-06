@@ -1,0 +1,84 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Join Field (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Joins the contents of a table to another table based on a common attribute field. The input table is updated to contain the fields from the join table. You can select which fields from the join table will be added to the input table.</para>
+			<para>The records in the Input Table are matched to the records in the Join Table based on the values of Input Join Field and the Output Join Field. Optionally, only desired fields can be selected from the Join Table and appended to the Input Table during the join.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Attribute</keyword><keyword>Column</keyword><keyword>Combine</keyword><keyword>Common</keyword><keyword>Data</keyword><keyword>Field</keyword><keyword>Forever</keyword><keyword>Match</keyword><keyword>Move</keyword><keyword>Permanent</keyword><keyword>Persist</keyword><keyword>Share</keyword><keyword>Source</keyword><keyword>Table</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="JoinField" displayname="Join Field (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Joins the contents of a table to another table based on a common attribute field. The input table is updated to contain the fields from the join table. You can select which fields from the join table will be added to the input table.</para>
+			<para>The records in the Input Table are matched to the records in the Join Table based on the values of Input Join Field and the Output Join Field. Optionally, only desired fields can be selected from the Join Table and appended to the Input Table during the join.</para>
+		</summary><alink_name>JoinField_management</alink_name><toolIllust type="illustration" src="JoinField_management_h.png" alt="the join field tool" /><parameters><param sync="true" name="in_data" displayname="Input Table" datatype="Table;Feature Class" direction="Input" expression="in_data" type="Required"><pythonReference>
+						<para>The table or feature class to which the join table will be joined.</para>
+					</pythonReference><dialogReference>
+						<para>The table or feature class to which the join table will be joined.</para>
+					</dialogReference></param><param sync="true" name="in_field" displayname="Input Join Field" datatype="Field" direction="Input" expression="in_field" type="Required"><pythonReference>
+						<para>The field in the input table on which the join will be based.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the input table on which the join will be based.</para>
+					</dialogReference></param><param sync="true" name="join_table" displayname="Join Table" datatype="Table;Feature Class" direction="Input" expression="join_table" type="Required"><pythonReference>
+						<para>The table to be joined to the input table.</para>
+					</pythonReference><dialogReference>
+						<para>The table to be joined to the input table.</para>
+					</dialogReference></param><param sync="true" name="join_field" displayname="Output Join Field" datatype="Field" direction="Input" expression="join_field" type="Required"><pythonReference>
+						<para>The field in the join table that contains the values on which the join will be based.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the join table that contains the values on which the join will be based.</para>
+					</dialogReference></param><param sync="true" name="fields" displayname="Join table fields" datatype="Field" direction="Input" expression="[fields,...]" type="Optional"><pythonReference>
+						<para>The fields from the join table to be included in the join.</para>
+					</pythonReference><dialogReference>
+						<para>The fields from the join table to be included in the join.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+						
+					</environment></environments><usage><bullet_item>
+				
+				<para>All fields in the Input Table will be kept during the join. Optionally, only selected fields from the Join Table will be added to the output. These can be checked under the Join Fields parameter.</para>
+			</bullet_item><bullet_item>
+				<para>If no fields are selected for the optional Join Fields parameter, all fields from the Join Table to the output will be joined.</para>
+			</bullet_item><bullet_item>
+				<para>The Input Table can be a feature class, table, or shapefile.</para>
+			</bullet_item><bullet_item>
+				<para>Records from the Join Table can be matched to more than one record in the Input Table.</para>
+			</bullet_item><bullet_item>
+				<para>Joins can be based on fields of types text, date, or number.</para>
+			</bullet_item><bullet_item>
+				<para>Joins based on text fields are case-sensitive.</para>
+			</bullet_item><bullet_item>
+				<para>Fields of different number  can be joined as long as the values are equal. For example, a field of type float can be joined to a short integer field.</para>
+			</bullet_item><bullet_item>
+				<para>The Input Join Field and the Output Join Field can have different names.</para>
+			</bullet_item><bullet_item>
+				<para>If a join field has the same name as a field from the input table, the joined field will be appended by _1 (or _2 or _3, and so on) to make it unique.</para>
+			</bullet_item><bullet_item>
+				<para>If values in the Output Join Field are not unique, only the first occurrence of each value will be used.</para>
+				<bulletList>
+					<bullet_item>To account for join table values other than the first occurrence, start by executing the  tool using the Join Table as input. Summary Statistics allows you to summarize field(s) (e.g., sum, mean, min). </bullet_item><bullet_item>To merge two or more fields in the join table before the join, first export the table or feature class using the  tool and merge using the tool's . </bullet_item>
+				</bulletList>
+			</bullet_item></usage><scriptExamples><scriptExample><title>JoinField Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the JoinField function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/data.gdb"
+arcpy.JoinField_management("zion_park", "zonecode", "zion_zoning", "zonecode", ["land_use","land_cover"])
+                    </code></scriptExample><scriptExample><title>JoinField Example 2 (Stand-alone Script)</title>
+					<para>This stand-alone script shows the JoinField function used to join a table to a feature class and only include two of the table's fields in the join.</para>
+				<code xml:space="preserve"># PermanentJoin.py
+# Purpose: Join two fields from a table to a feature class 
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set the current workspace 
+env.workspace = "c:/data/data.gdb"
+
+# Set the local parameters
+inFeatures = "zion_park"
+joinField = "zonecode"
+joinTable = "zion_zoning"
+fieldList = ["land_use", "land_cover"]
+
+# Join two feature classes by the zonecode field and only carry 
+# over the land use and land cover fields
+arcpy.JoinField_management (inFeatures, joinField, joinTable, joinField, fieldList)
+                    </code></scriptExample></scriptExamples></tool></metadata>

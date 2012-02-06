@@ -1,0 +1,85 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Representation (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds a feature class representation to a geodatabase feature class.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cartography</keyword><keyword>Override</keyword><keyword>Representation</keyword><keyword>Symbology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddRepresentation" displayname="Add Representation (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Adds a feature class representation to a geodatabase feature class.</para>
+			
+		</summary><alink_name>AddRepresentation_cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input geodatabase feature class to which a new feature class representation will be added.</para>
+					</pythonReference><dialogReference>
+						<para>The input geodatabase feature class to which a new feature class representation will be added.</para>
+					</dialogReference></param><param sync="true" name="representation_name" displayname="Representation Name" datatype="String" direction="Input" expression="representation_name" type="Required"><pythonReference>
+						<para>The name of the feature class representation to be added.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the feature class representation to be added.</para>
+					</dialogReference></param><param sync="true" name="rule_id_field_name" displayname="RuleID Field Name" datatype="String" direction="Input" expression="rule_id_field_name" type="Required"><pythonReference>
+						<para>The name of the RuleID field, which will hold a reference to the representation rule for each feature.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the RuleID field, which will hold a reference to the representation rule for each feature.</para>
+					</dialogReference></param><param sync="true" name="override_field_name" displayname="Override Field Name" datatype="String" direction="Input" expression="override_field_name" type="Required"><pythonReference>
+						<para>The name of the Override field, which will hold overrides to representation rules for each feature.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the Override field, which will hold overrides to representation rules for each feature.</para>
+					</dialogReference></param><param sync="true" name="geometry_editing_option" displayname="Geometry Editing Option" datatype="String" direction="Input" expression="geometry_editing_option" type="Optional"><pythonReference>
+						<para>Specifies what will happen to the supporting feature class geometry when features are modified with the representation editing tools.</para>
+						<bulletList><bullet_item>STORE_CHANGE_AS_OVERRIDE—Geometry modification made to features with the representation editing tools or using any of the geoprocessing tools in the Cartography toolbox will be stored as shape overrides in the Override field. Supporting feature class geometry (stored in the Shape field of the feature class) will be unaffected. This is the default. </bullet_item><bullet_item>MODIFY_FEATURE_SHAPE—Geometry modifications made to features with the representation editing tools, or using any of the geoprocessing tools in the Cartography toolbox, will modify the supporting feature class geometry (stored in the Shape field of the feature class.) No shape overrides will be stored. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies what will happen to the supporting feature class geometry when features are modified with the representation editing tools.</para>
+						<bulletList><bullet_item>STORE_CHANGE_AS_OVERRIDE—Geometry modification made to features with the representation editing tools or using any of the geoprocessing tools in the Cartography toolbox will be stored as shape overrides in the Override field. Supporting feature class geometry (stored in the Shape field of the feature class) will be unaffected. This is the default. </bullet_item><bullet_item>MODIFY_FEATURE_SHAPE—Geometry modifications made to features with the representation editing tools, or using any of the geoprocessing tools in the Cartography toolbox, will modify the supporting feature class geometry (stored in the Shape field of the feature class.) No shape overrides will be stored. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="import_rule_layer" displayname="Import Rule Layer" datatype="Layer" direction="Input" expression="import_rule_layer" type="Optional"><pythonReference>
+						<para>A feature layer that symbolizes features with a feature class representation, from which the representation rules are imported.</para>
+					</pythonReference><dialogReference>
+						<para>A feature layer that symbolizes features with a feature class representation, from which the representation rules are imported.</para>
+					</dialogReference></param><param sync="true" name="assign_rule_id_option" displayname="Assign Rule IDs" datatype="String" direction="Input" expression="assign_rule_id_option" type="Optional"><pythonReference>
+						<para>Specifies whether or not to assign representation rules to features to match the RuleID assignments of the import rule layer. This option applies only when Import Rule Layer is specified.</para>
+						<bulletList><bullet_item>ASSIGN—assign RuleIDs to features to match the import rule layer. This is the default. </bullet_item><bullet_item>NO_ASSIGN—Specifies not to match RuleIDs to features from the import rule layer. Features will be assigned to the default representation rule instead. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether or not to assign representation rules to features to match the RuleID assignments of the import rule layer. This option applies only when Import Rule Layer is specified.</para>
+						<bulletList><bullet_item>ASSIGN—assign RuleIDs to features to match the import rule layer. This is the default. </bullet_item><bullet_item>NO_ASSIGN—Specifies not to match RuleIDs to features from the import rule layer. Features will be assigned to the default representation rule instead. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cartographic_coordinate_system" label="Cartographic coordinate system">
+						
+					</environment><environment name="Reference_scale" label="Reference scale">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input must be a geodatabase feature class.</para>
+			</bullet_item><bullet_item><para>Two new fields with the specified field names will be appended to the input feature class attribute table to identify the representation rules that govern how each category of features will be portrayed, and to hold any feature-specific overrides to these rules.</para></bullet_item><bullet_item>
+				<para>Specify an import rule layer to import symbol choices listed under the renderer type (i.e., Categories-Unique values) specified on the layer file. All of the symbol choices will be copied into this feature class representation as new representation rules. If an import rule layer is not specified, all features will be assigned to a single default representation rule.</para>
+			</bullet_item><bullet_item>
+				<para>If the import rule layer has the same source feature class as the input feature class, you can use the Assign Rule IDs parameter to assign representation rules to features to match the RuleID assignments of the import rule layer.</para>
+			</bullet_item><bullet_item>
+				<para>If an import rule layer is specified and the Assign Rule IDs parameter is set to ASSIGN, all features will be assigned to a representation rule based on the symbol choices listed under the renderer type (i.e., Categories-Unique values) specified on the layer file. If an import rule layer is specified, but the Assign Rule IDs parameter is set to NO_ASSIGN, all features will be assigned to a single default representation rule.</para>
+			</bullet_item><bullet_item>
+				<para>If &lt;all other values&gt; is used to symbolize features in the input layer, that symbol will become Rule ID 1 when a representation is added.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AddRepresentation tool Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the AddRepresentation tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.AddRepresentation_cartography("C:/data/cartography.gdb/buildings/footprints",
+                                    "footprints_Rep", "RuleID", "Override",
+                                    "STORE_CHANGE_AS_OVERRIDE", "C:/data/footprints.lyr", "ASSIGN")
+                    </code></scriptExample><scriptExample><title>AddRepresentation tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the AddRepresentation tool.</para>
+				<code xml:space="preserve"># Name: AddRepresentation_standalone_script.py
+# Description: Adds a feature class representation to a geodatabase feature class.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+in_features = "C:/data/cartography.gdb/buildings/footprints"
+representation_name = "footprints_Rep"
+rule_id_field_name = "RuleID"
+override_field_name = "Override"
+geometry_editing_option = "STORE_CHANGE_AS_OVERRIDE"
+import_rule_layer = "C:/data/footprints.lyr"
+assign_rule_id_option = "ASSIGN"
+
+# Execute Add Representation
+arcpy.AddRepresentation_cartography(in_features, representation_name, rule_id_field_name, override_field_name, geometry_editing_option, import_rule_layer, assign_rule_id_option)
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,91 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Curvature (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the curvature of a raster surface, optionally including profile and plan curvature.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Concave</keyword><keyword>Convex</keyword><keyword>Dem</keyword><keyword>Digital Elevation Model</keyword><keyword>Elevation</keyword><keyword>Gradient</keyword><keyword>Plan</keyword><keyword>Profile</keyword><keyword>Second Derivative</keyword><keyword>Slope</keyword><keyword>Upward</keyword><keyword>Z-Factor</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Curvature" displayname="Curvature (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates the curvature of a raster surface, optionally including profile and plan curvature.</para>
+			
+		</summary><alink_name>Curvature_sa</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input surface raster.</para></pythonReference><dialogReference>
+						<para>The input surface raster.</para></dialogReference></param><param sync="true" name="z_factor" displayname="Z factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>Number of ground x,y units in one surface z unit.</para>
+						<para>The z-factor adjusts the units of measure for the z units when they are different from the x,y units of the input surface. The z-values of the input surface are multiplied by the z-factor when calculating the final output surface.</para>
+						<para>If the x,y units and z units are in the same units of measure, the z-factor is 1. This is the default.</para>
+						<para>If the x,y units and z units are in different units of measure, the z-factor must be set to the appropriate factor, or the results will be incorrect. For example, if your z units are feet and your x,y units are meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</pythonReference><dialogReference>
+						<para>Number of ground x,y units in one surface z unit.</para>
+						<para>The z-factor adjusts the units of measure for the z units when they are different from the x,y units of the input surface. The z-values of the input surface are multiplied by the z-factor when calculating the final output surface.</para>
+						<para>If the x,y units and z units are in the same units of measure, the z-factor is 1. This is the default.</para>
+						<para>If the x,y units and z units are in different units of measure, the z-factor must be set to the appropriate factor, or the results will be incorrect. For example, if your z units are feet and your x,y units are meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</dialogReference></param><param sync="true" name="out_profile_curve_raster" displayname="Output profile curve raster" datatype="Raster Dataset" direction="Output" expression="out_profile_curve_raster" type="Optional"><pythonReference>
+						<para>Output profile curve raster dataset.</para>
+						<para>This is the curvature of the surface in the direction of slope.</para>
+					</pythonReference><dialogReference>
+						<para>Output profile curve raster dataset.</para>
+						<para>This is the curvature of the surface in the direction of slope.</para>
+					</dialogReference></param><param sync="true" name="out_plan_curve_raster" displayname="Output plan curve raster" datatype="Raster Dataset" direction="Output" expression="out_plan_curve_raster" type="Optional"><pythonReference>
+						<para>Output plan curve raster dataset.</para>
+						<para>This is the curvature of the surface perpendicular to the slope direction.</para>
+					</pythonReference><dialogReference>
+						<para>Output plan curve raster dataset.</para>
+						<para>This is the curvature of the surface perpendicular to the slope direction.</para>
+					</dialogReference></param><param sync="true" name="out_curvature_raster" displayname="Output curvature raster" datatype="Raster" direction="Output" expression="out_curvature_raster" type="Required"><pythonReference>
+							<para>The output curvature raster.</para></pythonReference><dialogReference>
+							<para>The output curvature raster.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The primary output is the curvature of the surface on a cell-by-cell basis, as fitted through that cell and its eight surrounding neighbors. Curvature is the second derivative of the surface,  or the slope-of-the-slope. Two optional output curvature types are possible: the profile curvature is in the direction of the maximum slope, and the plan curvature is perpendicular to the direction of the maximum slope.</para>
+			</bullet_item><bullet_item>
+				<para>A positive curvature indicates the surface is upwardly convex at that cell. A negative curvature indicates the surface is upwardly concave at that cell. A value of 0 indicates the surface is flat.</para>
+			</bullet_item><bullet_item>
+				<para>In the profile output, a negative value indicates the surface is upwardly convex at that cell. A positive profile indicates the surface is upwardly concave at that cell. A value of 0 indicates the surface is flat.</para>
+			</bullet_item><bullet_item>
+				<para>In the plan output, a positive value indicates the surface is upwardly convex at that cell. A negative plan indicates the surface is upwardly concave at that cell. A value of 0 indicates the surface is flat.</para>
+			</bullet_item><bullet_item>
+				<para>Units of the curvature output raster, as well as the units for the optional output profile curve raster and output plan curve raster, are one hundredth (1/100) of a z-unit. The reasonably expected values of all three output rasters for a hilly area (moderate relief) can vary from -0.5 to 0.5; while for steep, rugged mountains (extreme relief), the values can vary between -4 and 4.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Curvature example 1 (Python window)</title>
+					<para>This example creates a curvature raster from an input surface raster and also applies a z-factor.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outCurve = Curvature("elevation", 1.094)
+outCurve.save("C:/sapyexamples/output/outcurv01")
+                    </code></scriptExample><scriptExample><title>Curvature example 2 (stand-alone script)</title>
+					<para>This example creates a curvature raster from an input surface raster and also applies a z-factor.</para><code xml:space="preserve"># Name: Curvature_Ex_02.py
+# Description: Calculates the curvature of a raster surface, 
+#     optionally including profile and plan curvature.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "elevation"
+zFactor = 1.094
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Curvature
+outCurve = Curvature(inRaster, 1.094)
+
+# Save the output 
+outCurve.save("C:/sapyexamples/output/outcurv02")
+                    </code></scriptExample></scriptExamples></tool></metadata>

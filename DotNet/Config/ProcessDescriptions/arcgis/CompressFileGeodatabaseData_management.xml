@@ -1,0 +1,50 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Compress File Geodatabase Data (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Compresses all the contents in a geodatabase, all the contents in a feature
+dataset, or an individual stand-alone feature class or table.
+</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Compact</keyword><keyword>Disk Space</keyword><keyword>Large</keyword><keyword>Read Only</keyword><keyword>Reduce</keyword><keyword>Shrink</keyword><keyword>Size</keyword><keyword>Small</keyword><keyword>Zip</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CompressFileGeodatabaseData" displayname="Compress File Geodatabase Data (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Compresses all the contents in a geodatabase, all the contents in a feature
+dataset, or an individual stand-alone feature class or table.
+</para>
+		</summary><alink_name>CompressFileGeodatabaseData_management</alink_name><parameters><param sync="true" name="in_data" displayname="Input file geodatabase data" datatype="Workspace; Feature Dataset; Table View; Raster Layer" direction="Input" expression="in_data" type="Required"><pythonReference>
+						<para>The geodatabase, feature dataset, feature class, or table to compress.</para>
+					</pythonReference><dialogReference>
+						<para>The geodatabase, feature dataset, feature class, or table to compress.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para>Once compressed, a feature class or table is read-only and cannot be edited. Compression is ideally suited to mature datasets that do not require further editing. However, if required, a compressed dataset can always be uncompressed to return it to its original, read-write format.</para>
+			</bullet_item><bullet_item>
+				<para>When you compress a geodatabase, all feature classes and tables within it compress. </para>
+			</bullet_item><bullet_item><para>When you compress a feature dataset, all its feature classes compress.</para></bullet_item><bullet_item>
+				<para>When you specify a geodatabase as input, this tool compresses all vector feature classes and tables in the geodatabase. It does not compress raster catalogs or raster datasets. If it encounters these in the specified geodatabase, it skips over them. You can individually compress a raster catalog or raster dataset with this tool; however, it makes little sense since the data does not reduce in size. This support is provided strictly as a means to allow ArcPublisher to package to compressed and locked file geodatabase raster catalogs and datasets.</para>
+			</bullet_item><bullet_item>
+				<para>You cannot individually compress or uncompress a feature class in a feature dataset to produce a mixed state where some feature classes are compressed and others are not. Compressed feature datasets allow you to add an uncompressed feature class through operations such as creating a new, empty feature class, copying and pasting, and importing. However, you cannot edit the uncompressed feature class if there are compressed feature classes in the same feature dataset. Once you've finished adding one or more uncompressed feature classes, you can recompress or uncompress the feature dataset so all its feature classes are either compressed or uncompressed.</para>
+			</bullet_item><bullet_item>
+				<para>When you display compressed feature class records in ArcCatalog or ArcMap, they may not display in the same order as they did before you compressed the data. The records display in the order in which they are compressed and stored.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title> CompressFileGeodatabaseData Example (Python Window) </title><para>The following example demonstrates how to use the CompressFileGeodatabaseData function in the python window.</para><code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data/"
+arcpy.CompressFileGeodatabaseData_management("london.gdb")
+
+                    </code></scriptExample><scriptExample><title> CompressFileGeodatabaseData Example (Stand-alone Python script) </title><para>The following example demonstrates how to use the CompressFileGeodatabaseData function in a standalone python script.</para><code xml:space="preserve">
+# Name: CompressFileGeodatabaseData.py
+# Description: Use the CompressFileGeodatabaseData tool to compress a geodatabase
+# Author: ESRI
+
+# import system modules
+import arcpy, os
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+geodatabase = "london.gdb"
+
+try:
+# Process: Compress the data
+arcpy.CompressFileGeodatabaseData_management(geodatabase)
+
+except:
+# If an error occurred while running the tool print the messages
+print arcpy.GetMessages()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

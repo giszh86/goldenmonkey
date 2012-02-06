@@ -1,0 +1,66 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">USGS MP Metadata Translator (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			
+			
+			<para>Uses the USGS metadata parser utility, known as mp, to export or validate FGDC metadata content. The mp utility is created and maintained by the USGS for managing metadata that follows the FGDC <italics>Content Standard for Digital Geospatial Metadata (CSDGM)</italics>. A version of mp is provided with ArcGIS.</para>
+			
+				<para>This tool only uses metadata elements in an item's metadata or a stand-alone metadata XML file that follow the FGDC CSDGM metadata format. FGDC content may exist in an ArcGIS item's metadata. For example, if the metadata was created in ArcGIS Desktop 9.3.1 or earlier using the FGDC metadata editor and it has been upgraded to ArcGIS metadata, the item's metadata will continue to include the original FGDC metadata elements. In this example this tool would only export the original FGDC metadata—the information displayed in the FGDC metadata section in the Description tab.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Check</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>Fgdc</keyword><keyword>Format</keyword><keyword>Import</keyword><keyword>Make</keyword><keyword>Mp</keyword><keyword>Parse</keyword><keyword>Save</keyword><keyword>Standard</keyword><keyword>Style</keyword><keyword>Transfer</keyword><keyword>Translate</keyword><keyword>Turn</keyword><keyword>Utility</keyword><keyword>Validate</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="USGSMPTranslator" displayname="USGS MP Metadata Translator (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			
+			
+			<para>Uses the USGS metadata parser utility, known as mp, to export or validate FGDC metadata content. The mp utility is created and maintained by the USGS for managing metadata that follows the FGDC <italics>Content Standard for Digital Geospatial Metadata (CSDGM)</italics>. A version of mp is provided with ArcGIS.</para>
+			
+				<para>This tool only uses metadata elements in an item's metadata or a stand-alone metadata XML file that follow the FGDC CSDGM metadata format. FGDC content may exist in an ArcGIS item's metadata. For example, if the metadata was created in ArcGIS Desktop 9.3.1 or earlier using the FGDC metadata editor and it has been upgraded to ArcGIS metadata, the item's metadata will continue to include the original FGDC metadata elements. In this example this tool would only export the original FGDC metadata—the information displayed in the FGDC metadata section in the Description tab.</para>
+			
+		</summary><alink_name>USGSMPTranslator_conversion</alink_name><parameters><param sync="true" name="source" displayname="Source Metadata" datatype="Data Element; Layer" direction="Input" expression="source" type="Required"><pythonReference>
+						<para>The item whose metadata will be converted, or a stand-alone XML file that will be converted.</para>
+					</pythonReference><dialogReference>
+						<para>The item whose metadata will be converted, or a stand-alone XML file that will be converted.</para>
+					</dialogReference></param><param sync="true" name="config" displayname="Configuration File" datatype="File" direction="Input" expression="config" type="Optional"><pythonReference>
+						<para>A file that defines custom parameters that mp will consider when processing the metadata.</para>
+						<para>To export metadata without using a configuration file, provide # instead of a file name.</para>
+					</pythonReference><dialogReference>
+						<para>A file that defines custom parameters that mp will consider when processing the metadata.</para>
+					</dialogReference></param><param sync="true" name="conversion" displayname="Conversion Type" datatype="String" direction="Input" expression="conversion" type="Optional"><pythonReference>
+						<para>The type of conversion that will take place.</para>
+						<bulletList><bullet_item>none—No conversion will be performed. </bullet_item><bullet_item>XML—An XML file will be created as output. </bullet_item><bullet_item>HTML—An HTML file will be created as output. </bullet_item><bullet_item>TEXT—A text file will be created as output.</bullet_item><bullet_item>FAQ—An HTML file in FAQ format will be created as output.</bullet_item><bullet_item>SGML—An SGML file will be created as output.</bullet_item><bullet_item>DIF—A text file in DIF format will be created as output.</bullet_item></bulletList>
+						<para>By default, the "XML" conversion will be performed.</para>
+					</pythonReference><dialogReference>
+						<para>The type of conversion that will take place.</para>
+						<bulletList><bullet_item>none—No conversion will be performed. </bullet_item><bullet_item>XML—An XML file will be created as output. </bullet_item><bullet_item>HTML—An HTML file will be created as output. </bullet_item><bullet_item>TEXT—A text file will be created as output.</bullet_item><bullet_item>FAQ—An HTML file in FAQ format will be created as output.</bullet_item><bullet_item>SGML—An SGML file will be created as output.</bullet_item><bullet_item>DIF—A text file in DIF format will be created as output.</bullet_item></bulletList>
+						<para>By default, the "XML" conversion will be performed.</para>
+					</dialogReference></param><param sync="true" name="output" displayname="Output File" datatype="File" direction="Output" expression="output" type="Optional"><pythonReference>
+						<para>A file that will be created containing the converted metadata. </para>
+						<para>The type of file created is defined by the conversion type.</para>
+						<para>To check for problems in the FGDC metadata using mp and not produce a output file, provide # instead of a file name.</para>
+					</pythonReference><dialogReference>
+						<para>A file that will be created containing the converted metadata. </para>
+						<para>The type of file created is defined by the conversion type.</para>
+					</dialogReference></param><param sync="true" name="errors" displayname="Log File" datatype="File" direction="Output" expression="errors" type="Optional"><pythonReference>
+						<para>A text file that will be created listing the warnings and errors that occurred during the conversion process.</para>
+						<para>To export metadata without producing a log file, provide # instead of a file name.</para>
+					</pythonReference><dialogReference>
+						<para>A text file that will be created listing the warnings and errors that occurred during the conversion process.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para>Documentation for the mp utility can be found on the .</para>
+			</bullet_item><bullet_item>
+				<para>FGDC metadata elements, if they exist in ArcGIS metadata, will not be in the correct order as specified by the FGDC CSDGM rules. If the mp utility is used independently to validate or export ArcGIS metadata, mp will record warnings in the log file indicating the elements are out of order. This tool internally processes ArcGIS metadata using the _MPXML2.xsl stylesheet in the   &lt;ArcGIS Install Location&gt;\Metadata\Stylesheets  folder
+to select only FGDC metadata elements and order them correctly before using mp to export or validate the resulting XML file. </para>
+			</bullet_item><bullet_item>
+				<para>When using the tool dialog, the default Output File name will have a file extension that is appropriate for the conversion type that is selected at the time that the source metadata is defined. If you change the conversion type after specifying the source, delete the default output file name and a new file name will be generated with an appropriate file extension. Or, you can change the output file extension manually.</para>
+			</bullet_item><bullet_item>
+				<para>For all conversion types, the source metadata will be validated according to the FGDC CSDGM rules and any warnings or errors regarding the metadata content will be reported in the tool's messages. If a Log File is specified, the same warnings or errors will be saved to the specified file. If the "none" conversion is specified, only the Log File will be created. A conversion won't be performed and an output file won't be generated.</para>
+			</bullet_item><bullet_item>
+				<para>The output files produced by this tool can't be stored in a geodatabase. If the  environment is set to a geodatabase the output files will be stored in a different location, as described below.</para>
+				<bulletList>
+					<bullet_item>If the  set to a file or personal geodatabase the output files will be stored in the folder in which the geodatabase is stored.</bullet_item>
+					<bullet_item>If the  is set to an enterprise or workgroup geodatabase the output files will be stored in the location defined by the system TEMP environment variable. </bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>The Source Metadata parameter has a complex data type. If you use this tool in a model, create a variable for the Source Metadata parameter in ModelBuilder by right-clicking the tool, pointing to Make VariableFrom ParameterSource Metadata.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Export an ArcGIS item's existing FGDC metadata</title><para>Exports information in an ArcGIS item's metadata that is formatted according to the FGDC CSDGM standard to an HTML file.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.USGSMPTranslator_conversion("yellowstone.mxd", "#", "HTML", 
+    "yellowstone_map.html", "yellowstone_map.log")
+                    </code></scriptExample></scriptExamples></tool></metadata>

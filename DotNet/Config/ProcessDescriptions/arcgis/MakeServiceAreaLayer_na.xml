@@ -1,0 +1,197 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make Service Area Layer (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Makes a service area network analysis layer and sets its analysis properties. A service area analysis layer is useful in determining the area of accessibility within a given cutoff cost from a facility location. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alter</keyword><keyword>Altered</keyword><keyword>Area Layer</keyword><keyword>Layer</keyword><keyword>Network Analyst Layer</keyword><keyword>Service</keyword><keyword>Service Area</keyword><keyword>Service Area Layer</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeServiceAreaLayer" displayname="Make Service Area Layer (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Makes a service area network analysis layer and sets its analysis properties. A service area analysis layer is useful in determining the area of accessibility within a given cutoff cost from a facility location. </para>
+		</summary><alink_name>MakeServiceAreaLayer_na</alink_name><parameters><param sync="true" name="in_network_dataset" displayname="Input analysis network" datatype="Network Dataset Layer" direction="Input" expression="in_network_dataset" type="Required"><pythonReference>
+						<para>The network dataset on which the service area analysis will be performed.</para>
+					</pythonReference><dialogReference>
+						<para>The network dataset on which the service area analysis will be performed.</para>
+					</dialogReference></param><param sync="true" name="out_network_analysis_layer" displayname="Output Layer Name" datatype="String" direction="Output" expression="out_network_analysis_layer" type="Required"><pythonReference>
+						<para>Name of the service area network analysis layer to create.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the service area network analysis layer to create.</para>
+					</dialogReference></param><param sync="true" name="impedance_attribute" displayname="Impedance attribute" datatype="String" direction="Input" expression="impedance_attribute" type="Required"><pythonReference>
+						<para>The cost attribute to be used as impedance in the analysis.</para>
+					</pythonReference><dialogReference>
+						<para>The cost attribute to be used as impedance in the analysis.</para>
+					</dialogReference></param><param sync="true" name="travel_from_to" displayname="Travel from or to facility" datatype="String" direction="Input" expression="travel_from_to" type="Optional"><pythonReference>
+						<para>Specifies the direction of travel to or from the facilities.</para>
+						<bulletList><bullet_item>TRAVEL_FROM—The service area is created in the direction away from the facilities. </bullet_item><bullet_item>TRAVEL_TO—The service area is created in the direction towards the facilities.</bullet_item></bulletList>
+						<para> Using this option can result in different service areas on a network with one-way restrictions and having different impedances based on direction of travel. The service area for a pizza delivery store, for example, should be created away from the facility, whereas the service area of a hospital should be created toward the facility.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the direction of travel to or from the facilities.</para>
+						<bulletList><bullet_item>TRAVEL_FROM—The service area is created in the direction away from the facilities. </bullet_item><bullet_item>TRAVEL_TO—The service area is created in the direction towards the facilities.</bullet_item></bulletList>
+						<para> Using this option can result in different service areas on a network with one-way restrictions and having different impedances based on direction of travel. The service area for a pizza delivery store, for example, should be created away from the facility, whereas the service area of a hospital should be created toward the facility.</para>
+					</dialogReference></param><param sync="true" name="default_break_values" displayname="Default break values" datatype="String" direction="Input" expression="default_break_values" type="Optional"><pythonReference>
+						<para>Default impedance values indicating the extent of the service area to be calculated. The default can be overridden by specifying the breaks value on the facilities.</para>
+						<para>Multiple polygon breaks can be set to create concentric service areas. For instance, to find 2-, 3-, and 5-minute service areas for the same facility, specify "2 3 5" as the value for the Default break values parameter (the numbers 2, 3, and 5 should be separated by a space).</para>
+					</pythonReference><dialogReference>
+						<para>Default impedance values indicating the extent of the service area to be calculated. The default can be overridden by specifying the breaks value on the facilities.</para>
+						<para>Multiple polygon breaks can be set to create concentric service areas. For instance, to find 2-, 3-, and 5-minute service areas for the same facility, specify "2 3 5" as the value for the Default break values parameter (the numbers 2, 3, and 5 should be separated by a space).</para>
+					</dialogReference></param><param sync="true" name="polygon_type" displayname="Polygon type" datatype="String" direction="Input" expression="polygon_type" type="Optional"><pythonReference>
+						<para>Specifies the type of polygons to be generated.</para>
+						<bulletList><bullet_item>SIMPLE_POLYS—Creates generalized polygons which are generated quickly and are fairly accurate, except on the fringes. This is the default. </bullet_item><bullet_item>DETAILED_POLYS—Creates detailed polygons, that accurately model the service area lines and may contain islands of unreached areas. This option is a lot slower than generating generalized polygons. </bullet_item><bullet_item>NO_POLYS—Turns off polygon generation for the case in which only service area lines are desired. </bullet_item></bulletList>
+						<para>If your data is of an urban area with a gridlike network, the difference between generalized and detailed polygons would be minimal. However, for mountain and rural roads, the detailed polygons may present significantly more accurate results than generalized polygons.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the type of polygons to be generated.</para>
+						<bulletList><bullet_item>SIMPLE_POLYS—Creates generalized polygons which are generated quickly and are fairly accurate, except on the fringes. This is the default. </bullet_item><bullet_item>DETAILED_POLYS—Creates detailed polygons, that accurately model the service area lines and may contain islands of unreached areas. This option is a lot slower than generating generalized polygons. </bullet_item><bullet_item>NO_POLYS—Turns off polygon generation for the case in which only service area lines are desired. </bullet_item></bulletList>
+						<para>If your data is of an urban area with a gridlike network, the difference between generalized and detailed polygons would be minimal. However, for mountain and rural roads, the detailed polygons may present significantly more accurate results than generalized polygons.</para>
+					</dialogReference></param><param sync="true" name="merge" displayname="Merge polygons with similar ranges" datatype="String" direction="Input" expression="merge" type="Optional"><pythonReference>
+						<para>Specifies the options to merge polygons that share similar break values. This option is applicable only when generating polygons for multiple facilities.</para>
+						<bulletList><bullet_item>NO_MERGE—Creates individual polygons for each facility. The polygons can overlap each other. </bullet_item><bullet_item>NO_OVERLAP—Creates individual polygons that are closest for each facility. The polygons do not overlap each other. </bullet_item><bullet_item>MERGE— Joins the polygons of multiple facilities that have the same break value. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the options to merge polygons that share similar break values. This option is applicable only when generating polygons for multiple facilities.</para>
+						<bulletList><bullet_item>NO_MERGE—Creates individual polygons for each facility. The polygons can overlap each other. </bullet_item><bullet_item>NO_OVERLAP—Creates individual polygons that are closest for each facility. The polygons do not overlap each other. </bullet_item><bullet_item>MERGE— Joins the polygons of multiple facilities that have the same break value. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="nesting_type" displayname="Polygon nest option" datatype="String" direction="Input" expression="nesting_type" type="Optional"><pythonReference>
+						<para>Specifies the option to create concentric service area polygons as disks or rings. This option is applicable only when multiple break values are specified for the facilities. </para>
+						<bulletList><bullet_item>RINGS—Do not include the area of the smaller breaks. This creates polygons going between consecutive breaks. Use this option if you want to find the area from one break to another.</bullet_item><bullet_item>DISKS— Creates the polygons going from the facility to the break. For instance, If you create 5- and 10-minute service areas, then the 10-minute service area polygon will include the area under the 5-minute service area polygon. Use this option if you want to find the entire area from the facility to the break for each break.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the option to create concentric service area polygons as disks or rings. This option is applicable only when multiple break values are specified for the facilities. </para>
+						<bulletList><bullet_item>RINGS—Do not include the area of the smaller breaks. This creates polygons going between consecutive breaks. Use this option if you want to find the area from one break to another.</bullet_item><bullet_item>DISKS— Creates the polygons going from the facility to the break. For instance, If you create 5- and 10-minute service areas, then the 10-minute service area polygon will include the area under the 5-minute service area polygon. Use this option if you want to find the entire area from the facility to the break for each break.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="line_type" displayname="Line type" datatype="String" direction="Input" expression="line_type" type="Optional"><pythonReference>
+						<para>Specifies the type of lines to be generated based on the service area analysis. Selecting the TRUE_LINES or TRUE_LINES_WITH_MEASURES option for large service areas will increase the amount of memory consumed by the analysis.</para>
+						<bulletList><bullet_item>NO_LINES—Do not generate lines. This is the default. </bullet_item><bullet_item>TRUE_LINES—Lines are generated without measures. </bullet_item><bullet_item>TRUE_LINES_WITH_MEASURES—Lines are generated with measures. The measure values are generated based on the impedance value on each end of the edge with the intermediate vertices interpolated. Do not use this option if faster performance is desired. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the type of lines to be generated based on the service area analysis. Selecting the TRUE_LINES or TRUE_LINES_WITH_MEASURES option for large service areas will increase the amount of memory consumed by the analysis.</para>
+						<bulletList><bullet_item>NO_LINES—Do not generate lines. This is the default. </bullet_item><bullet_item>TRUE_LINES—Lines are generated without measures. </bullet_item><bullet_item>TRUE_LINES_WITH_MEASURES—Lines are generated with measures. The measure values are generated based on the impedance value on each end of the edge with the intermediate vertices interpolated. Do not use this option if faster performance is desired. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="overlap" displayname="Overlap lines" datatype="Boolean" direction="Input" expression="overlap" type="Optional"><pythonReference>
+						<para>Determines if overlapping lines are generated when the service area lines are computed.</para>
+						<bulletList><bullet_item>OVERLAP— Include a separate line feature for each facility when the facilities have service area lines that are coincident. </bullet_item><bullet_item>NON_OVERLAP— Include each service area line at most once and associate it with its closest (least impedance) facility.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines if overlapping lines are generated when the service area lines are computed.</para>
+						<bulletList>
+							<bullet_item>Checked -- Include a separate line feature for each facility when the facilities have service area lines that are coincident.</bullet_item>
+							<bullet_item>Unchecked -- Include each service area line at most once and associate it with its closest (least impedance) facility.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="split" displayname="Split lines when they cross a service area break" datatype="Boolean" direction="Input" expression="split" type="Optional"><pythonReference>
+						<bulletList><bullet_item>SPLIT—Split every line between two breaks into two lines, each lying within its break. This is useful if you want to symbolize the service area lines by break. Otherwise, use the NO_SPLIT option for optimal performance. </bullet_item><bullet_item>NO_SPLIT—The lines are not split at the boundaries of the breaks. This is the default. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked -- Split every line between two breaks into two lines, each lying within its break. This is useful if you want to symbolize the service area lines by break. Otherwise, leave this option unchecked for optimal performance.</bullet_item>
+							<bullet_item>Unchecked -- The lines are not split at the boundaries of the breaks. This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="excluded_source_name" displayname="Exclude sources from polygon generation" datatype="String" direction="Input" expression="[excluded_source_name,...]" type="Optional"><pythonReference>
+						<para>Specifies the list of network sources to be excluded when generating the polygons. The geometry of traversed elements from the excluded sources will be omitted from all polygons.</para>
+						<para>This is useful if you have some network sources that you don't want to be included in the polygon generation because they create less accurate polygons or are inconsequential for the service area analysis. For example, while creating a drive time service area in a multimodal network of streets and rails, you should choose to exclude the rail lines from polygon generation so as to correctly model where a vehicle could travel. </para>
+						<para>Excluding a network source from service area polygons does not prevent those sources from being traversed. Excluding sources from service area polygons only influences the polygon shape of the service areas. If you want to prevent traversal of a given network source, you must create an appropriate restriction when defining your network dataset.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the list of network sources to be excluded when generating the polygons. The geometry of traversed elements from the excluded sources will be omitted from all polygons.</para>
+						<para>This is useful if you have some network sources that you don't want to be included in the polygon generation because they create less accurate polygons or are inconsequential for the service area analysis. For example, while creating a drive time service area in a multimodal network of streets and rails, you should choose to exclude the rail lines from polygon generation so as to correctly model where a vehicle could travel. </para>
+						<para>Excluding a network source from service area polygons does not prevent those sources from being traversed. Excluding sources from service area polygons only influences the polygon shape of the service areas. If you want to prevent traversal of a given network source, you must create an appropriate restriction when defining your network dataset.</para>
+					</dialogReference></param><param sync="true" name="accumulate_attribute_name" displayname="Accumulators" datatype="String" direction="Input" expression="[accumulate_attribute_name,...]" type="Optional"><pythonReference>
+						<para>List of cost attributes to be accumulated during analysis. These accumulation attributes are purely for reference; the solver only uses the cost attribute specified by the Impedance attribute parameter  to calculate the route.</para>
+						<para>For each cost attribute that is accumulated, a Total_[Impedance] property is added to the routes that are output by the solver.</para>
+					</pythonReference><dialogReference>
+						<para>List of cost attributes to be accumulated during analysis. These accumulation attributes are purely for reference; the solver only uses the cost attribute specified by the Impedance attribute parameter  to calculate the route.</para>
+						<para>For each cost attribute that is accumulated, a Total_[Impedance] property is added to the routes that are output by the solver.</para>
+					</dialogReference></param><param sync="true" name="UTurn_policy" displayname="U-Turn policy" datatype="String" direction="Input" expression="UTurn_policy" type="Optional"><pythonReference>
+						<para>Restrict or permit U-turns at junctions that could occur during network traversal between stops.</para>
+						<bulletList><bullet_item>ALLOW_UTURNS—U-turns are permitted at junctions with any number of adjacent edges.</bullet_item><bullet_item>NO_UTURNS—U-turns are prohibited at all junctions. Note, however, that U-turns are still permitted at network locations even when this setting is chosen; however, you can set the individual network locations' CurbApproach property to prohibit U-turns.</bullet_item><bullet_item>ALLOW_DEAD_ENDS_ONLY—U-turns are prohibited at all junctions, except those that have only one adjacent edge (a dead end). </bullet_item><bullet_item>ALLOW_DEAD_ENDS_AND_INTERSECTIONS_ONLY—U-turns are prohibited at junctions where exactly two adjacent edges meet but are permitted at intersections (any junction with three or more adjacent edges) or dead ends. (junctions with exactly one adjacent edge) </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Restrict or permit U-turns at junctions that could occur during network traversal between stops.</para>
+						<bulletList><bullet_item>ALLOW_UTURNS—U-turns are permitted at junctions with any number of adjacent edges.</bullet_item><bullet_item>NO_UTURNS—U-turns are prohibited at all junctions. Note, however, that U-turns are still permitted at network locations even when this setting is chosen; however, you can set the individual network locations' CurbApproach property to prohibit U-turns.</bullet_item><bullet_item>ALLOW_DEAD_ENDS_ONLY—U-turns are prohibited at all junctions, except those that have only one adjacent edge (a dead end). </bullet_item><bullet_item>ALLOW_DEAD_ENDS_AND_INTERSECTIONS_ONLY—U-turns are prohibited at junctions where exactly two adjacent edges meet but are permitted at intersections (any junction with three or more adjacent edges) or dead ends. (junctions with exactly one adjacent edge) </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="restriction_attribute_name" displayname="Restrictions" datatype="String" direction="Input" expression="[restriction_attribute_name,...]" type="Optional"><pythonReference>
+						<para>List of restriction attributes to apply during the analysis.</para>
+					</pythonReference><dialogReference>
+						<para>List of restriction attributes to apply during the analysis.</para>
+					</dialogReference></param><param sync="true" name="polygon_trim" displayname="Trim Polygons" datatype="Boolean" direction="Input" expression="polygon_trim" type="Optional"><pythonReference>
+						<bulletList><bullet_item>TRIM_POLYS—Trims the polygons containing the edges at the periphery of the service area to be within the specified distance of these outer edges. This is useful if the network is very sparse and you don't want the service area to cover large areas where there are no features.</bullet_item><bullet_item>NO_TRIM_POLYS—Do not trim polygons. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked -- Trims the polygons containing the edges at the periphery of the service area to be within the specified distance of these outer edges. This is useful if the network is very sparse and you don't want the service area to cover large areas where there are no features.</bullet_item>
+							<bullet_item>Unchecked -- Do not trim polygons.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="poly_trim_value" displayname="Polygon trim" datatype="Linear unit" direction="Input" expression="poly_trim_value" type="Optional"><pythonReference>
+						<para>Specifies the distance within which the service area polygons are trimmed. The parameter includes a value and units for the distance. The default value is 100 meters. </para>
+					</pythonReference><dialogReference>
+						<para>Specifies the distance within which the service area polygons are trimmed. The parameter includes a value and units for the distance. The default value is 100 meters. </para>
+					</dialogReference></param><param sync="true" name="lines_source_fields" displayname="Include network source fields in lines" datatype="Boolean" direction="Input" expression="lines_source_fields" type="Optional"><pythonReference>
+						<bulletList><bullet_item>LINES_SOURCE_FIELDS— Add the SourceID, SourceOID, FromPosition and ToPosition fields to the service area lines to hold information about the underlying source features traversed during the analysis. This can be useful to join the results of the service area lines to the original source data.</bullet_item><bullet_item>NO_LINES_SOURCE_FIELDS—Do not add the source fields (SourceID, SourceOID, FromPosition, and ToPosition) to the service area lines.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked -- Add the SourceID, SourceOID, FromPosition and ToPosition fields to the service area lines to hold information about the underlying source features traversed during the analysis. This can be useful to join the results of the service area lines to the original source data.</bullet_item>
+							<bullet_item>Unchecked -- Do not add the source fields (SourceID, SourceOID, FromPosition, and ToPosition) to the service area lines. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item><para>After creating the analysis layer with this tool, you can add network analysis objects to it using the  tool, solve the analysis using the  tool, and save the results on disk using  tool. </para></bullet_item><bullet_item>
+				<para>When using this tool in geoprocessing models, if the model is run as a tool, the output network analysis layer must be made  a model parameter. Otherwise the output layer is not added to the table of contents in ArcMap.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeServiceAreaLayer example 1 (Python window)</title>
+					<para>Execute the tool using only the required parameters</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.MakeServiceAreaLayer_na("Transportation/Streets_ND","FireStationCoverage",
+                              "Minutes")
+
+                    </code></scriptExample><scriptExample><title>MakeServiceAreaLayer example 2 (Python window)</title>
+					<para>Execute the tool using all parameters </para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/Paris.gdb"
+arcpy.MakeServiceAreaLayer_na("Transportation/ParisNet","WarehouseCoverage",
+                              "Drivetime","TRAVEL_FROM","5 10 15", 
+                              "SIMPLE_POLYS", "NO_OVERLAP","RINGS","TRUE_LINES",
+                              "NON_OVERLAP","NO_SPLIT",
+                              ["Metro_Lines","Transfer_Stations",
+                               "Transfer_Street_Station"],
+                              ["Meters","Drivetime"],"ALLOW_DEAD_ENDS_ONLY",
+                              ["Oneway"],"NO_TRIM_POLYS","",
+                              "LINES_SOURCE_FIELDS")
+
+                    </code></scriptExample><scriptExample><title>MakeServiceAreaLayer example 3 (workflow)</title>
+					<para>The following stand-alone Python script demonstrates how the MakeServiceAreaLayer tool can be used to generate 1-,2-,3- minute service area around fire stations.</para>
+				<code xml:space="preserve"># Name: MakeServiceAreaLayer_Workflow.py
+# Description: Generate 1-,2-,3- minute service area around fire stations and 
+#              save the results to a layer file on disk. The service area 
+#              polygons can be used to visualize the areas that do not have 
+#              adequate coverage from the fire stations 
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+try:
+    #Check out the Network Analyst extension license
+    arcpy.CheckOutExtension("Network")
+
+    #Set environment settings
+    env.workspace = "C:/data/SanFrancisco.gdb"
+    env.overwriteOutput = True
+    
+    #Set local variables
+    inNetworkDataset = "Transportation/Streets_ND"
+    outNALayer = "FireStationCoverage"
+    impedanceAttribute = "TravelTime"
+    inFacilities = "Analysis/FireStations"
+    outLayerFile = "C:/data/output" + "/" + outNALayer + ".lyr"
+    
+    #Create a new service area layer. We wish to generate the service area 
+    #polygons as rings, so that we can easily visualize the coverage for any 
+    #given location. We also want overlapping polygons as we can determine the 
+    #number of fire stations that cover a given location. We will specify these
+    #options while creating the new service area layer.
+    arcpy.MakeServiceAreaLayer_na(inNetworkDataset, outNALayer, 
+                                  impedanceAttribute, "TRAVEL_FROM", "1 2 3", 
+                                  "SIMPLE_POLYS", "NO_MERGE", "RINGS")
+    
+    #Load the fire stations as facilities using deafult field mappings and 
+    #default search tolerance
+    arcpy.AddLocations_na(outNALayer, "Facilities", inFacilities, "","")    
+    
+    #Solve the service area layer
+    arcpy.Solve_na(outNALayer)
+    
+    #Save the solved service area layer as a layer file on disk with relative
+    #paths
+    arcpy.SaveToLayerFile_management(outNALayer,outLayerFile,"RELATIVE")
+    
+    print "Script completed successfully"
+
+except Exception as e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "An error occured on line %i" % tb.tb_lineno
+    print str(e)
+                    </code></scriptExample></scriptExamples></tool></metadata>

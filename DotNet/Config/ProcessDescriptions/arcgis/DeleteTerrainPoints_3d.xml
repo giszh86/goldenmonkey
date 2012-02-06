@@ -1,0 +1,60 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Delete Terrain Points  (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Deletes points from a terrain dataset within an area of interest from one or more feature classes.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Area Of Interest</keyword><keyword>Delete</keyword><keyword>Edit</keyword><keyword>Feature Class</keyword><keyword>Lidar</keyword><keyword>Masspoints</keyword><keyword>Modify</keyword><keyword>Multipoints</keyword><keyword>Multiresolution Surface</keyword><keyword>Points</keyword><keyword>Surface</keyword><keyword>Terrain</keyword><keyword>Terrain Dataset</keyword><keyword>Terrains</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" DeleteTerrainPoints" displayname=" Delete Terrain Points  (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Deletes points from a terrain dataset within an area of interest from one or more feature classes.</para>
+		</summary><alink_name> DeleteTerrainPoints_3d</alink_name><parameters><param sync="true" name="in_terrain" displayname="Input Terrain" datatype="Terrain Layer" direction="Input" expression="in_terrain" type="Required"><pythonReference>
+						<para>The terrain dataset to be modified.</para>
+					</pythonReference><dialogReference>
+						<para>The terrain dataset to be modified.</para>
+					</dialogReference></param><param sync="true" name="data_source" displayname="Input Terrain Data Source" datatype="String" direction="Input" expression="data_source" type="Required"><pythonReference>
+						<para>One or more feature classes from which points will be removed.</para>
+					</pythonReference><dialogReference>
+						<para>One or more feature classes from which points will be removed.</para>
+					</dialogReference></param><param sync="true" name="polygon_features_or_extent" displayname="Area of Interest" datatype="Feature Layer or Extent" direction="Input" expression="polygon_features_or_extent" type="Required"><pythonReference>
+						<para>The location defining the area from which points will be removed.</para>
+					</pythonReference><dialogReference>
+						<para>The location defining the area from which points will be removed.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Deleting points from an embedded feature class will invalidate the terrain. Run  after adding points.</para>
+			</bullet_item><bullet_item><para>If the terrain is in SDE it must be registered as versioned.</para></bullet_item></usage><scriptExamples><scriptExample><title>Delete Terrain Points Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Delete Terrain Points 
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.DeleteTerrainPoints_3d("sample.gdb/featuredataset/terrain", "mass_pts_embed", "area_of_interest.shp")
+                    </code></scriptExample><scriptExample><title>Delete Terrain Points Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Delete Terrain Points 
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: DeleteTerrainPoints Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              DeleteTerrainPoints tool using extent values for the extent
+#              parameter.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+inTerrain = "sample.gdb/featuredataset/terrain"
+pointFC = "mass_pts_embed"
+# To use extent values for defining the extent parameter of this tool,
+# an extent object must be created and passed for the extent argument.
+aoi = arcpy.Extent(1379938.43267328, 235633.08128634, 1382756.00752135, 237681.848838107)
+
+#Execute DeleteTerrainPoints
+arcpy.DeleteTerrainPoints_3d(inTerrain, pointFC, aoi)
+                    </code></scriptExample></scriptExamples></tool></metadata>

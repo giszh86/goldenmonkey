@@ -1,0 +1,43 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Export Raster Catalog Paths (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a table listing the paths to the raster datasets contained in an unmanaged raster catalog or a mosaic dataset. The table can display all the file paths, or just the ones that are broken.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Broken</keyword><keyword>Broken Path</keyword><keyword>Collection</keyword><keyword>Contain</keyword><keyword>Directory Structure</keyword><keyword>Extract Path</keyword><keyword>File Path</keyword><keyword>Footprint</keyword><keyword>Gdb</keyword><keyword>Geodatabase</keyword><keyword>Image Catalog</keyword><keyword>Link</keyword><keyword>List</keyword><keyword>Manage</keyword><keyword>Overlap</keyword><keyword>Relative</keyword><keyword>Report</keyword><keyword>Unmanage</keyword><keyword>Unmanaged</keyword><keyword>Url</keyword><keyword>Wire Frame</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExportRasterCatalogPaths" displayname="Export Raster Catalog Paths (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a table listing the paths to the raster datasets contained in an unmanaged raster catalog or a mosaic dataset. The table can display all the file paths, or just the ones that are broken.</para>
+		</summary><alink_name>ExportRasterCatalogPaths_management</alink_name><parameters><param sync="true" name="in_raster_catalog" displayname="Input Data" datatype="Raster Catalog Layer; Mosaic Dataset; Group Layer; Composite Layer" direction="Input" expression="in_raster_catalog" type="Required"><pythonReference>
+						<para>The input unmanaged raster catalog or mosaic dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input unmanaged raster catalog or mosaic dataset.</para>
+					</dialogReference></param><param sync="true" name="export_mode" displayname="Export Mode" datatype="String" direction="Input" expression="export_mode" type="Required"><pythonReference>
+						<para>Choose what paths to output to the table. You can choose to output all the file paths, or just the ones that are broken.</para>
+						<para>Choose the repair mode you would like to use.</para>
+						<bulletList><bullet_item>BROKEN—This option will export only the broken paths to the table. </bullet_item><bullet_item>ALL—This option will export all the paths to the table. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose what paths to output to the table. You can choose to output all the file paths, or just the ones that are broken.</para>
+						<para>Choose the repair mode you would like to use.</para>
+						<bulletList><bullet_item>BROKEN—This option will export only the broken paths to the table. </bullet_item><bullet_item>ALL—This option will export all the paths to the table. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>The output table. This table can be created as a DBF file or within a geodatabase.</para>
+						<para>The output table will have a field that lists the Source OID. This is the OID of the row in the original raster catalog table.</para>
+					</pythonReference><dialogReference>
+						<para>The output table. This table can be created as a DBF file or within a geodatabase.</para>
+						<para>The output table will have a field that lists the Source OID. This is the OID of the row in the original raster catalog table.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>The output of this tool is a table, either in a geodatabase or a .DBF file.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ExportRasterCatalogPaths example (Python window)</title>
+					<para>This is a Python sample of the ExportRasterCatalogPaths tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.ExportRasterCatalogPaths_management("c:/data/ExportRC.gdb/bkrnlinks",\
+                                          "BROKEN", "c:/data/brokenpath.dbf")
+                    </code></scriptExample><scriptExample><title>ExportRasterCatalogPaths example 2 (stand-alone script)</title>
+					<para>This is a Python script sample of the ExportRasterCatalogPaths tool.</para>
+				<code xml:space="preserve">##====================
+##Export Raster Catalog Paths
+##Usage: ExportRasterCatalogPaths_management in_raster_catalog BROKEN | ALL out_table
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:\PrjWorkspace"
+    ##Export broken path in FGDB Unmanaged Raster Catalog to dbf table
+    arcpy.ExportRasterCatalogPaths_management("ExportRC.gdb\\Unmanaged", "BROKEN", "brokenpath.dbf")
+except:
+    print "Export Raster Catalog Items example failed."
+    print arcpy.GetMessages() 
+                    </code></scriptExample></scriptExamples></tool></metadata>

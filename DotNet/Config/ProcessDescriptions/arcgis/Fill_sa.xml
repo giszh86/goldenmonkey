@@ -1,0 +1,78 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Fill (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Fills sinks in a surface raster to remove small imperfections in the data.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Catchment</keyword><keyword>Depression</keyword><keyword>Flow</keyword><keyword>Peak</keyword><keyword>Pit</keyword><keyword>Sink</keyword><keyword>Surface Water</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Fill" displayname="Fill (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Fills sinks in a surface raster to remove small imperfections in the data.</para>
+			
+		</summary><alink_name>Fill_sa</alink_name><parameters><param sync="true" name="in_surface_raster" displayname="Input surface raster" datatype="Raster Layer" direction="Input" expression="in_surface_raster" type="Required"><pythonReference><para>The input raster representing a continuous surface.</para>
+					</pythonReference><dialogReference><para>The input raster representing a continuous surface.</para>
+					</dialogReference></param><param sync="true" name="z_limit" displayname="Z limit" datatype="Double" direction="Input" expression="z_limit" type="Optional"><pythonReference><para>Maximum elevation difference between a sink and its pour point to be filled.</para><para>If the difference in z-values between a sink and its pour point is greater than the z_limit that sink will not be filled.</para><para>The default is to fill all sinks, regardless of depth.</para></pythonReference><dialogReference><para>Maximum elevation difference between a sink and its pour point to be filled.</para><para>If the difference in z-values between a sink and its pour point is greater than the z_limit that sink will not be filled.</para><para>The default is to fill all sinks, regardless of depth.</para></dialogReference></param><param sync="true" name="out_surface_raster" displayname="Output surface raster" datatype="Raster" direction="Output" expression="out_surface_raster" type="Required"><pythonReference>
+							<para>The output surface raster after the sinks have been filled.</para>
+						</pythonReference><dialogReference>
+							<para>The output surface raster after the sinks have been filled.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>A sink is a cell with an undefined drainage direction; no cells surrounding it are lower. The pour point is the boundary cell with the lowest elevation for the contributing area of a sink. If the sink were filled with water, this is the point where water would pour out.</para>
+			</bullet_item><bullet_item>
+				<para>The z-limit specifies the maximum depth of a sink that will be filled. The z-limit is not the maximum depth to which a sink will be filled. Z-limit must be greater than zero.</para>
+			</bullet_item><bullet_item>
+				<para>All sinks that are less than the z-limit, lower than their lowest adjacent neighbor, will be filled to the height of their pour points.</para>
+			</bullet_item><bullet_item>
+				<para>Due to the iterative nature of Fill, it can be CPU and disk intensive. It can require up to four times the disk space of the input raster.</para>
+			</bullet_item><bullet_item>
+				<para>The number of sinks found with the z-limit will determine the length of processing time. The more sinks, the longer the processing time.</para>
+			</bullet_item><bullet_item>
+				<para>The  tool can be used to find the number of sinks and help identify their depth. Knowing the depth of the sinks can help in determining an appropriate z-limit for Fill.</para>
+			</bullet_item><bullet_item>
+				<para>Fill can also be used to remove peaks. A peak is a cell where no adjacent cells are higher. To remove peaks, the input surface raster must be inverted. This can be performed with the  tool. Specify the highest value of the surface raster as the first input to Minus and surface raster as the second input. Perform a Fill. Invert the results to obtain a surface that has original surface raster values with the peaks removed. The z-limit can be applied to this process as well. If nothing is specified for z-limit, then all peaks will be removed. If it is specified, where the difference in z-value between a peak and its highest adjacent neighbor is greater than the z-limit, that peak will not be removed.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Fill example 1 (Python window)</title>
+					<para>This example fills the sinks of an input elevation surface GRID raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outFill = Fill("elevation")
+outFill.save("C:/sapyexamples/output/outfill01")
+
+                    </code></scriptExample><scriptExample><title>Fill example 2 (stand-alone script)</title>
+					<para>This example fills the sinks of an input elevation surface GRID raster with a z-limit applied.</para>
+				<code xml:space="preserve"># Name: Fill_Ex_02.py
+# Description: Fills sinks in a surface raster.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inSurfaceRaster = "elevation"
+zLimit = 3.28
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute FlowDirection
+outFill = Fill(inSurfaceRaster, zLimit)
+
+# Save the output 
+outFill.save("C:/sapyexamples/output/outfill02")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

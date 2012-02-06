@@ -1,0 +1,55 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Quick Import (Data Interoperability)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts data in any format supported by the ArcGIS Data Interoperability extension into feature classes.</para>
+			<para>The output is stored in a geodatabase. The geodatabase can then be used directly or further post-processing can be performed.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="QuickImport" displayname="Quick Import (Data Interoperability)" toolboxalias="interop" softwarerestriction="none"><summary>
+			<para>Converts data in any format supported by the ArcGIS Data Interoperability extension into feature classes.</para>
+			<para>The output is stored in a geodatabase. The geodatabase can then be used directly or further post-processing can be performed.</para>
+		</summary><alink_name>QuickImport_di</alink_name><parameters><param sync="true" name="Input" displayname="Input Dataset" datatype="Interop Source Dataset" direction="Input" expression="Input" type="Required"><pythonReference>
+						<para>The data to be imported. The syntax can take multiple forms:</para>
+						<bulletList>
+							<bullet_item>If the source data is a file with a well-known file extension, it can be given as-is. For instance, "c:\data\roads.mif".</bullet_item>
+							<bullet_item>If the source data is not a file, or the file has an unknown extension, the format can be given as part of the argument, separated by a comma. For instance, "MIF,c:\data\roads.mif". The names for supported formats can be found in the Formats Gallery, by opening this tool in dialog mode and clicking the browse button.</bullet_item>
+							<bullet_item>Wildcards can be used to read in large datasets. For instance, "MIF,c:\data\roads*.*".<bulletList>
+									<bullet_item>The * character matches any series of characters for all files in the current directory. For instance, c:\data\roads*.mif will match c:\data\roads.mif, c:\data\roads5.mif, and c:\data\roads-updated.mif.</bullet_item>
+									<bullet_item>The ** characters match any subdirectories, recursively. For instance, c:\data\**\*.mif will match c:\data\roads.mif, c:\data\canada\rivers.mif, and c:\data\canada\alberta\edmonton.mif.</bullet_item>
+								</bulletList></bullet_item>
+							<bullet_item><para>Additional format-specific parameters can be added after the dataset, separated by a comma. However, the syntax can be complex, so if this is required it is easiest to run the tool using its dialog   and copy the Python syntax from the Results window.</para></bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>The data to be imported.</para>
+					</dialogReference></param><param sync="true" name="Output" displayname="Output Geodatabase" datatype="Workspace" direction="Output" expression="Output" type="Required"><pythonReference>
+						<para>The output file or personal geodatabase.</para>
+					</pythonReference><dialogReference>
+						<para>The output file or personal geodatabase.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>This tool is used to import nonnative data to the ArcGIS environment. The output usually requires additional processing before it can be integrated with existing data or formats.</para>
+			</bullet_item><bullet_item><para>This tool can be used as the first step in a model or script in the ArcGIS framework.</para></bullet_item><bullet_item>
+				<para>The feature classes that are generated depend on the input data. For instance, if you import two MapInfo MIF/MID files, two features classes will be created.</para>
+			</bullet_item><bullet_item>
+				<para>This tool  honors the Geoprocessing overwrite setting.</para>
+			</bullet_item><bullet_item>
+				<para>When in ModelBuilder the feature classes that are generated in the output geodatabase can be accessed using the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>This  tool creates a default output schema for the geodatabase that is created. If the output requires schema changes, then the Spatial ETL Tool should be used.</para>
+			</bullet_item><bullet_item>
+				<para> found in the input are maintained as Bezier curves in the output feature classes.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title><code xml:space="preserve">
+# Name: QuickImport_Ex_01.py
+# Requirements: None
+# Description: Imports Map Info file to a geodatabase
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Check out the Data Interoperability Extension
+arcpy.CheckOutExtension("DataInteroperability")
+
+# Set local variables
+mif_table= "c:/data/roads.tab"
+output_gdb = "c:/workspace/mif_output.gdb"
+
+# Execute Quick Ixport
+arcpy.QuickImport(mif_table, output_gdb)
+                    </code></scriptExample></scriptExamples></tool></metadata>

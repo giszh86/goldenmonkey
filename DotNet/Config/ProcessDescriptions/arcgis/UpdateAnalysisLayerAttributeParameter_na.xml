@@ -1,0 +1,107 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Update Analysis Layer Attribute Parameter (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Updates the network attribute parameter value for a network analysis layer. The tool should be used to update the value of an attribute parameter for a network analysis layer prior to solving with the Solve tool.  This ensures that the  solve operation uses the specified value of the attribute parameter to produce appropriate results. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alter</keyword><keyword>Altered</keyword><keyword>Layer</keyword><keyword>Network Analyst Layer</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="UpdateAnalysisLayerAttributeParameter" displayname="Update Analysis Layer Attribute Parameter (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para> Updates the network attribute parameter value for a network analysis layer. The tool should be used to update the value of an attribute parameter for a network analysis layer prior to solving with the Solve tool.  This ensures that the  solve operation uses the specified value of the attribute parameter to produce appropriate results. </para>
+		</summary><alink_name>UpdateAnalysisLayerAttributeParameter_na</alink_name><parameters><param sync="true" name="in_network_analysis_layer" displayname="Input analysis network" datatype="Network Analyst Layer" direction="Input" expression="in_network_analysis_layer" type="Required"><pythonReference>
+						<para>Network analysis layer for which the attribute parameter value will be updated.</para>
+					</pythonReference><dialogReference>
+						<para>Network analysis layer for which the attribute parameter value will be updated.</para>
+					</dialogReference></param><param sync="true" name="parameterized_attribute" displayname="Attribute" datatype="String" direction="Input" expression="parameterized_attribute" type="Required"><pythonReference>
+						<para>The network attribute whose attribute parameter will be updated.</para>
+					</pythonReference><dialogReference>
+						<para>The network attribute whose attribute parameter will be updated.</para>
+					</dialogReference></param><param sync="true" name="attribute_parameter_name" displayname="Parameter" datatype="String" direction="Input" expression="attribute_parameter_name" type="Required"><pythonReference>
+						<para>The parameter of the network attribute that will be updated. The parameters of type Object cannot be updated using the tool.</para>
+					</pythonReference><dialogReference>
+						<para>The parameter of the network attribute that will be updated. The parameters of type Object cannot be updated using the tool.</para>
+					</dialogReference></param><param sync="true" name="attribute_parameter_value" displayname="Value" datatype="String" direction="Input" expression="attribute_parameter_value" type="Optional"><pythonReference>
+						<para>The value that will be set for the attribute parameter. It can be a string, number, date, or Boolean (True, False).  If the value is not specified, then the attribute parameter value is set to Null.</para>
+						
+							<para> If the parameter value holds an array, separate the items in the array with whatever the localized separator character is currently set to. For example, in the U.S., you would most likely use the comma character to separate the items. So representing an array of three numbers might look like "5,10,15".</para>
+						
+					</pythonReference><dialogReference>
+						<para>The value that will be set for the attribute parameter. It can be a string, number, date, or Boolean (True, False).  If the value is not specified, then the attribute parameter value is set to Null.</para>
+						
+							<para> If the parameter value holds an array, separate the items in the array with whatever the localized separator character is currently set to. For example, in the U.S., you would most likely use the comma character to separate the items. So representing an array of three numbers might look like "5,10,15".</para>
+						
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para>Parameterized network attributes are used to model some dynamic aspect of an attribute's value. For example, a tunnel with a height restriction of 12 feet can be modeled using a parameter. In this case, the vehicle's height in feet should be specified as the parameter value. This restriction will then evaluate to true if the vehicle is higher than 12 feet. Similarly, a bridge could have a parameter to specify a weight restriction.</para>
+			</bullet_item><bullet_item>
+				<para>This tool should only be used with network analysis layers having network attributes with parameters defined on them.</para>
+			</bullet_item><bullet_item>
+				<para>This tool can be used to repeatedly change the value of an existing parameter before solving a network analysis layer.</para>
+			</bullet_item><bullet_item>
+				<para>New attribute parameters can be created from the network dataset properties dialog box in the Catalog window or in ArcCatalog.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>UpdateAnalysisLayerAttributeParameter example 1 (Python window)</title>
+					<para>Execute the tool using all the parameters.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.UpdateAnalysisLayerAttributeParameter_na("Route","HeightRestriction",
+                                               "MaxHeight",12.0)
+
+                    </code></scriptExample><scriptExample><title>UpdateAnalysisLayerAttributeParameter example 2 (workflow)</title>
+					<para>The following stand-alone Python script demonstrates how the UpdateAnalysisLayerAttributeParameter tool can be used to find the best route that avoids low clearance overpasses or tunnels for certain vehicles. </para>
+				<code xml:space="preserve"># Name: UpdateAnalysisLayerAttributeParameter_Workflow.py
+# Description: Find the best route that avoids low clearance overpasses or 
+#              tunnels for certain vehicles and save results to a layer file.
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+try:
+    #Check out the Network Analyst extension license
+    arcpy.CheckOutExtension("Network")
+
+    #Set environment settings
+    env.workspace = "C:/data/RhodeIsland.gdb"
+    env.overwriteOutput = True
+    
+    #Set local variables
+    inNetworkDataset = "Transportation/Streets_ND"
+    outNALayer = "BestTruckRoute"
+    impedanceAttribute = "TravelTime"
+    accumulateAttribute = ['Length']
+    parameterizedAttribute = "HeightRestriction"    
+    restrictions = ["Oneway", parameterizedAttribute, "TurnRestriction"]
+    searchTolerance = "2000 Meters"
+    parameterName = "VehicleHeight"
+    truckHeight = 15
+    inStops = "Analysis/DeliveryLocations"
+    outLayerFile = "C:/data/output" + "/" + outNALayer + ".lyr"
+    
+    #Make a new route layer. Along with the total travel time, we also want to
+    #find out the total distance. So we accumulate "Length" attribute. We want 
+    #to obey the oneway, turn restrictions and since we are routing trucks that
+    #need a particular clearence, we want to use Height restriction.
+    arcpy.MakeRouteLayer_na(inNetworkDataset, outNALayer, impedanceAttribute, 
+                            "", "", "", accumulateAttribute,"NO_UTURNS",
+                            restrictions)
+    
+    #Load the Delivery locations as stops using default field map
+    arcpy.AddLocations_na(outNALayer, "Stops", inStops, "", searchTolerance)
+    
+    #As we wish to route trucks which require a clearance of 15 meters,
+    #we will set the VehicleHeight parameter on HeightRestriction attribute.
+    #This would mean that all streets which have a clearance of less than 15 
+    #meters will be restricted.
+    arcpy.UpdateAnalysisLayerAttributeParameter_na(outNALayer, 
+                                                   parameterizedAttribute,
+                                                   parameterName, truckHeight)
+    
+    #Solve the route layer
+    arcpy.Solve_na(outNALayer)
+    
+    #Save the solved route layer as a layer file on disk using relative paths
+    arcpy.SaveToLayerFile_management(outNALayer,outLayerFile,"RELATIVE")
+    
+    print "Script completed successfully"
+
+except Exception as e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "An error occured on line %i" % tb.tb_lineno
+    print str(e)
+                    </code></scriptExample></scriptExamples></tool></metadata>

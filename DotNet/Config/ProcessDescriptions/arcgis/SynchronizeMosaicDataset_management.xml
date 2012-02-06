@@ -1,0 +1,134 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Synchronize Mosaic Dataset (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Rebuilds the raster item and updates affected fields in the mosaic dataset using the raster type and options that were used when it was originally added.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Amd</keyword><keyword>Change</keyword><keyword>Collection</keyword><keyword>Combine</keyword><keyword>Composite</keyword><keyword>Coordinate</keyword><keyword>Grid</keyword><keyword>Image</keyword><keyword>Img</keyword><keyword>Modify</keyword><keyword>Mosaic Dataset</keyword><keyword>Refresh</keyword><keyword>Surface</keyword><keyword>Tif</keyword><keyword>Update</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SynchronizeMosaicDataset" displayname="Synchronize Mosaic Dataset (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Rebuilds the raster item and updates affected fields in the mosaic dataset using the raster type and options that were used when it was originally added.</para>
+		</summary><alink_name>SynchronizeMosaicDataset_management</alink_name><parameters><param sync="true" name="in_mosaic_dataset" displayname="Mosaic Dataset" datatype="Mosaic Dataset; Composite Layer; Dataset" direction="Input" expression="in_mosaic_dataset" type="Required"><pythonReference>
+						<para>Path and name of the mosaic dataset.</para>
+					</pythonReference><dialogReference>
+						<para>Path and name of the mosaic dataset.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Query Definition" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>Using SQL, you can define a query or use the Query Builder to build a query. </para>
+					</pythonReference><dialogReference>
+						<para>Using SQL, you can define a query or use the Query Builder to build a query. </para>
+					</dialogReference></param><param sync="true" name="new_items" displayname="Update with New Items" datatype="Boolean" direction="Input" expression="new_items" type="Optional"><pythonReference><para>Choose whether to synchronize your mosaic dataset with newly added items.
+If you choose to update with the new items, then you can choose whether to update the Cell Size Ranges, the Boundary, or the Overviews.</para><bulletList><bullet_item>NO_NEW_ITEMS—Only update items if the base rasters have been synchronized. This is the default.</bullet_item><bullet_item>UPDATE_WITH_NEW_ITEMS— Update all items in the mosaic dataset. You can specified with you want to update the Cell Size Ranges, the Boundary, or the Overviews.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>
+Choose whether to synchronize your mosaic dataset with newly added items.
+If you choose to update with the new items, then you can choose which parameters to update in the Advanced Options.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Only update items if the base rasters have been synchronized. This is the default.</bullet_item>
+							<bullet_item>Checked—Update all items in the mosaic dataset. Use the Advanced Option to choose to update the Cell Size Ranges, the Boundary, or the Overviews.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="sync_only_stale" displayname="Synchronize Only Stale Items" datatype="Boolean" direction="Input" expression="sync_only_stale" type="Optional"><pythonReference>
+						<para> If the base rasters used to create a raster, such as an overview, have been synchronized, then the overview will be updated.</para>
+						<bulletList><bullet_item>SYNC_ONLY_STALE— Only update or re-create the overview (or derived raster) if the base rasters have been synchronized. This is the default.</bullet_item><bullet_item>SYNC_ALL_SELECTED— Update or re-create all overviews (or derived rasters). </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> If the base rasters used to create a derived raster, such as an overview, have been synchronized, then the overview will be updated.</para>
+						<bulletList>
+							<bullet_item>Checked—Only update or re-create the overview (or derived raster) if the base rasters have been synchronized. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Update or re-create all overviews (or derived rasters).</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="update_cellsize_ranges" displayname="Update Cell Size Ranges" datatype="Boolean" direction="Input" expression="update_cellsize_ranges" type="Optional"><pythonReference><para>Choose whether to update the cell size ranges. This parameter is only available if new_items has been set to UPDATE_WITH_NEW_ITEMS.
+</para><bulletList><bullet_item>UPDATE_CELL_SIZES— The cell size ranges will be recalculated when the mosaic dataset is synchronized. This is the default.</bullet_item><bullet_item>NO_CELL_SIZES— The cell size ranges will not be recalculated.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>
+Choose whether to update the cell size ranges. This parameter is only available if the Update With New Items checkbox is enabled.
+</para>
+						<bulletList>
+							<bullet_item>Checked—The cell size ranges will be recalculated when the mosaic dataset is synchronized. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The cell size ranges will not be recalculated.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="update_boundary" displayname="Update Boundary" datatype="Boolean" direction="Input" expression="update_boundary" type="Optional"><pythonReference><para>Choose whether to update the cell size ranges. This parameter is only available if new_items has been set to UPDATE_WITH_NEW_ITEMS.
+</para><bulletList><bullet_item>UPDATE_BOUNDARY— The boundary will be rebuilt  when the mosaic dataset is synchronized. This is the default.</bullet_item><bullet_item>NO_BOUNDARY— The boundary will not be rebuilt.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>
+Choose whether to update the boundary. This parameter is only available if the Update With New Items checkbox is enabled.
+</para>
+						<bulletList>
+							<bullet_item>Checked—The boundary will be rebuilt  when the mosaic dataset is synchronized. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The boundary will not be rebuilt.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="update_overviews" displayname="Update Overviews" datatype="Boolean" direction="Input" expression="update_overviews" type="Optional"><pythonReference><para>Choose whether to update the cell size ranges. This parameter is only available if new_items has been set to UPDATE_WITH_NEW_ITEMS.
+</para><bulletList><bullet_item>NO_OVERVIEWS— The overviews will not be rebuilt. This is the default.</bullet_item><bullet_item>UPDATE_OVERVIEWS— The overviews will be rebuilt  when the mosaic dataset is synchronized.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>
+Choose whether to update the overviews. This parameter is only available if the Update With New Items checkbox is enabled.
+</para>
+						<bulletList>
+							<bullet_item>Unchecked—The overviews will not be rebuilt. This is the default.</bullet_item>
+							<bullet_item>Checked—The overviews will be rebuilt  when the mosaic dataset is synchronized.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="build_overviews" displayname="Build Overviews" datatype="Boolean" direction="Input" expression="build_overviews" type="Optional"><pythonReference>
+						<para>Overviews are low-resolution raster datasets created to improve the display speed when viewing a mosaic dataset. Generally, they are created to cover the extent of the raster data in the mosaic dataset. They are similar to raster pyramids.</para>
+						<para>Overviews may need to be rebuilt if the underlying rasters are modified.</para>
+						<bulletList><bullet_item>BUILD_OVERVIEWS—Stale overviews will be updated or new overviews created to reflect the changes in the updated raster items in the mosaic dataset. This is the default.</bullet_item><bullet_item>NO_BUILD_OVERVIEWS—Overviews will not be modified or created.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Overviews are low-resolution raster datasets created to improve the display speed when viewing a mosaic dataset. Generally, they are created to cover the extent of the raster data in the mosaic dataset. They are similar to raster pyramids.</para>
+						<para>Overviews may need to be rebuilt if the underlying rasters are modified.</para>
+						<bulletList>
+							<bullet_item>Checked—Stale overviews will be updated or new overviews created to reflect the changes in the updated raster items in the mosaic dataset. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Overviews will not be modified or created.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="build_pyramids" displayname="Build Pyramids" datatype="Boolean" direction="Input" expression="build_pyramids" type="Optional"><pythonReference>
+						<para>Pyramids can be built for each raster item in the mosaic dataset. Pyramids can improve the speed at which each raster is displayed.</para>
+						<bulletList><bullet_item>NO_BUILD_PYRAMIDS—Pyramids will not be generated. This is the default.</bullet_item><bullet_item>BUILD_PYRAMIDS— Pyramids will be generated for all the raster items in the mosaic dataset, or only those selected. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Pyramids can be built for each raster item in the mosaic dataset. Pyramids can improve the speed at which each raster is displayed.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Pyramids will not be generated. This is the default.</bullet_item>
+							<bullet_item>Checked—Pyramids will be generated for all the raster items in the mosaic dataset, or only those selected.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="calculate_statistics" displayname="Calculate Statistics" datatype="Boolean" direction="Input" expression="calculate_statistics" type="Optional"><pythonReference>
+						<para>Statistics can be calculated for each raster item in the mosaic dataset. Statistics are required for your mosaic dataset when performing certain tasks, such as applying a contrast stretch.</para>
+						<bulletList><bullet_item>NO_CALCULATE_STATISTICS—Statistics will not be calculated. This is the default.</bullet_item><bullet_item>CALCULATE_STATISTICS— Statistics will be calculated for all the raster items in the mosaic dataset, or only those selected. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Statistics can be calculated for each raster item in the mosaic dataset. Statistics are required for your mosaic dataset when performing certain tasks, such as applying a contrast stretch.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Statistics will not be calculated. This is the default.</bullet_item>
+							<bullet_item>Checked—Statistics will be calculated for all the raster items in the mosaic dataset, or only those selected.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="build_thumbnails" displayname="Build Thumbnails" datatype="Boolean" direction="Input" expression="build_thumbnails" type="Optional"><pythonReference>
+						<para>Thumbnails are small, highly resampled images that can be created for each raster item in the mosaic definition. Thumbnails can be accessed when the mosaic dataset is accessed as an image service and will display as part of the metadata (Item Description).</para>
+						<bulletList><bullet_item>NO_BUILD_THUMBNAILS—No thumbnails will be created or updated. This is the default.</bullet_item><bullet_item>BUILD_THUMBNAILS—Thumbnails will be generated or updated for all the raster items in the mosaic dataset, or only those selected.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Thumbnails are small, highly resampled images that can be created for each raster item in the mosaic definition. Thumbnails can be accessed when the mosaic dataset is accessed as an image service and will display as part of the metadata (Item Description).</para>
+						<bulletList>
+							<bullet_item>Unchecked—No thumbnails will be created or updated. This is the default. </bullet_item>
+							<bullet_item>Checked—Thumbnails will be generated or updated for all the raster items in the mosaic dataset, or only those selected.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent"></environment><environment name="Pyramid" label="Pyramid"></environment><environment name="Raster_statistics" label="Raster statistics"></environment></environments><usage><bullet_item>
+				<para>This tool rebuilds selected items in the mosaic dataset using a corresponding data source. Since selected items are reconstructed, any modifications made to these items since the last time they were built would be lost.</para></bullet_item><bullet_item><para>This tool is particularly useful for keeping mosaic datasets up-to-date. You can use this tool to detect and add new raster dataset that have been added to folder locations from where data in the mosaic dataset was added. Mosaic dataset that are populated using tables that reside in an externally managed database can also be updated with this tool.</para></bullet_item><bullet_item><para>It is a good idea to create pyramids and statistics for all raster datasets referenced by the mosaic dataset. </para></bullet_item></usage><scriptExamples><scriptExample><title>SynchronizeMosaicDataset example 1 (Python window)</title>
+					<para>This is a Python sample for SynchronizeMosaicDataset.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.SynchronizeMosaicDataset_management("c:/workspace/fgdb.gdb/sync", \
+                                          "Year&gt;1999", "UPDATE_WITH_NEW_ITEMS", \
+                                          "SYNC_STALE","#", "#", \
+                                          "UPDATE_OVERVIEWS", "#", "#", \
+                                          "BUILD_THUMBNAILS")
+                    </code></scriptExample><scriptExample><title>SynchronizeMosaicDataset example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for SynchronizeMosaicDataset.</para>
+				<code xml:space="preserve">##===========================
+##Synchronize Mosaic Dataset
+##Usage: SynchronizeMosaicDataset_management in_mosaic_dataset {where_clause} 
+##                                           {NO_NEW_ITEMS | UPDATE_WITH_NEW_ITEMS} 
+##                                           {SYNC_STALE | SYNC_ALL} {UPDATE_CELL_SIZES 
+##                                           | NO_CELL_SIZES} {UPDATE_BOUNDARY | NO_BOUNDARY}
+##                                           {NO_OVERVIEWS | UPDATE_OVERVIEWS} {NO_PYRAMIDS 
+##                                           | BUILD_PYRAMIDS} {NO_STATISTICS | 
+##                                           CALCULATE_STATISTICS} {NO_THUMBNAILS 
+##                                           | BUILD_THUMBNAILS} 
+
+try:
+    import arcpy
+    arcpy.env.workspace = r"C:/Workspace"
+    # Synchronize data item after Year 1999
+    arcpy.SynchronizeMosaicDataset_management("Sync.gdb/md", "Year&gt;1999", \
+                                              "UPDATE_WITH_NEW_ITEMS", "SYNC_STALE",\
+                                              "#", "#", "UPDATE_OVERVIEWS", "#",
+                                              "#", "BUILD_THUMBNAILS")
+    
+except:
+    print "Synchronize Mosaic Dataset example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

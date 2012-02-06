@@ -1,0 +1,66 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Remove Terrain Pyramid Level (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool removes a pyramid level from a terrain dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Edit</keyword><keyword>Lidar</keyword><keyword>Masspoints</keyword><keyword>Modify</keyword><keyword>Multipoints</keyword><keyword>Multiresolution Surface</keyword><keyword>Pyramid Level</keyword><keyword>Remove</keyword><keyword>Surface</keyword><keyword>Terrain</keyword><keyword>Terrain Dataset</keyword><keyword>Terrain Pyramids</keyword><keyword>Terrains</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RemoveTerrainPyramidLevel" displayname="Remove Terrain Pyramid Level (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool removes a pyramid level from a terrain dataset.</para>
+		</summary><alink_name>RemoveTerrainPyramidLevel_3d</alink_name><parameters><param sync="true" name="in_terrain" displayname="Input Terrain" datatype="Terrain Layer" direction="Input" expression="in_terrain" type="Required"><pythonReference>
+						<para>The terrain dataset to be modified.</para>
+					</pythonReference><dialogReference>
+						<para>The terrain dataset to be modified.</para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Long" direction="Input" expression="pyramid_level_resolution" type="Required"><pythonReference>
+						<para>The pyramid level to be removed as specified by its resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The pyramid level to be removed as specified by its resolution.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>You have the option of removing any pyramid level other than full resolution (resolution equal to 0.0).</para>
+			</bullet_item><bullet_item>
+				<para>When used in an ArcSDE database, the input terrain cannot be registered as versioned.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Remove Terrain Pyramid Level Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Remove Terrain Pyramid Level
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.RemoveTerrainPyramidLevel_3d("C:/data/terrain.gdb/terrainFDS/terrain1", "10")
+                    </code></scriptExample><scriptExample><title>Remove Terrain Pyramid Level Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Remove Terrain Pyramid Level
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: RemoveTerrainPyramidLevel Example
+# Description: The following stand-alone script demonstrates how to remove 
+#              and add pyramid levels to a window size terrain.
+#              
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Set Local Variables
+    inTerrain = "sample.gdb/featuredataset/terrain"
+    removeList = [10, 20, 40]
+    addList = "15 25000; 30 50000; 60 100000"
+    for level in removeList:
+        #Execute RemoveTerrainPyramidLevel
+        arcpy.RemoveTerrainPyramidLevel_3d("sample.gdb/featuredataset/terrain", 
+                                           level)
+    #Execute AddTerrainPyramidLevel
+    arcpy.AddTerrainPyramidLevel_3d("sample.gdb/featuredataset/terrain", 
+                                    "#", addList)
+except:
+    # Returns any other error messages
+    print arcpy.GetMessages(2)
+
+del arcpy
+                    </code></scriptExample></scriptExamples></tool></metadata>

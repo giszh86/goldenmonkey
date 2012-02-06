@@ -1,0 +1,109 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Make Image Server Layer (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a temporary raster layer from an image service. The layer that is created will not persist after the session ends unless the document is saved.</para>
+			<para>The input can also be a URL to an image server. The image server URL should also include the coverage and version information. If only URL is entered, the tool will automatically take the first coverage and use the default version (1.0.0) to create the image layer.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Connection</keyword><keyword>Copy</keyword><keyword>Create</keyword><keyword>Memory</keyword><keyword>Query</keyword><keyword>Raster</keyword><keyword>Service</keyword><keyword>Surface</keyword><keyword>Temporary</keyword><keyword>Url</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MakeImageServerLayer" displayname="Make Image Server Layer (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a temporary raster layer from an image service. The layer that is created will not persist after the session ends unless the document is saved.</para>
+			<para>The input can also be a URL to an image server. The image server URL should also include the coverage and version information. If only URL is entered, the tool will automatically take the first coverage and use the default version (1.0.0) to create the image layer.</para>
+		</summary><alink_name>MakeImageServerLayer_management</alink_name><parameters><param sync="true" name="in_image_service" displayname="Input Image Service" datatype="Image Service; String" direction="Input" expression="in_image_service" type="Required"><pythonReference>
+						<para>The name of the input image service, or the URL that references the image service.</para>
+						<para>If an image server URL is used, the URL should include the coverage name and version information. If only URL is entered, the tool will automatically take the first coverage and use the default version (1.0.0) to create the image layer.</para>
+						<para>An example of a URL that includes the coverage name and version is below:</para>
+						<para>http://AGSServer/arcgis/services/ISName/ImageServer?coverage=rasterDRGs&amp;version=1.1.1</para>
+						<para>In this example, "http://AGSServer/arcgis/services/ISName/ImageServer?" is the URL. The coverage specified is "coverage=rasterDRGs", and the version is "&amp;version=1.1.1".</para>
+					</pythonReference><dialogReference>
+						<para>Navigate or type the input image service. This tool can also accept a URL that references the image service.</para>
+						<para>If an image server URL is used, the URL should include the coverage name and version information. If only URL is entered, the tool will automatically take the first coverage and use the default version (1.0.0) to create the image layer.</para>
+						<para>An example of a URL that includes the coverage name and version is below:</para>
+						<para>http://AGSServer/arcgis/services/ISName/ImageServer?coverage=rasterDRGs&amp;version=1.1.1</para>
+						<para>In this example, "http://AGSServer/arcgis/services/ISName/ImageServer?" is the URL. The coverage specified is "coverage=rasterDRGs", and the version is "&amp;version=1.1.1".</para>
+					</dialogReference></param><param sync="true" name="out_imageserver_layer" displayname="Output Image Service Layer" datatype="Raster Layer" direction="Output" expression="out_imageserver_layer" type="Required"><pythonReference>
+						<para>The name of the output image layer.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the output image layer.</para>
+					</dialogReference></param><param sync="true" name="template" displayname="Template Extent" datatype="Extent" direction="Input" expression="template" type="Optional"><pythonReference>
+						<para>The output extent of the image layer.</para>
+						<para>The output extent can either be specified by defining the area to be clipped (X-Minimum, Y-Minimum, X-Maximum, Y-Maximum) or by using the extent of an existing layer.</para>
+					</pythonReference><dialogReference>
+						<para>The output extent of the image layer.</para>
+						<para>The output extent can either be specified by defining the four coordinates or by using the extent of an existing layer.</para>
+					</dialogReference></param><param sync="true" name="band_index" displayname="Bands" datatype="Long" direction="Input" expression="[ID,...]" type="Optional"><pythonReference>
+						<para>Choose which bands to export for the layer. If no bands are specified, then all the bands will be used in the output.</para>
+					</pythonReference><dialogReference>
+						<para>Choose which bands to export for the layer. If no bands are specified, then all the bands will be used in the output.</para>
+					</dialogReference></param><param sync="true" name="mosaic_method" displayname="Mosaic Method" datatype="String" direction="Input" expression="mosaic_method" type="Optional"><pythonReference>
+						<para>The mosaic method defines how the mosaic is created from different rasters.</para>
+						<para>An image returned to the client can be created from a number of input rasters. The mosaic process has two default options available.</para>
+						<bulletList>
+							<bullet_item>Closest_To_Center—Sorts rasters based on a default order where rasters that have their center closest to the view center are placed on top.</bullet_item>
+							<bullet_item>North_West—Sorts rasters based on an order where rasters that have their center closest to the northwest is placed on top.</bullet_item><bullet_item>Lock_Raster—Lock the display of a single or multiple rasters based on an ID or name.</bullet_item>
+							<bullet_item>By_Attribute—Sorts rasters based on an attribute field and its difference from the base value.</bullet_item><bullet_item>Closest_To_Nadir—Sorts rasters based on an order where rasters that have their nadir position closest to the view center are placed on top. The nadir point can be different from the center point, especially in oblique imagery.</bullet_item><bullet_item>Closest_To_Viewpoint—Sorts rasters based on an order where the nadir position is closest to the user-defined view point location is on top.</bullet_item><bullet_item>Seamline—Cuts the raster using a predefined seamline shape for each raster using optional feathering along the seams. The ordering is predefined during the seamline generation .</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The mosaic method defines how the mosaic is created from different rasters.</para>
+						<para>An image returned to the client can be created from a number of input rasters. The mosaic process has two default options available.</para>
+						<bulletList>
+							<bullet_item>Closest_To_Center—Sorts rasters based on a default order where rasters that have their center closest to the view center are placed on top.</bullet_item>
+							<bullet_item>North_West—Sorts rasters based on an order where rasters that have their center closest to the northwest is placed on top.</bullet_item><bullet_item>Lock_Raster—Lock the display of a single or multiple rasters based on an ID or name.</bullet_item>
+							<bullet_item>By_Attribute—Sorts rasters based on an attribute field and its difference from the base value.</bullet_item><bullet_item>Closest_To_Nadir—Sorts rasters based on an order where rasters that have their nadir position closest to the view center are placed on top. The nadir point can be different from the center point, especially in oblique imagery.</bullet_item><bullet_item>Closest_To_Viewpoint—Sorts rasters based on an order where the nadir position is closest to the user-defined view point location is on top.</bullet_item><bullet_item>Seamline—Cuts the raster using a predefined seamline shape for each raster using optional feathering along the seams. The ordering is predefined during the seamline generation .</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="order_field" displayname="Order Field" datatype="String" direction="Input" expression="order_field" type="Optional"><pythonReference>
+						<para>
+The default field to use to order the rasters when the mosaic method is ByAttribute. The list of fields is defined as those in the service table that are of type metadata and are integer (for example, the values can represent dates or cloud cover percentage).
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The default field to use to order the rasters when the mosaic method is ByAttribute. The list of fields is defined as those in the service table that are of type metadata and are integer (for example, the values can represent dates or cloud cover percentage).
+</para>
+					</dialogReference></param><param sync="true" name="order_base_value" displayname="Order Base Field" datatype="String" direction="Input" expression="order_base_value" type="Optional"><pythonReference>
+						<para>The images are sorted based on the difference between this input value and attribute value in the specified field.</para>
+					</pythonReference><dialogReference>
+						<para>The images are sorted based on the difference between this input value and attribute value in the specified field.</para>
+					</dialogReference></param><param sync="true" name="lock_rasterid" displayname="Lock Raster ID" datatype="String" direction="Input" expression="lock_rasterid" type="Optional"><pythonReference>
+						<para>Raster ID or raster name to which the service should be locked, such that only the specified rasters are displayed. If left blank (undefined), it will be similar to system default. Multiple IDs can be defined as a semicolon-delimited list.</para>
+					</pythonReference><dialogReference>
+						<para>Raster ID or raster name to which the service should be locked, such that only the specified rasters are displayed. If left blank (undefined), it will be similar to system default. Multiple IDs can be defined as a semicolon-delimited list.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>Use this tool to create an image layer from an image service, or a URL that references an image service.</para>
+			</bullet_item><bullet_item>
+				<para>If an image server URL is used, the URL should include the coverage name and version information. If only URL is entered, the tool will automatically take the first coverage and use the default version (1.0.0) to create the image layer.</para>
+			</bullet_item><bullet_item>
+				<para>The output can be the entire image service or a portion of it.</para>
+			</bullet_item><bullet_item>
+				<para>You can clip out a portion of the image service by choosing an output extent layer or by specifying the rectangle extent. If you choose an output extent layer, the clip extent will be based upon the extent of that layer.</para>
+			</bullet_item><bullet_item>
+				<para>The output can be created with only a subset of the bands. This will help save on time and disk space.</para>
+			</bullet_item><bullet_item>
+				<para>The mosaicking options are only available when the image service it contains is generated from a mosaic definition or image service definition.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeImageServerLayer example 1 (Python window)</title><para>This is a Python sample for the MakeImageServerLayer tool.</para><code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/Workspace"
+input1 = "GIS Servers/server3 (admin)/File_TIFF_Amberg.ImageServer"
+arcpy.MakeImageServerLayer_management(input1, "islayer", "4488961 5478909 4489227 5479255",\
+                                          "4;6", "#", "#", "#", "#")
+                    </code></scriptExample><scriptExample><title>MakeImageServerLayer example 2 (stand-alone script)</title><para>This is a Python script sample for the MakeImageServerLayer tool.</para><code xml:space="preserve">##====================================
+##Make Image Server Layer
+##Usage: MakeImageServerLayer_management in_image_service out_imageserver_layer 
+##                                       {template} {ID;ID...} {mosaic_method} 
+##                                       {order_field} {order_base_value} {lock_rasterid}
+    
+try:
+    import arcpy
+    
+    arcpy.env.workspace = r"C:/Workspace"
+    input1 = r"GIS Servers\server3 (admin)\File_TIFF_Amberg.ImageServer"
+    input2 = "http://server3/arcgis/services/MD_MosaicRule/ImageServer"
+    
+    ##Create image services layer from a single image file service
+    ##Use connection file as input
+    arcpy.MakeImageServerLayer_management(input1, "islayer", "4488961 5478909 4489227 5479255",\
+                                          "4;6", "#", "#", "#", "#")
+    
+    ##Create image services layer from mosaic dataset image service
+    ##Use URL as input
+    arcpy.MakeImageServerLayer_management(input2, "mdlayer", "feature.shp", "1;2;3",\
+                                          "LockRaster", "#", "#", "4")
+
+    print arcpy.GetMessages()
+    
+except:
+    print "Make Image Server Layer example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

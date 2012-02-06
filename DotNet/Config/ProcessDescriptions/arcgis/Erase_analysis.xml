@@ -1,0 +1,101 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Erase (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a feature class by overlaying the Input Features with the polygons of the Erase Features. Only those portions of the input features falling outside the erase features outside boundaries are copied to the output feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Combine</keyword><keyword>Cover</keyword><keyword>Cut</keyword><keyword>Delete</keyword><keyword>Donut</keyword><keyword>Doughnut</keyword><keyword>Hole</keyword><keyword>Inside</keyword><keyword>Intersect</keyword><keyword>Join</keyword><keyword>Minus</keyword><keyword>On Top Of</keyword><keyword>Outside</keyword><keyword>Overlap</keyword><keyword>Punch</keyword><keyword>Remove</keyword><keyword>Spatial Relationship</keyword><keyword>Superimpose</keyword><keyword>Swiss Cheese</keyword><keyword>Topological Set</keyword><keyword>Topology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Erase" displayname="Erase (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Creates a feature class by overlaying the Input Features with the polygons of the Erase Features. Only those portions of the input features falling outside the erase features outside boundaries are copied to the output feature class.</para>
+		</summary><alink_name>Erase_analysis</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/Erase_analysis_v.gif" alt="Erase illustration" /><toolIllust type="illustration" src="Erase_analysis_h.gif" alt="Erase illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input feature class or layer.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class or layer.</para>
+					</dialogReference></param><param sync="true" name="erase_features" displayname="Erase Features" datatype="Feature Layer" direction="Input" expression="erase_features" type="Required"><pythonReference>
+						<para>The features to be used to erase coincident features in the input.</para>
+					</pythonReference><dialogReference>
+						<para>The features to be used to erase coincident features in the input.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The feature class that will contain only those Input Features that are not coincident with the Erase Features.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class that will contain only those Input Features that are not coincident with the Erase Features.</para>
+					</dialogReference></param><param sync="true" name="cluster_tolerance" displayname="XY Tolerance" datatype="Linear unit" direction="Input" expression="cluster_tolerance" type="Optional"><pythonReference>
+						<para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both). </para>
+					</pythonReference><dialogReference>
+						<para>The minimum distance separating all feature coordinates (nodes and vertices) as well as the distance a coordinate can move in X or Y (or both). </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Qualified_field_names" label="Qualified field names">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3"></environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Input Feature geometries coincident with Erase Feature geometries will be removed.</para>
+			</bullet_item><bullet_item>
+				<para>The Erase Features can be point, line, or polygon as long as the Input Feature is of the same or lesser order feature type. A polygon erase feature can be used to erase polygons, lines, or points from the input features; a line erase feature can be used to erase lines or points from the input features; a point erase feature can be used to erase points from the input features.</para>
+			</bullet_item><bullet_item>
+				<para>Attribute values from the input feature class(es) will be copied to the output feature class.  However, if the input is a layer(s) created by the  tool and a field's "Use Ratio Policy" is checked, then a ratio of the input attribute value is calculated for the output attribute value.    When "Use Ratio Policy" is enabled, whenever a feature in an overlay operation is split, the attributes of the resulting features are a ratio of the attribute value of the input feature. The output value  is based on the ratio in which the input feature  geometry was divided. For example, If the input geometry was divided equally, each new feature's attribute value is assigned one-half of the value of the input feature's attribute value. "Use Ratio Policy" only applies to numeric field types. </para><para>Geoprocessing tools do not honor geodatabase feature class or table field split policies.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will use a tiling process to handle very large datasets for better performance and scalability. For more details, see .</para>
+			</bullet_item><bullet_item>
+				<para>This tool may generate multipart features in the output even if all inputs were single part. If multipart features are not desired, use the  on the output feature class.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Erase example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the Erase function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/data/gdb"
+arcpy.Erase_analysis(r'redlands.gdb\rdlswells\well',r'redlands.gdb\rdlsfloodzones\flood',r'redlands.gdb\wellsoutside_flood','#')
+                    </code></scriptExample><scriptExample><title>Erase example (Stand-alone script)</title>
+					<para>Find areas of suitable vegetation which exclude areas heavily impacted by major roads.</para>
+				<code xml:space="preserve"># Name: Erase.py
+# Description: Find areas of suitable vegetation which exclude areas heavily impacted by major roads
+# Author: ESRI
+
+# import system modules 
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data/Habitat_Analysis.gdb"
+
+# Select suitable vegetation patches from all vegetation
+veg = "vegtype"
+suitableVeg = "C:/output/Output.gdb/suitable_vegetation"
+whereClause = "HABITAT = 1" 
+arcpy.Select_analysis(veg, suitableVeg, whereClause)
+
+# Buffer areas of impact around major roads
+roads = "majorrds"
+roadsBuffer = "C:/output/Output.gdb/buffer_output"
+distanceField = "Distance"
+dissolveField = "Distance"
+arcpy.Buffer_analysis(roads, roadsBuffer, distanceField, “FULL”, “ROUND”, “LIST”, dissolveField)
+
+# Erase areas of impact around major roads from the suitable vegetation patches
+eraseOutput = "C:/output/Output.gdb/suitable_vegetation_minus_roads"
+xyTol = "1 Meters"
+arcpy.Erase_analysis(suitableVeg, roadsBuffer, eraseOutput, xyTol)
+                    </code></scriptExample></scriptExamples></tool></metadata>

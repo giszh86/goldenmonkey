@@ -1,0 +1,78 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Transpose Time Fields (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs><para>Shifts fields from columns to rows in a table or feature class that have time as the field names.This tool is useful when your table or feature class stores time in field names (such as Pop1980, Pop1990, Pop2000, and so on), and you want to create time stamps for the feature class or table so that it can be animated through time.</para><para>This is a deprecated tool. This functionality has been replaced with the Transpose Fields tool that now transposes any fields from columns to rows.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TransposeTimeFields" displayname="Transpose Time Fields (Data Management)" toolboxalias="management" softwarerestriction="none"><summary><para>Shifts fields from columns to rows in a table or feature class that have time as the field names.This tool is useful when your table or feature class stores time in field names (such as Pop1980, Pop1990, Pop2000, and so on), and you want to create time stamps for the feature class or table so that it can be animated through time.</para><para>This is a deprecated tool. This functionality has been replaced with the Transpose Fields tool that now transposes any fields from columns to rows.</para>
+		</summary><alink_name>TransposeTimeFields_management</alink_name><parameters><param sync="true" name="Input_Feature_Class_or_Table" displayname="Input Feature Class or Table" datatype="Table View" direction="Input" expression="Input_Feature_Class_or_Table" type="Required"><pythonReference>
+						<para>The input feature class or table for which time stamps will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class or table for which time stamps will be created.</para>
+					</dialogReference></param><param sync="true" name="Fields_to_Transpose" displayname="Fields to Transpose" datatype="String" direction="Input" expression="Fields_to_Transpose;Fields_to_Transpose..." type="Required"><pythonReference>
+						<para>The columns from the input table and the corresponding time values.</para>
+						<para>Multiple strings can be entered, depending on how many fields you are transposing. Each string should be formatted as "Field_Name Time" (without the quotation marks). Each is a pair of substrings separated by a space. For example, the following string is a valid input: "POP1980 1980". In this example, POP1980 is the field name of a field containing population values for 1980. 1980 is the string that will be substituted for POP1980 and populated in the time field of the output table or feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The columns from the input table and the corresponding time values.</para>
+						<para>Multiple strings can be entered, depending on how many fields you are transposing. Each string should be formatted as "Field_Name Time" (without the quotation marks). Each is a pair of substrings separated by a space. For example, the following string is a valid input: "POP1980 1980". In this example, POP1980 is the field name of a field containing population values for 1980. 1980 is the string that will be substituted for POP1980 and populated in the time field of the output table or feature class.</para>
+					</dialogReference></param><param sync="true" name="Output_Feature_Class_or_Table" displayname="Output Feature Class or Table" datatype="Table" direction="Output" expression="Output_Feature_Class_or_Table" type="Required"><pythonReference>
+						<para>The output feature class or table. The output table can be specified as a .dbf table, an info table, or a geodatabase table. The output feature class can only be stored in a geodatabase (shapefile is not available as a format for the output). The output feature class or table will contain a time field, a value field, and any number of attribute fields specified that need to be inherited from the input table.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class or table. The output table can be specified as a .dbf table, an info table, or a geodatabase table. The output feature class can only be stored in a geodatabase (shapefile is not available as a format for the output). The output feature class or table will contain a time field, a value field, and any number of attribute fields specified that need to be inherited from the input table.</para>
+					</dialogReference></param><param sync="true" name="Time_Field_Name" displayname="Time Field Name" datatype="String" direction="Input" expression="Time_Field_Name" type="Required"><pythonReference>
+						<para>The name of the time field that will be created to store time values. The default name is "Time". Any valid field name can be used.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the time field that will be created to store time values. The default name is "Time". Any valid field name can be used.</para>
+					</dialogReference></param><param sync="true" name="Value_Field_Name" displayname="Value Field Name" datatype="String" direction="Input" expression="Value_Field_Name" type="Required"><pythonReference>
+						<para>The name of the value field that will be created to store the values from the input table. The default name is "Value". Any valid field name can be set, as long as it does not conflict with existing field names from the input table or feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the value field that will be created to store the values from the input table. The default name is "Value". Any valid field name can be set, as long as it does not conflict with existing field names from the input table or feature class.</para>
+					</dialogReference></param><param sync="true" name="Attribute_Fields" displayname="Attribute Fields" datatype="Field" direction="Input" expression="Attribute_Fields;Attribute_Fields..." type="Optional"><pythonReference>
+						<para>Attribute fields from the input table to be included in the output table.</para>
+					</pythonReference><dialogReference>
+						<para>Attribute fields from the input table to be included in the output table.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If you want the output to be a table, you need to specify the input as a table.</para>
+			</bullet_item><bullet_item>
+				<para>The output must be a geodatabase feature class. A shapefile is not a supported format for the output feature class.</para>
+			</bullet_item><bullet_item>
+				<para>ObjectID (or OID, FID, and so on) and Shape fields should not be set as attribute fields.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TransposeTimeFields (Python window)</title>
+					<para>The following Python window script demonstrates how to use the TransposeTimeFields tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.TransposeTimeFields_management("c:/data/state_pop", "'Y1980 1980';'Y1981 1981';'Y1982 1982'",
+                                     "c:/data/state_output", "Time", "Value", "STATE_NAME;AVG_ANUAL_")
+ 
+
+                    </code></scriptExample><scriptExample><title>TransposeTimeFields (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the TransposeTimeFields tool.</para>
+				<code xml:space="preserve"># Name: TransposeTimeFields_Ex_02.py
+# Description: Tranpose time field names from column headers to time values in one column
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# set workspace
+arcpy.env.workspace = "c:/data"
+
+# Set local variables
+inTable = "state_pop"
+# Specify fields to transpose
+fieldsToTranspose = "'Y1980 1980';'Y1981 1981';'Y1982 1982'"
+# Set a variable to store output feature class or table
+outTable = "state_output"
+# Set a variable to store time field name
+timeFieldName = "Time"
+# Set a variable to store value field name
+valueFieldName = "Value"
+# Specify attribute fields to be included in the output
+attrFields = "STATE_NAME;AVG_ANUAL_"
+
+# Execute TransposeTimeFields
+arcpy.TransposeTimeFields_management(inTable, fieldsToTranspose, outTable, timeFieldName, valueFieldName, attrFields)
+ 
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

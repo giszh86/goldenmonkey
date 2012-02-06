@@ -1,0 +1,70 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Extend Line (Editing)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool extends line segments to the first intersecting feature within a specified distance. If no intersecting feature is within the specified distance, the line segment will not be extended. Tool use is intended for quality control tasks such as cleaning up topology errors in features that were digitized without having set proper snapping environments.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Continue</keyword><keyword>Dangle</keyword><keyword>Exist</keyword><keyword>Gap</keyword><keyword>Hang</keyword><keyword>Increase</keyword><keyword>Input</keyword><keyword>Intersection</keyword><keyword>Length</keyword><keyword>Longer</keyword><keyword>Magnet</keyword><keyword>Modify</keyword><keyword>Snap</keyword><keyword>Stretch</keyword><keyword>Tolerance</keyword><keyword>Undershoot</keyword><keyword>Update</keyword><keyword>Vertex</keyword><keyword>Vertices</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExtendLine" displayname="Extend Line (Editing)" toolboxalias="edit" softwarerestriction="none"><summary>
+			<para>This tool extends line segments to the first intersecting feature within a specified distance. If no intersecting feature is within the specified distance, the line segment will not be extended. Tool use is intended for quality control tasks such as cleaning up topology errors in features that were digitized without having set proper snapping environments.</para>
+		</summary><alink_name>ExtendLine_edit</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/ExtendLine_edit_v.png" alt="Extend Line illustration" /><toolIllust type="illustration" src="ExtendLine_edit_h.png" alt="Extend Line illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The line input features to be extended.</para>
+					</pythonReference><dialogReference>
+						<para>The line input features to be extended.</para>
+					</dialogReference></param><param sync="true" name="length" displayname="Extend Length" datatype="Linear Unit" direction="Input" expression="length" type="Optional"><pythonReference>
+						<para>The maximum distance a line segment can be extended to an intersecting feature.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum distance a line segment can be extended to an intersecting feature.</para>
+					</dialogReference></param><param sync="true" name="extend_to" displayname="Extend to Extensions" datatype="Boolean" direction="Input" expression="extend_to" type="Optional"><pythonReference>
+						<para>Controls whether line segments can be extended to other extended line segments within the specified extend length.</para>
+						<bulletList><bullet_item>EXTENSION—Line segments can be extended to other extended line segments as well as existing line features. This is the default.</bullet_item><bullet_item>FEATURE—Line segments can only be extended to existing line features. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Controls whether line segments can be extended to other extended line segments within the specified extend length.</para>
+						<bulletList>
+							<bullet_item>Checked -- Line segments can be extended to other extended line segments as well as existing line features. This is the default.</bullet_item>
+							<bullet_item>Unchecked -- Line segments can only be extended to existing line features. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				
+					<para>This tool modifies the input data. See  for more information and strategies to avoid undesired data changes.</para>
+				
+			</bullet_item><bullet_item>
+				<para>If no Extend Length is specified, segments will be extended to the first intersecting feature.</para>
+			</bullet_item><bullet_item>
+				<para>If the Extend to Extensions option is used, line segments can be extended to existing line features as well as other extended line segments within the specified extend length, forming intersections between two extensions.</para>
+			</bullet_item><bullet_item>
+				<para>A feature can be extended to itself, if it is the first intersecting feature.</para>
+			</bullet_item><bullet_item>
+				<para>If a feature layer or feature class with a selection is used as the input, only the selected features will be extended. All features within the layer or feature class will be used to assess if an extension can be performed, but only the selected features will be modified.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will not change any feature attributes, except the managed geometry (length) fields in a personal, file, or SDE geodatabase feature class.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Extend Line Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Extend Line tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data"
+arcpy.ExtendLine_edit("majorrds.shp", "15 Feet", "EXTENSION")
+                    </code></scriptExample><scriptExample><title>Extend Line Example (Stand-alone script)</title>
+					<para>Clean up street centerlines that were digitized without having set proper snapping environments</para>
+				<code xml:space="preserve"># Name: ExtendLine.py
+# Description:  Clean up street centerlines that were digitized without 
+#                      having set proper snapping environments
+# Author: ESRI
+
+# import system modules 
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Make backup copy of streets feature class, since modification with 
+#  the Editing tools below is permanent
+streets = "majorrds.shp"
+streetsBackup = "C:/output/Output.gdb/streetsBackup"
+arcpy.CopyFeatures_management(streets, streetsBackup)
+
+# Trim street lines to clean up dangles
+arcpy.TrimLine_edit(streets, "10 Feet", "KEEP_SHORT")
+
+# Extend street lines to clean up dangles
+arcpy.ExtendLine_edit(streets, "15 Feet", "EXTENSION")
+                    </code></scriptExample></scriptExamples></tool></metadata>

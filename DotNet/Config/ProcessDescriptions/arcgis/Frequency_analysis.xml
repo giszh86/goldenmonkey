@@ -1,0 +1,122 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Frequency (Analysis)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Reads a table and a set of fields and creates a new table containing unique field values and the number of occurrences of each unique field value.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Amount</keyword><keyword>Attribute</keyword><keyword>Count</keyword><keyword>Duplicate</keyword><keyword>Field</keyword><keyword>Group</keyword><keyword>List</keyword><keyword>Math</keyword><keyword>Number</keyword><keyword>Occurrence</keyword><keyword>Often</keyword><keyword>Quantify</keyword><keyword>Statistical</keyword><keyword>Sum</keyword><keyword>Summarize</keyword><keyword>Summary</keyword><keyword>Table</keyword><keyword>Times</keyword><keyword>Total</keyword><keyword>Unique</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Frequency" displayname="Frequency (Analysis)" toolboxalias="analysis" softwarerestriction="none"><summary>
+			<para>Reads a table and a set of fields and creates a new table containing unique field values and the number of occurrences of each unique field value.</para>
+		</summary><alink_name>Frequency_analysis</alink_name><parameters><param sync="true" name="in_table" displayname="Input Table" datatype="Table View; Raster Layer" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The table containing the field(s) that will be used to calculate frequency statistics. This table can be an INFO or OLE DB table, a dBASE or a VPF table, or a                         feature class table.</para>
+					</pythonReference><dialogReference>
+						<para>The table containing the field(s) that will be used to calculate frequency statistics. This table can be an INFO or OLE DB table, a dBASE or a VPF table, or a                         feature class table.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>The table that will store the calculated frequency statistics.</para>
+					</pythonReference><dialogReference>
+						<para>The table that will store the calculated frequency statistics.</para>
+					</dialogReference></param><param sync="true" name="frequency_fields" displayname="Frequency Field(s)" datatype="Field" direction="Input" expression="[frequency_fields,...]" type="Required"><pythonReference>
+						<para>The attribute field or fields that will be used to calculate frequency statistics.</para>
+					</pythonReference><dialogReference>
+						<para>The attribute field or fields that will be used to calculate frequency statistics.</para>
+					</dialogReference></param><param sync="true" name="summary_fields" displayname="Summary Field(s)" datatype="Field" direction="Input" expression="[summary_fields,...]" type="Optional"><pythonReference>
+						<para>The attribute field or fields to sum and add to the output table. Null values are excluded from this calculation.</para>
+					</pythonReference><dialogReference>
+						<para>The attribute field or fields to sum and add to the output table. Null values are excluded from this calculation.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The output table will contain the field <bold>Frequency</bold> and the specified frequency field(s) and summary field(s).</para>
+			</bullet_item><bullet_item>
+				<para>The output table will contain the frequency calculation for each attribute value combination of the specified frequency field(s).</para>
+			</bullet_item><bullet_item>
+				<para>If a summary field is specified, the unique attribute values of the frequency calculation are summarized by the numeric attribute values of each summary field.</para>
+			</bullet_item><bullet_item>
+				<para>When using layers, only the currently selected features are used in calculations.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Frequency Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the Frequency function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/Portland.gdb/Taxlots"
+arcpy.Frequency_analysis("taxlots", "C:/output/output.gdb/tax_frequency",["YEARBUILT", "COUNTY"], ["LANDVAL", "BLDGVAL", "TOTALVAL"])
+                    </code></scriptExample><scriptExample><title>Frequency Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the Frequency function.</para>
+				<code xml:space="preserve"># Name: Frequency_Example2.py
+# Description: Run Frequency on a table
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data/Portland.gdb/Taxlots"
+ 
+# Set local variables
+inTable = "taxlots"
+outTable = "C:/output/output.gdb/tax_frequency"
+frequencyFields = ["YEARBUILT", "COUNTY"]
+summaryFields = ["LANDVAL", "BLDGVAL", "TOTALVAL"]
+ 
+# Execute Frequency
+arcpy.Frequency_analysis(inTable, outTable, frequencyFields, summaryFields)
+                    </code></scriptExample><scriptExample><title>Frequency Example 3 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use many geoprocessing scripting functions, including the Frequency function.</para>
+				<code xml:space="preserve"># Name: Frequency_Example3.py
+# Description: Break all multipart features into singlepart features, 
+#  and generate a report of which features were separated.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Create variables for the input and output feature classes
+inFeatureClass = "c:/gdb.mdb/vegetation"
+outFeatureClass = "c:/gdb.mdb/vegetation_singlepart"
+ 
+# Use error trapping in case a problem occurs when running the tools
+try:
+    # Add a field to the input (if not already present), this will be used as a unique identifier
+    # Create list of all fields in inFeatureClass
+    fieldList = arcpy.ListFields(inFeatureClass)
+    # Create new empty list to hold field names from inFeatureClass
+    fieldNameList = []
+    # polulate the field name list with field names from inFeatureClass 
+    for field in fieldList:
+        fieldNameList = fieldNameList.append(field.name)
+    # if "tmpUID" is not a field name in inFeatureClass, add it
+    if "tmpUID" not in fieldNameList:
+        arcpy.AddField(inFeatureClass, "tmpUID","double")
+ 
+    # Determine what the name of the Object ID is 
+    describe = arcpy.Describe(inFeatureClass)  
+    OidFieldName = describe.OIDFieldName
+ 
+    # Calculate the tmpUID to the OID since this is a Personal GDB, wrap the Field inside []
+    exp = "[" + OidFieldName + "]"
+    arcpy.CalculateField_management(inFeatureClass, "tmpUID", exp)
+ 
+    # Run the tool to create a new fc with only singlepart features
+    arcpy.MultipartToSinglepart_management(inFeatureClass,outFeatureClass)
+ 
+    # Check if there is a different number of features in the output than there was in the input 
+    if (arcpy.GetCount_management(inFeatureClass) == (arcpy.GetCount_management(outFeatureClass)):
+        print "The number of features in the input is the same as in the output, so no multipart features were found"
+    else:
+        # If there is a difference, print out the FID of the input features which were multipart
+        arcpy.Frequency_analysis(outFeatureClass, outFeatureClass + "_freq", "tmpUID")
+ 
+        # Use a search cursor to go through the table, and print the tmpUID 
+        print "Below is a list of the FIDs of all the multipart features from " + inFeatureClass
+        rows = arcpy.SearchCursor(outFeatureClass + "_freq", "[FREQUENCY] &gt; 1")
+        row = rows.next()
+        while row:
+            print int(row.tmpUID)
+            row = rows.next()
+ 
+except:
+    # If an error occurred, print out the error message
+    print "Error occurred"
+    print arcpy.GetMessages()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

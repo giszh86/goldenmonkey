@@ -1,0 +1,99 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Iso Cluster Unsupervised Classification  (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs unsupervised classification on a series of input raster bands using the Iso Cluster and Maximum Likelihood Classification tools.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Classification</keyword><keyword>Clustering</keyword><keyword>Image Classification</keyword><keyword>Image Processing</keyword><keyword>Isocluster</keyword><keyword>Land Cover</keyword><keyword>Land Use</keyword><keyword>Multiband</keyword><keyword>Multivariate Statistics</keyword><keyword>Natural Grouping</keyword><keyword>Remote Sensing</keyword><keyword>Signature File</keyword><keyword>Unsupervised</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="IsoClusterUnsupervisedClassification" displayname="Iso Cluster Unsupervised Classification  (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Performs unsupervised classification on a series of input raster bands using the Iso Cluster and Maximum Likelihood Classification tools.</para>
+			</summary><alink_name>IsoClusterUnsupervisedClassification_sa</alink_name><parameters><param sync="true" name="Input_raster_bands" displayname="Input raster bands" datatype="Raster Layer" direction="Input" expression="[in_raster_band,...]" type="Required"><pythonReference>
+						<para>The input raster bands.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster bands.</para>
+					</dialogReference></param><param sync="true" name="Number_of_classes" displayname="Number of classes" datatype="Long" direction="Input" expression="number_of_classes" type="Required"><pythonReference>
+						<para>Number of classes into which to group the cells.</para>
+					</pythonReference><dialogReference>
+						<para>Number of classes into which to group the cells.</para>
+					</dialogReference></param><param sync="true" name="Minimum_class_size" displayname="Minimum class size" datatype="Long" direction="Input" expression="minimum_class_size" type="Optional"><pythonReference><para>Minimum number of cells in a valid class.</para><para>The default is 20.</para>
+					</pythonReference><dialogReference><para>Minimum number of cells in a valid class.</para><para>The default is 20.</para>
+					</dialogReference></param><param sync="true" name="Sample_interval" displayname="Sample interval" datatype="Long" direction="Input" expression="sample_interval" type="Optional"><pythonReference>
+						<para>The interval to be used for sampling.</para><para>The default is 10.</para>
+					</pythonReference><dialogReference>
+						<para>The interval to be used for sampling.</para><para>The default is 10.</para>
+					</dialogReference></param><param sync="true" name="Output_signature_file" displayname="Output signature file" datatype="File" direction="Output" expression="out_signature_file" type="Optional"><pythonReference>
+						<para>The output signature file.</para><para>A .gsg extension must be specified.</para>
+					</pythonReference><dialogReference>
+						<para>The output signature file.</para><para>A .gsg extension must be specified.</para>
+					</dialogReference></param><param sync="true" name="Output_classified_raster" displayname="Output classified raster" datatype="Raster" direction="Output" expression="Output_classified_raster" type="Required"><pythonReference>
+							<para>The output classified raster.</para></pythonReference><dialogReference>
+							<para>The output classified raster.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool combines the functionalities of the Iso Cluster and Maximum Likelihood Classification tools. It outputs a classified raster. It optionally outputs a signature file. </para>
+			</bullet_item><bullet_item>
+				<para>The resulting signature file from this tool can be used as the input for another classification tool, such as Maximum Likelihood Classification, for greater control over the classification parameters.</para>
+			</bullet_item><bullet_item>
+				<para>The minimum valid value for the number of classes is two. There is no maximum number of clusters. In general, more clusters require more iterations.</para>
+			</bullet_item><bullet_item>
+				<para>To provide the sufficient statistics necessary to generate a signature file for a future classification, each cluster should contain enough cells to accurately represent the cluster. The value entered for the minimum class size should be approximately 10 times larger than the number of layers in the input raster bands.</para>
+			</bullet_item><bullet_item>
+				<para>The value entered for the sample interval indicates one cell out of every n-by-n block of cells is used in the cluster calculations.</para>
+			</bullet_item><bullet_item>
+				<para>You shouldn't merge or remove classes or change any of the statistics of the ASCII signature file.</para>
+			</bullet_item><bullet_item>
+				<para>Generally, the more cells contained in the extent of the intersection  of the input bands, the larger the values for minimum class size and sample interval should be specified. Values entered for the sample interval should be small enough that the smallest desirable categories existing in the input data will be appropriately sampled.</para>
+			</bullet_item><bullet_item>
+				<para>If the input is a layer created from a multiband raster with more than three bands, the operation will  consider all the bands associated with the source dataset, not just the three bands that were loaded (symbolized) by the layer. If you want to process a subset of the bands in the source dataset, you can  use the  tool to create an input layer containing the desired bands.</para>
+			</bullet_item><bullet_item>
+				<para>The class ID values on the output signature file start at one and sequentially increase to the number of input classes. The assignment of the class numbers is arbitrary.</para>
+			</bullet_item><bullet_item>
+				<para>The output signature file's name must have a .gsg extension.</para></bullet_item><bullet_item><para>Better results will be obtained if all input bands have the same data ranges. If the bands have vastly different data ranges, the data ranges can be transformed to the same range using Map Algebra to perform the equation.</para>
+					
+					
+				
+				 where:
+   <italics>Z</italics> is the output raster with new data ranges.
+   <italics>X</italics> is the input raster.
+   <italics>oldmin</italics> is the minimum value of the input raster.
+   <italics>oldmax</italics> is the maximum value of the input raster.
+   <italics>newmin</italics> is the desired minimum value for the output raster.
+   <italics>newmax</italics> is the desired maximum value for the output raster.</bullet_item></usage><scriptExamples><scriptExample><title>IsoClusterUnsupervisedClassification example 1 (Python window)</title>
+					<para>This example performs an unsupervised classification classifying the input bands into 5 classes and outputs a classified raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outUnsupervised = IsoClusterUnsupervisedClassification("redlands", 5, 20, 50)
+outUnsupervised.save("c:/temp/unsup01")
+                    </code></scriptExample><scriptExample><title>IsoClusterUnsupervisedClassification example 2 (stand-alone script)</title>
+					<para>This example performs an unsupervised classification classifying the input bands into 5 classes and outputs a classified raster.</para>
+				<code xml:space="preserve"># Name: IsoClusterUnsupervisedClassification_Ex_02.py
+# Description: Uses an isodata clustering algorithm to determine the 
+#    characteristics of the natural groupings of cells in multidimensional 
+#    attribute space and stores the results in an output ASCII signature file.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "redlands"
+classes = 5
+minMembers = 50
+sampInterval = 15
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute IsoCluster
+outUnsupervised = IsoClusterUnsupervisedClassification(inRaster, classes, minMembers, sampInterval)
+outUnsupervised.save("c:/temp/outunsup01.tif")
+                    </code></scriptExample></scriptExamples></tool></metadata>

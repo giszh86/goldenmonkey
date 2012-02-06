@@ -1,0 +1,59 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Index Item (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates an attribute index to increase access speed to the specified item during query operations.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Coverage</keyword><keyword>Index</keyword><keyword>Indexes</keyword><keyword>Indexitem</keyword><keyword>Indices</keyword><keyword>Info</keyword><keyword>Item</keyword><keyword>Performance</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="IndexItem" displayname="Index Item (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Creates an attribute index to increase access speed to the specified item during query operations.</para>
+		</summary><alink_name>IndexItem_arc</alink_name><parameters><param sync="true" name="in_info_table" displayname="Input Info Table" datatype="ArcInfo table" direction="Input" expression="in_info_table" type="Required"><pythonReference>
+						<para>The name of the INFO table containing the item to be indexed</para>
+					</pythonReference><dialogReference>
+						<para>The name of the INFO table containing the item to be indexed</para>
+					</dialogReference></param><param sync="true" name="index_item" displayname="Index Item" datatype="ArcInfo item" direction="Input" expression="index_item" type="Required"><pythonReference>
+						<para>The name of the item to be indexed</para>
+					</pythonReference><dialogReference>
+						<para>The name of the item to be indexed</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Indexed items speed up selection operations of large INFO files.</para>
+			</bullet_item><bullet_item>
+				<para>Item indexes are preserved when the coverage or INFO table is copied to a new location.</para>
+			</bullet_item><bullet_item>
+				<para>Item indexes are preserved when exporting and importing a coverage to an interchange (.e00) file using the  and  tools.</para>
+			</bullet_item><bullet_item>
+				<para>Items must be indexed to support native mode reselects against external database management system (DBMS) tables.</para>
+			</bullet_item><bullet_item>
+				<para>An index file becomes outdated if the following commands are used on the INFO table: , , , or . Attempting to use the outdated index will cause the following message to be generated: "Index file is obsolete." If you receive this message, rebuild the index file and continue.</para>
+			</bullet_item><bullet_item>
+				<para>The following commands are affected by indexed items: , , and .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>IndexItem example (stand-alone script)</title><para>The following stand-alone script demonstrates how to index an item in a coverage, and then select features using the indexed item.</para><code xml:space="preserve"># Name: IndexItem_Example.py
+# Description: Indexes an item then uses that item to select features.
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inInfoTable = "stream/arc"
+indexItem = "STRM_ORD"
+inCover = "stream"
+outCover = "C:/output/lowerstreams"
+infoExpress = ["RESELECT STRM_ORD &gt; 3"]
+
+# Execute IndexItem
+arcpy.IndexItem_arc(inInfoTable, indexItem)
+arcpy.Reselect_arc(inCover, outCover, infoExpress)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

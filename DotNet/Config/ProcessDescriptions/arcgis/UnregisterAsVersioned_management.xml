@@ -1,0 +1,56 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Unregister As Versioned (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Unregisters an ArcSDE dataset as versioned.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alternative</keyword><keyword>Check</keyword><keyword>Geodatabase</keyword><keyword>Mark</keyword><keyword>Multiple</keyword><keyword>Owner</keyword><keyword>Sde</keyword><keyword>Set</keyword><keyword>State</keyword><keyword>User</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="UnregisterAsVersioned" displayname="Unregister As Versioned (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Unregisters an ArcSDE dataset as versioned.</para>
+		</summary><alink_name>UnregisterAsVersioned_management</alink_name><parameters><param sync="true" name="in_dataset" displayname="Input Dataset" datatype="Table View; Feature Dataset" direction="Input" expression="in_dataset" type="Required"><pythonReference>
+						<para>Name of the ArcSDE dataset to be unregistered as versioned.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the ArcSDE dataset to be unregistered as versioned.</para>
+					</dialogReference></param><param sync="true" name="keep_edit" displayname="Keep Edits" datatype="Boolean" direction="Input" expression="keep_edit" type="Required"><pythonReference>
+						<para>Specifies whether edits made of the version should be maintained.</para>
+						<bulletList><bullet_item>KEEP_EDIT—Keep the edits. This is the default.</bullet_item><bullet_item>NO_KEEP_EDIT—Do not keep the edits.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether edits made of the version should be maintained.</para>
+						<bulletList>
+							<bullet_item>Checked—Keep the edits. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Do not keep the edits.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="compress_default" displayname="Compress all edits in the Default version into the base table" datatype="Boolean" direction="Input" expression="compress_default" type="Optional"><pythonReference>
+						<para>Determines whether edits will be compressed and unused data will be removed.</para>
+						<bulletList><bullet_item>NO_COMPRESS_DEFAULT—Edits are not compressed. This is the default. </bullet_item><bullet_item>COMPRESS_DEFAULT—Edits are compressed. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>
+							<bulletList>
+								<bullet_item>Checked—Edits are compressed. </bullet_item>
+								<bullet_item>Unchecked—Edits are not compressed. </bullet_item>
+							</bulletList>
+						</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Versioning tools only work with ArcSDE data.  File and personal geodatabases do not support versioning. </para>
+			</bullet_item><bullet_item>
+				<para>Unregistering a  dataset as versioned without first compressing the geodatabase could lead to loss of edited data.<bulletList><bullet_item>To improve database performance, the database should be compressed periodically. Compressing the database removes all unreferenced database states and redundant rows. Only the SDE administrator can perform this task.</bullet_item><bullet_item>After compressing the database or editing the data, the   tool should be executed to update the database statistics for each dataset or feature class. This will improve display and query performance.</bullet_item></bulletList></para>
+			</bullet_item><bullet_item>
+				<para>Versions are not affected by changes occurring in other versions of the database.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>UnregisterAsVersioned example (stand-alone script)</title>
+					<para>
+ The following stand-alone script demonstrates how to use the UnregisterAsVersioned tool to unregister a dataset as versioned.
+</para>
+				<code xml:space="preserve"># Name: UnregisterAsVersioned_Example.py
+# Description: Unregisters a dataset as versioned
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+datasetName = "Database Connections/ninefour@gdb.sde/ninefour.GDB.ctgFuseFeature"
+
+# Execute UnregisterAsVersioned
+arcpy.UnregisterAsVersioned_management( datasetName, "KEEP_EDIT", "COMPRESS_DEFAULT")
+                    </code></scriptExample></scriptExamples></tool></metadata>

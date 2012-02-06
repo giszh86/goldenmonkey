@@ -1,0 +1,65 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Spatial Index (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds a spatial index to a shapefile, file geodatabase, or ArcSDE feature class.   Use this tool to either add a spatial index to a shapefile or feature class that does not already have one or to rebuild an existing spatial index.   </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Create</keyword><keyword>Geometry</keyword><keyword>Improve</keyword><keyword>Locate</keyword><keyword>Optimize</keyword><keyword>Performance</keyword><keyword>Quick</keyword><keyword>Retrieve</keyword><keyword>Search</keyword><keyword>Speed</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddSpatialIndex" displayname="Add Spatial Index (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Adds a spatial index to a shapefile, file geodatabase, or ArcSDE feature class.   Use this tool to either add a spatial index to a shapefile or feature class that does not already have one or to rebuild an existing spatial index.   </para>
+		</summary><alink_name>AddSpatialIndex_management</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer; Raster Catalog Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>ArcSDE feature class, file geodatabase feature class, or shapefile to which a spatial index is to be added or rebuilt.</para>
+					</pythonReference><dialogReference>
+						<para>ArcSDE feature class, file geodatabase feature class, or shapefile to which a spatial index is to be added or rebuilt.</para>
+					</dialogReference></param><param sync="true" name="spatial_grid_1" displayname="Spatial Grid 1" datatype="Double" direction="Input" expression="spatial_grid_1" type="Optional"><pythonReference><para>The Spatial Grid 1, 2, and 3 parameters apply only to  file geodatabase and  certain ArcSDE geodatabase feature classes. If you are unfamiliar with setting grid sizes, leave these options as 0,0,0, and ArcGIS will compute optimal sizes for you.</para></pythonReference><dialogReference><para>The Spatial Grid 1, 2, and 3 parameters apply only to  file geodatabase and  certain ArcSDE geodatabase feature classes. If you are unfamiliar with setting grid sizes, leave these options as 0,0,0, and ArcGIS will compute optimal sizes for you.</para></dialogReference></param><param sync="true" name="spatial_grid_2" displayname="Spatial Grid 2" datatype="Double" direction="Input" expression="spatial_grid_2" type="Optional"><pythonReference>
+						<para>
+Cell size of the second spatial grid.  Leave the size at 0 if you only want one grid.  Otherwise, set the size to at least three times larger than Spatial Grid 1.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Cell size of the second spatial grid.  Leave the size at 0 if you only want one grid.  Otherwise, set the size to at least three times larger than Spatial Grid 1.
+</para>
+					</dialogReference></param><param sync="true" name="spatial_grid_3" displayname="Spatial Grid 3" datatype="Double" direction="Input" expression="spatial_grid_3" type="Optional"><pythonReference>
+						<para>
+Cell size of the third spatial grid.  Leave the size at 0 if you only want two grids.  Otherwise, set the size to at least three times larger than Spatial Grid 2.
+
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Cell size of the third spatial grid.  Leave the size at 0 if you only want two grids.  Otherwise, set the size to at least three times larger than Spatial Grid 2.
+
+</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Auto_commit" label="Auto commit">
+						
+					</environment></environments><usage><bullet_item><para>ArcGIS uses spatial indexes to quickly locate features in feature classes. Identifying a feature, selecting features by pointing or dragging a box, and panning and zooming all require ArcMap to use the spatial index to locate features.  The spatial index is defined by using a grid-based system  that spans the extent of the features in a feature class, like a locator grid you might find on a common road map. </para></bullet_item><bullet_item><para>By default, ArcGIS creates and maintains a spatial index for geodatabase feature classes.    For a geodatabase feature class to not have a spatial index, you must  explicitly remove it using the   tool.</para></bullet_item><bullet_item><para>The Spatial Grid 1, 2, and 3 parameters  only apply to file geodatabases and certain ArcSDE geodatabase feature classes (those that use SQL Server binary storage, DB2, Oracle binary storage, or Oracle ST_Geometry).</para><bulletList><bullet_item>If you are unfamiliar with setting spatial grid sizes or are unsure of what values to use, use the default values of 0,0,0.  When default values are input, this tool will calculate an optimal grid size by examining all the input features. </bullet_item><bullet_item>Shapefiles and certain ArcSDE geodatabase feature classes (those that use Oracle Spatial, Informix, and PostgreSQL) do not use spatial indexes based on grid sizes; therefore, no spatial grid values need to be specified.</bullet_item><bullet_item>Personal geodatabase feature classes receive a spatial index grid size based on the spatial reference properties of the feature class. This index grid cannot be overridden, removed, or modified.</bullet_item><bullet_item>Spatial Grid 1 is the first, or lowest, grid level and has the smallest cell size. The cells are square, and the parameter value you enter is the length of one side. The unit of measure is that of the spatial reference of the feature class (for example, meters). Spatial Grid 2  should be at least three times as large as Spatial Grid 1, and Spatial Grid 3 at least three times as large as Spatial Grid 2. </bullet_item></bulletList></bullet_item><bullet_item><para>If the Input Features already have a spatial index, Spatial Grid 1, 2, 3 displays the current spatial index grid values.  If you enter 0,0,0 for the spatial grid parameters and execute this tool, the optimal grid size is calculated, and the index rebuilt.  You can then view the calculated grid size by reopening this tool and reentering the feature class or layer (you would then click Cancel, since you do not need to rebuild the index).  You can also use the  tool to calculate optimal grid sizes.</para></bullet_item><bullet_item>
+				<para>Adding a new spatial index to an ArcSDE feature class is a server-intensive operation. It should not be done on large feature classes when a large number of users are logged in to the server.</para>
+			</bullet_item><bullet_item>
+For more information about spatial indexes, see the following:
+			</bullet_item></usage><scriptExamples><scriptExample><title>AddSpatialIndex Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the AddSpatialIndex function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+import arcpy.env as ENV
+ENV.workspace = "Database Connections/Connection to esoracle.sde"
+arcpy.AddSpatialIndex_management("LPI.Land/LPI.PLSSFirstDivision", 500)
+                    </code></scriptExample><scriptExample><title>AddSpatialIndex Example 2 (stand-alone Python script)</title>
+					<para>The following Python script demonstrates how to use the AddSpatialIndex function in a stand-alone script.</para>
+				<code xml:space="preserve">
+# Name: AddSpatialIndex_Example2.py
+# Description: Add a spatial index to a SDE feature class.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+import arcpy.env as ENV
+
+# Set workspace
+ENV.workspace = "Database Connections/Connection to esoracle.sde"
+
+# Set local variables
+in_features = "LPI.Land/LPI.PLSSFirstDivision"
+spatial_grid_1 = "500"
+spatial_grid_2 = ""
+spatial_grid_3 = ""
+
+# Execute AddSpatialIndex
+arcpy.AddSpatialIndex_management(in_features, spatial_grid_1)
+                    </code></scriptExample></scriptExamples></tool></metadata>

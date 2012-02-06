@@ -1,0 +1,123 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Replica From Server (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a replica using a specified list of feature classes, layers, feature datasets, and/or tables from a remote geodatabase using a geodata service published on ArcGIS Server.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>1 Way</keyword><keyword>2 Way</keyword><keyword>Centralize</keyword><keyword>Check</keyword><keyword>Child</keyword><keyword>Clone</keyword><keyword>Contractor</keyword><keyword>Copy</keyword><keyword>Database</keyword><keyword>Difference</keyword><keyword>Duplicate</keyword><keyword>Edit</keyword><keyword>Gdb</keyword><keyword>Geodata</keyword><keyword>In</keyword><keyword>Mobile</keyword><keyword>One</keyword><keyword>Out</keyword><keyword>Parent</keyword><keyword>Production</keyword><keyword>Publication</keyword><keyword>Replica</keyword><keyword>Replicate</keyword><keyword>Replication</keyword><keyword>Reproduction</keyword><keyword>Sde</keyword><keyword>Service</keyword><keyword>Synchronize</keyword><keyword>Two</keyword><keyword>Update</keyword><keyword>Version</keyword><keyword>Way</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateReplicaFromServer" displayname="Create Replica From Server (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a replica using a specified list of feature classes, layers, feature datasets, and/or tables from a remote geodatabase using a geodata service published on ArcGIS Server.</para>
+		</summary><alink_name>CreateReplicaFromServer_management</alink_name><parameters><param sync="true" name="in_geodataservice" displayname="Geodata Service" datatype="GeoDataServer" direction="Input" expression="in_geodataservice" type="Required"><pythonReference>
+						<para>The geodata service representing the geodatabase from which the replica will be created. The geodatabase referenced by the geodata service must be an ArcSDE geodatabase.</para>
+					</pythonReference><dialogReference>
+						<para>The geodata service representing the geodatabase from which the replica will be created. The geodatabase referenced by the geodata service must be an ArcSDE geodatabase.</para>
+					</dialogReference></param><param sync="true" name="datasets" displayname="Datasets" datatype="String" direction="Input" expression="dataset_name" type="Required"><pythonReference>
+						<para>The list of the feature datasets, stand-alone feature classes, tables, and stand-alone attributed relationship classes from the geodata service to replicate.</para>
+					</pythonReference><dialogReference>
+						<para>The list of the feature datasets, stand-alone feature classes, tables, and stand-alone attributed relationship classes from the geodata service to replicate.</para>
+					</dialogReference></param><param sync="true" name="in_type" displayname="Replica Type" datatype="String" direction="Input" expression="in_type" type="Required"><pythonReference>
+						<para>The kind of replica to create.</para>
+						<bulletList><bullet_item>TWO_WAY_REPLICA— Changes can be sent between child and parent replicas in both directions.</bullet_item><bullet_item>ONE_WAY_REPLICA—Changes are sent from the parent replica to the child replica only.</bullet_item><bullet_item>CHECK_OUT—Data is replicated, edited, and checked back in one time.</bullet_item><bullet_item>ONE_WAY_CHILD_TO_PARENT_REPLICA—Changes are sent from the child replica to the parent replica only.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The kind of replica to create.</para>
+						<bulletList><bullet_item>TWO_WAY_REPLICA— Changes can be sent between child and parent replicas in both directions.</bullet_item><bullet_item>ONE_WAY_REPLICA—Changes are sent from the parent replica to the child replica only.</bullet_item><bullet_item>CHECK_OUT—Data is replicated, edited, and checked back in one time.</bullet_item><bullet_item>ONE_WAY_CHILD_TO_PARENT_REPLICA—Changes are sent from the child replica to the parent replica only.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="out_geodatabase" displayname="Geodatabase To Replicate Data To" datatype="Workspace ; GeoDataServer" direction="Input" expression="out_geodatabase" type="Required"><pythonReference>
+						<para>The local geodatabase or geodata service that will host the child replica. Geodata services are used to represent remote geodatabases. The geodatabase can be an ArcSDE, file, or personal geodatabase. For two-way replicas the child geodatabase must be ArcSDE. For one-way and check-out replicas the geodatabase can be personal, file, or ArcSDE. Personal or file geodatabases must already exist before running this tool.</para>
+					</pythonReference><dialogReference>
+						<para>The local geodatabase or geodata service that will host the child replica. Geodata services are used to represent remote geodatabases. The geodatabase can be an ArcSDE, file, or personal geodatabase. For two-way replicas the child geodatabase must be ArcSDE. For one-way and check-out replicas the geodatabase can be personal, file, or ArcSDE. Personal or file geodatabases must already exist before running this tool.</para>
+					</dialogReference></param><param sync="true" name="out_name" displayname="Replica Name" datatype="String" direction="Input" expression="out_name" type="Required"><pythonReference>
+						<para>The name that identifies the replica.</para>
+					</pythonReference><dialogReference>
+						<para>The name that identifies the replica.</para>
+					</dialogReference></param><param sync="true" name="access_type" displayname="Replica Access Type" datatype="String" direction="Input" expression="access_type" type="Optional"><pythonReference>
+						<para>The type of access you want:</para>
+						<bulletList><bullet_item>FULL—Supports complex types (topologies and geometric networks) and requires the data to be versioned.</bullet_item><bullet_item>SIMPLE—The data on the child is not versioned and must be simple. This allows the replica to be interoperable.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>The type of access you want:</para>
+						<bulletList><bullet_item>FULL—Supports complex types (topologies and geometric networks) and requires the data to be versioned.</bullet_item><bullet_item>SIMPLE—The data on the child is not versioned and must be simple. This allows the replica to be interoperable.</bullet_item></bulletList></dialogReference></param><param sync="true" name="initial_data_sender" displayname="Initial Data Sender" datatype="String" direction="Input" expression="initial_data_sender" type="Optional"><pythonReference>
+						<para>Used by replication to determine which replica can send changes when in disconnected mode. If you are working in a connected mode, this parameter is inconsequential. This ensures that the relative replica doesn't send updates until the changes are first received from the initial data sender.</para>
+						<bulletList><bullet_item>CHILD_DATA_SENDER—</bullet_item><bullet_item>PARENT_DATA_SENDER—</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>Used by replication to determine which replica can send changes when in disconnected mode. If you are working in a connected mode, this parameter is inconsequential. This ensures that the relative replica doesn't send updates until the changes are first received from the initial data sender.</para>
+						<bulletList><bullet_item>CHILD_DATA_SENDER—</bullet_item><bullet_item>PARENT_DATA_SENDER—</bullet_item></bulletList></dialogReference></param><param sync="true" name="expand_feature_classes_and_tables" displayname="Expand Feature Classes and Tables" datatype="String" direction="Input" expression="expand_feature_classes_and_tables" type="Optional"><pythonReference>
+						<para>Specifies whether you will include expanded feature classes and tables, such as those found in geometric networks, topologies, or relationship classes.</para>
+						<bulletList><bullet_item>USE_DEFAULTS—Adds the expanded feature classes and tables related to the feature classes and tables in the replica. The default for feature classes is to replicate all features; the default for tables is to replicate the schema only. If a spatial filter has been defined it will be applied to feature classes.</bullet_item><bullet_item>ADD_WITH_SCHEMA_ONLY—Adds only the schema for the expanded feature classes and tables.</bullet_item><bullet_item>ALL_ROWS—Adds all rows for expanded feature classes and tables.</bullet_item><bullet_item>DO_NOT_ADD—Doesn't add expanded feature classes and tables.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether you will include expanded feature classes and tables, such as those found in geometric networks, topologies, or relationship classes.</para>
+						<bulletList><bullet_item>USE_DEFAULTS—Adds the expanded feature classes and tables related to the feature classes and tables in the replica. The default for feature classes is to replicate all features; the default for tables is to replicate the schema only. If a spatial filter has been defined it will be applied to feature classes.</bullet_item><bullet_item>ADD_WITH_SCHEMA_ONLY—Adds only the schema for the expanded feature classes and tables.</bullet_item><bullet_item>ALL_ROWS—Adds all rows for expanded feature classes and tables.</bullet_item><bullet_item>DO_NOT_ADD—Doesn't add expanded feature classes and tables.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="reuse_schema" displayname="Re-use Schema" datatype="String" direction="Input" expression="reuse_schema" type="Optional"><pythonReference>
+						<para>Indicates whether to reuse a geodatabase that contains the schema of the data you want to replicate. This reduces the amount of time required to replicate the data. This option is only available for check-out replicas.</para>
+						<bulletList><bullet_item>DO_NOT_REUSE—Do not reuse schema. This is the default.</bullet_item><bullet_item>REUSE—Reuse schema.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether to reuse a geodatabase that contains the schema of the data you want to replicate. This reduces the amount of time required to replicate the data. This option is only available for check-out replicas.</para>
+						<bulletList><bullet_item>DO_NOT_REUSE—Do not reuse schema. This is the default.</bullet_item><bullet_item>REUSE—Reuse schema.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="get_related_data" displayname="Replicate Related Data" datatype="String" direction="Input" expression="get_related_data" type="Optional"><pythonReference>
+						<para>Specifies whether to replicate rows related to rows already in the replica. For example, consider a feature (f1) inside the replication filter and a related feature (f2) from another class outside the filter. Feature f2 is included in the replica if you choose to get related data.</para>
+						<bulletList><bullet_item>DO_NOT_GET_RELATED—Do not replicate related rows.</bullet_item><bullet_item>GET_RELATED—Replicate related data. This is the default.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether to replicate rows related to rows already in the replica. For example, consider a feature (f1) inside the replication filter and a related feature (f2) from another class outside the filter. Feature f2 is included in the replica if you choose to get related data.</para>
+						<bulletList><bullet_item>DO_NOT_GET_RELATED—Do not replicate related rows.</bullet_item><bullet_item>GET_RELATED—Replicate related data. This is the default.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="geometry_features" displayname="Replica Geometry Features" datatype="Feature Layer" direction="Input" expression="geometry_features" type="Optional"><pythonReference>
+						<para>
+The features used to define the area to replicate.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The features used to define the area to replicate.
+</para>
+					</dialogReference></param><param sync="true" name="archiving" displayname="Use archiving to track changes for 1 way replication" datatype="Boolean" direction="Input" expression="archiving" type="Optional"><pythonReference>
+						<para>Specifies whether to use the archive class to track changes instead of using the versioning delta tables. This is only available for one-way replicas.</para>
+						<bulletList><bullet_item>ARCHIVING—Uses archiving to track changes.</bullet_item><bullet_item>DO_NOT_ARCHIVING—Does not use archiving to track changes. This is the default.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether to use the archive class to track changes instead of using the versioning delta tables. This is only available for one-way replicas.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Does not use archiving to track changes. This is the default.</bullet_item><bullet_item>Checked—Uses archiving to track changes.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The source must be a geodata service representing a remote ArcSDE geodatabase. The destination may be either a local or a remote geodatabase.</para>
+			</bullet_item><bullet_item>
+				<para>The data that you wish to replicate must be versioned, but not with the option to move edits to base. The database user that is connected must also have write permissions to the data. For two way and both types of one way replicas, all datasets must have a globalid column and have a high precision spatial reference. </para>
+			</bullet_item><bullet_item>
+				<para>For check-out and one-way replicas the child replica geodatabase can be an ArcSDE, file or personal geodatabase.</para>
+			</bullet_item><bullet_item>
+				<para>For two-way and one-way child to parent replicas the child geodatabase must be ArcSDE.</para>
+			</bullet_item><bullet_item>
+				<para>To use archiving for one-way replicas the parent workspace must be connected to the Default version. For one-way child to parent replicas the child workspace must be connected to the Default version.</para>
+			</bullet_item><bullet_item>
+				<para>The default for feature classes is to replicate all features. The default filter for tables is Schema Only; only the schema for the table will be replicated. If you set the  environment   or specify replica geometry features,  it will be applied as a spatial filter where only features intersecting the extent will be replicated. Tables will also include rows that are related to rows which are part of the replica.</para>
+			</bullet_item><bullet_item><para>Replica Geometry Features can be used to define the replica geometry. You can also use the  environment setting to define the replica geometry.<bulletList><bullet_item>If only the Replica Geometry Features are set, only data intersecting the Replica Geometry Features  will be replicated.   </bullet_item><bullet_item>If only the  environment setting is set, only data intersecting the extent will be replicated.</bullet_item><bullet_item>If both Replica Geometry Features and the  environment are set, the Replica Geometry Features will be used.</bullet_item><bullet_item> If neither Replica Geometry Features nor the  environment is specified, the full extent of the data is used.</bullet_item></bulletList></para></bullet_item><bullet_item><para>The replica geometry features can be points, lines or polygons.</para></bullet_item><bullet_item><para>A feature layer used for the replica geometry features can contain one or more features. If there are more than one, the geometries are merged and only data that intersect the merged geometries will be replicated.</para></bullet_item><bullet_item><para> If filters (i.e. spatial, selection, or definition query) have been defined on the replica geometry features, only features that satisfy these filters will be used to define the replica geometry.</para></bullet_item><bullet_item>
+				<para>The Re-use Schema parameter options are only available for check-out replicas</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateReplicaFromServer Example (Python Window)</title><code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace = "C:/Data/MySDEdata.sde"
+arcpy.CreateReplicaFromServer_management("GIS Servers\jerome\RoadMap.GeoDataServer, "Roads", "TWO_WAY_REPLICA", env.workspace, "MajorRoads_replica", "FULL", "CHILD_DATA_SENDER", "USE_DEFAULTS", "DO_NOT_REUSE", "GET_RELATED")
+                    </code></scriptExample><scriptExample><title>CreateReplicaFromServer Example 2 (stand-alone Python script)</title><code xml:space="preserve"># Name: CreateReplicaFromServer_Example2.py
+# Description: Creates a two-way replica from a geodata service
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/MySDEdata.sde"
+
+# Set local variables
+gisServer = "GIS Servers/jerome/RoadMap.GeodataServer"
+in_datasets = "Roads; Streets"
+replica_type = "TWO_WAY_REPLICA"
+out_workspace = env.workspace
+replica_name = "MajorRoads_replica"
+access_type = "FULL"
+initial_sender = "CHILD_DATA_SENDER"
+expand = "USE_DEFAULTS"
+reUse = "DO_NOT_REUSE"
+related = "GET_RELATED"
+replica_geometry = "LA_County"
+archiving = "DO_NOT_USE_ARCHIVING"
+
+# Execute CreateReplicaFromServer
+arcpy.CreateReplicaFromServer_management(gisServer, in_datasets, replica_type, out_workspace, replica_name, access_type, initial_sender, expand, reUse, related, replica_geometry, archiving)
+                    </code></scriptExample></scriptExamples></tool></metadata>

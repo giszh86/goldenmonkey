@@ -1,0 +1,89 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">ASCII to Raster (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts an ASCII file representing raster data to a raster dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Convert</keyword><keyword>Export</keyword><keyword>Import</keyword><keyword>Text</keyword><keyword>Txt</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ASCIIToRaster" displayname="ASCII to Raster (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts an ASCII file representing raster data to a raster dataset.</para>
+		</summary><alink_name>ASCIIToRaster_conversion</alink_name><parameters><param sync="true" name="in_ascii_file" displayname="Input ASCII raster file" datatype="File" direction="Input" expression="in_ascii_file" type="Required"><pythonReference>
+						<para>The input ASCII file to be converted.</para>
+					</pythonReference><dialogReference>
+						<para>The input ASCII file to be converted.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Required"><pythonReference><para>
+The output raster dataset to be created.</para><para>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for a GRID raster format.</para>
+					</pythonReference><dialogReference><para>
+The output raster dataset to be created.</para><para>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for a GRID raster format.</para>
+					</dialogReference></param><param sync="true" name="data_type" displayname="Output data type" datatype="String" direction="Input" expression="data_type" type="Optional"><pythonReference>
+						<para>The data type of the output raster dataset.</para>
+						<bulletList><bullet_item>INTEGER—An integer raster dataset will be created. </bullet_item><bullet_item>FLOAT—A floating-point raster dataset will be created. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The data type of the output raster dataset.</para>
+						<bulletList><bullet_item>INTEGER—An integer raster dataset will be created. </bullet_item><bullet_item>FLOAT—A floating-point raster dataset will be created. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Pyramid" label="Pyramid">
+					</environment><environment name="Raster_statistics" label="Raster statistics">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Tile_size" label="Tile size">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment></environments><usage><bullet_item><para>The input file is an ASCII format text file.</para></bullet_item><bullet_item>
+				<para>The structure of the ASCII file consists of header information containing a set of keywords, followed by cell values in row-major order.</para><para>There are two variations  of the structure of the ASCII file.  One identifies the origin by the coordinates of the lower left corner of the lower left cell, or as the center of the lower left cell.</para>
+				<para>The format of the file in general  is:</para>    NCOLS xxx
+    NROWS xxx
+    XLLCORNER xxx
+    YLLCORNER xxx
+    CELLSIZE xxx
+    NODATA_VALUE xxx
+    row 1
+    row 2
+    .
+    .
+    row n
+				<para>The definitions of the keywords are as follows:</para><bulletList><bullet_item><para>NCOLS and NROWS are the number of columns and rows in the raster defined by the ASCII file.</para></bullet_item><bullet_item><para>XLLCORNER and XLLCORNER are the coordinates of the lower left corner of the lower left cell.</para><para>You can also use XLLCENTER and XLLCENTER to specify the origin by the coordinates of the center of the lower left cell.</para></bullet_item><bullet_item><para>CELLSIZE is the cell size of the raster.</para></bullet_item><bullet_item><para>NODATA_VALUE is the value that is to represent NoData cells.</para></bullet_item><bullet_item><para>Cell values should be delimited by spaces. No carriage returns are necessary at the end of each row in the ASCII file. The number of columns in the header is used to determine when a new row begins.</para></bullet_item></bulletList>
+			</bullet_item><bullet_item><para>An example of an ASCII raster file is:</para>    NCOLS 480
+    NROWS 450
+    XLLCORNER 378922
+    YLLCORNER 4072345
+    CELLSIZE 30
+    NODATA_VALUE -32768
+    43 2 45 7 3 56 2 5 23 65 34 6 32 54 57 34
+    35 45 65 34 2 6 78 4 2 6 89 3 2 7 45 23 5 ...</bullet_item><bullet_item>
+				<para>The NODATA_VALUE is the value in the ASCII file that will be assigned to  NoData cells in the output raster. This value is normally reserved for those cells whose true value is unknown.</para></bullet_item><bullet_item>
+				<para>The number of cell values contained in the file must be equal to the number of rows times the number of columns, or an error will be returned.</para>
+			</bullet_item><bullet_item>
+				<para>The output data type can be either float or integer.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ASCIIToRaster example 1 (Python window) </title>
+					<para>Converts an ASCII file representing raster data to a raster dataset.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.ASCIIToRaster_conversion("c:/data/elevation.asc", "c:/output/elevation", 
+                               "INTEGER")
+                    </code></scriptExample><scriptExample><title>ASCIIToRaster example 2 (stand-alone script)</title>
+					<para>Converts an ASCII file representing raster data to a raster dataset.</para>
+				<code xml:space="preserve"># Name: ASCIIToRaster_Ex_02.py
+# Description: Converts an ASCII file representing raster data to a raster 
+#    dataset.
+# Requirements: None
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set local variables
+inASCII = "c:/data/elevation.asc"
+outRaster = "c:/output/elevation02"
+rasterType = "INTEGER"
+
+# Execute ASCIIToRaster
+arcpy.ASCIIToRaster_conversion(inASCII, outRaster, rasterType)
+                    </code></scriptExample></scriptExamples></tool></metadata>

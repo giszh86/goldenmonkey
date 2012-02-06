@@ -1,0 +1,123 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Map Server Cache Tiling Scheme To Polygons (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Creates a new polygon feature class from an existing tiling scheme. </para>
+			<para>This tool subdivides a data frame extent using the same scales as an existing map service cache tiling scheme and creates tiles over a large area, or "supertile". Since the supertile extent is larger than the actual tiles defined in the scheme, tiles used as input into the Tiled Labels to Annotation tool can convert labels to annotation over a larger area at a time. This process minimizes annotation duplication across tiles.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Create</keyword><keyword>Generate</keyword><keyword>Geodatabase</keyword><keyword>Label</keyword><keyword>Map Cache</keyword><keyword>Map Document</keyword><keyword>Map Service</keyword><keyword>Polygon</keyword><keyword>Supertile</keyword><keyword>Tile</keyword><keyword>Tiling Scheme</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="MapServerCacheTilingSchemeToPolygons" displayname=" Map Server Cache Tiling Scheme To Polygons (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para> Creates a new polygon feature class from an existing tiling scheme. </para>
+			<para>This tool subdivides a data frame extent using the same scales as an existing map service cache tiling scheme and creates tiles over a large area, or "supertile". Since the supertile extent is larger than the actual tiles defined in the scheme, tiles used as input into the Tiled Labels to Annotation tool can convert labels to annotation over a larger area at a time. This process minimizes annotation duplication across tiles.</para>
+		</summary><alink_name>MapServerCacheTilingSchemeToPolygons_cartography</alink_name><parameters><param sync="true" name="map_document" displayname="Map Document" datatype="ArcMap Document" direction="Input" expression="map_document" type="Required"><pythonReference>
+						<para> The source map document. </para>
+					</pythonReference><dialogReference>
+						<para> The source map document. </para>
+					</dialogReference></param><param sync="true" name="data_frame" displayname="Data Frame" datatype="String" direction="Input" expression="data_frame" type="Required"><pythonReference>
+						<para> The data frame from the source map document. </para>
+					</pythonReference><dialogReference>
+						<para> The data frame from the source map document. </para>
+					</dialogReference></param><param sync="true" name="tiling_scheme" displayname="Tiling Scheme" datatype="File" direction="Input" expression="tiling_scheme" type="Required"><pythonReference>
+						<para> Path to a predefined tiling scheme .xml file. </para>
+					</pythonReference><dialogReference>
+						<para> Path to a predefined tiling scheme .xml file. </para>
+					</dialogReference></param><param sync="true" name="output_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="output_feature_class" type="Required"><pythonReference>
+						<para> The output polygon feature class. </para>
+					</pythonReference><dialogReference>
+						<para> The output polygon feature class. </para>
+					</dialogReference></param><param sync="true" name="use_map_extent" displayname="Generate polygons that intersect the map extent" datatype="Boolean" direction="Input" expression="use_map_extent" type="Required"><pythonReference>
+						<para> Choose whether to  produce tiles for the entire extent of the tiling scheme or only tiles that intersect the full extent of the data frame.  </para>
+						<bulletList><bullet_item>USE_MAP_EXTENT—Polygon features will be created for the full extent of the data frame. This is the default.</bullet_item><bullet_item>FULL_TILING_SCHEME—Polygon features will be created for the full extent of the tiling scheme.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Choose whether to  produce tiles for the entire extent of the tiling scheme or only tiles that intersect the full extent of the data frame. </para>
+						<bulletList>
+							<bullet_item>Checked—Polygon features will be created for the full extent of the data frame. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Polygon features will be created for the full extent of the tiling scheme.</bullet_item>
+						</bulletList></dialogReference></param><param sync="true" name="clip_to_horizon" displayname="Clip tiles at the coordinate system horizon" datatype="Boolean" direction="Input" expression="clip_to_horizon" type="Required"><pythonReference>
+						<para>Choose whether to constrain the polygons to the valid area of use for the geographic or projected coordinate system of the data frame. </para>
+						<bulletList><bullet_item> CLIP_TO_HORIZON—Polygon features will only be created within the valid area of use for the geographic or projected coordinate system of the data frame. Tiles that are within the extent of the tiling scheme but  outside the extent of the coordinate system horizon will be clipped. This is the default.</bullet_item><bullet_item>UNIFORM_TILE_SIZE—Polygon features will be created for the full extent of the tiling scheme.  Within each scale level, polygons will be of a uniform size and will not  be clipped at the coordinate system horizon.  This may create data that is outside the valid area of use for the geographic or projected coordinate system.   If a scale within the tiling scheme would generate a tile that is larger than the spatial domain of the feature class, null geometry will be created for that feature. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose whether to constrain the polygons to the valid area of use for the geographic or projected coordinate system of the data frame. </para>
+						<bulletList>
+							<bullet_item>Checked—Polygon features will only be created within the valid area of use for the geographic or projected coordinate system of the data frame. Tiles that are within the extent of the tiling scheme but  outside the extent of the coordinate system horizon will be clipped. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Polygon features will be created for the full extent of the tiling scheme.  Within each scale level, polygons will be of a uniform size and will not  be clipped at the coordinate system horizon.  This may create data that is outside the valid area of use for the geographic or projected coordinate system.   If a scale within the tiling scheme would generate a tile that is larger than the spatial domain of the feature class, null geometry will be created for that feature. </bullet_item>
+						</bulletList></dialogReference></param><param sync="true" name="antialiasing" displayname="Generate polygons that match map service caches with anti-aliasing enabled." datatype="Boolean" direction="Input" expression="antialiasing" type="Optional"><pythonReference><para>Choose whether to generate polygons that match map service caches with anti-aliasing enabled.
+A map service cache supertile is 2048 x 2048 pixels with antialiasing or 4096 x 4096
+pixels without.
+To see if antialiasing was used in an existing cache, open the
+tiling scheme file, conf.xml, and check to see if the
+&lt;Antialiasing&gt; tag is set to true.   </para><bulletList><bullet_item>ANTIALIASING—Polygon tiles will be created to match the supertile extent of a map service cache with antialiasing enabled.  </bullet_item><bullet_item>NONE—Polygon tiles will be created to match the supertile extent of a map service cache without antialiasing enabled.  This is the default.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>Choose whether to generate polygons that match map service caches with anti-aliasing enabled.
+A map service cache supertile is 2048 x 2048 pixels with antialiasing or 4096 x 4096
+pixels without.
+To see if anti-aliasing was used in an existing cache, open the
+tiling scheme file, conf.xml, and check to see if the
+&lt;Antialiasing&gt; tag is set to true.  </para>
+						<bulletList><bullet_item>Checked—Polygon tiles will be created to match the supertile extent of a map service cache with anti-aliasing enabled.</bullet_item><bullet_item>Unchecked—Polygon tiles will be created to match the supertile extent of a map service cache without anti-aliasing enabled.  This is the default.</bullet_item></bulletList></dialogReference></param><param sync="true" name="levels" displayname="Scales" datatype="Double" direction="Input" expression="[level,...]" type="Optional"><pythonReference><para>The scale levels at which you will create polygons.  To create polygons for all scale levels included in a tiling scheme, leave this parameter blank. You may choose to create polygons for all or only some of the scale levels that are included in your tiling scheme.  To add additional scale levels, however, you will need to modify your tiling scheme file or create a new one.</para></pythonReference><dialogReference>
+						<para>The scale levels at which you will create polygons.  These scale levels will automatically populate based on the scale levels in the input tiling scheme.  You may choose to create polygons for all or only some of the scale levels that are included in your tiling scheme.  To add additional scale levels, however, you will need to modify your tiling scheme file or create a new one as the Add Value button is always disabled for this tool.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para> There are several options for loading an existing tiling scheme:<bulletList>
+						<bullet_item>Load a tiling scheme from an online mapping service such as ArcGIS online, Google Maps, Bing Maps, or Yahoo. These tiling schemes are located in the installation directory of ArcGIS Desktop (example: C:\Program Files\ArcGIS\Desktop10.0\TilingSchemes).</bullet_item>
+						<bullet_item>Load a tiling scheme file from an existing map service cache. All map caches have a tiling scheme file, conf.xml, in the cache directory (example: C:\arcgisserver\arcgiscache\MyService\MyDataFrame\conf.xml).</bullet_item>
+						<bullet_item>Create your own tiling scheme file. For more information see  in the ArcGIS Server Help.</bullet_item>
+					</bulletList></para>
+			</bullet_item><bullet_item>
+				<para>The output feature class from this tool may be used as input into the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>For the Clip tiles at the coordinate system horizon parameter, the coordinate system horizon is the valid area of use for a particular geographic or projected coordinate system.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MapServerCacheTilingSchemeToPolygons Example (Python Window)</title>
+					<para>The following stand-alone script demonstrates how to use the MapServerCacheTilingSchemeToPolygons function.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/data.gdb"
+arcpy.MapServerCacheTilingSchemeToPolygons_cartography("C:/data/Annotation.mxd", 
+"Layers", 
+"C:/Program Files/ArcGIS/Desktop10.0/TilingSchemes/ArcGIS_Online_Bing_Maps_Google_Maps.xml",
+"Tiles","USE_MAP_EXTENT","CLIP_TO_HORIZON", "NONE", "")
+
+
+                    </code></scriptExample><scriptExample><title>MapServerCacheTilingSchemeToPolygons Example2 (workflow script)</title>
+					<para>The following script demonstrates a workflow using the MapServerCacheTilingSchemeToPolygons and the TiledLabelsToAnnotation functions.</para>
+				<code xml:space="preserve"># Name: MapServerCacheTilingSchemeToPolygons_Example2.py
+# Description: Create a tile feature class and use those tiles to create annotation.
+# Requirements: ArcInfo license
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data/data.gdb"
+
+# Set local variables
+inMapDocument = "C:/data/Annotation.mxd"
+inDataFrame = "Layers"
+inTilingScheme = "C:/Program Files/ArcGIS/Desktop10.0/TilingSchemes/ArcGIS_Online_Bing_Maps_Google_Maps.xml"
+outFeatureClass = "C:/data/data.gdb/Tiles"
+inTileExtent = "USE_MAP_EXTENT"
+inClipping = "CLIP_TO_HORIZON"
+inAntialiasing = "NONE"
+inScales = ""
+
+# Execute MapServerCacheTilingSchemeToPolygons
+arcpy.MapServerCacheTilingSchemeToPolygons_cartography(inMapDocument, inDataFrame, inTilingScheme, outFeatureClass, 
+																																																							inTileExtent, inClipping, inAntialiasing, inScales)
+
+# Set local variables
+inMapDocument = "C:/data/Annotation.mxd"
+inDataFrame = "Layers"
+inPolygonIndexLayer = "Tiles"
+inOutGeodatabase = "C:/data/data.gdb"
+outOutLayer = "GroupAnno"
+inAnnoSuffix = "Anno"
+inRefScaleValue = ""
+inRefScaleField = "Tile_Scale"
+inTileIDField = "OID"
+inCoordSysField = ""
+inMapRotationField = ""
+inFeatureLinked = "STANDARD"
+inGenerateUnplaced = "GENERATE_UNPLACED_ANNOTATION"
+
+# Execute TiledLabelsToAnnotation
+arcpy.TiledLabelsToAnnotation_cartography(inMapDocument, inDataFrame, inPolygonIndexLayer, inOutGeodatabase, 
+																																										outOutLayer, inAnnoSuffix, inRefScaleValue, inRefScaleField, 
+																																										inTileIDField, inCoordSysField, inMapRotationField,inFeatureLinked, 
+																																										inGenerateUnplaced) 
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Register With Geodatabase  (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Registers feature classes, tables, and raster layers that were created outside of the geodatabase with the geodatabase in order for them to fully participate in geodatabase functionality. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" RegisterWithGeodatabase " displayname=" Register With Geodatabase  (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Registers feature classes, tables, and raster layers that were created outside of the geodatabase with the geodatabase in order for them to fully participate in geodatabase functionality. </para>
+		</summary><alink_name> RegisterWithGeodatabase _management</alink_name><parameters><param sync="true" name="in_dataset" displayname="Input Datasets" datatype="Table" direction="Input" expression="in_dataset" type="Required"><pythonReference>
+						<para>Feature classes, tables, or raster feature classes created outside of the geodatabase are supported. </para>
+					</pythonReference><dialogReference>
+						<para>Feature classes, tables, or raster feature classes created outside of the geodatabase are supported. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para> Feature classes, tables, and raster layers created outside of the geodatabase can be registered with the geodatabase using this tool. </para>
+			</bullet_item><bullet_item>
+				<para>Before a feature class, table, or raster feature class can fully participate in all geodatabase functionality it must be registered with the geodatabase. If it is not registered with the geodatabase only limited functionality will be available. </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RegisterWithGeodatabase Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the RegisterWithGeodatabase function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "Database Connections\Connection to gpserver.sde"
+arcpy.RegisterWithGeodatabase_management(r'TOOLBOX.REGGDB_LZ77')
+                    </code></scriptExample><scriptExample><title>RegisterWithGeodatabase Example 2 (Stand-alone Script)</title>
+					<para>The following stand-alone script is a simple example of how to apply the RegisterWithGeodatabase function in scripting.</para>
+				<code xml:space="preserve"># RegisterWithGeodatabase.py
+# Description: Simple example showing use of RegisterWithGeodatabase tool
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+
+# Set variables
+inTable = r"c:\connectionFiles\Connection to esriServer.sde\redlandsStreets"
+
+#Process: Use the CreateArcSDEConnectionFile function
+arcpy.RegisterWithGeodatabase_management (inTable)
+ 
+                    </code></scriptExample></scriptExamples></tool></metadata>

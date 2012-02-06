@@ -1,0 +1,47 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Rematch Addresses (Geocoding)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Rematches addresses in a geocoded feature class.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Address</keyword><keyword>Address Locator</keyword><keyword>Address Matching</keyword><keyword>Adjust</keyword><keyword>Batch</keyword><keyword>Build</keyword><keyword>Edit</keyword><keyword>Error</keyword><keyword>Fail To Match</keyword><keyword>Geocode</keyword><keyword>Geocoding</keyword><keyword>Interactive Rematch</keyword><keyword>Loc</keyword><keyword>Location</keyword><keyword>Locator</keyword><keyword>Lox</keyword><keyword>Match Rate</keyword><keyword>Match Result</keyword><keyword>Matching</keyword><keyword>Reject</keyword><keyword>Reject Processing</keyword><keyword>Rematch</keyword><keyword>Review</keyword><keyword>Score</keyword><keyword>Status</keyword><keyword>Update</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RematchAddresses" displayname="Rematch Addresses (Geocoding)" toolboxalias="geocoding" softwarerestriction="none"><summary>
+			<para>Rematches addresses in a geocoded feature class.</para>
+		</summary><alink_name>RematchAddresses_geocoding</alink_name><parameters><param sync="true" name="in_geocoded_feature_class" displayname="Input Feature Class" datatype="Feature Class" direction="Input" expression="in_geocoded_feature_class" type="Required"><pythonReference>
+						<para>The geocoded feature class you want to rematch.</para>
+					</pythonReference><dialogReference>
+						<para>The geocoded feature class you want to rematch.</para>
+					</dialogReference></param><param sync="true" name="in_where_clause" displayname="Where Clause" datatype="SQL Expression" direction="Input" expression="in_where_clause" type="Required"><pythonReference>
+						<para>An SQL expression used to select a subset of features.</para>
+						<para>The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, or shapefiles, enclose field names in double quotes:</para>
+						<para>"MY_FIELD"</para>
+						<para>If you're querying personal geodatabases, enclose fields in square brackets:</para>
+						<para>[MY_FIELD].</para>
+						<para>For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</pythonReference><dialogReference>
+						<para>An SQL expression used to select a subset of features.</para>
+						<para>The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, or shapefiles, enclose field names in double quotes:</para>
+						<para>"MY_FIELD"</para>
+						<para>If you're querying personal geodatabases, enclose fields in square brackets:</para>
+						<para>[MY_FIELD].</para>
+						<para>For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input feature class has to be a feature class that was created by the  tool or a process in which a table of addresses was geocoded.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RematchAddresses Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the RematchAddress function in immediate mode. </para>
+				<code xml:space="preserve">
+# Rematch unmatched addresses in a geocoded feature class.
+# Import system modules
+import arcpy
+from arcpy import env
+env.workspace = "C:/ArcTutor/Geocoding/atlanta.gdb" 
+
+# Set local variables:
+where_clause = "Status" = 'U'
+geocoded_feature_class = "geocode_result"
+
+arcpy.GeocodeAddresses_geocoding(geocoded_feature_class, where_clause)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

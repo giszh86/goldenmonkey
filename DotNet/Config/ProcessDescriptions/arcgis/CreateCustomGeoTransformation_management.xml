@@ -1,0 +1,48 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Custom Geographic Transformation (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a transformation method for converting data between two geographic coordinate systems or datums. The output of this tool can be used as a transformation method for any tool with a parameter that requires a geographic transformation.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Coordinate</keyword><keyword>Datum</keyword><keyword>Gtf</keyword><keyword>Latitude</keyword><keyword>Longitude</keyword><keyword>Reference</keyword><keyword>Spatial</keyword><keyword>System</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateCustomGeoTransformation" displayname="Create Custom Geographic Transformation (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a transformation method for converting data between two geographic coordinate systems or datums. The output of this tool can be used as a transformation method for any tool with a parameter that requires a geographic transformation.</para>
+		</summary><alink_name>CreateCustomGeoTransformation_management</alink_name><parameters><param sync="true" name="geot_name" displayname="Geographic Transformation Name" datatype="String" direction="Input" expression="geot_name" type="Required"><pythonReference>
+						<para>Name of the custom transformation method.</para>
+						<para> All custom geographic transformation files are saved with a .gtf extension and stored in the Documents and Settings folder: ...\Documents and Settings\&lt;user&gt;\Application Data\ESRI\Desktop\ArcToolbox\CustomTransformations folder. If the Application Data folder is read-only or hidden, the output is stored in the system temp folder.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the custom transformation method.</para>
+						<para> All custom geographic transformation files are saved with a .gtf extension and stored in the Documents and Settings folder: ...\Documents and Settings\&lt;user&gt;\Application Data\ESRI\Desktop\ArcToolbox\CustomTransformations folder. If the Application Data folder is read-only or hidden, the output is stored in the system temp folder.</para>
+					</dialogReference></param><param sync="true" name="in_coor_system" displayname="Input Geographic Coordinate System" datatype="Coordinate System" direction="Input" expression="in_coor_system" type="Required"><pythonReference>
+						<para>The starting geographic coordinate system.</para>
+					</pythonReference><dialogReference>
+						<para>The starting geographic coordinate system.</para>
+					</dialogReference></param><param sync="true" name="out_coor_system" displayname="Output Geographic Coordinate System" datatype="Coordinate System" direction="Output" expression="out_coor_system" type="Required"><pythonReference>
+						<para>The final geographic coordinate system.</para>
+					</pythonReference><dialogReference>
+						<para>The final geographic coordinate system.</para>
+					</dialogReference></param><param sync="true" name="custom_geot" displayname="Custom Geographic Transformation" datatype="String" direction="Input" expression="custom_geot" type="Required"><pythonReference>
+						<para>The transformation method that will be used to transform the data from the input geographic coordinate system to the output geographic coordinate system. The transformation parameters can be set or edited as part of the custom geographic transformation string.</para>
+						
+					</pythonReference><dialogReference>
+						<para>Select a transformation method from the drop-down list that will be used to transform the data from the input geographic coordinate system to the output geographic coordinate system. Once chosen, its parameters will appear in the table for editing.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment></environments><usage><bullet_item>
+				<para> All custom geographic transformation files are saved with a .gtf extension and stored in the Documents and Settings folder: ...\Documents and Settings\&lt;user&gt;\Application Data\ESRI\Desktop\ArcToolbox\CustomTransformations folder. If the Application Data folder is read-only or hidden, the output is stored in the system temp folder.</para>
+			</bullet_item><bullet_item>
+				<para>Any geoprocessing tool that uses geographic transformations will look at all custom transformations in the default storage location and present them as valid transformation options on the dialog box under the Geographic Transformation  parameter's drop down list.</para>
+			</bullet_item><bullet_item>
+				<para>Custom transformation files can't be edited. They are binary files that store version and string length information that may be corrupted if edited outside of the geoprocessing framework. To update the file you should create a new custom geographic transformation and overwrite the existing file.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateCustomGeoTransformation Example (Stand-alone Script)</title>
+					<para>The following stand-alone script uses the CreateCustomGeoTransformation function to create a custom transformation for a particular use case. The output is a *.gtf file created in the default directory.</para>
+				<code xml:space="preserve"># Name: CreateCustomGeographicTransformation.py
+# Description: Creates a custom geographic transformation in the default directory
+# Author: ESRI
+
+# import system modules
+import arcpy
+
+# set the variables
+geoTransfmName = "cgt_geocentric2"
+inGCS = "GEOGCS['GCS_Tokyo',DATUM['D_Tokyo',SPHEROID['Bessel_1841',6377397.155,299.1528128]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]]"
+outGCS = "GEOGCS['GCS_WGS_1984',DATUM['D_WGS_1984',SPHEROID['WGS_1984',6378137.0,298.257223563]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]]"
+customGeoTransfm = "GEOGTRAN[METHOD['Geocentric_Translation'],PARAMETER['X_Axis_Translation',''],PARAMETER['Y_Axis_Translation',''],PARAMETER['Z_Axis_Translation','']]"
+
+arcpy.CreateCustomGeoTransformation_management(geoTransfmName, inGCS, outGCS, customGeoTransfm)
+                    </code></scriptExample></scriptExamples></tool></metadata>

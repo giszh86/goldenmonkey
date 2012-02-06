@@ -1,0 +1,95 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Signatures (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates an ASCII signature file of classes defined by input sample data and a set of raster bands.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Class</keyword><keyword>Classification</keyword><keyword>Compute Covariance</keyword><keyword>Image Processing</keyword><keyword>Multiband</keyword><keyword>Multivariate Statistics</keyword><keyword>Remote Sensing</keyword><keyword>Signature File</keyword><keyword>Supervised</keyword><keyword>Training Sample</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateSignatures" displayname="Create Signatures (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Creates an ASCII signature file of classes defined by input sample data and a set of raster bands.</para>
+			
+		</summary><alink_name>CreateSignatures_sa</alink_name><parameters><param sync="true" name="in_raster_bands" displayname="Input raster bands" datatype="Raster Layer" direction="Input" expression="[in_raster_band,...]" type="Required"><pythonReference>
+						<para>The input raster bands for which to create the signatures.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster bands for which to create the signatures.</para>
+					</dialogReference></param><param sync="true" name="in_sample_data" displayname="Input raster or feature sample data" datatype="Raster Layer | Feature Layer" direction="Input" expression="in_sample_data" type="Required"><pythonReference>
+						<para>The input delineating the set of class samples.</para>
+						<para>The input can be an integer raster or a feature dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input delineating the set of class samples.</para>
+						<para>The input can be an integer raster or a feature dataset.</para>
+					</dialogReference></param><param sync="true" name="out_signature_file" displayname="Output signature file" datatype="File" direction="Output" expression="out_signature_file" type="Required"><pythonReference>
+						<para>The output signature file.</para><para>A .gsg extension must be specified.</para>
+					</pythonReference><dialogReference>
+						<para>The output signature file.</para><para>A .gsg extension must be specified.</para>
+					</dialogReference></param><param sync="true" name="compute_covariance" displayname="Compute covariance matrices" datatype="Boolean" direction="Input" expression="compute_covariance" type="Optional"><pythonReference>
+						<para>Specifies whether covariance matrices in addition to the means are calculated.</para>
+						<bulletList><bullet_item>COVARIANCE — Both the covariance matrices and the means for all classes of the in_sample_data will be computed. This is the default.</bullet_item><bullet_item>MEAN_ONLY — Only the means for all classes of the in_sample_data will be calculated. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether covariance matrices in addition to the means are calculated.</para>
+						<bulletList>
+							<bullet_item>Checked—Both the covariance matrices and the means for all classes of the input sample data will be computed. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Only the means for all classes of the input sample data will be calculated. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="sample_field" displayname="Sample field" datatype="Field" direction="Input" expression="sample_field" type="Optional"><pythonReference>
+						<para>Field of the input raster or feature sample data to assign values to the sampled locations (classes).</para>
+						<para>Only integer fields are valid fields.</para>
+					</pythonReference><dialogReference>
+						<para>Field of the input raster or feature sample data to assign values to the sampled locations (classes).</para>
+						<para>Only integer fields are valid fields.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>A .gsg extension should be used for the output signature file.</para>
+			</bullet_item><bullet_item>
+				<para>The input raster bands and the input raster or feature sample data must have overlapping extents. The statistics will be computed for the common area only.</para>
+			</bullet_item><bullet_item>
+				<para>The minimum valid number of class samples in the sample data is two. There is no maximum number of classes.</para>
+			</bullet_item><bullet_item>
+				<para>If the signature file is to be used in further multivariate analysis tools that use covariance matrices, such as Maximum Likelihood Classification and Class Probability, the covariance matrices must be present. This information is generated when the Compute Covariance Matrices option in the dialog box is enabled, or the COVARIANCE option is specified in scripting. Note that this is the default setting. See  to compare signature files when the covariance matrices are generated versus only the means.</para>
+			</bullet_item><bullet_item>
+				<para>You should not change anything in the signature file except to enter the names of classes. The statistics in the file should be created and altered by Multivariate tools only.</para>
+			</bullet_item><bullet_item>
+				<para>If the input is a layer created from a multiband raster with more than three bands, the operation will  consider all the bands associated with the source dataset, not just the three bands that were loaded (symbolized) by the layer. If you want to process a subset of the bands in the source dataset, you can  use the  tool to create an input layer containing the desired bands.</para>
+			</bullet_item><bullet_item>
+				<para>The names of the classes in the output signature file are optional. They're used for reference only. Any text editor can be used to enter the names. Each class name must consist of a single string no more than 14 alphanumeric characters in length.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateSignatures example 1 (Python window)</title>
+					<para>This example creates a signature file for classes defined by sampled training areas and a set of input raster bands.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+CreateSignatures("sb", "sbtrain", "c:/sapyexamples/output/rbsig.gsg", 
+                 "COVARIANCE", "")
+                    </code></scriptExample><scriptExample><title>CreateSignatures example 2 (stand-alone script)</title>
+					<para>This example creates a signature file for classes defined by sampled training areas and a set of input raster bands.</para>
+				<code xml:space="preserve"># Name: CreateSignatures_Ex_02.py
+# Description: Creates an ASCII signature file of classes defined by input 
+#    sample data and a set of raster bands.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "sb"
+inSamples = "sbtrain"
+outSig = "c:/sapyexamples/output/rbsig02.gsg"
+sampField = ""
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute CreateSignatures
+CreateSignatures(inRaster, inSamples, outSig, "COVARIANCE", sampField)
+                    </code></scriptExample></scriptExamples></tool></metadata>

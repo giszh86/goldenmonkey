@@ -1,0 +1,64 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Get Model Parameter (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Gets model parameter value from an existing geostatistical model source.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Create Geostatistical Layer</keyword><keyword>Geostatistical Model</keyword><keyword>Model Parameter</keyword><keyword>Model Source</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GAGetModelParameter" displayname="Get Model Parameter (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Gets model parameter value from an existing geostatistical model source.</para>
+		</summary><alink_name>GAGetModelParameter_ga</alink_name><parameters><param sync="true" name="in_ga_model_source" displayname="Geostatistical model source" datatype="Geostatistical Layer ; Geostatistical Model" direction="Input" expression="in_ga_model_source" type="Required"><pythonReference>
+						<para>The geostatistical model source to be analyzed.</para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical model source to be analyzed.</para>
+					</dialogReference></param><param sync="true" name="model_param_xpath" displayname="Parameter XML Path" datatype="String" direction="Input" expression="model_param_xpath" type="Required"><pythonReference>
+						<para>XML path to the required model parameter.</para>
+					</pythonReference><dialogReference>
+						<para>XML path to the required model parameter.</para>
+					</dialogReference></param><param sync="true" name="out_string" displayname="Requested model parameter." datatype="String" direction="Output" expression="out_string" type="Required"><pythonReference>
+						<para>Requested model parameter.</para>
+					</pythonReference><dialogReference>
+						<para>Requested model parameter.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>This tool is generally used in a model or in scripting.</para>
+			</bullet_item><bullet_item>
+				<para>The geostatistical model source is either a geostatistical layer or a geostatistical model (XML).</para>
+			</bullet_item><bullet_item>
+				<para>See  for additional information.</para>
+			</bullet_item><bullet_item>
+				<para>An example</para>
+				
+					/model[@name = 'Kriging']/model[@name = 'Variogram']/value[@name = 'Nugget']; /model[@name = 'Kriging']/model[@name = 'Variogram']/model[@name = 'VariogramModel']/value[@name = 'Range']
+				
+				<para>will return "out_param_value" = 0.345;1127.14</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>GetModelParameter example 1 (Python window)</title>
+					<para>Extract parameter values from a geostatistical model source.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapyexamples/data"
+outParam = arcpy.GAGetModelParameter_ga("C:/gapyexamples/data/kriging.lyr",
+                                  "/model[@name = 'Kriging']/model[@name = 'Variogram']/value[@name = 'Nugget']")
+print outParam
+
+                    </code></scriptExample><scriptExample><title>GetMdelParameter example 2 (stand-alone script)</title>
+					<para>Extract parameter values from a geostatistical model source.</para>
+				<code xml:space="preserve"># Name: GAGetModelParameter_Example_02.py
+# Description: Gets model parameter value from an existing geostatistical
+#   model source.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+modelSource = "C:/gapyexamples/data/kriging.lyr"
+xmlPath = "/model[@name = 'Kriging']/model[@name = 'Variogram']/value[@name = 'Nugget']"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute GAGetModelParameter
+outParam = arcpy.GAGetModelParameter_ga(modelSource, xmlPath)
+
+# Show results
+print outParam
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

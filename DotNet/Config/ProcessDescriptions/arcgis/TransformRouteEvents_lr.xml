@@ -1,0 +1,188 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Transform Route Events (Linear Referencing)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool transforms the measures of events from one route reference to another and writes them to a new event table.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Adjust</keyword><keyword>Alter</keyword><keyword>Amend</keyword><keyword>Change</keyword><keyword>Convert</keyword><keyword>Correct</keyword><keyword>Events</keyword><keyword>Modify</keyword><keyword>Reassign</keyword><keyword>Reference</keyword><keyword>Relocate</keyword><keyword>Revise</keyword><keyword>Rework</keyword><keyword>Route</keyword><keyword>Route Measures</keyword><keyword>Turn</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TransformRouteEvents" displayname="Transform Route Events (Linear Referencing)" toolboxalias="lr" softwarerestriction="none"><summary>
+			<para>This tool transforms the measures of events from one route reference to another and writes them to a new event table.</para>
+		</summary><alink_name>TransformRouteEvents_lr</alink_name><parameters><param sync="true" name="in_table" displayname="Input Event Table" datatype="Table view" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The input event table.</para>
+					</pythonReference><dialogReference>
+						<para>The input event table.</para>
+					</dialogReference></param><param sync="true" name="in_event_properties" displayname="Event Table Properties" datatype="Route Measure Event properties" direction="Input" expression="in_event_properties" type="Required"><pythonReference>
+						<para>Parameter consisting of the route location fields and the type of events in the input event table.</para>
+						<bulletList>
+							<bullet_item>Route Identifier Field—The field containing values that indicate which route each event is along. This field can be numeric or character.</bullet_item>
+							<bullet_item>Event Type—The type of events in the input event table (POINT or LINE).<bulletList>
+									<bullet_item>POINT—Point events occur at a precise location along a route. Only a from-measure field must be specified.</bullet_item>
+									<bullet_item>LINE—Line events define a portion of a route. Both from- and to-measure fields must be specified.</bullet_item>
+								</bulletList></bullet_item>
+							<bullet_item>From-Measure Field—A field containing measure values. This field must be numeric and is required when the event type is POINT or LINE. Note, when the Event Type is POINT the label for this parameter becomes "Measure Field".</bullet_item>
+							<bullet_item>To-Measure Field—A field containing measure values. This field must be numeric and is required when the event type is LINE.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>Parameter consisting of the route location fields and the type of events in the input event table.</para>
+						<bulletList>
+							<bullet_item>Route Identifier Field—The field containing values that indicate which route each event is along. This field can be numeric or character.</bullet_item>
+							<bullet_item>Event Type—The type of events in the input event table (POINT or LINE).<bulletList>
+									<bullet_item>POINT—Point events occur at a precise location along a route. Only a from-measure field must be specified.</bullet_item>
+									<bullet_item>LINE—Line events define a portion of a route. Both from- and to-measure fields must be specified.</bullet_item>
+								</bulletList></bullet_item>
+							<bullet_item>From-Measure Field—A field containing measure values. This field must be numeric and is required when the event type is POINT or LINE. Note, when the Event Type is POINT the label for this parameter becomes "Measure Field".</bullet_item>
+							<bullet_item>To-Measure Field—A field containing measure values. This field must be numeric and is required when the event type is LINE.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="in_routes" displayname="Source Route Features" datatype="Feature layer" direction="Input" expression="in_routes" type="Required"><pythonReference>
+						<para>The input route features.</para>
+					</pythonReference><dialogReference>
+						<para>The input route features.</para>
+					</dialogReference></param><param sync="true" name="route_id_field" displayname="Source Route Identifier Field" datatype="Field" direction="Input" expression="route_id_field" type="Required"><pythonReference>
+						<para>The field containing values that uniquely identify each input route.</para>
+					</pythonReference><dialogReference>
+						<para>The field containing values that uniquely identify each input route.</para>
+					</dialogReference></param><param sync="true" name="target_routes" displayname="Target Route Features" datatype="Feature layer" direction="Input" expression="target_routes" type="Required"><pythonReference>
+						<para>The route features to which the input events will be transformed.</para>
+					</pythonReference><dialogReference>
+						<para>The route features to which the input events will be transformed.</para>
+					</dialogReference></param><param sync="true" name="target_route_id_field" displayname="Target Route Identifier Field" datatype="Field" direction="Input" expression="target_route_id_field" type="Required"><pythonReference>
+						<para>The field containing values that uniquely identify each target route.</para>
+					</pythonReference><dialogReference>
+						<para>The field containing values that uniquely identify each target route.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Event Table" datatype="Table" direction="Output" expression="out_table" type="Required"><pythonReference>
+						<para>The table to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The table to be created.</para>
+					</dialogReference></param><param sync="true" name="out_event_properties" displayname="Output Event Table Properties" datatype="Route Measure Event properties" direction="Output" expression="out_event_properties" type="Required"><pythonReference>
+						<para>Parameter consisting of the route location fields and the type of events that will be written to the output event table.</para>
+						<bulletList><bullet_item>Route Identifier Field—The field that will contain values that indicate which route each event is along.</bullet_item><bullet_item>Event Type—The type of events the output event table will contain (POINT or LINE).<bulletList>
+									<bullet_item>POINT—Point events occur at a precise location along a route. Only a single measure field must be specified.</bullet_item>
+									<bullet_item>LINE—Line events define a portion of a route. Both from- and to-measure fields must be specified.</bullet_item>
+								</bulletList></bullet_item><bullet_item>From-Measure Field—A field that will contain measure values. Required when the event type is POINT or LINE. Note when the Event Type is POINT the label for this parameter becomes "Measure Field".</bullet_item><bullet_item>To-Measure Field—A field that will contain measure values. Required when the event type is LINE.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Parameter consisting of the route location fields and the type of events that will be written to the output event table.</para>
+						<bulletList><bullet_item>Route Identifier Field—The field that will contain values that indicate which route each event is along.</bullet_item><bullet_item>Event Type—The type of events the output event table will contain (POINT or LINE).<bulletList>
+									<bullet_item>POINT—Point events occur at a precise location along a route. Only a single measure field must be specified.</bullet_item>
+									<bullet_item>LINE—Line events define a portion of a route. Both from- and to-measure fields must be specified.</bullet_item>
+								</bulletList></bullet_item><bullet_item>From-Measure Field—A field that will contain measure values. Required when the event type is POINT or LINE. Note when the Event Type is POINT the label for this parameter becomes "Measure Field".</bullet_item><bullet_item>To-Measure Field—A field that will contain measure values. Required when the event type is LINE.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="cluster_tolerance" displayname="Cluster Tolerance" datatype="Linear unit" direction="Input" expression="cluster_tolerance" type="Required"><pythonReference>
+						<para>The maximum tolerated distance between the input events and the target routes.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum tolerated distance between the input events and the target routes.</para>
+					</dialogReference></param><param sync="true" name="in_fields" displayname="Include all fields from input" datatype="Boolean" direction="Input" expression="in_fields" type="Optional"><pythonReference>
+						<para>Specifies whether the output event table will contain route location fields plus all the attributes from the input events.</para>
+						<bulletList><bullet_item>FIELDS—The output event table will contain route location fields plus all the attributes from the input events. This is the default. </bullet_item><bullet_item>NO_FIELDS—The output event table will only contain route location fields plus the ObjectID field from the input events. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether the output event table will contain route location fields plus all the attributes from the input events.</para>
+						<bulletList>
+							<bullet_item>Checked—The output event table will contain route location fields plus all the attributes from the input events. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The output event table will only contain route location fields plus the ObjectID field from the input events. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Transforming events allows you to use the events from one route reference with another route reference having different route identifiers and/or measures.</para>
+			</bullet_item><bullet_item>
+				<para>Any whole or partial event that intersects a target route is written to the new event table.</para>
+			</bullet_item><bullet_item>
+				<para>The best results will be achieved when the source routes and the target routes closely overlay.</para>
+				
+					<para>Using a large cluster tolerance to overcome discrepancies between the source and target routes can produce unexpected results.</para>
+				
+			</bullet_item><bullet_item>
+				<para>The output event type (POINT or LINE) must match the input event type.</para>
+			</bullet_item><bullet_item>
+				<para>Use the  tool prior to this tool to effectively reduce the number of events that will be processed.</para>
+			</bullet_item><bullet_item>
+				<para>The output table can be displayed in ArcMap using the  tool or using the .</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>TransformRouteEvents example (Python window)</title><code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/Data"
+arcpy.TransformRouteEvents_lr("pavement.dbf", "route1 LINE begin_mp end_mp", "hwy.shp", "route1", "hwy_new.shp", "route1", "trans_out1.dbf", "route1 LINE fmp tmp", "0.1 meters"  )
+
+
+                    </code></scriptExample><scriptExample><title>TransformRouteEvents example 2 (Stand-alone Python script)</title>
+					<para>The following demonstrates how to use the TransformRouteEvents function in a stand-alone Python script using file geodatabase data:</para>
+				<code xml:space="preserve"># Name: TransformRouteEvents_Example2.py
+# Description: Transform point events (input table is in a file geodatabase)
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/pitt.gdb"
+
+# Set local variables
+in_tbl = "accident"
+in_props = "route1 POINT measure"
+in_rt = "roads/hwy"               # hwy exists in the roads feature dataset 
+in_rid = "route1" 
+target_rt = "roads/hwy_new"       # hwy_new exists in the roads feature dataset 
+target_rid = "route1" 
+out_tbl = "trans_out2"
+out_props = "route1 POINT mp"
+tol = "0.1 meters"  
+
+# Execute TransformRouteEvents
+arcpy.TransformRouteEvents_lr(in_tbl, in_props, in_rt, in_rid, target_rt, target_rid, out_tbl, out_props, tol)
+
+
+                    </code></scriptExample><scriptExample><title>TransformRouteEvents example 3 (Stand-alone Python script)</title>
+					<para>The following demonstrates how to use the TransformRouteEvents function in a stand-alone Python script using personal geodatabase data:</para>
+				<code xml:space="preserve"># Name: TransformRouteEvents_Example3.py
+# Description: Transform point events (input table is in a personal geodatabase)
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/pitt.mdb"
+
+# Set local variables
+in_tbl = "accident"
+in_props = "route1 POINT measure"
+in_rt = "roads/hwy"               # hwy exists in the roads feature dataset 
+in_rid = "route1" 
+target_rt = "roads/hwy_new"       # hwy_new exists in the roads feature dataset 
+target_rid = "route1" 
+out_tbl = "trans_out2"
+out_props = "route1 POINT mp"
+tol = "0.1 meters"  
+
+# Execute TransformRouteEvents
+arcpy.TransformRouteEvents_lr(in_tbl, in_props, in_rt, in_rid, target_rt, target_rid, out_tbl, out_props, tol)
+ 
+
+                    </code></scriptExample><scriptExample><title>TransformRouteEvents example 4 (Stand-alone Python script)</title>
+					<para>The following demonstrates how to use the TransformRouteEvents function in a stand-alone Python script using ArcSDE data:</para>
+				<code xml:space="preserve"># Name: TransformRouteEvents_Example4.py
+# Description: Transform point events (input table is in an enterprise geodatabase)
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "Database Connections/Connection to Jerry.sde"
+
+# Set local variables
+in_tbl = gp.QualifyTableName("accident", wkspc) 
+in_props = "route1 POINT measure"
+in_rt = gp.QualifyTableName("hwy", wkspc) 
+in_rid = "route1" 
+target_rt = gp.QualifyTableName("hwy_new", wkspc) 
+target_rid = "route1" 
+out_tbl = "trans_out3"
+out_props = "route1 POINT mp"
+tol = "0.1 meters"  
+
+# Execute TransformRouteEvents
+arcpy.TransformRouteEvents_lr(in_tbl, in_props, in_rt, in_rid, target_rt, target_rid, out_tbl, out_props, tol)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

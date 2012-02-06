@@ -1,0 +1,196 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Locations (Network Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds network analysis objects to a network analysis layer. The objects are added to specific sublayers such as Stops and Barriers. Objects are input as features or records.</para>
+			
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Alter</keyword><keyword>Altered</keyword><keyword>Layer</keyword><keyword>Locations</keyword><keyword>Network Analyst Layer</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddLocations" displayname="Add Locations (Network Analyst)" toolboxalias="na" softwarerestriction="none"><summary>
+			<para>Adds network analysis objects to a network analysis layer. The objects are added to specific sublayers such as Stops and Barriers. Objects are input as features or records.</para>
+			
+			</summary><alink_name>AddLocations_na</alink_name><parameters><param sync="true" name="in_network_analysis_layer" displayname="Input network analysis layer" datatype="Network Analyst Layer" direction="Input" expression="in_network_analysis_layer" type="Required"><pythonReference>
+						<para>Network analysis layer to which the network analysis objects will be added.</para>
+					</pythonReference><dialogReference>
+						<para>Network analysis layer to which the network analysis objects will be added.</para>
+					</dialogReference></param><param sync="true" name="sub_layer" displayname="Sub layer" datatype="String" direction="Input" expression="sub_layer" type="Required"><pythonReference>
+						<para>The sublayer of the network analysis layer to which the network analysis objects will be added.</para>
+					</pythonReference><dialogReference>
+						<para>The sublayer of the network analysis layer to which the network analysis objects will be added.</para>
+					</dialogReference></param><param sync="true" name="in_table" displayname="Input locations" datatype="Table View" direction="Input" expression="in_table" type="Required"><pythonReference>
+						<para>The feature class or the table that is the source for the new network analysis objects.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class or the table that is the source for the new network analysis objects.</para>
+					</dialogReference></param><param sync="true" name="field_mappings" displayname="Field mappings" datatype="Network Analyst Field Map" direction="Input" expression="field_mappings" type="Required"><pythonReference>
+						<para>Sets the values for the properties of the network analysis objects. Properties can be set to a constant or mapped to a field from the input feature class or table.</para>
+						<para>The parameter value is specified as a semicolon-separated list of three values made up of the property name, the field name, and the default value. You should specify either the field name or the default value for a property. For example, the parameter value "Name Address #; Attr_Minutes # 2", specifies that the Name property is mapped from the Address field and the Attr_Minutes property should have a constant value of 2 when adding your input features. </para>
+						<para> If a particular property is not mapped to a field or has a default value or is not included in the parameter value, it will have the default mapping. If you want to use the default mappings for all the properties, use # for the parameter value. </para>
+						<para>If both the Field and the Default Value are not specified for a property, the resulting network analysis objects will have null values for that property. </para><para>If the data you are loading contains network locations or location ranges based on the network dataset used for the analysis, map the network location fields from your input features to the network location properties. For point locations such as Stops or Incidents, map  the SourceID, SourceOID, PosAlong and SideOfEdge properties  and  for line or polygon locations such as Polygon Barriers, map the Locations property. Adding the network analysis objects using the network location fields is much faster than loading them by geometry. Specifying the network location fields in the field mappings is similar to using the Use Network Location fields instead of geometry parameter from the tool dialog .</para>
+						
+							<para>If you specify the field mapping for any of the network location properties, you need to specify the field mappings for the remaining network location properties to avoid a tool execution error. </para>
+						
+					</pythonReference><dialogReference>
+						<para>Sets the values for the properties of the network analysis objects. Properties can be set to a constant or mapped to a field from the input feature class or table.</para>
+						<para>If both the Field and the Default Value are not specified for a property, the resulting network analysis objects will have null values for that property. </para>
+						<para>If the data you are loading contains network locations or location ranges based on the network dataset used for the analysis, check the Use Network Location fields instead of geometry parameter. Adding the network analysis objects using the network location fields is much faster than loading by geometry.</para>
+					</dialogReference></param><param sync="true" name="search_tolerance" displayname="Search tolerance" datatype="Linear Unit" direction="Input" expression="search_tolerance" type="Required"><pythonReference>
+						<para>The search tolerance for locating the input features on the network. Features that are outside the search tolerance are left unlocated. The parameter includes a value and units for the tolerance.</para>
+						<para>The parameter is not used when adding locations to the Line Barriers or Polygon Barriers sublayers. In such cases, use "#" as the parameter value. </para>
+					</pythonReference><dialogReference>
+						<para>The search tolerance for locating the input features on the network. Features that are outside the search tolerance are left unlocated. The parameter includes a value and units for the tolerance.</para>
+					</dialogReference></param><param sync="true" name="sort_field" displayname="Sort field" datatype="Field" direction="Input" expression="sort_field" type="Optional"><pythonReference>
+						<para>A field on which the network analysis objects are sorted as they are added to the network analysis layer. The default is the ObjectID field on the input feature class or the table.</para>
+					</pythonReference><dialogReference>
+						<para>A field on which the network analysis objects are sorted as they are added to the network analysis layer. The default is the ObjectID field on the input feature class or the table.</para>
+					</dialogReference></param><param sync="true" name="search_criteria" displayname="Search criteria" datatype="Value Table" direction="Input" expression="[[Source, SnapType],...]" type="Optional"><pythonReference>
+						<para>Specifies which sources in the network dataset will be searched when finding locations and what portions of geometry (also known as snap types) will be used.</para>
+						<para>The parameter value is specified as a list with nested lists. The nested list is made up of two values indicating the name and the snap type for each network source. The snap type is specified using the "SHAPE", "MIDDLE", "END" ,or "NONE" keywords. For example, when finding locations, the parameter value [["Streets","SHAPE"],["Streets_ND_Junctions","NONE"]] specifies that the search can locate on the shape of the Streets source but not on the Streets_ND_Junctions source.</para>
+						<para>To specify multiple snap types for a single network source, use the combination of the snap type keywords separate by an underscore. For example, MIDDLE_END specifies that the locations can be snapped to the middle or end of the network source. </para>
+						<para>When adding line or polygon network locations, only the Shape snap type is used even if other snap types are specified. </para>
+					</pythonReference><dialogReference>
+						<para>Specifies which sources in the network dataset will be searched when finding locations and what portions of geometry (also known as snap types) will be used.</para>
+						<para>When adding line or polygon network locations, only the Shape snap type is used even if other snap types are specified. </para>
+					</dialogReference></param><param sync="true" name="match_type" displayname="Find closest among all classes" datatype="Boolean" direction="Input" expression="match_type" type="Optional"><pythonReference>
+						<bulletList><bullet_item>MATCH_TO_CLOSEST—Matches the new network locations to the closest network source among all the sources that have a snap type specified in the search criteria . This is the default.</bullet_item><bullet_item>PRIORITY—Matches the new network locations to the first network source having a snap type specified in the search criteria. The sources are searched in the priority order and the searching stops when the location is found within the search tolerance.</bullet_item></bulletList>
+						<para>The parameter is not used when adding locations to the Line Barriers or Polygon Barriers sublayers. In such cases, use "#" as the parameter value. </para>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked -- Matches the new network locations to the closest network source among all the sources that have a snap type specified in the search criteria. This is the default.</bullet_item>
+							<bullet_item>Unchecked -- Matches the new network locations to the first network source having a snap type specified in the search criteria. The sources are searched in the priority order and the searching stops when the location is found within the search tolerance. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="append" displayname="Append to existing locations" datatype="Boolean" direction="Input" expression="append" type="Optional"><pythonReference>
+						<para>Specifies whether or not to append new network analysis objects to existing objects.</para>
+						<bulletList><bullet_item>APPEND—Adds the new network analysis objects to the existing set of objects in the selected sublayer. </bullet_item><bullet_item>CLEAR—Deletes the existing network analysis objects and replaces them with the new objects. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether or not to append new network analysis objects to existing objects.</para>
+						<bulletList>
+							<bullet_item>Checked -- The new network analysis objects are added to the existing set of objects in the selected sublayer.</bullet_item>
+							<bullet_item>Unchecked -- The existing network analysis objects are deleted and replaced with the new objects. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="snap_to_position_along_network" displayname="Snap to Network" datatype="Boolean" direction="Input" expression="snap_to_position_along_network" type="Optional"><pythonReference>
+						<para> Specifies that you want to snap the network locations along the network dataset or at some specified offset from the network dataset.</para>
+						<bulletList><bullet_item>NO_SNAP— The geometries of the network locations are based on the geometries of the input features. This is useful if you want to use the curb approach which requires that the network locations know which side of the edge they are on.</bullet_item><bullet_item>SNAP— if you have point features, the point will be snapped to the network and you will not be able to use curb approach. This is useful if you don't care how a vehicle approaches a stop. If your input features are lines or polygons, use this paramter value. </bullet_item></bulletList>
+						<para>The parameter is not used when adding locations to the Line Barriers or Polygon Barriers sublayers. In such cases, use "#" as the parameter value. </para>
+					</pythonReference><dialogReference>
+						<para> Specifies that you want to snap the network locations along the network dataset or at some specified offset from the network dataset.</para>
+						<bulletList>
+							<bullet_item>Checked -- if you have point features, the point will be snapped to the network and you will not be able to use curb approach. This is useful if you don't care how a vehicle approaches a stop. If your input features are lines or polygons, leave this checked. </bullet_item>
+							<bullet_item>Unchecked --  The geometries of the network locations are based on the geometries of the input features. This is useful if you want to use the curb approach which requires that the network locations know which side of the edge they are on.</bullet_item>
+						</bulletList>
+						</dialogReference></param><param sync="true" name="snap_offset" displayname="Snap Offset" datatype="Long" direction="Input" expression="snap_offset" type="Optional"><pythonReference>
+						<para>When snapping a point to the network, you can apply an offset distance. An offset distance of zero means the point will be coincident with the network feature (typically a line). To offset the point from the network feature, enter an offset distance. The offset is in relation to the original point location. That is, if the original point was on the left side, its new location will be offset to the left. If it was originally on the right side, its new location will be offset to the right.</para>
+						<para>The parameter is not used when adding locations to the Line Barriers or Polygon Barriers sublayers. In such cases, use "#" as the parameter value. </para>
+					</pythonReference><dialogReference>
+						<para>When snapping a point to the network, you can apply an offset distance. An offset distance of zero means the point will be coincident with the network feature (typically a line). To offset the point from the network feature, enter an offset distance. The offset is in relation to the original point location. That is, if the original point was on the left side, its new location will be offset to the left. If it was originally on the right side, its new location will be offset to the right.</para>
+					</dialogReference></param><param sync="true" name="exclude_restricted_elements" displayname="Exclude restricted portions of the network" datatype="Boolean" direction="Input" expression="exclude_restricted_elements" type="Optional"><pythonReference>
+						<bulletList><bullet_item>EXCLUDE—Specifies that the network locations are only placed on traversable portions of the network. This prevents placing network locations on elements that you can't reach due to restrictions or barriers. Before adding your network locations using this option, make sure that you have already added all the restriction barriers to the input network analysis layer to get expected results. This parameter is not applicable when adding barrier objects. In such cases, use "#" as the parameter value.</bullet_item><bullet_item>INCLUDE—Specifies that the network locations are placed on all the elements of the network. The network locations that are added with this option may be unreachable during the solve process if they are placed on restricted elements.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<bulletList>
+							<bullet_item>Checked -- The network locations are only placed on traversable portions of the network. This prevents placing network locations on elements that you can't reach due to restrictions or barriers. Before adding your network locations using this option, make sure that you have already added all the restriction barriers to the input network analysis layer to get expected results. This option is not applicable when adding barrier objects.</bullet_item>
+							<bullet_item>Unchecked -- The network locations are placed on all the elements of the network. The network locations that are added with this option may be unreachable during the solve process if they are placed on restricted elements.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="search_query" displayname="Search query" datatype="Value Table" direction="Input" expression="[[Source, Expression],...]" type="Optional"><pythonReference><para>
+Specifies a query to restrict the search to a subset of the features within a source feature class. This is useful if you don't want to find features that may be unsuited for a network location. For example, if you are loading centroids of polygons and don't want to locate on local roads, you can define a query that searches for major roads only.
+</para><para>The parameter value is specified as a list with nested lists. The nested list is made up of two values indicating the name and the SQL expression for all of   the network sources.  The syntax for the SQL expression differs slightly depending on the
+type of the network source feature class. For example, if
+you're querying source feature classes stored in file or ArcSDE geodatabases, shapefiles, or
+SDC, enclose field names in double quotes: "CFCC". If you're
+querying source feature classes stored in personal geodatabases, enclose fields in square
+brackets: [CFCC]. </para>
+						<para>If you don't want to specify a query for a particular source, use "#" as the value for the SQL expression or exclude the source name and the SQL expression from the parameter value. If you don't want to specify a query for all of the network sources, use "#" as the parameter value. </para><para>For example, the parameter value [["Streets","\"CFCC\" = 'A15'"], ["Streets_ND_Junctions",""]] specifies a SQL expression for the Streets source feature class and no expression for Streets_ND_Junctions source feature class. Note that the double quotes used to enclose the field name CFCC are escaped using back slash characters to avoid a parsing error from the Python interpreter. </para></pythonReference><dialogReference>
+						<para>
+Specifies a query to restrict the search to a subset of the features within a source feature class. This is useful if you don't want to find features that may be unsuited for a network location. For example, if you are loading centroids of polygons and don't want to locate on local roads, you can define a query that searches for major roads only.
+</para>
+						<para>A SQL expression for a given source is specified by selecting the source name in the Name column and clicking the SQL button. If you don't want to specify a query for a source, remove the SQL expression for that source by selecting the source name and clicking the remove button. </para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool can be run repeatedly to append network analysis objects to the same sublayer. For example, if Stops for a Route Layer come from two feature classes, the tool can be called twice, by using the APPEND option.</para>
+			</bullet_item><bullet_item>
+				<para>If you want to delete the existing network analysis objects before loading new ones, use the CLEAR option. </para>
+			</bullet_item><bullet_item>
+				<para>This tool runs significantly faster if the feature classes used as the network sources in the network dataset have a valid and up to date spatial index. </para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>AddLocations example 1 (Python window)</title>
+					<para>Execute the tool using only the required parameters</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.AddLocations_na("Route","Stops","Analysis/Hospital","","")
+
+                    </code></scriptExample><scriptExample><title>AddLocations example 2 (Python window)</title>
+					<para>Execute the tool using all parameters </para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/ArcTutor/Network Analyst/Tutorial/SanFrancisco.gdb"
+arcpy.AddLocations_na("Route","Stops","Analysis/Hospital",
+                      "Name Name #;Attr_Minutes VisitTime 0;CurbApproach # 0",
+                      "2 Miles","FID",
+                      [["Streets","SHAPE"],["Streets_ND_Junctions","NONE"]],
+                      "MATCH_TO_CLOSEST","CLEAR","SNAP","10 Feet","EXCLUDE",
+                      [["Streets",'"FREEWAY" = 0'],["Streets_ND_Junctions",""]])
+
+
+
+                    </code></scriptExample><scriptExample><title>AddLocations example 3 (workflow)</title><para>The following stand-alone Python script demonstrates how the AddLocations tool can be used to load origins and destinations into an OD Cost Matrix layer.</para><code xml:space="preserve"># Name: AddLocations_Workflow.py
+# Description: The scenario shows how to calculate a travel time matrix between 
+#              store features. Use the Add Locations tool to load origins and 
+#              destinations into an OD Cost Matrix layer.Since the origins and 
+#              destinations are same in this case, the origins are first loaded 
+#              from the store features using their geometry and the destinations
+#              are loaded from the origins using network location fields to 
+#              speed up the load times. 
+# Requirements: Network Analyst Extension 
+# Author: ESRI
+
+#Import system modules
+import arcpy
+from arcpy import env
+
+try:
+    #Check out the Network Analyst extension license
+    arcpy.CheckOutExtension("Network")
+
+    #Set environment settings
+    env.workspace = "C:/data/SanFrancisco.gdb"
+    env.overwriteOutput = True
+    
+    #Set local variables
+    inNetworkDataset = "Transportation/Streets_ND"
+    outNALayer = "StoreTravelTimeMatrix"
+    impedanceAttribute = "TravelTime"
+    inFeatures = "Analysis/Stores"
+    searchTolerance = "500 Meters"
+    searchQuery = [["Streets",'"FREEWAY" = 0'],["Streets_ND_Junctions",""]]
+    originsLayer = outNALayer + "/" + "Origins"
+    fieldMappings = "Name Name #; SourceID SourceID #;SourceOID SourceOID #;" \
+                    + "PosAlong PosAlong #;SideOfEdge SideOfEdge #"
+    outLayer = "C:/data/output" + "/" + outNALayer + ".lyr"
+    
+    #Create a new OD cost matrix analysis layer. For this scenario, the default 
+    #value for all the remaining parameters statisfies the analysis requirements
+    arcpy.MakeODCostMatrixLayer_na(inNetworkDataset, outNALayer, 
+                                   impedanceAttribute)
+    
+    #Load store features as origins using the geometry of store features.
+    #Ensure that the stores are not located on freeways by using a search query.
+    #The OD cost matrix layer created previously is referred using its name. 
+    arcpy.AddLocations_na(outNALayer,"Origins",inFeatures,"",searchTolerance,
+                          search_query = searchQuery)
+    
+    #Load origins as destinations using the network locations fields from 
+    #origins. This is much faster than loading destinations from the store 
+    #features using their geometry as their network locations have already been
+    #calculated while loading them origins.
+    arcpy.AddLocations_na(outNALayer,"Destinations",originsLayer,fieldMappings,
+                          "")
+    
+    #Solve the od cost matrix layer. Halt the execution if there is an 
+    #invalid location 
+    arcpy.Solve_na(outNALayer,"HALT")
+    
+    #Save the solved na layer as a layer file on disk with relative paths
+    arcpy.SaveToLayerFile_management(outNALayer,outLayer,"RELATIVE")
+    
+    print "Script completed successfully"
+    
+except Exception as e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "An error occured on line %i" % tb.tb_lineno
+    print str(e)
+    
+                    </code></scriptExample></scriptExamples></tool></metadata>

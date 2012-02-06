@@ -1,0 +1,119 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Feature Compare (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Compares two feature classes or layers and returns the comparison results. Feature Compare can report differences with geometry, tabular values, spatial reference, and field definitions.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Base</keyword><keyword>Definition</keyword><keyword>Difference</keyword><keyword>Different</keyword><keyword>Field</keyword><keyword>Find</keyword><keyword>Geometry</keyword><keyword>Identical</keyword><keyword>Properties</keyword><keyword>Record</keyword><keyword>Reference</keyword><keyword>Row</keyword><keyword>Schema</keyword><keyword>Search</keyword><keyword>Similar</keyword><keyword>Spatial</keyword><keyword>Table</keyword><keyword>Test</keyword><keyword>Tolerance</keyword><keyword>Value</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FeatureCompare" displayname="Feature Compare (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Compares two feature classes or layers and returns the comparison results. Feature Compare can report differences with geometry, tabular values, spatial reference, and field definitions.</para>
+		</summary><alink_name>FeatureCompare_management</alink_name><parameters><param sync="true" name="in_base_features" displayname="Input Base Features" datatype="Feature Layer" direction="Input" expression="in_base_features" type="Required"><pythonReference>
+						<para>The Input Base Features are compared with the Input Test Features. Input Base features refers to data that you have declared valid. This base data has the correct geometry definitions, field definitions, and spatial reference.</para>
+					</pythonReference><dialogReference>
+						<para>The Input Base Features are compared with the Input Test Features. Input Base features refers to data that you have declared valid. This base data has the correct geometry definitions, field definitions, and spatial reference.</para>
+					</dialogReference></param><param sync="true" name="in_test_features" displayname="Input Test Features" datatype="Feature Layer" direction="Input" expression="in_test_features" type="Required"><pythonReference>
+						<para>The Input Test Features are compared against the Input Base Features. Input Test Features refers to data that you have made changes to by editing or compiling new features.</para>
+					</pythonReference><dialogReference>
+						<para>The Input Test Features are compared against the Input Base Features. Input Test Features refers to data that you have made changes to by editing or compiling new features.</para>
+					</dialogReference></param><param sync="true" name="sort_field" displayname="Sort Field" datatype="Field" direction="Input" expression="[sort_field,...]" type="Required"><pythonReference>
+						<para>The field or fields used to sort records in the Input Base Table and the Input Test Table. The records are sorted in ascending order. Sorting by a common field in both the Input Base Features and the Input Test Features ensures that you are comparing the same row from each input dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The field or fields used to sort records in the Input Base Table and the Input Test Table. The records are sorted in ascending order. Sorting by a common field in both the Input Base Features and the Input Test Features ensures that you are comparing the same row from each input dataset.</para>
+					</dialogReference></param><param sync="true" name="compare_type" displayname="Compare Type" datatype="String" direction="Input" expression="compare_type" type="Optional"><pythonReference>
+						<para>The comparision type. ALL is the default. The default will compare all properties of the features being compared.</para>
+						<bulletList><bullet_item>ALL —All properties of the feature classes will be compared. This is the default.</bullet_item><bullet_item>GEOMETRY_ONLY —Only the geometries of the feature classes will be compared.</bullet_item><bullet_item>ATTRIBUTES_ONLY —Only the attributes and their values will be compared.</bullet_item><bullet_item>SCHEMA_ONLY —Only the schema of the feature classes will be compared.</bullet_item><bullet_item>SPATIAL_REFERENCE_ONLY —Only the spatial references of the two feature classes will be compared.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The comparision type. ALL is the default. The default will compare all properties of the features being compared.</para>
+						<bulletList><bullet_item>ALL —All properties of the feature classes will be compared. This is the default.</bullet_item><bullet_item>GEOMETRY_ONLY —Only the geometries of the feature classes will be compared.</bullet_item><bullet_item>ATTRIBUTES_ONLY —Only the attributes and their values will be compared.</bullet_item><bullet_item>SCHEMA_ONLY —Only the schema of the feature classes will be compared.</bullet_item><bullet_item>SPATIAL_REFERENCE_ONLY —Only the spatial references of the two feature classes will be compared.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="ignore_options" displayname="Ignore Options" datatype="String" direction="Input" expression="[ignore_option,...]" type="Optional"><pythonReference>
+						<para>These properties will not be compared during comparison.</para>
+						<bulletList><bullet_item>IGNORE_M —Do not compare measure properties.</bullet_item><bullet_item>IGNORE_Z —Do not compare elevation properties.</bullet_item><bullet_item>IGNORE_POINTID —Do not compare point id properties.</bullet_item><bullet_item>IGNORE_EXTENSION_PROPERTIES —Do not compare extension properties.</bullet_item><bullet_item>IGNORE_SUBTYPES —Do not compare subtypes.</bullet_item><bullet_item>IGNORE_RELATIONSHIPCLASSES —Do not compare relationship classes.</bullet_item><bullet_item>IGNORE_REPRESENTATIONCLASSES —Do not compare representation classes.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>These properties will not be compared during comparison.</para>
+						<bulletList><bullet_item>IGNORE_M —Do not compare measure properties.</bullet_item><bullet_item>IGNORE_Z —Do not compare elevation properties.</bullet_item><bullet_item>IGNORE_POINTID —Do not compare point id properties.</bullet_item><bullet_item>IGNORE_EXTENSION_PROPERTIES —Do not compare extension properties.</bullet_item><bullet_item>IGNORE_SUBTYPES —Do not compare subtypes.</bullet_item><bullet_item>IGNORE_RELATIONSHIPCLASSES —Do not compare relationship classes.</bullet_item><bullet_item>IGNORE_REPRESENTATIONCLASSES —Do not compare representation classes.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="xy_tolerance" displayname="XY Tolerance" datatype="Linear unit" direction="Input" expression="xy_tolerance" type="Optional"><pythonReference>
+						<para>The distance that determines the range in which features are considered equal. To minimize error, the value you choose for the compare tolerance should be as small as possible. By default, the compare tolerance is the XY Tolerance of the input base features.</para>
+					</pythonReference><dialogReference>
+						<para>The distance that determines the range in which features are considered equal. To minimize error, the value you choose for the compare tolerance should be as small as possible. By default, the compare tolerance is the XY Tolerance of the input base features.</para>
+					</dialogReference></param><param sync="true" name="m_tolerance" displayname="M Tolerance" datatype="Double" direction="Input" expression="m_tolerance" type="Optional"><pythonReference>
+						<para>The measure tolerance is the minimum distance between measures before they are considered equal.</para>
+					</pythonReference><dialogReference>
+						<para>The measure tolerance is the minimum distance between measures before they are considered equal.</para>
+					</dialogReference></param><param sync="true" name="z_tolerance" displayname="Z Tolerance" datatype="Double" direction="Input" expression="z_tolerance" type="Optional"><pythonReference>
+						<para>The Z Tolerance is the minimum distance between Z coordinates before they are considered equal.</para>
+					</pythonReference><dialogReference>
+						<para>The Z Tolerance is the minimum distance between Z coordinates before they are considered equal.</para>
+					</dialogReference></param><param sync="true" name="attribute_tolerances" displayname="Attribute Tolerance" datatype="Value Table" direction="Input" expression="[[Field, {Tolerance}],...]" type="Optional"><pythonReference>
+						<para>The numeric value that determines the range in which attribute values are considered equal. This only applies to numeric field types.</para>
+					</pythonReference><dialogReference>
+						<para>The numeric value that determines the range in which attribute values are considered equal. This only applies to numeric field types.</para>
+					</dialogReference></param><param sync="true" name="omit_field" displayname="Omit Field" datatype="String" direction="Input" expression="[omit_field,...]" type="Optional"><pythonReference>
+						<para>The field or fields that will be omitted during comparison. The field definitions and the tabular values for these fields will be ignored.</para>
+					</pythonReference><dialogReference>
+						<para>The field or fields that will be omitted during comparison. The field definitions and the tabular values for these fields will be ignored.</para>
+					</dialogReference></param><param sync="true" name="continue_compare" displayname="Continue Compare" datatype="Boolean" direction="Input" expression="continue_compare" type="Optional"><pythonReference>
+						<para>Indicates whether to compare all properties after encountering the first mismatch.</para>
+						<bulletList><bullet_item>NO_CONTINUE_COMPARE—Stops after encountering the first mismatch. This is the default. </bullet_item><bullet_item>CONTINUE_COMPARE—Compares other properties after encountering the first mismatch. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether to compare all properties after encountering the first mismatch.<bulletList>
+								<bullet_item>Unchecked—Stops after encountering the first mismatch. This is the default.</bullet_item>
+								<bullet_item>Checked—Compares other properties after encountering the first mismatch. </bullet_item>
+							</bulletList></para>
+					</dialogReference></param><param sync="true" name="out_compare_file" displayname="Output Compare File" datatype="File" direction="Output" expression="out_compare_file" type="Optional"><pythonReference>
+						<para>This file will contain all similarities and differences between the Input Base Features and the Input Test Features. This file is a comma-delimited text file which can be viewed and used as a table in ArcGIS.</para>
+					</pythonReference><dialogReference>
+						<para>This file will contain all similarities and differences between the Input Base Features and the Input Test Features. This file is a comma-delimited text file which can be viewed and used as a table in ArcGIS.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>The tool returns messages showing the comparison result. By default, the tool will stop executing after encountering the first miscompare. To report all differences, set the continue compare option to true.</para>
+			</bullet_item><bullet_item>
+				<para>Multiple sort fields may be specified. The first field is sorted, then the second field, and so on, in ascending order. Sorting by a common field in both the Input Base Features and the Input Test Features ensures that you are comparing the same row from each input dataset.</para>
+			</bullet_item><bullet_item>
+				<para>By default, the compare type is set to ALL. This means all properties of the features being compared will be checked, including such things as spatial reference, field properties, attributes, and geometry. However, you may choose a different compare type to check only specific properties of the features being compared.</para>
+			</bullet_item><bullet_item>
+				<para>The Ignore Options provides the flexibility to omit properties such as measure attributes, z attributes, point ID attributes, and extension properties. Two feature classes may be identical, yet one has measures and z coordinates and the other does not. You can choose to ignore these properties. The IGNORE_EXTENSION_PROPERTIES option refers to additional information added to a feature class or table. For example, the features of two annotation feature classes can be identical but the feature classes may have different extension properties, such as different symbols in the symbol collection and different editing behavior.</para>
+			</bullet_item><bullet_item>
+				<para>The default XY Tolerance is determined by the default XY Tolerance of the Input Base Features. To minimize error, the value you choose for the compare tolerance should be as small as possible. If zero is entered for the XY Tolerance, an exact match is performed.</para>
+			</bullet_item><bullet_item>
+				<para>The default M Tolerance and the default Z Tolerance is determined by the default M Tolerance and Z Tolerance of the Input Base Features. The units are the same as those of the Input Base Features. If zero is entered for the M Tolerance and Z Tolerance, an exact match is performed.</para>
+			</bullet_item><bullet_item>
+				<para>When comparing GEOMETRY_ONLY, the spatial references must match. If the spatial references are different, a miscompare will be reported. If the coordinate system is different for either input, the features will miscompare. This tool does not do projection on the fly</para>
+			</bullet_item><bullet_item>
+				<para>The Omit Fields parameter is a list of fields that are not included in the field count comparison—their field definitions and tabular values are ignored.</para>
+			</bullet_item><bullet_item>
+				<para>Attribute tolerances can only be specified for numeric field types.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Compare File will contain all similarities and differences between the Input Base Features and the Input Test Features. This file is a comma-delimited text file which can be viewed and used as a table in ArcGIS. For example, this table can be queried to obtain all the ObjectID values for all the rows that are different. The "has_error" field indicates that the record contains an error. True indicates there is a difference.</para>
+			</bullet_item><bullet_item>
+				<para>The comparison tools  will be 'true' when no differences are found and 'false' when differences are detected.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>FeatureCompare Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the FeatureCompare function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.FeatureCompare_management(r'C:/Workspace/baseroads.shp', r'C:/Workspace/newroads.shp', 'ROAD_ID', 'ALL', 'IGNORE_M;IGNORE_Z', '0.001 METERS', 0, 0, 'Shape_Length 0.001', '#', 'CONTINUE_COMPARE', e = r'C:/Workspace/roadcompare.txt')
+                    </code></scriptExample><scriptExample><title>FeatureCompare tool example (Stand-alone script)</title>
+					<para>Example of how to use the FeatureCompare tool in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: FeatureCompare.py
+# Description: Compare two feature classes and return comparison result.
+# Author: ESRI
+
+# import system modules 
+import arcpy
+
+try:
+    # Set local variables
+    base_features = "C:/Workspace/baseroads.shp"
+    test_features = "C:/Workspace/newroads.shp"
+    sort_field = "ROAD_ID"
+    compare_type = "ALL"
+    ignore_option = "IGNORE_M;IGNORE_Z"
+    xy_tolerance = "0.001 METERS"
+    m_tolerance = 0
+    z_tolerance = 0
+    attribute_tolerance = "Shape_Length 0.001"
+    omit_field = "#"
+    continue_compare = "CONTINUE_COMPARE"
+    compare_file = "C:/Workspace/roadcompare.txt"
+ 
+    # Process: FeatureCompare
+    compare_result = arcpy.FeatureCompare_management(base_features, test_features, sort_field, compare_type, ignore_option, xy_tolerance, m_tolerance, z_tolerance, attribute_tolerance, omit_field, continue_compare, compare_file)
+    print compare_result
+    print arcpy.GetMessages()
+ 
+except:
+    # Print error message if an error occurs
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

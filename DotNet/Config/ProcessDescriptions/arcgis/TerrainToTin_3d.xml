@@ -1,0 +1,77 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Terrain to TIN (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool converts a terrain dataset to a file-based TIN.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Convert</keyword><keyword>Edges</keyword><keyword>Lidar</keyword><keyword>Nodes</keyword><keyword>Points</keyword><keyword>Terrain</keyword><keyword>Terrain Dataset</keyword><keyword>Tin</keyword><keyword>Trinagles</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="TerrainToTin" displayname="Terrain to TIN (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool converts a terrain dataset to a file-based TIN.</para>
+		</summary><alink_name>TerrainToTin_3d</alink_name><parameters><param sync="true" name="in_terrain" displayname="Input Terrain" datatype="Terrain Layer" direction="Input" expression="in_terrain" type="Required"><pythonReference>
+						<para>The terrain dataset to be converted.</para>
+					</pythonReference><dialogReference>
+						<para>The terrain dataset to be converted.</para>
+					</dialogReference></param><param sync="true" name="out_tin" displayname="Output TIN" datatype="TIN" direction="Output" expression="out_tin" type="Required"><pythonReference>
+						<para>The TIN to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The TIN to be created.</para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Double" direction="Input" expression="pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The resolution of the pyramid level to use for conversion. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The resolution of the pyramid level to use for conversion. The default is 0, full resolution.</para>
+					</dialogReference></param><param sync="true" name="max_nodes" displayname="Maximum Number of Nodes" datatype="Long" direction="Input" expression="max_nodes" type="Optional"><pythonReference>
+						<para>The maximum number of nodes permitted in the output TIN. The tool will return an error if the conversion properties (in other words, analysis extent and pyramid level) would produce a TIN that exceeds this size. The default is 5 million.</para>
+					</pythonReference><dialogReference>
+						<para>The maximum number of nodes permitted in the output TIN. The tool will return an error if the conversion properties (in other words, analysis extent and pyramid level) would produce a TIN that exceeds this size. The default is 5 million.</para>
+					</dialogReference></param><param sync="true" name="clip_to_extent" displayname="Clip to Extent" datatype="Boolean" direction="Input" expression="clip_to_extent" type="Optional"><pythonReference>
+						<para>Performs a neatline clip on the output TIN. The analysis extent is used as the clip polygon. This only has an effect if the analysis extent is defined and it's smaller than the extent of the input terrain.</para>
+					</pythonReference><dialogReference>
+						<para>Performs a neatline clip on the output TIN. The analysis extent is used as the clip polygon. This only has an effect if the analysis extent is defined and it's smaller than the extent of the input terrain.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Define the extent of the output TIN using the geoprocessing environment extent setting.</para>
+			</bullet_item><bullet_item>
+				<para>Use an extent and pyramid level that are not likely to be too large for a TIN. While the maximum size of a TIN that can be used under Win32 is between 15 to 20 million nodes, it's recommended that you cap the size at a few million. Triangulated surfaces larger than this are best represented by terrain datasets.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Terrain To TIN Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Terrain To TIN
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+#arcpy.TerrainToTin_3d("sample.gdb/featuredataset/terrain", "tin", 6, 5000000, False)
+                    </code></scriptExample><scriptExample><title>Terrain To TIN Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Terrain To TIN
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: TerrainToTin Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              TerrainToTin tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set Local Variables
+inTerrain = "sample.gdb/featuredataset/terrain"
+pyrRes = 6
+maxNodes = 5000000
+clipExtent = False
+# Ensure output name is unique
+outTIN = arcpy.CreateUniqueName("tin")
+
+#Execute TerrainToTin
+arcpy.TerrainToTin_3d(inTerrain, outTIN, pyrRes, maxNodes, clipExtent)
+    
+del arcpy
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

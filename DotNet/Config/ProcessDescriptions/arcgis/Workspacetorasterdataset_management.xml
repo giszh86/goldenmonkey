@@ -1,0 +1,121 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Workspace To Raster Dataset (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Mosaics all the raster datasets stored within the specified workspace into one raster dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>All</keyword><keyword>Assemble</keyword><keyword>Batch</keyword><keyword>Color Balance</keyword><keyword>Color Correction</keyword><keyword>Color Match</keyword><keyword>Combine</keyword><keyword>Directory</keyword><keyword>Grid</keyword><keyword>Linear Correlation</keyword><keyword>Load</keyword><keyword>Merge</keyword><keyword>Mosaic</keyword><keyword>Stitch</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="WorkspaceToRasterDataset" displayname="Workspace To Raster Dataset (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Mosaics all the raster datasets stored within the specified workspace into one raster dataset.</para>
+		</summary><alink_name>WorkspaceToRasterDataset_management</alink_name><parameters><param sync="true" name="in_workspace" displayname="Input Workspace" datatype="Workspace" direction="Input" expression="in_workspace" type="Required"><pythonReference>
+						<para>The workspace that contains all the raster datasets to be mosaicked into the raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The workspace that contains all the raster datasets to be mosaicked into the raster dataset.</para>
+					</dialogReference></param><param sync="true" name="in_raster_dataset" displayname="Target Raster Dataset" datatype="Raster dataset" direction="Input" expression="in_raster_dataset" type="Required"><pythonReference>
+						<para>The raster dataset that will have all the rasters from the workspace mosaicked into it. The raster dataset must already exist.</para>
+					</pythonReference><dialogReference>
+						<para>The raster dataset that will have all the rasters from the workspace mosaicked into it. The raster dataset must already exist.</para>
+					</dialogReference></param><param sync="true" name="include_subdirectories" displayname="Include Subdirectories" datatype="Boolean" direction="Input" expression="include_subdirectories" type="Optional"><pythonReference>
+						<para>Specify whether to include subdirectories.</para>
+						<bulletList><bullet_item>NONE—Does not include subdirectories. This is the default. </bullet_item><bullet_item>INCLUDE_SUBDIRECTORIES—Includes all the raster datasets within the subdirectories when loading. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specify whether to include subdirectories.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Does not include subdirectories. This is the default.</bullet_item>
+							<bullet_item>Checked—Includes all the raster datasets within the subdirectories when loading. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="mosaic_type" displayname="Mosaic Operator" datatype="String" direction="Input" expression="mosaic_type" type="Optional"><pythonReference>
+						<para>The method used to mosaic overlapping areas.</para>
+						<bulletList><bullet_item>FIRST—The output cell value of the overlapping areas will be the value from the first raster dataset mosaicked into that location. </bullet_item><bullet_item>LAST—The output cell value of the overlapping areas will be the value from the last raster dataset mosaicked into that location. This is the default.</bullet_item><bullet_item>BLEND—The output cell value of the overlapping areas will be a horizontally weighted calculation of the values of the cells in the overlapping area.</bullet_item><bullet_item>MEAN—The output cell value of the overlapping areas will be the average value of the overlapping cells. </bullet_item><bullet_item>MINIMUM—The output cell value of the overlapping areas will be the minimum value of the overlapping cells. </bullet_item><bullet_item>MAXIMUM—The output cell value of the overlapping areas will be the maximum value of the overlapping cells. </bullet_item></bulletList><para>For more information about each mosaic operator, refer to Mosaic Operator.</para>
+					</pythonReference><dialogReference>
+						<para>The method used to mosaic overlapping areas.</para>
+						<bulletList><bullet_item>FIRST—The output cell value of the overlapping areas will be the value from the first raster dataset mosaicked into that location. </bullet_item><bullet_item>LAST—The output cell value of the overlapping areas will be the value from the last raster dataset mosaicked into that location. This is the default.</bullet_item><bullet_item>BLEND—The output cell value of the overlapping areas will be a horizontally weighted calculation of the values of the cells in the overlapping area.</bullet_item><bullet_item>MEAN—The output cell value of the overlapping areas will be the average value of the overlapping cells. </bullet_item><bullet_item>MINIMUM—The output cell value of the overlapping areas will be the minimum value of the overlapping cells. </bullet_item><bullet_item>MAXIMUM—The output cell value of the overlapping areas will be the maximum value of the overlapping cells. </bullet_item></bulletList><para>For more information about each mosaic operator, refer to Mosaic Operator.</para>
+					</dialogReference></param><param sync="true" name="colormap" displayname="Mosaic Colormap Mode" datatype="String" direction="Input" expression="colormap" type="Optional"><pythonReference>
+						<para>The method used to choose which colormap from the input rasters will be applied to the mosaic output.</para>
+						<bulletList><bullet_item>FIRST—The colormap from the first raster dataset in the list will be applied to the output raster mosaic. This is the default. </bullet_item><bullet_item>LAST—The colormap from the last raster dataset in the list will be applied to the output raster mosaic. </bullet_item><bullet_item>MATCH—Will take all the colormaps into consideration when mosaicking. If all possible values are already used (for the bit depth), it will attempt to match the value with the closest color that is available.</bullet_item><bullet_item>REJECT—Only the raster datasets that do not have a colormap associated with them will be mosaicked.</bullet_item></bulletList>
+						<para>For more information about each colormap mode, refer to Mosaic colormap mode.</para>
+					</pythonReference><dialogReference>
+						<para>The method used to choose which colormap from the input rasters will be applied to the mosaic output.</para>
+						<bulletList><bullet_item>FIRST—The colormap from the first raster dataset in the list will be applied to the output raster mosaic. This is the default. </bullet_item><bullet_item>LAST—The colormap from the last raster dataset in the list will be applied to the output raster mosaic. </bullet_item><bullet_item>MATCH—Will take all the colormaps into consideration when mosaicking. If all possible values are already used (for the bit depth), it will attempt to match the value with the closest color that is available.</bullet_item><bullet_item>REJECT—Only the raster datasets that do not have a colormap associated with them will be mosaicked.</bullet_item></bulletList>
+						<para>For more information about each colormap mode, refer to Mosaic colormap mode.</para>
+					</dialogReference></param><param sync="true" name="background_value" displayname="Ignore Background Value" datatype="Double" direction="Output" expression="background_value" type="Optional"><pythonReference>
+						<para>Use this option to remove the unwanted values created around the raster data. The value specified will be distinguished from other valuable data in the raster dataset. For example, a value of zero along the raster dataset's borders will be distinguished from zero values within the raster dataset.</para>
+						<para>The pixel value specified will be set to NoData in the output raster dataset.</para>
+						<para>For file-based rasters and personal geodatabase rasters, the Ignore Background Value must be set to the same value as NoData in order for the background value to be ignored. ArcSDE and file geodatabase rasters will work without this extra step.</para>
+					</pythonReference><dialogReference>
+						<para>Use this option to remove the unwanted values created around the raster data. The value specified will be distinguished from other valuable data in the raster dataset. For example, a value of zero along the raster dataset's borders will be distinguished from zero values within the raster dataset.</para>
+						<para>The pixel value specified will be set to NoData in the output raster dataset.</para>
+						<para>For file-based rasters and personal geodatabase rasters, the Ignore Background Value must be set to the same value as NoData in order for the background value to be ignored. ArcSDE and file geodatabase rasters will work without this extra step.</para>
+					</dialogReference></param><param sync="true" name="nodata_value" displayname="No Data Value" datatype="Double" direction="Output" expression="nodata_value" type="Optional"><pythonReference>
+						<para>All the pixels with the specified value will be set to NoData in the output raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>All the pixels with the specified value will be set to NoData in the output raster dataset.</para>
+					</dialogReference></param><param sync="true" name="onebit_to_eightbit" displayname="Convert 1 bit data to 8 bit" datatype="Boolean" direction="Output" expression="onebit_to_eightbit" type="Optional"><pythonReference>
+						<para>Choose whether the input 1-bit raster dataset will be converted to an 8-bit raster dataset. In this conversion the value 1 in the input raster dataset will be changed to 255 in the output raster dataset. This is useful when importing a 1-bit raster dataset to ArcSDE. One-bit raster dataset have 8-bit pyramid layers when stored in a file system, but in ArcSDE, 1-bit raster datasets can only have 1-bit pyramid layers, which makes the display unpleasant. By converting the data to 8-bit in ArcSDE, the pyramid layers are built as 8-bit instead of 1-bit, resulting in a proper raster dataset in the display.</para>
+						<bulletList><bullet_item>NONE—No conversion will be done. This is the default. </bullet_item><bullet_item>OneBitTo8Bit—The input raster will be converted.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose whether the input 1-bit raster dataset will be converted to an 8-bit raster dataset. In this conversion the value 1 in the input raster dataset will be changed to 255 in the output raster dataset. This is useful when importing a 1-bit raster dataset to ArcSDE. One-bit raster dataset have 8-bit pyramid layers when stored in a file system, but in ArcSDE, 1-bit raster datasets can only have 1-bit pyramid layers, which makes the display unpleasant. By converting the data to 8-bit in ArcSDE, the pyramid layers are built as 8-bit instead of 1-bit, resulting in a proper raster dataset in the display.</para>
+						<bulletList>
+							<bullet_item>Unchecked—No conversion will be done. This is the default.</bullet_item>
+							<bullet_item>Checked—The input raster will be converted.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="mosaicking_tolerance" displayname="Mosaicking Tolerance" datatype="Double" direction="Input" expression="mosaicking_tolerance" type="Optional"><pythonReference>
+						<para>When mosaicking takes place, the target and the source pixels do not always line up exactly. When there is a misalignment of pixels, a decision needs to be made whether resampling takes place, or whether the data should be shifted. The mosaicking tolerance controls whether resampling of the pixels take place, or if the pixels should be shifted.</para>
+						<para>If the difference in pixel alignment (of the incoming dataset and the target dataset) is greater than the tolerance, resampling will take place. If the difference in pixel alignment (of the incoming dataset and the target dataset) is less than the tolerance, resampling will not take place (instead, a shift is performed).</para>
+						<para>The unit of tolerance is a pixel; the valid value range is 0 to 0.9999. The maximum a pixel can be shifted is 0.5, so anything you set that is greater than 0.5 will guarantee a shift takes place. A tolerance of zero guarantees resampling, if there is a misalignment in pixels.</para>
+						<para>For example, the source and target pixels have a misalignment of 0.25. If the mosaicking tolerance is set to 0.2, then resampling will take place since the pixel misalignment is greater than the tolerance. If the mosaicking tolerance is set to 0.3, then the pixels will be shifted.</para>
+					</pythonReference><dialogReference>
+						<para>When mosaicking takes place, the target and the source pixels do not always line up exactly. When there is a misalignment of pixels, a decision needs to be made whether resampling takes place, or whether the data should be shifted. The mosaicking tolerance controls whether resampling of the pixels take place, or if the pixels should be shifted.</para>
+						<para>If the difference in pixel alignment (of the incoming dataset and the target dataset) is greater than the tolerance, resampling will take place. If the difference in pixel alignment (of the incoming dataset and the target dataset) is less than the tolerance, resampling will not take place (instead, a shift is performed).</para>
+						<para>The unit of tolerance is a pixel; the valid value range is 0 to 0.9999. The maximum a pixel can be shifted is 0.5, so anything you set that is greater than 0.5 will guarantee a shift takes place. A tolerance of zero guarantees resampling, if there is a misalignment in pixels.</para>
+						<para>For example, the source and target pixels have a misalignment of 0.25. If the mosaicking tolerance is set to 0.2, then resampling will take place since the pixel misalignment is greater than the tolerance. If the mosaicking tolerance is set to 0.3, then the pixels will be shifted.</para>
+					</dialogReference></param><param sync="true" name="matchingMethod" displayname="Matching Method" datatype="String" direction="Input" expression="matchingMethod" type="Optional"><pythonReference>
+						<para>Choose the color matching method to apply to the rasters.</para>
+						<bulletList><bullet_item>NONE—This option will not use the color matching operation when mosaicking your raster datasets. </bullet_item><bullet_item>STATISTICS_MATCHING—This method will match the statistical differences (minimum, maximum, and mean) between the reference overlap area and the source overlap area; the transformation will then be applied to the entire target dataset. </bullet_item><bullet_item>HISTOGRAM_MATCHING—This method will match the histogram from the reference overlap area with the source overlap area; the transformation will then be applied to the entire target. </bullet_item><bullet_item>LINEARCORRELATION_MATCHING—This method will match overlapped pixels and interpolate to the rest of the source; pixels that do not have a one-to-one relationship will use a weighted average. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose the color matching method to apply to the rasters.</para>
+						<bulletList><bullet_item>NONE—This option will not use the color matching operation when mosaicking your raster datasets. </bullet_item><bullet_item>STATISTICS_MATCHING—This method will match the statistical differences (minimum, maximum, and mean) between the reference overlap area and the source overlap area; the transformation will then be applied to the entire target dataset. </bullet_item><bullet_item>HISTOGRAM_MATCHING—This method will match the histogram from the reference overlap area with the source overlap area; the transformation will then be applied to the entire target. </bullet_item><bullet_item>LINEARCORRELATION_MATCHING—This method will match overlapped pixels and interpolate to the rest of the source; pixels that do not have a one-to-one relationship will use a weighted average. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="colormap_to_RGB" displayname="Colormap to RGB" datatype="Boolean" direction="Input" expression="colormap_to_RGB" type="Optional"><pythonReference><para>If the input raster dataset has a colormap, the output raster dataset can be converted to a three-band output raster dataset. This is useful when mosaicking rasters with different colormaps.</para><bulletList><bullet_item>NONE—No conversion will occur. This is the default.</bullet_item><bullet_item>ColormapToRGB—The input dataset will be converted.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>If the input raster dataset has a colormap, the output raster dataset can be converted to a three-band output raster dataset. This is useful when mosaicking rasters with different colormaps.</para><bulletList>
+							<bullet_item>Unchecked—No conversion will occur. This is the default.</bullet_item>
+							<bullet_item>Checked—The input dataset will be converted. </bullet_item>
+						</bulletList><para>If the input raster dataset has a colormap, the output raster dataset can be converted to a three-band output raster dataset. This is useful when mosaicking rasters with different colormaps.</para><bulletList><bullet_item>NONE—No conversion will occur. This is the default.</bullet_item><bullet_item>ColormapToRGB—The input dataset will be converted.</bullet_item></bulletList></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The target raster dataset must already exist for the tool to run.</para>
+			</bullet_item><bullet_item>
+				<para>If a target raster dataset does not already exist, use the  tool to create a new raster dataset.</para>
+			</bullet_item><bullet_item>
+				<para>Since mosaicking will take place, you will need to specify the mosaic method and colormap mode to use.</para>
+			</bullet_item><bullet_item>
+				<para>If the target raster dataset is an empty raster dataset, the cell size and spatial reference of the first input raster dataset will be applied to the mosaic.</para>
+			</bullet_item><bullet_item>
+				<para>Whenever possible, use the Last Mosaic Operator to mosaic raster datasets to an existing raster dataset in a file geodatabase or ArcSDE geodatabase; it is by far the most effective way to mosaic.</para>
+			</bullet_item><bullet_item>
+				<para>For mosaicking of discrete data, First, Minimum, or Maximum Mosaic Operator options will provide the most meaningful results. The Blend and Mean Mosaic Operator options are best suited for continuous data.</para>
+			</bullet_item><bullet_item>
+				<para>The color matching method drop-down arrow allows you to choose an algorithm to color match the datasets in your mosaic.</para>
+			</bullet_item><bullet_item>
+				<para>For file-based rasters and personal geodatabase rasters, the Ignore Background Value must be set to the same value as NoData in order for the background value to be ignored. File geodatabase rasters and ArcSDE rasters will simply work without this extra step.</para>
+			</bullet_item><bullet_item>
+				<para>For floating-point input raster datasets of different resolutions or when cells are not aligned, it is recommended to resample all the data using bilinear interpolation or cubic convolution before running Mosaic; otherwise, Mosaic will automatically resample the raster datasets using nearest neighbor resampling, which is not appropriate for continuous data types.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>WorkspaceToRasterDataset example 1 (Python Window)</title><para>This is a Python sample for the WorkspaceToRasterDataset tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.WorkspaceToRasterDataset_management("c:/data/WS2RD", "c:/fgdb.gdb/outdats",\ 
+                                          "INCLUDE_SUBDIRECTORIES", "LAST",\
+                                          "FIRST", "0", "9", "", "", 
+                                          "HISTOGRAM_MATCHING", "")
+                    </code></scriptExample><scriptExample><title>WorkspaceToRasterDataset example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for the WorkspaceToRasterDataset tool.</para>
+				<code xml:space="preserve">##==================================
+##Workspace To Raster Dataset
+##Usage: WorkspaceToRasterDataset_management in_workspace in_raster_dataset {NONE | INCLUDE_SUBDIRECTORIES} {LAST | FIRST | BLEND | MEAN | MINIMUM | MAXIMUM} {FIRST 
+##                                           | REJECT | LAST | MATCH} {background_value} {nodata_value} {NONE | OneBitTo8Bit} {mosaicking_tolerance}  {NONE | 
+##                                           STATISTIC_MATCHING | HISTOGRAM_MATCHING | LINEARCORRELATION_MATCHING} {NONE | ColormapToRGB}
+try:
+    import arcpy
+    arcpy.env.workspace = r"\\MyMachine\PrjWorkspace\RasGP"
+    ##Mosaic images to File Geodatabase Raster Dataset with Background and Nodata setting and Color Correction
+    arcpy.WorkspaceToRasterDataset_management("WS2RD", "fgdb.gdb\\dataset", "INCLUDE_SUBDIRECTORIES", "LAST", "FIRST", "0", "9", "", "", "HISTOGRAM_MATCHING", "")
+    
+    ##Mosaic Colormap image to RGB image
+    arcpy.WorkspaceToRasterDataset_management("WS2RD_clr","fgdb.gdb\\dataset2", "INCLUDE_SUBDIRECTORIES", "LAST", "FIRST", "", "", "", "0.3", "", "ColormapToRGB")
+except:
+    print "Workspace To Raster Dataset example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

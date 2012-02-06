@@ -1,0 +1,119 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Copy Features (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Copies features from the input feature class or layer to a new feature class. If the input is a layer which has a selection, only the selected features will be copied. If the input is a geodatabase feature class or shapefile, all features will be copied.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Back</keyword><keyword>Backup</keyword><keyword>Cad</keyword><keyword>Class</keyword><keyword>Conversion</keyword><keyword>Convert</keyword><keyword>Coverage</keyword><keyword>Dgn</keyword><keyword>Duplicate</keyword><keyword>Dwg</keyword><keyword>Dxf</keyword><keyword>Export</keyword><keyword>File</keyword><keyword>Gdb</keyword><keyword>Geodatabase</keyword><keyword>Geometry</keyword><keyword>Import</keyword><keyword>Layer</keyword><keyword>New</keyword><keyword>Paste</keyword><keyword>Personal</keyword><keyword>Reproduce</keyword><keyword>Sdc</keyword><keyword>Sde</keyword><keyword>Shapefile</keyword><keyword>Shp</keyword><keyword>Up</keyword><keyword>Vector</keyword><keyword>Vpf</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CopyFeatures" displayname="Copy Features (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Copies features from the input feature class or layer to a new feature class. If the input is a layer which has a selection, only the selected features will be copied. If the input is a geodatabase feature class or shapefile, all features will be copied.</para>
+		</summary><alink_name>CopyFeatures_management</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer;Raster Catalog Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The features to be copied.</para>
+					</pythonReference><dialogReference>
+						<para>The features to be copied.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The feature class which will be created and to which the features will be copied. If the output feature class already exists and the overwrite option is set to true, the output will be deleted first. If the output feature class already exists and the overwrite option is set to false, the operation will fail.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class which will be created and to which the features will be copied. If the output feature class already exists and the overwrite option is set to true, the output will be deleted first. If the output feature class already exists and the overwrite option is set to false, the operation will fail.</para>
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="Config Keyword" datatype="String" direction="Input" expression="config_keyword" type="Optional"><pythonReference>
+						<para>Geodatabase configuration keyword to be applied if the output is an ArcSDE geodatabase or file geodatabase. </para>
+					</pythonReference><dialogReference>
+						<para>Geodatabase configuration keyword to be applied if the output is an ArcSDE geodatabase or file geodatabase. </para>
+					</dialogReference></param><param sync="true" name="spatial_grid_1" displayname="Output Spatial Grid 1" datatype="Double" direction="Input" expression="spatial_grid_1" type="Optional"><pythonReference>
+						<para>The Spatial Grid 1, 2, and 3 parameters apply only to  file geodatabases and  certain ArcSDE geodatabase feature classes. If you are unfamiliar with setting grid sizes, leave these options as 0,0,0 and ArcGIS will compute optimal sizes for you.  For more information about this parameter, refer to the Add Spatial Index tool documentation.</para>
+					</pythonReference><dialogReference>
+						<para>The Spatial Grid 1, 2, and 3 parameters apply only to  file geodatabases and  certain ArcSDE geodatabase feature classes. If you are unfamiliar with setting grid sizes, leave these options as 0,0,0 and ArcGIS will compute optimal sizes for you.  For more information about this parameter, refer to the Add Spatial Index tool documentation.</para>
+					</dialogReference></param><param sync="true" name="spatial_grid_2" displayname="Output Spatial Grid 2" datatype="Double" direction="Input" expression="spatial_grid_2" type="Optional"><pythonReference>
+						<para>
+Cell size of the second spatial grid.  Leave the size at 0 if you only want one grid.  Otherwise, set the size to at least three times larger than Spatial Grid 1.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Cell size of the second spatial grid.  Leave the size at 0 if you only want one grid.  Otherwise, set the size to at least three times larger than Spatial Grid 1.
+</para>
+					</dialogReference></param><param sync="true" name="spatial_grid_3" displayname="Output Spatial Grid 3" datatype="Double" direction="Input" expression="spatial_grid_3" type="Optional"><pythonReference>
+						<para>
+Cell size of the third spatial grid.  Leave the size at 0 if you only want two grids.  Otherwise, set the size to at least three times larger than Spatial Grid 2.
+
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Cell size of the third spatial grid.  Leave the size at 0 if you only want two grids.  Otherwise, set the size to at least three times larger than Spatial Grid 2.
+
+</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment><environment name="Qualified_field_names" label="Qualified field names">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Both the geometry and attributes of the Input Features will be copied to the output feature class.</para>
+			</bullet_item><bullet_item>
+				<para>This tool can be used for data conversion as it can read many feature formats (any you can add to ArcMap) and write these to shapefile or geodatabase (File, Personal, or ArcSDE).</para>
+			</bullet_item><bullet_item>
+				<para>If the output feature class already exists, it will be overwritten. To control the overwrite behavior in an application, uncheck   Overwrite the outputs of geoprocessing operations option found in Geoprocessing
+						Geoprocessing Options..., or in a script use the OverwriteOutput property on the geoprocessor object. To add or append the Input Features to an existing feature class without overwritting it use the Append tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CopyFeatures example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the CopyFeatures tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.CopyFeatures_management("climate.shp", "C:/output/output.gdb/climate")
+                    </code></scriptExample><scriptExample><title>CopyFeatures example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use CopyFeatures to copy the shapefiles in a folder to a file geodatabase.</para>
+				<code xml:space="preserve"># Name: CopyFeatures_Example2.py
+# Description: Convert all shapefiles in a folder to geodatabase feature classes
+# Requirements: os module
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+import os
+ 
+# Set environment settings
+env.workspace = "C:/data"
+ 
+# Set local variables
+outWorkspace = "c:/output/output.gdb"
+ 
+# Use ListFeatureClasses to generate a list of shapefiles in the
+#  workspace shown above.
+fcList = arcpy.ListFeatureClasses()
+ 
+# Execute CopyFeatures for each input shapefile
+for shapefile in fcList:
+    # Determine the new output feature class path and name
+    outFeatureClass = os.path.join(outWorkspace, shapefile.strip(".shp"))
+    arcpy.CopyFeatures_management(shapefile, outFeatureClass)
+                    </code></scriptExample></scriptExamples></tool></metadata>

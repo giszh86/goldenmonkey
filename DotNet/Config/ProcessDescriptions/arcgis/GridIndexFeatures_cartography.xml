@@ -1,0 +1,265 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Grid Index Features (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a grid of rectangular of polygon features that can be used as an index to specify pages for a map book using Data Driven Pages. A grid can be created that only includes polygon features that intersect another feature layer.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Atlas</keyword><keyword>Cartography</keyword><keyword>Coordinate System</keyword><keyword>Data Driven Pages</keyword><keyword>Extent</keyword><keyword>Graticule</keyword><keyword>Grid</keyword><keyword>Index</keyword><keyword>Index Layer</keyword><keyword>Layout</keyword><keyword>Map Book</keyword><keyword>Mapbook</keyword><keyword>Multi-Page Layout</keyword><keyword>Multiple Page</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" GridIndexFeatures" displayname=" Grid Index Features (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Creates a grid of rectangular of polygon features that can be used as an index to specify pages for a map book using Data Driven Pages. A grid can be created that only includes polygon features that intersect another feature layer.</para>
+		</summary><alink_name> GridIndexFeatures_cartography</alink_name><parameters><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Input" expression="out_feature_class" type="Required"><pythonReference>
+						<para> Resulting feature class of polygon index features.</para>
+					</pythonReference><dialogReference>
+						<para> Resulting feature class of polygon index features.</para>
+					</dialogReference></param><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="[in_features,...]" type="Optional"><pythonReference>
+						<para> Input features can be used to define the extent of the polygon grid that is created.</para>
+					</pythonReference><dialogReference>
+						<para> Input features can be used to define the extent of the polygon grid that is created.</para>
+					</dialogReference></param><param sync="true" name="intersect_feature" displayname="Generate Polygon Grid that intersects input feature layers or datasets." datatype="Boolean" direction="Input" expression="intersect_feature" type="Optional"><pythonReference>
+						<para>Limits the output grid feature class to only areas that intersect input feature layers or datasets. When input features are specified, the default value is INTERSECTFEATURE. The intersection of input features will be used to create index features.</para>
+						<bulletList><bullet_item>INTERSECTFEATURE—Limits the output grid feature class to only areas that intersect input feature layers or datasets.</bullet_item><bullet_item>NO_INTERSECTFEATURE—Output grid feature class is created using specified coordinates, rows, and columns.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Limits the output grid feature class to only areas that intersect input feature layers or datasets. When input features are specified and the default is checked, the intersection of input features will be used to create index features.</para>
+						<bulletList>
+							<bullet_item>Checked—Limits the output grid feature class to only areas that intersect input feature layers or datasets.</bullet_item>
+							<bullet_item>Unchecked—Output grid feature class is created using specified coordinates, rows, and columns.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="use_page_unit" displayname="Use Page Unit and Scale" datatype="Boolean" direction="Input" expression="use_page_unit" type="Optional"><pythonReference>
+						<para>Indicates whether index polygon size input is in page units. The default is NO_USEPAGEUNIT. The tool uses map units by default.</para>
+						<bulletList><bullet_item>USEPAGEUNIT—Index polygon height and width are calculated in page units.</bullet_item><bullet_item>NO_USEPAGEUNIT—Index polygon height and width are calculated in map units.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Indicates whether index polygon size input is in page space. The default is unchecked. The tool uses map units by default.</para>
+						<bulletList>
+							<bullet_item>Checked—Index polygon height and width are calculated in page units.</bullet_item>
+							<bullet_item>Unchecked—Index polygon height and width are calculated in map units.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="scale" displayname="Map Scale" datatype="Long" direction="Input" expression="scale" type="Optional"><pythonReference>
+						<para> Scale must be specified if the index polygon height and width are to be calculated in page units.. If the tool is being used outside of an active ArcMap session the default scale value is 1.</para>
+					</pythonReference><dialogReference>
+						<para> Scale must be specified if the index polygon height and width are to be calculated in page units.. If the tool is being used outside of an active ArcMap session the default scale value is 1.</para>
+					</dialogReference></param><param sync="true" name="polygon_width" displayname="Polygon Width" datatype="Linear unit" direction="Input" expression="polygon_width" type="Required"><pythonReference>
+						<para> Width of the index polygon specifed in either map or page units. If page units are being used the default value is 1 inch. If map units are being used the default is 1 degree.</para>
+					</pythonReference><dialogReference>
+						<para> Width of the index polygon specifed in either map or page units. If page units are being used the default value is 1 inch. If map units are being used the default is 1 degree.</para>
+					</dialogReference></param><param sync="true" name="polygon_height" displayname="Polygon Height" datatype="Linear unit" direction="Input" expression="polygon_height" type="Required"><pythonReference>
+						<para> Height of the index polygon specifed in either map or page units. If page units are being used the default value is 1 inch. If map units are being used the default is 1 degree.</para>
+					</pythonReference><dialogReference>
+						<para> Height of the index polygon specifed in either map or page units. If page units are being used the default value is 1 inch. If map units are being used the default is 1 degree.</para>
+					</dialogReference></param><param sync="true" name="origin_coord" displayname="Polygon Grid Origin Coordinates" datatype="Point" direction="Input" expression="origin_coord" type="Required"><pythonReference>
+						<para> Coordinate for the lower left origin of the output grid feature class. If input features are specified the default value is determined by the extent of the union of extents for these features. If there are no input features specified, the default coordinates are 0 and 0.</para>
+					</pythonReference><dialogReference>
+						<para> Coordinate for the lower left origin of the output grid feature class. If input features are specified the default value is determined by the extent of the union of extents for these features. If there are no input features specified, the default coordinates are 0 and 0.</para>
+					</dialogReference></param><param sync="true" name="number_rows" displayname="Number of Rows" datatype="Long" direction="Input" expression="number_rows" type="Required"><pythonReference>
+						<para> Number of rows to create in the y direction from the point of origin. The default is 10.</para>
+					</pythonReference><dialogReference>
+						<para> Number of rows to create in the y direction from the point of origin. The default is 10.</para>
+					</dialogReference></param><param sync="true" name="number_columns" displayname="Number of Columns" datatype="Long" direction="Input" expression="number_columns" type="Required"><pythonReference>
+						<para> Number of columns to create in the x direction from the point of origin. The default is 10.</para>
+					</pythonReference><dialogReference>
+						<para> Number of columns to create in the x direction from the point of origin. The default is 10.</para>
+					</dialogReference></param><param sync="true" name="starting_page_number" displayname="Starting Page Number" datatype="Long" direction="Input" expression="starting_page_number" type="Required"><pythonReference>
+						<para>Each grid index feature is assigned a sequential page number starting with a specified starting page number. The default is 1.</para>
+					</pythonReference><dialogReference>
+						<para>Each grid index feature is assigned a sequential page number starting with a specified starting page number. The default is 1.</para>
+					</dialogReference></param><param sync="true" name="label_from_origin" displayname="Start labeling from the Origin" datatype="Boolean" direction="Input" expression="label_from_origin" type="Required"><pythonReference>
+						<para>Page numbers (labels) starting with the specified starting page number (default is 1) begins with the cell in the lower left corner of the output grid. The default is NO_LABELFROMORIGIN.</para>
+						<bulletList><bullet_item>LABELFROMORIGIN—Page numbers (labels) starting with the specified starting page number (default is 1) begins with the polygon feature in the lower left corner of the output grid.</bullet_item><bullet_item>NO_LABELFROMORIGIN—Page numbers (labels) starting with the specified starting page number (default is 1) begins with the cell in the upper left corner of the output grid.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Page numbers (labels) starting with the specified starting page number (default is 1) begins with the cell in the lower left corner of the output grid. The default is unchecked.</para>
+						<bulletList>
+							<bullet_item>Checked—Page numbers (labels) starting with the specified starting page number (default is 1) begins with the polygon feature in the lower left corner of the output grid.</bullet_item>
+							<bullet_item>Unchecked—Page numbers (labels) starting with the specified starting page number (default is 1) begins with the polygon feature in the upper left corner of the output grid.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_coordinate_system" label="Output coordinate system"></environment><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para> Input Features must be points, lines, or polygons.</para>
+			</bullet_item><bullet_item>
+				<para>When you select Use Page Unit and Scale, Map Scale becomes a required parameter.</para>
+			</bullet_item><bullet_item>
+				<para>When using the tool dialog, changing the polygon width or height values when Grid Origin Coordinates have been specified, the number of rows and columns change automatically.</para>
+			</bullet_item><bullet_item>
+				<para> When you add Input Features, the Grid Origin Coordinates are automatically calculated.</para>
+			</bullet_item><bullet_item>
+				<para> Consider saving your output feature class to a geodatabase. Though saving the output to a shapefile is supported, if you intend on calculating spatial references for index layer features using either the  or the  tools the generated coordinate string results may exceed the field character limits (255) of a shapefile. </para>
+			</bullet_item><bullet_item>
+				<para> When Use Page Unit and Scale is selected, the Polygon Width and Polygon Height units automatically change to the page units set in the active map document. If you are using the tool outside of an ArcMap session the units default to inches. Though you have the option to specify map units, such as meters or miles, you should use units that are appropriate for your page.</para>
+			</bullet_item><bullet_item>
+				<para>When Use Page Unit and Scale is selected the map scale defaults to the scale value of the active data frame on the page layout of the active ArcMap document. If you are using the tool outside of an ArcMap session the scale defaults to 1.</para>
+			</bullet_item><bullet_item>
+				<para> For best results all input feature layers and feature classes should be in the same coordinate system as the data frame, or if you are using the tool outside of an ArcMap session, all input feature layers and feature classes should be in the same coordinate system as the first input feature layer or feature class in the list.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>GridIndexFeatures tool Example #1 (Python Window)</title>
+					<para>Creates GridIndexFeatures using the intersection of input features and specified index feature dimensions in map units.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.env.workspace = "C:\data\ProjectData.gdb"
+arcpy.GridIndexFeatures_cartography("gridIndexFeatures","poly", "", "", "",
+                                    "1000 meters","1000 meters")
+                    </code></scriptExample><scriptExample><title>GridIndexFeatures tool Example #2 (Python Window)</title>
+					<para>Creates GridIndexFeatures using the entire extent of input features and specified index feature dimensions in page units.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.env.workspace = "C:\data\ProjectData.gdb"
+arcpy.GridIndexFeatures_cartography("gridIndexFeatures","poly",
+                                    "NO_INTERSECTFEATURE","USEPAGEUNIT",
+                                    "100000", "5 inches","5 inches")
+                    </code></scriptExample><scriptExample><title>GridIndexFeatures tool Example #3 (Python Window)</title>
+					<para>Creates GridIndexFeatures using the intersection of input features, specified index feature dimensions in map units, and 5 as the starting page number.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.env.workspace = "C:\data\ProjectData.gdb"
+arcpy.GridIndexFeatures_cartography("gridIndexFeatures","poly", "", "", "",
+                                    "1000 meters","1000 meters", "", "",
+                                    "", "5")
+                    </code></scriptExample><scriptExample><title>GridIndexFeatures tool Example #4 (Python Window)</title>
+					<para>Creates GridIndexFeatures by specifying the origin coordinates, the index feature dimensions in map units, the number of rows, and the number of columns.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.env.workspace = "C:\data\ProjectData.gdb"
+arcpy.GridIndexFeatures_cartography("gridIndexFeatures", "", "", "", "",
+                                    "1000 meters","1000 meters",
+                                    "-6000000 -1600000", "15", "20",)
+                    </code></scriptExample><scriptExample><title>GridIndexFeatures tool Example #5 (Python Window)</title>
+					<para>Creates GridIndexFeatures by specifying the origin coordinates, the index feature dimensions in page units, the number of rows, the number of columns, 5 as the starting page number, and labeling to start at the origin.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.env.workspace = "C:\data\ProjectData.gdb"
+arcpy.GridIndexFeatures_cartography("gridIndexFeatures", "", "", "USEPAGEUNIT",
+                                    "100000", "5 inches", "5 inches",
+                                    "-6000000 -1600000", "5",
+                                    "LABELFROMORIGIN")
+                    </code></scriptExample><scriptExample><title>GridIndexFeatures tool Example #1 (Stand-alone Python script)</title>
+					<para>Creates GridIndexFeatures using the intersection of input features and specified index feature dimensions in map units.</para>
+				<code xml:space="preserve"># gridindexfeatures_example1.py
+# Description: Creates Grid Index Features using the intersection of input
+# features and specified index feature dimensions in map units
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+arcpy.env.workspace = "C:\data\ProjectData.gdb"
+
+# Set local variables
+outFeatureClass = "gridIndexFeatures"
+inFeatures = "poly"
+polygonWidth = "1000 meters"
+polygonHeight= "1000 meters"
+
+# Execute GridIndexFeatures
+arcpy.GridIndexFeatures_cartography(outFeatureClass,inFeatures, "", "", "",
+                                    polygonWidth, polygonHeight)
+                    </code></scriptExample><scriptExample><title>GridIndexFeatures tool Example #2 (Stand-alone Python script)</title>
+					<para>Creates GridIndexFeatures using the entire extent of input features and specified index feature dimensions in page units.</para>
+				<code xml:space="preserve"># gridindexfeatures_example2.py
+# Description: Creates Grid Index Features using the entire extent of input
+# features and specified index feature dimensions in page units
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+arcpy.env.workspace = "C:\data\ProjectData.gdb"
+
+# Set local variables
+outFeatureClass = "gridIndexFeatures"
+inFeatures = "poly"
+noIntersect = "NO_INTERSECTFEATURE"
+usePageUnit = "USEPAGEUNIT"
+scale = "100000"
+polygonWidth = "5 inches"
+polygonHeight= "5 inches"
+
+# Execute GridIndexFeatures
+arcpy.GridIndexFeatures_cartography(outFeatureClass, inFeatures, noIntersect,
+                                    usePageUnit, scale, polygonWidth,
+                                    polygonHeight)
+                    </code></scriptExample><scriptExample><title>GridIndexFeatures tool Example #3 (Stand-alone Python script)</title>
+					<para>Creates GridIndexFeatures using the intersection of input features, specified index feature dimensions in map units, and 5 as the starting page number.</para>
+				<code xml:space="preserve"># gridindexfeatures_example3.py
+# Description: Creates Grid Index Features using the intersection of input
+# features, specified index feature dimensions in map units and 5 as the 
+# starting page number
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+arcpy.env.workspace = "C:\data\ProjectData.gdb"
+
+# Set local variables
+outFeatureClass = "gridIndexFeatures"
+inFeatures = "poly"
+polygonWidth = "1000 meters"
+polygonHeight= "1000 meters"
+startingPageNum = "5"
+
+# Execute GridIndexFeatures
+arcpy.GridIndexFeatures_cartography(outFeatureClass,inFeatures, "", "", "",
+                                    polygonWidth, polygonHeight, "", "", ""
+                                    startingPageNum)
+                    </code></scriptExample><scriptExample><title>GridIndexFeatures tool Example #4 (Stand-alone Python script)</title>
+					<para>Creates GridIndexFeatures by specifying the origin coordinates, the index feature dimensions in map units, the number of rows, and the number of columns.</para>
+				<code xml:space="preserve"># gridindexfeatures_example4.py
+# Description: Creates Grid Index Features by specifying the origin
+# coordinates, the index feature dimensions in map units, the number of
+# rows and the number of columns
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:\data\ProjectData.gdb"
+env.outputCoordinateSystem = r"C:\Program Files\ArcGIS\Desktop10.0\Coordinate Systems\
+Projected Coordinate Systems\Continental\North America\North America Albers Equal Area Conic.prj"
+
+# Set local variables
+outFeatureClass = "gridIndexFeatures"
+polygonWidth = "1000 meters"
+polygonHeight= "1000 meters"
+originCoord = "-6000000 -1600000"
+numberRows = "15"
+numberColumns = "20"
+
+# Execute GridIndexFeatures
+arcpy.GridIndexFeatures_cartography(outFeatureClass, "", "", "", "",
+                                    polygonWidth, polygonHeight, originCoord,
+                                    numberRows, numberColumns)
+                    </code></scriptExample><scriptExample><title>GridIndexFeatures tool Example #5 (Stand-alone Python script)</title>
+					<para>Creates GridIndexFeatures by specifying the origin coordinates, the index feature dimensions in page units, the number of rows, the number of columns, 5 as the starting page number, and labeling to start at the origin.</para>
+				<code xml:space="preserve"># gridindexfeatures_example5.py
+# Description: Creates Grid Index Features by specifying the origin
+# coordinates, the index feature dimensions in page units, the number of
+# rows, the number of columns, 5 as the starting page number and labeling
+# to start at the origin
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:\data\ProjectData.gdb"
+env.outputCoordinateSystem = r"C:\Program Files\ArcGIS\Desktop10.0\Coordinate Systems\
+Projected Coordinate Systems\Continental\North America\North America Albers Equal Area Conic.prj"
+
+# Set local variables
+outFeatureClass = "gridIndexFeatures"
+usePageUnit = "USEPAGEUNIT"
+scale = "100000"
+polygonWidth = "1000 meters"
+polygonHeight= "1000 meters"
+originCoord = "-6000000 -1600000"
+numberRows = "15"
+numberColumns = "20"
+startingPageNum = "5"
+labeling = "LABELFROMORIGIN"
+
+
+# Execute GridIndexFeatures
+arcpy.GridIndexFeatures_cartography(outFeatureClass, "", "", usePageUnit,
+                                    scale, polygonWidth, polygonHeight,
+                                    originCoord, numberRows, numberColumns,
+                                    startingPageNum, labeling)
+                    </code></scriptExample></scriptExamples></tool></metadata>

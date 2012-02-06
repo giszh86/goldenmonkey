@@ -1,0 +1,84 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Reclass by ASCII File (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Reclassifies or changes the values of the input cells of a raster using an ASCII remap file.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Ascii</keyword><keyword>Common Scale</keyword><keyword>Group</keyword><keyword>Reclassification</keyword><keyword>Reclassify</keyword><keyword>Remap</keyword><keyword>Replace</keyword><keyword>Replace Values</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ReclassByASCIIFile" displayname="Reclass by ASCII File (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Reclassifies or changes the values of the input cells of a raster using an ASCII remap file.</para>
+			
+		</summary><alink_name>ReclassByASCIIFile_sa</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster to be reclassified.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster to be reclassified.</para>
+					</dialogReference></param><param sync="true" name="in_remap_file" displayname="Input ASCII remap file" datatype="File" direction="Input" expression="in_remap_file" type="Required"><pythonReference>
+						<para>ASCII remap file defining the single values or ranges to be reclassified and the values they will become.</para>
+						<para>Allowed extensions for the ASCII remap files are .rmp, .txt, and .asc.</para>
+					</pythonReference><dialogReference>
+						<para>ASCII remap file defining the single values or ranges to be reclassified and the values they will become.</para>
+						<para>Allowed extensions for the ASCII remap files are .rmp, .txt, and .asc.</para>
+					</dialogReference></param><param sync="true" name="missing_values" displayname="Change missing values to NoData" datatype="Boolean" direction="Input" expression="missing_values" type="Optional"><pythonReference>
+						<para>Denotes whether missing values in the reclass file retain their value or get mapped to NoData.</para>
+						<bulletList><bullet_item>DATA — Signifies that if any cell location on the input raster contains a value that is not present or reclassed in the remap file, the value should remain intact and be written for that location to the output raster.</bullet_item><bullet_item>NODATA — A keyword signifying that if any cell location on the input raster contains a value that is not present or reclassed in the remap file, the value will be reclassed to NODATA for that location on the output raster.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Denotes whether missing values in the reclass file retain their value or get mapped to NoData.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Signifies that if any cell location on the input raster contains a value that is not present or reclassed in the remap file, the value should remain intact and be written for that location to the output raster. This is the default.</bullet_item>
+							<bullet_item>Checked—Signifies that if any cell location on the input raster contains a value that is not present or reclassed in the remap file, the value will be reclassed to NODATA for that location on the output raster.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output reclassified raster.</para><para>The output will always be of integer type.</para>
+						</pythonReference><dialogReference>
+							<para>The output reclassified raster.</para><para>The output will always be of integer type.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input raster must have valid statistics. If the statistics do
+not exist, they can be created using the  tool in the Data Management Tools toolbox.</para>
+			</bullet_item><bullet_item>
+				<para>The output raster will always be of integer type. If the output assignment values in the ASCII file are floating-point values, an error message will be returned and the program will halt.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ReclassByASCIIFile example 1 (Python window)</title>
+					<para>example uses an ASCII remap file to reclassify the input raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy.sa import *
+from arcpy import env  
+env.workspace = "C:/sapyexamples/data"
+outReclass = ReclassByASCIIFile("slope","remapslope.rmp")
+outReclass.save("C:/sapyexamples/output/recslope")
+                    </code></scriptExample><scriptExample><title>ReclassByASCIIFile example 2 (stand-alone script)</title>
+					<para>This example uses an ASCII remap file to reclassify the input raster.</para>
+				<code xml:space="preserve"># Name: reclassbyasciifile_example02.py
+# Description: Reclassifies  values of the input raster using an ASCII remap file
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "slope"
+inRemapFile = "remapslope.rmp"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Reclassify
+outRaster = ReclassByASCIIFile(inRaster, inRemapFile)
+
+# Save the output 
+outRaster.save("C:/sapyexamples/output/recslope")
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Generate (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Generates a coverage from coordinates stored in a file.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc</keyword><keyword>Conversion</keyword><keyword>Coordinate File</keyword><keyword>Coverage</keyword><keyword>Generate</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Generate" displayname="Generate (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Generates a coverage from coordinates stored in a file.</para>
+			
+		</summary><alink_name>Generate_arc</alink_name><parameters><param sync="true" name="in_file" displayname="Input File" datatype="File" direction="Input" expression="in_file" type="Required"><pythonReference>
+						<para>The file containing feature coordinates that will be used to generate a coverage.</para>
+					</pythonReference><dialogReference>
+						<para>The file containing feature coordinates that will be used to generate a coverage.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The coverage to be generated.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage to be generated.</para>
+					</dialogReference></param><param sync="true" name="feature_type" displayname="Feature Type" datatype="String" direction="Input" expression="feature_type" type="Required"><pythonReference>
+						<para>The type of features to create:</para>
+						<bulletList><bullet_item>ANNOTATIONS—Adds annotations to the coverage. </bullet_item><bullet_item>CIRCLES—Generates circles, each with a specified center and radius. </bullet_item><bullet_item>CURVES—Generates curves using the specified grain value as the distance between vertices on each curve. </bullet_item><bullet_item>FISHNET—Creates a fishnet of rectangular cells. </bullet_item><bullet_item>LINES—Adds arcs to the coverage. </bullet_item><bullet_item>LINKS—Adds links to the coverage. </bullet_item><bullet_item>POINTS—Adds label points to the coverage. </bullet_item><bullet_item>POLYGONS—Adds polygons and label points to the coverage. </bullet_item><bullet_item>TICS—Adds tics to the coverage. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The type of features to create:</para>
+						<bulletList><bullet_item>ANNOTATIONS—Adds annotations to the coverage. </bullet_item><bullet_item>CIRCLES—Generates circles, each with a specified center and radius. </bullet_item><bullet_item>CURVES—Generates curves using the specified grain value as the distance between vertices on each curve. </bullet_item><bullet_item>FISHNET—Creates a fishnet of rectangular cells. </bullet_item><bullet_item>LINES—Adds arcs to the coverage. </bullet_item><bullet_item>LINKS—Adds links to the coverage. </bullet_item><bullet_item>POINTS—Adds label points to the coverage. </bullet_item><bullet_item>POLYGONS—Adds polygons and label points to the coverage. </bullet_item><bullet_item>TICS—Adds tics to the coverage. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool creates new coordinate features but does not create topology or attributes for these features. Other tools, such as  or , can be used to create feature topology.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of the output coverage is determined by the precision setting. To convert a double-precision file to a double-precision coverage, the precision must be set to Double.</para>
+			</bullet_item><bullet_item>
+				<para>While processing duplicate tics with the same ID number, the last tic read with the same ID number is the one whose coordinates are stored in the coverage tic file.</para>
+			</bullet_item><bullet_item>
+				<para>When polygons are generated, each polygon will be closed automatically from the last vertex entered to the first vertex if the two vertices are not the same.</para>
+			</bullet_item><bullet_item>
+				<para>Coordinates in the input file can be in x,y,z format, but Generate ignores the z-values if they exist.</para>
+			</bullet_item><bullet_item>
+				<para>The geoprocessing tool takes in a text file that has a User-ID number for each line, followed by the series of xy coordinate pairs that define the line.</para>
+			</bullet_item><bullet_item>
+				<para>This tool is not interactive, as the GENERATE command in Arc/Iinfo Workstation was.</para>
+			</bullet_item><bullet_item>
+				<para>Use the  tool to create the file to be used as the input file.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Generate example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to generate a coverage from a file of coordinates.
+
+</para>
+				<code xml:space="preserve"># Name: Generate_Example.py
+# Description: Generates a coverage from a file of coordinates.
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inFile = "wells.gen"
+outCover = "C:/output/wells"
+featureType = "POINTS"
+
+# Execute Generate
+arcpy.Generate_arc(inFile, outCover, featureType)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,74 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">GA Layer To Grid (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Exports a Geostatistical layer to a raster.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Convert</keyword><keyword>Create Geostatistical Layer</keyword><keyword>Export</keyword><keyword>Predict</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GALayerToGrid" displayname="GA Layer To Grid (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>Exports a Geostatistical layer to a raster.</para>
+		</summary><alink_name>GALayerToGrid_ga</alink_name><parameters><param sync="true" name="in_geostat_layer" displayname="Input geostatistical layer" datatype="Geostatistical Layer" direction="Input" expression="in_geostat_layer" type="Required"><pythonReference>
+						<para>The geostatistical layer to be analyzed.</para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical layer to be analyzed.</para>
+					</dialogReference></param><param sync="true" name="out_surface_grid" displayname="Output surface raster" datatype="Raster Dataset" direction="Output" expression="out_surface_grid" type="Required"><pythonReference>
+						<para>The raster to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The raster to be created.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="points_per_block_horz" displayname="# of points in the cell (horizontal)" datatype="Long" direction="Input" expression="points_per_block_horz" type="Optional"><pythonReference>
+						<para>The number of predictions for each cell in the horizontal direction for block interpolation.</para>
+					</pythonReference><dialogReference>
+						<para>The number of predictions for each cell in the horizontal direction for block interpolation.</para>
+					</dialogReference></param><param sync="true" name="points_per_block_vert" displayname="# of points in the cell (vertical)" datatype="Long" direction="Input" expression="points_per_block_vert" type="Optional"><pythonReference>
+						<para>The number of predictions for each cell in the vertical direction for block interpolation.</para>
+					</pythonReference><dialogReference>
+						<para>The number of predictions for each cell in the vertical direction for block interpolation.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The output raster will be created at the cell size specified in the Output cell size parameter.</para>
+			</bullet_item><bullet_item>
+				<para>Select the number of predictions for each cell in the horizontal and vertical directions for block interpolation.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>GALayerToGrid example 1 (Python window)</title>
+					<para>Convert a geostatistical layer into a raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.GALayerToGrid_ga("C:/gapyexamples/data/kriging.lyr", "C:/gapyexamples/output/krig_grid",
+                       "2000", "1", "1")
+
+                    </code></scriptExample><scriptExample><title>GALayerToGrid example 2 (stand-alone script)</title>
+					<para>Convert a geostatistical layer into a raster.</para>
+				<code xml:space="preserve"># Name: GALayerToGrid_Example_02.py
+# Description: Exports a geostatistical layer to grid.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inLayer = "C:/gapyexamples/data/kriging.lyr"
+outGrid = "C:/gapyexamples/output/krig_grid"
+cellSize = 2000
+cellptsHor = 1
+cellptsVer = 1
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute GALayerToGrid
+arcpy.GALayerToGrid_ga(inLayer, outGrid, cellSize, cellptsHor, cellptsVer)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

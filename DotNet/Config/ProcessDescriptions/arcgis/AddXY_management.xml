@@ -1,0 +1,59 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add XY Coordinates (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Adds the fields POINT_X and POINT_Y to the point input features and calculates their values. It also appends the POINT_Z and POINT_M fields if the input features are Z- and M-enabled.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Geometry</keyword><keyword>Latitude</keyword><keyword>Longitude</keyword><keyword>M</keyword><keyword>Point</keyword><keyword>Vector</keyword><keyword>X</keyword><keyword>Y</keyword><keyword>Z</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddXY" displayname="Add XY Coordinates (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Adds the fields POINT_X and POINT_Y to the point input features and calculates their values. It also appends the POINT_Z and POINT_M fields if the input features are Z- and M-enabled.</para>
+		</summary><alink_name>AddXY_management</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/AddXY_management_v.png" alt="Add XY Coordinates illustration" /><toolIllust type="illustration" src="AddXY_management_h.png" alt="Add XY Coordinates illustration" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The point features whose x,y coordinates will be appended as POINT_X and POINT_Y fields.</para>
+					</pythonReference><dialogReference>
+						<para>The point features whose x,y coordinates will be appended as POINT_X and POINT_Y fields.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				
+					<para>This tool modifies the input data. See  for more information and strategies to avoid undesired data changes.</para>
+				
+			</bullet_item><bullet_item>
+				<para>Add XY Coordinates is most commonly used to get access to point features to perform analysis or to extract points based on their x,y location.</para>
+			</bullet_item><bullet_item>
+				<para>If the POINT_X, POINT_Y, POINT_Z, and POINT_M fields exist, their values are recalculated.</para>
+			</bullet_item><bullet_item>
+				<para>If points are moved after using Add XY Coordinates, their POINT_X and POINT_Y values, and POINT_Z, and POINT_M values—if present—must be recomputed by running Add XY Coordinates again.</para>
+			</bullet_item><bullet_item>
+				<para> does not modify the values of POINT_X, POINT_Y, POINT_Z, or POINT_M.</para>
+			</bullet_item><bullet_item>
+				<para>If the Input Features are in a geographic coordinate system, POINT_X and POINT_Y represent the longitude and latitude, respectively.</para>
+			</bullet_item><bullet_item>
+				<para>If an ArcMap layer is selected as input , the x,y coordinates are based on the input's coordinate system, not that of the data frame.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AddXY Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the AddXY function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/data"
+arcpy.Copy_management("climate.shp", "climateXYpts.shp")
+arcpy.AddXY_management("climateXYpts.shp")
+                    </code></scriptExample><scriptExample><title>AddXY Example 2 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the AddXY function in a stand-alone script.</para>
+				<code xml:space="preserve"># Name: AddXY_Example2.py
+# Description: Adding XY points to the climate dataset
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/data"
+
+# Set local variables
+in_data= "climate.shp"
+in_features = "climateXPpts2.shp"
+
+# Copying data to preserve original dataset
+# Execute Copy
+arcpy.Copy_management(in_data, in_features)
+
+# Execute AddXY
+arcpy.AddXY_management(in_features)
+                    </code></scriptExample></scriptExamples></tool></metadata>

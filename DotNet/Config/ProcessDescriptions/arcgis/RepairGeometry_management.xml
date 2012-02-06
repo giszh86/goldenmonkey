@@ -1,0 +1,105 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Repair Geometry (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Inspects each  feature in a feature class for geometry problems.  Upon discovery of a geometry problem, a relevant fix will be applied, and a one line description will be printed identifying the feature as well as the problem encountered.</para>
+			<para> Valid inputs are shapefiles, personal and file geodatabase feature classes.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Bad</keyword><keyword>Check</keyword><keyword>Clean</keyword><keyword>Correct</keyword><keyword>Corrupt</keyword><keyword>Dirty</keyword><keyword>Empty</keyword><keyword>Error</keyword><keyword>Examine</keyword><keyword>Find</keyword><keyword>Fix</keyword><keyword>From</keyword><keyword>Geometry</keyword><keyword>Inspect</keyword><keyword>Intersect</keyword><keyword>Null</keyword><keyword>Order</keyword><keyword>Orientation</keyword><keyword>Problem</keyword><keyword>Report</keyword><keyword>Salvage</keyword><keyword>Self</keyword><keyword>Shape</keyword><keyword>Short</keyword><keyword>Simplify</keyword><keyword>To</keyword><keyword>Unclosed</keyword><keyword>Valid</keyword><keyword>Vector</keyword><keyword>Verify</keyword><keyword>Void</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RepairGeometry" displayname="Repair Geometry (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Inspects each  feature in a feature class for geometry problems.  Upon discovery of a geometry problem, a relevant fix will be applied, and a one line description will be printed identifying the feature as well as the problem encountered.</para>
+			<para> Valid inputs are shapefiles, personal and file geodatabase feature classes.</para>
+			
+		</summary><alink_name>RepairGeometry_management</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The feature class or layer that will be repaired. Valid input features are shapefiles and personal and file geodatabase feature classes.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class or layer that will be repaired. Valid input features are shapefiles and personal and file geodatabase feature classes.</para>
+					</dialogReference></param><param sync="true" name="delete_null" displayname="Delete Features with Null Geometry" datatype="Boolean" direction="Input" expression="delete_null" type="Optional"><pythonReference>
+						<para>Specifies what action to take on null geometries.</para>
+						<bulletList><bullet_item>DELETE_NULL — Features which have NULL geometry will be deleted from the input. This is the default.</bullet_item><bullet_item>KEEP_NULL — Features which have NULL geometry will NOT be deleted from the input. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies what action to take on null geometries.</para>
+						<bulletList>
+							<bullet_item>Checked—Features which have NULL geometry will be deleted from the input. This is the default. </bullet_item>
+							<bullet_item>Unchecked—Features which have NULL geometry will NOT be deleted from the input.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment></environments><usage><bullet_item>
+				
+					<para>This tool modifies the input data. See  for more information and strategies to avoid undesired data changes.</para>
+				
+			</bullet_item><bullet_item>
+				<para>This tool uses the same logic as the  to evaluate if a geometry has a problem.</para>
+			</bullet_item><bullet_item>
+				<para>Below is the list of geometry problems and the corresponding fix that will be performed by the tool:</para>
+				<bulletList>
+					<bullet_item>Null geometry: The record will be deleted from the feature class. To keep records with null geometry, uncheck the tool dialog option Delete Features with Null Geometry, or in scripting set the delete_null parameter to KEEP_NULL.</bullet_item>
+					<bullet_item>Short segment: The geometry's short segment will be deleted.</bullet_item>
+					<bullet_item>Incorrect ring ordering: The geometry will be updated to have correct ring ordering.</bullet_item>
+					<bullet_item>Incorrect segment orientation: The geometry will be updated to have correct segment orientation.</bullet_item>
+					<bullet_item>Self intersections: the areas of overlap in a polygon will be dissolved.</bullet_item>
+					<bullet_item>Unclosed rings: The unclosed rings will be closed by connecting the ring's end points.</bullet_item>
+					<bullet_item>Empty parts: The parts that are null or empty will be deleted.</bullet_item>
+					<bullet_item>Duplicate vertex: One of the vertices will be deleted.</bullet_item>
+					<bullet_item>Mismatched attributes: The Z or M coordinate will be updated to match.</bullet_item>
+					<bullet_item>Discontinuous parts: Multiple parts will be created from the existing discontinuous part.</bullet_item>
+					<bullet_item>Empty Z values: The Z value will be set to 0.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>SDE geodatabases automatically check and repair feature geometries when the features are uploaded to the database, so using the Check Geometry and Repair Geometry tools with SDE feature classes is unnecessary.</para>
+			</bullet_item><bullet_item>
+				<para>After applying one of the repairs above, the tool will re-evaluate the resulting geometry, and if another problem is discovered, the relevant fix will be performed. </para>
+			</bullet_item><bullet_item><para>Starting with the 10.0 release, a line geometry  is no longer considered "self-intersecting" if it crosses itself.  There was no adverse effect to these types of geometry therefore the Check Geometry tool will no longer report the feature as a problem, and the Repair Geometry tool will no longer perform a "fix" on the feature's geometry.  Prior to the 10.0 release Repair Geometry would add vertices at the point of intersection of "self-intersecting" lines.  If you do want to add vertices when line features intersect themselves use the  tool.</para></bullet_item></usage><scriptExamples><scriptExample><title>Repair Geometry example (Python window)</title>
+					<para>The following Python Window script demonstrates how to use the RepairGeometry function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.RepairGeometry_management ("c:/data/sketchy.shp")
+                    </code></scriptExample><scriptExample><title>Repair Geometry example 2 (stand-alone script)</title>
+					<para>The following stand-alone script is an example of how to apply the RepairGeometry function in scripting.</para>
+				<code xml:space="preserve"># Description: 
+#   Goes through the table generated by the Check Geometry tool and does 
+#   the following
+#   1) backs-up all features which will be acted upon to a "_bad_geom" feature class
+#   2) runs repairGeometry on all feature classes listed in the table 
+# Author: ESRI
+
+import arcpy
+import os
+ 
+# Table that was produced by Check Geometry tool
+table = r"c:\temp\f.gdb\cg_sample1"
+ 
+# Create local variables
+fcs = []
+prevFc = ""
+ 
+# Loop through the table and get the list of fcs
+for row in arcpy.SearchCursor(table):
+    # Get the class (feature class) for that row, as well as the Feature ID
+    fc = row.getValue("CLASS")
+ 
+    if fc != prevFc:
+        prevFc = fc
+        fcs.append(fc)
+ 
+# Delete the cursor object now that we're done with it to release locks
+del rows
+ 
+# Now loop through the fcs list, backup the bad geometries into fc + "_bad_geom"
+# then repair the fc
+print "&gt; Processing %i feature classes" % len(fcs)
+for fc in fcs:
+    print "Processing " + fc
+    lyr = os.path.basename(fc)
+    if arcpy.Exists(lyr):
+        arcpy.Delete_management(lyr)
+    
+    tv = "cg_table_view"
+    if arcpy.Exists(tv):
+        arcpy.Delete_management(tv)
+
+    arcpy.MakeTableView_management(table, tv, ("\"CLASS\" = '%s'" % fc))
+    arcpy.MakeFeatureLayer_management(fc, lyr)
+    arcpy.AddJoin_management(lyr, arcpy.Describe(lyr).OIDFieldName, tv, "FEATURE_ID")
+    arcpy.CopyFeatures_management(lyr, fc + "_bad_geom")
+    arcpy.RemoveJoin_management(lyr, os.path.basename(table))
+    arcpy.RepairGeometry_management(lyr)
+                    </code></scriptExample></scriptExamples></tool></metadata>

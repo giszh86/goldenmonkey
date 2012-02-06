@@ -1,0 +1,182 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Export Map Server Cache (Server)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Exports tiles from a map cache to a folder on disk. The tiles can either  be imported into other caches or they can be accessed from ArcGIS Desktop as a raster dataset, independent from their parent service.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExportMapServerCache" displayname=" Export Map Server Cache (Server)" toolboxalias="Server" softwarerestriction="none"><summary>
+			<para> Exports tiles from a map cache to a folder on disk. The tiles can either  be imported into other caches or they can be accessed from ArcGIS Desktop as a raster dataset, independent from their parent service.</para>
+		</summary><alink_name>ExportMapServerCache_Server</alink_name><parameters><param sync="true" name="server_name" displayname="Host" datatype="String" direction="Input" expression="server_name" type="Required"><pythonReference>
+						<para> The ArcGIS Server machine hosting the service whose cache tiles will be exported.</para>
+					</pythonReference><dialogReference>
+						<para> The ArcGIS Server machine hosting the service whose cache tiles will be exported.</para>
+					</dialogReference></param><param sync="true" name="object_name" displayname="Map Server" datatype="String" direction="Input" expression="object_name" type="Required"><pythonReference>
+						<para> The map service whose tiles will be exported.</para>
+					</pythonReference><dialogReference>
+						<para> The map service whose tiles will be exported.</para>
+					</dialogReference></param><param sync="true" name="data_frame" displayname="Data Frame" datatype="String" direction="Input" expression="data_frame" type="Required"><pythonReference>
+						<para> The source data frame for the map service.</para>
+					</pythonReference><dialogReference>
+						<para> The source data frame for the map service.</para>
+					</dialogReference></param><param sync="true" name="target_cache" displayname="Target Cache Path" datatype="Folder" direction="Input" expression="target_cache" type="Required"><pythonReference>
+						<para> The folder into which the cache will be exported. This folder does <italics>not</italics> have to be a registered server cache directory.</para>
+					</pythonReference><dialogReference>
+						<para> The folder into which the cache will be exported. This folder does <italics>not</italics> have to be a registered server cache directory.</para>
+					</dialogReference></param><param sync="true" name="export_extent" displayname="Export Extent" datatype="Extent" direction="Input" expression="export_extent" type="Optional"><pythonReference>
+						<para> A rectangular extent defining the tiles to be exported. By default the extent is set to the full extent of the service's source map. Note the optional parameter on this tool that allows you to alternatively constrain tile export to a feature class boundary.</para>
+					</pythonReference><dialogReference>
+						<para> A rectangular extent defining the tiles to be exported. By default the extent is set to the full extent of the service's source map. Note the optional parameter on this tool that allows you to alternatively constrain tile export to a feature class boundary.</para>
+					</dialogReference></param><param sync="true" name="levels" displayname="Scales" datatype="Double" direction="Input" expression="[levels,...]" type="Optional"><pythonReference>
+						<para>A list of scale levels at which tiles will be exported.</para>
+					</pythonReference><dialogReference>
+						<para>A list of scale levels at which tiles will be exported.</para>
+					</dialogReference></param><param sync="true" name="thread_count" displayname="Number of MapServer Instances" datatype="Long" direction="Input" expression="thread_count" type="Required"><pythonReference>
+						<para>Number of map service instances to use while exporting the cache. By default the maximum allowable number of instances will be used (default for an ArcGIS Server service is 2). If you have more server power, you can raise the maximum allowable number of instances in the Service Properties, then raise this parameter when you run the tool.</para>
+					</pythonReference><dialogReference>
+						<para>Number of map service instances to use while exporting the cache. By default the maximum allowable number of instances will be used (default for an ArcGIS Server service is 2). If you have more server power, you can raise the maximum allowable number of instances in the Service Properties, then raise this parameter when you run the tool.</para>
+					</dialogReference></param><param sync="true" name="storage_format_type" displayname="Storage Format Type" datatype="String" direction="Input" expression="storage_format_type" type="Required"><pythonReference>
+						<para>The storage format of the exported cache.</para>
+						<bulletList><bullet_item>COMPACT—Tiles are grouped in bundle files to save space on disk and allow for faster copying of caches.</bullet_item><bullet_item>EXPLODED—Each tile is stored as an individual file (in the way caches were always stored prior to ArcGIS Server 10).</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>The storage format of the exported cache.</para>
+						<bulletList><bullet_item>COMPACT—Tiles are grouped in bundle files to save space on disk and allow for faster copying of caches.</bullet_item><bullet_item>EXPLODED—Each tile is stored as an individual file (in the way caches were always stored prior to ArcGIS Server 10).</bullet_item></bulletList></dialogReference></param><param sync="true" name="export_feature_class" displayname="Export Extent Feature Class" datatype="Feature Class" direction="Input" expression="export_feature_class" type="Optional"><pythonReference>
+						<para> A polygon feature class that defines where tiles are exported from the cache. This is useful if you want to export irregularly shaped areas.</para>
+					</pythonReference><dialogReference>
+						<para> A polygon feature class that defines where tiles are exported from the cache. This is useful if you want to export irregularly shaped areas.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>
+Before running this tool, create the folder on disk that will hold the exported tiles.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title></title>
+					<para>This example uses ExportMapServerCache to export an entire map cache for four scales.</para>
+				<code xml:space="preserve"># Name: ExportMapServerCache.py
+# Description: The following stand-alone script demonstrates how to export cache
+#               for default number of scales of a service to a destination folder
+# Requirements: os, sys, time and traceback modules
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default value.
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, datetime, traceback, string
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of input variables for map service properties
+server = "MyServer"
+service = "Rainfall"
+dataFrame = "" 
+exportExtents = ""
+scaleValues = [500000,250000,125000,64000]
+destinationCacheDir = "C:/data/temp"
+threadCount = "2"
+storageFormat = "Exploded"
+
+currentTime = datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+
+# print results of the script to a report
+report = open(file,'w')
+
+# use "scaleValues[0]","scaleValues[-1]","scaleValues[0:3]"
+
+try:
+    starttime = time.clock()
+    result = arcpy.ExportMapServerCache_server(server, service, dataFrame,
+                                      destinationCacheDir, threadCount ,
+                                      storageFormat, exportExtents,
+                                      scaleValues)
+    finishtime = time.clock()
+    elapsedtime = finishtime - starttime
+
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+
+    print " Exported cache successfully for mapservice " + service + " to "
+    + destinationCacheDir + " in " + str(elapsedtime) + " sec \n on" + arg2
+
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 1 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+    
+print "Exported Map server Cache "
+
+report.close()
+
+                    </code></scriptExample><scriptExample><title></title>
+					<para>This example uses ExportMapServerCache to export a map cache based on the boundaries of a feature class.</para>
+				<code xml:space="preserve"># Name: ExportMapServerCache.py
+# Description: The following stand-alone script demonstrates how to export cache
+#               for default number of scales of a service to a destination folder
+# Requirements: os, sys, time and traceback modules
+# Author: ESRI
+
+# Any line that begins with a pound sign is a comment and will not be executed
+# Empty quotes take the default value.
+# To accept arguments from the command line replace values of variables to
+#                                                           "sys.argv[]"
+
+# Import system modules
+import arcpy
+from arcpy import env
+import os, sys, time, datetime, traceback, string
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# List of input variables for map service properties
+server = "MyServer"
+service = "Rainfall"
+dataFrame = "" 
+exportExtents = ""
+scaleValues = [500000,250000,125000,64000]
+destinationCacheDir = "C:/data/temp"
+threadCount = "2"
+storageFormat = "Exploded"
+
+currentTime = datetime.datetime.now()
+arg1 = currentTime.strftime("%H-%M")
+arg2 = currentTime.strftime("%Y-%m-%d %H:%M")
+file = 'C:/data/report_%s.txt' % arg1
+
+# print results of the script to a report
+report = open(file,'w')
+
+# use "scaleValues[0]","scaleValues[-1]","scaleValues[0:3]"
+
+try:
+    starttime = time.clock()
+    result = arcpy.ExportMapServerCache_server(server, service, dataFrame,
+                                      destinationCacheDir, threadCount ,
+                                      storageFormat, exportExtents,
+                                      scaleValues)
+    finishtime = time.clock()
+    elapsedtime = finishtime - starttime
+
+    #print messages to a file
+    while result.status &lt; 4:
+        time.sleep(0.2)
+    resultValue = result.getMessages()
+    report.write ("completed " + str(resultValue))
+
+    print " Exported cache successfully for mapservice " + service + " to "
+    + destinationCacheDir + " in " + str(elapsedtime) + " sec \n on" + arg2
+
+except Exception, e:
+    # If an error occurred, print line number and error message
+    tb = sys.exc_info()[2]
+    report.write("Failed at step 1 \n" "Line %i" % tb.tb_lineno)
+    report.write(e.message)
+    
+print "Exported Map server Cache "
+
+report.close()
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

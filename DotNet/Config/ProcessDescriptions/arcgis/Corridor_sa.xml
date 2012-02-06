@@ -1,0 +1,76 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Corridor (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the sum of accumulative costs for two input accumulative cost rasters.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Accumulative</keyword><keyword>Cost</keyword><keyword>Euclidean</keyword><keyword>Friction</keyword><keyword>Least</keyword><keyword>Optimal</keyword><keyword>Path</keyword><keyword>Shortest</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Corridor" displayname="Corridor (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates the sum of accumulative costs for two input accumulative cost rasters.</para>
+			
+		</summary><alink_name>Corridor_sa</alink_name><parameters><param sync="true" name="in_distance_raster1" displayname="Input cost distance raster 1" datatype="Raster Layer" direction="Input" expression="in_distance_raster1" type="Required"><pythonReference>
+						<para>The first input distance raster.</para><para>It should be an accumulated cost distance output from a distance tool such as Cost Distance or Path Distance.</para>
+					</pythonReference><dialogReference>
+						<para>The first input distance raster.</para><para>It should be an accumulated cost distance output from a distance tool such as Cost Distance or Path Distance.</para>
+					</dialogReference></param><param sync="true" name="in_distance_raster2" displayname="Input cost distance raster 2" datatype="Raster Layer" direction="Input" expression="in_distance_raster2" type="Required"><pythonReference>
+						<para>The second input distance raster.</para><para>It should be an accumulated cost distance output from a distance tool such as Cost Distance or Path Distance.</para>
+					</pythonReference><dialogReference>
+						<para>The second input distance raster.</para><para>It should be an accumulated cost distance output from a distance tool such as Cost Distance or Path Distance.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output corridor raster.</para>
+						</pythonReference><dialogReference>
+							<para>The output corridor raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>While any two rasters can be used for the input, to obtain a meaningful result they should be  unaltered accumulative cost output rasters.</para>
+			</bullet_item><bullet_item>
+				<para>The order of the two inputs is irrelevant.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Corridor example 1 (Python window)</title>
+					<para>The following Python Window script demonstrates how to use the Corridor tool.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outCorr = Corridor("costraster", "focalcost.tif")
+outCorr.save("c:/sapyexamples/output/corridor")
+                    </code></scriptExample><scriptExample><title>Corridor example 2 (stand-alone script)</title>
+					<para>Calculate a wildlife corridor between two known protected areas.</para>
+				<code xml:space="preserve"># Name: Corridor_Ex_02.py
+# Description: Calculate a potential wildlife corridor between 
+#              two known protected areas.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inCostRaster = "costdist01"
+nextCostRaster = "cotdist02"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Corridor
+outCorridor = Corridor(inCostRaster, nextCostRaster) 
+
+#Limit the corridor to a threshold to show a potential corridor
+corridor = Con(outCorridor, 1, 0, "VALUE &lt; 100)
+
+# Save the output 
+outCorridor.save("C:/sapyexamples/output/costout")
+                    </code></scriptExample></scriptExamples></tool></metadata>

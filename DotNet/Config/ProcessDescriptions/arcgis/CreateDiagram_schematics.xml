@@ -1,0 +1,192 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Diagram (Schematics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool creates a schematic diagram. Depending on the schematic builder, diagram creation can be based on feature layers, feature classes, object tables, a network analysis layer, or XML data.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Create</keyword><keyword>Custom Query</keyword><keyword>Diagram</keyword><keyword>Generate</keyword><keyword>Geometric Network</keyword><keyword>Network Dataset</keyword><keyword>New</keyword><keyword>Schema</keyword><keyword>Schematic</keyword><keyword>Schematic Features</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateDiagram" displayname="Create Diagram (Schematics)" toolboxalias="schematics" softwarerestriction="none"><summary>
+			<para>This tool creates a schematic diagram. Depending on the schematic builder, diagram creation can be based on feature layers, feature classes, object tables, a network analysis layer, or XML data.</para>
+		</summary><alink_name>CreateDiagram_schematics</alink_name><parameters><param sync="true" name="out_location" displayname="Output Location" datatype="Schematic dataset;Schematic folder" direction="Input" expression="out_location" type="Required"><pythonReference>
+						<para>Schematic dataset or schematic folder in which the diagram will be created.
+								<para> This container must already exist.</para>
+							</para>
+					</pythonReference><dialogReference>
+						<para>Schematic dataset or schematic folder in which the diagram will be created.
+								<para> This container must already exist.</para>
+							</para>
+					</dialogReference></param><param sync="true" name="out_name" displayname="Output Diagram Name" datatype="String" direction="Output" expression="out_name" type="Required"><pythonReference>
+						<para>Name of the schematic diagram to be created.</para>
+					</pythonReference><dialogReference>
+						<para>Name of the schematic diagram to be created.</para>
+					</dialogReference></param><param sync="true" name="diagram_type" displayname="Diagram Template" datatype="" direction="Input" expression="[diagram_type,...]" type="Required"><pythonReference>
+						<para>Schematic diagram template of the schematic diagram to be created.</para>
+					</pythonReference><dialogReference>
+						<para>Schematic diagram template of the schematic diagram to be created.</para>
+					</dialogReference></param><param sync="true" name="in_data" displayname="Input Data (optional)" datatype="Tableview;Layer;Data element" direction="Input" expression="in_data" type="Optional"><pythonReference>
+						<para>The input data required to generate the diagram.</para>
+						<para>The Input Data parameter specifies the elements on which the diagram generation will be based. It is a mandatory parameter for most of the predefined schematic builders:<bulletList>
+								<bullet_item>For diagram templates that work with the Standard builder configured to operate from a geometric network, the Input Data parameter must at least reference a feature layer, feature class, or object table.</bullet_item>
+								<bullet_item>For diagram templates that work with the Network Dataset builder, the Input Data parameter must reference a unique network analysis layer. If the related network analysis is not  performed, Schematics tries to perform it before using the solved analysis layer as input.</bullet_item>
+								<bullet_item>For diagram templates related to the XML builder, the Input Data parameter is optional when the data for the diagram generation is provided by an external component. But when no external component is defined for the builder properties, the Input Data must reference an XML file. In both cases, the input XML data must be built according to the XMLBuilderDiagram XML Schema file.</bullet_item>
+								<bullet_item>For diagram templates that work with the Standard builder configured to operate from custom queries, no input data is required.</bullet_item>
+							</bulletList>
+								<para>For diagram templates that work with the Standard  builder when it is configured to operate from a geometric network, XML builder, and Network Dataset builder, if no input data is specified, the diagram cannot be generated.</para>
+							</para>
+					</pythonReference><dialogReference>
+						<para>The input data required to generate the diagram.</para>
+						<para>The Input Data parameter specifies the elements on which the diagram generation will be based. It is a mandatory parameter for most of the predefined schematic builders:<bulletList>
+								<bullet_item>For diagram templates that work with the Standard builder configured to operate from a geometric network, the Input Data parameter must at least reference a feature layer, feature class, or object table.</bullet_item>
+								<bullet_item>For diagram templates that work with the Network Dataset builder, the Input Data parameter must reference a unique network analysis layer. If the related network analysis is not  performed, Schematics tries to perform it before using the solved analysis layer as input.</bullet_item>
+								<bullet_item>For diagram templates related to the XML builder, the Input Data parameter is optional when the data for the diagram generation is provided by an external component. But when no external component is defined for the builder properties, the Input Data must reference an XML file. In both cases, the input XML data must be built according to the XMLBuilderDiagram XML Schema file.</bullet_item>
+								<bullet_item>For diagram templates that work with the Standard builder configured to operate from custom queries, no input data is required.</bullet_item>
+							</bulletList>
+								<para>For diagram templates that work with the Standard  builder when it is configured to operate from a geometric network, XML builder, and Network Dataset builder, if no input data is specified, the diagram cannot be generated.</para>
+							</para>
+					</dialogReference></param><param sync="true" name="builder_options" displayname="Builder Options (optional)" datatype="String" direction="Input" expression="builder_options" type="Optional"><pythonReference>
+						<para>The schematic builder creation parameters. These are optional; they are only used for diagrams based on the Network Dataset builder to specify whether nodes will be merged. No option is required for the other schematic builders.</para>
+						<bulletList><bullet_item>MERGE_NODES—Specifies the network element junctions, which are taken several times along the resultant route of a route analysis to be represented by a single schematic feature node in the generated schematic diagram. It also allows you to merge midspanjunction elements when they are at the same position in a service area analysis. </bullet_item><bullet_item>NO_MERGE_NODES—Specifies that no schematic feature node will be merged (default).</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The schematic builder creation parameters. These are optional; they are only used for diagrams based on the Network Dataset builder to specify whether nodes will be merged. No option is required for the other schematic builders.</para>
+						<bulletList><bullet_item>MERGE_NODES—Specifies the network element junctions, which are taken several times along the resultant route of a route analysis to be represented by a single schematic feature node in the generated schematic diagram. It also allows you to merge midspanjunction elements when they are at the same position in a service area analysis. </bullet_item><bullet_item>NO_MERGE_NODES—Specifies that no schematic feature node will be merged (default).</bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_coordinate_system" label="Output coordinate system"></environment></environments><usage><bullet_item>
+				<para>If the output schematic diagram name already exists, it may be deleted before being re-created. To avoid this deletion, you can uncheck the Overwrite the outputs of geoprocessing operations box from the Geoprocessing Options dialog box.</para>
+			</bullet_item><bullet_item>
+				<para>Depending on the schematic builder related to the diagram template specified for the diagram to be created, the Input Data parameter is required or not:</para>
+				<bulletList>
+					<bullet_item>For a diagram template based on the , the parameter is mandatory. The specified input tables may be feature layers, feature classes, or object tables.</bullet_item>
+					<bullet_item>For a diagram template based on the , a unique network analysis layer must be specified for the Input Data parameter.</bullet_item>
+					<bullet_item>For a diagram template based on the , a unique XML file must be specified for the Input Data parameter.</bullet_item>
+					<bullet_item>For a diagram template based on the , no input data is expected.</bullet_item>
+				</bulletList>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Sample 1: CreateDiagram and Standard builder working on geometric network data</title>
+					<para>Create schematic diagrams from GIS features organized into a geometric network.</para>
+				<code xml:space="preserve"># Name: CreateDiagramStd.py
+# Description: Create schematic diagrams from GIS features organized into a geometric network
+# Author: ESRI
+
+# import system modules
+import arcpy
+msgNoLicenseAvailable = "Schematics license required"
+
+try:
+	# Check out the ArcGIS Schematic extension license
+	if arcpy.CheckExtension("Schematics") == "Available":
+		arcpy.CheckOutExtension("Schematics")
+	else:
+		raise Exception(msgNoLicenseAvailable)
+	
+	# Set environment settings
+	arcpy.OverWriteOutput = True
+	arcpy.env.workspace = "C:\ArcGIS\ArcTutor\Schematics\Schematics_In_ArcMap\ElecDemo.gdb"
+
+	#Process: CreateDiagram from the Feeder feature class: A diagram containing schematic features associated with each GIS feature stored in that feature class will be created.
+	arcpy.CreateDiagram_schematics("ElecDemo", "FeederDiagram", "GeoSchematic", "ElectricNetwork\Feeder")
+
+	#Process: CreateDiagram based on all primary lines Phase ABC
+	# 1) Create a layer with the selection
+	InputLayer = arcpy.MakeFeatureLayer_management(r'ElectricNetwork\PrimaryLine',"PrimaryLineLayer", "[PHASECODE] =135")
+	# 2) Use the layer as input of CreateDiagram
+	arcpy.CreateDiagram_schematics("ElecDemo", "ElectricMainNetworkDiagram", "GeoSchematic", InputLayer)
+
+	# Returns the schematic license
+	arcpy.CheckInExtension("Schematics")
+
+except Exception as exc:
+		print exc
+
+                    </code></scriptExample><scriptExample><title>Sample 2: CreateDiagram and Network Dataset builder</title>
+					<para>Create schematic diagrams from a solved network analysis layer.</para>
+				<code xml:space="preserve"># Name: CreateDiagramNDS.py
+# Description: Create schematic diagrams based on the Network Dataset builder
+# Author: ESRI
+
+# import system modules
+import arcpy
+msgNoLicenseAvailable = "Schematics license required"
+
+try:
+	# Check out the ArcGIS Schematic extension license
+	if arcpy.CheckExtension("Schematics") == "Available":
+		arcpy.CheckOutExtension("Schematics")
+	else:
+		raise Exception(msgNoLicenseAvailable)
+	
+	# Check out the Network Analyst extension license
+	if arcpy.CheckExtension("Network Analyst") == "Available":
+		arcpy.CheckOutExtension("Network Analyst")
+	else:
+		raise Exception(msgNoLicenseNetworkAnalystAvailable)
+
+	# Set environment settings
+	arcpy.OverWriteOutput = True
+	arcpy.env.workspace = "C:\ArcGIS\ArcTutor\Schematics\Schematics_Configuration\Network_Dataset\NetworkAnalyst_Schematics.gdb"
+
+	#Solving the Route network analysis layer
+	arcpy.solve("Route", "HALT")
+
+	#Process: CreateDiagram from the solved Route network analysis layer: A diagram containing schematic features associated with each route objects in that network analysis layer will be created. Depending on the MERGE_NODES and NO_MERGE_NODES option, network element junctions which are taken several times along the resultant route will be represented by a single schematic feature node in the generated schematic diagram (MERGE_NODES) or not (NO_MERGE_NODES)
+	arcpy.CreateDiagram_schematics("NA_SchematicDataset", "DiagramRoute1_MERGED", "NADiagrams", "Route", "MERGE_NODES")
+	arcpy.CreateDiagram_schematics("NA_SchematicDataset", "DiagramRoute1_NOTMERGED", "NADiagrams", "Route", "NO_MERGE_NODES")			
+
+
+	# Returns the schematic license
+	arcpy.CheckInExtension("Schematics")
+	arcpy.CheckInExtension("Network Analyst")
+
+except Exception as exc:
+		print exc
+                    </code></scriptExample><scriptExample><title>Sample 3: CreateDiagram and XML builder</title>
+					<para>Create a schematic diagram based on the XML builder. </para>
+				<code xml:space="preserve"># Name: CreateDiagramXML.py
+# Description: Create a schematic diagram based on the XML builder
+# Author: ESRI
+
+# import system modules
+import arcpy
+msgNoLicenseAvailable = "Schematics license required"
+
+try:
+	# Check out the ArcGIS Schematic extension license
+	if arcpy.CheckExtension("Schematics") == "Available":
+		arcpy.CheckOutExtension("Schematics")
+	else:
+		raise Exception(msgNoLicenseAvailable)
+	
+	# Set environment settings
+	arcpy.OverWriteOutput = True
+	arcpy.env.workspace = "C:\ArcGIS\ArcTutor\Schematics\Schematics_Configuration\XML_Data\GISDatabaseForXML.gdb"
+
+	#Process: CreateDiagram from the SampleNetworkData.xml file based on the XMLBuilderDiagram XML Schema file: A diagram containing schematic features associated with each element stored in that XML file will be created.
+	arcpy.CreateDiagram_schematics("XMLSampleSchDataset", "XMLDiagramSample", "XMLDiagrams", "C:\ArcGIS\ArcTutor\Schematics\Schematics_Configuration\XML_Data\SampleNetworkFeeder1.xml")
+
+	# Returns the schematic license
+	arcpy.CheckInExtension("Schematics")
+
+except Exception as exc:
+		print exc
+                    </code></scriptExample><scriptExample><title>Sample 4: CreateDiagram and Standard builder working from custom queries</title>
+					<para>Create a schematic diagram from custom queries.</para>
+				<code xml:space="preserve"># Name: CreateDiagramCustomQuery.py
+# Description: Create a schematic diagram from custom queries
+# Author: ESRI
+
+# import system modules
+import arcpy
+msgNoLicenseAvailable = "Schematics license required"
+
+try:
+	# Check out the ArcGIS Schematic extension license
+	if arcpy.CheckExtension("Schematics") == "Available":
+		arcpy.CheckOutExtension("Schematics")
+	else:
+		raise Exception(msgNoLicenseAvailable)
+	
+	# Set environment settings
+	arcpy.OverWriteOutput = True
+	arcpy.env.workspace = "C:\ArcGIS\ArcTutor\Schematics\Schematics_In_ArcMap\ElecDemo.gdb"
+
+	#Process: CreateDiagram from the InsidePlants diagram template.
+	arcpy.CreateDiagram_schematics("ElecDemo\Inside Plants", "Substation 08", "InsidePlants")
+
+	# Returns the schematic license
+	arcpy.CheckInExtension("Schematics")
+
+except Exception as exc:
+		print exc
+                    </code></scriptExample></scriptExamples></tool></metadata>

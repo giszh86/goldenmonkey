@@ -1,0 +1,38 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Upgrade Metadata (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Updates an ArcGIS item's metadata or a stand-alone XML file to the current ArcGIS metadata format. </para><para>The current release of ArcGIS will only maintain information in the ArcGIS metadata format. For example, if an ArcGIS item has metadata in another format it must be upgraded to ArcGIS metadata before ArcGIS will automatically update it with the item's current properties; the item's properties are recorded in ArcGIS metadata elements.</para><para>Upgrading metadata for the current release of ArcGIS will not change the existing metadata except to add ArcGIS metadata alongside the existing information. The existing metadata will remain unchanged. </para>
+			
+			
+			
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Convert</keyword><keyword>Esri-Iso</keyword><keyword>Esriiso</keyword><keyword>Export</keyword><keyword>Fgdc</keyword><keyword>Format</keyword><keyword>Import</keyword><keyword>Iso</keyword><keyword>Make</keyword><keyword>Standard</keyword><keyword>Style</keyword><keyword>Transfer</keyword><keyword>Translate</keyword><keyword>Turn</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" UpgradeMetadata " displayname="Upgrade Metadata (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para> Updates an ArcGIS item's metadata or a stand-alone XML file to the current ArcGIS metadata format. </para><para>The current release of ArcGIS will only maintain information in the ArcGIS metadata format. For example, if an ArcGIS item has metadata in another format it must be upgraded to ArcGIS metadata before ArcGIS will automatically update it with the item's current properties; the item's properties are recorded in ArcGIS metadata elements.</para><para>Upgrading metadata for the current release of ArcGIS will not change the existing metadata except to add ArcGIS metadata alongside the existing information. The existing metadata will remain unchanged. </para>
+			
+			
+			
+			</summary><alink_name> UpgradeMetadata _conversion</alink_name><parameters><param sync="true" name="Source_Metadata" displayname="Source Metadata" datatype="Data Element; Layer" direction="Input" expression="Source_Metadata" type="Required"><pythonReference>
+						<para>The item whose metadata will be upgraded, or a stand-alone XML file that will be upgraded.</para>
+					</pythonReference><dialogReference>
+						<para>The item whose metadata will be upgraded, or a stand-alone XML file that will be upgraded.</para>
+					</dialogReference></param><param sync="true" name="Upgrade_Type" displayname="Upgrade Type" datatype="String" direction="Input" expression="Upgrade_Type" type="Required"><pythonReference>
+						<para>The type of conversion that will take place.</para>
+						
+						<bulletList><bullet_item>ESRIISO_TO_ARCGIS—Upgrades ESRI-ISO metadata. ESRI-ISO metadata is typically created with the ISO metadata editing wizard provided with ArcGIS Desktop 9.3.1 and earlier releases.</bullet_item><bullet_item>FGDC_TO_ARCGIS—Upgrades FGDC metadata. For example, FGDC metadata may have been created in ArcGIS Desktop 9.3.1 with the FGDC metadata editor. FGDC metadata may have been created outside ArcGIS.</bullet_item></bulletList>
+						<para>An upgrade type must be specified; otherwise, no conversion will be performed.</para>
+					</pythonReference><dialogReference>
+						<para>The type of conversion that will take place.</para>
+						
+						<bulletList><bullet_item>ESRIISO_TO_ARCGIS—Upgrades ESRI-ISO metadata. ESRI-ISO metadata is typically created with the ISO metadata editing wizard provided with ArcGIS Desktop 9.3.1 and earlier releases.</bullet_item><bullet_item>FGDC_TO_ARCGIS—Upgrades FGDC metadata. For example, FGDC metadata may have been created in ArcGIS Desktop 9.3.1 with the FGDC metadata editor. FGDC metadata may have been created outside ArcGIS.</bullet_item></bulletList>
+						<para>An upgrade type must be specified; otherwise, no conversion will be performed.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item><para>When you view an ArcGIS item's metadata or a stand-alone metadata XML file in the Description tab, an Upgrade button may be available that will run  this tool. If you have many items or metadata XML files you want to upgrade, run this tool as a  to upgrade all your metadata at once.</para></bullet_item><bullet_item>
+				<para>The Source Metadata parameter has a complex data type. If you use this tool in a model, create a variable for the Source Metadata parameter in ModelBuilder by right-clicking the tool, pointing to Make VariableFrom ParameterSource Metadata.</para>
+			</bullet_item><bullet_item>
+				<para> When using this tool in ModelBuilder, the Output Metadata parameter is derived from the Source Metadata parameter.</para>
+			</bullet_item><bullet_item>
+				<para>If you do not  have write access to the ArcGIS item or its metadata or the stand-alone metadata XML file that you are trying to modify, this tool will complete successfully but the item's original metadata will remain unchanged.</para>
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>Upgrade FGDC metadata to ArcGIS metadata</title>
+					<para>Upgrades information in an ArcGIS item's metadata formatted following the FGDC CSDGM standard to ArcGIS metadata.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.UpgradeMetadata_conversion ("locationMap.mxd", "FGDC_TO_ARCGIS")
+                    </code></scriptExample></scriptExamples></tool></metadata>

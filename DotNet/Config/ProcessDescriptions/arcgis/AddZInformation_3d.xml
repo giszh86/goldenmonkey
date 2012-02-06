@@ -1,0 +1,112 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Z Information (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Examines each 3D shape and adds selected properties as attributes to the input feature class. The output options vary based on the input shape type.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Data Creation</keyword><keyword>3D Editing</keyword><keyword>3D Features</keyword><keyword>3D Geometry</keyword><keyword>3D Shape Properties</keyword><keyword>Adding Height</keyword><keyword>Mulitpoints</keyword><keyword>Point Count</keyword><keyword>Slope</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddZInformation" displayname="Add Z Information (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para> Examines each 3D shape and adds selected properties as attributes to the input feature class. The output options vary based on the input shape type.</para>
+		</summary><alink_name>AddZInformation_3d</alink_name><parameters><param sync="true" name="in_feature_class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_feature_class" type="Required"><pythonReference>
+						<para>The input feature class that Z  information will be added to the attribute table.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class that Z  information will be added to the attribute table.</para>
+					</dialogReference></param><param sync="true" name="out_property" displayname="Output Property" datatype="String" direction="Input" expression="[out_property,...]" type="Required"><pythonReference>
+						<para>The output Z properties that will be added to the attribute table of the input feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output Z properties that will be added to the attribute table of the input feature class.</para>
+					</dialogReference></param><param sync="true" name="noise_filtering" displayname="Noise Filtering" datatype="String" direction="Input" expression="noise_filtering" type="Optional"><pythonReference>
+						<para>  Allows you to exclude small portions of features from statistical calculations. This option is useful for obtaining good maximum slope estimates. Small portions of features often exhibit extreme slopes, which may bias the statistical results.  </para><para>The values given in either the Area or Length options will be used to exclude these portions of features. Points and Multipoints do not apply. </para>
+						<bulletList><bullet_item>NO_FILTER—No noise filter will be used.  This is the default.</bullet_item><bullet_item>AREA &lt;…&gt;—An area filter will be applied to portions of features in multipatch feature classes.     An AREA value of  0.001  indicates that subparts of multipatches with an area less  than 0.001 will  be ignored. </bullet_item><bullet_item>LENGTH &lt;…&gt;—  A length filter will be applied to portions of features in a line or polygon feature class.  A LENGTH value of  0.001  indicates that portions of feature  with a length less than 0.001 will  be ignored.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>  Allows you to exclude small portions of features from statistical calculations. This option is useful for obtaining good maximum slope estimates. Small portions of features often exhibit extreme slopes, which may bias the statistical results.  </para><para>The values given in either the Area or Length options will be used to exclude these portions of features. Points and Multipoints do not apply. </para>
+						<bulletList>
+							<bullet_item>No Filter— No noise filter will be used.  This is the default.</bullet_item>
+							<bullet_item>Area &lt;…&gt;—An area filter will be applied to portions of features in multipatch feature classes.     An AREA value of  0.001  indicates that subparts of multipatches with an area less  than 0.001 will  be ignored. </bullet_item>
+							<bullet_item>Length &lt;…&gt;—A length filter will be applied to portions of features in a line or polygon feature class.  A LENGTH value of  0.001  indicates that portions of feature  with a length less than 0.001 will  be ignored. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent"></environment><environment name="Scratch_workspace" label="Scratch workspace"></environment></environments><usage><bullet_item>
+				<para>The z output property options, by shape type, are:</para>
+				<bulletList>
+					<bullet_item>Points—z</bullet_item>
+					<bullet_item>Multipoints—z minimum, z maximum, z mean, point count</bullet_item>
+					<bullet_item>Polylines—z minimum, z maximum, z mean, surface length, minimum slope, maximum slope, average slope, vertex count</bullet_item>
+					<bullet_item>Polygons—z minimum, z maximum, z mean, surface length, minimum slope, maximum slope, average slope, vertex count</bullet_item>
+					<bullet_item>Multipatches—z minimum, z maximum, surface area, volume, minimum slope, maximum slope, average slope</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para> Slope can be calculated in different ways depending on the output features. Slope for a line is calculated by examining each of its segments. The min and max slope values are taken from the segment that is either closest to horizontal or most extreme. The average slope is determined by averaging the slope for all segments weighted by their 3D length. Longer segments will have more influence than shorter segments.</para>
+			</bullet_item><bullet_item><para>When using the volume option on multipatches the resulting volume will be set to 0.0 for those multipatches that are not  closed.
+On the Solaris platform, it is a design limit that the tool is unable to determine whether or not multipatches are closed. Therefore, volume will be calculated for all multipatches under the assumption they are closed. 
+</para></bullet_item></usage><scriptExamples><scriptExample><title>Add Z Information Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Add Z Information
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.AddZInformation_3d("lines_3D.shp", "Z_MEAN; LENGTH_3D; AVG_SLOPE", "NO_FILTER")
+                    </code></scriptExample><scriptExample><title>Add Z Information Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Add Z Information
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: AddZInformation Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              AddZInformation tool on all z-aware feature classes in a target
+#              workspace by using the ListFeatureClasses method to identify the
+#              input features and specifying a conditional to evalute the geometry 
+#              and set the corresponding properties for the tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Create list of feature classes
+    fcList = arcpy.ListFeatureClasses()
+    if len(fcList) &gt; 0:
+        for fc in fcList:
+            desc = arcpy.Describe(fc)
+            if desc.hasZ is True:
+                # Set Local Variables
+                noise = "No_Filter"
+                if desc.shapeType == "Polygon":
+                    # Desired properties separated by semi-colons
+                    Prop = "Z_MIN;Z_MAX;VERTEX_COUNT" 
+                    # Execute AddZInformation
+                    arcpy.AddZInformation_3d(inFC, Prop, noise)
+                    print fc + " is " + desc.shapeType
+                elif desc.shapeType == "Point":
+                    Prop = "Z"
+                    # Execute AddZInformation
+                    arcpy.AddZInformation_3d(inFC, Prop, noise)
+                elif desc.shapeType == "Multipoint":
+                    Prop = "Z_MIN;Z_MAX;Z_MEAN"
+                    # Execute AddZInformation
+                    arcpy.AddZInformation_3d(inFC, Prop, noise)
+                elif desc.shapeType == "Polyline":
+                    Prop = "LENGTH_3D"
+                    # Execute AddZInformation
+                    arcpy.AddZInformation_3d(inFC, Prop, noise)
+                elif desc.shapeType == "MultiPatch":
+                    Prop = "Z_MIN;Z_MAX;Z_MEAN;SURFACE_AREA;AVG_SLOPE"
+                    # Execute AddZInformation
+                    arcpy.AddZInformation_3d(inFC, Prop, noise)
+                else:
+                    pass
+                print "Completed adding Z information."
+                del Prop, noise
+            else:
+                print fc + " is not z-aware."
+            del desc
+    else:
+        print "There are no feature classes in the " + env.workspace + " directory."
+except:
+    # Returns any other error messages
+    print arcpy.GetMessages(2)
+
+del arcpy, fcList
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Calculate Grid Convergence Angle (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the rotation angle for true north based on the center point of each feature in a feature class and populates this value in a specified field. This field can be used in conjunction with Data Driven Pages to rotate each map to true north.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Atlas</keyword><keyword>Cartography</keyword><keyword>Coordinate System</keyword><keyword>Data Driven Pages</keyword><keyword>Geodesic</keyword><keyword>Graticule</keyword><keyword>Grid</keyword><keyword>Grid North</keyword><keyword>Index</keyword><keyword>Index Layer</keyword><keyword>Layout</keyword><keyword>Map Book</keyword><keyword>Mapbook</keyword><keyword>Multi-Page Layout</keyword><keyword>Multiple Page</keyword><keyword>North Angle</keyword><keyword>Rotation</keyword><keyword>True North</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateGridConvergenceAngle" displayname=" Calculate Grid Convergence Angle (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Calculates the rotation angle for true north based on the center point of each feature in a feature class and populates this value in a specified field. This field can be used in conjunction with Data Driven Pages to rotate each map to true north.</para>
+		</summary><alink_name>CalculateGridConvergenceAngle_cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para> Input feature class (points, multipoints, lines, and polygons).</para>
+					</pythonReference><dialogReference>
+						<para> Input feature class (points, multipoints, lines, and polygons).</para>
+					</dialogReference></param><param sync="true" name="angle_field" displayname="Angle Field" datatype="Field" direction="Input" expression="angle_field" type="Required"><pythonReference>
+						<para> Existing field that will be populated with the true north calculation value in decimal degrees.</para>
+					</pythonReference><dialogReference>
+						<para> Existing field that will be populated with the true north calculation value in decimal degrees.</para>
+					</dialogReference></param><param sync="true" name="rotation_method" displayname="Rotation Method" datatype="String" direction="Input" expression="rotation_method" type="Optional"><pythonReference>
+						<para> Method in which the rotation value is calculated. Geographic is the default value.</para>
+						<bulletList><bullet_item>GEOGRAPHIC—Angle is calculated clockwise with 0 at top. This is the default.</bullet_item><bullet_item>ARITHMETIC—Angle is calculated counterclockwise with 0 at right.</bullet_item><bullet_item>GRAPHIC—Angle is calculated counterclockwise with 0 at top.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para> Method in which the rotation value is calculated. Geographic is the default value.</para>
+						<bulletList><bullet_item>GEOGRAPHIC—Angle is calculated clockwise with 0 at top. This is the default.</bullet_item><bullet_item>ARITHMETIC—Angle is calculated counterclockwise with 0 at right.</bullet_item><bullet_item>GRAPHIC—Angle is calculated counterclockwise with 0 at top.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="coordinate_sys_field" displayname="Coordinate System Field" datatype="Field" direction="Input" expression="coordinate_sys_field" type="Optional"><pythonReference>
+						<para> Field containing a projection engine string for a projected coordinate system to be used for angle calculation. The angle calculation for each feature will be based on the projected coordinate system projection engine string for the specific feature. In cases where there is an invalid value the tool will use the Cartographic Coordinate System specified in the Cartography environment settings. The default is none, or no field specified. When no field is specified the projected coordinate system used for calculation will be taken from the Cartography environment settings.</para>
+					</pythonReference><dialogReference>
+						<para> Field containing a projection engine string for a projected coordinate system to be used for angle calculation. The angle calculation for each feature will be based on the projected coordinate system projection engine string for the specific feature. In cases where there is an invalid value the tool will use the Cartographic Coordinate System specified in the Cartography environment settings. The default is none, or no field specified. When no field is specified the projected coordinate system used for calculation will be taken from the Cartography environment settings.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				
+					<para>This tool replaces the Calculate Geodesic Angle tool.</para>
+				
+			</bullet_item><bullet_item> Calculating a geodesic angle requires that a valid projected coordinate system is specified. <bulletList>
+					<bullet_item>If you specify a coordinate system field the tool will use the projected coordinate system value (projection engine string) for each feature. If there is an invalid projection engine string the tool will then use coordinate system specified as the Cartographic Coordinate System in the Cartography environment settings.</bullet_item>
+					<bullet_item> If you are not using a field to specify the projected coordinate system the tool will use the one specified as the Cartographic Coordinate System in the Cartography environment settings.</bullet_item>
+				</bulletList></bullet_item></usage><scriptExamples><scriptExample><title>CalculateGridConvergenceAngle tool Example (stand-alone Python script)</title>
+					<para>Calculates a true north rotation angle for point features.</para>
+				<code xml:space="preserve"># Name: calculategridconvergenceangle_example.py
+# Description: Calculates the true north rotation angle for features
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+arcpy.env.workspace = "C:\Data\ProjectData.gdb"
+
+# Set local variables
+inFeatures = "US_states"
+angleField = "angle"
+rotationMethod = "GEOGRAPHIC"
+coordSystemField = "UTM"
+
+# Execute CalculateGridConvergenceAngle
+arcpy.CalculateGridConvergenceAngle_cartography(inFeatures, angleField,
+                                                rotationMethod,
+                                                coordSystemField)
+                    </code></scriptExample><scriptExample><title>CalculateGridConvergenceAngle tool Example (Python Window)</title>
+					<para>Calculates a true north rotation angle for a feature.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.env.workspace = "C:\data\ProjectData.gdb"
+arcpy.CalculateGridConvergenceAngle_cartography ("US_states", "angle", "GEOGRAPHIC", "UTM")
+                    </code></scriptExample></scriptExamples></tool></metadata>

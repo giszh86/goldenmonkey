@@ -1,0 +1,217 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Routes (Linear Referencing)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates routes from existing lines. The input line features that share a common identifier are merged to create a single route.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Assemble</keyword><keyword>Build</keyword><keyword>Construct</keyword><keyword>Form</keyword><keyword>Generate</keyword><keyword>Join</keyword><keyword>M Value</keyword><keyword>Make</keyword><keyword>Measure</keyword><keyword>Polylinem</keyword><keyword>Produce</keyword><keyword>Route</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateRoutes" displayname="Create Routes (Linear Referencing)" toolboxalias="lr" softwarerestriction="none"><summary>
+			<para>Creates routes from existing lines. The input line features that share a common identifier are merged to create a single route.</para>
+		</summary><alink_name>CreateRoutes_lr</alink_name><parameters><param sync="true" name="in_line_features" displayname="Input Line Features" datatype="Feature Layer" direction="Input" expression="in_line_features" type="Required"><pythonReference>
+						<para>The features from which routes will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The features from which routes will be created.</para>
+					</dialogReference></param><param sync="true" name="route_id_field" displayname="Route Identifier Field" datatype="Field" direction="Input" expression="route_id_field" type="Required"><pythonReference>
+						<para>The field containing values that uniquely identify each route.</para>
+					</pythonReference><dialogReference>
+						<para>The field containing values that uniquely identify each route.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Route Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The feature class to be created. It can be a shapefile or a geodatabase feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class to be created. It can be a shapefile or a geodatabase feature class.</para>
+					</dialogReference></param><param sync="true" name="measure_source" displayname="Measure Source" datatype="String" direction="Input" expression="measure_source" type="Required"><pythonReference>
+						<para>Specifies how route measures will be obtained.</para>
+						<bulletList><bullet_item>LENGTH—The geometric length of the input features will be used to accumulate the measures. This is the default. </bullet_item><bullet_item>ONE_FIELD—The value stored in a single field will be used to accumulate the measures. </bullet_item><bullet_item>TWO_FIELDS—The values stored in both from- and to-measure fields will be used to set the measures. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how route measures will be obtained.</para>
+						<bulletList><bullet_item>LENGTH—The geometric length of the input features will be used to accumulate the measures. This is the default. </bullet_item><bullet_item>ONE_FIELD—The value stored in a single field will be used to accumulate the measures. </bullet_item><bullet_item>TWO_FIELDS—The values stored in both from- and to-measure fields will be used to set the measures. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="from_measure_field" displayname="From-Measure Field" datatype="Field" direction="Input" expression="from_measure_field" type="Optional"><pythonReference>
+						<para>A field containing measure values. This field must be numeric and is required when the measure source is ONE_FIELD or TWO_FIELDS.</para>
+					</pythonReference><dialogReference>
+						<para>A field containing measure values. This field must be numeric and is required when the measure source is ONE_FIELD or TWO_FIELDS.</para>
+					</dialogReference></param><param sync="true" name="to_measure_field" displayname="To-Measure Field" datatype="Field" direction="Input" expression="to_measure_field" type="Optional"><pythonReference>
+						<para>A field containing measure values. This field must be numeric and is required when the measure source is TWO_FIELDS.</para>
+					</pythonReference><dialogReference>
+						<para>A field containing measure values. This field must be numeric and is required when the measure source is TWO_FIELDS.</para>
+					</dialogReference></param><param sync="true" name="coordinate_priority" displayname="Coordinate Priority" datatype="String" direction="Input" expression="coordinate_priority" type="Optional"><pythonReference>
+						<para>The position from which measures will be accumulated for each output route. This parameter is ignored when the measure source is TWO_FIELDS.</para>
+						<bulletList><bullet_item>UPPER_LEFT—Measures will be accumulated from the point closest to the minimum bounding rectangle's upper left corner. This is the default. </bullet_item><bullet_item>LOWER_LEFT—Measures will be accumulated from the point closest to the minimum bounding rectangle's lower left corner. </bullet_item><bullet_item>UPPER_RIGHT—Measures will be accumulated from the point closest to the minimum bounding rectangle's upper right corner. </bullet_item><bullet_item>LOWER_RIGHT—Measures will be accumulated from the point closest to the minimum bounding rectangle's lower right corner. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The position from which measures will be accumulated for each output route. This parameter is ignored when the measure source is TWO_FIELDS.</para>
+						<bulletList><bullet_item>UPPER_LEFT—Measures will be accumulated from the point closest to the minimum bounding rectangle's upper left corner. This is the default. </bullet_item><bullet_item>LOWER_LEFT—Measures will be accumulated from the point closest to the minimum bounding rectangle's lower left corner. </bullet_item><bullet_item>UPPER_RIGHT—Measures will be accumulated from the point closest to the minimum bounding rectangle's upper right corner. </bullet_item><bullet_item>LOWER_RIGHT—Measures will be accumulated from the point closest to the minimum bounding rectangle's lower right corner. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="measure_factor" displayname="Measure Factor" datatype="Double" direction="Input" expression="measure_factor" type="Optional"><pythonReference>
+						<para>A value multiplied by the measure length of each input line before they are merged to create route measures. The default is 1.</para>
+					</pythonReference><dialogReference>
+						<para>A value multiplied by the measure length of each input line before they are merged to create route measures. The default is 1.</para>
+					</dialogReference></param><param sync="true" name="measure_offset" displayname="Measure Offset" datatype="Double" direction="Input" expression="measure_offset" type="Optional"><pythonReference>
+						<para>A value added to the route measures after the input lines have been merged to create a route. The default is 0.</para>
+					</pythonReference><dialogReference>
+						<para>A value added to the route measures after the input lines have been merged to create a route. The default is 0.</para>
+					</dialogReference></param><param sync="true" name="ignore_gaps" displayname="Ignore spatial gaps" datatype="Boolean" direction="Input" expression="ignore_gaps" type="Optional"><pythonReference>
+						<para>Specifies whether spatial gaps will be ignored when calculating the measures on disjointed routes. This parameter is applicable when the measure source is LENGTH or ONE_FIELD.</para>
+						<bulletList><bullet_item>IGNORE—Spatial gaps will be ignored. Measure values will be continuous for disjointed routes. This is the default. </bullet_item><bullet_item>NO_IGNORE—Do not ignore spatial gaps. The measure values on disjointed routes will have gaps. The gap distance is calculated using the straight-line distance between the endpoints of the disjointed parts. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether spatial gaps will be ignored when calculating the measures on disjointed routes. This parameter is applicable when the measure source is LENGTH or ONE_FIELD.</para>
+						<bulletList>
+							<bullet_item>Checked—Spatial gaps will be ignored. Measure values will be continuous for disjointed routes. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Do not ignore spatial gaps. The measure values on disjointed routes will have gaps. The gap distance is calculated using the straight-line distance between the endpoints of the disjointed parts. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="build_index" displayname="Build index" datatype="Boolean" direction="Input" expression="build_index" type="Optional"><pythonReference>
+						<para>Specifies whether an attribute index will be created for the route identifier field that is written to the output route feature class.</para>
+						<bulletList><bullet_item>INDEX—Create an attribute index. This is the default. </bullet_item><bullet_item>NO_INDEX—Do not create an attribute index. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether an attribute index will be created for the route identifier field that is written to the output route feature class.</para>
+						<bulletList>
+							<bullet_item>Checked—Create an attribute index. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Do not create an attribute index.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The unique values in the Route Identifier Field are written to Output Route Feature Class.</para>
+			</bullet_item><bullet_item>
+				<para>Use the  or  tools to effectively reduce the number of lines that will be used to create routes.</para>
+			</bullet_item><bullet_item>
+				<para>If the Output Route Feature Class will be written to a geodatabase, an appropriate , , and  should be set.</para>
+			</bullet_item><bullet_item>
+				<para>Use a Measure Factor to convert between route measure units. For example, to convert from feet to miles, use a factor of 0.00018939394.</para>
+			</bullet_item><bullet_item>
+				<para>Use a Measure Offset in applications where the start measure of each route needs to be a value other than 0.</para>
+			</bullet_item><bullet_item>
+				<para>The Ignore spatial gaps parameter is not used when the TWO_FIELDS Measure Source option has been specified. This is because measure values are dictated by the From-Measure Field and To-Measure Field values.</para>
+			</bullet_item><bullet_item>
+				<para>When the LENGTH or ONE_FIELD Measure Source option is used, the Coordinate Priority is determined by placing the minimum bounding rectangle around the input features that will be merged to create one route.</para>
+			</bullet_item><bullet_item>
+				<para>When the TWO_FIELDS Measure Source option is used, it is not necessary to specify a coordinate priority because measure direction is implied by the values in the From-Measure Field and the To-Measure Field.</para>
+			</bullet_item><bullet_item>
+				<para>An attribute index on the route identifier field speeds up the dynamic segmentation process. If you will be using the Output Route Feature Class for , it is recommended that you choose to have an attribute index created.</para>
+			</bullet_item><bullet_item>
+				<para>If any features are rejected by the Create Routes tool, a text file is created in the temporary file path to store information about those features. For example, C:\Documents and Settings\patrickb\Local Settings\Temp\Create_Output0.txt (where Create_Output is the name of the output route feature class).</para>
+			</bullet_item><bullet_item>
+				<para>The  environment setting will be ignored. The Output Route Feature Class will have M (measure) values.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateRoutes Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the CreateRoutes function in the Python window.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace = "C:/Data"
+arcpy.CreateRoutes_lr(base_roads.shp, "route1", "newRoutes", "LENGTH", "#", "#", "LOWER_LEFT", 0.00018939394)  
+
+                    </code></scriptExample><scriptExample><title>CreateRoutes Example 2 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the CreateRoutes function using shapefile data in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name CreateRoutes_Example2.py
+# Description: Create routes from lines. The lines are in a shapefile workspace.
+# The LENGTH option will be used to set the measures, and a measure factor
+# will be used to convert measure units from feet to miles.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data"
+
+# Set local variables
+in_lines = "base_roads.shp"
+rid = "route1" 
+out_routes = "create_output1" 
+
+# Execute CreateRoutes
+arcpy.CreateRoutes_lr(in_lines, rid, out_routes, "LENGTH", "#", "#", "LOWER_LEFT", 0.00018939394)
+ 
+
+                    </code></scriptExample><scriptExample><title>CreateRoutes Example 3 (Stand-alone Python Script</title>
+					<para>The following Python script demonstrates how to use the CreateRoutes function using file geodatabase data in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name CreateRoutes_Example3.py
+# Description: Create routes from lines. The lines are in a file geodatabase.
+# The ONE_FIELD option will be used to set the measures.
+
+# Import system modules 
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/pitt.gdb"
+    
+# Set local variables
+in_lines = "roads/base_roads"        # base_roads exists in the roads feature dataset
+rid = "route1"
+m_fld = "len_mile"
+out_routes = "roads/create_output2"  # write the result to the roads feature dataset
+
+# Execute CreateRoutes
+arcpy.CreateRoutes_lr(in_lines, rid, out_routes, "ONE_FIELD", m_fld, "#", "LOWER_LEFT")
+ 
+
+                    </code></scriptExample><scriptExample><title>CreateRoutes Example 4 (Stand-alone Python Script</title>
+					<para>The following Python script demonstrates how to use the CreateRoutes function in a stand-alone Python script using personal geodatabase data.</para>
+				<code xml:space="preserve"># Name: CreateRoutes_Example4.py
+# Description: Create routes from lines. The lines are in a personal geodatabase.
+# The ONE_FIELD option will be used to set the measures.
+# Author: ESRI
+
+# Import system modules 
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data/pitt.mdb"
+
+# Set local variables
+in_lines = "roads/base_roads"        # base_roads exists in the roads feature dataset 
+rid = "route1"
+m_fld = "len_mile" 
+out_routes = "roads/create_output2"  # write the result to the roads feature dataset 
+
+# Execute CreateRoutes
+arcpy.CreateRoutes_lr(in_lines, rid, out_routes, "ONE_FIELD", m_fld, "#", "LOWER_LEFT")
+
+ 
+
+                    </code></scriptExample><scriptExample><title>CreateRoutes Example 5 (Stand-alone Python Script)</title>
+					<para>The following Python script demonstrates how to use the CreateRoutes function in a stand-alone Python script using SDE data.</para>
+				<code xml:space="preserve"># Name CreateRoutes_Example5.py
+# Description:  Create routes from lines. The lines are in an enterprise geodatabase.
+# The TWO_FIELD option will be used to set the measures.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "Database Connections/Connection to Jerry.sde"
+
+# Set local variables
+in_lines = gp.QualifyTableName("base_roads", wkspc)   # base_roads is a standalone feature class
+rid = "route1"
+fr_fld = "begmp1"
+to_fld = "endmp1" 
+out_routes = "create_output3"                   # write the result to a standalone feature class
+
+# Execute CreateRoutes
+arcpy.CreateRoutes_lr(in_lines, rid, out_routes, "TWO_FIELDS", fr_fld, to_fld) 
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

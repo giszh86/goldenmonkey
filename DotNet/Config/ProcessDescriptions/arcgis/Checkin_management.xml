@@ -1,0 +1,41 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Check In (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Synchronizes changes from a check-out replica in an ArcSDE, file, or personal geodatabase to the parent ArcSDE geodatabase.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Change</keyword><keyword>Check</keyword><keyword>Checkout</keyword><keyword>Child</keyword><keyword>Contractor</keyword><keyword>Database</keyword><keyword>Difference</keyword><keyword>Edit</keyword><keyword>Finish</keyword><keyword>Gdb</keyword><keyword>Geodatabase</keyword><keyword>In</keyword><keyword>Include</keyword><keyword>Integrate</keyword><keyword>Mobile</keyword><keyword>Offline</keyword><keyword>Out</keyword><keyword>Parent</keyword><keyword>Reconcile</keyword><keyword>Remote</keyword><keyword>Replica</keyword><keyword>Sde</keyword><keyword>Submit</keyword><keyword>Synchronize</keyword><keyword>Update</keyword><keyword>Version</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Checkin" displayname="Check In (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Synchronizes changes from a check-out replica in an ArcSDE, file, or personal geodatabase to the parent ArcSDE geodatabase.</para>
+		</summary><alink_name>Checkin_management</alink_name><parameters><param sync="true" name="in_workspace" displayname="Check-in from Workspace" datatype="Workspace" direction="Input" expression="in_workspace" type="Required"><pythonReference>
+						<para>The child replica geodatabase. The workspace that contains the child replica. This can be an ArcSDE, file, or personal geodatabase.</para>
+					</pythonReference><dialogReference>
+						<para>The child replica geodatabase. The workspace that contains the child replica. This can be an ArcSDE, file, or personal geodatabase.</para>
+					</dialogReference></param><param sync="true" name="dest_workspace" displayname="Check-in to Workspace" datatype="Workspace" direction="Input" expression="dest_workspace" type="Required"><pythonReference>
+						<para>The parent replica geodatabase. The ArcSDE workspace to which changes will be applied.</para>
+					</pythonReference><dialogReference>
+						<para>The parent replica geodatabase. The ArcSDE workspace to which changes will be applied.</para>
+					</dialogReference></param><param sync="true" name="reconcile" displayname="Reconcile with the Parent Version" datatype="Boolean" direction="Input" expression="reconcile" type="Optional"><pythonReference>
+						<para>Indicates whether the synchronization process should reconcile the synchronization version after the edits have been synchronized.</para>
+						<bulletList><bullet_item>NON_RECONCILE—There is no reconcile performed. This is the default. </bullet_item><bullet_item>RECONCILE—There is a reconciliation performed. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether the check-in process should reconcile the check-out version after the edits have been checked in.</para>
+						<bulletList>
+							<bullet_item>Checked—There is a reconciliation performed. </bullet_item>
+							<bullet_item>Unchecked—There is no reconcile performed. This is the default.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				
+					<para>This tool is designed for check-out replicas only and should only be used to support applications from earlier releases. It is recommended that you use the  tool in the  toolset in place of this tool.</para>
+				
+			</bullet_item><bullet_item>
+				<para>You must have permission to edit the data you are synchronizing.</para>
+			</bullet_item><bullet_item>
+				<para>Once synchronized, the changes (edits) will be reflected in the parent geodatabase and are viewable by all users.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CheckIn Example (Python Window)</title><code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace = "C:/Data"
+arcpy.Checkin_management("MyCheckout.mdb", "MySDEdata.sde", "RECONCILE")
+                    </code></scriptExample></scriptExamples></tool></metadata>

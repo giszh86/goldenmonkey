@@ -1,0 +1,53 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Surface Spot (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates surface values for each point of a point feature class by interpolating from a raster, TIN, or terrain dataset surface.</para>
+			<para>Calculated values are added to the input feature class attributes.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here to view archived documentation. This functionality has been added to the Add Surface Information tool.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SurfaceSpot" displayname="Surface Spot (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Calculates surface values for each point of a point feature class by interpolating from a raster, TIN, or terrain dataset surface.</para>
+			<para>Calculated values are added to the input feature class attributes.</para>
+			
+				<para>This is a deprecated tool. To learn more about how this tool works click here to view archived documentation. This functionality has been added to the Add Surface Information tool.</para>
+			</summary><alink_name>SurfaceSpot_3d</alink_name><toolIllust type="illustration" src="SurfaceSpot_3d_h.gif" alt="Surface Spot illustration" /><parameters><param sync="true" name="in_surface" displayname="Input Surface" datatype="Tin Layer; Raster Layer; Terrain Layer" direction="Input" expression="in_surface" type="Required"><pythonReference>
+						<para>The input raster, TIN, or Terrain dataset surface to be used for interpolation.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster, TIN, or Terrain dataset surface to be used for interpolation.</para>
+					</dialogReference></param><param sync="true" name="in_feature_class" displayname="Input Feature Class" datatype="Feature Layer" direction="Input" expression="in_feature_class" type="Required"><pythonReference>
+						<para>The input point feature class to which the interpolated values will be added.</para>
+					</pythonReference><dialogReference>
+						<para>The input point feature class to which the interpolated values will be added.</para>
+					</dialogReference></param><param sync="true" name="out_spot_field" displayname="Spot Field" datatype="String" direction="Input" expression="out_spot_field" type="Optional"><pythonReference>
+						<para>The name of the attribute field to be added to the input feature class. By default, the name is Spot.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the attribute field to be added to the input feature class. By default, the name is Spot.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>The factor multiplied by the surface values to convert them to new values added to the input feature class. Used to convert z units to match x,y units.</para>
+					</pythonReference><dialogReference>
+						<para>The factor multiplied by the surface values to convert them to new values added to the input feature class. Used to convert z units to match x,y units.</para>
+					</dialogReference></param><param sync="true" name="method" displayname="Method" datatype="String" direction="Input" expression="method" type="Optional"><pythonReference>
+						<para>Algorithm used to calculate surface values.</para>
+					</pythonReference><dialogReference>
+						<para>Algorithm used to calculate surface values.</para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Double" direction="Input" expression="pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The resolution of the terrain dataset pyramid level to use for geoprocessing. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The resolution of the terrain dataset pyramid level to use for geoprocessing. The default is 0, full resolution.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Ensure the input surface and the input feature class have overlapping extents.</para>
+			</bullet_item><bullet_item>
+				<para>Use the {z_factor} argument to convert the output field to the desired units.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Surface Spot Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Surface Spot
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcgisscripting
+gp = arcgisscripting.create()
+
+gp.CheckOutExtension("3D")
+gp.workspace = "C:/data"
+gp.SurfaceSpot_3d("elevation_tin", "points.shp", "SPOT", 3.28)
+                    </code></scriptExample></scriptExamples></tool></metadata>

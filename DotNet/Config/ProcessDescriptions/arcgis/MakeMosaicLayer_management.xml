@@ -1,0 +1,145 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">
+Make Mosaic Layer (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a temporary mosaic layer from an mosaic dataset or layer file. The layer that is created by the tool is temporary and will not persist after the session ends unless the layer is saved to disk or the map document is saved.</para><para>This tool can be used to make a temporary layer, so you can work with a specified subset of bands within a mosaic dataset.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword></keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="&#xA;MakeMosaicLayer&#xA;" displayname="&#xA;Make Mosaic Layer (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a temporary mosaic layer from an mosaic dataset or layer file. The layer that is created by the tool is temporary and will not persist after the session ends unless the layer is saved to disk or the map document is saved.</para><para>This tool can be used to make a temporary layer, so you can work with a specified subset of bands within a mosaic dataset.</para></summary><alink_name>
+MakeMosaicLayer
+_management</alink_name><parameters><param sync="true" name="in_mosaic_dataset" displayname="Mosaic Dataset" datatype="Mosaic Dataset" direction="Input" expression="in_mosaic_dataset" type="Required"><pythonReference>
+						<para>The path and name of the input mosaic dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The path and name of the input mosaic dataset.</para>
+					</dialogReference></param><param sync="true" name="out_mosaic_layer" displayname="Output Mosaic Layer" datatype="Mosiac Layer" direction="Output" expression="out_mosaic_layer" type="Required"><pythonReference>
+						<para>
+The name of the temporary output mosaic layer.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+The name of the temporary output mosaic layer.
+</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Expression" datatype="SQL Expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>
+A query statement using the fields and values of the mosaic dataset.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+A query statement using the fields and values of the mosaic dataset.
+</para>
+					</dialogReference></param><param sync="true" name="template" displayname="Template Extent" datatype="Extent" direction="Input" expression="template" type="Optional"><pythonReference>
+						<para>
+Using the min x, min y, max x, or max y, you can specify the extents of the output mosaic layer.</para>
+					</pythonReference><dialogReference>
+						<para>
+Using the min x, min y, max x, or max y, you can specify the extents of the output mosaic layer.</para>
+					</dialogReference></param><param sync="true" name="band_index" displayname="Bands" datatype="Value Table" direction="Input" expression="[ID,...]" type="Optional"><pythonReference>
+						<para>
+Choose which bands to export for the layer. If no bands are specified, then all the bands will be used in the output.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+Choose which bands to export for the layer. If no bands are specified, then all the bands will be used in the output.
+</para>
+					</dialogReference></param><param sync="true" name="mosaic_method" displayname="Mosaic Method" datatype="String" direction="Input" expression="mosaic_method" type="Optional"><pythonReference>
+						<para>Choose the mosaic method. The mosaic method defines how the layer is created
+from different rasters within the mosaic dataset.</para>
+						<bulletList><bullet_item>CLOSEST_TO_CENTER—Sorts rasters based on an order where
+rasters that have their center closest to the view center are
+placed on top.</bullet_item><bullet_item>NORTH_WEST—Sorts rasters based on an order where
+rasters that have their center closest to the northwest are placed
+on top.</bullet_item><bullet_item>LOCK_RASTER—Enables a user to lock the display of a single
+or multiple rasters, based on an ID or name. When you choose this option, you need to specify the Lock Raster ID.</bullet_item><bullet_item>BY_ATTRIBUTE—Sorts rasters based on an attribute field and
+its difference from the base value. When this option is chosen, the order field and order base value parameters also need to be set.</bullet_item><bullet_item>CLOSEST_TO_NADIR—Sorts rasters based on an order where
+rasters that have their nadir position closest to the view center
+are placed on top. The nadir point can be different from the
+centerpoint, especially in oblique imagery.</bullet_item><bullet_item>CLOSEST_TO_VIEWPOINT—Sorts rasters based on an order where
+the nadir position is closest to the user-defined viewpoint
+location are placed on top.</bullet_item><bullet_item>SEAMLINE—Cuts the rasters using the predefined seamline
+shape for each raster using optional feathering along the seams.
+The ordering is predefined during seamline generation. The LAST
+mosaic operator is not valid with this mosaic method.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>Choose the mosaic method. The mosaic method defines how the layer is created
+from different rasters within the mosaic dataset.</para>
+						<bulletList><bullet_item>CLOSEST_TO_CENTER—Sorts rasters based on an order where
+rasters that have their center closest to the view center are
+placed on top.</bullet_item><bullet_item>NORTH_WEST—Sorts rasters based on an order where
+rasters that have their center closest to the northwest are placed
+on top.</bullet_item><bullet_item>LOCK_RASTER—Enables a user to lock the display of a single
+or multiple rasters, based on an ID or name. When you choose this option, you need to specify the Lock Raster ID.</bullet_item><bullet_item>BY_ATTRIBUTE—Sorts rasters based on an attribute field and
+its difference from the base value. When this option is chosen, the order field and order base value parameters also need to be set.</bullet_item><bullet_item>CLOSEST_TO_NADIR—Sorts rasters based on an order where
+rasters that have their nadir position closest to the view center
+are placed on top. The nadir point can be different from the
+centerpoint, especially in oblique imagery.</bullet_item><bullet_item>CLOSEST_TO_VIEWPOINT—Sorts rasters based on an order where
+the nadir position is closest to the user-defined viewpoint
+location are placed on top.</bullet_item><bullet_item>SEAMLINE—Cuts the rasters using the predefined seamline
+shape for each raster using optional feathering along the seams.
+The ordering is predefined during seamline generation. The LAST
+mosaic operator is not valid with this mosaic method.</bullet_item></bulletList></dialogReference></param><param sync="true" name="order_field" displayname="Order Field" datatype="String" direction="Input" expression="order_field" type="Optional"><pythonReference>
+						<para>
+  Choose the order field. When the mosaic method is BY_ATTRIBUTE, the default field to use when ordering rasters needs to be set. The list of fields is defined as those in the service table that are of type metadata.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+  Choose the order field. When the mosaic method is BY_ATTRIBUTE, the default field to use when ordering rasters needs to be set. The list of fields is defined as those in the service table that are of type metadata.
+</para>
+					</dialogReference></param><param sync="true" name="order_base_value" displayname="Order Base Value" datatype="String" direction="Input" expression="order_base_value" type="Optional"><pythonReference>
+						<para>Type an order base value.
+The images are sorted based on the difference between this value and the attribute value in the specified field.</para>
+					</pythonReference><dialogReference>
+						<para>Type an order base value.
+The images are sorted based on the difference between this value and the attribute value in the specified field.</para>
+					</dialogReference></param><param sync="true" name="lock_rasterid" displayname="Lock Raster ID" datatype="String" direction="Input" expression="lock_rasterid" type="Optional"><pythonReference>
+						<para>
+ Choose the Raster ID or raster name to which the service should be locked, and that only the specified rasters are displayed. If left undefined, it will be similar to system default. Multiple IDs can be defined as a semicolon-delimited list.
+</para>
+					</pythonReference><dialogReference>
+						<para>
+ Choose the Raster ID or raster name to which the service should be locked, and that only the specified rasters are displayed. If left undefined, it will be similar to system default. Multiple IDs can be defined as a semicolon-delimited list.
+</para>
+					</dialogReference></param><param sync="true" name="sort_order" displayname="Sort Order" datatype="String" direction="Input" expression="sort_order" type="Optional"><pythonReference><para>Choose whether the sort order is ascending or descending.
+</para><bulletList><bullet_item>ASCENDING—The sort order will be ascending. This is the default.</bullet_item><bullet_item>DESCENDING—The sort order will be descending.</bullet_item></bulletList></pythonReference><dialogReference><para>Choose whether the sort order is ascending or descending.
+</para><bulletList><bullet_item>ASCENDING—The sort order will be ascending. This is the default.</bullet_item><bullet_item>DESCENDING—The sort order will be descending.</bullet_item></bulletList></dialogReference></param><param sync="true" name="mosaic_operator" displayname="Mosaic Operator" datatype="String" direction="Input" expression="mosaic_operator" type="Optional"><pythonReference>
+						<para>Choose which mosaic operator to use. When two or more rasters all have the same sort priority, this parameter is used to further refine the sort order.</para>
+						<bulletList><bullet_item>FIRST—The first raster in the list will be on top. This is
+the default.</bullet_item><bullet_item>LAST—The last raster in the list will be on top.</bullet_item><bullet_item>MIN—The raster with the lower value will be on top.</bullet_item><bullet_item>MAX—The raster with the lower value will be on top.</bullet_item><bullet_item>MEAN—The average pixel value will be on top.</bullet_item><bullet_item>BLEND—The output cell value will
+be a blend of values; this blend value relies on an
+algorithm that is weight based and dependent on the distance from
+the pixel to the edge within the overlapping area.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>Choose which mosaic operator to use. When two or more rasters all have the same sort priority, this parameter is used to further refine the sort order.</para>
+						<bulletList><bullet_item>FIRST—The first raster in the list will be on top. This is
+the default.</bullet_item><bullet_item>LAST—The last raster in the list will be on top.</bullet_item><bullet_item>MIN—The raster with the lower value will be on top.</bullet_item><bullet_item>MAX—The raster with the lower value will be on top.</bullet_item><bullet_item>MEAN—The average pixel value will be on top.</bullet_item><bullet_item>BLEND—The output cell value will
+be a blend of values; this blend value relies on an
+algorithm that is weight based and dependent on the distance from
+the pixel to the edge within the overlapping area.</bullet_item></bulletList></dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>To make your layer permanent, right-click the layer in the table of contents and click Save As Layer File, or use the  tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeMosaicLayer example 1 (Python window)</title>
+					<para>This is a Python sample for MakeMosaicLayer.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/Workspace"
+arcpy.MakeMosaicLayer_management("fgdb.gdb/mdsrc", "mdlayer2", "", \
+                                 "clipmd.shp", "3;2;1", "BY_ATTRIBUTE",\
+                                 "Tag", "Dataset", "", "DESCENDING", "LAST")
+                    </code></scriptExample><scriptExample><title>MakeMosaicLayer example 2 (stand-alone script)</title><para>This is a Python script sample for MakeMosaicLayer.</para><code xml:space="preserve">#====================================
+#Make Mosaic Layer
+#Usage: MakeMosaicLayer_management in_mosaic_dataset out_mosaic_layer {where_clause} {template} 
+#                                  {ID;ID...} {mosaic_method} {order_field} {order_base_value} 
+#                                  {lock_rasterid} {ASCENDING | DESCENDING} {FIRST | LAST |
+#                                  MIN | MAX | MEAN | BLEND}
+    
+try:
+    import arcpy
+    
+    arcpy.env.workspace = "c:/workspace"
+    
+    ##Create Mosaic Layer with selection and Lock Raster mosaic method
+    arcpy.MakeMosaicLayer_management("fgdb.gdb/mdsrc", "mdlayer", "OBJECTID&lt;10",\
+                                     "", "", "LOCK_RASTER", "", "", "5",\
+                                     "ASCENDING", "FIRST")
+    
+    ##Create Mosaic Layer with band extraction and clip template
+    arcpy.MakeMosaicLayer_management("fgdb.gdb/mdsrc", "mdlayer2", "", \
+                                     "clipmd.shp", "3;2;1", "BY_ATTRIBUTE",\
+                                     "Tag", "Dataset", "", "DESCENDING", "LAST")
+    
+except:
+    print "Make Mosaic Layer exsample failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

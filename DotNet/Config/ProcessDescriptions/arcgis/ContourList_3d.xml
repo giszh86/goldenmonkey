@@ -1,0 +1,70 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Contour List (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a feature class of selected contour values from a raster surface.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Constant Value</keyword><keyword>Dem</keyword><keyword>Digital Elevation Model</keyword><keyword>Elevation</keyword><keyword>Isobar</keyword><keyword>Isohyet</keyword><keyword>Isoline</keyword><keyword>Isotherm</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ContourList" displayname="Contour List (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Creates a feature class of selected contour values from a raster surface.</para>
+			
+		</summary><alink_name>ContourList_3d</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input surface raster.</para></pythonReference><dialogReference>
+						<para>The input surface raster.</para></dialogReference></param><param sync="true" name="out_polyline_features" displayname="Output polyline features" datatype="Feature Class" direction="Output" expression="out_polyline_features" type="Required"><pythonReference>
+						<para>Output contour polyline features.</para>
+					</pythonReference><dialogReference>
+						<para>Output contour polyline features.</para>
+					</dialogReference></param><param sync="true" name="contour_values" displayname="Contour values" datatype="Double" direction="Input" expression="[contour_value,...]" type="Required"><pythonReference>
+						<para>List of z-values for which to create contours.</para>
+					</pythonReference><dialogReference>
+						<para>List of z-values for which to create contours.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Contours do not extend beyond the spatial extent of the raster, and they are not generated in areas of NoData; therefore, adjacent contour inputs should first be edgematched into a continuous feature dataset. As an alternative to edgematching, you can merge the adjacent rasters before computing contours.</para>
+			</bullet_item><bullet_item>
+				<para>Contours can be generated in areas of negative raster values. The contour values will be negative in such areas. Negative contour intervals are not allowed.</para>
+			</bullet_item><bullet_item>
+				<para>The contour values do not need to be sorted in order.</para>
+			</bullet_item><bullet_item>
+				<para>If you have Spatial Analyst available, smoother but less accurate contours can be obtained by pre-processing the  input raster with a  operation with the MEAN option or the  tool with the LOW option.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ContourList example 1 (Python window)</title>
+					
+					<para>This example creates contours for three elevation values from an ESRI GRID raster and outputs them as a shapefile.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env  
+env.workspace = "C:/data"
+arcpy.ContourList_3d("elevation", "C:/sapyexamples/output/outcontourlist.shp", 
+            "600; 935; 1237.4")
+                    </code></scriptExample><scriptExample><title>ContourList example 2 (stand-alone script)</title>
+					
+					<para>This example creates contours for three elevation values from an ESRI GRID raster and outputs them as a shapefile.</para>
+				<code xml:space="preserve"># Name: ContourList_3d_Ex_02.py
+# Description: Creates contours or isolines based on a list of contour values.
+# Requirements: 3D Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inRaster = "elevation"
+contourIntervalList = "600; 935; 1237.4"
+outContours = "C:/output/outcontlist.shp"
+
+# Check out the ArcGIS 3D Analyst extension license
+arcpy.CheckOutExtension("3D")
+
+# Execute ContourList
+arcpy.ContourList_3d(inRaster, outContours, contourIntervalList)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

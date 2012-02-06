@@ -1,0 +1,46 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Set Layer Representation (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Sets a representation for a feature layer. The layer is temporary and stored in memory during the ArcGIS session, available for use in models and scripts.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cartography</keyword><keyword>Override</keyword><keyword>Representation</keyword><keyword>Symbology</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SetLayerRepresentation" displayname="Set Layer Representation (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Sets a representation for a feature layer. The layer is temporary and stored in memory during the ArcGIS session, available for use in models and scripts.</para>
+			
+		</summary><alink_name>SetLayerRepresentation_cartography</alink_name><parameters><param sync="true" name="in_layer" displayname="Input Layer" datatype="Feature Layer" direction="Input" expression="in_layer" type="Required"><pythonReference>
+						<para>The input feature layer containing at least one representation.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature layer containing at least one representation.</para>
+					</dialogReference></param><param sync="true" name="representation" displayname="Representation" datatype="String" direction="Input" expression="representation" type="Required"><pythonReference>
+						<para>The representation to be set for the input feature layer.</para>
+					</pythonReference><dialogReference>
+						<para>The representation to be set for the input feature layer.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>The input must be a geodatabase feature class with at least one feature class representation.</para>
+			</bullet_item><bullet_item>
+				<para>The resulting layer can be used as a valid input for cartographic tools that require a layer input in especially in models and scripts.</para>
+			</bullet_item><bullet_item>
+				<para>The temporary feature layer can be saved as a layer file using the  tool or saved as a new feature class using the  tool. Layers created in ArcCatalog cannot be used in ArcMap unless they are saved to a layer file using the Save To Layer File tool.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SetLayerRepresentation tool Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the SetLayerRepresentation tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.SetLayerRepresentation_cartography("footprints.lyr", "buildings_Rep")
+                    </code></scriptExample><scriptExample><title>SetLayerRepresentation tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the SetLayerRepresentation tool.</para>
+				<code xml:space="preserve"># Name: SetLayerRepresentation_standalone_script.py
+# Description: Sets a representation for a feature layer. The layer is temporary and stored in memory for use in models and scripts.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+in_features = "footprints.lyr"
+representation = "buildings_Rep"
+
+# Execute Set Layer Representation
+arcpy.SetLayerRepresentation_cartography(in_features, representation)
+                    </code></scriptExample></scriptExamples></tool></metadata>

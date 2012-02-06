@@ -1,0 +1,70 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Test (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Performs a Boolean evaluation of the input raster using a logical expression.</para>
+			<para>When the expression evaluates to true, the output cell value is 1. If the expression is false, the output cell value is 0.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Boolean</keyword><keyword>Evaluate</keyword><keyword>False</keyword><keyword>Logical</keyword><keyword>Logical Expression</keyword><keyword>Math</keyword><keyword>Query</keyword><keyword>True</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Test" displayname="Test (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Performs a Boolean evaluation of the input raster using a logical expression.</para>
+			<para>When the expression evaluates to true, the output cell value is 1. If the expression is false, the output cell value is 0.</para>
+		</summary><alink_name>Test_sa</alink_name><toolIllust type="illustration" src="Test_sa_h.png" alt="Test illustration" /><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster on which the Boolean evaluation is performed, based on a logical expression.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster on which the Boolean evaluation is performed, based on a logical expression.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Where clause" datatype="SQL Expression" direction="Input" expression="where_clause" type="Required"><pythonReference><para>A logical expression that selects a subset of raster cells.</para><para>The expression follows the general form of an SQL expression.</para><para>Consult the documentation for more information on the SQL reference for query expressions used in ArcGIS and specifying a query in Python.</para></pythonReference><dialogReference>
+						<para>A logical expression that selects a subset of raster cells.</para><para>The expression follows the general form of an SQL expression. It can be entered directly into the Where clause, for example, "VALUE" &gt; 100. It can also be created in the Query Builder dialog box. </para><para>Consult the documentation for more information on building a query expression and the SQL reference for query expressions used in ArcGIS.</para></dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster.</para>
+							<para>The output values will be either 0 or 1.</para>
+						</pythonReference><dialogReference>
+							<para>The output raster.</para>
+							<para>The output values will be either 0 or 1.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The test is specified by an SQL expression in the Where clause. </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Test example 1 (Python window)</title>
+					<para>This example uses a Where clause to perform a Boolean operation on an input raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outTest = Test("degs", "VALUE &gt; 100")
+outTest.save("C:/sapyexamples/output/outest.img")
+                    </code></scriptExample><scriptExample><title>Test example 2 (stand-alone script)</title>
+					<para>This example uses a Where clause to perform a Boolean operation on an input raster.</para>
+				<code xml:space="preserve"># Name: Test_Ex_02.py
+# Description: Perform a Boolean evaluation of the input raster based
+#              on a where clause
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "degs"
+inWhereClause = "VALUE &gt; 100"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Test
+outTest = Test(inRaster, inWhereClause)
+
+# Save the output 
+outTest.save("C:/sapyexamples/output/outtest")
+                    </code></scriptExample></scriptExamples></tool></metadata>

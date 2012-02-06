@@ -1,0 +1,79 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Decimate TIN Nodes (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Produces a TIN that is a generalized version of another. A subset of nodes from an input TIN is selected to produce the new TIN.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D</keyword><keyword>Generalization</keyword><keyword>Points</keyword><keyword>Reduce Points</keyword><keyword>Remove Points</keyword><keyword>Simplification</keyword><keyword>Surface</keyword><keyword>Surface Analysis</keyword><keyword>Tin</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="DecimateTinNodes" displayname="Decimate TIN Nodes (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Produces a TIN that is a generalized version of another. A subset of nodes from an input TIN is selected to produce the new TIN.</para>
+			
+		</summary><alink_name>DecimateTinNodes_3d</alink_name><toolIllust type="illustration" src="DecimateTinNodes_3d_h.gif" alt="DecimateTinNodes illustration" /><parameters><param sync="true" name="in_tin" displayname="Input TIN" datatype="Tin Layer" direction="Input" expression="in_tin" type="Required"><pythonReference>
+						<para>The input TIN.</para>
+					</pythonReference><dialogReference>
+						<para>The input TIN.</para>
+					</dialogReference></param><param sync="true" name="out_tin" displayname="Output TIN" datatype="TIN" direction="Output" expression="out_tin" type="Required"><pythonReference>
+						<para>The generalized output TIN.</para>
+					</pythonReference><dialogReference>
+						<para>The generalized output TIN.</para>
+					</dialogReference></param><param sync="true" name="method" displayname="Decimation Method" datatype="Decimate" direction="Output" expression="method" type="Required"><pythonReference>
+						<para>The decimation method may be based on ZTOLERANCE in which case the generalization produces an output TIN that's within a known vertical accuracy of the input, or COUNT, in which case the node count of the output TIN is constrained to a size limit.</para>
+					</pythonReference><dialogReference>
+						<para>The decimation method may be based on ZTOLERANCE in which case the generalization produces an output TIN that's within a known vertical accuracy of the input, or COUNT, in which case the node count of the output TIN is constrained to a size limit.</para>
+					</dialogReference></param><param sync="true" name="copy_breaklines" displayname="Copy Breaklines" datatype="Boolean" direction="Output" expression="copy_breaklines" type="Optional"><pythonReference>
+						<para>Indicates whether breaklines from the input TIN are copied over to the output. The default is FALSE.</para>
+					</pythonReference><dialogReference>
+						<para>Indicates whether breaklines from the input TIN are copied over to the output. The default is FALSE.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>When using the Z Tolerance option the vertical tolerance you specify should be given in the Z units of the input TIN.</para>
+			</bullet_item><bullet_item>
+				<para>When using this tool via the command line the syntax of the decimation &lt;method&gt; is not obvious because it has two potential usages. When you reach this argument on the command line you can right-click the mouse and choose "Insert Variable". A dialog box will pop up from which you interactively set values. These will be used to define a variable which is then substituted into the command line for you.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Decimate TIN Nodes Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Decimate TIN Nodes
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.DecimateTinNodes_3d("tin", "tin_simple", "COUNT 5000" "BREAKLINES")
+
+
+                    </code></scriptExample><scriptExample><title>Decimate TIN Nodes Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Decimate TIN Nodes
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: DecimateTinNodes Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              DecimateTinNodes tool.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Set Local Variables
+    inTin = "elevation"
+    method = "COUNT 5000"
+    copyBrk = "BREAKLINES"
+    # Ensure output name is unique
+    outTin = arcpy.CreateUniqueName("simple_elev")
+    #Execute DecimateTinNodes
+    arcpy.DecimateTinNodes_3d(inTin, outTin, method, copyBrk)
+
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Calculate Adjacent Fields (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> The most common use case for using this tool is to populate fields that can be used to label the adjacent pages in a map book. This tool appends eight new fields (each field representing one of the eight points of the compass: North, Northeast, East, Southeast, South, Southwest, West and Northwest) to the input feature class and calculates values that identify the adjacent (neighboring) polygons, in each cardinal direction, for each feature in the input feature class.</para>
+			<para>This tool is designed to work with features conforming to specific requirements including:</para><bulletList>
+				<bullet_item>Features must be rectangles.</bullet_item>
+				<bullet_item>Features must be identical in shape.</bullet_item>
+				<bullet_item>Feature vertical edges must be aligned to grid north (should have a grid convergence angle of zero).</bullet_item><bullet_item>Feature edges must be aligned with each other.</bullet_item></bulletList><para>Using this tool with features that do not meet these requirements may lead to unexpected results or an error. Below is an example of features for which this tool will calculate adjacent fields.</para><para>Below are two examples of features for which this tool will not calculate adjacent fields.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Adjacent Page</keyword><keyword>Atlas</keyword><keyword>Cartography</keyword><keyword>Coordinate System</keyword><keyword>Data Driven Pages</keyword><keyword>Graticule</keyword><keyword>Grid</keyword><keyword>Index</keyword><keyword>Index Layer</keyword><keyword>Layout</keyword><keyword>Map Book</keyword><keyword>Mapbook</keyword><keyword>Multi-Page Layout</keyword><keyword>Multiple Page</keyword><keyword>Neighbor Labels</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" CalculateAdjacentFields " displayname=" Calculate Adjacent Fields (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para> The most common use case for using this tool is to populate fields that can be used to label the adjacent pages in a map book. This tool appends eight new fields (each field representing one of the eight points of the compass: North, Northeast, East, Southeast, South, Southwest, West and Northwest) to the input feature class and calculates values that identify the adjacent (neighboring) polygons, in each cardinal direction, for each feature in the input feature class.</para>
+			<para>This tool is designed to work with features conforming to specific requirements including:</para><bulletList>
+				<bullet_item>Features must be rectangles.</bullet_item>
+				<bullet_item>Features must be identical in shape.</bullet_item>
+				<bullet_item>Feature vertical edges must be aligned to grid north (should have a grid convergence angle of zero).</bullet_item><bullet_item>Feature edges must be aligned with each other.</bullet_item></bulletList><para>Using this tool with features that do not meet these requirements may lead to unexpected results or an error. Below is an example of features for which this tool will calculate adjacent fields.</para><para>Below are two examples of features for which this tool will not calculate adjacent fields.</para>
+			</summary><alink_name> CalculateAdjacentFields _cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Class" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para> Polygon grid index features to be appended with adjacent field data. </para>
+					</pythonReference><dialogReference>
+						<para> Polygon grid index features to be appended with adjacent field data. </para>
+					</dialogReference></param><param sync="true" name="in_field" displayname="Field Name" datatype="Field" direction="Input" expression="in_field" type="Required"><pythonReference>
+						
+						<para> Field whose values will be used to populate adjacent field data. Use actual field names. Do not use field aliases.</para>
+					</pythonReference><dialogReference>
+						
+						<para> Field whose values will be used to populate adjacent field data. Use actual field names. Do not use field aliases.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para> This tool only works with rectangular polygons.</para>
+			</bullet_item><bullet_item>
+				<para> This tool creates eight new fields whose names are a combination of the in_field name and direction. Direction is abbreviated. For example, if the in_field name is "PageName" the new field names created by the tool would include: "PageName_N", "PageName_NE", "PageName_E", "PageName_SE", "PageName_S", "PageName_SW", "PageName_W" and "PageName_NW". If the in_field name is "MyPoly" the new field names would include: "MyPoly_N", "MyPoly_NE", "MyPoly_E", "MyPoly_SE", "MyPoly_S", "MyPoly_SW", "MyPoly_W" and "MyPoly_NW".</para>
+				
+			</bullet_item><bullet_item>
+				<para> You cannot specify names for the new fields. The tool uses default names, though you can change field names after the tool has been run.</para>
+			</bullet_item><bullet_item>
+				<para> You can use fields from a joined table.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CalculateAdjacentFields tool Example (Python Window)</title>
+					<para>Create and populate fields identifying adjacent features for a regular polygon grid feature class.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.env.workspace = "C:\Data\ProjectData.gdb"
+arcpy.CalculateAdjacentFields_cartography ("Index", "PageName")
+                    </code></scriptExample><scriptExample><title>CalculateAdjacentFields tool Example (Stand-alone Python script)</title>
+					<para>Create and populate fields identifying adjacent features for a regular polygon grid feature class.</para>
+				<code xml:space="preserve"># Name: calculateadjacentfields_example.py
+# Description: Create and populate fields identifying adjacent features for a
+# regular polygon grid feature class
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+arcpy.env.workspace = "C:\Data\ProjectData.gdb"
+
+# Set local variables
+inFeatures = "MyPolygonIndex"
+inField = "PageName"
+
+# Execute CalculateAdjacentFields
+arcpy.CalculateAdjacentFields_cartography (inFeatures, inField)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

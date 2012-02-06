@@ -1,0 +1,95 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Feature Class To Geodatabase (Conversion)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts one or more feature classes or feature layers to geodatabase feature classes.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Batch</keyword><keyword>Change</keyword><keyword>Convert</keyword><keyword>Copy</keyword><keyword>Coverage</keyword><keyword>Export</keyword><keyword>Feature Class</keyword><keyword>File</keyword><keyword>Format</keyword><keyword>Gdb</keyword><keyword>Import</keyword><keyword>Layer</keyword><keyword>Load</keyword><keyword>Make</keyword><keyword>Many</keyword><keyword>Migrate</keyword><keyword>Personal</keyword><keyword>Sde</keyword><keyword>Shapefile</keyword><keyword>Shp</keyword><keyword>Turn</keyword><keyword>Vpf</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="FeatureClassToGeodatabase" displayname="Feature Class To Geodatabase (Conversion)" toolboxalias="conversion" softwarerestriction="none"><summary>
+			<para>Converts one or more feature classes or feature layers to geodatabase feature classes.</para>
+		</summary><alink_name>FeatureClassToGeodatabase_conversion</alink_name><parameters><param sync="true" name="Input_Features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="[Input_Features,...]" type="Required"><pythonReference>
+						<para>One or more feature classes or feature layers to be imported into an ArcSDE, file, or personal geodatabase.</para>
+					</pythonReference><dialogReference>
+						<para>One or more feature classes or feature layers to be imported into an ArcSDE, file, or personal geodatabase.</para>
+					</dialogReference></param><param sync="true" name="Output_Geodatabase" displayname="Output Geodatabase" datatype="Workspace | Feature Dataset" direction="Input" expression="Output_Geodatabase" type="Required"><pythonReference>
+						<para>The output or destination geodatabase. This can be a file or personal geodatabase, or an ArcSDE geodatabase.</para>
+						
+					</pythonReference><dialogReference>
+						<para>The output or destination geodatabase. This can be a file or personal geodatabase, or an ArcSDE geodatabase.</para>
+						
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment><environment name="Qualified_field_names" label="Qualified field names">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The inputs can include shapefiles, coverage feature classes, VPF feature classes, or geodatabase feature classes. The inputs can also be feature layers (a layer in the ArcMap or ArcScene table of contents or a feature layer created by the  tool).</para>
+			</bullet_item><bullet_item>
+				<para>If the input is a layer with selected features, only those selected features will be written to the new output feature class.</para>
+			</bullet_item><bullet_item>
+				<para>The name of the output feature classes will be based on the name of the input feature class name. For example, if the input is C:\base\streams.shp, the output feature class will be named streams.</para>
+			</bullet_item><bullet_item>
+				<para>If the name already exists in the output geodatabase, a number will be appended to the end to make it unique, for example, "_1".</para>
+			</bullet_item><bullet_item>
+				<para>This tool does not support annotation.</para>
+			</bullet_item><bullet_item>
+				
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>FeatureClassToGeodatabase example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the FeatureClassToGeodatabase function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.FeatureClassToGeodatabase_conversion(["climate.shp", "majorrds.shp"],
+                                           "C:/output/output.gdb")
+                    </code></scriptExample><scriptExample><title>FeatureClassToGeodatabase example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the FeatureClassToGeodatabase function.</para>
+				<code xml:space="preserve"># Name: FeatureClassToGeodatabase_Example2.py
+# Description: Use FeatureClassToGeodatabase to copy feature classes
+#  to geodatabase format
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data"
+ 
+# Set local variables
+inFeatures = ["climate.shp", "majorrds.shp"]
+outLocation = "C:/output/output.gdb"
+ 
+# Execute TableToGeodatabase
+arcpy.FeatureClassToGeodatabase_conversion(inFeatures, outLocation)
+                    </code></scriptExample></scriptExamples></tool></metadata>

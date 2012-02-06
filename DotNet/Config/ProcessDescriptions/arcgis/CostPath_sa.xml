@@ -1,0 +1,108 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Cost Path (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the least-cost path from a source to a destination.</para>
+			</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Accumulative</keyword><keyword>Euclidean</keyword><keyword>Least</keyword><keyword>Optimal</keyword><keyword>Shortest</keyword><keyword>Travel Cost</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CostPath" displayname="Cost Path (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates the least-cost path from a source to a destination.</para>
+			</summary><alink_name>CostPath_sa</alink_name><parameters><param sync="true" name="in_destination_data" displayname="Input raster or feature destination data" datatype="Raster Layer | Feature Layer" direction="Input" expression="in_destination_data" type="Required"><pythonReference>
+						<para>A raster or feature dataset that identifies those cells from which the least-cost path is determined to the least costly source.</para>
+						<para>If the input is a raster, the input consists of cells that have valid values (zero is a valid value), and the remaining cells must be assigned NoData.</para>
+					</pythonReference><dialogReference>
+						<para>A raster or feature dataset that identifies those cells from which the least-cost path is determined to the least costly source.</para>
+						<para>If the input is a raster, the input consists of cells that have valid values (zero is a valid value), and the remaining cells must be assigned NoData.</para>
+					</dialogReference></param><param sync="true" name="in_cost_distance_raster" displayname="Input cost distance raster" datatype="Raster Layer" direction="Input" expression="in_cost_distance_raster" type="Required"><pythonReference>
+						<para>The name of a cost distance raster to be used to determine the least-cost path from the destination locations to a source.</para>
+						<para>The cost distance raster is usually created with the Cost Distance, Cost Allocation or Cost Back Link tools. The cost distance raster stores, for each cell, the minimum accumulative cost distance over a cost surface from each cell to a set of source cells.</para>
+					</pythonReference><dialogReference>
+						<para>The name of a cost distance raster to be used to determine the least-cost path from the destination locations to a source.</para>
+						<para>The cost distance raster is usually created with the Cost Distance, Cost Allocation or Cost Back Link tools. The cost distance raster stores, for each cell, the minimum accumulative cost distance over a cost surface from each cell to a set of source cells.</para>
+					</dialogReference></param><param sync="true" name="in_cost_backlink_raster" displayname="Input cost backlink raster" datatype="Raster Layer" direction="Input" expression="in_cost_backlink_raster" type="Required"><pythonReference>
+						<para>The name of a cost back link raster used to determine the path to return to a source via the least-cost path.</para>
+						<para>For each cell in the back link raster, a value identifies the neighbor that is the next cell on the least accumulative cost path from the cell to a single source cell or set of source cells.</para>
+					</pythonReference><dialogReference>
+						<para>The name of a cost back link raster used to determine the path to return to a source via the least-cost path.</para>
+						<para>For each cell in the back link raster, a value identifies the neighbor that is the next cell on the least accumulative cost path from the cell to a single source cell or set of source cells.</para>
+					</dialogReference></param><param sync="true" name="path_type" displayname="Path type" datatype="String" direction="Input" expression="path_type" type="Optional"><pythonReference>
+						<para>A keyword defining the manner in which the values and zones on the input destination data will be interpreted in the cost path calculations.</para>
+						<bulletList><bullet_item>EACH_CELL — For each cell with valid values on the input destination data, a least-cost path is determined and saved on the output raster. With this option, each cell of the input destination data is treated separately, and a least-cost path is determined for each from cell. </bullet_item><bullet_item>EACH_ZONE — For each zone on the input destination data, a least-cost path is determined and saved on the output raster. With this option, the least-cost path for each zone begins at the cell with the lowest cost distance weighting in the zone. </bullet_item><bullet_item>BEST_SINGLE — For all cells on the input destination data, the least-cost path is derived from the cell with the minimum of the least-cost paths to source cells. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>A keyword defining the manner in which the values and zones on the input destination data will be interpreted in the cost path calculations.</para>
+						<bulletList><bullet_item>EACH_CELL — For each cell with valid values on the input destination data, a least-cost path is determined and saved on the output raster. With this option, each cell of the input destination data is treated separately, and a least-cost path is determined for each from cell. </bullet_item><bullet_item>EACH_ZONE — For each zone on the input destination data, a least-cost path is determined and saved on the output raster. With this option, the least-cost path for each zone begins at the cell with the lowest cost distance weighting in the zone. </bullet_item><bullet_item>BEST_SINGLE — For all cells on the input destination data, the least-cost path is derived from the cell with the minimum of the least-cost paths to source cells. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="destination_field" displayname="Destination field" datatype="Field" direction="Input" expression="destination_field" type="Optional"><pythonReference>
+						<para>The field used to obtain values for the destination locations.</para>
+						<para>Input feature data must contain at least one valid field.</para>
+					</pythonReference><dialogReference>
+						<para>The field used to obtain values for the destination locations.</para>
+						<para>Input feature data must contain at least one valid field.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output cost path raster.</para>
+							<para>The output raster is of integer type.</para></pythonReference><dialogReference>
+							<para>The output cost path raster.</para>
+							<para>The output raster is of integer type.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The Cost Path tool produces an output raster that records the least-cost path or paths from selected locations to the closest source cell defined within the accumulative cost surface, in terms of cost distance.</para>
+			</bullet_item><bullet_item>
+				<para>One or more of the weighted cost tools (, , or ) are generally required to run prior to running Cost Path to create the input cost distance and back link rasters. These are mandatory input rasters to Cost Path.</para>
+			</bullet_item><bullet_item>
+				<para>Each least-cost path is assigned a value when encountered in the scanning process. The ending cell on the original source raster (from which the cost distance and back link were derived) of a cost path receives one, the first path receives three, the second four, and so on. The value two is reserved for the merged portion of paths that have portions of a common cost path.</para>
+			</bullet_item><bullet_item>
+				<para>When the input destination data is a raster, the set of destination cells consists of all cells in the input raster or feature destination data that have valid values. Cells that have NoData values are not included in the source set. The value zero is considered a legitimate destination. A destination raster can be easily created using the .</para>
+			</bullet_item><bullet_item>
+				<para>When multiple paths merge and follow the remaining distance back to a source on the same route, the segment where the two paths travel together is assigned the value 2. The merged portion of the path cannot be assigned the value of one of the paths, since the merged portion belongs to both routes.</para>
+				
+					
+					
+					
+			</bullet_item><bullet_item>
+				<para>Cost Path does not respect the  environment setting. The analysis extent should not be different from the cost distance and cost back link rasters.</para>
+			</bullet_item><bullet_item>
+				<para>Cost Path will ignore the  environment setting and use the cell size of the Input cost backlink raster for the output raster. The pattern of the back link raster would be seriously altered if it were resampled to a different resolution. To avoid any confusion, the cell size should not be set when using this tool.</para>
+			</bullet_item><bullet_item>
+				<para>Cost Path can also be used to derive the path of least resistance down a digital elevation model (DEM). In this case, use the DEM for the  Input cost distance raster and the output from the  tool  for the  Input cost backlink raster. Valid flow direction raster values are 1, 2, 4, 8, 16, 32, 64, and 128; valid values in the back link raster are 1, 2, 3, 4, 5, 6, 7, and 8. Both of these rasters are acceptable.</para>
+			</bullet_item><bullet_item>
+			</bullet_item><bullet_item>
+				<para>When the input destination data is feature, it must contain at least one valid field.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CostPath example 1 (Python window)</title>
+					<para>The following Python Window script demonstrates how to use the CostPath tool.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+outCostPath = CostPath("observers", "costraster", "backlink2", "EACH_CELL")
+outCostPath.save("c:/sapyexamples/output/costpath")
+                    </code></scriptExample><scriptExample><title>CostPath example 2 (stand-alone script)</title>
+					<para>Calculates the least-cost path from a source to a destination.</para>
+				<code xml:space="preserve"># Name: CostPath_Ex_02.py
+# Description: Calculates the least-cost path from a source to 
+#              a destination.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inDestination = "observers.shp"
+costRaster = "costraster"
+backLink = "backlink2"
+method = "EACH_CELL"
+destField = "FID"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute CostPath
+outCostPath = CostPath(inDestination, costRaster, backLink, method,
+                       destField)
+
+# Save the output 
+outCostPath.save("c:/sapyexamples/output/costpath02")
+                    </code></scriptExample></scriptExamples></tool></metadata>

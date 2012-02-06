@@ -1,0 +1,63 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Standardize Addresses (Geocoding)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Standardizes the address information in a table or feature class.</para>
+			<para> Addresses are often presented in different forms that may contain various abbreviations of words, such as "W" for "WEST" or  "RD" for "ROAD".  Based on an address style you select,   the address can be broken into multiple parts, such as  House Number, Prefix Direction, Prefix Type, Street Name and Street Type. Each part will contain a  piece of address information  and the standardized value, such as "1ST" instead of "FIRST" as Street Name, "AVE" instead of "AVENUE" as Street Type.    The address style specifies the  components of an address and determines how the components are ordered and standardized.</para><para>The input address you want to standardize  can be stored in a single field. If the address information  has already been split into multiple fields in the input feature class or table, this tool can concatenate the fields on the fly and standardize the information. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Address</keyword><keyword>Address Attribute</keyword><keyword>Address Component</keyword><keyword>Address Locator</keyword><keyword>Address Matching</keyword><keyword>Break Apart</keyword><keyword>Classify</keyword><keyword>Clean</keyword><keyword>Geocode</keyword><keyword>Geocoding</keyword><keyword>House Number</keyword><keyword>Loc</keyword><keyword>Locator</keyword><keyword>Lox</keyword><keyword>Matching</keyword><keyword>Normalize</keyword><keyword>Parse</keyword><keyword>Prefix Direction</keyword><keyword>Prefix Type</keyword><keyword>Standard</keyword><keyword>Standardize</keyword><keyword>Street Name</keyword><keyword>Street Type</keyword><keyword>Suffix Direction</keyword><keyword>Suffix Type</keyword><keyword>Validate</keyword><keyword>Xml</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="StandardizeAddresses" displayname="Standardize Addresses (Geocoding)" toolboxalias="geocoding" softwarerestriction="none"><summary>
+			<para>Standardizes the address information in a table or feature class.</para>
+			<para> Addresses are often presented in different forms that may contain various abbreviations of words, such as "W" for "WEST" or  "RD" for "ROAD".  Based on an address style you select,   the address can be broken into multiple parts, such as  House Number, Prefix Direction, Prefix Type, Street Name and Street Type. Each part will contain a  piece of address information  and the standardized value, such as "1ST" instead of "FIRST" as Street Name, "AVE" instead of "AVENUE" as Street Type.    The address style specifies the  components of an address and determines how the components are ordered and standardized.</para><para>The input address you want to standardize  can be stored in a single field. If the address information  has already been split into multiple fields in the input feature class or table, this tool can concatenate the fields on the fly and standardize the information. </para>
+		</summary><alink_name>StandardizeAddresses_geocoding</alink_name><toolIllust type="illustration" src="StandardizeAddresses_geocoding_h.png" alt="Standardize Addresses" /><parameters><param sync="true" name="in_address_data" displayname="Input Address Data" datatype="Table View" direction="Input" expression="in_address_data" type="Required"><pythonReference>
+						<para>The table or feature class containing address information that you want to standardize.</para>
+					</pythonReference><dialogReference>
+						<para>The table or feature class containing address information that you want to standardize.</para>
+					</dialogReference></param><param sync="true" name="in_input_address_fields" displayname="Input Address Fields" datatype="Field" direction="Input" expression="[in_input_address_field,...]" type="Required"><pythonReference>
+						<para>The set of fields in the input table or feature class that, when concatenated, forms the address to be standardized.</para>
+					</pythonReference><dialogReference>
+						<para>The set of fields in the input table or feature class that, when concatenated, forms the address to be standardized.</para>
+					</dialogReference></param><param sync="true" name="in_address_locator_style" displayname="Address Locator Style" datatype="Address Locator Style" direction="Input" expression="in_address_locator_style" type="Required"><pythonReference>
+						<para>The address locator style to use to standardize the address information in the input table or feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The address locator style to use to standardize the address information in the input table or feature class.</para>
+					</dialogReference></param><param sync="true" name="in_output_address_fields" displayname="Output Address Fields" datatype="Field" direction="Input" expression="[in_output_address_field,...]" type="Required"><pythonReference>
+						<para>The set of standardized address fields to include in the output table or feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The set of standardized address fields to include in the output table or feature class.</para>
+					</dialogReference></param><param sync="true" name="out_address_data" displayname="Output Address Data" datatype="Table;Feature Class" direction="Output" expression="out_address_data" type="Required"><pythonReference>
+						<para>The output table or feature class to create containing the standardized address fields.</para>
+					</pythonReference><dialogReference>
+						<para>The output table or feature class to create containing the standardized address fields.</para>
+					</dialogReference></param><param sync="true" name="in_relationship_type" displayname="Dynamic Output Data" datatype="Boolean" direction="Input" expression="in_relationship_type" type="Optional"><pythonReference>
+						<para>Indicates whether to create a static or dynamic output dataset.</para>
+						<bulletList><bullet_item>Static—Creates an output table or feature class that contains a copy of the rows or features in the input table and the standardized address fields. This is the default option.</bullet_item><bullet_item>Dynamic—Creates a table containing the standardized address fields and a relationship class  that joins to the input table or feature class.<para>The option only works if both the input and output datasets are stored in the same geodatabase workspace.</para><para>This option is only supported if you have  ArcEditor or ArcInfo licences. An error message saying "Standardize addresses failed" will be displayed if you do not have the proper license.</para></bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether to create a static or dynamic output dataset.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Creates an output table or feature class that contains a copy of the rows or features in the input table and the standardized address fields. This is the default option.</bullet_item><bullet_item>Checked—Creates a table containing the standardized address fields and a relationship class  that joins to the input table or feature class. <para>The option is only enabled if both the input and output datasets are stored in the same geodatabase workspace.</para><para>This option is available if you have  ArcEditor or ArcInfo licenses.</para></bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input address data can be a table or feature class that contains address attributes that can be standardized based on an address locator style.</para>
+			</bullet_item><bullet_item>
+				<para>The input address you want to standardize  can be stored in a single field, such as the Address field in a customer address table. You can then select the field as the Input Address Field in the tool.</para><para>If the address information  has already been broken into multiple fields in the input feature class or table which you can find   in common reference street or point address data, the standardization process will concatenate the fields on the fly and standardize the information.  You specify the fields in the order that  forms the complete address.<para>When using an address locator style that handles street addresses, you may want to specify a house number field or any numeric field as the Input Address Field along with other address attributes so that the concatenated address can be standardized correctly.  For example, consider the input string "17 Mile Road", "Mile" may be interpreted as a street name   instead of "17 Mile"  when no house number is given.  The confusion can be avoided if the input address is  "101 17 Mile Road". The ObjectID field is a numeric field that you can use for this purpose, as illustrated above.</para></para>
+			</bullet_item><bullet_item>
+				<para>The standardized result can be saved in one of the following two output options:</para><bulletList>
+					<bullet_item>An output table or feature class that contains a copy of the rows or features in the input table and the standardized address fields. This is the default option. </bullet_item><bullet_item>An output table that contains only the standardized address fields and a   that joins to the input table or feature class.</bullet_item>
+				</bulletList></bullet_item></usage><scriptExamples><scriptExample><title>StandardizeAddresses Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the StandardizeAddresses function in immediate mode. </para>
+				<code xml:space="preserve">
+import arcpy
+env.workspace = "C:/ArcTutor/geocoding/atlanta.gdb"
+
+# Set local variables:
+input_feature_class = "streets"
+address_fields = "ID;FULL_STREET_NAME"
+locator_style = "US Address-Dual Ranges"
+standardized_fields = "PreDir;PreType;StreetName;SufType;SufDir"
+standardized_feature_class = "StandardizedStreet"
+
+arcpy.StandardizeAddresses_geocoding(input_feature_class, address_fields, locator_style, standardized_fields, standardized_feature_class, "Static")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

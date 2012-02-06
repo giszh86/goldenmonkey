@@ -1,0 +1,85 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Extract by Rectangle (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Extracts the cells of a raster based on a rectangle.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Clip</keyword><keyword>Sample</keyword><keyword>Select</keyword><keyword>Subset</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ExtractByRectangle" displayname="Extract by Rectangle (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Extracts the cells of a raster based on a rectangle.</para>
+		</summary><alink_name>ExtractByRectangle_sa</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster from which cells will be extracted.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster from which cells will be extracted.</para>
+					</dialogReference></param><param sync="true" name="rectangle" displayname="Extent" datatype="Extent" direction="Input" expression="extent" type="Required"><pythonReference>
+						<para>A rectangle that defines the area to be extracted. An Extent object is used to specify the coordinates.</para>
+						<para>The form of the object is:<bulletList><bullet_item>Extent(XMin, YMin, XMax, YMax)<para>where XMin and YMin define the lower-left coordinates of the area to be extracted, and XMax and YMax define the upper-right coordinates.</para></bullet_item></bulletList></para>
+						<para>The coordinates are specified in the same map units as the in_raster.</para>
+					</pythonReference><dialogReference>
+						<para>Left and Bottom define the lower-left coordinates of the area to be extracted, with Right and Top defining the upper-right coordinates.</para>
+						<para>The coordinates are specified in the same map units as the input raster.</para>
+					</dialogReference></param><param sync="true" name="extraction_area" displayname="Extraction area" datatype="String" direction="Input" expression="extraction_area" type="Optional"><pythonReference>
+						<para>Identifies whether to extract cells inside or outside the input rectangle.</para>
+						<bulletList><bullet_item>INSIDE — A keyword specifying that the cells inside the input rectangle should be selected and written to the output raster. All cells outside the rectangle will receive NoData values on the output raster.</bullet_item><bullet_item>OUTSIDE — A keyword specifying that the cells outside the input rectangle should be selected and written to the output raster. All cells inside the rectangle will receive NoData values on the output raster.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Identifies whether to extract cells inside or outside the input rectangle.</para>
+						<bulletList><bullet_item>INSIDE — A keyword specifying that the cells inside the input rectangle should be selected and written to the output raster. All cells outside the rectangle will receive NoData values on the output raster.</bullet_item><bullet_item>OUTSIDE — A keyword specifying that the cells outside the input rectangle should be selected and written to the output raster. All cells inside the rectangle will receive NoData values on the output raster.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output raster containing the cell values extracted from the input raster.</para></pythonReference><dialogReference>
+							<para>The output raster containing the cell values extracted from the input raster.</para></dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The center of the cell is used to determine whether a cell is inside or outside a rectangle. If the center is within the outline of a rectangle, the cell is considered fully inside even if portions of the cell fall outside the rectangle.</para>
+			</bullet_item><bullet_item>
+				<para>Cell locations that are not selected are assigned a value of NoData.</para>
+			</bullet_item><bullet_item>
+				<para>When a  is specified as input, a new multiband raster will be created as output. Each individual band in the input multiband raster will be analyzed accordingly.</para><para>The default output format is an . Note that the name of an ESRI grid stack cannot start with a number, use spaces, or be more than 9 characters in length.</para>
+			</bullet_item><bullet_item>
+				<para>If the input is a layer created from a multiband raster with more than three bands, the extraction operation will only consider the bands that were loaded (symbolized) by the layer. As a result, the output multiband raster can only have three bands, corresponding to those used in the display of the input layer.</para>
+			</bullet_item><bullet_item>
+				<para>If the input raster is integer, the output raster will be integer. If the input is floating point, the output will be floating point.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>ExtractByRectangle example 1 (Python window)</title>
+					<para>This example extracts cells outside a rectangular extent to a new raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+rectExtract = ExtractByRectangle("elevation", 
+                                 Extent(477625, 213900, 486400, 224200), 
+                                 "OUTSIDE")
+rectExtract.save("c:/sapyexamples/output/extrect")
+                    </code></scriptExample><scriptExample><title>ExtractByRectangle example 2 (stand-alone script)</title>
+					<para>This example extracts cells inside a rectangular extent to a new raster.</para>
+				<code xml:space="preserve"># Name: ExtractByRectangle_Ex_02.py
+# Description: 
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "elevation"
+inRectangle = Extent(477625, 213900, 486400, 224200)
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute ExtractByRectangle
+rectExtract = ExtractByRectangle(inRaster, inRectangle, "INSIDE")
+
+# Save the output 
+rectExtract.save("c:/sapyexamples/output/extrect02")
+                    </code></scriptExample></scriptExamples></tool></metadata>

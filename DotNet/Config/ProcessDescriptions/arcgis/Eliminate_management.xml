@@ -1,0 +1,123 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Eliminate (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Eliminates polygons by merging them with neighboring polygons that have the largest area or the longest shared border. Eliminate is often used to remove small sliver polygons that are the result of overlay operations, such as Intersect or Union.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Aggregate</keyword><keyword>Border</keyword><keyword>Boundary</keyword><keyword>Clean</keyword><keyword>Combine</keyword><keyword>Complex</keyword><keyword>Delete</keyword><keyword>Detail</keyword><keyword>Dissolve</keyword><keyword>Get Rid Of</keyword><keyword>Large</keyword><keyword>Less</keyword><keyword>Merge</keyword><keyword>Reduce</keyword><keyword>Remove</keyword><keyword>Scale</keyword><keyword>Sliver</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Eliminate" displayname="Eliminate (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Eliminates polygons by merging them with neighboring polygons that have the largest area or the longest shared border. Eliminate is often used to remove small sliver polygons that are the result of overlay operations, such as Intersect or Union.</para>
+		</summary><alink_name>Eliminate_management</alink_name><toolIllust type="illustration" src="Eliminate_management_h.gif" alt="Eliminate illustration" /><parameters><param sync="true" name="in_features" displayname="Input Layer" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The layer whose polygons will be merged into neighboring polygons.</para>
+					</pythonReference><dialogReference>
+						<para>The layer whose polygons will be merged into neighboring polygons.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The feature class to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class to be created.</para>
+					</dialogReference></param><param sync="true" name="selection" displayname="Eliminating polygon by border" datatype="Boolean" direction="Input" expression="selection" type="Optional"><pythonReference>
+						<para>These options specify which method will be used for eliminating features.</para>
+						<bulletList><bullet_item>LENGTH—Merges a selected polygon with a neighboring unselected polygon by dropping the shared border. The neighboring polygon is the one with the longest shared border. This is the default. </bullet_item><bullet_item>AREA—Merges a selected polygon with a neighboring unselected polygon by dropping the shared border. The neighboring polygon is the one with the largest area. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>These options specify which method will be used for eliminating features.</para>
+						<bulletList>
+							<bullet_item>Checked—Merges a selected polygon with a neighboring unselected polygon by dropping the shared border. The neighboring polygon is the one with the longest shared border. This is the default. </bullet_item>
+							<bullet_item>Unchecked—Merges a selected polygon with a neighboring unselected polygon by dropping the shared border. The neighboring polygon is the one with the largest area. </bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="ex_where_clause" displayname="Exclusion Expression" datatype="SQL Expression" direction="Input" expression="ex_where_clause" type="Optional"><pythonReference>
+						<para>An expression used to identify input features that should not be eliminated.</para>
+						<para>The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para><para>
+							"MY_FIELD"
+						</para><para> If you're querying personal geodatabases, enclose fields in square brackets: </para><para>
+							[MY_FIELD]
+						</para><para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para><para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para></pythonReference><dialogReference>
+						<para>An expression used to identify input features that should not be eliminated.</para>
+						<para>The syntax for the expression differs slightly depending on the data source. For example, if you're querying file or ArcSDE geodatabases, shapefiles, or coverages, enclose field names in double quotes:</para><para>
+							"MY_FIELD"
+						</para><para> If you're querying personal geodatabases, enclose fields in square brackets: </para><para>
+							[MY_FIELD]
+						</para><para>In the Python Window enclose the {where_clause} in parentheses to ensure the spaces (which are delimiters between parameters) are correctly interpreted.</para><para> For more information on SQL syntax and how it differs between data sources, see SQL Reference.</para></dialogReference></param><param sync="true" name="ex_features" displayname="Exclusion Layer" datatype="Feature Layer" direction="Input" expression="ex_features" type="Optional"><pythonReference>
+						<para>An input polyline or polygon feature class or layer that defines polygon boundaries, or portions thereof, that should not be eliminated. </para>
+					</pythonReference><dialogReference>
+						<para>An input polyline or polygon feature class or layer that defines polygon boundaries, or portions thereof, that should not be eliminated. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="M_resolution" label="M resolution">
+						
+					</environment><environment name="M_tolerance" label="M tolerance">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment><environment name="Qualified_field_names" label="Qualified field names">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Features to be eliminated are determined by a selected feature set applied to a polygon layer. The selected set must be determined in a previous step by using , using , or querying a map layer in ArcMap.</para>
+			</bullet_item><bullet_item>
+				<para>The Input Layer must include a selection; otherwise, Eliminate will fail.</para>
+			</bullet_item><bullet_item>
+				<para>The Exclusion Expression and Exclusion Layer are not mutually exclusive and can be used together to give full control over what is eliminated.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Eliminate example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the Eliminate tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data/Portland.gdb/Census"
+arcpy.MakeFeatureLayer_management("blockgrp", "blocklayer")
+arcpy.SelectLayerByAttribute_management("blocklayer", "NEW_SELECTION", 
+                                        '"Area_Sq_Miles" &lt; 0.15')
+arcpy.Eliminate_management("blocklayer", "C:/output/output.gdb/eliminate_output", 
+                           "LENGTH", '"OBJECTID" = 9')
+                    </code></scriptExample><scriptExample><title>Eliminate example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the Eliminate tool.</para>
+				<code xml:space="preserve"># Name: Eliminate_Example2.py
+# Description: Eliminate features based on a selection.
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+# Set environment settings
+env.workspace = "C:/data/Portland.gdb/Census"
+ 
+# Set local variables
+inFeatures = "blockgrp"
+tempLayer = "blocklayer"
+expression = '"Area_Sq_Miles" &lt; 0.15'
+outFeatureClass = "C:/output/output.gdb/eliminate_output"
+exclusionExpression = '"OBJECTID" = 9'
+ 
+# Execute MakeFeatureLayer
+arcpy.MakeFeatureLayer_management(inFeatures, tempLayer)
+ 
+# Execute SelectLayerByAttribute to define features to be eliminated
+arcpy.SelectLayerByAttribute_management(tempLayer, "NEW_SELECTION", expression)
+ 
+# Execute Eliminate
+arcpy.Eliminate_management(tempLayer, outFeatureClass, "LENGTH", 
+                           exclusionExpression)
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,53 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate UTM Zone (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Calculates a UTM zone of each feature based on the center point and stores this spatial reference string in a specified field. This field can be used in conjunction with Data Driven Pages to update the spatial reference to the correct UTM zone for each map.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Atlas</keyword><keyword>Cartography</keyword><keyword>Coordinate System</keyword><keyword>Data Driven Pages</keyword><keyword>Graticule</keyword><keyword>Grid</keyword><keyword>Index</keyword><keyword>Index Layer</keyword><keyword>Layout</keyword><keyword>Map Book</keyword><keyword>Mapbook</keyword><keyword>Multi-Page Layout</keyword><keyword>Multiple Page</keyword><keyword>Projection</keyword><keyword>Utm Zones</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateUTMZone" displayname="Calculate UTM Zone (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para> Calculates a UTM zone of each feature based on the center point and stores this spatial reference string in a specified field. This field can be used in conjunction with Data Driven Pages to update the spatial reference to the correct UTM zone for each map.</para>
+			
+		</summary><alink_name>CalculateUTMZone_cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>Input feature layer.</para>
+					</pythonReference><dialogReference>
+						<para>Input feature layer.</para>
+					</dialogReference></param><param sync="true" name="in_field" displayname="UTM Zone Field" datatype="Field" direction="Input" expression="in_field" type="Required"><pythonReference>
+						<para> String field that stores the spatial reference string for the coordinate system. Field should have sufficient length (more than 600 characters) to hold the spatial reference string.</para>
+					</pythonReference><dialogReference>
+						<para> String field that stores the spatial reference string for the coordinate system. Field should have sufficient length (more than 600 characters) to hold the spatial reference string.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace"></environment></environments><usage><bullet_item>
+				<para> Input features can be points, lines, or polygons.</para>
+			</bullet_item><bullet_item>
+				<para> Geometries located at extreme latitudes, near either the North or the South poles, may not be appropriate for UTM zone calculation. You will receive a warning when a UTM zone cannot be calculated for a particular feature.</para>
+				
+			</bullet_item><bullet_item>
+				<para> The datum for the calculated UTM coordinate system string is taken from the datum of the active data frame's coordinate system. If the datum of the feature's data source is different than the data frame's, you will get a warning. A UTM zone is calculated, however, the result may not be accurate. The tool does not perform any geotransformations. In order to get the best results, the datum of your input features should be the same as the datum used by the data frame.</para>
+			</bullet_item><bullet_item>
+				<para> The UTM Zone Field, which contains the UTM spatial reference string, should have a length of 600 characters or more. Spatial reference strings vary in length but are usually quite long, and you need to ensure that the field has enough space. The tool will issue a warning if the spatial reference string has been truncated because the field length is not long enough. If you get this warning, it is likely that some of the spatial reference strings generated may have been truncated making them useless. When receiving the warning you should delete your results, create a new field of a sufficient length (&gt; 600 characters), and rerun the tool.</para>
+				
+			</bullet_item><bullet_item>
+				<para> Use geodatabase feature classes. In most cases, the field size limitation of shapefiles makes it likely that spatial reference strings will be truncated if you run this tool on a shapefile.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CalculateUTMZone tool Example (Python Window)</title>
+					<para>Calculates a custom UTM zone for a set of features.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+arcpy.env.workspace = "C:\Data\ProjectData.gdb"
+arcpy.CalculateUTMZone_cartography("US_Counties", "UTM_Zone")
+                    </code></scriptExample><scriptExample><title>CalculateUTMZone tool Example (Stand-alone Python script)</title>
+					<para>Calculates a custom UTM zone for a set of features.</para>
+				<code xml:space="preserve"># Name: calculateutmzone_example.py
+# Description: Calculates a custom UTM zone for a set of features
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+arcpy.env.workspace = "C:\Data\ProjectData.gdb"
+
+# Set local variables
+inFeatures = "US_states"
+utmField = "UTM_zone"
+
+# Execute CalculateUTMZone
+arcpy.CalculateUTMZone_cartography(inFeatures, utmField)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

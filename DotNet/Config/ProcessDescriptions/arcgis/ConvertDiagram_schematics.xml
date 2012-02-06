@@ -1,0 +1,177 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Convert Diagram To Features (Schematics)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool converts a schematic diagram to feature classes or shapefiles.</para>
+			<para>It allows exporting of several diagrams either in the same feature classes/shapefiles (one feature class/shapefile per schematic feature class) or in different feature classes/shapefiles per diagram (one feature class/shapefile per schematic feature class and per diagram).</para>
+			
+				<para>See the Script example section for a sample use of this tool that allows you to export all diagrams contained in a schematic dataset into features.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Convert</keyword><keyword>Diagram</keyword><keyword>Export</keyword><keyword>Geodatabase</keyword><keyword>Schema</keyword><keyword>Schematic</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ConvertDiagram" displayname="Convert Diagram To Features (Schematics)" toolboxalias="schematics" softwarerestriction="none"><summary>
+			<para>This tool converts a schematic diagram to feature classes or shapefiles.</para>
+			<para>It allows exporting of several diagrams either in the same feature classes/shapefiles (one feature class/shapefile per schematic feature class) or in different feature classes/shapefiles per diagram (one feature class/shapefile per schematic feature class and per diagram).</para>
+			
+				<para>See the Script example section for a sample use of this tool that allows you to export all diagrams contained in a schematic dataset into features.</para>
+			
+		</summary><alink_name>ConvertDiagram_schematics</alink_name><parameters><param sync="true" name="in_diagram" displayname="Input Schematic Diagram" datatype="Schematic diagram" direction="Input" expression="in_diagram" type="Required"><pythonReference>
+						<para>The schematic diagram to be converted.</para>
+					</pythonReference><dialogReference>
+						<para>The schematic diagram to be converted.</para>
+					</dialogReference></param><param sync="true" name="out_location" displayname="Output Location" datatype="Workspace;Feature dataset;Folder" direction="Output" expression="out_location" type="Required"><pythonReference>
+						<para>Workspace, feature dataset, or folder in which the schematic diagram will be converted. This container must already exist.</para>
+					</pythonReference><dialogReference>
+						<para>Workspace, feature dataset, or folder in which the schematic diagram will be converted. This container must already exist.</para>
+					</dialogReference></param><param sync="true" name="reuse_fc" displayname="Reuse Existing Structure (optional)" datatype="String" direction="Input" expression="reuse_fc" type="Optional"><pythonReference>
+						<para>Indicates whether the input schematic diagram will be exported in the same feature classes/shapefiles as the other diagrams based on the same diagram template.</para>
+						<bulletList><bullet_item>REUSE_FC—Must be used to export several diagrams implemented by the same diagram template in the same feature classes/shapefiles. Exports the specified diagram in feature classes/shapefiles contained in a feature dataset/folder whose name corresponds to the diagram template name, each feature class/shapefile name corresponding to the name of a schematic feature class associated with the diagram template. This is the default. </bullet_item><bullet_item>NO_REUSE_FC—Exports the diagram in new feature classes/shapefiles created in a feature dataset/folder whose name is the concatenation of the exported diagram's diagram template name and name, each feature class/shapefile name being the concatenation of the schematic feature class name and diagram name. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether the input schematic diagram will be exported in the same feature classes/shapefiles as the other diagrams based on the same diagram template.</para>
+						<bulletList><bullet_item>REUSE_FC—Must be used to export several diagrams implemented by the same diagram template in the same feature classes/shapefiles. Exports the specified diagram in feature classes/shapefiles contained in a feature dataset/folder whose name corresponds to the diagram template name, each feature class/shapefile name corresponding to the name of a schematic feature class associated with the diagram template. This is the default. </bullet_item><bullet_item>NO_REUSE_FC—Exports the diagram in new feature classes/shapefiles created in a feature dataset/folder whose name is the concatenation of the exported diagram's diagram template name and name, each feature class/shapefile name being the concatenation of the schematic feature class name and diagram name. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="export_related_attributes" displayname="Export All Related Feature Attributes (optional)" datatype="String" direction="Input" expression="export_related_attributes" type="Optional"><pythonReference>
+						<para>Indicates whether all the attributes stored in the feature classes/object tables associated with the schematic feature classes contained in the export diagram will be also exported.</para>
+						<bulletList><bullet_item>NO_RELATED_ATTRIBUTES—Each schematic feature contained in the input diagram is exported with only the attributes contained in its schematic feature class. This is the default. </bullet_item><bullet_item>EXPORT_RELATED_ATTRIBUTES—Each schematic feature contained in the input diagram is exported with the attributes contained in its schematic feature class <bold>and</bold> all the attributes related to its associated real feature that are stored in the associated feature class/object table. </bullet_item></bulletList>
+						
+							<para>If no associated feature class/table is specified for a schematic feature class, no feature attributes can be exported.</para>
+						
+						
+							<para>When using the Reuse Existing Structure option and the structure already exists without the associated feature fields, enabling this option will have no effect.</para>
+						
+					</pythonReference><dialogReference>
+						<para>Indicates whether all the attributes stored in the feature classes/object tables associated with the schematic feature classes contained in the export diagram will be also exported.</para>
+						<bulletList><bullet_item>NO_RELATED_ATTRIBUTES—Each schematic feature contained in the input diagram is exported with only the attributes contained in its schematic feature class. This is the default. </bullet_item><bullet_item>EXPORT_RELATED_ATTRIBUTES—Each schematic feature contained in the input diagram is exported with the attributes contained in its schematic feature class <bold>and</bold> all the attributes related to its associated real feature that are stored in the associated feature class/object table. </bullet_item></bulletList>
+						
+							<para>If no associated feature class/table is specified for a schematic feature class, no feature attributes can be exported.</para>
+						
+						
+							<para>When using the Reuse Existing Structure option and the structure already exists without the associated feature fields, enabling this option will have no effect.</para>
+						
+					</dialogReference></param><param sync="true" name="container_geometry" displayname="Container Geometry (optional)" datatype="String" direction="Input" expression="[container_geometry,...]" type="Optional"><pythonReference>
+						<para>Indicates the geometry type of the features that will be created for the exported schematic containers contained in the input diagram.</para>
+						<bulletList><bullet_item>POLYGON—Each container in the input diagram is exported as a polygon feature. This is the default. </bullet_item><bullet_item>POLYLINE—Each container in the input diagram is exported as a polyline feature. </bullet_item><bullet_item>POINT—Each container in the input diagram is exported as a point feature. </bullet_item></bulletList>
+						
+							<para>When using the Reuse Existing Structure option and the structure already exists with POLYGON (POLYLINE or POINT) feature classes created for container schematic features, there is no way to change the feature class type to POLYLINE or POINT (POLYGON) for the next conversions.</para>
+						
+					</pythonReference><dialogReference>
+						<para>Indicates the geometry type of the features that will be created for the exported schematic containers contained in the input diagram.</para>
+						<bulletList><bullet_item>POLYGON—Each container in the input diagram is exported as a polygon feature. This is the default. </bullet_item><bullet_item>POLYLINE—Each container in the input diagram is exported as a polyline feature. </bullet_item><bullet_item>POINT—Each container in the input diagram is exported as a point feature. </bullet_item></bulletList>
+						
+							<para>When using the Reuse Existing Structure option and the structure already exists with POLYGON (POLYLINE or POINT) feature classes created for container schematic features, there is no way to change the feature class type to POLYLINE or POINT (POLYGON) for the next conversions.</para>
+						
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="Configuration Keyword (optional)" datatype="String" direction="Input" expression="config_keyword" type="Optional"><pythonReference>
+						<para>The configuration keyword that determines the storage parameters of the table in a relational database management system (RDBMS)This is for ArcSDE only.</para>
+					</pythonReference><dialogReference>
+						<para>The configuration keyword that determines the storage parameters of the table in a relational database management system (RDBMS)This is for ArcSDE only.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_Config_Keyword" label="Output Config Keyword">
+					</environment></environments><usage><bullet_item>
+				<para>To convert a schematic diagram to feature classes, browse to and select a geodatabase/feature dataset for the specified output location parameter. To convert a schematic diagram to shapefiles, browse to and select a folder.</para>
+			</bullet_item><bullet_item>
+				<para>To export several diagrams in the same feature classes/shapefiles, check the Reuse Existing Structure option. To export several diagrams in different feature classes/shapefiles, uncheck the Reuse Existing Structure option. </para>
+			</bullet_item><bullet_item>
+				<para>Check the Export All Related Feature Attributes option if you want each schematic feature contained in the input schematic diagram to be exported with its schematic attributes <bold>and</bold> all the attributes related to its associated real feature. </para>
+			</bullet_item><bullet_item>
+				<para>The Export All Related Attribute Features option works for schematic feature classes for which the Associated Feature Class/Table field value is known. If no associated feature class/table is specified for a schematic feature class, its related attribute features cannot be exported.</para>
+			</bullet_item><bullet_item>
+				<para>When the Reuse Existing Structure option is enabled and the structure has been created without the Export All Related Attribute Features option, enabling this option will have no effect; no field corresponding to the associated features can be created. Check the Export All Related Attribute Features option at the first diagram conversion if you want these attributes to be exported during each diagram conversion process.</para>
+			</bullet_item><bullet_item>
+				<para>Select POLYGON in Container Geometry if you want all containers contained in the input schematic diagram to be exported as a polygon feature. If you want such containers to be exported as polyline (or point) features, select POLYLINE (or POINT).</para>
+			</bullet_item><bullet_item>
+				<para>When working with the Reuse Existing Structure option while POLYGON (POLYLINE or POINT) has been chosen for the first diagram conversion, there is no way to change the conversion to POLYLINE or POINT (POLYGON) for the next conversions. If you want to change it, you must remove the structure and export your diagrams again.</para>
+			</bullet_item><bullet_item>
+				<para>Schematic feature nodes are usually converted to point features unless they are containers in the input schematic diagram. But if the structure is created from an input diagram that doesn't have a container or has empty containers, the feature class created for these schematic feature classes will be a point type feature class.</para>
+			</bullet_item><bullet_item>
+				<para>When the specified input schematic diagram has been already exported in the specified output location, it will be deleted before being re-created.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Sample script with the ConvertDiagram GP tool</title>
+					<para>The following script allows you to loop on all diagrams contained in a schematic container—that is, a schematic dataset or schematic folder—and converts them to features in an output location.</para>
+					<para>How to use this scripting example:
+							<bullet_item>Copy the following script in any text editor and save the text file with the .py extension. </bullet_item>
+							<bullet_item>Start ArcCatalog and open the ArcToolbox window.</bullet_item>
+							<bullet_item>Add a new script:<bulletList>
+									<bullet_item>Type a name for it (ConvertDiagramsTool, for example).</bullet_item>
+									<bullet_item>For the Script File parameter, specify the .py file you have just created.</bullet_item>
+									<bullet_item>Then specify the five following parameters:
+											<bullet_item>Display Name: Input Schematic Container, Data Type: Schematic Dataset or Schematic Folder; Type Property=Required, Direction Property=Input</bullet_item>
+											<bullet_item>Display Name: Output Location, Data Type: Workspace or Feature Dataset; Type Property=Required, Direction Property=Input</bullet_item>
+											<bullet_item>Display Name: Recursive, Data Type: Boolean; Type Property=Required, Direction Property=Input, Default Value=True</bullet_item>
+											<bullet_item>Display Name: Diagram Class Filter, Data Type: String; Type Property=Optional, Direction Property=Input</bullet_item>
+											<bullet_item>Display Name: Derived Output Location, Data Type: Workspace or Feature Dataset; Type Property=Derived, Direction Property=Output, Obtained from=Output_Location</bullet_item>
+										</bullet_item>
+								</bulletList></bullet_item>
+						</para>
+					<para>Required input parameters: An input schematic container (dataset or folder) + an output location (GDB, feature dataset, or folder for shapefiles)</para>
+					<para>Optional arguments: A recursive flag + adiagram class filter </para>
+					<para>Output derived location: A workspace or feature dataset</para>
+				<code xml:space="preserve"># Name: ConvertDiagrams.py
+# Description: Convert schematic diagrams
+# Author: ESRI
+
+# import arcpy, sys, math
+msgInputsErr = "Invalid arguments."
+msgParseErr = "Cannot parse input arguments."
+msgConvertErr = "Error during conversion."
+
+msgNoLicenseAvailable = "Schematics license required"
+
+# Search schematic diagrams recursively in the folders
+# list 'pathList'  stores the result
+	def RecursiveSearch(inCont, bRecursive):
+		try:
+			childs = inCont.Children
+			dataset = childs.Next()
+			while dataset:
+				if dataset.DataType == "SchematicFolder" and bRecursive:
+					RecursiveSearch(dataset, bRecursive)
+				elif dataset.DataType == "SchematicDiagram":
+					if diagramClassFilter == "" or diagramClassFilter == dataset.DiagramClassname:
+						pathList.append(dataset.CatalogPath)
+				dataset = childs.next()
+		except:
+			raise
+	
+try:
+		if arcpy.CheckExtension("Schematics1") == "Available":
+			arcpy.CheckOutExtension("Schematics")
+		else:
+			raise Exception(msgNoLicenseAvailable)
+except Exception as exc:
+		print exc
+		raise
+
+arcpy.OverWriteOutput = True
+
+# Decode parameters
+try:
+	inputContainer = arcpy.GetParameterAsText(0) 
+	outputLocation = arcpy.GetParameterAsText(1) 
+	recursive = arcpy.GetParameterAsText(2)
+	if recursive == "false":
+		recursive = None
+	diagramClassFilter = arcpy.GetParameterAsText(3)
+
+	if inputContainer == "":
+		raise Exception()
+
+except:
+	print msgParseErr
+	arcpy.AddError(msgParseErr)
+	raise
+
+# Main 
+try:
+	pathList = []   # List for diagram names to convert
+	arcpy.SetProgressorLabel("Searching diagrams to convert...")
+	RecursiveSearch(arcpy.Describe(inputContainer), recursive)
+
+	arcpy.SetProgressor("step", "Converting...", 0, len(pathList), 1)
+
+	for path in pathList:
+		# Execute convert	
+		mes = "Converting Schematic Diagram : " + path
+		# Set the progressor label
+		arcpy.SetProgressorLabel(mes)
+		arcpy.AddMessage(mes)
+		arcpy.ConvertDiagram_schematics(path, outputLocation, "REUSE_FC", "NO_RELATED_ATTRIBUTES", "#")
+		arcpy.SetProgressorPosition()
+
+except:
+	arcpy.AddError(msgConvertErr)
+	raise
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

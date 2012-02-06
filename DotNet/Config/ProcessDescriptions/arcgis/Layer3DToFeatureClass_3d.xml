@@ -1,0 +1,100 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Layer 3D To Feature Class (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>This tool applies 3D properties associated with a feature layer and writes the result to a new multipatch or line feature class.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D Layer</keyword><keyword>3D Markers</keyword><keyword>3D Properties</keyword><keyword>3D Symbol</keyword><keyword>Convert</keyword><keyword>Extruded</keyword><keyword>Multipatch</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Layer3DToFeatureClass" displayname="Layer 3D To Feature Class (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>This tool applies 3D properties associated with a feature layer and writes the result to a new multipatch or line feature class.</para>
+			
+		</summary><alink_name>Layer3DToFeatureClass_3d</alink_name><parameters><param sync="true" name="in_feature_layer" displayname="Input Feature Layer" datatype="Feature layer" direction="Input" expression="in_feature_layer" type="Required"><pythonReference>
+						<para>The input feature layer with 3D properties.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature layer with 3D properties.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output feature Class" datatype="Feature class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output multipatch feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output multipatch feature class.</para>
+					</dialogReference></param><param sync="true" name="group_field" displayname="Grouping Field" datatype="Field" direction="Input" expression="group_field" type="Optional"><pythonReference>
+						<para>A group field is used to combine the geometry of multiple input features into individual output records. The output attribute values will be set to one of the input records.</para>
+					</pythonReference><dialogReference>
+						<para>A group field is used to combine the geometry of multiple input features into individual output records. The output attribute values will be set to one of the input records.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment><environment name="Z_resolution" label="Z resolution">
+						
+					</environment><environment name="Z_tolerance" label="Z tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>For an input feature to be converted, the result must support representation as a multipatch. For example, points symbolized as 3D markers can be converted.</para>
+			</bullet_item><bullet_item>
+				<para>Only certain 3D properties are applied, for example:</para>
+				<bulletList>
+					<bullet_item>3D symbols assigned to points</bullet_item>
+					<bullet_item>3D symbols assigned to lines</bullet_item>
+					<bullet_item>Extrusion applied to polygons</bullet_item>
+					<bullet_item>Nonextruded polygons with z-values</bullet_item>
+					<bullet_item>Texture downsampling assigned to multipatches</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>Texture fill symbols are not supported.</para>
+			</bullet_item><bullet_item>
+				<para>Draped layers in ArcGlobe are not supported. Due to the dynamic nature of draped surfaces, height values will not be maintained.</para>
+			</bullet_item><bullet_item>
+				<para>If the input layer contains 3D marker symbols with restricted geometries—for example, textured multipatch—the 3D features will not be added to the output feature class.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Layer 3D To Feature Class Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Layer 3D To Feature Class
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.Layer3DToFeatureClass_3d("Points_3D.lyr", "Test.gdb/trees")
+                    </code></scriptExample><scriptExample><title>Layer 3D To Feature Class Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Layer 3D To Feature Class
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: Layer3DToFeatureClass Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              Layer3DToFeatureClass tool to create multipatches from all
+#              layers in a target workspace. The layer files are assumed to have
+#              been saved wtih 3D rendering from ArcScene.
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Use the ListFiles method to identify all layer files in workspace
+    if len(arcpy.ListFiles("*.lyr")) &gt; 0:
+        for file in arcpy.ListFiles("*.lyr"):
+            # Set Local Variables
+            outFC = "Test.gdb/" + file[:4] # Strips the '.lyr' part of the name
+            #Execute Layer3DToFeatureClass
+            arcpy.Layer3DToFeatureClass_3d(file, outFC)
+    else:
+        "There are no layer files in the " + env.workspace + " directory."
+except:
+    # Returns any other error messages
+    print arcpy.GetMessages(2)
+
+del outFC
+                    </code></scriptExample></scriptExamples></tool></metadata>

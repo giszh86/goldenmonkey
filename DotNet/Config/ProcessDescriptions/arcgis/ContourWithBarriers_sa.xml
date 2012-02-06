@@ -1,0 +1,150 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Contour with Barriers (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates contours from a raster surface. The inclusion of barrier features will allow one to independently generate contours on either side of a barrier.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Breakline</keyword><keyword>Dem</keyword><keyword>Digital Elevation Model</keyword><keyword>Elevation</keyword><keyword>Faulted</keyword><keyword>Isoline</keyword><keyword>Z-Factor</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="ContourWithBarriers" displayname="Contour with Barriers (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Creates contours from a raster surface. The inclusion of barrier features will allow one to independently generate contours on either side of a barrier.</para>
+		</summary><alink_name>ContourWithBarriers_sa</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input surface raster.</para></pythonReference><dialogReference>
+						<para>The input surface raster.</para></dialogReference></param><param sync="true" name="out_contour_feature_class" displayname="Output contour features" datatype="Feature Class" direction="Output" expression="out_contour_feature_class" type="Required"><pythonReference>
+						<para>Output contour features.</para>
+					</pythonReference><dialogReference>
+						<para>Output contour features.</para>
+					</dialogReference></param><param sync="true" name="in_barrier_features" displayname="Input barrier features" datatype="Feature Layer" direction="Input" expression="in_barrier_features" type="Optional"><pythonReference>
+						<para>Input barrier features.</para>
+					</pythonReference><dialogReference>
+						<para>Input barrier features.</para>
+					</dialogReference></param><param sync="true" name="in_contour_type" displayname="Input contour type" datatype="String" direction="Input" expression="in_contour_type" type="Optional"><pythonReference>
+						<para>The type of contour to create.</para>
+						<bulletList><bullet_item>POLYLINES — The contour or isoline representation of the input raster. </bullet_item><bullet_item>POLYGONS — Closed polygons representing the contours. </bullet_item></bulletList>
+						<para>The current version of Contour with Barriers only supports polyline output. If the polygon output option is used it will be ignored and polyline output will be created.</para>
+					</pythonReference><dialogReference>
+						<para>The type of contour to create.</para>
+						<bulletList><bullet_item>POLYLINES — The contour or isoline representation of the input raster. </bullet_item><bullet_item>POLYGONS — Closed polygons representing the contours. </bullet_item></bulletList>
+						<para>The current version of Contour with Barriers only supports polyline output. If the polygon output option is used it will be ignored and polyline output will be created.</para>
+					</dialogReference></param><param sync="true" name="in_contour_values_file" displayname="Input contour values file." datatype="file" direction="Input" expression="in_contour_values_file" type="Optional"><pythonReference>
+						<para>The base contour, contour interval, indexed contour interval, and explicit contour values can also be specified via a text file.</para>
+					</pythonReference><dialogReference>
+						<para>The base contour, contour interval, indexed contour interval, and explicit contour values can also be specified via a text file.</para>
+					</dialogReference></param><param sync="true" name="explicit_only" displayname="Only specify explicit contour value." datatype="String" direction="Input" expression="explicit_only" type="Optional"><pythonReference>
+						<para>Only explicit contour values are used. Base contour, contour interval, and indexed contour intervals are not specified.</para>
+						<bulletList><bullet_item>NO_EXPLICIT_VALUES_ONLY — The default, contour interval must be specified.</bullet_item><bullet_item>EXPLICIT_VALUES_ONLY — Only explicit contour values are specified.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Only explicit contour values are used. Base contour, contour interval, and indexed contour intervals are not specified.</para>
+						<bulletList>
+							<bullet_item>Unchecked—The default, contour interval must be specified.</bullet_item>
+							<bullet_item>Checked—Only explicit contour values are specified.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="in_base_contour" displayname="Base contour" datatype="Double" direction="Input" expression="in_base_contour" type="Optional"><pythonReference>
+						<para>Base contour value.</para><para>Contours are generated above and below this value as needed to cover the entire value range of the input raster. The default is zero.</para>
+					</pythonReference><dialogReference>
+						<para>Base contour value.</para><para>Contours are generated above and below this value as needed to cover the entire value range of the input raster. The default is zero.</para>
+					</dialogReference></param><param sync="true" name="in_contour_interval" displayname="Contour interval" datatype="Double" direction="Input" expression="in_contour_interval" type="Optional"><pythonReference>
+						<para>Interval of contours.</para><para>This can be any positive number.</para>
+					</pythonReference><dialogReference>
+						<para>Interval of contours.</para><para>This can be any positive number.</para>
+					</dialogReference></param><param sync="true" name="in_indexed_contour_interval" displayname="Indexed Contour interval" datatype="Double" direction="Input" expression="in_indexed_contour_interval" type="Optional"><pythonReference>
+						<para>Contours will also be generated for this interval and will be flagged accordingly in the output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>Contours will also be generated for this interval and will be flagged accordingly in the output feature class.</para>
+					</dialogReference></param><param sync="true" name="in_contour_list" displayname="Contour values" datatype="Double" direction="Input" expression="[in_explicit_contour,...]" type="Optional"><pythonReference>
+						<para>Explicit values at which to create contours.</para>
+					</pythonReference><dialogReference>
+						<para>Explicit values at which to create contours.</para>
+					</dialogReference></param><param sync="true" name="in_z_factor" displayname="Z factor" datatype="Double" direction="Input" expression="in_z_factor" type="Optional"><pythonReference>
+						<para>Multiplication factor.</para>
+						<para>For example, if your z units are feet and your contours should be in meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</pythonReference><dialogReference>
+						<para>Multiplication factor.</para>
+						<para>For example, if your z units are feet and your contours should be in meters, you would use a z-factor of 0.3048 to convert your z units from feet to meters (1 foot = 0.3048 meter).</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The current version of Contour with Barriers only supports polyline output. If the polygon output option is used it will be ignored and polyline output will be created.</para>
+			</bullet_item><bullet_item>
+				<para>Smoother but less accurate contours can be obtained by pre-processing the input raster with a  operation with the MEAN option or the  tool with the LOW option.</para>
+			</bullet_item><bullet_item>
+				<para>Contours will extend into the raster's NoData cell by a distance of half the raster's cell size. This will mean that the contours will be generated over single NoData cells. However, a 3-cell-by-3-cell area of NoData will only have the contours extending into this area by half the cell size distance.</para>
+			</bullet_item><bullet_item>
+				<para>The Type field in the output contour feature class has values:    1 for contours
+    2 for indexed contours
+    3 for explicit contours</para>
+			</bullet_item><bullet_item>
+				<para>An indexed contour interval can be used to generate additional contours and their Type value will be coded as 2 in the output feature class.</para>
+			</bullet_item><bullet_item>
+				<para>A base contour is used, for example, when you want to create contours every 15 meters, starting at 10 meters. Here, 10 would be used for the base contour, and 15 would be the contour interval. The values to be contoured would be 10, 25, 40, 55, and so on.</para>
+			</bullet_item><bullet_item>
+				<para>Specifying a base contour does not prevent contours from being created above or below that value.</para>
+			</bullet_item><bullet_item>
+				<para>A text file containing contour value specifications can include the following:</para>
+				<bulletList>
+					<bullet_item>Any line that starts with a non-numeric value will be ignored and treated as a comment line.</bullet_item>
+					<bullet_item>A line with a single value will be treated as an explicit contour value.</bullet_item>
+					<bullet_item>A line with three values will be treated as base, contour interval, and indexed contour.</bullet_item>
+					<bullet_item>A line with four values will treated as from, to, by, and indexed contours.</bullet_item>
+				</bulletList>
+				<para>For example, if a raster has a minimum value of 102 and a maximum of 500, then a text file with:    # contour values and ranges
+    122.75
+    485 500 5 12
+    4 100 99</para>
+				<para>will produce contours at:    122.75
+    104, 204, 304, 404
+    103, 202, 301, 400, 499
+    485, 490, 495, 500
+    497</para>
+			</bullet_item><bullet_item>
+				<para>If there are cell values of the raster within a barrier polygon feature the contour lines will be split at the barrier. If the cell values within the polygon feature are to be ignored, change those cell values to NoData.</para>
+			</bullet_item><bullet_item>
+				<para>If the input raster surface is very large or many output features are requested, a large number of temporary files will be created in the operating system's temporary file location. If any problems are encountered as a result of this do one of the following:</para>
+				<bulletList>
+					<bullet_item>Increase the available disk space for temporary files.</bullet_item>
+					<bullet_item>Reduce the number of contours specified, or split the contour range up and process each group separately, and combine the results from each range into a final result.</bullet_item>
+					<bullet_item>Process the input data in sections (tiles), and merge the individual results into one dataset.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item><para>The output contour features can be labeled by using the  tool.</para></bullet_item></usage><scriptExamples><scriptExample><title>ContourWithBarriers example 1 (Python window)</title>
+					<para>This example creates contours from an ESRI GRID raster with an input barrier feature as well as base and interval parameters specified. The output contours area as polylines in a shapefile.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env  
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+ContourWithBarriers("elevation", "C:/sapyexamples/output/outcontourwithbarriers.shp", "elevation_barrier.shp", "POLYLINES",
+                    "", "", 0, 300)
+
+                    </code></scriptExample><scriptExample><title>ContourWithBarriers example 2 (stand-alone script)</title>
+					<para>This example creates contours from an ESRI GRID raster with an input barrier feature as well as base and interval parameters specified. The output contours area as polylines in a shapefile.</para>
+				<code xml:space="preserve"># Name: ContourWithBarriers_Ex_02.py
+# Description: Creates contours from a raster surface.
+#           The inclusion of barrier features will allow one to independently generate contours on either side of a barrier.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "elevation"
+inBarrier = "elevation_barrier.shp"
+inTextFile = ""
+explicitValues = "NO_EXPLICIT_VALUES_ONLY"
+contourInterval = 200
+contourList = [600, 935, 1237.4]
+baseContour = 0
+outContours = "C:/sapyexamples/output/outcontourwithbarriers02.shp"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute Contour
+ContourWithBarriers(inRaster, outContours, inBarrier, "POLYLINES", inTextFile, 
+                    explicitValues, baseContour, contourInterval, "", 
+                    contourList, "")
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

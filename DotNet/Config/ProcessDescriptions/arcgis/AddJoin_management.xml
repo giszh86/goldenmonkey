@@ -1,0 +1,120 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Add Join (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Joins a table view to a layer (or a table view to a table view) based on a common field.</para>
+			<para>The records in the Join Table are matched to the records in the input layer or table view. A match is made when the input join field and output join field values are equal. This join is temporary.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Column</keyword><keyword>Combine</keyword><keyword>Common</keyword><keyword>Data</keyword><keyword>Field</keyword><keyword>Match</keyword><keyword>Move</keyword><keyword>Share</keyword><keyword>Source</keyword><keyword>Table</keyword><keyword>Temporary</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="AddJoin" displayname="Add Join (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Joins a table view to a layer (or a table view to a table view) based on a common field.</para>
+			<para>The records in the Join Table are matched to the records in the input layer or table view. A match is made when the input join field and output join field values are equal. This join is temporary.</para>
+		</summary><alink_name>AddJoin_management</alink_name><toolIllust type="illustration" src="AddJoin_management_h.gif" alt="Add Join" /><parameters><param sync="true" name="in_layer_or_view" displayname="Layer Name" datatype="Table View ;Raster Layer" direction="Input" expression="in_layer_or_view" type="Required"><pythonReference>
+						<para>The layer or table view to which the join table will be joined.</para>
+					</pythonReference><dialogReference>
+						<para>The layer or table view to which the join table will be joined.</para>
+					</dialogReference></param><param sync="true" name="in_field" displayname="Input Join Field" datatype="Field" direction="Input" expression="in_field" type="Required"><pythonReference>
+						<para>The field in the input layer or table view on which the join will be based.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the input layer or table view on which the join will be based.</para>
+					</dialogReference></param><param sync="true" name="join_table" displayname="Join Table" datatype="Table View; Raster Layer" direction="Input" expression="join_table" type="Required"><pythonReference>
+						<para>The table or table view to be joined to the input layer or table view.</para>
+					</pythonReference><dialogReference>
+						<para>The table or table view to be joined to the input layer or table view.</para>
+					</dialogReference></param><param sync="true" name="join_field" displayname="Output Join Field" datatype="Field" direction="Input" expression="join_field" type="Required"><pythonReference>
+						<para>The field in the join table that contains the values on which the join will be based.</para>
+					</pythonReference><dialogReference>
+						<para>The field in the join table that contains the values on which the join will be based.</para>
+					</dialogReference></param><param sync="true" name="join_type" displayname="Keep All" datatype="Boolean" direction="Input" expression="join_type" type="Optional"><pythonReference>
+						<para>Specifies what will be done with records in the input that match a record in the join table.</para>
+						<bulletList><bullet_item>KEEP_ALL—All records in the input layer or table view will be included in the output; also known as an outer join. This is the default. </bullet_item><bullet_item>KEEP_COMMON—Only those records in the input that match to a row in the join table will be present in the result; also known as an inner join. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies what will be done with records in the input that match a record in the join table.</para>
+						<bulletList>
+							<bullet_item>Checked—All records in the input layer or table view will be included in the output; also known as an outer join. This is the default. </bullet_item>
+							<bullet_item>Unchecked—Only those records in the input that match a row in the join table will be present in the result; also known as an inner join. </bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Auto_commit" label="Auto commit">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Qualified_field_names" label="Qualified field names">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The input must be a feature layer or a table view; it cannot be a feature class or table.</para>
+			</bullet_item><bullet_item>
+				<para>If values in the Output Join Field are not unique, only the first occurrence of each value will be used.</para>
+			</bullet_item><bullet_item>
+				<para>The join lasts only for the duration of the session. To persist the join for use in another session, save the layer to a layer file using the  tool. This only applies to layers; table views cannot be saved in this manner.</para>
+				<para>Another way to make the join permanent is to save the joined feature layer to a new feature class or the joined table view to a new table.</para>
+				<bulletList>
+					<bullet_item>In ArcMap, right-click the input layer or table view; select Data
+							Export Data; specify the output feature class, shapefile, table, or dBASE table.</bullet_item>
+					<bullet_item>If the input is a feature layer, use the  tool; if the input is a table view, use the  tool.</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>This tool is not limited to ArcMap; it works on layers and table views in ArcCatalog and in scripts. The  tool makes a layer from a feature class, and the  tool creates a table view from an input table or feature class.</para>
+			</bullet_item><bullet_item>
+				<para>The Join Table can be any of the following types of tables: a geodatabase table (ArcSDE, file, or personal), a dBASE file, an INFO table, or an OLE DB table.</para>
+			</bullet_item><bullet_item>
+				<para>The input layer or table view must have an ObjectID field. The Join Table is not required to contain an ObjectID field.</para>
+			</bullet_item><bullet_item>
+				<para>Indexing the fields in the input layer or table view and Join Table on which the join will be based can improve performance. This can be done with the  tool or by right-clicking the input in ArcCatalog and using the dialog box to add an index to the desired field.</para>
+			</bullet_item><bullet_item>
+				<para>In the resulting layer or table view, the fields from the input layer or table view will be prefixed with the input's name and a period (.), and all fields from the join table will be prefixed with the join table name plus a period as the default.</para>
+				<para>For example, joining "landuse", which has fields 'A' and 'B' to "lookup_tab", which has fields 'C' and 'D', will result in a layer or table view with the following fields: "landuse.A", "landuse.B", "lookup_tab.C", and "lookup_tab.D".</para>
+				<para>For coverage feature classes and INFO tables, the table and field name separator is a colon (:) instead of a period.</para>
+			</bullet_item><bullet_item>
+				<para>You can use the  environment setting to control if the joined output field names will be qualified with the name of the table the field came from.</para>
+			</bullet_item><bullet_item>
+				<para>Records from the Join Table can be matched to more than one record in the input layer or table view.</para>
+			</bullet_item><bullet_item>
+				<para>If the input layer or table view's fields were modified (renamed or hidden) using the  or  tool Field Info parameter, these field modifications will not be carried forward to the output joined layer or table view.</para>
+			</bullet_item><bullet_item>
+				<para>The Join Table name cannot start with a numeric value. </para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AddJoin Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the AddJoin function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.MakeFeatureLayer_management ( "Habitat_Analysis.gdb/vegtype", "veg_layer")
+arcpy.AddJoin_management( "veg_layer", "HOLLAND95", "vegtable.dbf", "HOLLAND95")
+arcpy.CopyFeatures_management( "veg_layer", "Habitat_Analysis.gdb/vegjoin")
+                    </code></scriptExample><scriptExample><title>AddJoin Example 2 (stand-alone script)</title>
+					<para>This stand-alone script shows the AddJoin function as part of a workflow to join a table to a feature class and then extract desired features.</para>
+				<code xml:space="preserve"># Name: AttributeSelection.py
+# Purpose: Join a table to a featureclass and select the desired attributes
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+
+try:
+    # Set environment settings
+    env.workspace = "C:/data"
+    env.qualifiedFieldNames = False
+    
+    # Set local variables    
+    inFeatures = "Habitat_Analysis.gdb/vegtype"
+    layerName = "veg_layer"
+    joinTable = "vegtable.dbf"
+    joinField = "HOLLAND95"
+    expression = "vegtable.HABITAT = 1"
+    outFeature = "Habitat_Analysis.gdb/vegjoin"
+    
+    # Create a feature layer from the vegtype featureclass
+    arcpy.MakeFeatureLayer_management (inFeatures,  layerName)
+    
+    # Join the feature layer to a table
+    arcpy.AddJoin_management(layerName, joinField, joinTable, joinField)
+    
+    # Select desired features from veg_layer
+    arcpy.SelectLayerByAttribute_management(layerName, "NEW_SELECTION", expression)
+    
+    # Copy the layer to a new permanent feature class
+    arcpy.CopyFeatures_management(layerName, outFeature)
+    
+except Exception, e:
+    # If an error occurred, print line number and error message
+    import traceback, sys
+    tb = sys.exc_info()[2]
+    print "Line %i" % tb.tb_lineno
+    print e.message
+                    </code></scriptExample></scriptExamples></tool></metadata>

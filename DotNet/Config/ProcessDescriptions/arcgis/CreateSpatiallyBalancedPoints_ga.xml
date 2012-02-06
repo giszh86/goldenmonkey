@@ -1,0 +1,64 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Create Spatially Balanced Points (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs><para>
+				Generates a set of sample points based on inclusion probabilities resulting in a spatially balanced, i.e. maximized, and thus more efficient sample design.</para>
+			<para></para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Monitoring</keyword><keyword>Random</keyword><keyword>Sampling</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" CreateSpatiallyBalancedPoints" displayname=" Create Spatially Balanced Points (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary><para>
+				Generates a set of sample points based on inclusion probabilities resulting in a spatially balanced, i.e. maximized, and thus more efficient sample design.</para>
+			<para></para></summary><alink_name> CreateSpatiallyBalancedPoints_ga</alink_name><parameters><param sync="true" name="in_probability_raster" displayname="Inclusion probability raster [0,1]" datatype="Raster Layer" direction="Input" expression="in_probability_raster" type="Required"><pythonReference>
+						<para>This raster defines the inclusion probabilities for each location in the area of interest. The location values range from 0 (low inclusion probability) to 1 (high inclusion probability).</para>
+					</pythonReference><dialogReference>
+						<para>This raster defines the inclusion probabilities for each location in the area of interest. The location values range from 0 (low inclusion probability) to 1 (high inclusion probability).</para>
+					</dialogReference></param><param sync="true" name="number_output_points" displayname="Number of output points" datatype="Long" direction="Input" expression="number_output_points" type="Required"><pythonReference>
+						<para>Specify how many sample locations to generate.</para>
+					</pythonReference><dialogReference>
+						<para>Specify how many sample locations to generate.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output point feature class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class contains the selected sample locations and their inclusion probabilities.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class contains the selected sample locations and their inclusion probabilities.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Random_number_generator" label="Random number generator">
+						
+					</environment></environments><usage><bullet_item>The input probability raster contains probability values between 0 and 1. The higher the value, the more likely that the cell will be included in the sample design. </bullet_item><bullet_item>All values in the study area should have inclusion probabilities &gt;= 0, while all areas outside the study area should have Null values.</bullet_item><bullet_item>The cell size of the inclusion probability raster determines the finest resolution at which samples will be generated (samples are located at the center of selected cells).</bullet_item><bullet_item>When point, line, or polygon features are converted to raster (to obtain the input probability raster), the following should be considered:<bulletList>
+					<bullet_item> The cell size (resolution) should be fine enough to distinguish all the important features in the population. To accomplish this, the cell size can be set to less than half the minimum distance between features.</bullet_item>
+					<bullet_item> For line and polygon features, the cell size should be set so that features (like meandering streams) are adequately represented in the resulting raster.</bullet_item>
+					<bullet_item> The precision with which sample locations can be located in the field should also be considered: if locations are to be found using a GPS with a positional accuracy of 10m, then the cell size should be of 10m.</bullet_item>
+					<bullet_item> The size of the inclusion probability raster should be considered: if it is very large (small cell size or many cells), then processing time will be longer.</bullet_item>
+				</bulletList></bullet_item><bullet_item> To avoid artifacts in the output, it is recommended that the number of sample locations be less than 1% of the number of cells in the inclusion probability raster.</bullet_item><bullet_item> Only the Mersenne Twister random number generator (specified in ) is supported in this tool.</bullet_item><bullet_item> The random number Seed value can be changed in the Environment Settings.<bulletList>
+					<bullet_item> If a random number seed value of 0 is used (the default value), then each time the tool is run, a different set of random numbers will be used and a different set of sample locations will be generated.</bullet_item>
+					<bullet_item> If the random number seed is set to a fixed number other than 0, then the tool will produce the same set of sample locations each time it is run (until the seed value is changed). Setting the random number seed value to a fixed number &gt; 0 is useful when you want to add to or substract from a set of sample locations by rerunning the tool using a different number of sample points each time.</bullet_item>
+				</bulletList></bullet_item></usage><scriptExamples><scriptExample><title>CreateSpatiallyBalancedPoints example 1 (Python window)</title>
+					<para>Create a set of spatially balanced points based on an input inclusion probability raster.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapyexamples/data"
+arcpy.CreateSpatiallyBalancedPoints_ga("ca_prob", "10", "C:/gapyexamples/output/csbp")
+
+                    </code></scriptExample><scriptExample><title>CreateSpatiallyBalancedPoints example 2 (stand-alone script)</title>
+					<para>Create a set of spatially balanced points based on an input inclusion probability raster.</para>
+				<code xml:space="preserve"># Name: CreateSpatiallyBalancedPoints_Example_02.py
+# Description: This tool generates a set of sample points based on inclusion
+#   probabilities. The resulting sample design is spatially balanced, meaning
+#   that the spatial independence between samples is maximized, making the design
+#   more efficient than sampling the study area at random.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inProb = "ca_prob"
+numberPoints = 10
+outPoints = "C:/gapyexamples/output/csbp"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute CreateSpatiallyBalancedPoints
+arcpy.CreateSpatiallyBalancedPoints_ga(inProb, numberPoints, outPoints)
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

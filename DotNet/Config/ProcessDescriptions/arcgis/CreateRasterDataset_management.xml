@@ -1,0 +1,201 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Raster Dataset (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a raster dataset as a file or in a geodatabase.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Band</keyword><keyword>Bil</keyword><keyword>Bip</keyword><keyword>Bit Depth</keyword><keyword>Bitmap</keyword><keyword>Bmp</keyword><keyword>Bsq</keyword><keyword>Contain</keyword><keyword>Empty</keyword><keyword>Envi Dat</keyword><keyword>Erdas Imagine</keyword><keyword>File</keyword><keyword>Gdb</keyword><keyword>Geodatabase</keyword><keyword>Gif</keyword><keyword>Grid</keyword><keyword>Img</keyword><keyword>Jp2</keyword><keyword>Jpeg</keyword><keyword>Jpg</keyword><keyword>Load</keyword><keyword>Make</keyword><keyword>Mosaic</keyword><keyword>New</keyword><keyword>Pixel Depth</keyword><keyword>Png</keyword><keyword>Tif</keyword><keyword>Tiff</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateRasterDataset" displayname="Create Raster Dataset (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a raster dataset as a file or in a geodatabase.</para>
+		</summary><alink_name>CreateRasterDataset_management</alink_name><parameters><param sync="true" name="out_path" displayname="Output Location" datatype="Workspace; Raster Catalog" direction="Input" expression="out_path" type="Required"><pythonReference>
+						<para>The output location to contain the raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The output location to contain the raster dataset.</para>
+					</dialogReference></param><param sync="true" name="out_name" displayname="Raster Dataset Name With Extension" datatype="String" direction="Input" expression="out_name" type="Required"><pythonReference>
+						<para>The name of the raster dataset to be created.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the raster dataset to be created.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</dialogReference></param><param sync="true" name="cellsize" displayname="Cellsize" datatype="Double" direction="Input" expression="cellsize" type="Optional"><pythonReference>
+						<para>The cell size for the new raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size for the new raster dataset.</para>
+					</dialogReference></param><param sync="true" name="pixel_type" displayname="Pixel Type" datatype="String" direction="Input" expression="pixel_type" type="Optional"><pythonReference>
+						<para>Specifies the data type of the cell values. The default value for this is 8-bit unsigned integer.</para>
+						<para>Not all data types are supported by all raster formats. Check the Supported raster dataset file formats help topic to be sure the format you are using will support the data type you need.</para>
+						<bulletList><bullet_item>1_BIT—A 1-bit unsigned integer. The values can be 0 or 1. </bullet_item><bullet_item>2_BIT—A 2-bit unsigned integer. The values supported can be from 0 to 3. </bullet_item><bullet_item>4_BIT—A 4-bit unsigned integer. The values supported can be from 0 to 15. </bullet_item><bullet_item>8_BIT_UNSIGNED—An unsigned 8-bit data type. The values supported can be from 0 to 255.</bullet_item><bullet_item>8_BIT_SIGNED—A signed 8-bit data type. The values supported can be from -128 to 127.</bullet_item><bullet_item>16_BIT_UNSIGNED—A 16-bit unsigned data type. The values can range from 0 to 65,535.</bullet_item><bullet_item>16_BIT_SIGNED—A 16-bit signed data type. The values can range from -32,768 to 32,767.</bullet_item><bullet_item>32_BIT_UNSIGNED—A 32-bit unsigned data type. The values can range from 0 to 4,294,967,295. </bullet_item><bullet_item>32_BIT_SIGNED—A 32-bit signed data type. The values can range from -2,147,483,648 to 2,147,483,647.</bullet_item><bullet_item>32_BIT_FLOAT—A 32-bit data type supporting decimals. </bullet_item><bullet_item>64_BIT—A 64-bit data type supporting decimals.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the data type of the cell values. The default value for this is 8-bit unsigned integer.</para>
+						<para>Not all data types are supported by all raster formats. Check the Supported raster dataset file formats help topic to be sure the format you are using will support the data type you need.</para>
+						<bulletList><bullet_item>1_BIT—A 1-bit unsigned integer. The values can be 0 or 1. </bullet_item><bullet_item>2_BIT—A 2-bit unsigned integer. The values supported can be from 0 to 3. </bullet_item><bullet_item>4_BIT—A 4-bit unsigned integer. The values supported can be from 0 to 15. </bullet_item><bullet_item>8_BIT_UNSIGNED—An unsigned 8-bit data type. The values supported can be from 0 to 255.</bullet_item><bullet_item>8_BIT_SIGNED—A signed 8-bit data type. The values supported can be from -128 to 127.</bullet_item><bullet_item>16_BIT_UNSIGNED—A 16-bit unsigned data type. The values can range from 0 to 65,535.</bullet_item><bullet_item>16_BIT_SIGNED—A 16-bit signed data type. The values can range from -32,768 to 32,767.</bullet_item><bullet_item>32_BIT_UNSIGNED—A 32-bit unsigned data type. The values can range from 0 to 4,294,967,295. </bullet_item><bullet_item>32_BIT_SIGNED—A 32-bit signed data type. The values can range from -2,147,483,648 to 2,147,483,647.</bullet_item><bullet_item>32_BIT_FLOAT—A 32-bit data type supporting decimals. </bullet_item><bullet_item>64_BIT—A 64-bit data type supporting decimals.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="raster_spatial_reference" displayname="Spatial Reference For Raster" datatype="Coordinate system" direction="Input" expression="raster_spatial_reference" type="Optional"><pythonReference>
+						<para>The coordinate system for the raster dataset.</para>
+						<para>If this is not specified, the coordinate system set in the environment settings will be used.</para>
+					</pythonReference><dialogReference>
+						<para>The coordinate system for the raster dataset.</para>
+						<para>If this is not specified, the coordinate system set in the environment settings will be used.</para>
+					</dialogReference></param><param sync="true" name="number_of_bands" displayname="Number Of Bands" datatype="Long" direction="Input" expression="number_of_bands" type="Optional"><pythonReference>
+						<para>The number of bands to be contained by the raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The number of bands to be contained by the raster dataset.</para>
+					</dialogReference></param><param sync="true" name="config_keyword" displayname="Configuration Keyword" datatype="String" direction="Input" expression="config_keyword" type="Optional"><pythonReference>
+						<para>Specifies the storage parameters (configuration) for a file geodatabase and an ArcSDE geodatabase. Personal geodatabases do not use configuration keywords.</para>
+						<para>ArcSDE configuration keywords are set up by your database administrator.</para>
+					</pythonReference><dialogReference>
+						<para>Specifies the storage parameters (configuration) for a file geodatabase and an ArcSDE geodatabase. Personal geodatabases do not use configuration keywords.</para>
+						<para>ArcSDE configuration keywords are set up by your database administrator.</para>
+					</dialogReference></param><param sync="true" name="pyramids" displayname="Create Pyramids" datatype="Pyramid" direction="Input" expression="pyramids" type="Optional"><pythonReference>
+						<para>Use this option to create pyramids.</para>
+						<para>For Pyramid Levels, choose a number of -1 or higher. A value of 0 will not build any pyramids, and a value of -1 will automatically choose the correct number of pyramid layers to create.</para>
+						<para>The Pyramid Resampling Technique defines how the data will be resampled when building the pyramids.</para>
+						<bulletList>
+							<bullet_item>NEAREST—Nearest neighbor should be used for nominal data or raster datasets with colormaps, such as land use or pseudo color images.</bullet_item>
+							<bullet_item>BILINEAR—Bilinear interpolation is best used with continuous data, such as satellite imagery or aerial photography.</bullet_item>
+							<bullet_item>CUBIC—Cubic convolution is best used with continuous data, such as satellite imagery or aerial photography. It is similar to bilinear interpolation; however, it resamples the data using a larger matrix.</bullet_item>
+						</bulletList><para>The Pyramid Compression Type defines the method used when compressing the pyramids.</para>
+						<bulletList>
+							<bullet_item>DEFAULT—This uses the compression that is normally used by the raster dataset format.</bullet_item>
+							<bullet_item>LZ77—A lossless compression. The values of the cells in the raster will not be changed.</bullet_item>
+							<bullet_item>JPEG—A lossy compression.</bullet_item>
+							<bullet_item>NONE—No data compression.</bullet_item>
+						</bulletList></pythonReference><dialogReference>
+						<para>Check to create pyramids.</para>
+						<para>For Pyramid Levels, choose a number of -1 or higher. A value of 0 will not build any pyramids, and a value of -1 will automatically choose the correct number of pyramid layers to create.</para>
+						<para>The Pyramid Resampling Technique defines how the data will be resampled when building the pyramids.</para>
+						<bulletList>
+							<bullet_item>NEAREST—Nearest neighbor should be used for nominal data or raster datasets with colormaps, such as land use or pseudo color images.</bullet_item>
+							<bullet_item>BILINEAR—Bilinear interpolation is best used with continuous data, such as satellite imagery or aerial photography.</bullet_item>
+							<bullet_item>CUBIC—Cubic convolution is best used with continuous data, such as satellite imagery or aerial photography. It is similar to bilinear interpolation; however, it resamples the data using a larger matrix.</bullet_item>
+						</bulletList><para>The Pyramid Compression Type defines the method used when compressing the pyramids.</para>
+						<bulletList>
+							<bullet_item>DEFAULT—This uses the compression that is normally used by the raster dataset format.</bullet_item>
+							<bullet_item>LZ77—A lossless compression. The values of the cells in the raster will not be changed.</bullet_item>
+							<bullet_item>JPEG—A lossy compression.</bullet_item>
+							<bullet_item>NONE—No data compression.</bullet_item>
+						</bulletList></dialogReference></param><param sync="true" name="tile_size" displayname="Tile size" datatype="Tile Size" direction="Input" expression="tile_size" type="Optional"><pythonReference>
+						<para>The tile width controls the number of pixels you can store in each tile. This is specified as a number of pixels in x. The default tile width is 128.</para>
+						<para>The tile height controls the number of pixels you can store in each tile. This is specified as a number of pixels in y. The default tile height is 128.</para>
+						<para>Only file geodatabases and ArcSDE geodatabases use tile size.</para>
+					</pythonReference><dialogReference>
+						<para>The tile width controls the number of pixels you can store in each tile. This is specified as a number of pixels in x. The default tile width is 128.</para>
+						<para>The tile height controls the number of pixels you can store in each tile. This is specified as a number of pixels in y. The default tile height is 128.</para>
+						<para>Only file geodatabases and ArcSDE geodatabases use tile size.</para>
+					</dialogReference></param><param sync="true" name="compression" displayname="Compression" datatype="Compression" direction="Input" expression="compression" type="Optional"><pythonReference>
+						<para>This defines the type of data compression that will be used to store the raster dataset.</para>
+						<bulletList><bullet_item>LZ77—Lossless.</bullet_item><bullet_item>JPEG—Lossy. Uses compression quality.</bullet_item><bullet_item>JPEG 2000—Lossy. Uses compression quality.</bullet_item><bullet_item>PackBits—Lossless. Only for the TIFF format.</bullet_item><bullet_item>LZW—Lossless.</bullet_item><bullet_item>RLE—Lossless.</bullet_item><bullet_item>CCITT GROUP 3—Lossless. Only for the TIFF format.</bullet_item><bullet_item>CCITT GROUP 4—Lossless. Only for the TIFF format.</bullet_item><bullet_item>CCITT (1D)—Lossless. Only for the TIFF format.</bullet_item><bullet_item>NONE—No data compression.</bullet_item></bulletList>
+						<para>The JPEG and JPEG 2000 compression quality can range from 1 to 100. A higher number means better image quality but less compression.</para>
+					</pythonReference><dialogReference>
+						<para>This defines the type of data compression that will be used to store the raster dataset.</para>
+						<bulletList><bullet_item>LZ77—Lossless.</bullet_item><bullet_item>JPEG—Lossy. Uses compression quality.</bullet_item><bullet_item>JPEG 2000—Lossy. Uses compression quality.</bullet_item><bullet_item>PackBits—Lossless. Only for the TIFF format.</bullet_item><bullet_item>LZW—Lossless.</bullet_item><bullet_item>RLE—Lossless.</bullet_item><bullet_item>CCITT GROUP 3—Lossless. Only for the TIFF format.</bullet_item><bullet_item>CCITT GROUP 4—Lossless. Only for the TIFF format.</bullet_item><bullet_item>CCITT (1D)—Lossless. Only for the TIFF format.</bullet_item><bullet_item>NONE—No data compression.</bullet_item></bulletList>
+						<para>The JPEG and JPEG 2000 compression quality can range from 1 to 100. A higher number means better image quality but less compression.</para>
+					</dialogReference></param><param sync="true" name="pyramid_origin" displayname="Pyramid Reference Point" datatype="Point" direction="Input" expression="pyramid_origin" type="Optional"><pythonReference>
+						<para>This is the origination location of the raster pyramid. It is recommended that you specify this point if you plan on building large mosaics in a file geodatabase or an ArcSDE geodatabase, especially if you plan on mosaicking to them over time (for example, for updating).</para>
+						<para>The pyramid reference point should be set to the upper left corner of your raster dataset.</para>
+						<para>In setting this point for a file geodatabase or an ArcSDE geodatabase, partial pyramiding will be used when updating with a new mosaicked raster dataset. Partial pyramiding updated the parts of the pyramid that do not exist due to the new mosaicked datasets. Therefore, it is good to set your pyramid reference point so that your entire raster mosaic will be below and to the right of this point. However, a pyramid reference point should not be set too large either.</para>
+					</pythonReference><dialogReference>
+						<para>This is the origination location of the raster pyramid. It is recommended that you specify this point if you plan on building large mosaics in a file geodatabase or an ArcSDE geodatabase, especially if you plan on mosaicking to them over time (for example, for updating).</para>
+						<para>The pyramid reference point should be set to the upper left corner of your raster dataset.</para>
+						<para>In setting this point for a file geodatabase or an ArcSDE geodatabase, partial pyramiding will be used when updating with a new mosaicked raster dataset. Partial pyramiding updated the parts of the pyramid that do not exist due to the new mosaicked datasets. Therefore, it is good to set your pyramid reference point so that your entire raster mosaic will be below and to the right of this point. However, a pyramid reference point should not be set too large either.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Pyramid" label="Pyramid">
+						
+					</environment><environment name="Raster_statistics" label="Raster statistics">
+						
+					</environment><environment name="Compression" label="Compression">
+						
+					</environment><environment name="Tile_size" label="Tile size">
+						
+					</environment></environments><usage><bullet_item>
+				<para>When you create a raster dataset, you are creating an empty location to contain a single raster dataset. You can then mosaic or load raster datasets into this location.</para>
+			</bullet_item><bullet_item>
+				<para>You can save your output to BIL, BIP, BMP, BSQ, DAT, GIF, GRID, IMG, JPEG, JPEG 2000, PNG, TIFF, or any geodatabase raster dataset. </para>
+			</bullet_item><bullet_item>
+				<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, or a geodatabase, you can specify a Compression type and Compression Quality within the Environment Settings.</para>
+			</bullet_item><bullet_item>
+				<para>The GIF format only supports single-band raster datasets.</para>
+			</bullet_item><bullet_item>
+				<para>Building  improves the display performance of raster datasets.</para>
+			</bullet_item><bullet_item>
+				<para>Calculating  allows ArcGIS applications to properly stretch and symbolize raster data for display.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateRasterDataset example 1 (Python window)</title>
+					<para>This is a Python sample for the CreateRasterDataset tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.CreateRasterDataset_management("c:/data", "EmptyTIFF.tif", "2",\
+                                     "8_BIT_UNSIGNED", "World_Mercator.prj",\ 
+                                     "3", "", "PYRAMIDS -1 NEAREST JPEG",\ 
+                                     "128 128", "NONE", "")
+                    </code></scriptExample><scriptExample><title>CreateRasterDataset example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for the CreateRasterDataset tool.</para>
+				<code xml:space="preserve">##==================================
+##Create Raster Dataset
+##Usage: CreateRasterDataset_management out_path out_name {cellsize} 8_BIT_UNSIGNED | 1_BIT | 2_BIT | 4_BIT | 8_BIT_SIGNED 
+##                                      | 16_BIT_UNSIGNED | 16_BIT_SIGNED | 32_BIT_UNSIGNED | 32_BIT_SIGNED | 32_BIT_FLOAT 
+##                                      | 64_BIT {raster_spatial_reference} number_of_bands {config_keyword} {pyramids} {tile_size} 
+##                                      {compression} {pyramid_origin}
+try:
+    import arcpy
+    arcpy.env.workspace = r"\\jiezhang5574\PrjWorkspace\RasGP"
+    ##Create a empty TIFF format Raster Dataset with the following parameters
+    ##Cellsize: 2
+    ##Pixel type: 8 Bit Unsigned Integer
+    ##Number of Bands: 3
+    ##Pyramid: Build full pyramids with NEAREST interpolation and JPEG compression
+    ##Compression: NONE
+    ##Projection: World_Mercator
+    ##Tile size: 128 128
+    arcpy.CreateRasterDataset_management("CreateRD","EmptyTIFF.tif","2","8_BIT_UNSIGNED","World_Mercator.prj", "3", "", "PYRAMIDS -1 NEAREST JPEG", "128 128", "NONE", "")
+    
+    ##Create a SDE Raster Dataset
+    ##No Spatial Reference, with Pyramid Origin
+    arcpy.CreateRasterDataset_management("CreateRD\\CreateRD.gdb","NewRD","10","16_BIT_UNSIGNED","", "1", "MAX_FILE_SIZE_4GB", "PYRAMIDS 3 BILINEAR DEFAULT", "128 128", "JPEG2000 80", "-20037508.34278775 30198185.16987658")
+except:
+    print "Create Raster Dataset example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,86 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Synchronize Changes (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Synchronizes updates between two replica geodatabases in a direction specified by the user.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>1 Way</keyword><keyword>2 Way</keyword><keyword>Centralize</keyword><keyword>Check</keyword><keyword>Child</keyword><keyword>Connect</keyword><keyword>Contractor</keyword><keyword>Database</keyword><keyword>Difference</keyword><keyword>Edit</keyword><keyword>Gdb</keyword><keyword>Geodata</keyword><keyword>In</keyword><keyword>Integrate</keyword><keyword>Match</keyword><keyword>Merge</keyword><keyword>Mobile</keyword><keyword>One</keyword><keyword>Out</keyword><keyword>Parent</keyword><keyword>Production</keyword><keyword>Publication</keyword><keyword>Replica</keyword><keyword>Replicate</keyword><keyword>Replication</keyword><keyword>Same</keyword><keyword>Sde</keyword><keyword>Service</keyword><keyword>Sync</keyword><keyword>Synchronize</keyword><keyword>Two</keyword><keyword>Unify</keyword><keyword>Update</keyword><keyword>Way</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SynchronizeChanges" displayname="Synchronize Changes (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Synchronizes updates between two replica geodatabases in a direction specified by the user.</para>
+		</summary><alink_name>SynchronizeChanges_management</alink_name><parameters><param sync="true" name="geodatabase_1" displayname="Geodatabase 1" datatype="Workspace ;GeoDataServer" direction="Input" expression="geodatabase_1" type="Required"><pythonReference>
+						<para>The geodatabase hosting the replica to synchronize. The geodatabase may be local or remote.</para>
+					</pythonReference><dialogReference>
+						<para>The geodatabase hosting the replica to synchronize. The geodatabase may be local or remote.</para>
+					</dialogReference></param><param sync="true" name="in_replica" displayname="Replica" datatype="String" direction="Input" expression="in_replica" type="Required"><pythonReference>
+						<para>A valid replica with a parent contained within one input geodatabase and a child in the other input geodatabase.</para>
+					</pythonReference><dialogReference>
+						<para>A valid replica with a parent contained within one input geodatabase and a child in the other input geodatabase.</para>
+					</dialogReference></param><param sync="true" name="geodatabase_2" displayname="Geodatabase 2" datatype="Workspace; GeoDataServer" direction="Input" expression="geodatabase_2" type="Required"><pythonReference>
+						<para>The geodatabase hosting the relative replica. The geodatabase may be local or remote.</para>
+					</pythonReference><dialogReference>
+						<para>The geodatabase hosting the relative replica. The geodatabase may be local or remote.</para>
+					</dialogReference></param><param sync="true" name="in_direction" displayname="Direction" datatype="String" direction="Input" expression="in_direction" type="Required"><pythonReference>
+						<para>The direction in which you want changes to be sent: from geodatabase 1 to geodatabase 2, from geodatabase 2 to geodatabase 1, or to send changes in both directions. For check-out/check-in replicas or one-way replicas there is only one appropriate direction. If the replica is two-way then any of the three choices are available.</para>
+						<bulletList><bullet_item>BOTH_DIRECTIONS—</bullet_item><bullet_item>FROM_GEODATABASE2_TO_1—</bullet_item><bullet_item>FROM_GEODATABASE1_TO_2—</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>The direction in which you want changes to be sent: from geodatabase 1 to geodatabase 2, from geodatabase 2 to geodatabase 1, or to send changes in both directions. For check-out/check-in replicas or one-way replicas there is only one appropriate direction. If the replica is two-way then any of the three choices are available.</para>
+						<bulletList><bullet_item>BOTH_DIRECTIONS—</bullet_item><bullet_item>FROM_GEODATABASE2_TO_1—</bullet_item><bullet_item>FROM_GEODATABASE1_TO_2—</bullet_item></bulletList></dialogReference></param><param sync="true" name="conflict_policy" displayname="Conflict Resolution Policy" datatype="String" direction="Input" expression="conflict_policy" type="Required"><pythonReference>
+						<para>Specifies how conflicts are resolved when they are encountered.</para>
+						<bulletList><bullet_item>MANUAL—Manually resolve conflicts in the versioning reconcile environment.</bullet_item><bullet_item>IN_FAVOR_OF_GDB1—Conflicts resolve in favor of the Geodatabase 1.</bullet_item><bullet_item>IN_FAVOR_OF_GDB2—Conflicts resolve in favor of the Geodatabase 2.</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>Specifies how conflicts are resolved when they are encountered.</para>
+						<bulletList><bullet_item>MANUAL—Manually resolve conflicts in the versioning reconcile environment.</bullet_item><bullet_item>IN_FAVOR_OF_GDB1—Conflicts resolve in favor of the Geodatabase 1.</bullet_item><bullet_item>IN_FAVOR_OF_GDB2—Conflicts resolve in favor of the Geodatabase 2.</bullet_item></bulletList></dialogReference></param><param sync="true" name="conflict_definition" displayname="Conflict Definition" datatype="String" direction="Input" expression="conflict_definition" type="Required"><pythonReference>
+						<para>
+Specifies how you would like to define conflicts: 
+</para>
+						<bulletList><bullet_item>BY_OBJECT—Detects conflicts by row</bullet_item><bullet_item>BY_ATTRIBUTE—Detects conflicts by column</bullet_item></bulletList></pythonReference><dialogReference>
+						<para>
+Specifies how you would like to define conflicts: 
+</para>
+						<bulletList><bullet_item>BY_OBJECT—Detects conflicts by row</bullet_item><bullet_item>BY_ATTRIBUTE—Detects conflicts by column</bullet_item></bulletList></dialogReference></param><param sync="true" name="reconcile" displayname="Reconcile with the Parent Version (Single Generation Only)" datatype="Boolean" direction="Input" expression="reconcile" type="Required"><pythonReference>
+						<para>Indicates whether to automatically reconcile once data changes are sent to the parent replica if there are no conflicts present. This option is only available for check-out/check-in replicas.</para>
+						<bulletList><bullet_item>DO_NOT_RECONCILE—Do not reconcile. This is the default.</bullet_item><bullet_item>RECONCILE—Reconcile.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Indicates whether to automatically reconcile once data changes are sent to the parent replica if there are no conflicts present. This option is only available for check-out/check-in replicas.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Do not reconcile. This is the default.</bullet_item>
+							<bullet_item>Checked—Reconcile.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool is used when synchronizing replicas in connected mode. To synchronize replicas in disconnected mode see the , ,  and  tools. </para>
+			</bullet_item><bullet_item>
+				<para>Two-way, one-way, and check-out replicas can be synchronized with this tool.</para>
+			</bullet_item><bullet_item>
+				<para>The replica geodatabases can be local geodatabases or geodata services. </para>
+			</bullet_item><bullet_item>
+				<para>Once synchronized, the changes (edits) will be reflected in the target geodatabase and viewable by all users.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SynchronizeChanges Example (Python Window)</title>
+					<para>The following Python window example demonstrates how to use the SynchronizeChanges function in the Python window.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+env.workspace = "C:/Data"
+arcpy.SynchronizeChanges_management("MySDEdata.sde", "My2wayReplica", "MySDEdata_child.sde", "BOTH_DIRECTIONS", "IN_FAVOR_OF_GDB1", "BY_ATTRIBUTE", "")
+                    </code></scriptExample><scriptExample><title>SynchronizeChanges Example 2 (stand-alone Python script)</title>
+					<para>The following demonstrates how to use the SynchronizeChanges function in a stand-alone Python script.</para>
+				<code xml:space="preserve"># Name: SynchronizeChanges_Example2.py
+# Description: Synchronizes changes for a one way replica from the Parent 
+# to the child replica geodatabase. The parent is an ArcSDE workspace, and the child is file geodatabase.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set workspace
+env.workspace = "C:/Data"
+
+# Set local variables
+replica_gdb1 = "MySDEdata.sde"
+replica_gdb2 = "Counties_replica.gdb"
+replica_name = "MyOneWayReplica"
+sync_direction = "FROM_GEODATABASE1_TO_2"
+conflict_policy = "" 						# Not applicable for one way replicas, there is not conflict detection.
+conflict_detection = ""    # Not applicable for one way replicas, there is not conflict detection.
+reconcile = ""             # Only applicable for Checkout replicas
+
+# Execute SynchronizeChanges
+arcpy.SynchronizeChanges_management(replica_gdb1, replica_name, replica_gdb2, sync_direction, conflict_policy, conflict_detection, reconcile)
+                    </code></scriptExample></scriptExamples></tool></metadata>

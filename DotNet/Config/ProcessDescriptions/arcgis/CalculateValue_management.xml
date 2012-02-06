@@ -1,0 +1,68 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Calculate Value (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Calculate Value tool returns a value based on a specified Python expression.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Code Block</keyword><keyword>Compute</keyword><keyword>Else</keyword><keyword>Expression</keyword><keyword>Figure</keyword><keyword>Function</keyword><keyword>If</keyword><keyword>Logic</keyword><keyword>Math</keyword><keyword>Python</keyword><keyword>Then</keyword><keyword>Variable</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CalculateValue" displayname="Calculate Value (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para> Calculate Value tool returns a value based on a specified Python expression.</para>
+		</summary><alink_name>CalculateValue_management</alink_name><parameters><param sync="true" name="expression" displayname="Expression" datatype="SQL expression" direction="Input" expression="expression" type="Required"><pythonReference>
+						<para>The Python expression to be evaluated.</para>
+					</pythonReference><dialogReference>
+						<para>The Python expression to be evaluated.</para>
+					</dialogReference></param><param sync="true" name="code_block" displayname="Code Block" datatype="String" direction="Input" expression="code_block" type="Optional"><pythonReference>
+						<para>Additional Python code. Code in the code block can be referenced in the Expression parameter.</para>
+					</pythonReference><dialogReference>
+						<para>Additional Python code. Code in the code block can be referenced in the Expression parameter.</para>
+					</dialogReference></param><param sync="true" name="data_type" displayname="Data type" datatype="String" direction="Input" expression="data_type" type="Optional"><pythonReference>
+						<para>The data type of the output returned from the Python expression. This parameter should be used in ModelBuilder to help chain Calculate Value with other tools.</para>
+					</pythonReference><dialogReference>
+						<para>The data type of the output returned from the Python expression. This parameter should be used in ModelBuilder to help chain Calculate Value with other tools.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para>This tool is intended for use in ModelBuilder and not in Python scripting.</para>
+			</bullet_item><bullet_item>
+				<para>The Data Type parameter is used in ModelBuilder to help chain the output of the Calculate Value tool with other tools. For example, if you use the Calculate Value tool to calculate a distance for use as input to the Buffer Distance parameter of the Buffer tool, specify Linear Unit for the Data Type parameter.</para>
+			</bullet_item><bullet_item>
+				<para>Variables created in ModelBuilder can be used by this tool, but variables desired for use in the expression parameter cannot be connected to the Calculate Value tool. To use them in the expression, enclose the variable name in percent signs (%). For example, if you want to divide a variable named 'Input' by 100, your expression would be %Input%/100. </para><para>Note: in the previous expression, if Input = 123, the expression will return 1. To get decimal places, add decimals to the values in the expression. For example: %Input%/100.00 will return 1.23.  The illustration below shows another example of using variables in the expression.</para>
+				
+					
+					
+				
+				<para>In-line variable of type string should be enclosed within quotes ("%string variable%") in an expression. In-line variables of type numbers (double, long) do not require quotes (%double%).  </para></bullet_item><bullet_item>
+				<para>Expressions can be created in a standard Python format ONLY. Other scripting languages are not supported.</para>
+			</bullet_item><bullet_item>
+				<para>The Calculate Value tool can evaluates simple mathematical expressions. For example:</para>
+				<bulletList>
+					<bullet_item>3+5</bullet_item>
+					<bullet_item>9*8</bullet_item>
+					<bullet_item>4+(9/3)</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>The Calculate Value tool allows the use of the Python math module to perform more complex mathematical operations. The math module is accessed by preceding the desired function with "math". For example:</para>
+				<bulletList>
+					<bullet_item>math.sqrt(25)</bullet_item>
+					<bullet_item>math.cos(0.5)</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>Constants are also supported through the math module. For example:</para>
+				<bulletList>
+					<bullet_item>math.pi</bullet_item>
+				</bulletList>
+			</bullet_item><bullet_item>
+				<para>The arcgis.rand() function is supported. The arcgis.rand() function has been created for ArcGIS tools and should not be confused with the Python Rand() function. Examples of using the arcgis.rand() are as follows:<bulletList><bullet_item>Calculate a random value derived from a uniform distribution of integers between 0 and 10: arcgis.rand("Integer 0 10") </bullet_item><bullet_item>Calculate a random value derived from a normal distribution with a mean of 10 and standard deviation of 3: arcgis.rand("Normal 10 3")</bullet_item></bulletList></para>
+				
+					<para>The expression arcgis.rand must be entered in lowercase characters.</para>
+				</bullet_item><bullet_item>
+				<para>Generally, you will type the expressions in the Expression parameter. More complicated expressions, such as multiline calculations or logical operations (if, then), will require the use of the Code Block parameter. The Code Block parameter cannot be used on its own; it must be used in conjunction with the Expression parameter. </para>
+			</bullet_item><bullet_item><para>Variables defined in the Code Block parameter can be referenced from the expression.</para><para>
+						
+						
+					</para></bullet_item><bullet_item><para>Functions can be defined in the Code Block parameter and called from the expression. In the example below, the function returns a wind direction string based on a random input value. In Python, functions are defined using the def keyword followed by the name of the function and the function's input parameters. In this case, the function is getWind and has one parameter, wind. Values are returned from a function using the return keyword.</para>
+					
+					
+				
+			</bullet_item><bullet_item><para>You can pass variable through the Expression parameter and use if-else logic with inline variables in the code block as shown  below.  The code block checks to see if the Input Cell Size variable is empty then returns a value based on the condition.
+						
+						
+					</para></bullet_item><bullet_item><para>Python methods can be used directly in the Expression parameter of the tool. For example, if  you have an input value with a decimal (field value of the input table in this case) and want to use the value in the output name of another tool through , the decimal can be replaced using Python method replace in the Calculate Value tool expression.</para></bullet_item><bullet_item><para>Python modules can be called and methods such as replace combined or stacked in the code block parameter. In the example below the  time module is imported in the code block which returns the current date and time such as Fri Mar 19 2010 09:42:39. This returned value is used as name in Create Folder tool to name the folder. Since the name of the folder cannot contain spaces or punctuation marks, the replace method in Python is used by stacking the method for each element that needs to be replaced. The resulting name of the folder in this example is  FriMar192010094239.</para></bullet_item><bullet_item><para>If you are calculating a value in the model and want to use the calculated value with tools such as  Buffer that require a buffer distance value as well as a linear unit you have to:<bulletList><bullet_item>return the linear unit in the code block along with the distance value,</bullet_item><bullet_item>change the data type of the returned values as shown below, and</bullet_item><bullet_item>set the data type parameter to linear unit so that the result of the expression will be converted to a linear unit value.</bullet_item></bulletList>
+					</para></bullet_item><bullet_item>
+				<para>In Python, part of syntax is proper indentation. Indentation level (two spaces or four spaces) does not matter as long as it is consistent throughout the code block.</para>
+			</bullet_item><bullet_item>
+				<para>You cannot access model variables from the code block. Such variables must be passed to the code block from the expression. This can be achieved by creating a definition in the Code Block and referencing the definition in the Expression box.</para>
+			</bullet_item><bullet_item><para><para>  When writing Python scripts, use standard Python statements instead of the Calculate Value tool.</para></para></bullet_item></usage><scriptExamples></scriptExamples></tool></metadata>

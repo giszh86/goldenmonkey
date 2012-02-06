@@ -1,0 +1,175 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Raster Catalog To Raster Dataset (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Mosaics the contents of a raster catalog into a new raster dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>All</keyword><keyword>Assemble</keyword><keyword>Color Balanace</keyword><keyword>Color Correction</keyword><keyword>Color Match</keyword><keyword>Combine</keyword><keyword>Grid</keyword><keyword>Linear Correlation</keyword><keyword>Make</keyword><keyword>Merge</keyword><keyword>Mosaic</keyword><keyword>New</keyword><keyword>Stitch</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RasterCatalogToRasterDataset" displayname="Raster Catalog To Raster Dataset (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Mosaics the contents of a raster catalog into a new raster dataset.</para>
+		</summary><alink_name>RasterCatalogToRasterDataset_management</alink_name><parameters><param sync="true" name="in_raster_catalog" displayname="Input Raster Catalog" datatype="Raster catalog" direction="Input" expression="in_raster_catalog" type="Required"><pythonReference>
+						<para>The raster catalog that will be mosaicked to a raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The raster catalog that will be mosaicked to a raster dataset.</para>
+					</dialogReference></param><param sync="true" name="out_raster_dataset" displayname="Output Raster Dataset" datatype="Raster dataset" direction="Output" expression="out_raster_dataset" type="Required"><pythonReference>
+						<para>The name and extension of the output raster dataset mosaic.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</pythonReference><dialogReference>
+						<para>The name and extension of the output raster dataset mosaic.</para>
+						<para>When storing the raster dataset in a file format, you need to specify the file extension:</para>
+						<bulletList>
+							<bullet_item>.bil—ESRI BIL</bullet_item>
+							<bullet_item>.bip—ESRI BIP</bullet_item>
+							<bullet_item>.bmp—BMP</bullet_item>
+							<bullet_item>.bsq—ESRI BSQ</bullet_item>
+							<bullet_item>.dat—ENVI DAT</bullet_item>
+							<bullet_item>.gif—GIF</bullet_item>
+							<bullet_item>.img—ERDAS IMAGINE file</bullet_item>
+							<bullet_item>.jpg—JPEG</bullet_item>
+							<bullet_item>.jp2—JPEG 2000</bullet_item>
+							<bullet_item>.png—PNG</bullet_item>
+							<bullet_item>.tif—TIFF</bullet_item>
+							<bullet_item>no extension—ESRI GRID</bullet_item>
+						</bulletList>
+						<para>When storing a raster dataset in a geodatabase, no file extension should be added to the name of the raster dataset.</para>
+						<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, a TIFF file, or a geodatabase, you can specify a compression type and compression quality.</para>
+					</dialogReference></param><param sync="true" name="where_clause" displayname="Expression" datatype="SQL expression" direction="Input" expression="where_clause" type="Optional"><pythonReference>
+						<para>Enter the appropriate SQL statement to select specific rows in the raster catalog.</para>
+					</pythonReference><dialogReference>
+						<para>Enter the appropriate SQL statement or click the SQL button to open the Query Builder dialog box to select specific rows in the raster catalog.</para>
+					</dialogReference></param><param sync="true" name="mosaic_type" displayname="Mosaic Operator" datatype="String" direction="Input" expression="mosaic_type" type="Optional"><pythonReference>
+						<para>The method used to mosaic overlapping areas.</para>
+						<bulletList><bullet_item>FIRST—The output cell value of the overlapping areas will be the value from the first raster dataset mosaicked into that location. </bullet_item><bullet_item>LAST—The output cell value of the overlapping areas will be the value from the last raster dataset mosaicked into that location. This is the default.</bullet_item><bullet_item>BLEND—The output cell value of the overlapping areas will be a horizontally weighted calculation of the values of the cells in the overlapping area.</bullet_item><bullet_item>MEAN—The output cell value of the overlapping areas will be the average value of the overlapping cells. </bullet_item><bullet_item>MINIMUM—The output cell value of the overlapping areas will be the minimum value of the overlapping cells. </bullet_item><bullet_item>MAXIMUM—The output cell value of the overlapping areas will be the maximum value of the overlapping cells. </bullet_item></bulletList>
+						<para>For more information about each mosaic operator, refer to Mosaic Operator.</para>
+					</pythonReference><dialogReference>
+						<para>The method used to mosaic overlapping areas.</para>
+						<bulletList><bullet_item>FIRST—The output cell value of the overlapping areas will be the value from the first raster dataset mosaicked into that location. </bullet_item><bullet_item>LAST—The output cell value of the overlapping areas will be the value from the last raster dataset mosaicked into that location. This is the default.</bullet_item><bullet_item>BLEND—The output cell value of the overlapping areas will be a horizontally weighted calculation of the values of the cells in the overlapping area.</bullet_item><bullet_item>MEAN—The output cell value of the overlapping areas will be the average value of the overlapping cells. </bullet_item><bullet_item>MINIMUM—The output cell value of the overlapping areas will be the minimum value of the overlapping cells. </bullet_item><bullet_item>MAXIMUM—The output cell value of the overlapping areas will be the maximum value of the overlapping cells. </bullet_item></bulletList>
+						<para>For more information about each mosaic operator, refer to the Mosaic Operator help topic.</para>
+					</dialogReference></param><param sync="true" name="colormap" displayname="Mosaic Colormap Mode" datatype="String" direction="Input" expression="colormap" type="Optional"><pythonReference>
+						<para>The method used to choose which colormap from the input rasters will be applied to the mosaic output.</para>
+						<bulletList><bullet_item>FIRST—The colormap from the first raster dataset in the list will be applied to the output raster mosaic. This is the default. </bullet_item><bullet_item>LAST—The colormap from the last raster dataset in the list will be applied to the output raster mosaic. </bullet_item><bullet_item>MATCH—Will take all the colormaps into consideration when mosaicking. If all possible values are already used (for the bit depth), it will attempt to match the value with the closest color that is available.</bullet_item><bullet_item>REJECT—Only the raster datasets that do not have a colormap associated with them will be mosaicked.</bullet_item></bulletList>
+						<para>For more information about each colormap mode, refer to Mosaic colormap mode.</para>
+					</pythonReference><dialogReference>
+						<para>The method used to choose which colormap from the input rasters will be applied to the mosaic output.</para>
+						<bulletList><bullet_item>FIRST—The colormap from the first raster dataset in the list will be applied to the output raster mosaic. This is the default. </bullet_item><bullet_item>LAST—The colormap from the last raster dataset in the list will be applied to the output raster mosaic. </bullet_item><bullet_item>MATCH—Will take all the colormaps into consideration when mosaicking. If all possible values are already used (for the bit depth), it will attempt to match the value with the closest color that is available.</bullet_item><bullet_item>REJECT—Only the raster datasets that do not have a colormap associated with them will be mosaicked.</bullet_item></bulletList>
+						<para>For more information about each colormap mode, refer to the Mosaic colormap mode help topic.</para>
+					</dialogReference></param><param sync="true" name="order_by_field" displayname="Order By Field" datatype="Field" direction="Input" expression="order_by_field" type="Optional"><pythonReference>
+						<para>Define the field by which to order the raster catalog items.</para>
+					</pythonReference><dialogReference>
+						<para>Select the field by which to order the raster catalog items.</para>
+					</dialogReference></param><param sync="true" name="ascending" displayname="Ascending" datatype="Boolean" direction="Input" expression="ascending" type="Optional"><pythonReference>
+						<para>Choose whether to use the ascending value of the Order By field. If the Ascending option is not used, the descending order will be used.</para>
+						<bulletList><bullet_item>Ascending—The ascending order of the rows will be followed in the mosaic procedure. This is the default. </bullet_item><bullet_item>None—The descending order of the rows will be followed in the mosaic procedure. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose whether to use the ascending value of the Order By field. If this is not checked, the descending order will be used.</para>
+						<bulletList>
+							<bullet_item>Checked—The ascending order of the rows will be followed in the mosaic procedure. This is the default. </bullet_item>
+							<bullet_item>Unchecked—The descending order of the rows will be followed in the mosaic procedure.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="Pixel_type" displayname="Pixel Type" datatype="String" direction="Input" expression="Pixel_type" type="Optional"><pythonReference>
+						<para>Determines the bit depth of the output raster dataset. If left unspecified, the output bit depth will be the same as the input.</para>
+						<para>There will be no rescaling of the raster values when a different pixel type is chosen. If the pixel type is demoted (lowered), the raster values outside the valid range for that pixel depth will be truncated and lost.</para>
+						<bulletList><bullet_item>1_BIT—A 1-bit unsigned integer. The values can be 0 or 1. </bullet_item><bullet_item>2_BIT—A 2-bit unsigned integer. The values supported can be from 0 to 3. </bullet_item><bullet_item>4_BIT—A 4-bit unsigned integer. The values supported can be from 0 to 15. </bullet_item><bullet_item>8_BIT_UNSIGNED—An unsigned 8-bit data type. The values supported can be from 0 to 255.</bullet_item><bullet_item>8_BIT_SIGNED—A signed 8-bit data type. The values supported can be from -128 to 127.</bullet_item><bullet_item>16_BIT_UNSIGNED—A 16-bit unsigned data type. The values can range from 0 to 65,535.</bullet_item><bullet_item>16_BIT_SIGNED—A 16-bit signed data type. The values can range from -32,768 to 32,767.</bullet_item><bullet_item>32_BIT_UNSIGNED—A 32-bit unsigned data type. The values can range from 0 to 4,294,967,295. </bullet_item><bullet_item>32_BIT_SIGNED—A 32-bit signed data type. The values can range from -2,147,483,648 to 2,147,483,647.</bullet_item><bullet_item>32_BIT_FLOAT—A 32-bit data type supporting decimals. </bullet_item><bullet_item>64_BIT—A 64-bit data type supporting decimals.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines the bit depth of the output raster dataset. If left unspecified, the output bit depth will be the same as the input.</para>
+						<para>There will be no rescaling of the raster values when a different pixel type is chosen. If the pixel type is demoted (lowered), the raster values outside the valid range for that pixel depth will be truncated and lost.</para>
+						<bulletList><bullet_item>1_BIT—A 1-bit unsigned integer. The values can be 0 or 1. </bullet_item><bullet_item>2_BIT—A 2-bit unsigned integer. The values supported can be from 0 to 3. </bullet_item><bullet_item>4_BIT—A 4-bit unsigned integer. The values supported can be from 0 to 15. </bullet_item><bullet_item>8_BIT_UNSIGNED—An unsigned 8-bit data type. The values supported can be from 0 to 255.</bullet_item><bullet_item>8_BIT_SIGNED—A signed 8-bit data type. The values supported can be from -128 to 127.</bullet_item><bullet_item>16_BIT_UNSIGNED—A 16-bit unsigned data type. The values can range from 0 to 65,535.</bullet_item><bullet_item>16_BIT_SIGNED—A 16-bit signed data type. The values can range from -32,768 to 32,767.</bullet_item><bullet_item>32_BIT_UNSIGNED—A 32-bit unsigned data type. The values can range from 0 to 4,294,967,295. </bullet_item><bullet_item>32_BIT_SIGNED—A 32-bit signed data type. The values can range from -2,147,483,648 to 2,147,483,647.</bullet_item><bullet_item>32_BIT_FLOAT—A 32-bit data type supporting decimals. </bullet_item><bullet_item>64_BIT—A 64-bit data type supporting decimals.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="ColorBalancing" displayname="Color Balancing" datatype="Boolean" direction="Input" expression="ColorBalancing" type="Optional"><pythonReference>
+						<para>Choose whether or not to use a dodging technique to color correct the raster catalog items. All pixels in the raster catalog will be used to determine the gamma and contrast values for the color-balancing algorithm.</para>
+						<bulletList><bullet_item>NONE—Color balancing will not be performed in the mosaic procedure. This is the default. </bullet_item><bullet_item>ColorBalancing—Color balancing will be performed in the mosaic procedure. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Check this box to use a dodging technique to color correct the raster catalog items. All pixels in the raster catalog will be used to determine the gamma and contrast values for the color-balancing algorithm.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Color balancing will not be performed in the mosaic procedure. This is the default. </bullet_item>
+							<bullet_item>Checked—Color balancing will be performed in the mosaicking procedure.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="matchingMethod" displayname="Matching Method" datatype="String" direction="Input" expression="matchingMethod" type="Optional"><pythonReference>
+						<para>Choose the color matching method to apply to the rasters.</para>
+						<bulletList><bullet_item>NONE—This option will not use the color matching operation when mosaicking your raster datasets. </bullet_item><bullet_item>STATISTICS_MATCHING—This method will match the statistical differences (minimum, maximum, and mean) between the reference overlap area and the source overlap area; the transformation will then be applied to the entire target dataset. </bullet_item><bullet_item>HISTOGRAM_MATCHING—This method will match the histogram from the reference overlap area with the source overlap area; the transformation will then be applied to the entire target. </bullet_item><bullet_item>LINEARCORRELATION_MATCHING—This method will match overlapped pixels and interpolate to the rest of the source; pixels that do not have a one-to-one relationship will use a weighted average. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Choose the color matching method to apply to the rasters.</para>
+						<bulletList><bullet_item>NONE—This option will not use the color matching operation when mosaicking your raster datasets. </bullet_item><bullet_item>STATISTICS_MATCHING—This method will match the statistical differences (minimum, maximum, and mean) between the reference overlap area and the source overlap area; the transformation will then be applied to the entire target dataset. </bullet_item><bullet_item>HISTOGRAM_MATCHING—This method will match the histogram from the reference overlap area with the source overlap area; the transformation will then be applied to the entire target. </bullet_item><bullet_item>LINEARCORRELATION_MATCHING—This method will match overlapped pixels and interpolate to the rest of the source; pixels that do not have a one-to-one relationship will use a weighted average. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="ReferenceRaster" displayname="Reference Raster" datatype="String" direction="Input" expression="ReferenceRaster" type="Optional"><pythonReference>
+						<para>If color matching is applied, choose how to specify the reference raster.</para>
+						<bulletList><bullet_item>CALCULATE_FROM_ALL—The system will calculate the best raster dataset to use, based on all the raster catalog items. </bullet_item><bullet_item>SPECIFY_OID—The user will type in the Object ID (OID) of the raster catalog item to use as the reference raster. </bullet_item><bullet_item>DEFINE_FROM_SELECTION—The system will calculate the best raster dataset to use, based on the raster catalog items that are selected. </bullet_item></bulletList>
+						<para> Older scripts and models may still use the old keyword. With the ArcGIS 10.0 release, this keyword was replaced with "CALCULATE_FROM_ALL"
+. Both keywords will continue to work, though for clarity it may be worthwhile to update it to the new keyword.</para></pythonReference><dialogReference>
+						<para>If color matching is applied, choose how to specify the reference raster.</para>
+						<bulletList><bullet_item>CALCULATE_FROM_ALL—The system will calculate the best raster dataset to use, based on all the raster catalog items. </bullet_item><bullet_item>SPECIFY_OID—The user will type in the Object ID (OID) of the raster catalog item to use as the reference raster. </bullet_item><bullet_item>DEFINE_FROM_SELECTION—The system will calculate the best raster dataset to use, based on the raster catalog items that are selected. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="OID" displayname="Reference Raster OID" datatype="Long" direction="Input" expression="OID" type="Optional"><pythonReference>
+						<para>The object ID (OID) of the reference raster. The OID is a unique key field in the raster catalog.</para>
+					</pythonReference><dialogReference>
+						<para>The object ID (OID) of the reference raster. The OID is a unique key field in the raster catalog.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system"></environment><environment name="Output_extent" label="Output extent"></environment><environment name="Output_Config_Keyword" label="Output Config Keyword"></environment><environment name="Pyramid" label="Pyramid"></environment><environment name="Raster_statistics" label="Raster statistics"></environment><environment name="Compression" label="Compression"></environment><environment name="Tile_size" label="Tile size"></environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>This tool allows you to convert your geodatabase raster catalog into a raster dataset; the input is a raster catalog and the output is a new raster dataset. This tool cannot mosaic data into an existing raster dataset.</para>
+			</bullet_item><bullet_item>
+				<para>There are several advantages of using a mosaicked raster dataset: it tends to display faster at any scale, saves space since there is no overlapping data, and the data tends to display with fewer seams.</para>
+			</bullet_item><bullet_item>
+				<para>You must set the pixel type to match your existing input raster datasets. If you do not set the pixel type, the 8-bit default will be used and your output might turn out incorrectly.</para>
+			</bullet_item><bullet_item>
+				<para>You can save your output to BIL, BIP, BMP, BSQ, DAT, GIF, GRID, IMG, JPEG, JPEG 2000, PNG, TIFF, or any geodatabase raster dataset. </para>
+			</bullet_item><bullet_item>
+				<para>When storing your raster dataset to a JPEG file, a JPEG 2000 file, or a geodatabase, you can specify a Compression type and Compression Quality within the Environment Settings.</para>
+			</bullet_item><bullet_item>
+				<para>The GIF format only supports single-band raster datasets.</para>
+			</bullet_item><bullet_item>
+				<para>The overlapping areas of the mosaic can be handled in several ways—for example, you can set the tool to keep only the first raster dataset's data, or you can blend the overlapping cell values. There are also several options to determine how to handle a colormap, if the raster dataset uses one. For example, you can keep the colormap of the last raster dataset used in the mosaic.</para>
+			</bullet_item><bullet_item>
+				<para>For mosaicking of discrete data, First, Minimum, or Maximum Mosaic Operator options will provide the most meaningful results. The Blend and Mean Mosaic Operator options are best suited for continuous data.</para>
+			</bullet_item><bullet_item>
+				<para>Whenever possible, use the Last Mosaic Operator to mosaic raster datasets to an existing raster dataset in a file geodatabase or ArcSDE geodatabase; it is by far the most effective way to mosaic.</para>
+			</bullet_item><bullet_item>
+				<para>When mosaicking with raster datasets containing colormaps, it is important to note differences across the colormaps for each raster dataset you choose to mosaic. In this situation, use the  tool for raster with different colormaps; however, you must choose the proper Mosaic Colormap Mode operator. If an improper colormap mode is chosen, your output might not turn out as you expected.</para>
+			</bullet_item><bullet_item>
+				<para>For floating-point input raster datasets of different resolutions or when cells are not aligned, it is recommended to resample all the data using bilinear interpolation or cubic convolution before running Mosaic; otherwise, Mosaic will automatically resample the raster datasets using nearest neighbor resampling, which is not appropriate for continuous data types.</para>
+			</bullet_item><bullet_item>
+				<para>Color matching and color correction can be used to make the raster mosaic more seamless.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RasterCatalogToRasterDataset example 1 (Python window)</title><para>This is a Python sample for the RasterCatalogToRasterDataset tool.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.RasterCatalogToRasterDataset_management("c:/data/fgdb.gdb/catalog1",\
+                                              "c:/data/dataset.tif",\
+                                              "OBJECTID&gt;1", "LAST", "FIRST",\
+                                              "", "", "8_BIT_UNSIGNED",\
+                                              "COLOR_BALANCING",\
+                                              "HISTOGRAM_MATCHING",\ 
+                                              "CALCULATE_FROM_ALL", "")
+                    </code></scriptExample><scriptExample><title>RasterCatalogToRasterDataset example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for the RasterCatalogToRasterDataset tool.</para>
+				<code xml:space="preserve">##==================================
+##Raster Catalog To Raster Dataset
+##Usage: RasterCatalogToRasterDataset_management in_raster_catalog out_raster_dataset {where_clause} {LAST | FIRST | MINIMUM | MAXIMUM 
+##                                               | MEAN | BLEND} {FIRST | REJECT | LAST | MATCH} {order_by_field} {NONE | ASCENDING} 
+##                                               {8_BIT_UNSIGNED | 1_BIT | 2_BIT | 4_BIT | 8_BIT_SIGNED | 16_BIT_UNSIGNED | 16_BIT_SIGNED | 32_BIT_UNSIGNED | 
+##                                               32_BIT_SIGNED | 32_BIT_FLOAT | 64_BIT} {NONE | COLOR_BALANCING} {NONE | STATISTIC_MATCHING | HISTOGRAM_MATCHING 
+##                                               | LINEARCORRELATION_MATCHING} {CACULATE_FROM_ALL | SPECIFY_OID | DEFINE_FROM_SELECTION} {OID}
+try:
+    import arcpy
+    arcpy.env.workspace = r"\\MyMachine\PrjWorkspace\RasGP"
+    ##Mosaic a Unmanaged Raster Catalog to a TIFF format Raster Dataset with Color Correction
+    arcpy.RasterCatalogToRasterDataset_management("RC2RD\\fgdb.gdb\\catalog1","RC2RD\\dataset1.tif", "OBJECTID&gt;1", "LAST", "FIRST", "",  "",\
+                                       "8_BIT_UNSIGNED", "COLOR_BALANCING", "HISTOGRAM_MATCHING", "CALCULATE_FROM_ALL", "")
+    
+    ##Mosaic using the According Order of cretain Field 
+    arcpy.RasterCatalogToRasterDataset_management("RC2RD\\fgdb.gdb\\catalog2","RC2RD\\dataset2.tif", "", "LAST", "FIRST", "POPULATION", \
+                                       "ASCENDING", "8_BIT_UNSIGNED", "COLOR_BALANCING", "HISTOGRAM_MATCHING", "SPECIFY_OID", "2")
+except:
+    print "Raster Catalog To Raster Dataset example failed."
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

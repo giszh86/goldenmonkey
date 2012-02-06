@@ -1,0 +1,25 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Make Parcel Fabric Layer (Parcel Fabric)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Creates a parcel fabric layer from an input parcel fabric. The parcel fabric layer that is created by the tool is temporary and will not persist after the session ends unless the document is saved.  This tool is needed if you would like a parcel fabric sublayer to participate in a geoprocessing model.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cadastral</keyword><keyword>Cadastral Editing</keyword><keyword>Cadastral Fabric</keyword><keyword>Cadastre</keyword><keyword>Control</keyword><keyword>Fabric</keyword><keyword>Land Records</keyword><keyword>Least Squares</keyword><keyword>Least Squares Adjustment</keyword><keyword>Linepoints</keyword><keyword>Lines</keyword><keyword>Lsa</keyword><keyword>Parcel</keyword><keyword>Parcel Editing</keyword><keyword>Parcel Fabric</keyword><keyword>Parcel Management</keyword><keyword>Parcels</keyword><keyword>Points</keyword><keyword>Survey</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" MakeParcelFabricLayer " displayname=" Make Parcel Fabric Layer (Parcel Fabric)" toolboxalias="fabric" softwarerestriction="none"><summary>
+			<para> Creates a parcel fabric layer from an input parcel fabric. The parcel fabric layer that is created by the tool is temporary and will not persist after the session ends unless the document is saved.  This tool is needed if you would like a parcel fabric sublayer to participate in a geoprocessing model.</para>
+		</summary><alink_name> MakeParcelFabricLayer _fabric</alink_name><parameters><param sync="true" name="in_parcel_fabric" displayname="Target Parcel Fabric" datatype="Parcel Fabric" direction="Input" expression="in_parcel_fabric" type="Required"><pythonReference>
+						<para> The parcel fabric dataset that will be used to create the parcel fabric layer. </para>
+					</pythonReference><dialogReference>
+						<para> The parcel fabric dataset that will be used to create the parcel fabric layer. </para>
+					</dialogReference></param><param sync="true" name="parcel_fabric_layer" displayname="Output Layer" datatype="Parcel Fabric Layer" direction="Output" expression="parcel_fabric_layer" type="Required"><pythonReference>
+						<para> The output parcel fabric layer. </para>
+					</pythonReference><dialogReference>
+						<para> The output parcel fabric layer. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments></environments><usage><bullet_item>
+				<para> The sublayers of the output parcel fabric layer can be used as input to any geoprocessing tool that accepts a feature class as input and produces output that is derived from the  input feature class. Derived output does not modify the input dataset.</para>
+			</bullet_item><bullet_item>
+				<para>The temporary parcel fabric layer and the sublayers can be saved as layer files.</para>
+			</bullet_item><bullet_item>
+				<para>An existing layer will be overwritten if the same name is entered and if you explicitly state that overwriting output is allowed.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>MakeParcelFabricLayer example (Python window)</title>
+					<para>The following Python window script demonstrates how to use the MakeParcelFabricLayer tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/Parcel_Editor_Tutorial/Encinitas_City/Cadastral.gdb"
+arcpy.MakeParcelFabricLayer_fabric("Fabric", "ParcelFabricLyr")
+                    </code></scriptExample></scriptExamples></tool></metadata>

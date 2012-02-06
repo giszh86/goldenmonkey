@@ -1,0 +1,70 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Region To Polygon Coverage (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Converts a region subclass to a polygon coverage and creates an INFO table containing overlapping region information.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Arc_Regionpoly</keyword><keyword>Composite Features</keyword><keyword>Data Management</keyword><keyword>Info Tables</keyword><keyword>Overlapping</keyword><keyword>Overlaps</keyword><keyword>Polygons</keyword><keyword>Region Subclass</keyword><keyword>Regionpoly</keyword><keyword>Regions</keyword><keyword>Subclass</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="RegionPoly" displayname="Region To Polygon Coverage (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Converts a region subclass to a polygon coverage and creates an INFO table containing overlapping region information.</para>
+			
+		</summary><alink_name>RegionPoly_arc</alink_name><parameters><param sync="true" name="in_cover" displayname="Input Coverage" datatype="Coverage" direction="Input" expression="in_cover" type="Required"><pythonReference>
+						<para>The coverage containing the region subclass to convert to polygons.</para>
+					</pythonReference><dialogReference>
+						<para>The coverage containing the region subclass to convert to polygons.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The polygon coverage to be created from the Input Subclass. The coverage may not already exist.</para>
+					</pythonReference><dialogReference>
+						<para>The polygon coverage to be created from the Input Subclass. The coverage may not already exist.</para>
+					</dialogReference></param><param sync="true" name="in_subclass" displayname="Input Subclass" datatype="String" direction="Input" expression="in_subclass" type="Required"><pythonReference>
+						<para>The region subclass of the Input Coverage that will be converted to a polygon coverage.</para>
+					</pythonReference><dialogReference>
+						<para>The region subclass of the Input Coverage that will be converted to a polygon coverage.</para>
+					</dialogReference></param><param sync="true" name="out_table" displayname="Output Table" datatype="ArcInfo Table" direction="Output" expression="out_table" type="Optional"><pythonReference>
+						<para>The output INFO table that will contain information for regions associated with each polygon.</para>
+					</pythonReference><dialogReference>
+						<para>The output INFO table that will contain information for regions associated with each polygon.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>All items in the region subclass polygon attribute table (PAT) are maintained in the Output Coverage PAT.</para>
+			</bullet_item><bullet_item>
+				<para>The Output Coverage PAT contains only the attributes of the first region associated with each polygon. Values of zero indicate void areas in which the subclass does not exist.</para>
+			</bullet_item><bullet_item>
+				<para>The attributes of the second to the Nth regions associated with each polygon are stored in the Output Table.</para>
+			</bullet_item><bullet_item>
+				<para>If only one region is associated with each polygon (a planar region subclass), then the Output Table does not need to be specified. However, an Output Table must be specified when using non-planar region subclasses.</para>
+			</bullet_item><bullet_item>
+				<para>The polygon User-IDs of the Output Coverage will be altered.</para>
+			</bullet_item><bullet_item>
+				<para>Use the Output Table to relate the Output Coverage polygons to the Input Coverage region subclass.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>RegionPoly example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to create a polygon coverage from a region subclass.
+</para>
+				<code xml:space="preserve"># Name: RegionPoly_Example.py
+# Description: Creates a polygon coverage from a region subclass
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCover = "hydro"
+outCover = "C:/output/genhydro"
+inSubclass = "general"
+outTable = "C:/output/genhydrotab"
+
+# Execute RegionPoly
+arcpy.RegionPoly_arc(inCover, outCover, inSubclass, outTable)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

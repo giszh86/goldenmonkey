@@ -1,0 +1,71 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Band Collection Statistics (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Calculates the statistics for a set of raster bands.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Band Statistics</keyword><keyword>Classification</keyword><keyword>Image Processing</keyword><keyword>Multiband</keyword><keyword>Multivariate Statistics</keyword><keyword>Raster</keyword><keyword>Remote Sensing</keyword><keyword>Stack</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BandCollectionStats" displayname="Band Collection Statistics (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Calculates the statistics for a set of raster bands.</para>
+			
+		</summary><alink_name>BandCollectionStats_sa</alink_name><parameters><param sync="true" name="in_raster_bands" displayname="Input raster bands" datatype="Raster Layer" direction="Input" expression="[in_raster_band,...]" type="Required"><pythonReference>
+						<para>The input raster bands.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster bands.</para>
+					</dialogReference></param><param sync="true" name="out_stat_file" displayname="Output statistics file" datatype="File" direction="Output" expression="out_stat_file" type="Required"><pythonReference>
+						<para>The output ASCII file containing the statistics.</para>
+						<para>A .txt extension is required.</para>
+					</pythonReference><dialogReference>
+						<para>The output ASCII file containing the statistics.</para>
+						<para>A .txt extension is required.</para>
+					</dialogReference></param><param sync="true" name="compute_matrices" displayname="Compute covariance and correlation matrices" datatype="Boolean" direction="Input" expression="compute_matrices" type="Optional"><pythonReference>
+						<para>Specifies whether covariance and correlation matrices are calculated.</para>
+						<bulletList><bullet_item>BRIEF — Only the basic statistical measures (minimum, maximum, mean, and standard deviation) will be calculated for every layer. This is the default.</bullet_item><bullet_item>DETAILED — In addition to the standard statistics calculated with {BRIEF}, the covariance and correlation matrices will also be determined. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether covariance and correlation matrices are calculated.</para>
+						<bulletList>
+							<bullet_item>Unchecked—Only the basic statistical measures (minimum, maximum, mean, and standard deviation) will be calculated for every layer. This is the default.</bullet_item>
+							<bullet_item>Checked—In addition to the standard statistics calculated, the covariance and correlation matrices will also be determined.</bullet_item>
+						</bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The raster bands must have a common intersection. If there is none, an error occurs and no output is created.</para></bullet_item><bullet_item>
+				<para>If the extents of the raster bands are not the same, the statistics will be calculated on the common spatial extent of all the input raster bands. The cell size will be that of the maximum of the input rasters, by default; otherwise, it will depend on the Raster Analysis environment settings.</para>
+			</bullet_item><bullet_item>
+				<para>The default setting of the Compute matrices parameter (BRIEF in scripting, unchecked in the tool dialog box) is to only compute the minimum, maximum, mean, and standard deviation of the input raster bands. To calculate these statistics and also the covariance and correlation matrices set the parameter to DETAILED in scripting, or checked in the tool dialog box. A covariance matrix presents the variances of all raster bands along the diagonal from the upper left to lower right and covariances between all raster bands in the remaining entries. The correlation matrix provides the correlation coefficients between each combination of two input bands.</para>
+			</bullet_item><bullet_item>
+				<para>The statistics are written to the output file in ASCII text format. The extension for the output must be .txt.</para>
+			</bullet_item><bullet_item>
+				<para>If the input is a layer created from a multiband raster with more than three bands, the operation will  consider all the bands associated with the source dataset, not just the three bands that were loaded (symbolized) by the layer. If you want to process a subset of the bands in the source dataset, you can  use the  tool to create an input layer containing the desired bands.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>BandCollectionStatistics example 1 (Python window)</title>
+					<para>This example calculates the statistics for a set of raster bands.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+BandCollectionStats("redlands", "c:/sapyexamples/output/redbandstats.txt", "BRIEF")
+                    </code></scriptExample><scriptExample><title>BandCollectionStatistics example 2 (stand-alone script)</title>
+					<para>This example calculates the statistics for a set of raster bands.</para>
+				<code xml:space="preserve"># Name: BandCollectionStats_Ex_02.py
+# Description: Calculates the statistics for a set of raster bands.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRasterBand1 = "sb/sbc1"
+inRasterBand2 = "sb/sbc2"
+outStatFile = "C:/sapyexamples/output/bandstatfile.txt"
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.checkOutExtension("Spatial")
+
+# Execute BandCollectionStats
+BandCollectionStats([inRasterBand1, inRasterBand2], outStatFile, "DETAILED")
+                    </code></scriptExample></scriptExamples></tool></metadata>

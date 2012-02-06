@@ -1,0 +1,56 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true"> Aggregate Points  (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para> Creates polygon features around clusters of proximate point features. </para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Aggregation</keyword><keyword>Amalgamate</keyword><keyword>Built Up Area</keyword><keyword>Built-Up Area</keyword><keyword>Builtup Area</keyword><keyword>Cartography</keyword><keyword>Combine</keyword><keyword>Consolidate</keyword><keyword>Contextual</keyword><keyword>Generalisation</keyword><keyword>Generalise</keyword><keyword>Generalization</keyword><keyword>Generalize</keyword><keyword>Point To Polygon</keyword><keyword>Scale Change</keyword><keyword>Simplification</keyword><keyword>Simplify</keyword><keyword>Small Scale</keyword><keyword>Typification</keyword><keyword>Typify</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name=" AggregatePoints " displayname=" Aggregate Points  (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para> Creates polygon features around clusters of proximate point features. </para>
+		</summary><alink_name> AggregatePoints _cartography</alink_name><parameters><param sync="true" name="in_features" displayname="Input Point Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para> The input point features that will be assessed for proximity and clustering. </para>
+					</pythonReference><dialogReference>
+						<para> The input point features that will be assessed for proximity and clustering. </para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para> The feature class created to hold the polygons that represent the point clusters. </para>
+					</pythonReference><dialogReference>
+						<para> The feature class created to hold the polygons that represent the point clusters. </para>
+					</dialogReference></param><param sync="true" name="aggregation_distance" displayname="Aggregation Distance" datatype="Linear Unit" direction="Input" expression="aggregation_distance" type="Required"><pythonReference>
+						<para> The distance between points that will be clustered. </para>
+					</pythonReference><dialogReference>
+						<para> The distance between points that will be clustered. </para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Polygons are created around clusters of three or more points within the aggregation distance.</para>
+			</bullet_item><bullet_item>
+				<para>Point aggregation may introduce polygon holes or areas where adjacent polygon boundaries meet at one vertex.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>AggregatePoints tool Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the AggregatePoints tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "C:/data"
+arcpy.AggregatePoints_cartography("C:/data/cartography.gdb/crime/robberies",
+                                  "C:/data/cartography.gdb/crime/clustered_robberies", "100 meters")
+                    </code></scriptExample><scriptExample><title>AggregatePoints tool Example (stand-alone Python script)</title>
+					<para>This stand-alone script shows an example of using the AggregatePoints tool.</para>
+				<code xml:space="preserve"># Name: AggregatePoints_standalone_script.py
+# Description: Creates polygon features around clusters of proximate point features.
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+in_point_features = "C:/data/cartography.gdb/crime/robberies"
+out_feature_class = "C:/data/cartography.gdb/crime/clustered_robberies"
+aggregation_distance = "100 meters"
+
+# Execute Aggregate Points
+arcpy.AggregatePoints_cartography(in_point_features, out_feature_class, aggregation_distance)
+                    </code></scriptExample></scriptExamples></tool></metadata>

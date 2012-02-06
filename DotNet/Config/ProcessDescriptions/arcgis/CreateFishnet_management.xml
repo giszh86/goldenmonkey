@@ -1,0 +1,145 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Create Fishnet (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a fishnet of rectangular cells.  The output can be polyline or polygon features.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Cells</keyword><keyword>Criss</keyword><keyword>Cross</keyword><keyword>Generate</keyword><keyword>Graticule</keyword><keyword>Grating</keyword><keyword>Grid</keyword><keyword>Gridiron</keyword><keyword>Mesh</keyword><keyword>Pattern</keyword><keyword>Rectangle</keyword><keyword>Regular</keyword><keyword>Right Angle</keyword><keyword>Sample</keyword><keyword>Square</keyword><keyword>Texture</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="CreateFishnet" displayname="Create Fishnet (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Creates a fishnet of rectangular cells.  The output can be polyline or polygon features.</para>
+			
+		</summary><alink_name>CreateFishnet_management</alink_name><parameters><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class containing the fishnet of rectangular cells.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class containing the fishnet of rectangular cells.</para>
+					</dialogReference></param><param sync="true" name="origin_coord" displayname="Fishnet Origin Coordinate" datatype="Point" direction="Input" expression="origin_coord" type="Required"><pythonReference>
+						<para>The starting pivot point of the fishnet.</para>
+					</pythonReference><dialogReference>
+						<para>The starting pivot point of the fishnet.</para>
+					</dialogReference></param><param sync="true" name="y_axis_coord" displayname="Y-Axis Coordinate" datatype="Point" direction="Input" expression="y_axis_coord" type="Required"><pythonReference>
+						<para>The Y-axis coordinate is used to orient the fishnet. The fishnet is rotated by the same angle as defined by the line connecting the origin and the y-axis coordiinate.</para>
+					</pythonReference><dialogReference>
+						<para>The Y-axis coordinate is used to orient the fishnet. The fishnet is rotated by the same angle as defined by the line connecting the origin and the y-axis coordiinate.</para>
+					</dialogReference></param><param sync="true" name="cell_width" displayname="Cell Size Width" datatype="Double" direction="Input" expression="cell_width" type="Required"><pythonReference>
+						<para>Determines the width of each cell.  If you want the width to be automatically calculated using the value in the Number of Rows parameter, set this value to zero—the width will be calculated when the tool is run.</para>
+					</pythonReference><dialogReference>
+						<para>Determines the width of each cell.  If you want the width to be automatically calculated using the value in the Number of Rows parameter, set this value to zero—the width will be calculated when the tool is run.</para>
+					</dialogReference></param><param sync="true" name="cell_height" displayname="Cell Size Height" datatype="Double" direction="Input" expression="cell_height" type="Required"><pythonReference>
+						<para>Determines the height of each cell.  If you want the height to be automatically calculated using the value in the Number of Columns parameter, set this value to zero—the height will be calculated when the tool is run.</para>
+					</pythonReference><dialogReference>
+						<para>Determines the height of each cell.  If you want the height to be automatically calculated using the value in the Number of Columns parameter, set this value to zero—the height will be calculated when the tool is run.</para>
+					</dialogReference></param><param sync="true" name="number_rows" displayname="Number of Rows" datatype="Long" direction="Input" expression="number_rows" type="Required"><pythonReference>
+						<para>Determines the number of rows the fishnet will have.  If you want the number of  rows to be automatically calculated using the value in the Cell Size Width parameter, set this value to zero—the number of rows will be calculated when the tool is run.</para>
+					</pythonReference><dialogReference>
+						<para>Determines the number of rows the fishnet will have.  If you want the number of  rows to be automatically calculated using the value in the Cell Size Width parameter, set this value to zero—the number of rows will be calculated when the tool is run.</para>
+					</dialogReference></param><param sync="true" name="number_columns" displayname="Number of Columns" datatype="Long" direction="Input" expression="number_columns" type="Required"><pythonReference>
+						<para>Determines the number of columns the fishnet will have.    If you want the number of  columns to be automatically calculated using the value in the Cell Size Height parameter, set this value to zero—the number of rows will be calculated when the tool is run.</para>
+					</pythonReference><dialogReference>
+						<para>Determines the number of columns the fishnet will have.    If you want the number of  columns to be automatically calculated using the value in the Cell Size Height parameter, set this value to zero—the number of rows will be calculated when the tool is run.</para>
+					</dialogReference></param><param sync="true" name="corner_coord" displayname="Opposite corner of Fishnet" datatype="Point" direction="Input" expression="corner_coord" type="Optional"><pythonReference><para>The opposite corner of the fishnet set by X-Coordinate and Y-Coordinate values.</para></pythonReference><dialogReference>
+						<para>The opposite corner of the fishnet set by X-Coordinate and Y-Coordinate values. The values for opposite corner are automatically set if a template extent is used. This parameter becomes disabled if the origin, Y-axis, cell size, and number of rows and columns are set.</para>
+					</dialogReference></param><param sync="true" name="labels" displayname="Create Labels" datatype="Boolean" direction="Input" expression="labels" type="Optional"><pythonReference>
+						<para>Specifies whether or not a point feature class will be created containing label points at the center of each fishnet cell.</para>
+						<bulletList><bullet_item>LABELS—A new feature class is created with label points. This is the default.</bullet_item><bullet_item>NO_LABELS—The label points feature class is not created.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specify whether or not a point feature class will be created containing label points at the center of each fishnet cell.</para>
+						<bulletList>
+							<bullet_item>Checked—A new feature class is created with label points. This is the default.</bullet_item>
+							<bullet_item>Unchecked—The label points feature class is not created.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="template" displayname="Template Extent" datatype="Extent" direction="Input" expression="template" type="Optional"><pythonReference><para>Specify the extent of the fishnet. The extent can be entered by specifying the coordinates or using a template dataset.</para>
+						<bulletList>
+							<bullet_item>Left—XMin value</bullet_item>
+							<bullet_item>Right—XMax value</bullet_item>
+							<bullet_item>Bottom—YMin value</bullet_item>
+							<bullet_item>Top—YMax value</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference><para>Specify the extent of the fishnet. The extent can be entered by specifying the coordinates or using a template dataset.</para>
+						<bulletList>
+							<bullet_item>Left—XMin value</bullet_item>
+							<bullet_item>Right—XMax value</bullet_item>
+							<bullet_item>Bottom—YMin value</bullet_item>
+							<bullet_item>Top—YMax value</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="geometry_type" displayname="Geometry Type" datatype="String" direction="Input" expression="geometry_type" type="Optional"><pythonReference>
+						<para>Determines if the output fishnet cells will be polyline or polygon features.</para>
+						<bulletList><bullet_item>POLYLINE—Output is a polyline feature class. Each cell is defined by four line features.</bullet_item><bullet_item>POLYGON—Output is a polygon feature class. Each cell is defined by a polygon feature. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines if the output fishnet cells will be polyline or polygon features.</para>
+						<bulletList><bullet_item>POLYLINE—Output is a polyline feature class. Each cell is defined by four line features.</bullet_item><bullet_item>POLYGON—Output is a polygon feature class. Each cell is defined by a polygon feature. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Output_Config_Keyword" label="Output Config Keyword">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The coordinate system of the output can be set either by entering a feature class or layer in the Template Extent  parameter or by setting  the Output Coordinate System environment variable.</para>
+			</bullet_item><bullet_item>
+				<para> In addition to creating the output fishnet, a new point feature class is created with label points at the center of each fishnet cell if the Create Label Points parameter is set to LABELS (Checked). The name of this feature class is the same as the output feature class with a suffix of _Labels and is created in the same locaton.</para>
+			</bullet_item><bullet_item>
+				<para>The Geometry Type parameter gives the option of creating output polyline (default) or polygon cells. Creating a polygon fishnet may be slow, depending on the number of rows and columns.</para>
+			</bullet_item><bullet_item>
+				<para>The Cell Size Width and the Cell Size Height values are in the same units as defined by the output feature class.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>CreateFishnet Example 1 (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the CreateFishnet function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+
+# Create a fishnet with 9 columns and 9 rows
+arcpy.CreateFishnet_management("C:/data/output/fishnet1.shp", "1 1", "1 9", "1", "1", "9", "9", "#", "NO_LABELS")
+                    </code></scriptExample><scriptExample><title>CreateFishnet Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script shows how to create new rectangular cells (fishnet) using the CreateFishnet function.</para>
+				<code xml:space="preserve"># Name: CreateFishnet.py
+# Description: Creates rectangular cells
+# Author: ESRI
+
+# import system module
+import arcpy
+from arcpy import env
+
+# set workspace environment
+env.workspace = "C:/data/output"
+
+# Set coordinate system of the output fishnet
+env.outputCoordinateSystem = "&lt;install directory&gt;/Coordinate Systems/Projected Coordinate Systems/UTM/NAD 1983/NAD 1983 UTM Zone 11N.prj"
+
+outFeatureClass = "fishnet10by10.shp"
+
+# Set the origin of the fishnet
+originCoordinate = '1037.26 4145.81'
+
+# Set the orientation
+yAxisCoordinate = '1037.26 4155.81'
+
+# Enter 0 for width and height - these values will be calcualted by the tool
+cellSizeWidth = '0'
+cellSizeHeight = '0'
+
+# Number of rows and columns together with origin and opposite corner 
+# determine the size of each cell 
+numRows =  '10'
+numColumns = '10'
+
+oppositeCoorner = '19273.61 18471.17'
+
+# Create a point label feature class 
+labels = 'true'
+
+# Extent is set by origin and opposite corner - no need to use a template fc
+templateExtent = '#'
+
+# Each output cell will be a polygon
+geometryType = 'POLYGON'
+
+arcpy.CreateFishnet_management(outFeatureClass, originCoordinate, yAxisCoordinate, cellSizeWidth, cellSizeHeight, numRows, numColumns, oppositeCoorner, labels, templateExtent, geometryType)
+                    </code></scriptExample></scriptExamples></tool></metadata>

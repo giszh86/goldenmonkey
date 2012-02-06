@@ -1,0 +1,96 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Append (Coverage)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Combines an unlimited number of coverages into a single coverage.</para>
+			<para>Append checks for the existence of the coverage, verifies that the list of feature attribute table items matches the items in previously entered coverages (unless the FEATURES_ONLY option is used), and calculates Tic-ID and feature User-ID offsets according to the specified offset option.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Aggregate</keyword><keyword>Append</keyword><keyword>Arc</keyword><keyword>Coverage</keyword><keyword>Data Management</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Append" displayname="Append (Coverage)" toolboxalias="arc" softwarerestriction="none"><summary>
+			<para>Combines an unlimited number of coverages into a single coverage.</para>
+			<para>Append checks for the existence of the coverage, verifies that the list of feature attribute table items matches the items in previously entered coverages (unless the FEATURES_ONLY option is used), and calculates Tic-ID and feature User-ID offsets according to the specified offset option.</para>
+			
+		</summary><alink_name>Append_arc</alink_name><toolIllust type="illustration" src="Append_arc_h.gif" alt="Appending coverages" /><parameters><param sync="true" name="in_covers" displayname="Input Coverages" datatype="Coverage" direction="Input" expression="[in_covers,...]" type="Required"><pythonReference>
+						<para>The input coverages to be appended. There is no limit to the number of coverages that can be entered.</para>
+					</pythonReference><dialogReference>
+						<para>The input coverages to be appended. There is no limit to the number of coverages that can be entered.</para>
+					</dialogReference></param><param sync="true" name="out_cover" displayname="Output Coverage" datatype="Coverage" direction="Output" expression="out_cover" type="Required"><pythonReference>
+						<para>The output coverage to be created. The output coverage cannot already exist.</para>
+					</pythonReference><dialogReference>
+						<para>The output coverage to be created. The output coverage cannot already exist.</para>
+					</dialogReference></param><param sync="true" name="append_method" displayname="Append Method" datatype="String" direction="Input" expression="append_method" type="Optional"><pythonReference>
+						<para>Determines whether only coordinates will be appended (FEATURES_ONLY) or if features will also be appended.</para>
+						<bulletList><bullet_item>FEATURES_ONLY—Location information for all feature classes that are appended. Feature attribute tables are not appended. </bullet_item><bullet_item>FEATURES_ATTRIBUTES—The features in the specified coverage define the set of features to be appended. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Determines whether only coordinates will be appended (FEATURES_ONLY) or if features will also be appended.</para>
+						<bulletList><bullet_item>FEATURES_ONLY—Location information for all feature classes that are appended. Feature attribute tables are not appended. </bullet_item><bullet_item>FEATURES_ATTRIBUTES—The features in the specified coverage define the set of features to be appended. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="feature_classes" displayname="Feature Type" datatype="String" direction="Input" expression="feature_classes" type="Optional"><pythonReference>
+						<para>The feature class of the input coverage or coverages.</para>
+						<bulletList><bullet_item>POLY—Polygon feature coordinates and attributes are appended, including label points. </bullet_item><bullet_item>LINE—Arc feature coordinates and attributes are appended. </bullet_item><bullet_item>POINT—Point feature coordinates and attributes are appended. </bullet_item><bullet_item>NODE—Arc and node feature coordinates and their attributes are appended. </bullet_item><bullet_item>NET—Arc and polygon feature coordinates and their attributes are appended. </bullet_item><bullet_item>LINK—Arc and point feature coordinates and their attributes are appended. </bullet_item><bullet_item>ANNO.subclass—Annotation features and attributes of the subclass are appended. </bullet_item><bullet_item>SECTION.subclass—Section feature coordinates and attributes of the subclass are appended. </bullet_item><bullet_item>ROUTE.subclass—Route and section feature coordinates and attributes of the subclass are appended. </bullet_item><bullet_item>REGION.subclass—Region feature coordinates and attributes of the subclass are appended. Polygon feature coordinates and attributes are also appended. </bullet_item></bulletList>
+						<para>The Add Value button, which is used only in ModelBuilder, allows you to add expected value(s) so you can complete the dialog and continue to build your model.</para>
+					</pythonReference><dialogReference>
+						<para>The feature class of the input coverage or coverages.</para>
+						<bulletList><bullet_item>POLY—Polygon feature coordinates and attributes are appended, including label points. </bullet_item><bullet_item>LINE—Arc feature coordinates and attributes are appended. </bullet_item><bullet_item>POINT—Point feature coordinates and attributes are appended. </bullet_item><bullet_item>NODE—Arc and node feature coordinates and their attributes are appended. </bullet_item><bullet_item>NET—Arc and polygon feature coordinates and their attributes are appended. </bullet_item><bullet_item>LINK—Arc and point feature coordinates and their attributes are appended. </bullet_item><bullet_item>ANNO.subclass—Annotation features and attributes of the subclass are appended. </bullet_item><bullet_item>SECTION.subclass—Section feature coordinates and attributes of the subclass are appended. </bullet_item><bullet_item>ROUTE.subclass—Route and section feature coordinates and attributes of the subclass are appended. </bullet_item><bullet_item>REGION.subclass—Region feature coordinates and attributes of the subclass are appended. Polygon feature coordinates and attributes are also appended. </bullet_item></bulletList>
+						<para>The Add Value button, which is used only in ModelBuilder, allows you to add expected value(s) so you can complete the dialog and continue to build your model.</para>
+					</dialogReference></param><param sync="true" name="number_method" displayname="Create Unique IDs" datatype="String" direction="Input" expression="number_method" type="Optional"><pythonReference>
+						<para>Specifies how tics and coverage features will be numbered in the Output Coverage. IDs can be offset to ensure unique ID values for Output Coverage features. The ID offset is equal to 1 plus the highest ID value in the previously appended coverages. Offsets can be calculated for the following types of IDs:</para>
+						<bulletList><bullet_item>NO—Neither Tic-IDs nor feature User-IDs will be modified. This is the default option. </bullet_item><bullet_item>TICS_ONLY—ID offsets will be calculated for tics. </bullet_item><bullet_item>FEATURES_ONLY—User-ID offsets will be calculated for the feature class(es) specified by the feature classes argument. Tic-IDs are not modified. </bullet_item><bullet_item>FEATURES_TICS—ID offsets will be calculated for both tics and features. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how tics and coverage features will be numbered in the Output Coverage. IDs can be offset to ensure unique ID values for Output Coverage features. The ID offset is equal to 1 plus the highest ID value in the previously appended coverages. Offsets can be calculated for the following types of IDs:</para>
+						<bulletList><bullet_item>NO—Neither Tic-IDs nor feature User-IDs will be modified. This is the default option. </bullet_item><bullet_item>TICS_ONLY—ID offsets will be calculated for tics. </bullet_item><bullet_item>FEATURES_ONLY—User-ID offsets will be calculated for the feature class(es) specified by the feature classes argument. Tic-IDs are not modified. </bullet_item><bullet_item>FEATURES_TICS—ID offsets will be calculated for both tics and features. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Level_of_comparsion_between_projection_files" label="Level of comparsion between projection files">
+						
+					</environment><environment name="Precision_for_derived_coverages" label="Precision for derived coverages">
+						
+					</environment><environment name="Precision_for_new_coverages" label="Precision for new coverages">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>All Input Coverages to be appended must contain the feature class or set of feature classes and feature attribute tables to be appended. For example, if the NET feature type option is used, all coverages should have line and polygon features, and corresponding AATs and PATs.</para>
+			</bullet_item><bullet_item>
+				<para>The TOL file with single precision coverages and the PAR file with double precision coverages will not be transformed or retained in the Output Coverage files.</para>
+			</bullet_item><bullet_item>
+				<para>The  of the Output Coverage will default to 0.002 if the width of the BND is between 1 and 100; otherwise, the tolerance is 1/10,000 of the width or height of the BND, whichever is greater.</para>
+			</bullet_item><bullet_item>
+				<para>The item definitions of the feature attribute tables must be the same and in the same order for all appended coverages (unless the FEATURES_ONLY option is used).</para>
+			</bullet_item><bullet_item>
+				<para>Using the ROUTE.subclass option is the same as using the ROUTE.subclass and SECTION.subclass options together; that is, both the routes and sections of the specified subclass are appended. If the User-ID of any route is not unique across the coverages being appended, that route will be merged with other routes of the same User-ID. The Output Coverage may, therefore, contain less routes than the total number of routes in the Input Coverages. Append never modifies route measures.</para>
+			</bullet_item><bullet_item>
+				<para>All polygons in the Input Coverages are appended with the REGION.subclass option, not just those pertaining to the regions being appended. Region subclasses are not maintained with the POLY option; you must also specify REGION.subclass. After combining region subclasses with Append, the new topological relationships between features must be calculated using  or . Another way to combine region subclasses is to use . Union calculates topology when combining region subclasses.</para>
+			</bullet_item><bullet_item>
+				<para>Annotation for each coverage is appended to the Output Coverage. As with all other feature classes, all TATs within a subclass must have identical item definitions.</para>
+			</bullet_item><bullet_item>
+				<para>The projection file (PRJ) will be copied to the Output Coverage. The first coverage entered will provide the projection information for the Output Coverage.</para>
+			</bullet_item><bullet_item>
+				<para>The coordinate precision of the Output Coverage is determined by the current processing rule as set by the  environment setting. If the processing rule has not been established, then the processing rule will be HIGHEST. This means that Append will create an Output Coverage in the highest precision of the Input Coverages.</para>
+			</bullet_item><bullet_item>
+				<para>Projection files will be compared for similarity using the level of comparison specified with the  environment setting.</para>
+			</bullet_item><bullet_item>
+				<para>The Feature Type parameter's Add Value button is used only in ModelBuilder. In ModelBuilder, where the preceding tool has not been run or its derived data does not exist, the Feature Type parameter may not be populated with values. The Add Value button allows you to add expected value(s) so you can complete the Append dialog and continue to build your model.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Buffer example (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to append several coverage into one output coverage.
+</para>
+				<code xml:space="preserve"># Name: Append_Example.py
+# Description: Appends several coverages into one output
+# Requirements: ArcInfo Workstation
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+inCovers = ["tongzone1", "tongzone2", "tongzone3", "tongzone4"]
+outCover = "C:/output/tongass"
+appendMethod = "FEATURES_ONLY"
+featureClasses = "LINE"
+numberMethod = "TICS_ONLY"
+
+# Execute Append
+arcpy.Append_arc(inCovers, outCover, appendMethod, featureClasses, 
+                 numberMethod)
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

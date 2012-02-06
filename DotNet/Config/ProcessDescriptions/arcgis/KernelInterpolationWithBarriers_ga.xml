@@ -1,0 +1,121 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Kernel Interpolation With Barriers (Geostatisical Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>A moving window predictor that uses the shortest distance between points so that points on either side of the line barriers are connected.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Absolute</keyword><keyword>Bandwidth</keyword><keyword>Breakline</keyword><keyword>Esda</keyword><keyword>Estimate</keyword><keyword>Faulted</keyword><keyword>Non Euclidean</keyword><keyword>Predict</keyword><keyword>Ridge</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="KernelInterpolationWithBarriers" displayname="Kernel Interpolation With Barriers (Geostatisical Analyst)" toolboxalias="ga" softwarerestriction="none"><summary>
+			<para>A moving window predictor that uses the shortest distance between points so that points on either side of the line barriers are connected.</para>
+			
+		</summary><alink_name>KernelInterpolationWithBarriers_ga</alink_name><parameters><param sync="true" name="in_features" displayname="Input point features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The input point features containing the z-values to be interpolated.</para>
+					</pythonReference><dialogReference>
+						<para>The input point features containing the z-values to be interpolated.</para>
+					</dialogReference></param><param sync="true" name="z_field" displayname="Z value field" datatype="Field" direction="Input" expression="z_field" type="Required"><pythonReference>
+						<para>Field that holds a height or magnitude value for each point. This can be a numeric field or the Shape field if the input features contains z-values or m-values.</para>
+					</pythonReference><dialogReference>
+						<para>Field that holds a height or magnitude value for each point. This can be a numeric field or the Shape field if the input features contains z-values or m-values.</para>
+					</dialogReference></param><param sync="true" name="out_ga_layer" displayname="Output geostatistical layer" datatype="Geostatistical Layer" direction="Output" expression="out_ga_layer" type="Required"><pythonReference>
+						<para>The geostatistical layer produced. This layer is required output only if no output raster is requested.</para>
+					</pythonReference><dialogReference>
+						<para>The geostatistical layer produced. This layer is required output only if no output raster is requested.</para>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster Dataset" direction="Output" expression="out_raster" type="Optional"><pythonReference>
+						<para>The output raster. This raster is required output only if no output geostatistical layer is requested.</para>
+					</pythonReference><dialogReference>
+						<para>The output raster. This raster is required output only if no output geostatistical layer is requested.</para>
+					</dialogReference></param><param sync="true" name="cell_size" displayname="Output cell size" datatype="Analysis cell size" direction="Input" expression="cell_size" type="Optional"><pythonReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</pythonReference><dialogReference>
+						<para>The cell size at which the output raster will be created. </para>
+						<para>This value can be explicitly set under Raster Analysis from the Environment Settings. If not set, it is the shorter of the width or the height of the extent of the input point features, in the input spatial reference, divided by 250.</para>
+					</dialogReference></param><param sync="true" name="in_barrier_features" displayname="Input absolute barrier features" datatype="Feature Layer" direction="Input" expression="in_barrier_features" type="Optional"><pythonReference>
+						<para>Absolute barrier features using non Euclidean distances rather than "line of sight" distances.</para>
+					</pythonReference><dialogReference>
+						<para>Absolute barrier features using non Euclidean distances rather than "line of sight" distances.</para>
+					</dialogReference></param><param sync="true" name="kernel_function" displayname="Kernel function" datatype="String" direction="Input" expression="kernel_function" type="Optional"><pythonReference>
+						<para> The kernel function used in the simulation.</para>
+						<bulletList><bullet_item> QUARTIC— Fourth order polynomial function.</bullet_item><bullet_item> EXPONENTIAL— The function grows or decays proportionally. </bullet_item><bullet_item>GAUSSIAN— Bell shaped function that falls off quickly towards plus/minus infinity. </bullet_item><bullet_item> EPANECHNIKOV— A discontinuous parabolic function. </bullet_item><bullet_item> POLYNOMIAL5— Fifth order polynomial function.</bullet_item><bullet_item> CONSTANT—An indicator function.</bullet_item></bulletList>
+						
+							
+							
+						
+					</pythonReference><dialogReference>
+						<para> The kernel function used in the simulation.</para>
+						<bulletList><bullet_item> QUARTIC— Fourth order polynomial function.</bullet_item><bullet_item> EXPONENTIAL— The function grows or decays proportionally. </bullet_item><bullet_item>GAUSSIAN— Bell shaped function that falls off quickly towards plus/minus infinity. </bullet_item><bullet_item> EPANECHNIKOV— A discontinuous parabolic function. </bullet_item><bullet_item> POLYNOMIAL5— Fifth order polynomial function.</bullet_item><bullet_item> CONSTANT—An indicator function.</bullet_item></bulletList>
+						
+							
+							
+						
+					</dialogReference></param><param sync="true" name="bandwidth" displayname="Bandwidth parameter" datatype="Double" direction="Input" expression="bandwidth" type="Optional"><pythonReference>
+						<para> Used to specify the maximum distance at which data points are used for prediction. With increasing bandwidth, prediction bias increases and prediction variance decreases.</para>
+					</pythonReference><dialogReference>
+						<para> Used to specify the maximum distance at which data points are used for prediction. With increasing bandwidth, prediction bias increases and prediction variance decreases.</para>
+					</dialogReference></param><param sync="true" name="power" displayname="Order of polynomial" datatype="Integer" direction="Input" expression="power" type="Optional"><pythonReference>
+						<para> Sets the order of the polynomial</para>
+					</pythonReference><dialogReference>
+						<para> Sets the order of the polynomial</para>
+					</dialogReference></param><param sync="true" name="ridge" displayname="Ridge parameter" datatype="Double" direction="Input" expression="ridge" type="Optional"><pythonReference>
+						<para> Used for the numerical stabilization of the solution of the system of linear equations. It does not influence predictions in the case of regularly distributed data without barriers. Predictions for areas in which the data are located near the feature barrier or isolated by the barriers can be unstable and tend to require relatively large ridge parameter values.</para>
+					</pythonReference><dialogReference>
+						<para> Used for the numerical stabilization of the solution of the system of linear equations. It does not influence predictions in the case of regularly distributed data without barriers. Predictions for areas in which the data are located near the feature barrier or isolated by the barriers can be unstable and tend to require relatively large ridge parameter values.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				
+				<para>The Absolute feature barrier employs a “non Euclidean” distance approach rather than a “line of sight” approach. The “line of sight” approach requires that a straight line between the measured location and the location where the prediction is required do not intersect the barrier feature. If the distance around the barrier is within the searching neighborhood specifications, then it will be considered in this “non Euclidean” distance approach. </para>
+			</bullet_item><bullet_item>
+				<para>The processing time is dependent on the complexity of the barrier feature classes geometry. Tools in the  can be used to create a new feature class by smoothing or deleting some of these features.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>KernelInterpolationWithBarriers (Python window)</title>
+					<para>Interpolate point features onto a rectangular raster using a barrier feature class.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/gapysamples/data"
+arcpy.KernelInterpolationWithBarriers_ga("ca_ozone_pts", "OZONE", "outKIWB",
+                                         "C:/gapyexamples/output/kiwbout", "2000",
+                                         "ca_outline", "QUARTIC", "", "", "50")
+
+                    </code></scriptExample><scriptExample><title>KernelInterpolationWithBarriers (stand-alone script)</title>
+					<para>Interpolate point features onto a rectangular raster using a barrier feature class.</para>
+				<code xml:space="preserve"># Name: KernelInterpolationWithBarriers_Example_02.py
+# Description: Kernel Interpolation with Barriers is a moving window predictor
+#   that uses non-Euclidean distances.
+# Requirements: Geostatistical Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = "C:/gapyexamples/data"
+
+# Set local variables
+inPointFeatures = "ca_ozone_pts.shp"
+zField = "ozone"
+outLayer = "outKIWB"
+outRaster = "C:/gapyexamples/output/kiwbout"
+cellSize = 2000.0
+inBarrier = "ca_outline.shp"
+kernelFunction = "QUARTIC"
+bandwidth = ""
+power = ""
+ridgeParam = "50"
+
+# Check out the ArcGIS Geostatistical Analyst extension license
+arcpy.CheckOutExtension("GeoStats")
+
+# Execute KernelInterpolationWithBarriers
+arcpy.KernelInterpolationWithBarriers_ga(inPointFeatures, zField, outLayer, outRaster,
+                                         cellSize, inBarrier, kernelFunction, bandwidth,
+                                         power, ridgeParam)
+
+
+
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

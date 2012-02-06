@@ -1,0 +1,102 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Append (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Appends multiple input datasets into an existing target dataset. Input datasets can be point, line, or polygon feature classes, tables, rasters, raster catalogs, annotation feature classes, or dimensions feature classes. </para>
+			<para>To combine input datasets into a new output dataset, use the Merge tool.</para></idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Add</keyword><keyword>Aggregate</keyword><keyword>Attach</keyword><keyword>Combine</keyword><keyword>Contain</keyword><keyword>Dataset</keyword><keyword>Feature</keyword><keyword>Intact</keyword><keyword>Join</keyword><keyword>Load Data</keyword><keyword>Map</keyword><keyword>Merge</keyword><keyword>Record</keyword><keyword>Target</keyword><keyword>Unite</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="Append" displayname="Append (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Appends multiple input datasets into an existing target dataset. Input datasets can be point, line, or polygon feature classes, tables, rasters, raster catalogs, annotation feature classes, or dimensions feature classes. </para>
+			<para>To combine input datasets into a new output dataset, use the Merge tool.</para></summary><alink_name>Append_management</alink_name><toolIllust type="dialog" src="ARCTOOLBOXHELP/Append_management_v.gif" alt="Append illustration" /><toolIllust type="illustration" src="Append_management_h.gif" alt="Append illustration" /><parameters><param sync="true" name="inputs" displayname="Input Datasets" datatype="Table View;Raster Layer" direction="Input" expression="[inputs,...]" type="Required"><pythonReference>
+						<para>The input datasets whose data will be appended into the target dataset. Input datasets can be point, line, or polygon feature classes, tables, rasters, raster catalogs, annotation feature classes, or dimensions feature classes. Each input dataset must match the data type of the target dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input datasets whose data will be appended into the target dataset. Input datasets can be point, line, or polygon feature classes, tables, rasters, raster catalogs, annotation feature classes, or dimensions feature classes. Each input dataset must match the data type of the target dataset.</para>
+					</dialogReference></param><param sync="true" name="target" displayname="Target Dataset" datatype="Table View;Raster Layer" direction="Input" expression="target" type="Required"><pythonReference>
+						<para>The existing dataset that the input datasets' data will be appended into. Each input dataset must match the data type of the target dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The existing dataset that the input datasets' data will be appended into. Each input dataset must match the data type of the target dataset.</para>
+					</dialogReference></param><param sync="true" name="schema_type" displayname="Schema Type" datatype="String" direction="Input" expression="schema_type" type="Optional"><pythonReference>
+						<para>Specifies if the schema (field definitions) of the input datasets must match the schema of the target dataset in order for data to be appended.</para>
+						<bulletList><bullet_item>TEST—Input dataset schema (field definitions) must match the schema of the target dataset. An error will be returned if the schemas do not match. </bullet_item><bullet_item>NO_TEST—Input dataset schema (field definitions) do not have to match that of the target dataset. Any fields from the input datasets which do not match the fields of the target dataset will not be mapped to the target dataset unless the mapping is explicitly set in the Field Map control.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies if the schema (field definitions) of the input datasets must match the schema of the target dataset in order for data to be appended.</para>
+						<bulletList><bullet_item>TEST—Input dataset schema (field definitions) must match the schema of the target dataset. An error will be returned if the schemas do not match. </bullet_item><bullet_item>NO_TEST—Input dataset schema (field definitions) do not have to match that of the target dataset. Any fields from the input datasets which do not match the fields of the target dataset will not be mapped to the target dataset unless the mapping is explicitly set in the Field Map control.</bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="field_mapping" displayname="Field Map" datatype="Field Mapping" direction="Input" expression="field_mapping" type="Optional"><pythonReference>
+						<para>Controls how the attribute information in input datasets' fields is transferred to the target dataset. The Field Map control can only be used if the Schema Type NO_TEST is specified. </para>
+						<para>Because the input datasets' data is appended into an existing target dataset that has a predefined schema (field definitions), the Append tool Field Map control does not allow for fields to be added or removed from the target dataset.</para>
+					</pythonReference><dialogReference>
+						<para>Controls how the attribute information in input datasets' fields is transferred to the target dataset. The Field Map control can only be used if the Schema Type NO_TEST is specified. </para>
+						<para>Because the input datasets' data is appended into an existing target dataset that has a predefined schema (field definitions), the Append tool Field Map control does not allow for fields to be added or removed from the target dataset.</para>
+					</dialogReference></param><param sync="true" name="subtype" displayname="Subtype" datatype="String" direction="Input" expression="subtype" type="Optional"><pythonReference>
+						<para>A subtype description to assign that subtype to all new data that is appended to the target dataset.</para>
+					</pythonReference><dialogReference>
+						<para>A subtype description to assign that subtype to all new data that is appended to the target dataset.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_Z_domain" label="Output Z domain">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Output_spatial_grid_1_2_3" label="Output spatial grid 1 2 3">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Use this tool to add new features or other data from mutliple datasets into an existing datasets. This tool can append point, line, or polygon feature classes, tables, rasters, raster catalogs, annotation feature classes, or dimensions feature classes into an existing dataset of the same type. For example, several tables can be appended to an existing table, or several rasters can be appended to an existing raster dataset, but a line feature class cannot be appended to a point feature class. </para>
+			</bullet_item><bullet_item>
+				<para>The Append tool's  can be used to control how the attribute information from the input dataset fields is transferred to the target dataset. The Field Map control can only be used if the Schema Type NO_TEST is specified.</para>
+			</bullet_item><bullet_item>
+				<para>This tool will not planarize features when they are added to the target dataset. All features from both the input feature class and the target feature class will remain intact after the append, even if the features overlap. To combine, or planarize feature geometries, use the  tool.</para>
+			</bullet_item><bullet_item>
+				<para>If the Schema Type TEST is specified, the schema (field definitions) of the input datasets must match that of the target dataset in order for the features to be appended. If the Schema Type NO_TEST is specified, input dataset schema (field definitions) do not have to match the target dataset. However, any fields from the input datasets which do not match the fields of the target dataset will not be mapped to the target dataset unless the mapping is explicitly set in the Field Map control. </para>
+			</bullet_item><bullet_item>
+				<para>Because the input datasets' data is written into an existing target dataset that has a predefined schema (field definitions), the Field Map control does not allow for fields to be added or removed from the target dataset.</para>
+			</bullet_item><bullet_item>
+				<para>If the spatial references of an input and target feature class do not match, the Append tool will project the features in the input feature class to the coordinate system used by the target feature class.</para>
+			</bullet_item><bullet_item>
+				<para>This  tool does not perform edge matching—there will be no adjustment to the geometry of features.</para>
+			</bullet_item><bullet_item>
+				<para>Map layers can be used as Input Datasets. If a layer has a selection, only the selected records (features or table rows) are used by the Append tool.</para>
+			</bullet_item><bullet_item>
+				<para>This  tool cannot use multiple input layers with the same name. Although ArcMap allows for the display of layers with the same name, these layers may not be used. To work around this limitation, use the  tool dialog browse button to browse for the full paths of each of the Input Datasets.</para>
+			</bullet_item><bullet_item>
+				<para>To use the Subtype parameter, the target dataset must have a defined subtype field and assigned subtype codes. In the Subtype parameter, provide a subtype description to assign that subtype to all new data that is appended to the target dataset.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>Append Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the Append tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+arcpy.env.workspace = "C:/data/"
+arcpy.Append_management(["north.shp", "south.shp", "east.shp", "west.shp"], "wholecity.shp", "TEST","","")
+                    </code></scriptExample><scriptExample><title>Append Example (Stand-alone Python script)</title>
+					<para>The following script demonstrates how to use the Append tool.</para>
+				<code xml:space="preserve"># Name: Append.py
+# Description: Use the Append tool to combine several shapefiles
+# Author: ESRI
+
+# import system modules 
+import arcpy, os
+from arcpy import env
+
+# Set environment settings
+env.workspace = "C:/data"
+
+# Set local variables
+outLocation = "C:/Output"
+emptyFC = "MA_towns.shp"
+schemaType = "NO_TEST"
+fieldMappings = ""
+subtype = ""
+
+try:
+    # Process:  Create a new empty feature class to append shapefiles into
+    arcpy.CreateFeatureClass_management(outLocation, emptyFC, "POLYGON", "amherst.shp")
+
+				# All polygon FCs in the workspace are MA town shapefiles, we want to append these to the empty FC
+				fcList = arcpy.ListFeatureClasses("","POLYGON")
+    # list will resemble ["amherst.shp", "hadley.shp", "pelham.shp", "coldspring.shp"] 
+
+    # Process: Append the feature classes into the empty feature class
+    arcpy.Append_management(fcList, outLocation + os.sep + emptyFC, schemaType, fieldMappings, subtype)
+ 
+except:
+    # If an error occurred while running a tool print the messages
+    print arcpy.GetMessages()
+                    </code></scriptExample></scriptExamples></tool></metadata>

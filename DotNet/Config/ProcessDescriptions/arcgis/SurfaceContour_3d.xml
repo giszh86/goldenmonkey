@@ -1,0 +1,108 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Surface Contour (3D Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Creates a feature class containing a set of contours generated from a terrain dataset or TIN surface. The output feature class is 2D and contains an attribute with contour values.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>3D</keyword><keyword>Isoline</keyword><keyword>Lines</keyword><keyword>Points</keyword><keyword>Surface</keyword><keyword>Surface Analysis</keyword><keyword>Terrain Dataset</keyword><keyword>Terrains</keyword><keyword>Tin</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SurfaceContour" displayname="Surface Contour (3D Analyst)" toolboxalias="3d" softwarerestriction="none"><summary>
+			<para>Creates a feature class containing a set of contours generated from a terrain dataset or TIN surface. The output feature class is 2D and contains an attribute with contour values.</para>
+			
+		</summary><alink_name>SurfaceContour_3d</alink_name><toolIllust type="illustration" src="SurfaceContour_3d_h.gif" alt="TIN Contour illustration" /><parameters><param sync="true" name="in_surface" displayname="Input Surface" datatype="Tin Layer; Terrain Layer" direction="Input" expression="in_surface" type="Required"><pythonReference>
+						<para>The input terrain dataset or TIN surface.</para>
+					</pythonReference><dialogReference>
+						<para>The input terrain dataset or TIN surface.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output feature class.</para>
+					</pythonReference><dialogReference>
+						<para>The output feature class.</para>
+					</dialogReference></param><param sync="true" name="interval" displayname="Contour Interval" datatype="Double" direction="Input" expression="interval" type="Required"><pythonReference>
+						<para>The interval between the contours.</para>
+					</pythonReference><dialogReference>
+						<para>The interval between the contours.</para>
+					</dialogReference></param><param sync="true" name="base_contour" displayname="Base Contour" datatype="Double" direction="Input" expression="base_contour" type="Optional"><pythonReference>
+						<para>Along with the index interval, the base height is used to determine what contours are produced. The base height is a starting point from which the index interval is either added or subtracted. By default, the base contour is 0.0.</para>
+					</pythonReference><dialogReference>
+						<para>Along with the index interval, the base height is used to determine what contours are produced. The base height is a starting point from which the index interval is either added or subtracted. By default, the base contour is 0.0.</para>
+					</dialogReference></param><param sync="true" name="contour_field" displayname="Contour Field" datatype="String" direction="Input" expression="contour_field" type="Optional"><pythonReference>
+						<para>The field containing contour values.</para>
+					</pythonReference><dialogReference>
+						<para>The field containing contour values.</para>
+					</dialogReference></param><param sync="true" name="contour_field_precision" displayname="Contour Field Precision" datatype="Long" direction="Input" expression="contour_field_precision" type="Optional"><pythonReference>
+						<para>The precision of the contour field. Zero specifies an integer, and the numbers 1–9 indicate how many decimal places the field will contain. By default, the field will be an integer (0).</para>
+					</pythonReference><dialogReference>
+						<para>The precision of the contour field. Zero specifies an integer, and the numbers 1–9 indicate how many decimal places the field will contain. By default, the field will be an integer (0).</para>
+					</dialogReference></param><param sync="true" name="index_interval" displayname="Index Interval" datatype="Double" direction="Input" expression="index_interval" type="Optional"><pythonReference>
+						<para>The difference, in Z units, between index contours. The value specified should be evenly divisible by the contour interval. Typically, it’s five times greater. Use of this parameter adds an attribute field to the output feature class that’s used to differentiate index contours from regular contours.</para>
+					</pythonReference><dialogReference>
+						<para>The difference, in Z units, between index contours. The value specified should be evenly divisible by the contour interval. Typically, it’s five times greater. Use of this parameter adds an attribute field to the output feature class that’s used to differentiate index contours from regular contours.</para>
+					</dialogReference></param><param sync="true" name="index_interval_field" displayname="Index Interval Field" datatype="String" direction="Input" expression="index_interval_field" type="Optional"><pythonReference>
+						<para>The name of the field used to record whether a contour is a regular or an index contour. By default, the value is ‘Index’.</para>
+					</pythonReference><dialogReference>
+						<para>The name of the field used to record whether a contour is a regular or an index contour. By default, the value is ‘Index’.</para>
+					</dialogReference></param><param sync="true" name="z_factor" displayname="Z Factor" datatype="Double" direction="Input" expression="z_factor" type="Optional"><pythonReference>
+						<para>Specifies a factor by which to multiply the surface heights. Used to convert z units to x and y units.   The Z factor parameter only affects results for rasters and TINs, not terrain datasets.    </para>
+					</pythonReference><dialogReference>
+						<para>Specifies a factor by which to multiply the surface heights. Used to convert z units to x and y units.   The Z factor parameter only affects results for rasters and TINs, not terrain datasets.    </para>
+					</dialogReference></param><param sync="true" name="pyramid_level_resolution" displayname="Pyramid Level Resolution" datatype="Double" direction="Input" expression="pyramid_level_resolution" type="Optional"><pythonReference>
+						<para>The pyramid level resolution of the terrain dataset to use for interpolation. The default is 0, full resolution.</para>
+					</pythonReference><dialogReference>
+						<para>The pyramid level resolution of the terrain dataset to use for interpolation. The default is 0, full resolution.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_resolution" label="XY resolution">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment></environments><usage><bullet_item>
+				<para>Use the interval and base contour options to tailor the extent and resolution of the output feature class.</para>
+			</bullet_item><bullet_item>
+				<para>Use the out contour field data to convert the feature class to 3D.</para>
+			</bullet_item><bullet_item>
+				<para>In certain instances the last valid contour line may not be produced when creating contours using TIN surfaces. This is an algorithmic limitation common to computer contouring software. To ensure that all valid contours are generated, add a very small negative value to the Base Contour field to slightly shift the data.</para>
+			</bullet_item><bullet_item><para>The Z factor parameter only affects results for rasters and TINs, not terrain datasets.     When working with terrain datasets you can  specify a contour interval that has the z factor built in to it. For example, if you want a one foot contour interval and your terrain dataset surface is in meters, specify a contour interval of 0.3048.  You can also convert the terrain dataset to a raster or TIN using either the  or  geoprocessing tools.</para></bullet_item></usage><scriptExamples><scriptExample><title>Surface Contour Example 1 (Python window)</title><para>The following Python Window script demonstrates how to use the Surface Contour
+function in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+
+arcpy.CheckOutExtension("3D")
+env.workspace = "C:/data"
+arcpy.SurfaceContour_3d("sample.gdb/featuredataset/terrain", "contour.shp", 10)
+                    </code></scriptExample><scriptExample><title>Surface Contour Example 2 (stand-alone script)</title>
+					<para>The following Python script demonstrates how to use the Surface Contour
+function in a stand-alone script.
+</para><code xml:space="preserve"># Name: SurfaceContour Example
+# Description: The following stand-alone script demonstrates how to use the 
+#              SurfaceContour tool.
+#              
+# Requirements: 3D Analyst extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+
+# Obtain a license for the 3D Analyst extension
+arcpy.CheckOutExtension("3D")
+
+# Set environment settings
+env.workspace = "C:/data"
+
+try:
+    # Set Local Variables
+    inSurface = "sample.gdb/featuredataset/terrain"
+    outContour = arcpy.CreateUniqueName("contour.shp")
+    
+    #Execute SurfaceContour
+    arcpy.SurfaceContour_3d(inSurface, outContour, 10)
+
+except Exception as e:
+    # Returns any other error messages
+    print e.message
+
+del inSurface, outContour, arcpy
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Get Count (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Returns the total number of rows for a feature class, table, layer, or raster.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Number</keyword><keyword>Record</keyword><keyword>Row</keyword><keyword>Sum</keyword><keyword>Tbl</keyword><keyword>Total</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GetCount" displayname="Get Count (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Returns the total number of rows for a feature class, table, layer, or raster.</para>
+		</summary><alink_name>GetCount_management</alink_name><parameters><param sync="true" name="in_rows" displayname="Input Rows" datatype="Feature class;Table View; Layer ; Raster" direction="Input" expression="in_rows" type="Required"><pythonReference>
+						<para>The input feature class, table, layer, or raster. If a selection is defined on the input, only its rows are returned.</para>
+					</pythonReference><dialogReference>
+						<para>The input feature class, table, layer, or raster. If a selection is defined on the input, only its rows are returned.</para>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>You can view the returned row count in the Results window.
+
+				
+			</bullet_item><bullet_item>
+				<para>If the input contains a selected set of records, only the selected records will be counted.</para>
+			</bullet_item><bullet_item>
+				<para> In ModelBuilder, Get Count is typically used to set up a precondition, as illustrated below. In this model, Get Count counts the number of records returned by the  tool. If the count is zero, Buffer will not run due to the precondition.</para>
+				
+					
+					
+				
+			</bullet_item></usage><scriptExamples><scriptExample><title>GetCount Example (Python Window)</title>
+					<para>The following Python Window script demonstrates how to use the GetCount function in immediate mode.</para>
+				<code xml:space="preserve">
+import arcpy
+from arcpy import env
+
+env.workspace = "C:/data/data.gdb"
+arcpy.GetCount_management("roads")
+                    </code></scriptExample><scriptExample><title>GetCount Example 2 (Stand-alone Script)</title>
+					<para>The following stand-alone script is a simple example of how to use the GetCount function in a scripting environment.</para>
+					
+				<code xml:space="preserve">
+# Name: fcCount.py
+# Purpose: calculate the number of features in a featureclass
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+ 
+env.workspace = "C:/data/Montgomery.gdb"
+result = arcpy.GetCount_management("Road_eopST") 
+print result
+                    </code></scriptExample></scriptExamples></tool></metadata>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Get Raster Properties (Data Management)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Returns the properties of a raster dataset.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Attribute</keyword><keyword>Properties</keyword><keyword>Retrieve</keyword><keyword>Return</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="GetRasterProperties" displayname="Get Raster Properties (Data Management)" toolboxalias="management" softwarerestriction="none"><summary>
+			<para>Returns the properties of a raster dataset.</para>
+		</summary><alink_name>GetRasterProperties_management</alink_name><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The input raster dataset.</para>
+					</pythonReference><dialogReference>
+						<para>The input raster dataset.</para>
+					</dialogReference></param><param sync="true" name="property_type" displayname="Property type" datatype="String" direction="Input" expression="property_type" type="Optional"><pythonReference>
+						<para>The property to be obtained from the raster dataset.</para>
+						<bulletList><bullet_item>MINIMUM—Returns the smallest value of all cells in the input raster. </bullet_item><bullet_item>MAXIMUM—Returns the largest value of all cells in the input raster. </bullet_item><bullet_item>MEAN—Returns the average of all cells in the input raster. </bullet_item><bullet_item>STD—Returns the standard deviation of all cells in the input raster. </bullet_item><bullet_item>UNIQUEVALUECOUNT—Returns the number of unique values in the input raster. </bullet_item><bullet_item>TOP—Returns the top or YMax value of the extent. </bullet_item><bullet_item>LEFT—Returns the left or XMin value of the extent. </bullet_item><bullet_item>RIGHT—Returns the right or XMax value of the extent. </bullet_item><bullet_item>BOTTOM—Returns the bottom or YMin value of the extent. </bullet_item><bullet_item>CELLSIZEX—Returns the cell size in the x-direction. </bullet_item><bullet_item>CELLSIZEY—Returns the cell size in the y-direction. </bullet_item><bullet_item>VALUETYPE—Returns the type of the cell value in the input raster: <bulletList><bullet_item>0 = 1-bit</bullet_item><bullet_item>1 = 2-bit</bullet_item><bullet_item>2 = 4-bit</bullet_item><bullet_item>3 = 8-bit unsigned integer</bullet_item><bullet_item>4 = 8-bit signed integer</bullet_item><bullet_item>5 = 16-bit unsigned integer</bullet_item><bullet_item>6 = 16-bit signed integer</bullet_item><bullet_item>7 = 32-bit unsigned integer</bullet_item><bullet_item>8 = 32-bit signed integer</bullet_item><bullet_item>9 =  32-bit floating point</bullet_item><bullet_item>10 = 64-bit double precision</bullet_item><bullet_item>11 = 8-bit complex</bullet_item><bullet_item>12 = 64-bit complex</bullet_item><bullet_item>13 = 16-bit complex </bullet_item><bullet_item>14 = 32-bit complex</bullet_item></bulletList>
+									</bullet_item><bullet_item>COLUMNCOUNT—Returns the number of columns in the input raster. </bullet_item><bullet_item>ROWCOUNT—Returns the number of rows in the input raster. </bullet_item><bullet_item>BANDCOUNT—Returns the number of bands in the input raster. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>The property to be obtained from the raster dataset.</para>
+						<bulletList><bullet_item>MINIMUM—Returns the smallest value of all cells in the input raster. </bullet_item><bullet_item>MAXIMUM—Returns the largest value of all cells in the input raster. </bullet_item><bullet_item>MEAN—Returns the average of all cells in the input raster. </bullet_item><bullet_item>STD—Returns the standard deviation of all cells in the input raster. </bullet_item><bullet_item>UNIQUEVALUECOUNT—Returns the number of unique values in the input raster. </bullet_item><bullet_item>TOP—Returns the top or YMax value of the extent. </bullet_item><bullet_item>LEFT—Returns the left or XMin value of the extent. </bullet_item><bullet_item>RIGHT—Returns the right or XMax value of the extent. </bullet_item><bullet_item>BOTTOM—Returns the bottom or YMin value of the extent. </bullet_item><bullet_item>CELLSIZEX—Returns the cell size in the x-direction. </bullet_item><bullet_item>CELLSIZEY—Returns the cell size in the y-direction. </bullet_item><bullet_item>VALUETYPE—Returns the type of the cell value in the input raster.</bullet_item><bullet_item>COLUMNCOUNT—Returns the number of columns in the input raster. </bullet_item><bullet_item>ROWCOUNT—Returns the number of rows in the input raster. </bullet_item><bullet_item>BANDCOUNT—Returns the number of bands in the input raster. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment></environments><usage><bullet_item>
+				<para>The property returned will be displayed in the geoprocessing window.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>GetRasterProperties example 1 (Python window)</title>
+					<para>This is a Python sample for GetRasterProperties</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "c:/data"
+elevSTD = arcpy.GetRasterProperties_management("elevation", "STD")
+
+                    </code></scriptExample><scriptExample><title>GetRasterProperties example 2 (stand-alone script)</title>
+					<para>This is a Python script sample for GetRasterProperties</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+env.workspace = "c:/data"
+elevSTD = arcpy.GetRasterProperties_management("elevation", "STD")
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

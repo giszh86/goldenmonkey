@@ -1,0 +1,119 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Simplify Polygon (Cartography)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Simplifies polygons by removing extraneous bends while preserving essential shape.</para>
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Bend Simplify</keyword><keyword>Bendsimplify</keyword><keyword>Cartography</keyword><keyword>Contextual</keyword><keyword>Generalisation</keyword><keyword>Generalise</keyword><keyword>Generalization</keyword><keyword>Generalize</keyword><keyword>Point Remove</keyword><keyword>Pointremove</keyword><keyword>Polygon Simplification</keyword><keyword>Reduce</keyword><keyword>Remove</keyword><keyword>Scale Change</keyword><keyword>Simplification</keyword><keyword>Simplify</keyword><keyword>Small Scale</keyword><keyword>Typification</keyword><keyword>Typify</keyword><keyword>Vertex</keyword><keyword>Vertices</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="SimplifyPolygon" displayname="Simplify Polygon (Cartography)" toolboxalias="cartography" softwarerestriction="none"><summary>
+			<para>Simplifies polygons by removing extraneous bends while preserving essential shape.</para>
+		</summary><alink_name>SimplifyPolygon_cartography</alink_name><toolIllust type="illustration" src="SimplifyPolygon_cartography_h.gif" alt="Polygon simplification" /><parameters><param sync="true" name="in_features" displayname="Input Features" datatype="Feature Layer" direction="Input" expression="in_features" type="Required"><pythonReference>
+						<para>The polygon features to be simplified.</para>
+					</pythonReference><dialogReference>
+						<para>The polygon features to be simplified.</para>
+					</dialogReference></param><param sync="true" name="out_feature_class" displayname="Output Feature Class" datatype="Feature Class" direction="Output" expression="out_feature_class" type="Required"><pythonReference>
+						<para>The output polygon feature class to be created.</para>
+					</pythonReference><dialogReference>
+						<para>The output polygon feature class to be created.</para>
+					</dialogReference></param><param sync="true" name="algorithm" displayname="Simplification Algorithm" datatype="String" direction="Input" expression="algorithm" type="Required"><pythonReference>
+						<para>Specifies the polygon simplification algorithm.</para>
+						<bulletList><bullet_item>POINT_REMOVE—Keeps the so-called critical points that depict the essential shape of a polygon and removes all other points. This is the default. </bullet_item><bullet_item>BEND_SIMPLIFY—Keeps the main shape of a polygon and removes extraneous bends in the boundary. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies the polygon simplification algorithm.</para>
+						<bulletList><bullet_item>POINT_REMOVE—Keeps the so-called critical points that depict the essential shape of a polygon and removes all other points. This is the default. </bullet_item><bullet_item>BEND_SIMPLIFY—Keeps the main shape of a polygon and removes extraneous bends in the boundary. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="tolerance" displayname="Simplification Tolerance" datatype="Linear Unit" direction="Input" expression="tolerance" type="Required"><pythonReference>
+						<para>The tolerance that determines the degree of simplification. A tolerance must be specified, and it must be greater than zero. You can choose a preferred unit; the default is the feature unit.</para>
+						<bulletList>
+							<bullet_item>For POINT_REMOVE algorithm, the tolerance you specify is the maximum allowable offset.</bullet_item>
+							<bullet_item>For BEND_SIMPLIFY algorithm, the tolerance you specify is the length of the reference bend baseline.</bullet_item>
+						</bulletList>
+					</pythonReference><dialogReference>
+						<para>The tolerance that determines the degree of simplification. A tolerance must be specified, and it must be greater than zero. You can choose a preferred unit; the default is the feature unit.</para>
+						<bulletList>
+							<bullet_item>For POINT_REMOVE algorithm, the tolerance you specify is the maximum allowable offset.</bullet_item>
+							<bullet_item>For BEND_SIMPLIFY algorithm, the tolerance you specify is the length of the reference bend baseline.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="minimum_area" displayname="Minimum Area" datatype="Areal Unit" direction="Input" expression="minimum_area" type="Optional"><pythonReference>
+						<para>Sets the minimum area for a simplified polygon to be retained. The default value is zero, that is, to keep all polygons. You can choose a preferred unit for the specified value; the default is the feature unit.</para>
+					</pythonReference><dialogReference>
+						<para>Sets the minimum area for a simplified polygon to be retained. The default value is zero, that is, to keep all polygons. You can choose a preferred unit for the specified value; the default is the feature unit.</para>
+					</dialogReference></param><param sync="true" name="error_option" displayname="Handling topological errors" datatype="String" direction="Input" expression="error_option" type="Optional"><pythonReference>
+						<para>Specifies how the topological errors (possibly introduced in the process, including line crossing, line overlapping, and collapsed zero-length lines) will be handled.</para>
+						<bulletList><bullet_item>NO_CHECK—Specifies not to check topological errors. This is the default. </bullet_item><bullet_item>FLAG_ERRORS—Specifies to flag topological errors if any are found. </bullet_item><bullet_item>RESOLVE_ERRORS—Specifies to resolve topological errors if any are found. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies how the topological errors (possibly introduced in the process, including line crossing, line overlapping, and collapsed zero-length lines) will be handled.</para>
+						<bulletList><bullet_item>NO_CHECK—Specifies not to check topological errors. This is the default. </bullet_item><bullet_item>FLAG_ERRORS—Specifies to flag topological errors if any are found. </bullet_item><bullet_item>RESOLVE_ERRORS—Specifies to resolve topological errors if any are found. </bullet_item></bulletList>
+					</dialogReference></param><param sync="true" name="collapsed_point_option" displayname="Keep collapsed points" datatype="Boolean" direction="Input" expression="collapsed_point_option" type="Optional"><pythonReference>
+						<para>Specifies whether to keep collapsed zero-area polygons as points if any are found in the process. This option applies only when NO_CHECK or FLAG_ERRORS is specified.</para>
+						<bulletList><bullet_item>KEEP_COLLAPSED_POINTS—Specifies to keep the collapsed zero-area polygons as points. The endpoints of the collapsed polygon boundaries will be stored in a point feature class at the output feature class location, taking the name of the output feature class plus a suffix _Pnt. This is the default. </bullet_item><bullet_item>NO_KEEP—Specifies not to keep the collapsed zero-area polygons as points even if they are found in the process; therefore, the point feature class will be empty. </bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Specifies whether to keep collapsed zero-area polygons as points if any are found in the process. This option applies only when NO_CHECK or FLAG_ERRORS is specified.</para>
+						<bulletList><bullet_item>Checked—Specifies to keep the collapsed zero-area polygons as points. The endpoints of the collapsed polygons will be stored in a point feature class at the output feature class location, taking the name of the output feature class plus a suffix _Pnt. This is the default. </bullet_item><bullet_item>Unchecked—Specifies not to keep the collapsed zero-area polygons as points even if they are found in the process; therefore, the point feature class will be empty. </bullet_item></bulletList>
+					</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Default_output_Z_value" label="Default output Z value">
+						
+					</environment><environment name="Output_M_domain" label="Output M domain">
+						
+					</environment><environment name="Output_XY_domain" label="Output XY domain">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Output_has_M_values" label="Output has M values">
+						
+					</environment><environment name="Output_has_Z_values" label="Output has Z values">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="XY_tolerance" label="XY tolerance">
+						
+					</environment></environments><usage><bullet_item><para></para><para> There are two simplification methods:</para>
+				<bulletList><bullet_item> The POINT_REMOVE method is the faster of the two processes. It removes redundant vertices. Use this method for data compression or more coarser simplification, especially when the data is well-known. The angularity (sharp corners) of the resulting polygon will increase significantly as the tolerance increases, so the polygon may become less aesthetically pleasing.</bullet_item><bullet_item> The BEND_SIMPLIFY method is slower but typically produces  results that are more faithful to the original and more aesthetically pleasing. It operates by eliminating insignificant bends along polygons. Use this method for less, more refined simplification. </bullet_item></bulletList>
+				</bullet_item><bullet_item>
+				<para> The Minimum Area parameter applies to simplified polygons only. Any polygons which are smaller than the minimum area after the simplification process is completed will be removed from the output feature class. For a group of adjacent polygons which share common edges, it applies to the total area of the group.</para>
+			</bullet_item><bullet_item>
+				<para> The tool produces two output feature classes, a polygon feature class to store the simplified polygons and a point feature class to store points that represent any polygons that were collapsed to zero-area. The point output name and location is automatically derived from the output polygon name with a _Pnt suffix. The polygon output will contain all the input fields; the point output will not contain any of the input fields.</para>
+			</bullet_item><bullet_item><para> Multipart polygons are simplified as individual parts.</para></bullet_item><bullet_item><para> There are three options for handling topological errors in the output:</para><bulletList><bullet_item>
+						NO_CHECK: topological errors introduced by the simplification process will not be checked. Processing will be faster. Use this option only  when you have confidence in the topological accuracy of the data.</bullet_item><bullet_item> FLAG_ERRORS: topological errors introduced by the simplification process will be flagged. Use this option when the importance of identifying topological errors is greater than the importance of resolving errors. This option is not supported in an edit session.<bulletList><bullet_item> The polygon output will contain two new fields to indicate whether or not a feature has a topological error. InPoly_FID and SimPlyFlag contain the input feature IDs and topological errors, respectively.</bullet_item><bullet_item> The InPoly_FID field links the collapsed points to their input polygons.</bullet_item><bullet_item> In the SimPlyFlag field, a value of 1 indicates an error was introduced;  0 (zero) indicates that no error was introduced.</bullet_item><bullet_item> The flag values will remain in place after a topological error has been resolved. Use the SimPlyFlag field to examine features which have topological errors.</bullet_item></bulletList></bullet_item><bullet_item>
+						RESOLVE_ERRORS: repairs topological errors introduced by the simplification process. Processing time will be longer This option is not supported in an edit session.<bulletList><bullet_item> The tolerance specified may be suitable for a majority of the polygons but not for all, especially those in congested areas. When a topological error is detected after the first round of simplification, the involved boundary segments (not the entire polygons) will be located and a reduced tolerance will be used</bullet_item><bullet_item> This reduced tolerance is fifty percent of that used previously. This new tolerance will be used to resimplify these segments. This iteration will repeat as many times as needed until no more topological errors are found.</bullet_item><bullet_item> The polygon output feature class will contain the same number of polygons as in the input, and it will have two new fields, MaxSimpTol and MinSimpTol, which store the maximum and minimum tolerances actually used in simplifying each polygon through the iteration. If no errors were introduced, the values of MaxSimpTol and MinSimpTol will be the same as the specified simplification tolerance.</bullet_item><bullet_item> A small polygon near a larger polygon can end up inside the larger polygon due to a relatively large simplification_tolerance. This spatial relationship error will not be detected by the program.</bullet_item></bulletList></bullet_item><bullet_item> For the NO_CHECK and FLAG_ERRORS options, self-intersecting geometry may be created during the simplification process and will be automatically repaired. For example, if a polygon crosses itself, the polygon will be repaired to become a multipart polygon such that no part crosses any other part, although the polygon will still look self-crossing.</bullet_item></bulletList></bullet_item><bullet_item><para>The point
+output will be populated when the NO_CHECK or the FLAG_ERRORS are used, or if the Keep
+collapsed points check box is checked. If an input polygon contains
+multiple parts and one of the parts becomes a collapsed point, the
+point representing that part will also be included in the point
+output.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>SimplifyPolygon Example (Python Window)</title>
+					<para>The following Python window script demonstrates how to use the SimplifyPolygon tool in immediate mode.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env
+import arcpy.cartography as CA
+env.workspace = "C:/data"
+CA.SimplifyPolygon("soils.shp", "C:/output/output.gdb/simplified_soils", "POINT_REMOVE", 100)
+                    </code></scriptExample><scriptExample><title>SimplifyPolygon Example 2 (stand-alone script)</title>
+					<para>The following stand-alone script demonstrates how to use the SimplifyPolygon tool.</para>
+				<code xml:space="preserve"># Name: SimplifyPolygon_Example2.py
+# Description: Eliminate small islands before simplifying and smoothing lake boundaries
+# Author: ESRI
+ 
+# Import system modules
+import arcpy
+from arcpy import env
+import arcpy.management as DM
+import arcpy.cartography as CA
+ 
+# Set environment settings
+env.workspace = "C:/data/Portland.gdb/Hydrography"
+ 
+# Set local variables
+inLakeFeatures = "lakes"
+eliminatedFeatures = "C:/data/PortlandOutput.gdb/lakes_eliminated"
+simplifiedFeatures = "C:/data/PortlandOutput.gdb/lakes_simplified"
+smoothedFeatures = "C:/data/PortlandOutput.gdb/lakes_smoothed"
+
+# Eliminate small islands in lake polygons.
+DM.EliminatePolygonPart(inLakeFeatures, eliminatedFeatures, 100, "OR", 0, "CONTAINED_ONLY")
+ 
+# Simplify lake polygons.
+CA.SimplifyPolygon(eliminatedFeatures, simplifiedFeatures, "POINT_REMOVE", 50, 200, "RESOLVE_ERRORS", "KEEP_COLLAPSED_POINTS", "CHECK")
+ 
+# Smooth lake polygons.
+CA.SmoothPolygon(simplifiedFeatures, smoothedFeatures, "PAEK", 100, "FLAG_ERRORS")
+ 
+
+                    </code></scriptExample></scriptExamples></tool></metadata>

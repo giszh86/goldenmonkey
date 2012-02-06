@@ -1,0 +1,119 @@
+<?xml version="1.0"?><metadata><Esri><MetaID SYNC="true" /><CreaDate SYNC="true" /><CreaTime SYNC="true" /><SyncOnce SYNC="true">TRUE</SyncOnce><ModDate SYNC="true" /><ModTime SYNC="true" /></Esri><dataIdInfo><idCitation><resTitle sync="true">Block Statistics (Spatial Analyst)</resTitle><citRespParty><rpIndName /><rpOrgName>ESRI, Inc.</rpOrgName><rpPosName /><rpCntInfo><cntAddress><delPoint>380 New York Street</delPoint><city>Redlands</city><adminArea>California</adminArea><postCode>92373 - 8100</postCode><eMailAdd>info@esri.com</eMailAdd><country>United States</country></cntAddress><cntPhone><voiceNum>909-793-2853</voiceNum><faxNum>909-793-5953</faxNum></cntPhone></rpCntInfo><role><RoleCd>010</RoleCd></role></citRespParty></idCitation><idAbs>
+			<para>Partitions the input into non-overlapping blocks and calculates the statistic of the values within each block. The value is assigned to all of the cells in each block in the output.</para>
+			
+		</idAbs><descKeys KeyTypCd="005"><keyTyp><keyTyp>005</keyTyp></keyTyp><keyword>Aggregate</keyword><keyword>Average</keyword><keyword>Different</keyword><keyword>Dissimilar</keyword><keyword>Largest</keyword><keyword>Least</keyword><keyword>Least Often</keyword><keyword>Majority</keyword><keyword>Max</keyword><keyword>Maximum</keyword><keyword>Mean</keyword><keyword>Med</keyword><keyword>Median</keyword><keyword>Min</keyword><keyword>Minimum</keyword><keyword>Minority</keyword><keyword>Most Often</keyword><keyword>Neighborhood</keyword><keyword>Nonoverlapping</keyword><keyword>Range</keyword><keyword>Smallest</keyword><keyword>Standard Deviation</keyword><keyword>Std</keyword><keyword>Stdev</keyword><keyword>Sum</keyword><keyword>Total</keyword><keyword>Unique</keyword><keyword>Variety</keyword></descKeys></dataIdInfo><distInfo><distributor><distorFormat><formatName sync="true">ArcToolBox Tool</formatName></distorFormat><distorTran><onLineSrc><linkage /><protocol /><onFunct><onFunctCd /></onFunct></onLineSrc></distorTran></distributor></distInfo><metainfo><metd Sync="TRUE" /></metainfo><mdDateSt Sync="TRUE" /><tool name="BlockStatistics" displayname="Block Statistics (Spatial Analyst)" toolboxalias="sa" softwarerestriction="none"><summary>
+			<para>Partitions the input into non-overlapping blocks and calculates the statistic of the values within each block. The value is assigned to all of the cells in each block in the output.</para>
+			
+		</summary><alink_name>BlockStatistics_sa</alink_name><toolIllust type="illustration" src="BlockStatistics_sa_h.png" alt="Block Statistics with Maximum option  illustration" /><parameters><param sync="true" name="in_raster" displayname="Input raster" datatype="Raster Layer" direction="Input" expression="in_raster" type="Required"><pythonReference>
+						<para>The raster on which to perform the Block Statistics calculations.</para>
+					</pythonReference><dialogReference>
+						<para>The raster on which to perform the Block Statistics calculations.</para>
+					</dialogReference></param><param sync="true" name="neighborhood" displayname="Neighborhood" datatype="Neighborhood" direction="Input" expression="neighborhood" type="Optional"><pythonReference>
+						<para>The Neighborhood class dictates the shape of the area around each cell used to calculate the statistic.</para>
+						<para>The different types of neighborhood available are: NbrAnnulus, NbrCircle, NbrRectangle, NbrWedge,  NbrIrregular, and NbrWeight.</para><para>The following are the forms of the neighborhoods:</para>
+						<bulletList>
+							<bullet_item>NbrAnnulus({innerRadius}, {outerRadius}, {CELL | MAP})</bullet_item>
+							<bullet_item>NbrCircle({radius}, {CELL | MAP}</bullet_item>
+							<bullet_item>
+								NbrRectangle({width}, {height}, {CELL | MAP})</bullet_item>
+							<bullet_item>NbrWedge({radius}, {start_angle}, {end_angle}, {CELL | MAP})</bullet_item>
+							<bullet_item>NbrIrregular(kernel_file)</bullet_item>
+							<bullet_item>
+								NbrWeight(kernel_file)</bullet_item>
+						</bulletList>
+						<para>The {CELL | MAP} parameter defines the distance units as either being  Cell units or Map units.</para>
+						<para>The default neighborhood is a square NbrRectangle with a width and height of 3 cells.</para>
+					</pythonReference><dialogReference>
+						<para>Dictates the shape of the area around each cell used to calculate the statistic.</para><para>Once the neighborhood type is selected, other parameters can be set to define the shape of that neighborhood, the size, and the  units.</para>
+						<bulletList>
+							<bullet_item>Annulus Inner radius Outer radius Units<para>A torus (donut-shaped) neighborhood defined by an inner radius and an outer radius. The default annulus is an inner radius of one cell and an outer radius of three cells.</para></bullet_item>
+							<bullet_item>Circle Radius Units<para>A circular neighborhood with the given radius. The default radius is three cells.</para></bullet_item>
+							<bullet_item>Rectangle Height Width Units<para>A rectangular neighborhood defined by the height and width. The default is a square with a height and width of three cells.</para></bullet_item>
+							<bullet_item>Wedge Radius Start angle End angle Units<para>A wedge-shaped neighborhood defined by a radius, the start angle, and the  end angle. The wedge extends counterclockwise from the starting angle to the ending angle. Angles are specified in degrees, with 0 or 360 representing east. Negative angles may be used. The default wedge is from 0 to 90 degrees, with a radius of three cells.</para></bullet_item>
+							<bullet_item>Irregular Kernel file<para>A custom neighborhood with specifications set by a user-defined file.</para></bullet_item>
+							<bullet_item>Weight Kernel file<para>A custom neighborhood with specifications set by a user-defined file, which can apply weights to the members of the neighborhood.</para></bullet_item>
+						</bulletList>
+						<para>The distance Units for the parameters can be specified in Cell units or Map units.  Cell units is the default.</para><para>The default neighborhood is a square Rectangle with a width and height of three cells.</para>
+					</dialogReference></param><param sync="true" name="statistics_type" displayname="Statistics type" datatype="String" direction="Input" expression="statistics_type" type="Optional"><pythonReference>
+						<para>The statistic type to be calculated.</para><bulletList><bullet_item>MEAN — Calculates the mean (average value) of the cells in the neighborhood.</bullet_item><bullet_item>MAJORITY — Calculates the majority (value that occurs most often) of the cells in the neighborhood.</bullet_item><bullet_item>MAXIMUM — Calculates the maximum (largest value) of the cells in the neighborhood.</bullet_item><bullet_item>MEDIAN — Calculates the median of the cells in the neighborhood.</bullet_item><bullet_item>MINIMUM — Calculates the minimum (smallest value) of the cells in the neighborhood.</bullet_item><bullet_item>MINORITY — Calculates the minority (value that occurs least often) of the cells in the neighborhood.</bullet_item><bullet_item>RANGE — Calculates the range (difference between largest and smallest value) of the cells in the neighborhood.</bullet_item><bullet_item>STD — Calculates the standard deviation of the cells in the neighborhood.</bullet_item><bullet_item>SUM — Calculates the sum (total of all values) of the cells in the neighborhood.</bullet_item><bullet_item>VARIETY — Calculates the variety (the number of unique values) of the cells in the neighborhood.</bullet_item></bulletList><para>The default statistic type is MEAN.</para>
+					</pythonReference><dialogReference>
+						<para>The statistic type to be calculated.</para><bulletList><bullet_item>MEAN — Calculates the mean (average value) of the cells in the neighborhood.</bullet_item><bullet_item>MAJORITY — Calculates the majority (value that occurs most often) of the cells in the neighborhood.</bullet_item><bullet_item>MAXIMUM — Calculates the maximum (largest value) of the cells in the neighborhood.</bullet_item><bullet_item>MEDIAN — Calculates the median of the cells in the neighborhood.</bullet_item><bullet_item>MINIMUM — Calculates the minimum (smallest value) of the cells in the neighborhood.</bullet_item><bullet_item>MINORITY — Calculates the minority (value that occurs least often) of the cells in the neighborhood.</bullet_item><bullet_item>RANGE — Calculates the range (difference between largest and smallest value) of the cells in the neighborhood.</bullet_item><bullet_item>STD — Calculates the standard deviation of the cells in the neighborhood.</bullet_item><bullet_item>SUM — Calculates the sum (total of all values) of the cells in the neighborhood.</bullet_item><bullet_item>VARIETY — Calculates the variety (the number of unique values) of the cells in the neighborhood.</bullet_item></bulletList><para>The default statistic type is MEAN.</para>
+					</dialogReference></param><param sync="true" name="ignore_nodata" displayname="Ignore NoData in calculations" datatype="Boolean" direction="Input" expression="ignore_nodata" type="Optional"><pythonReference>
+						<para>Denotes whether NoData values are ignored by the statistic calculation.</para>
+						<bulletList><bullet_item>DATA — Specifies that if a NoData value exists within a neighborhood, the NoData value will be ignored. Only cells within the neighborhood that have data values will be used in determining the output value. This is the default.</bullet_item><bullet_item>NODATA — Specifies that if any cell in a neighborhood has a value of NoData, the output for each cell in the corresponding block will receive NoData. Whenever the NoData keyword is used, the presence of a NoData value implies that there is insufficient information to determine the statistic value for the neighborhood.</bullet_item></bulletList>
+					</pythonReference><dialogReference>
+						<para>Denotes whether NoData values are ignored by the statistic calculation.</para>
+						<bulletList>
+							<bullet_item>Checked—Specifies that if a NoData value exists within a neighborhood, the NoData value will be ignored. Only cells within the neighborhood that have data values will be used in determining the output value. This is the default.</bullet_item>
+							<bullet_item>Unchecked—Specifies that if any cell in a neighborhood has a value of NoData, the output for each cell in the corresponding block will receive NoData. With this option, the presence of a NoData value implies that there is insufficient information to determine the statistic value for the neighborhood.</bullet_item>
+						</bulletList>
+					</dialogReference></param><param sync="true" name="out_raster" displayname="Output raster" datatype="Raster" direction="Output" expression="out_raster" type="Required"><pythonReference>
+							<para>The output block statistics raster.</para>
+						</pythonReference><dialogReference>
+							<para>The output block statistics raster.</para>
+						</dialogReference></param></parameters><returnvalues></returnvalues><environments><environment name="Cell_size" label="Cell size">
+						
+					</environment><environment name="Current_workspace" label="Current workspace">
+						
+					</environment><environment name="Mask" label="Mask">
+						
+					</environment><environment name="Output_coordinate_system" label="Output coordinate system">
+						
+					</environment><environment name="Output_extent" label="Output extent">
+						
+					</environment><environment name="Scratch_workspace" label="Scratch workspace">
+						
+					</environment><environment name="Snap_raster" label="Snap raster">
+						
+					</environment></environments><usage><bullet_item>
+				<para>If the input raster is of floating point type, only the Mean, Maximum, Minimum, Range, STD, and Sum statistics are available; the Majority, Minority, Median and Variety statistics are not permitted. If the input raster is of integer type, all the statistics types are available.</para>
+			</bullet_item><bullet_item>
+				<para>When a circular, annulus-shaped, or wedge-shaped neighborhood is specified, depending on the size of the neighborhood, cells that are not perpendicular to the x- or y-axis may not be considered in the calculations. However, these cell locations will receive the resulting value from the calculations of the neighborhood because they fall within the minimum-bounding rectangle (or the output block) of these circular neighborhood types.</para>
+			</bullet_item><bullet_item>
+				<para>If the input raster is integer, the output raster will be integer. An exception is for the Mean or STD statistics types, for which the output raster will always be floating point. If the input type is float, the output will be float for all of the available statistics types.</para>
+			</bullet_item><bullet_item>
+				<para>The Irregular and Weight Neighborhood types require a Kernel file be specified. Kernel files should have a ".txt" file extension.</para>
+			</bullet_item><bullet_item>
+				<para>For statistics type Median, if the number of cells in the block is odd, the values are ranked and the middle value is reported as the median and is an integer. If the number of cells in the block is even, the values are ranked and the middle two values are averaged to the nearest integer.</para>
+			</bullet_item><bullet_item>
+				<para>For statistics type Majority, cells where there is no single majority value—that is, two or more values within a block are tied as having the most number of cells with the value—will be assigned NoData. For statistics type Minority, cells where there is no single minority value will also be assigned NoData.</para>
+			</bullet_item><bullet_item>
+				<para>When the Statistic type is Mean, Minority, Standard Deviation, or Sum, the Neighborhood type can be set to Weight.</para>
+			</bullet_item></usage><scriptExamples><scriptExample><title>BlockStatistics example 1 (Python window)</title>
+					<para>This sample calculates the minimum cell value within each non-overlapping annulus (doughnut-shaped) neighborhood in the input GRID raster.</para>
+				<code xml:space="preserve">import arcpy
+from arcpy import env  
+from arcpy.sa import *
+env.workspace = "C:/sapyexamples/data"
+nbr = NbrAnnulus(1, 3, "MAP")
+outBlockStat = BlockStatistics("block", nbr, "MINIMUM", "")
+outBlockStat.save("C:/sapyexamples/output/blockstat")
+                    </code></scriptExample><scriptExample><title>BlockStatistics example 2 (stand-alone script)</title>
+					<para>This sample calculates the minimum cell value within each non-overlapping annulus (doughnut-shaped) neighborhood in the input GRID raster.</para>
+				<code xml:space="preserve"># Name: BlockStatistics_Ex_02.py
+# Description: Calculates statistics for a nonoverlapping 
+#              neighborhood.
+# Requirements: Spatial Analyst Extension
+# Author: ESRI
+
+# Import system modules
+import arcpy
+from arcpy import env
+from arcpy.sa import *
+
+# Set environment settings
+env.workspace = "C:/sapyexamples/data"
+
+# Set local variables
+inRaster = "block"
+nbr = NbrAnnulus(1, 3, "MAP")
+
+# Check out the ArcGIS Spatial Analyst extension license
+arcpy.CheckOutExtension("Spatial")
+
+# Execute BlockStatistics
+outBlockStat = BlockStatistics(inRaster, nbr, "MINIMUM", "NODATA")
+
+# Save the output 
+outBlockStat.save("C:/sapyexamples/output/blockstat")
+                    </code></scriptExample></scriptExamples></tool></metadata>
